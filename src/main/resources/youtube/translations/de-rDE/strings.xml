@@ -88,6 +88,9 @@ Ist es fertig zum Einreichen?"</string>
     <string name="revanced_adremover_channel_member_shelf_summary_off">Kanalmitgliedschaft wird angezeigt</string>
     <string name="revanced_adremover_channel_member_shelf_summary_on">Kanalmitgliedschaft wird ausgeblendet</string>
     <string name="revanced_adremover_channel_member_shelf_title">Kanalmitgliedschaft ausblenden</string>
+    <string name="revanced_adremover_channelbar_join_button_summary_off">Button für Kanalmitgliedschaft ist eingeblendet</string>
+    <string name="revanced_adremover_channelbar_join_button_summary_on">Button für Kanalmitgliedschaft ist ausgeblended</string>
+    <string name="revanced_adremover_channelbar_join_button_title">Kanalmitgliedschaftsbutton ausblenden</string>        
     <string name="revanced_adremover_chapter_teaser_summary_off">Teaser des Kapitels werden angezeigt</string>
     <string name="revanced_adremover_chapter_teaser_summary_on">Teaser des Kapitels sind versteckt</string>
     <string name="revanced_adremover_chapter_teaser_title">Verstecke Kapitel und Teaser unter Videos</string>
@@ -158,6 +161,8 @@ Ist es fertig zum Einreichen?"</string>
     <string name="revanced_adremover_view_products_title">Verstecke Produkt-Banner </string>
     <string name="revanced_adremover_web_search_panel_summary_off">Websuchfenster werden angezeigt</string>
     <string name="revanced_adremover_web_search_panel_summary_on">Websuche-Panels sind versteckt</string>
+    <string name="revanced_custom_seekbar_color_value_summary">Hex-Code der Suchleistenfarbe, die im Dunkelmodus verwendet werden soll</string>
+    <string name="revanced_custom_seekbar_color_value_title">Farbwert für die Suchleiste</string>            
     <string name="revanced_adremover_web_search_panel_title">Web-Suchfenster ausblenden</string>
     <string name="revanced_custom_video_buffer_maximum_summary">Die maximale Dauer der Medien, die der Player zu puffern versucht</string>
     <string name="revanced_custom_video_buffer_maximum_title">Maximale Puffergröße</string>
@@ -202,6 +207,9 @@ Ist es fertig zum Einreichen?"</string>
     <string name="revanced_enable_always_auto_repeat_summary_off">Stätige automatische Wiederholung ist deaktiviert</string>
     <string name="revanced_enable_always_auto_repeat_summary_on">Stätige automatische Wiederholung ist aktiviert</string>
     <string name="revanced_enable_always_auto_repeat_title">Stätige Auto-Wiederholung</string>
+    <string name="revanced_enable_custom_seekbar_color_summary_off">Eigene Farbe für Suchleiste ist deaktiviert</string>
+    <string name="revanced_enable_custom_seekbar_color_summary_on">Eigene Farbe für Suchleiste ist aktiviert</string>
+    <string name="revanced_enable_custom_seekbar_color_title">Aktiviere eigene Suchleisten Farbe im Darkmode</string> 
     <string name="revanced_enable_custom_video_speed_summary_off">Benutzerdefinierte Videogeschwindigkeit ist deaktiviert</string>
     <string name="revanced_enable_custom_video_speed_summary_on">Benutzerdefinierte Videogeschwindigkeit ist aktiviert</string>
     <string name="revanced_enable_custom_video_speed_title">Aktiviere benutzerdefinierte Videogeschwindigkeit</string>
@@ -228,6 +236,9 @@ Ist es fertig zum Einreichen?"</string>
     <string name="revanced_enable_save_video_quality_summary_off">Speichert die Werte für die Videoqualität nicht, selbst wenn die Videoqualität geändert wird</string>
     <string name="revanced_enable_save_video_quality_summary_on">Speichere den Wert der Videoqualität, wenn du die Videoqualität änderst</string>
     <string name="revanced_enable_save_video_quality_title">Aktiviere Videoqualität speichern</string>
+    <string name="revanced_enable_save_video_speed_summary_off">Videogeschwindigkeit wird nicht gespeichert, wenn die Videogeschwindigkeit geändert wird</string>
+    <string name="revanced_enable_save_video_speed_summary_on">Speichert die Videogeschwindigkeit, wenn die Videogeschwindigkeit geändert wird</string>
+    <string name="revanced_enable_save_video_speed_title">Videogeschwindigkeit speichern</string>
     <string name="revanced_enable_seekbar_tapping_summary_on">Tippen der Suchleiste (Video progress bar) ist aktiviert</string>
     <string name="revanced_enable_seekbar_tapping_title">Aktiviere Suchleisten-Tippen (Video progress bar)</string>
     <string name="revanced_enable_swipe_auto_brightness_summary_off">Auch wenn die Helligkeit durch Wischen auf 0 gesetzt wird, ist die automatische Helligkeit nicht aktiviert</string>
