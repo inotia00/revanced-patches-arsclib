@@ -127,7 +127,8 @@ Example:
         "name": "com.google.android.youtube",
         "versions": [
           "17.49.37",
-          "18.01.36"
+          "18.01.36",
+          "18.02.33"
         ]
       }
     ]
