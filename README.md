@@ -180,12 +180,14 @@ The official ReVanced Extended Patches.
 ### [📦 `com.mgoogle.android.gms`](https://play.google.com/store/apps/details?id=com.mgoogle.android.gms)
 <details>
 
-| 💊 Patch | 📜 Description | 🏹 Target Version |
-|:--------:|:--------------:|:-----------------:|
-| `custom-branding-microg-name` | Rename the MicroG app to the name specified in options.json. | all |
-| `custom-branding-icon-revancify-blue` | Changes the MicroG launcher icon to Revancify Blue. | all |
-| `custom-branding-icon-revancify-red` | Changes the MicroG launcher icon to Revancify Red. | all |
-| `hide-icon-from-launcher` | Hide MicroG icon from launcher. | all |
+|               💊 Patch                |                        📜 Description                        | 🏹 Target Version |
+|:-------------------------------------:|:------------------------------------------------------------:|:-----------------:|
+|     `custom-branding-microg-name`     | Rename the MicroG app to the name specified in options.json. | all |
+| `custom-branding-icon-revancify-blue` |     Changes the MicroG launcher icon to Revancify Blue.      | all |
+| `custom-branding-icon-revancify-red`  |      Changes the MicroG launcher icon to Revancify Red.      | all |
+|      `custom-branding-icon-mmt`       |           Changes the MicroG launcher icon to MMT.           | all |
+|       `hide-icon-from-launcher`       |               Hide MicroG icon from launcher.                | all |
+|         `microg-materialyou`          |    Enables MaterialYou theme for MicroG for Android 12+.     | all |
 </details>
 
 
