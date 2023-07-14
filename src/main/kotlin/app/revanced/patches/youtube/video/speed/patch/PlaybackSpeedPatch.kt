@@ -59,7 +59,7 @@ class PlaybackSpeedPatch : BytecodePatch(
             } ?: return NewPlaybackSpeedChangedFingerprint.toErrorResult()
         } ?: return NewFlyoutPanelOnClickListenerFingerprint.toErrorResult()
 
-        VideoCpnPatch.injectCall("$INTEGRATIONS_VIDEO_SPEED_CLASS_DESCRIPTOR->newVideoStarted(Ljava/lang/String;Z)V")
+        VideoCpnPatch.injectCall("$INTEGRATIONS_PLAYBACK_SPEED_CLASS_DESCRIPTOR->newVideoStarted(Ljava/lang/String;Z)V")
 
         /**
          * Add settings
