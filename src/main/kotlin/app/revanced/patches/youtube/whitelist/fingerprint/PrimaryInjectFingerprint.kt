@@ -7,7 +7,7 @@ import com.android.tools.smali.dexlib2.Opcode
 
 object PrimaryInjectFingerprint : MethodFingerprint(
     returnType = "V",
-    access = AccessFlags.PUBLIC or AccessFlags.FINAL,
+    accessFlags = AccessFlags.PUBLIC or AccessFlags.FINAL,
     parameters = listOf(),
     opcodes = listOf(
         Opcode.IF_NEZ,
