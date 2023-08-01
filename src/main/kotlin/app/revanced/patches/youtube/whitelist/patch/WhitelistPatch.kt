@@ -88,7 +88,7 @@ class WhitelistPatch : BytecodePatch(
             }.forEach {
                 val method = it.mutableMethod
                 val index = it.scanResult.patternScanResult!!.endIndex + 1
-                method.addInstruction(
+                method.addInstructions(
                     index,
                     "invoke-direct {p0}, ${result.classDef.type}->setCurrentVideoInformation()V"
                 )
