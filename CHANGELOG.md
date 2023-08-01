@@ -1,3 +1,10 @@
+## [2.186.12](https://github.com/YT-Advanced/revanced-patches/compare/v2.186.11...v2.186.12) (2023-08-01)
+
+
+### Bug Fixes
+
+* **youtube:** Patch failed ([ca8ce92](https://github.com/YT-Advanced/revanced-patches/commit/ca8ce923176b09ad133a505b07a2f0f0a08496d7))
+
 # [2.148.0](https://github.com/YT-Advanced/revanced-patches/compare/v2.147.0...v2.148.0) (2023-08-01)
 
 
