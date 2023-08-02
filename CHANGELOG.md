@@ -1,3 +1,11 @@
+## [2.186.13](https://github.com/YT-Advanced/revanced-patches/compare/v2.186.12...v2.186.13) (2023-08-02)
+
+
+### Bug Fixes
+
+* Double readme .-. ([d6dc0b1](https://github.com/YT-Advanced/revanced-patches/commit/d6dc0b117a146cf9b19ed0a20088efdb99e583bd))
+* Missing deps ([7168e17](https://github.com/YT-Advanced/revanced-patches/commit/7168e17fe2688913b65e55ee672b1d22d2225530))
+
 ## [2.186.12](https://github.com/YT-Advanced/revanced-patches/compare/v2.186.11...v2.186.12) (2023-08-01)
 
 
