@@ -36,6 +36,7 @@ class VideoAdsPatch : AbstractAdsPatch(
         )
 
         SettingsPatch.updatePatchStatus("hide-video-ads")
+        context.updatePatchStatus("VideoAds")
 
         return PatchResultSuccess()
     }
