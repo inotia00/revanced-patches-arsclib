@@ -11,6 +11,7 @@ import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.youtube.utils.annotations.YouTubeCompatibility
 import app.revanced.patches.youtube.utils.settings.resource.patch.SettingsPatch
+import app.revanced.util.bytecode.BytecodeHelper.updatePatchStatus
 import app.revanced.patches.youtube.utils.sponsorblock.bytecode.patch.SponsorBlockBytecodePatch
 import app.revanced.util.resources.ResourceUtils
 import app.revanced.util.resources.ResourceUtils.copyResources
