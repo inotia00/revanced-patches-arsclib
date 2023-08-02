@@ -516,7 +516,7 @@ Known issue: autoplay does not work"</string>
     <string name="revanced_whitelisting_channel_name">Channel Name</string>
     <string name="revanced_whitelisting_empty">There are no whitelisted channels</string>
     <string name="revanced_whitelisting_excluded">Not added to whitelist</string>
-    <string name="revanced_whitelisting_fetch_failed">Failed to retrieve channel details, received code %d</string>
+    <string name="revanced_whitelisting_fetch_failed">Failed to retrieve channel details, received message %s</string>
     <string name="revanced_whitelisting_included">Added to whitelist</string>
     <string name="revanced_whitelisting_reboot">Reboot to apply channel whitelist settings</string>
     <string name="revanced_whitelisting_removed" formatted="false">Channel %s was removed from the %s whitelist</string>
@@ -524,6 +524,7 @@ Known issue: autoplay does not work"</string>
     <string name="revanced_whitelisting_settings_summary">Check or remove the list of channels added to the whitelist</string>
     <string name="revanced_whitelisting_settings_title">Whitelist settings</string>
     <string name="revanced_whitelisting_speed">Video Speed</string>
+    <string name="revanced_whitelisting_speed">Speed</string>
     <string name="revanced_whitelisting_sponsorblock">SponsorBlock</string>
     <string name="revanced_whitelisting_sponsorblock_button">SB</string>
     <string name="revanced_whitelisting_title">Channel Whitelist</string>
