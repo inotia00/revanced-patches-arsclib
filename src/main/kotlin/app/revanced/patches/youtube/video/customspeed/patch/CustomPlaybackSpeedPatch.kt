@@ -138,6 +138,7 @@ class CustomPlaybackSpeedPatch : BytecodePatch(
         )
 
         SettingsPatch.updatePatchStatus("custom-playback-speed")
+        context.updatePatchStatus("VideoSpeed")
 
         return PatchResultSuccess()
     }
