@@ -16,6 +16,7 @@ import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.youtube.flyoutpanel.oldspeedlayout.patch.OldSpeedLayoutPatch
 import app.revanced.patches.youtube.utils.annotations.YouTubeCompatibility
 import app.revanced.patches.youtube.utils.settings.resource.patch.SettingsPatch
+import app.revanced.util.bytecode.BytecodeHelper.updatePatchStatus
 import app.revanced.patches.youtube.video.customspeed.fingerprints.SpeedArrayGeneratorFingerprint
 import app.revanced.patches.youtube.video.customspeed.fingerprints.SpeedLimiterFallBackFingerprint
 import app.revanced.patches.youtube.video.customspeed.fingerprints.SpeedLimiterFingerprint
@@ -138,6 +139,7 @@ class CustomPlaybackSpeedPatch : BytecodePatch(
         )
 
         SettingsPatch.updatePatchStatus("custom-playback-speed")
+        context.updatePatchStatus("VideoSpeed")
 
         return PatchResultSuccess()
     }
