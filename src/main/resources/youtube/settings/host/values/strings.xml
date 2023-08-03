@@ -508,6 +508,28 @@ Known issue: autoplay does not work"</string>
     <string name="revanced_hide_video_ads_summary_off">Video ads are shown</string>
     <string name="revanced_hide_video_ads_summary_on">Video ads are hidden</string>
     <string name="revanced_hide_video_ads_title">Hide video ads</string>
+    <string name="revanced_whitelisting_added" formatted="false">Channel %s was added to the %s whitelist</string>
+    <string name="revanced_whitelisting_add_failed" formatted="false">Failed to add channel %s to the %s whitelist</string>
+    <string name="revanced_whitelisting_ads">Video Ads</string>
+    <string name="revanced_whitelisting_ads_button">Ads</string>
+    <string name="revanced_whitelisting_channel_name">Channel Name</string>
+    <string name="revanced_whitelisting_empty">There are no whitelisted channels</string>
+    <string name="revanced_whitelisting_excluded">Not added to whitelist</string>
+    <string name="revanced_whitelisting_fetch_failed">Failed to retrieve channel details, received message %d</string>
+    <string name="revanced_whitelisting_missing_api_key">Received HTTP 403 Error Code while fetch channelId. Please check your API key</string>
+    <string name="revanced_whitelisting_included">Added to whitelist</string>
+    <string name="revanced_whitelisting_reboot">Reboot to apply channel whitelist settings</string>
+    <string name="revanced_whitelisting_removed" formatted="false">Channel %s was removed from the %s whitelist</string>
+    <string name="revanced_whitelisting_remove_failed" formatted="false">Failed to remove channel %s from the %s whitelist</string>
+    <string name="revanced_whitelisting_settings_summary">Check or remove the list of channels added to the whitelist</string>
+    <string name="revanced_whitelisting_settings_title">Whitelist settings</string>
+    <string name="revanced_whitelisting_speed">Video Speed</string>
+    <string name="revanced_whitelisting_speed_button">Speed</string>
+    <string name="revanced_whitelisting_sponsorblock">SponsorBlock</string>
+    <string name="revanced_whitelisting_sponsorblock_button">SB</string>
+    <string name="revanced_whitelisting_title">Channel Whitelist</string>
+    <string name="revanced_whitelist_api_key_title">Youtube API Key</string>
+    <string name="revanced_whitelist_api_key_summary">Youtube API key v3 used by whitelist feature</string>
     <string name="revanced_hide_view_products_summary_off">View products banner is shown</string>
     <string name="revanced_hide_view_products_summary_on">View products banner is hidden</string>
     <string name="revanced_hide_view_products_title">Hide view products banner</string>
@@ -538,6 +560,9 @@ Tap and hold to copy video timestamp"</string>
     <string name="revanced_overlay_button_copy_video_url_timestamp_title">Show copy timestamp URL button</string>
     <string name="revanced_overlay_button_external_downloader_summary">Tap to launch external downloader</string>
     <string name="revanced_overlay_button_external_downloader_title">Show external download button</string>
+    <string name="revanced_overlay_button_whitelist_summary_off">Whitelist button is hidden</string>
+    <string name="revanced_overlay_button_whitelist_summary_on">Whitelist button is shown</string>
+    <string name="revanced_overlay_button_whitelist_title">Show whitelist button</string>
     <string name="revanced_overlay_button_speed_dialog_reset">Playback speed reseted (1.0x)</string>
     <string name="revanced_overlay_button_speed_dialog_summary">"Tap to open speed dialog
 Tap and hold to set playback speed to 1.0x"</string>
@@ -620,8 +645,10 @@ Known issues
     <string name="revanced_swipe_overlay_text_size_title">Swipe overlay text size</string>
     <string name="revanced_swipe_overlay_timeout_summary">The amount of milliseconds the overlay is visible</string>
     <string name="revanced_swipe_overlay_timeout_title">Swipe overlay timeout</string>
-    <string name="revanced_switching_create_notification_summary_off">Create button is not switched with notifications</string>
-    <string name="revanced_switching_create_notification_summary_on">Create button is switched with notifications</string>
+    <string name="revanced_switching_create_notification_summary_off">"Create button is not switched with notifications
+Known issue: Ads Whitelist not worked when turned on"</string>
+    <string name="revanced_switching_create_notification_summary_on">"Create button is switched with notifications
+Known issue: Ads Whitelist not worked when turned on"</string>
     <string name="revanced_switching_create_notification_title">Switch create with notifications button</string>
     <string name="revanced_tool_used">Tool used</string>
     <string name="revanced_video">Video</string>

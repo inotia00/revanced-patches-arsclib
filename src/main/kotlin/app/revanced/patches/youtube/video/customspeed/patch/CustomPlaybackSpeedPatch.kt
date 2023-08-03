@@ -9,6 +9,7 @@ import app.revanced.patches.shared.patch.customspeed.AbstractCustomPlaybackSpeed
 import app.revanced.patches.youtube.flyoutpanel.oldspeedlayout.patch.OldSpeedLayoutPatch
 import app.revanced.patches.youtube.utils.annotations.YouTubeCompatibility
 import app.revanced.patches.youtube.utils.settings.resource.patch.SettingsPatch
+import app.revanced.util.bytecode.BytecodeHelper.updatePatchStatus
 import app.revanced.util.integrations.Constants.VIDEO_PATH
 
 @Patch
@@ -39,5 +40,6 @@ class CustomPlaybackSpeedPatch : AbstractCustomPlaybackSpeedPatch(
         )
 
         SettingsPatch.updatePatchStatus("custom-playback-speed")
+        context.updatePatchStatus("VideoSpeed")
     }
 }
