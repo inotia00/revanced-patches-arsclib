@@ -37,7 +37,7 @@ class NewLayoutPatch : BytecodePatch(
 
                 addInstructions(
                     insertIndex, """
-                        invoke-static {v$targetRegister}, $MUSIC_LAYOUT->enableNewLayout(Z)Z
+                        invoke-static {}, $MUSIC_LAYOUT->enableNewLayout()Z
                         move-result v$targetRegister
                         """
                 )
@@ -47,7 +47,7 @@ class NewLayoutPatch : BytecodePatch(
         SettingsPatch.addMusicPreference(
             CategoryType.LAYOUT,
             "revanced_enable_new_layout",
-            "false"
+            "true"
         )
 
         return PatchResultSuccess()
