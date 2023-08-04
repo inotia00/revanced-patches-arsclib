@@ -462,6 +462,9 @@ Only available on YouTube v18.24.37+"</string>
     <string name="revanced_hide_shorts_player_subscriptions_button_summary_off">Subscriptions button is shown</string>
     <string name="revanced_hide_shorts_player_subscriptions_button_summary_on">Subscriptions button is hidden</string>
     <string name="revanced_hide_shorts_player_subscriptions_button_title">Hide subscriptions button</string>
+    <string name="revanced_hide_shorts_player_pivot_button_summary_off">Pivot button is shown</string>
+    <string name="revanced_hide_shorts_player_pivot_button_summary_on">Pivot button is hidden</string>
+    <string name="revanced_hide_shorts_player_pivot_button_title">Hide pivot button</string>
     <string name="revanced_hide_shorts_player_toolbar_summary_off">Toolbar is shown</string>
     <string name="revanced_hide_shorts_player_toolbar_summary_on">Toolbar is hidden</string>
     <string name="revanced_hide_shorts_player_toolbar_title">Hide toolbar</string>
