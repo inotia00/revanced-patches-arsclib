@@ -559,6 +559,9 @@ Tap and hold to copy video timestamp"</string>
     <string name="revanced_overlay_button_copy_video_url_timestamp_title">Show copy timestamp URL button</string>
     <string name="revanced_overlay_button_external_downloader_summary">Tap to launch external downloader</string>
     <string name="revanced_overlay_button_external_downloader_title">Show external download button</string>
+    <string name="revanced_overlay_button_whitelist_summary_off">Whitelist button is hidden</string>
+    <string name="revanced_overlay_button_whitelist_summary_on">Whitelist button is shown</string>
+    <string name="revanced_overlay_button_whitelist_title">Show whitelist button</string>
     <string name="revanced_overlay_button_speed_dialog_reset">Playback speed reseted (1.0x)</string>
     <string name="revanced_overlay_button_speed_dialog_summary">"Tap to open speed dialog
 Tap and hold to set playback speed to 1.0x"</string>
