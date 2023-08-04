@@ -449,7 +449,7 @@
         <SwitchPreference android:title="@string/revanced_overlay_button_whitelist_title" android:key="revanced_overlay_button_whitelist" android:defaultValue="false" android:summaryOn="@string/revanced_overlay_button_whitelist_summary_on" android:summaryOff="@string/revanced_overlay_button_whitelist_summary_off" />
         <PreferenceScreen android:title="@string/revanced_whitelisting_settings_title" android:key="whitelisting" android:summary="@string/revanced_whitelisting_settings_summary">
             <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_whitelisting_settings_title" />
-	    <app.revanced.integrations.settingsmenu.ResettableEditTextPreference android:hint="com.deniscerri.ytdl" android:title="@string/revanced_whitelist_api_keykey_title" android:key="revanced_whitelist_api_key" android:summary="@string/revanced_whitelist_api_key_summary" android:inputType="text" />
+	    <app.revanced.integrations.settingsmenu.ResettableEditTextPreference android:hint="" android:title="@string/revanced_whitelist_api_key_title" android:key="revanced_whitelist_api_key" android:summary="@string/revanced_whitelist_api_key_summary" android:inputType="text" />
         </PreferenceScreen>
 	<SwitchPreference android:title="@string/revanced_overlay_button_external_downloader_title" android:key="revanced_overlay_button_external_downloader" android:defaultValue="true" android:summary="@string/revanced_overlay_button_external_downloader_summary" />
         <PreferenceScreen android:title="@string/revanced_external_downloader_settings_title" android:key="external_downloader" android:summary="@string/revanced_external_downloader_settings_summary">
