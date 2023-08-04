@@ -527,6 +527,8 @@ Known issue: autoplay does not work"</string>
     <string name="revanced_whitelisting_sponsorblock">SponsorBlock</string>
     <string name="revanced_whitelisting_sponsorblock_button">SB</string>
     <string name="revanced_whitelisting_title">Channel Whitelist</string>
+    <string name="revanced_whitelist_api_key_title">Youtube API Key</string>
+    <string name="revanced_whitelist_api_key_summary">Youtube API key v3 used by whitelist feature</string>
     <string name="revanced_hide_view_products_summary_off">View products banner is shown</string>
     <string name="revanced_hide_view_products_summary_on">View products banner is hidden</string>
     <string name="revanced_hide_view_products_title">Hide view products banner</string>
