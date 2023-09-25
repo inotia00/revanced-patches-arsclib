@@ -184,6 +184,9 @@
     <string name="revanced_hide_browse_store_button_summary_off">Browse store button is shown</string>
     <string name="revanced_hide_browse_store_button_summary_on">Browse store button is hidden</string>
     <string name="revanced_hide_browse_store_button_title">Hide browse store button</string>
+    <string name="revanced_hide_action_buttons_summary_off">Action button is shown</string>
+    <string name="revanced_hide_action_buttons_summary_on">Action button is hidden</string>
+    <string name="revanced_hide_action_buttons_title">Hide Action button</string>
     <string name="revanced_hide_button_create_clip_summary_off">Clip button is shown</string>
     <string name="revanced_hide_button_create_clip_summary_on">Clip button is hidden</string>
     <string name="revanced_hide_button_create_clip_title">Hide clip button</string>
