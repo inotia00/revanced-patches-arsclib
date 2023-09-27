@@ -27,6 +27,16 @@
     </PreferenceScreen>PREFERENCE: ADS_SETTINGS -->
 
 
+    <!-- PREFERENCE: ALTERNATIVE_THUMBNAILS_SETTINGS
+    <PreferenceScreen android:title="@string/revanced_alt_thumbnails" android:key="alt_thumbnails">
+        <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_alt_thumbnails" />
+        <SwitchPreference android:title="@string/revanced_alt_thumbnail_title" android:key="revanced_alt_thumbnail" android:defaultValue="false" android:summaryOn="@string/revanced_alt_thumbnail_summary_on" android:summaryOff="@string/revanced_alt_thumbnail_summary_off" />
+        <ListPreference android:title="@string/revanced_alt_thumbnail_type_title" android:key="revanced_alt_thumbnail_type" android:entries="@array/revanced_alt_thumbnail_type_entries" android:defaultValue="1" android:entryValues="@array/revanced_alt_thumbnail_type_entry_values" />
+        <SwitchPreference android:title="@string/revanced_alt_thumbnail_fast_quality_title" android:key="revanced_alt_thumbnail_fast_quality" android:defaultValue="false" android:summaryOn="@string/revanced_alt_thumbnail_fast_quality_summary_on" android:summaryOff="@string/revanced_alt_thumbnail_fast_quality_summary_off" />
+        <Preference android:title="@string/revanced_alt_thumbnail_about_title" android:selectable="false" android:summary="@string/revanced_alt_thumbnail_about_summary" />
+    </PreferenceScreen>PREFERENCE: ALTERNATIVE_THUMBNAILS_SETTINGS -->
+
+
     <!-- PREFERENCE: BOTTOM_PLAYER_SETTINGS
     <PreferenceScreen android:title="@string/revanced_bottom_player" android:key="bottom_player">PREFERENCE: BOTTOM_PLAYER_SETTINGS -->
 
@@ -221,15 +231,6 @@
         <SwitchPreference android:title="@string/revanced_hide_music_section_title" android:key="revanced_hide_music_section" android:defaultValue="false" android:summaryOn="@string/revanced_hide_music_section_summary_on" android:summaryOff="@string/revanced_hide_music_section_summary_off" />
         <SwitchPreference android:title="@string/revanced_hide_place_section_title" android:key="revanced_hide_place_section" android:defaultValue="false" android:summaryOn="@string/revanced_hide_place_section_summary_on" android:summaryOff="@string/revanced_hide_place_section_summary_off" />
         <SwitchPreference android:title="@string/revanced_hide_transcript_section_title" android:key="revanced_hide_transcript_section" android:defaultValue="false" android:summaryOn="@string/revanced_hide_transcript_section_summary_on" android:summaryOff="@string/revanced_hide_transcript_section_summary_off" />SETTINGS: HIDE_DESCRIPTION_COMPONENTS -->
-
-        <!-- SETTINGS: ALTERNATIVE_VIDEO_THUMBNAILS
-        <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_alt_thumbnails_preference_screen_title" />
-        <PreferenceScreen android:title="@string/revanced_alt_thumbnails_preference_screen_title" android:key="revanced_alt_thumbnails_preference_screen" android:summary="@string/revanced_alt_thumbnails_preference_screen_summary">
-            <SwitchPreference android:title="@string/revanced_alt_thumbnail_title" android:key="revanced_alt_thumbnail" android:defaultValue="false" android:summaryOn="@string/revanced_alt_thumbnail_summary_on" android:summaryOff="@string/revanced_alt_thumbnail_summary_off" />
-	    <ListPreference android:title="@string/revanced_alt_thumbnail_type_title" android:key="revanced_alt_thumbnail_type" android:entries="@array/revanced_alt_thumbnail_type_entries" android:defaultValue="1" android:entryValues="@array/revanced_alt_thumbnail_type_entry_values" />
-            <SwitchPreference android:title="@string/revanced_alt_thumbnail_fast_quality_title" android:key="revanced_alt_thumbnail_fast_quality" android:defaultValue="false" android:summaryOn="@string/revanced_alt_thumbnail_fast_quality_summary_on" android:summaryOff="@string/revanced_alt_thumbnail_fast_quality_summary_off" />
-            <Preference android:title="@string/revanced_alt_thumbnail_about_title" android:selectable="false" android:summary="@string/revanced_alt_thumbnail_about_summary" />
-        </PreferenceScreen>SETTINGS: ALTERNATIVE_VIDEO_THUMBNAILS -->
 	
     <!-- PREFERENCE: GENERAL_SETTINGS
     </PreferenceScreen>PREFERENCE: GENERAL_SETTINGS -->
@@ -303,6 +304,9 @@
             <Preference android:title="hide-general-ads" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="hide-video-ads" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
 
+            <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_alt_thumbnails" />
+            <Preference android:title="alternative-thumbnails" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
+
             <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_bottom_player" />
             <Preference android:title="hide-button-container" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="hide-comment-component" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
@@ -325,7 +329,6 @@
             <Preference android:title="hide-suggested-video-overlay" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
 
             <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_general" />
-            <Preference android:title="alternative-video-thumbnails" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="disable-auto-captions" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="enable-tablet-mini-player" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="enable-wide-search-bar" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>

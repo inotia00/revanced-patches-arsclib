@@ -7,8 +7,7 @@
     <string name="microg_settings_title">Open MicroG</string>
 
     <string name="revanced_ads">Ads</string>
-    <string name="revanced_alt_thumbnails_preference_screen_summary">Video thumbnail settings</string>
-    <string name="revanced_alt_thumbnails_preference_screen_title">Alternative thumbnails</string>
+    <string name="revanced_alt_thumbnails">Alternative thumbnails</string>
     <string name="revanced_alt_thumbnail_about_summary">Alternative thumbnails are still images from the beginning/middle/end of each video. No external API is used, as these images are built into YouTube</string>
     <string name="revanced_alt_thumbnail_about_title">About</string>
     <string name="revanced_alt_thumbnail_fast_quality_summary_off">Using high quality stills but will have more delay</string>
