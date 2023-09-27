@@ -30,7 +30,7 @@
     <string name="revanced_custom_filter_title">Enable custom filter</string>
     <string name="revanced_custom_playback_speeds_invalid">Invalid custom playback speeds. Reset to default values.</string>
     <string name="revanced_custom_playback_speeds_warning" formatted="false">Custom speeds must be less than %sx. Reset to default values.</string>
-    <string name="revanced_custom_playback_speeds_summary">Add or change the playback speeds available</string>
+    <string name="revanced_custom_playback_speeds_summary">Add or change available playback speeds</string>
     <string name="revanced_custom_playback_speeds_title">Edit custom playback speeds</string>
     <string name="revanced_custom_seekbar_color_value_summary">Type the hex code of the seekbar color</string>
     <string name="revanced_custom_seekbar_color_value_title">Custom seekbar color value</string>
@@ -279,8 +279,8 @@
     <string name="revanced_hide_end_screen_cards_summary_off">End screen cards are shown</string>
     <string name="revanced_hide_end_screen_cards_summary_on">End screen cards are hidden</string>
     <string name="revanced_hide_end_screen_cards_title">Hide end screen cards</string>
-    <string name="revanced_hide_end_screen_overlay_summary_off">End screen overlay are shown</string>
-    <string name="revanced_hide_end_screen_overlay_summary_on">End screen overlay are hidden</string>
+    <string name="revanced_hide_end_screen_overlay_summary_off">End screen overlay is shown</string>
+    <string name="revanced_hide_end_screen_overlay_summary_on">End screen overlay is hidden</string>
     <string name="revanced_hide_end_screen_overlay_title">Hide end screen overlay</string>
     <string name="revanced_hide_expandable_chip_summary_off">Expandable chips are shown</string>
     <string name="revanced_hide_expandable_chip_summary_on">Expandable chips are hidden</string>
@@ -292,8 +292,8 @@
     <string name="revanced_hide_feed_survey_summary_off">Feed surveys are shown</string>
     <string name="revanced_hide_feed_survey_summary_on">Feed surveys are hidden</string>
     <string name="revanced_hide_feed_survey_title">Hide feed surveys</string>
-    <string name="revanced_hide_filmstrip_overlay_summary_off">Film strip overlay are shown</string>
-    <string name="revanced_hide_filmstrip_overlay_summary_on">Film strip overlay are hidden</string>
+    <string name="revanced_hide_filmstrip_overlay_summary_off">Film strip overlay is shown</string>
+    <string name="revanced_hide_filmstrip_overlay_summary_on">Film strip overlay is hidden</string>
     <string name="revanced_hide_filmstrip_overlay_title">Hide film strip overlay</string>
     <string name="revanced_hide_floating_microphone_summary_off">Floating microphone button is shown</string>
     <string name="revanced_hide_floating_microphone_summary_on">Floating microphone button is hidden</string>
@@ -500,7 +500,7 @@ Only available on YouTube v18.24.37+"</string>
 - Watch it Again"</string>
     <string name="revanced_hide_suggestions_shelf_title">Hide suggestions shelf</string>
     <string name="revanced_hide_suggested_video_overlay_summary">"Hides suggested video overlay to play next
-Known issue: autoplay does not work"</string>
+Known issue: Autoplay does not work"</string>
     <string name="revanced_hide_suggested_video_overlay_title">Hide suggested video overlay</string>
     <string name="revanced_hide_ticket_shelf_summary_off">Ticket shelves are shown</string>
     <string name="revanced_hide_ticket_shelf_summary_on">Ticket shelves are hidden</string>
@@ -508,9 +508,9 @@ Known issue: autoplay does not work"</string>
     <string name="revanced_hide_timed_reactions_summary_off">Timed reactions are shown</string>
     <string name="revanced_hide_timed_reactions_summary_on">Timed reactions are hidden</string>
     <string name="revanced_hide_timed_reactions_title">Hide timed reactions</string>
-    <string name="revanced_hide_reminder_button_summary_off">Notify me button are shown</string>
-    <string name="revanced_hide_reminder_button_summary_on">Notify me button are hidden</string>
-    <string name="revanced_hide_reminder_button_title">Hide notify me button on feed</string>
+    <string name="revanced_hide_reminder_button_summary_off">Notify me buttons are shown</string>
+    <string name="revanced_hide_reminder_button_summary_on">Notify me buttons are hidden</string>
+    <string name="revanced_hide_reminder_button_title">Hide notify me button in feed</string>
     <string name="revanced_hide_time_stamp_summary_off">Time stamp is shown</string>
     <string name="revanced_hide_time_stamp_summary_on">Time stamp is hidden</string>
     <string name="revanced_hide_time_stamp_title">Hide time stamp</string>
@@ -531,20 +531,20 @@ Known issue: autoplay does not work"</string>
     <string name="revanced_whitelisting_empty">There are no whitelisted channels</string>
     <string name="revanced_whitelisting_excluded">Not added to whitelist</string>
     <string name="revanced_whitelisting_fetch_failed">Failed to retrieve channel details, received message %d</string>
-    <string name="revanced_whitelisting_missing_api_key">Received HTTP 403 Error Code while fetch channelId. Please check your API key</string>
+    <string name="revanced_whitelisting_missing_api_key">Received HTTP 403 Error while fetching channelId. Please check your API key in Whitelist settings</string>
     <string name="revanced_whitelisting_included">Added to whitelist</string>
     <string name="revanced_whitelisting_reboot">Reboot to apply channel whitelist settings</string>
     <string name="revanced_whitelisting_removed" formatted="false">Channel %s was removed from the %s whitelist</string>
     <string name="revanced_whitelisting_remove_failed" formatted="false">Failed to remove channel %s from the %s whitelist</string>
     <string name="revanced_whitelisting_settings_summary">Check or remove the list of channels added to the whitelist</string>
     <string name="revanced_whitelisting_settings_title">Whitelist settings</string>
-    <string name="revanced_whitelisting_speed">Video Speed</string>
+    <string name="revanced_whitelisting_speed">Playback Speed</string>
     <string name="revanced_whitelisting_speed_button">Speed</string>
     <string name="revanced_whitelisting_sponsorblock">SponsorBlock</string>
     <string name="revanced_whitelisting_sponsorblock_button">SB</string>
     <string name="revanced_whitelisting_title">Channel Whitelist</string>
-    <string name="revanced_whitelist_api_key_title">Youtube API Key</string>
-    <string name="revanced_whitelist_api_key_summary">Youtube API key v3 used by whitelist feature</string>
+    <string name="revanced_whitelist_api_key_title">YouTube API Key</string>
+    <string name="revanced_whitelist_api_key_summary">YouTube API Key v3 used by whitelist feature</string>
     <string name="revanced_hide_view_products_summary_off">View products banner is shown</string>
     <string name="revanced_hide_view_products_summary_on">View products banner is hidden</string>
     <string name="revanced_hide_view_products_title">Hide view products banner</string>
@@ -631,6 +631,21 @@ Since these setting is quite outdated, it may not be valid"</string>
     <string name="revanced_shorts_player_title">Shorts player</string>
     <string name="revanced_show_fullscreen_title_summary">Known issue: Title disappears when clicked</string>
     <string name="revanced_show_fullscreen_title_title">Show fullscreen title</string>
+    <string name="revanced_alt_thumbnails_preference_screen_title">Alternative thumbnails</string>
+    <string name="revanced_alt_thumbnail_title">Enable alternative thumbnails</string>
+    <string name="revanced_alt_thumbnail_summary_on">YouTube thumbnails replaced with alternative ones</string>
+    <string name="revanced_alt_thumbnail_summary_off">Original YouTube thumbnails shown</string>
+    <string name="revanced_alt_thumbnail_type_title">Video time to take the still from</string>
+    <string name="revanced_alt_thumbnail_type_entry_1">Beginning of video</string>
+    <string name="revanced_alt_thumbnail_type_entry_2">Middle of video</string>
+    <string name="revanced_alt_thumbnail_type_entry_3">End of video</string>
+    <string name="revanced_alt_thumbnail_fast_quality_title">Use fast alternative thumbnails</string>
+    <string name="revanced_alt_thumbnail_fast_quality_summary_on">Using medium quality stills. Thumbnails will load faster, but live streams, unreleased, or very old videos may show blank thumbnails</string>
+    <string name="revanced_alt_thumbnail_fast_quality_summary_off">Using high quality stills but will have more delay</string>
+    <string name="revanced_alt_thumbnail_about_title">About</string>
+    <string name="revanced_alt_thumbnail_about_summary">Alternative thumbnails are still images from the beginning/middle/end of each video. No external API is used, as these images are built into YouTube</string>
+    <string name="revanced_alt_thumbnails_preference_screen_summary">Video thumbnail settings</string>
+    <string name="revanced_sponsorblock_settings_summary">SponsorBlock related settings</string>
     <string name="revanced_spoof_app_version_summary">"Spoofing the client version to the old version
 
 This will change the appearance of the app, but unknown side effects may occur
@@ -648,8 +663,7 @@ If later turned off, the old UI may remain until clear the app data"</string>
 
 Known issues
 • Enhanced bitrate is not available
-• Offline downloads may not work
-• SeekBar thumbnail preview quality is very low"</string>
+• Offline downloads may not work"</string>
     <string name="revanced_spoof_player_parameter_title">Spoof player parameter</string>
     <string name="revanced_swipe_controls">Swipe controls</string>
     <string name="revanced_swipe_magnitude_threshold_summary">The amount of threshold for swipe to occur</string>
@@ -828,8 +842,8 @@ Known issue: Ads Whitelist not worked when turned on"</string>
     <string name="sb_color_reset">Color reset</string>
     <string name="sb_color_invalid">Invalid color code</string>
     <string name="sb_reset_color">Reset color</string>
-
     <string name="sb_about">About</string>
+
     <string name="sb_reset">Reset</string>
 
     <string name="sb_about_api_sum">Data is provided by the SponsorBlock API. Tap here to learn more and see downloads for other platforms</string>
