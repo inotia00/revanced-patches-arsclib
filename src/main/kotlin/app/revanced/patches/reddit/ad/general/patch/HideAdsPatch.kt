@@ -29,9 +29,9 @@ import com.android.tools.smali.dexlib2.iface.reference.FieldReference
         HideBannerPatch::class,
         HideCommentAdsPatch::class,
         SettingsPatch::class
-    ]
+    ],
+    requiresIntegrations = true
 )
-@Patch(requiresIntegrations = true)
 object HideAdsPatch : BytecodePatch(
     setOf(
         AdPostFingerprint,
