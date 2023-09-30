@@ -5,7 +5,7 @@ import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.DependsOn
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.patch.mapping.ResourceMappingPatch
 import app.revanced.patches.youtube.utils.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.utils.resourceid.patch.SharedResourceIdPatch
@@ -13,16 +13,19 @@ import app.revanced.patches.youtube.utils.settings.bytecode.fingerprints.ThemeSe
 import app.revanced.util.bytecode.BytecodeHelper.injectInit
 import app.revanced.util.integrations.Constants.INTEGRATIONS_PATH
 
-@DependsOn(
-    [
+@Patch(
+    dependencies = [
         IntegrationsPatch::class,
         ResourceMappingPatch::class,
         SharedResourceIdPatch::class
     ]
 )
-class SettingsBytecodePatch : BytecodePatch(
-    listOf(ThemeSetterSystemFingerprint)
+object SettingsBytecodePatch : BytecodePatch(
+    setOf(ThemeSetterSystemFingerprint)
 ) {
+    private const val SET_THEME =
+        "invoke-static {v0}, $INTEGRATIONS_PATH/utils/ThemeHelper;->setTheme(Ljava/lang/Object;)V"
+
     override fun execute(context: BytecodeContext) {
         // apply the current theme of the settings page
         ThemeSetterSystemFingerprint.result?.let {
@@ -46,10 +49,5 @@ class SettingsBytecodePatch : BytecodePatch(
         context.injectInit("InitializationPatch", "setDeviceInformation", true)
         context.injectInit("InitializationPatch", "initializeReVancedSettings", true)
 
-    }
-
-    companion object {
-        const val SET_THEME =
-            "invoke-static {v0}, $INTEGRATIONS_PATH/utils/ThemeHelper;->setTheme(Ljava/lang/Object;)V"
     }
 }

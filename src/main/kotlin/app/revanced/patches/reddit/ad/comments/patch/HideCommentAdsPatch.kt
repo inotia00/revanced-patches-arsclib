@@ -9,9 +9,13 @@ import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.reddit.ad.comments.fingerprints.HideCommentAdsFingerprint
 
-class HideCommentAdsPatch : BytecodePatch(
-    listOf(HideCommentAdsFingerprint)
+object HideCommentAdsPatch : BytecodePatch(
+    setOf(HideCommentAdsFingerprint)
 ) {
+    private const val INTEGRATION_METHOD_DESCRIPTOR =
+        "Lapp/revanced/reddit/patches/GeneralAdsPatch;" +
+            "->hideCommentAds()Z"
+
     override fun execute(context: BytecodeContext) {
         HideCommentAdsFingerprint.result?.let {
             with(
@@ -33,11 +37,5 @@ class HideCommentAdsPatch : BytecodePatch(
             }
         } ?: throw HideCommentAdsFingerprint.exception
 
-    }
-
-    private companion object {
-        private const val INTEGRATION_METHOD_DESCRIPTOR =
-            "Lapp/revanced/reddit/patches/GeneralAdsPatch;" +
-                    "->hideCommentAds()Z"
     }
 }

@@ -7,7 +7,7 @@ import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.DependsOn
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.youtube.utils.fingerprints.YouTubeControlsOverlayFingerprint
 import app.revanced.patches.youtube.utils.playertype.fingerprint.PlayerTypeFingerprint
 import app.revanced.patches.youtube.utils.playertype.fingerprint.VideoStateFingerprint
@@ -15,13 +15,18 @@ import app.revanced.patches.youtube.utils.resourceid.patch.SharedResourceIdPatch
 import app.revanced.util.integrations.Constants.UTILS_PATH
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 
-@DependsOn([SharedResourceIdPatch::class])
-class PlayerTypeHookPatch : BytecodePatch(
-    listOf(
+@Patch(
+    dependencies = [SharedResourceIdPatch::class]
+)
+object PlayerTypeHookPatch : BytecodePatch(
+    setOf(
         PlayerTypeFingerprint,
         YouTubeControlsOverlayFingerprint
     )
 ) {
+    private const val INTEGRATIONS_CLASS_DESCRIPTOR =
+        "$UTILS_PATH/PlayerTypeHookPatch;"
+
     override fun execute(context: BytecodeContext) {
 
         PlayerTypeFingerprint.result?.let {
@@ -54,10 +59,5 @@ class PlayerTypeHookPatch : BytecodePatch(
             } ?: throw VideoStateFingerprint.exception
         } ?: throw YouTubeControlsOverlayFingerprint.exception
 
-    }
-
-    companion object {
-        private const val INTEGRATIONS_CLASS_DESCRIPTOR =
-            "$UTILS_PATH/PlayerTypeHookPatch;"
     }
 }

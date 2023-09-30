@@ -9,8 +9,8 @@ import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.youtube.overlaybutton.downloadbuttonhook.fingerprints.DownloadActionsFingerprint
 import app.revanced.util.integrations.Constants.UTILS_PATH
 
-class DownloadButtonHookPatch : BytecodePatch(
-    listOf(DownloadActionsFingerprint)
+object DownloadButtonHookPatch : BytecodePatch(
+    setOf(DownloadActionsFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
         DownloadActionsFingerprint.result?.let {

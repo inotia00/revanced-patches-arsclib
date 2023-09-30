@@ -6,16 +6,18 @@ import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.DependsOn
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.music.utils.actionbarhook.fingerprints.ActionBarHookFingerprint
 import app.revanced.patches.music.utils.fingerprints.ActionsBarParentFingerprint
 import app.revanced.patches.music.utils.resourceid.patch.SharedResourceIdPatch
 import app.revanced.util.integrations.Constants.MUSIC_ACTIONBAR
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 
-@DependsOn([SharedResourceIdPatch::class])
-class ActionBarHookPatch : BytecodePatch(
-    listOf(ActionsBarParentFingerprint)
+@Patch(
+    dependencies = [SharedResourceIdPatch::class]
+)
+object ActionBarHookPatch : BytecodePatch(
+    setOf(ActionsBarParentFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
 

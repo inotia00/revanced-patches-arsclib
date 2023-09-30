@@ -8,7 +8,7 @@ import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.or
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.DependsOn
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod.Companion.toMutable
 import app.revanced.patches.music.utils.fingerprints.SeekBarConstructorFingerprint
@@ -29,15 +29,33 @@ import com.android.tools.smali.dexlib2.immutable.ImmutableMethod
 import com.android.tools.smali.dexlib2.immutable.ImmutableMethodParameter
 import com.android.tools.smali.dexlib2.util.MethodUtil
 
-@DependsOn([SharedResourceIdPatch::class])
-class VideoInformationPatch : BytecodePatch(
-    listOf(
+@Patch(
+    dependencies = [SharedResourceIdPatch::class]
+)
+object VideoInformationPatch : BytecodePatch(
+    setOf(
         PlayerControllerSetTimeReferenceFingerprint,
         PlayerInitFingerprint,
         SeekBarConstructorFingerprint,
         VideoIdParentFingerprint
     )
 ) {
+    private const val INTEGRATIONS_CLASS_DESCRIPTOR =
+        "$MUSIC_VIDEO_PATH/VideoInformation;"
+
+    private var offset = 0
+    private var playerInitInsertIndex = 4
+    private var timeInitInsertIndex = 2
+    private var videoIdIndex = 0
+
+    private var videoIdRegister: Int = 0
+
+    private lateinit var videoIdMethod: MutableMethod
+    private lateinit var playerInitMethod: MutableMethod
+    private lateinit var timeMethod: MutableMethod
+
+    lateinit var rectangleFieldName: String
+
     override fun execute(context: BytecodeContext) {
         PlayerInitFingerprint.result?.let { parentResult ->
             playerInitMethod =
@@ -51,7 +69,7 @@ class VideoInformationPatch : BytecodePatch(
                     val seekHelperMethod = ImmutableMethod(
                         definingClass,
                         "seekTo",
-                        listOf(ImmutableMethodParameter("J", annotations, "time")),
+                        setOf(ImmutableMethodParameter("J", annotations, "time")),
                         "Z",
                         AccessFlags.PUBLIC or AccessFlags.FINAL,
                         annotations, null,
@@ -162,69 +180,51 @@ class VideoInformationPatch : BytecodePatch(
         injectCall("$INTEGRATIONS_CLASS_DESCRIPTOR->setVideoId(Ljava/lang/String;)V")
     }
 
-    companion object {
-        private const val INTEGRATIONS_CLASS_DESCRIPTOR =
-            "$MUSIC_VIDEO_PATH/VideoInformation;"
-
-        private var offset = 0
-        private var playerInitInsertIndex = 4
-        private var timeInitInsertIndex = 2
-        private var videoIdIndex = 0
-
-        private var videoIdRegister: Int = 0
-
-        private lateinit var videoIdMethod: MutableMethod
-        private lateinit var playerInitMethod: MutableMethod
-        private lateinit var timeMethod: MutableMethod
-
-        lateinit var rectangleFieldName: String
-
-        /**
-         * Adds an invoke-static instruction, called with the new id when the video changes
-         * @param methodDescriptor which method to call. Params have to be `Ljava/lang/String;`
-         */
-        internal fun injectCall(
-            methodDescriptor: String
-        ) {
-            videoIdMethod.addInstructions(
-                videoIdIndex + offset, // move-result-object offset
-                "invoke-static {v$videoIdRegister}, $methodDescriptor"
-            )
-        }
-
-        private fun MutableMethod.insert(insertIndex: Int, register: String, descriptor: String) =
-            addInstruction(insertIndex, "invoke-static { $register }, $descriptor")
-
-        private fun MutableMethod.insertTimeHook(insertIndex: Int, descriptor: String) =
-            insert(insertIndex, "p1, p2", descriptor)
-
-        /**
-         * Hook the player controller.  Called when a video is opened or the current video is changed.
-         *
-         * Note: This hook is called very early and is called before the video id, video time, video length,
-         * and many other data fields are set.
-         *
-         * @param targetMethodClass The descriptor for the class to invoke when the player controller is created.
-         * @param targetMethodName The name of the static method to invoke when the player controller is created.
-         */
-        internal fun onCreateHook(targetMethodClass: String, targetMethodName: String) =
-            playerInitMethod.insert(
-                playerInitInsertIndex++,
-                "v0",
-                "$targetMethodClass->$targetMethodName(Ljava/lang/Object;)V"
-            )
-
-        /**
-         * Hook the video time.
-         * The hook is usually called once per second.
-         *
-         * @param targetMethodClass The descriptor for the static method to invoke when the player controller is created.
-         * @param targetMethodName The name of the static method to invoke when the player controller is created.
-         */
-        internal fun videoTimeHook(targetMethodClass: String, targetMethodName: String) =
-            timeMethod.insertTimeHook(
-                timeInitInsertIndex++,
-                "$targetMethodClass->$targetMethodName(J)V"
-            )
+    /**
+     * Adds an invoke-static instruction, called with the new id when the video changes
+     * @param methodDescriptor which method to call. Params have to be `Ljava/lang/String;`
+     */
+    internal fun injectCall(
+        methodDescriptor: String
+    ) {
+        videoIdMethod.addInstructions(
+            videoIdIndex + offset, // move-result-object offset
+            "invoke-static {v$videoIdRegister}, $methodDescriptor"
+        )
     }
+
+    private fun MutableMethod.insert(insertIndex: Int, register: String, descriptor: String) =
+        addInstruction(insertIndex, "invoke-static { $register }, $descriptor")
+
+    private fun MutableMethod.insertTimeHook(insertIndex: Int, descriptor: String) =
+        insert(insertIndex, "p1, p2", descriptor)
+
+    /**
+     * Hook the player controller.  Called when a video is opened or the current video is changed.
+     *
+     * Note: This hook is called very early and is called before the video id, video time, video length,
+     * and many other data fields are set.
+     *
+     * @param targetMethodClass The descriptor for the class to invoke when the player controller is created.
+     * @param targetMethodName The name of the static method to invoke when the player controller is created.
+     */
+    internal fun onCreateHook(targetMethodClass: String, targetMethodName: String) =
+        playerInitMethod.insert(
+            playerInitInsertIndex++,
+            "v0",
+            "$targetMethodClass->$targetMethodName(Ljava/lang/Object;)V"
+        )
+
+    /**
+     * Hook the video time.
+     * The hook is usually called once per second.
+     *
+     * @param targetMethodClass The descriptor for the static method to invoke when the player controller is created.
+     * @param targetMethodName The name of the static method to invoke when the player controller is created.
+     */
+    internal fun videoTimeHook(targetMethodClass: String, targetMethodName: String) =
+        timeMethod.insertTimeHook(
+            timeInitInsertIndex++,
+            "$targetMethodClass->$targetMethodName(J)V"
+        )
 }

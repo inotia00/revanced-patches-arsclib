@@ -7,8 +7,8 @@ import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.or
 import app.revanced.patcher.patch.BytecodePatch
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.patch.PatchException
-import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.util.proxy.mutableTypes.MutableField.Companion.toMutable
 import app.revanced.patches.music.utils.overridequality.fingerprints.VideoQualityListFingerprint
 import app.revanced.patches.music.utils.overridequality.fingerprints.VideoQualityPatchFingerprint
@@ -19,13 +19,21 @@ import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.immutable.ImmutableField
 import com.android.tools.smali.dexlib2.util.MethodUtil
 
-@DependsOn([SharedResourceIdPatch::class])
-class OverrideQualityHookPatch : BytecodePatch(
-    listOf(
+@Patch(
+    dependencies = [SharedResourceIdPatch::class]
+)
+object OverrideQualityHookPatch : BytecodePatch(
+    setOf(
         VideoQualityListFingerprint,
         VideoQualityPatchFingerprint
     )
 ) {
+    private const val INTEGRATIONS_VIDEO_QUALITY_CLASS_DESCRIPTOR =
+        "$MUSIC_VIDEO_PATH/VideoQualityPatch;"
+
+    private lateinit var QUALITY_CLASS: String
+    private lateinit var QUALITY_METHOD: String
+
     override fun execute(context: BytecodeContext) {
 
         VideoQualityListFingerprint.result?.let {
@@ -78,13 +86,5 @@ class OverrideQualityHookPatch : BytecodePatch(
                 )
             }
         } ?: throw VideoQualityPatchFingerprint.exception
-    }
-
-    internal companion object {
-        const val INTEGRATIONS_VIDEO_QUALITY_CLASS_DESCRIPTOR =
-            "$MUSIC_VIDEO_PATH/VideoQualityPatch;"
-
-        private lateinit var QUALITY_CLASS: String
-        private lateinit var QUALITY_METHOD: String
     }
 }

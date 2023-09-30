@@ -1,26 +1,46 @@
 package app.revanced.patches.youtube.layout.doubletaplength.patch
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.ResourceContext
-import app.revanced.patcher.patch.OptionsContainer
 import app.revanced.patcher.patch.PatchException
-import app.revanced.patcher.patch.PatchOption
 import app.revanced.patcher.patch.ResourcePatch
-import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.youtube.utils.annotations.YouTubeCompatibility
+import app.revanced.patcher.patch.annotation.Patch
+import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patches.youtube.utils.settings.resource.patch.SettingsPatch
 import app.revanced.util.resources.ResourceHelper.addEntryValues
 import app.revanced.util.resources.ResourceUtils
 import app.revanced.util.resources.ResourceUtils.copyResources
+import app.revanced.patcher.patch.options.types.StringPatchOption.Companion.stringPatchOption
 
-@Patch
-@Name("Custom double tap length")
-@Description("Add 'double-tap to seek' value.")
-@DependsOn([SettingsPatch::class])
-@YouTubeCompatibility
-class DoubleTapLengthPatch : ResourcePatch {
+@Patch(
+    name = "Custom double tap length",
+    description = "Add 'double-tap to seek' value.",
+    compatiblePackages = [
+        CompatiblePackage(
+            "com.google.android.youtube",
+            [
+                "18.22.37",
+                "18.23.36",
+                "18.24.37",
+                "18.25.40",
+                "18.27.36",
+                "18.29.38",
+                "18.30.37",
+                "18.31.40",
+                "18.32.39"
+            ]
+        )
+    ],
+    dependencies = [SettingsPatch::class]
+)
+@Suppress("unused")
+object DoubleTapLengthPatch : ResourcePatch() {
+    var DoubleTapLengthArrays by stringPatchOption(
+        key = "DoubleTapLengthArrays",
+        default = "3, 5, 10, 15, 20, 30, 60, 120, 180",
+        title = "Double-tap to seek Values",
+        description = "A list of custom double-tap to seek lengths. Be sure to separate them with commas (,)."
+    )
+
     override fun execute(context: ResourceContext) {
         val arrayPath = "res/values-v21/arrays.xml"
         val entriesName = "double_tap_length_entries"
@@ -50,16 +70,5 @@ class DoubleTapLengthPatch : ResourcePatch {
 
         SettingsPatch.updatePatchStatus("custom-double-tap-length")
 
-    }
-
-    companion object : OptionsContainer() {
-        var DoubleTapLengthArrays: String? by option(
-            PatchOption.StringOption(
-                key = "DoubleTapLengthArrays",
-                default = "3, 5, 10, 15, 20, 30, 60, 120, 180",
-                title = "Double-tap to seek Values",
-                description = "A list of custom double-tap to seek lengths. Be sure to separate them with commas (,)."
-            )
-        )
     }
 }

@@ -11,9 +11,12 @@ import app.revanced.util.integrations.Constants.UTILS_PATH
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 
-class ReturnYouTubeDislikeShortsPatch : BytecodePatch(
-    listOf(ShortsTextViewFingerprint)
+object ReturnYouTubeDislikeShortsPatch : BytecodePatch(
+    setOf(ShortsTextViewFingerprint)
 ) {
+    private const val INTEGRATIONS_RYD_CLASS_DESCRIPTOR =
+        "$UTILS_PATH/ReturnYouTubeDislikePatch;"
+
     override fun execute(context: BytecodeContext) {
         ShortsTextViewFingerprint.result?.let {
             it.mutableMethod.apply {
@@ -50,10 +53,5 @@ class ReturnYouTubeDislikeShortsPatch : BytecodePatch(
                 )
             }
         } ?: throw ShortsTextViewFingerprint.exception
-    }
-
-    private companion object {
-        const val INTEGRATIONS_RYD_CLASS_DESCRIPTOR =
-            "$UTILS_PATH/ReturnYouTubeDislikePatch;"
     }
 }

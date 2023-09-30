@@ -8,7 +8,7 @@ import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.DependsOn
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.youtube.utils.fingerprints.SeekbarFingerprint
 import app.revanced.patches.youtube.utils.fingerprints.SeekbarOnDrawFingerprint
@@ -17,8 +17,8 @@ import app.revanced.patches.youtube.utils.fingerprints.YouTubeControlsOverlayFin
 import app.revanced.patches.youtube.utils.overridespeed.patch.OverrideSpeedHookPatch
 import app.revanced.patches.youtube.utils.playercontrols.patch.PlayerControlsPatch
 import app.revanced.patches.youtube.utils.resourceid.patch.SharedResourceIdPatch
-import app.revanced.patches.youtube.utils.resourceid.patch.SharedResourceIdPatch.Companion.InsetOverlayViewLayout
-import app.revanced.patches.youtube.utils.resourceid.patch.SharedResourceIdPatch.Companion.TotalTime
+import app.revanced.patches.youtube.utils.resourceid.patch.SharedResourceIdPatch.InsetOverlayViewLayout
+import app.revanced.patches.youtube.utils.resourceid.patch.SharedResourceIdPatch.TotalTime
 import app.revanced.patches.youtube.utils.sponsorblock.bytecode.fingerprints.RectangleFieldInvalidatorFingerprint
 import app.revanced.patches.youtube.utils.sponsorblock.bytecode.fingerprints.SegmentPlaybackControllerFingerprint
 import app.revanced.patches.youtube.utils.videoid.general.patch.VideoIdPatch
@@ -35,8 +35,8 @@ import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction35c
 import com.android.tools.smali.dexlib2.iface.reference.FieldReference
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 
-@DependsOn(
-    [
+@Patch(
+    dependencies = [
         OverrideSpeedHookPatch::class,
         PlayerControlsPatch::class,
         SharedResourceIdPatch::class,
@@ -44,14 +44,23 @@ import com.android.tools.smali.dexlib2.iface.reference.MethodReference
         VideoIdWithoutShortsPatch::class
     ]
 )
-class SponsorBlockBytecodePatch : BytecodePatch(
-    listOf(
+object SponsorBlockBytecodePatch : BytecodePatch(
+    setOf(
         SeekbarFingerprint,
         SegmentPlaybackControllerFingerprint,
         TotalTimeFingerprint,
         YouTubeControlsOverlayFingerprint
     )
 ) {
+    private const val INTEGRATIONS_BUTTON_CLASS_DESCRIPTOR =
+        "Lapp/revanced/integrations/sponsorblock"
+
+    private const val INTEGRATIONS_PLAYER_CONTROLLER_CLASS_DESCRIPTOR =
+        "$INTEGRATIONS_BUTTON_CLASS_DESCRIPTOR/SegmentPlaybackController;"
+
+    lateinit var insertMethod: MutableMethod
+    lateinit var insertInstructions: List<BuilderInstruction>
+
     override fun execute(context: BytecodeContext) {
 
         /**
@@ -224,16 +233,5 @@ class SponsorBlockBytecodePatch : BytecodePatch(
 
         context.injectInit("InitializationPatch", "initializeSponsorBlockSettings", true)
 
-    }
-
-    internal companion object {
-        const val INTEGRATIONS_BUTTON_CLASS_DESCRIPTOR =
-            "Lapp/revanced/integrations/sponsorblock"
-
-        const val INTEGRATIONS_PLAYER_CONTROLLER_CLASS_DESCRIPTOR =
-            "$INTEGRATIONS_BUTTON_CLASS_DESCRIPTOR/SegmentPlaybackController;"
-
-        lateinit var insertMethod: MutableMethod
-        lateinit var insertInstructions: List<BuilderInstruction>
     }
 }

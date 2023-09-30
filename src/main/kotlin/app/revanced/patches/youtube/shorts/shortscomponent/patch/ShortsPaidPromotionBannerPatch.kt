@@ -7,14 +7,14 @@ import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.youtube.shorts.shortscomponent.fingerprints.ShortsPaidPromotionFingerprint
-import app.revanced.patches.youtube.utils.resourceid.patch.SharedResourceIdPatch.Companion.ReelPlayerBadge
-import app.revanced.patches.youtube.utils.resourceid.patch.SharedResourceIdPatch.Companion.ReelPlayerBadge2
+import app.revanced.patches.youtube.utils.resourceid.patch.SharedResourceIdPatch.ReelPlayerBadge
+import app.revanced.patches.youtube.utils.resourceid.patch.SharedResourceIdPatch.ReelPlayerBadge2
 import app.revanced.util.bytecode.getWideLiteralIndex
 import app.revanced.util.integrations.Constants.SHORTS
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
-class ShortsPaidPromotionBannerPatch : BytecodePatch(
-    listOf(ShortsPaidPromotionFingerprint)
+object ShortsPaidPromotionBannerPatch : BytecodePatch(
+    setOf(ShortsPaidPromotionFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
         ShortsPaidPromotionFingerprint.result?.let {
@@ -34,16 +34,14 @@ class ShortsPaidPromotionBannerPatch : BytecodePatch(
 
     }
 
-    private companion object {
-        fun MutableMethod.insertHook(insertIndex: Int) {
-            val insertRegister = getInstruction<OneRegisterInstruction>(insertIndex).registerA
+    fun MutableMethod.insertHook(insertIndex: Int) {
+        val insertRegister = getInstruction<OneRegisterInstruction>(insertIndex).registerA
 
-            addInstructions(
-                insertIndex + 1, """
-                    invoke-static {v$insertRegister}, $SHORTS->hideShortsPlayerPaidPromotionBanner(Landroid/view/ViewStub;)Landroid/view/ViewStub;
-                    move-result-object v$insertRegister
-                    """
-            )
-        }
+        addInstructions(
+            insertIndex + 1, """
+                invoke-static {v$insertRegister}, $SHORTS->hideShortsPlayerPaidPromotionBanner(Landroid/view/ViewStub;)Landroid/view/ViewStub;
+                move-result-object v$insertRegister
+                """
+        )
     }
 }

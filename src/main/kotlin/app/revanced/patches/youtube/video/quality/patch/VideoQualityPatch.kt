@@ -1,21 +1,18 @@
 package app.revanced.patches.youtube.video.quality.patch
 
 import app.revanced.extensions.exception
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchException
-import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.youtube.utils.annotations.YouTubeCompatibility
+import app.revanced.patcher.patch.annotation.Patch
+import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patches.youtube.utils.fingerprints.NewFlyoutPanelOnClickListenerFingerprint
 import app.revanced.patches.youtube.utils.overridequality.patch.OverrideQualityHookPatch
 import app.revanced.patches.youtube.utils.settings.resource.patch.SettingsPatch
-import app.revanced.patches.youtube.utils.settings.resource.patch.SettingsPatch.Companion.contexts
+import app.revanced.patches.youtube.utils.settings.resource.patch.SettingsPatch.contexts
 import app.revanced.patches.youtube.utils.videoid.general.patch.VideoIdPatch
 import app.revanced.patches.youtube.utils.videoid.withoutshorts.patch.VideoIdWithoutShortsPatch
 import app.revanced.patches.youtube.video.quality.fingerprints.NewVideoQualityChangedFingerprint
@@ -24,24 +21,42 @@ import app.revanced.util.integrations.Constants.VIDEO_PATH
 import app.revanced.util.resources.ResourceUtils.copyXmlNode
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 
-@Patch
-@Name("Default video quality")
-@Description("Adds ability to set default video quality settings.")
-@DependsOn(
-    [
+@Patch(
+    name = "Default video quality",
+    description = "Adds ability to set default video quality settings.",
+    compatiblePackages = [
+        CompatiblePackage(
+            "com.google.android.youtube",
+            [
+                "18.22.37",
+                "18.23.36",
+                "18.24.37",
+                "18.25.40",
+                "18.27.36",
+                "18.29.38",
+                "18.30.37",
+                "18.31.40",
+                "18.32.39"
+            ]
+        )
+    ],
+    dependencies = [
         OverrideQualityHookPatch::class,
         VideoIdPatch::class,
         VideoIdWithoutShortsPatch::class,
         SettingsPatch::class
     ]
 )
-@YouTubeCompatibility
-class VideoQualityPatch : BytecodePatch(
-    listOf(
+@Suppress("unused")
+object VideoQualityPatch : BytecodePatch(
+    setOf(
         NewFlyoutPanelOnClickListenerFingerprint,
         VideoQualitySetterFingerprint
     )
 ) {
+    private const val INTEGRATIONS_VIDEO_QUALITY_CLASS_DESCRIPTOR =
+        "$VIDEO_PATH/VideoQualityPatch;"
+
     override fun execute(context: BytecodeContext) {
 
         NewFlyoutPanelOnClickListenerFingerprint.result?.let { parentResult ->
@@ -98,10 +113,5 @@ class VideoQualityPatch : BytecodePatch(
 
         SettingsPatch.updatePatchStatus("default-video-quality")
 
-    }
-
-    private companion object {
-        const val INTEGRATIONS_VIDEO_QUALITY_CLASS_DESCRIPTOR =
-            "$VIDEO_PATH/VideoQualityPatch;"
     }
 }

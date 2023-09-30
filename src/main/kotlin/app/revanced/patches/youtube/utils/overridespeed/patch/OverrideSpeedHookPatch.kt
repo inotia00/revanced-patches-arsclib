@@ -29,13 +29,23 @@ import com.android.tools.smali.dexlib2.immutable.ImmutableMethod
 import com.android.tools.smali.dexlib2.immutable.ImmutableMethodImplementation
 import com.android.tools.smali.dexlib2.immutable.ImmutableMethodParameter
 
-class OverrideSpeedHookPatch : BytecodePatch(
-    listOf(
+object OverrideSpeedHookPatch : BytecodePatch(
+    setOf(
         PlaybackSpeedPatchFingerprint,
         PlaybackSpeedParentFingerprint,
         SpeedClassFingerprint
     )
 ) {
+    private const val INTEGRATIONS_PLAYBACK_SPEED_CLASS_DESCRIPTOR =
+        "$VIDEO_PATH/PlaybackSpeedPatch;"
+
+    private const val INTEGRATIONS_VIDEO_HELPER_CLASS_DESCRIPTOR =
+        "$INTEGRATIONS_PATH/utils/VideoHelpers;"
+
+    lateinit var playbackSpeedChangedResult: MethodFingerprintResult
+
+    private lateinit var SPEED_CLASS: String
+
     override fun execute(context: BytecodeContext) {
 
         PlaybackSpeedParentFingerprint.result?.let { parentResult ->
@@ -63,7 +73,7 @@ class OverrideSpeedHookPatch : BytecodePatch(
                         ImmutableMethod(
                             parentMutableClass.type,
                             "overrideSpeed",
-                            listOf(ImmutableMethodParameter("F", annotations, null)),
+                            setOf(ImmutableMethodParameter("F", annotations, null)),
                             "V",
                             AccessFlags.PUBLIC or AccessFlags.PUBLIC,
                             annotations,
@@ -144,15 +154,4 @@ class OverrideSpeedHookPatch : BytecodePatch(
 
     }
 
-    internal companion object {
-        const val INTEGRATIONS_PLAYBACK_SPEED_CLASS_DESCRIPTOR =
-            "$VIDEO_PATH/PlaybackSpeedPatch;"
-
-        const val INTEGRATIONS_VIDEO_HELPER_CLASS_DESCRIPTOR =
-            "$INTEGRATIONS_PATH/utils/VideoHelpers;"
-
-        lateinit var playbackSpeedChangedResult: MethodFingerprintResult
-
-        private lateinit var SPEED_CLASS: String
-    }
 }

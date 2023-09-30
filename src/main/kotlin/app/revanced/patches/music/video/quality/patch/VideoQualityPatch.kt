@@ -1,16 +1,13 @@
 package app.revanced.patches.music.video.quality.patch
 
 import app.revanced.extensions.exception
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchException
-import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.music.utils.annotations.MusicCompatibility
+import app.revanced.patcher.patch.annotation.Patch
+import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patches.music.utils.overridequality.patch.OverrideQualityHookPatch
 import app.revanced.patches.music.utils.settings.resource.patch.SettingsPatch
 import app.revanced.patches.music.video.information.patch.VideoInformationPatch
@@ -19,20 +16,32 @@ import app.revanced.util.enum.CategoryType
 import app.revanced.util.integrations.Constants.MUSIC_VIDEO_PATH
 import com.android.tools.smali.dexlib2.builder.instruction.BuilderInstruction21c
 
-@Patch
-@Name("Remember video quality")
-@Description("Save the video quality value whenever you change the video quality.")
-@DependsOn(
-    [
+@Patch(
+    name = "Remember video quality",
+    description = "Save the video quality value whenever you change the video quality.",
+    compatiblePackages = [
+        CompatiblePackage(
+            "com.google.android.apps.youtube.music",
+            [
+                "6.15.52",
+                "6.20.51",
+                "6.21.51"
+            ]
+        )
+    ],
+    dependencies = [
         OverrideQualityHookPatch::class,
         SettingsPatch::class,
         VideoInformationPatch::class
     ]
 )
-@MusicCompatibility
-class VideoQualityPatch : BytecodePatch(
-    listOf(UserQualityChangeFingerprint)
+@Suppress("unused")
+object VideoQualityPatch : BytecodePatch(
+    setOf(UserQualityChangeFingerprint)
 ) {
+    private const val INTEGRATIONS_VIDEO_QUALITY_CLASS_DESCRIPTOR =
+        "$MUSIC_VIDEO_PATH/VideoQualityPatch;"
+
     override fun execute(context: BytecodeContext) {
 
         UserQualityChangeFingerprint.result?.let {
@@ -67,10 +76,5 @@ class VideoQualityPatch : BytecodePatch(
             "true"
         )
 
-    }
-
-    private companion object {
-        const val INTEGRATIONS_VIDEO_QUALITY_CLASS_DESCRIPTOR =
-            "$MUSIC_VIDEO_PATH/VideoQualityPatch;"
     }
 }

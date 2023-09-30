@@ -5,7 +5,7 @@ import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.DependsOn
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.music.utils.integrations.patch.IntegrationsPatch
 import app.revanced.patches.music.utils.settings.bytecode.fingerprints.PreferenceFingerprint
 import app.revanced.patches.music.utils.settings.bytecode.fingerprints.SettingsHeadersFragmentFingerprint
@@ -14,13 +14,18 @@ import app.revanced.util.integrations.Constants.MUSIC_INTEGRATIONS_PATH
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
-@DependsOn([IntegrationsPatch::class])
-class SettingsBytecodePatch : BytecodePatch(
-    listOf(
+@Patch(
+    dependencies = [IntegrationsPatch::class]
+)
+object SettingsBytecodePatch : BytecodePatch(
+    setOf(
         PreferenceFingerprint,
         SettingsHeadersFragmentFingerprint
     )
 ) {
+    private const val INTEGRATIONS_CLASS_DESCRIPTOR =
+        "$MUSIC_INTEGRATIONS_PATH/settingsmenu/SharedPreferenceChangeListener;"
+
     override fun execute(context: BytecodeContext) {
 
         SettingsHeadersFragmentFingerprint.result?.let {
@@ -51,10 +56,5 @@ class SettingsBytecodePatch : BytecodePatch(
         context.injectInit("InitializationPatch", "setDeviceInformation", false)
         context.injectInit("InitializationPatch", "initializeReVancedSettings", false)
 
-    }
-
-    companion object {
-        const val INTEGRATIONS_CLASS_DESCRIPTOR =
-            "$MUSIC_INTEGRATIONS_PATH/settingsmenu/SharedPreferenceChangeListener;"
     }
 }

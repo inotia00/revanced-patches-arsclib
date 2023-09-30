@@ -11,8 +11,8 @@ import app.revanced.util.integrations.Constants.VIDEO_PATH
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
-class VideoIdWithoutShortsPatch : BytecodePatch(
-    listOf(VideoIdWithoutShortsFingerprint)
+object VideoIdWithoutShortsPatch : BytecodePatch(
+    setOf(VideoIdWithoutShortsFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
 
@@ -31,26 +31,24 @@ class VideoIdWithoutShortsPatch : BytecodePatch(
 
     }
 
-    companion object {
-        private var offset = 2
+    private var offset = 2
 
-        private var insertIndex: Int = 0
-        private var insertRegister: Int = 0
-        private lateinit var insertMethod: MutableMethod
+    private var insertIndex: Int = 0
+    private var insertRegister: Int = 0
+    private lateinit var insertMethod: MutableMethod
 
 
-        /**
-         * Adds an invoke-static instruction, called with the new id when the video changes
-         * @param methodDescriptor which method to call. Params have to be `Ljava/lang/String;`
-         */
-        fun injectCall(
-            methodDescriptor: String
-        ) {
-            insertMethod.addInstructions(
-                insertIndex + offset, // move-result-object offset
-                "invoke-static {v$insertRegister}, $methodDescriptor"
-            )
-        }
+    /**
+     * Adds an invoke-static instruction, called with the new id when the video changes
+     * @param methodDescriptor which method to call. Params have to be `Ljava/lang/String;`
+     */
+    fun injectCall(
+        methodDescriptor: String
+    ) {
+        insertMethod.addInstructions(
+            insertIndex + offset, // move-result-object offset
+            "invoke-static {v$insertRegister}, $methodDescriptor"
+        )
     }
 }
 

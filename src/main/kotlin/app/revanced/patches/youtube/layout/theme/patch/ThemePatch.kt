@@ -1,31 +1,49 @@
 package app.revanced.patches.youtube.layout.theme.patch
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.ResourceContext
-import app.revanced.patcher.patch.OptionsContainer
 import app.revanced.patcher.patch.PatchException
-import app.revanced.patcher.patch.PatchOption
 import app.revanced.patcher.patch.ResourcePatch
-import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.youtube.layout.theme.patch.GeneralThemePatch.Companion.isMonetPatchIncluded
-import app.revanced.patches.youtube.utils.annotations.YouTubeCompatibility
+import app.revanced.patcher.patch.annotation.Patch
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patches.youtube.layout.theme.patch.GeneralThemePatch.isMonetPatchIncluded
 import app.revanced.patches.youtube.utils.settings.resource.patch.SettingsPatch
 import app.revanced.util.resources.ResourceHelper.updatePatchStatusTheme
 import org.w3c.dom.Element
+import app.revanced.patcher.patch.options.types.StringPatchOption.Companion.stringPatchOption
 
-@Patch
-@Name("Theme")
-@Description("Change the app's theme to the values specified in options.json.")
-@DependsOn(
-    [
+@Patch(
+    name = "Theme",
+    description = "Change the app's theme to the values specified in options.json.",
+    compatiblePackages = [
+        CompatiblePackage(
+            "com.google.android.youtube",
+            [
+                "18.22.37",
+                "18.23.36",
+                "18.24.37",
+                "18.25.40",
+                "18.27.36",
+                "18.29.38",
+                "18.30.37",
+                "18.31.40",
+                "18.32.39"
+            ]
+        )
+    ],
+    dependencies = [
         GeneralThemePatch::class,
         SettingsPatch::class
     ]
 )
-@YouTubeCompatibility
-class ThemePatch : ResourcePatch {
+@Suppress("unused")
+object ThemePatch : ResourcePatch() {
+    var darkThemeBackgroundColor by stringPatchOption(
+        key = "darkThemeBackgroundColor",
+        default = "@android:color/black",
+        title = "Background color for the dark theme",
+        description = "The background color of the dark theme. Can be a hex color or a resource reference."
+    )
+
     override fun execute(context: ResourceContext) {
 
         arrayOf("values", "values-v31").forEach { context.setTheme(it) }
@@ -54,16 +72,5 @@ class ThemePatch : ResourcePatch {
                 }
             }
         }
-    }
-
-    companion object : OptionsContainer() {
-        var darkThemeBackgroundColor: String? by option(
-            PatchOption.StringOption(
-                key = "darkThemeBackgroundColor",
-                default = "@android:color/black",
-                title = "Background color for the dark theme",
-                description = "The background color of the dark theme. Can be a hex color or a resource reference."
-            )
-        )
     }
 }

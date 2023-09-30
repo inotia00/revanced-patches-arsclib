@@ -9,8 +9,8 @@ import app.revanced.patches.music.utils.fix.clientspoof.fingerprints.UserAgentHe
 import app.revanced.patches.music.utils.microg.shared.Constants.MUSIC_PACKAGE_NAME
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 
-class ClientSpoofMusicPatch : BytecodePatch(
-    listOf(UserAgentHeaderBuilderFingerprint)
+object ClientSpoofMusicPatch : BytecodePatch(
+    setOf(UserAgentHeaderBuilderFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
 

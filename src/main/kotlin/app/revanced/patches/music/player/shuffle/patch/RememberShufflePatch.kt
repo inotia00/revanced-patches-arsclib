@@ -3,8 +3,6 @@ package app.revanced.patches.music.player.shuffle.patch
 import app.revanced.extensions.exception
 import app.revanced.extensions.transformFields
 import app.revanced.extensions.traverseClassHierarchy
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
@@ -12,14 +10,13 @@ import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWith
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.or
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patcher.patch.annotations.Patch
+import app.revanced.patcher.patch.annotation.Patch
+import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.util.proxy.mutableTypes.MutableField.Companion.toMutable
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod.Companion.toMutable
 import app.revanced.patches.music.player.shuffle.fingerprints.MusicPlaybackControlsFingerprint
 import app.revanced.patches.music.player.shuffle.fingerprints.ShuffleClassReferenceFingerprint
-import app.revanced.patches.music.utils.annotations.MusicCompatibility
 import app.revanced.patches.music.utils.settings.resource.patch.SettingsPatch
 import app.revanced.util.enum.CategoryType
 import app.revanced.util.integrations.Constants.MUSIC_PLAYER
@@ -32,17 +29,39 @@ import com.android.tools.smali.dexlib2.immutable.ImmutableField
 import com.android.tools.smali.dexlib2.immutable.ImmutableMethod
 import com.android.tools.smali.dexlib2.util.MethodUtil
 
-@Patch
-@Name("Remember shuffle state")
-@Description("Remembers the state of the shuffle.")
-@DependsOn([SettingsPatch::class])
-@MusicCompatibility
-class RememberShufflePatch : BytecodePatch(
-    listOf(
+@Patch(
+    name = "Remember shuffle state",
+    description = "Remembers the state of the shuffle.",
+    compatiblePackages = [
+        CompatiblePackage(
+            "com.google.android.apps.youtube.music",
+            [
+                "6.15.52",
+                "6.20.51",
+                "6.21.51"
+            ]
+        )
+    ],
+    dependencies = [SettingsPatch::class]
+)
+@Suppress("unused")
+object RememberShufflePatch : BytecodePatch(
+    setOf(
         MusicPlaybackControlsFingerprint,
         ShuffleClassReferenceFingerprint
     )
 ) {
+    private const val MUSIC_PLAYBACK_CONTROLS_CLASS_DESCRIPTOR =
+            "Lcom/google/android/apps/youtube/music/watchpage/MusicPlaybackControls;"
+
+    lateinit var SHUFFLE_CLASS: String
+    lateinit var imageViewReference: Reference
+    lateinit var shuffleStateLabel: String
+
+    fun MutableMethod.descriptor(index: Int): Reference {
+        return getInstruction<ReferenceInstruction>(index).reference
+    }
+
     override fun execute(context: BytecodeContext) {
 
         ShuffleClassReferenceFingerprint.result?.let {
@@ -163,18 +182,5 @@ class RememberShufflePatch : BytecodePatch(
             "true"
         )
 
-    }
-
-    private companion object {
-        const val MUSIC_PLAYBACK_CONTROLS_CLASS_DESCRIPTOR =
-            "Lcom/google/android/apps/youtube/music/watchpage/MusicPlaybackControls;"
-
-        lateinit var SHUFFLE_CLASS: String
-        lateinit var imageViewReference: Reference
-        lateinit var shuffleStateLabel: String
-
-        fun MutableMethod.descriptor(index: Int): Reference {
-            return getInstruction<ReferenceInstruction>(index).reference
-        }
     }
 }

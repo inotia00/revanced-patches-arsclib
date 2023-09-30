@@ -5,7 +5,7 @@ import app.revanced.extensions.transformMethods
 import app.revanced.extensions.traverseClassHierarchy
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.DependsOn
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod.Companion.toMutable
 import app.revanced.patches.youtube.swipe.swipecontrols.bytecode.fingerprints.SwipeControlsHostActivityFingerprint
 import app.revanced.patches.youtube.swipe.swipecontrols.bytecode.fingerprints.WatchWhileActivityFingerprint
@@ -13,9 +13,11 @@ import app.revanced.patches.youtube.utils.playertype.patch.PlayerTypeHookPatch
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.immutable.ImmutableMethod
 
-@DependsOn([PlayerTypeHookPatch::class])
-class SwipeControlsBytecodePatch : BytecodePatch(
-    listOf(
+@Patch(
+    dependencies = [PlayerTypeHookPatch::class]
+)
+object SwipeControlsBytecodePatch : BytecodePatch(
+    setOf(
         SwipeControlsHostActivityFingerprint,
         WatchWhileActivityFingerprint
     )

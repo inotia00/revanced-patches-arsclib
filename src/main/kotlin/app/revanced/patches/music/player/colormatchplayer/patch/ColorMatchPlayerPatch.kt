@@ -1,18 +1,15 @@
 package app.revanced.patches.music.player.colormatchplayer.patch
 
 import app.revanced.extensions.exception
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.removeInstruction
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patcher.patch.annotations.Patch
+import app.revanced.patcher.patch.annotation.Patch
+import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patcher.util.smali.ExternalLabel
-import app.revanced.patches.music.utils.annotations.MusicCompatibility
 import app.revanced.patches.music.utils.fingerprints.PlayerColorFingerprint
 import app.revanced.patches.music.utils.settings.resource.patch.SettingsPatch
 import app.revanced.util.enum.CategoryType
@@ -22,14 +19,30 @@ import com.android.tools.smali.dexlib2.iface.instruction.Instruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import kotlin.properties.Delegates
 
-@Patch
-@Name("Enable color match player")
-@Description("Matches the color of the mini player and the fullscreen player.")
-@DependsOn([SettingsPatch::class])
-@MusicCompatibility
-class ColorMatchPlayerPatch : BytecodePatch(
-    listOf(PlayerColorFingerprint)
+@Patch(
+    name = "Enable color match player",
+    description = "Matches the color of the mini player and the fullscreen player.",
+    compatiblePackages = [
+        CompatiblePackage(
+            "com.google.android.apps.youtube.music",
+            [
+                "6.15.52",
+                "6.20.51",
+                "6.21.51"
+            ]
+        )
+    ],
+    dependencies = [SettingsPatch::class]
+)
+@Suppress("unused")
+object ColorMatchPlayerPatch : BytecodePatch(
+    setOf(PlayerColorFingerprint)
 ) {
+    var relativeIndex by Delegates.notNull<Int>()
+    fun MutableMethod.descriptor(index: Int): String {
+        return getInstruction<ReferenceInstruction>(relativeIndex + index).reference.toString()
+    }
+
     override fun execute(context: BytecodeContext) {
 
         PlayerColorFingerprint.result?.let {
@@ -73,13 +86,5 @@ class ColorMatchPlayerPatch : BytecodePatch(
             "true"
         )
 
-    }
-
-    private companion object {
-        var relativeIndex by Delegates.notNull<Int>()
-
-        fun MutableMethod.descriptor(index: Int): String {
-            return getInstruction<ReferenceInstruction>(relativeIndex + index).reference.toString()
-        }
     }
 }

@@ -6,11 +6,10 @@ import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.removeInstructions
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.DependsOn
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.shared.patch.litho.ComponentParserPatch
-import app.revanced.patches.shared.patch.litho.ComponentParserPatch.Companion.generalHook
-import app.revanced.patches.youtube.utils.annotations.YouTubeCompatibility
+import app.revanced.patches.shared.patch.litho.ComponentParserPatch.generalHook
 import app.revanced.patches.youtube.utils.litho.fingerprints.GeneralByteBufferFingerprint
 import app.revanced.patches.youtube.utils.litho.fingerprints.LithoFilterFingerprint
 import app.revanced.patches.youtube.utils.litho.fingerprints.LowLevelByteBufferFingerprint
@@ -19,23 +18,27 @@ import app.revanced.patches.youtube.utils.settings.resource.patch.SettingsPatch
 import app.revanced.util.integrations.Constants.ADS_PATH
 import java.io.Closeable
 
-@DependsOn(
-    [
+@Patch(
+    dependencies = [
         ComponentParserPatch::class,
         PlayerTypeHookPatch::class,
         SettingsPatch::class
     ]
 )
-@YouTubeCompatibility
-class LithoFilterPatch : BytecodePatch(
-    listOf(
+@Suppress("unused")
+object LithoFilterPatch : BytecodePatch(
+    setOf(
         GeneralByteBufferFingerprint,
         LithoFilterFingerprint,
         LowLevelByteBufferFingerprint
     )
 ), Closeable {
-    override fun execute(context: BytecodeContext) {
+    internal lateinit var addFilter: (String) -> Unit
+        private set
 
+    private var filterCount = 0
+
+    override fun execute(context: BytecodeContext) {
 
         LowLevelByteBufferFingerprint.result?.mutableMethod?.addInstruction(
             0,
@@ -82,11 +85,4 @@ class LithoFilterPatch : BytecodePatch(
                 const/4 v1, 0x1
                 """
         )
-
-    companion object {
-        internal lateinit var addFilter: (String) -> Unit
-            private set
-
-        private var filterCount = 0
-    }
 }

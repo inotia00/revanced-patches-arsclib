@@ -1,12 +1,9 @@
 package app.revanced.patches.youtube.utils.settings.resource.patch
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.ResourceContext
-import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patcher.patch.annotations.Patch
+import app.revanced.patcher.patch.annotation.Patch
+import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patches.shared.patch.settings.AbstractSettingsResourcePatch
-import app.revanced.patches.youtube.utils.annotations.YouTubeCompatibility
 import app.revanced.patches.youtube.utils.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.utils.resourceid.patch.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.settings.bytecode.patch.SettingsBytecodePatch
@@ -24,22 +21,43 @@ import java.nio.file.Paths
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
-@Patch
-@Name("Settings")
-@Description("Applies mandatory patches to implement ReVanced settings into the application.")
-@DependsOn(
-    [
+@Patch(
+    name = "Settings",
+    description = "Applies mandatory patches to implement ReVanced settings into the application.",
+    compatiblePackages = [
+        CompatiblePackage(
+            "com.google.android.youtube",
+            [
+                "18.22.37",
+                "18.23.36",
+                "18.24.37",
+                "18.25.40",
+                "18.27.36",
+                "18.29.38",
+                "18.30.37",
+                "18.31.40",
+                "18.32.39"
+            ]
+        )
+    ],
+    dependencies = [
         IntegrationsPatch::class,
         SharedResourceIdPatch::class,
         SettingsBytecodePatch::class
     ]
 )
-@YouTubeCompatibility
-class SettingsPatch : AbstractSettingsResourcePatch(
+@Suppress("unused")
+object SettingsPatch : AbstractSettingsResourcePatch(
     "youtube/settings",
     "youtube/settings/host",
     true
 ) {
+    private val THREAD_COUNT = Runtime.getRuntime().availableProcessors()
+    private val threadPoolExecutor = Executors.newFixedThreadPool(THREAD_COUNT)
+
+    internal lateinit var contexts: ResourceContext
+    internal var upward1828: Boolean = false
+
     override fun execute(context: ResourceContext) {
         super.execute(context)
         contexts = context
@@ -173,23 +191,15 @@ class SettingsPatch : AbstractSettingsResourcePatch(
 
     }
 
-    companion object {
-        private val THREAD_COUNT = Runtime.getRuntime().availableProcessors()
-        private val threadPoolExecutor = Executors.newFixedThreadPool(THREAD_COUNT)
+    internal fun addPreference(settingArray: Array<String>) {
+        contexts.addPreference(settingArray)
+    }
 
-        internal lateinit var contexts: ResourceContext
-        internal var upward1828: Boolean = false
+    internal fun addReVancedPreference(key: String) {
+        contexts.addReVancedPreference(key)
+    }
 
-        internal fun addPreference(settingArray: Array<String>) {
-            contexts.addPreference(settingArray)
-        }
-
-        internal fun addReVancedPreference(key: String) {
-            contexts.addReVancedPreference(key)
-        }
-
-        internal fun updatePatchStatus(patchTitle: String) {
-            contexts.updatePatchStatus(patchTitle)
-        }
+    internal fun updatePatchStatus(patchTitle: String) {
+        contexts.updatePatchStatus(patchTitle)
     }
 }

@@ -13,13 +13,18 @@ import app.revanced.patches.reddit.utils.settings.bytecode.fingerprints.Settings
 import app.revanced.util.bytecode.getStringIndex
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
-class SettingsBytecodePatch : BytecodePatch(
-    listOf(
+object SettingsBytecodePatch : BytecodePatch(
+    setOf(
         AcknowledgementsLabelBuilderFingerprint,
         OssLicensesMenuActivityOnCreateFingerprint,
         SettingsStatusLoadFingerprint
     )
 ) {
+    private const val INTEGRATIONS_METHOD_DESCRIPTOR =
+        "Lapp/revanced/reddit/settingsmenu/ReVancedSettingActivity;->initializeSettings(Landroid/app/Activity;)V"
+
+    private lateinit var settingsMethod: MutableMethod
+
     override fun execute(context: BytecodeContext) {
 
         /**
@@ -60,19 +65,12 @@ class SettingsBytecodePatch : BytecodePatch(
 
     }
 
-    internal companion object {
-        private const val INTEGRATIONS_METHOD_DESCRIPTOR =
-            "Lapp/revanced/reddit/settingsmenu/ReVancedSettingActivity;->initializeSettings(Landroid/app/Activity;)V"
-
-        private lateinit var settingsMethod: MutableMethod
-
-        fun updateSettingsStatus(description: String) {
-            settingsMethod.apply {
-                addInstruction(
-                    0,
-                    "invoke-static {}, Lapp/revanced/reddit/settingsmenu/SettingsStatus;->$description()V"
-                )
-            }
+    fun updateSettingsStatus(description: String) {
+        settingsMethod.apply {
+            addInstruction(
+                0,
+                "invoke-static {}, Lapp/revanced/reddit/settingsmenu/SettingsStatus;->$description()V"
+            )
         }
     }
 }

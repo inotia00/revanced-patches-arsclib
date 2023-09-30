@@ -5,19 +5,26 @@ import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.removeInstructions
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patches.music.utils.annotations.MusicCompatibility
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.music.utils.litho.fingerprints.LithoFilterFingerprint
 import app.revanced.patches.shared.patch.litho.ComponentParserPatch
-import app.revanced.patches.shared.patch.litho.ComponentParserPatch.Companion.pathBuilderHook
+import app.revanced.patches.shared.patch.litho.ComponentParserPatch.pathBuilderHook
 import app.revanced.util.integrations.Constants.MUSIC_ADS_PATH
 import java.io.Closeable
 
-@DependsOn([ComponentParserPatch::class])
-@MusicCompatibility
-class LithoFilterPatch : BytecodePatch(
-    listOf(LithoFilterFingerprint)
+@Patch(
+    dependencies = [ComponentParserPatch::class]
+)
+@Suppress("unused")
+object LithoFilterPatch : BytecodePatch(
+    setOf(LithoFilterFingerprint)
 ), Closeable {
+
+    internal lateinit var addFilter: (String) -> Unit
+        private set
+
+    private var filterCount = 0
+
     override fun execute(context: BytecodeContext) {
         pathBuilderHook("$MUSIC_ADS_PATH/LithoFilterPatch;->filter")
 
@@ -48,11 +55,4 @@ class LithoFilterPatch : BytecodePatch(
                 const/4 v1, 0x1
                 """
         )
-
-    companion object {
-        internal lateinit var addFilter: (String) -> Unit
-            private set
-
-        private var filterCount = 0
-    }
 }

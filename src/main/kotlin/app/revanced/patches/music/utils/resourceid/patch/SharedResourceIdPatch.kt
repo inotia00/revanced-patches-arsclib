@@ -2,7 +2,7 @@ package app.revanced.patches.music.utils.resourceid.patch
 
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.ResourcePatch
-import app.revanced.patcher.patch.annotations.DependsOn
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.patch.mapping.ResourceMappingPatch
 import app.revanced.util.enum.ResourceType
 import app.revanced.util.enum.ResourceType.BOOL
@@ -13,28 +13,28 @@ import app.revanced.util.enum.ResourceType.LAYOUT
 import app.revanced.util.enum.ResourceType.STRING
 import app.revanced.util.enum.ResourceType.STYLE
 
-@DependsOn([ResourceMappingPatch::class])
-class SharedResourceIdPatch : ResourcePatch {
-    internal companion object {
-        var AccountSwitcherAccessibility: Long = -1
-        var ActionsContainer: Long = -1
-        var ButtonIconPaddingMedium: Long = -1
-        var ChipCloud: Long = -1
-        var ColorGrey: Long = -1
-        var DialogSolid: Long = -1
-        var InlineTimeBarAdBreakMarkerColor: Long = -1
-        var IsTablet: Long = -1
-        var MenuEntry: Long = -1
-        var MusicMenuLikeButtons: Long = -1
-        var NamesInactiveAccountThumbnailSize: Long = -1
-        var PlayerCastMediaRouteButton: Long = -1
-        var PlayerOverlayChip: Long = -1
-        var PrivacyTosFooter: Long = -1
-        var QualityAuto: Long = -1
-        var Text1: Long = -1
-        var ToolTipContentView: Long = -1
-        var TosFooter: Long = -1
-    }
+@Patch(
+    dependencies = [ResourceMappingPatch::class]
+)
+object SharedResourceIdPatch : ResourcePatch() {
+    var AccountSwitcherAccessibility: Long = -1
+    var ActionsContainer: Long = -1
+    var ButtonIconPaddingMedium: Long = -1
+    var ChipCloud: Long = -1
+    var ColorGrey: Long = -1
+    var DialogSolid: Long = -1
+    var InlineTimeBarAdBreakMarkerColor: Long = -1
+    var IsTablet: Long = -1
+    var MenuEntry: Long = -1
+    var MusicMenuLikeButtons: Long = -1
+    var NamesInactiveAccountThumbnailSize: Long = -1
+    var PlayerCastMediaRouteButton: Long = -1
+    var PlayerOverlayChip: Long = -1
+    var PrivacyTosFooter: Long = -1
+    var QualityAuto: Long = -1
+    var Text1: Long = -1
+    var ToolTipContentView: Long = -1
+    var TosFooter: Long = -1
 
     override fun execute(context: ResourceContext) {
 

@@ -5,18 +5,23 @@ import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.DependsOn
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.youtube.utils.resourceid.patch.SharedResourceIdPatch
-import app.revanced.patches.youtube.utils.resourceid.patch.SharedResourceIdPatch.Companion.DislikeButton
+import app.revanced.patches.youtube.utils.resourceid.patch.SharedResourceIdPatch.DislikeButton
 import app.revanced.patches.youtube.utils.returnyoutubedislike.oldlayout.fingerprints.ButtonTagFingerprint
 import app.revanced.util.bytecode.getWideLiteralIndex
 import app.revanced.util.integrations.Constants.UTILS_PATH
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
-@DependsOn([SharedResourceIdPatch::class])
-class ReturnYouTubeDislikeOldLayoutPatch : BytecodePatch(
-    listOf(ButtonTagFingerprint)
+@Patch(
+    dependencies = [SharedResourceIdPatch::class]
+)
+object ReturnYouTubeDislikeOldLayoutPatch : BytecodePatch(
+    setOf(ButtonTagFingerprint)
 ) {
+    private const val INTEGRATIONS_RYD_CLASS_DESCRIPTOR =
+        "$UTILS_PATH/ReturnYouTubeDislikePatch;"
+
     override fun execute(context: BytecodeContext) {
 
         ButtonTagFingerprint.result?.let {
@@ -35,10 +40,5 @@ class ReturnYouTubeDislikeOldLayoutPatch : BytecodePatch(
             }
         } ?: throw ButtonTagFingerprint.exception
 
-    }
-
-    private companion object {
-        const val INTEGRATIONS_RYD_CLASS_DESCRIPTOR =
-            "$UTILS_PATH/ReturnYouTubeDislikePatch;"
     }
 }

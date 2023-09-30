@@ -7,14 +7,14 @@ import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.or
 import app.revanced.patcher.patch.BytecodePatch
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.patch.PatchException
-import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.util.proxy.mutableTypes.MutableField.Companion.toMutable
 import app.revanced.patches.youtube.utils.overridequality.fingerprints.VideoQualityListFingerprint
 import app.revanced.patches.youtube.utils.overridequality.fingerprints.VideoQualityPatchFingerprint
 import app.revanced.patches.youtube.utils.overridequality.fingerprints.VideoQualityTextFingerprint
 import app.revanced.patches.youtube.utils.resourceid.patch.SharedResourceIdPatch
-import app.revanced.patches.youtube.utils.resourceid.patch.SharedResourceIdPatch.Companion.QualityAuto
+import app.revanced.patches.youtube.utils.resourceid.patch.SharedResourceIdPatch.QualityAuto
 import app.revanced.util.bytecode.getWideLiteralIndex
 import app.revanced.util.integrations.Constants.INTEGRATIONS_PATH
 import app.revanced.util.integrations.Constants.VIDEO_PATH
@@ -25,14 +25,25 @@ import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 import com.android.tools.smali.dexlib2.immutable.ImmutableField
 import com.android.tools.smali.dexlib2.util.MethodUtil
 
-@DependsOn([SharedResourceIdPatch::class])
-class OverrideQualityHookPatch : BytecodePatch(
-    listOf(
+@Patch(
+    dependencies = [SharedResourceIdPatch::class]
+)
+object OverrideQualityHookPatch : BytecodePatch(
+    setOf(
         VideoQualityListFingerprint,
         VideoQualityPatchFingerprint,
         VideoQualityTextFingerprint
     )
 ) {
+    private const val INTEGRATIONS_VIDEO_QUALITY_CLASS_DESCRIPTOR =
+        "$VIDEO_PATH/VideoQualityPatch;"
+
+    private const val INTEGRATIONS_VIDEO_HELPER_CLASS_DESCRIPTOR =
+        "$INTEGRATIONS_PATH/utils/VideoHelpers;"
+
+    private lateinit var QUALITY_CLASS: String
+    private lateinit var QUALITY_METHOD: String
+
     override fun execute(context: BytecodeContext) {
 
         VideoQualityListFingerprint.result?.let {
@@ -106,16 +117,5 @@ class OverrideQualityHookPatch : BytecodePatch(
                 )
             }
         } ?: throw VideoQualityTextFingerprint.exception
-    }
-
-    internal companion object {
-        const val INTEGRATIONS_VIDEO_QUALITY_CLASS_DESCRIPTOR =
-            "$VIDEO_PATH/VideoQualityPatch;"
-
-        const val INTEGRATIONS_VIDEO_HELPER_CLASS_DESCRIPTOR =
-            "$INTEGRATIONS_PATH/utils/VideoHelpers;"
-
-        private lateinit var QUALITY_CLASS: String
-        private lateinit var QUALITY_METHOD: String
     }
 }

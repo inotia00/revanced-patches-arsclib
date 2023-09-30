@@ -1,34 +1,48 @@
 package app.revanced.patches.youtube.general.mixplaylists.patch
 
 import app.revanced.extensions.exception
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patcher.patch.annotations.Patch
+import app.revanced.patcher.patch.annotation.Patch
+import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.youtube.general.mixplaylists.fingerprints.BottomPanelOverlayTextFingerprint
 import app.revanced.patches.youtube.general.mixplaylists.fingerprints.ElementParserFingerprint
 import app.revanced.patches.youtube.general.mixplaylists.fingerprints.EmptyFlatBufferFingerprint
-import app.revanced.patches.youtube.utils.annotations.YouTubeCompatibility
 import app.revanced.patches.youtube.utils.settings.resource.patch.SettingsPatch
 import app.revanced.util.bytecode.getStringIndex
 import app.revanced.util.integrations.Constants.GENERAL
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 
-@Patch
-@Name("Hide mix playlists")
-@Description("Hides mix playlists from home feed and video player.")
-@DependsOn([SettingsPatch::class])
-@YouTubeCompatibility
-class MixPlaylistsPatch : BytecodePatch(
-    listOf(
+@Patch(
+    name = "Hide mix playlists",
+    description = "Hides mix playlists from home feed and video player.",
+    compatiblePackages = [
+        CompatiblePackage(
+            "com.google.android.youtube",
+            [
+                "18.22.37",
+                "18.23.36",
+                "18.24.37",
+                "18.25.40",
+                "18.27.36",
+                "18.29.38",
+                "18.30.37",
+                "18.31.40",
+                "18.32.39"
+            ]
+        )
+    ],
+    dependencies = [SettingsPatch::class]
+)
+@Suppress("unused")
+object MixPlaylistsPatch : BytecodePatch(
+    setOf(
         BottomPanelOverlayTextFingerprint,
         ElementParserFingerprint,
         EmptyFlatBufferFingerprint
@@ -115,26 +129,25 @@ class MixPlaylistsPatch : BytecodePatch(
 
     }
 
-    private companion object {
-        fun MutableMethod.inject(
-            freeIndex: Int,
-            insertIndex: Int,
-            jumpIndex: Int
-        ) {
-            val freeRegister = getInstruction<TwoRegisterInstruction>(freeIndex).registerA
+    fun MutableMethod.inject(
+        freeIndex: Int,
+        insertIndex: Int,
+        jumpIndex: Int
+    ) {
+        val freeRegister = getInstruction<TwoRegisterInstruction>(freeIndex).registerA
 
-            addInstructionsWithLabels(
-                insertIndex, """
-                    invoke-static {v$freeRegister}, $GENERAL->hideMixPlaylists([B)Z
-                    move-result v$freeRegister
-                    if-nez v$freeRegister, :not_an_ad
-                    """, ExternalLabel("not_an_ad", getInstruction(jumpIndex))
-            )
+        addInstructionsWithLabels(
+            insertIndex, """
+                invoke-static {v$freeRegister}, $GENERAL->hideMixPlaylists([B)Z
+                move-result v$freeRegister
+                if-nez v$freeRegister, :not_an_ad
+                """, ExternalLabel("not_an_ad", getInstruction(jumpIndex))
+        )
 
-            addInstruction(
-                0,
-                "move-object/from16 v$freeRegister, p3"
-            )
-        }
+        addInstruction(
+            0,
+            "move-object/from16 v$freeRegister, p3"
+        )
     }
+
 }

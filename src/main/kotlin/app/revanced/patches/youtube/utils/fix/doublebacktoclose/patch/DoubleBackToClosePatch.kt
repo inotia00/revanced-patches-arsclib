@@ -12,13 +12,16 @@ import app.revanced.patches.youtube.utils.fix.doublebacktoclose.fingerprint.Scro
 import app.revanced.patches.youtube.utils.fix.doublebacktoclose.fingerprint.ScrollTopParentFingerprint
 import app.revanced.util.integrations.Constants.UTILS_PATH
 
-class DoubleBackToClosePatch : BytecodePatch(
-    listOf(
+object DoubleBackToClosePatch : BytecodePatch(
+    setOf(
         OnBackPressedFingerprint,
         ScrollPositionFingerprint,
         ScrollTopParentFingerprint
     )
 ) {
+    private const val INTEGRATIONS_CLASS_DESCRIPTOR =
+        "$UTILS_PATH/DoubleBackToClosePatch;"
+
     override fun execute(context: BytecodeContext) {
 
         /**
@@ -65,18 +68,13 @@ class DoubleBackToClosePatch : BytecodePatch(
 
     }
 
-    private companion object {
-        const val INTEGRATIONS_CLASS_DESCRIPTOR =
-            "$UTILS_PATH/DoubleBackToClosePatch;"
-
-        fun MutableMethod.injectScrollView(
-            index: Int,
-            descriptor: String
-        ) {
-            addInstruction(
-                index,
-                "invoke-static {}, $INTEGRATIONS_CLASS_DESCRIPTOR->$descriptor()V"
-            )
-        }
+    fun MutableMethod.injectScrollView(
+        index: Int,
+        descriptor: String
+    ) {
+        addInstruction(
+            index,
+            "invoke-static {}, $INTEGRATIONS_CLASS_DESCRIPTOR->$descriptor()V"
+        )
     }
 }

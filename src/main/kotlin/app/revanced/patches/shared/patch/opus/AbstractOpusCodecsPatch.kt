@@ -17,11 +17,13 @@ import com.android.tools.smali.dexlib2.iface.reference.Reference
 abstract class AbstractOpusCodecsPatch(
     private val descriptor: String
 ) : BytecodePatch(
-    listOf(
+    setOf(
         CodecReferenceFingerprint,
         CodecSelectorFingerprint
     )
 ) {
+    lateinit var targetReference: Reference
+
     override fun execute(context: BytecodeContext) {
 
         CodecReferenceFingerprint.result?.mutableMethod?.let {
@@ -60,9 +62,5 @@ abstract class AbstractOpusCodecsPatch(
             }
         } ?: throw CodecSelectorFingerprint.exception
 
-    }
-
-    companion object {
-        lateinit var targetReference: Reference
     }
 }

@@ -1,8 +1,6 @@
 package app.revanced.patches.youtube.utils.returnyoutubedislike.general.patch
 
 import app.revanced.extensions.exception
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
@@ -11,9 +9,8 @@ import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.youtube.utils.annotations.YouTubeCompatibility
+import app.revanced.patcher.patch.annotation.Patch
+import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patches.youtube.utils.returnyoutubedislike.general.fingerprints.DislikeFingerprint
 import app.revanced.patches.youtube.utils.returnyoutubedislike.general.fingerprints.LikeFingerprint
 import app.revanced.patches.youtube.utils.returnyoutubedislike.general.fingerprints.RemoveLikeFingerprint
@@ -33,28 +30,49 @@ import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.reference.Reference
 
-@Patch
-@Name("Return YouTube Dislike")
-@Description("Shows the dislike count of videos using the Return YouTube Dislike API.")
-@DependsOn(
-    [
+@Patch(
+    name = "Return YouTube Dislike",
+    description = "Shows the dislike count of videos using the Return YouTube Dislike API.",
+    compatiblePackages = [
+        CompatiblePackage(
+            "com.google.android.youtube",
+            [
+                "18.22.37",
+                "18.23.36",
+                "18.24.37",
+                "18.25.40",
+                "18.27.36",
+                "18.29.38",
+                "18.30.37",
+                "18.31.40",
+                "18.32.39"
+            ]
+        )
+    ],
+    dependencies = [
         ReturnYouTubeDislikeOldLayoutPatch::class,
         ReturnYouTubeDislikeShortsPatch::class,
         SettingsPatch::class,
         VideoIdPatch::class
     ]
 )
-@YouTubeCompatibility
-class ReturnYouTubeDislikePatch : BytecodePatch(
-    listOf(
+@Suppress("unused")
+object ReturnYouTubeDislikePatch : BytecodePatch(
+    setOf(
         DislikeFingerprint,
         LikeFingerprint,
         RemoveLikeFingerprint,
         TextComponentConstructorFingerprint
     )
 ) {
+    private const val INTEGRATIONS_RYD_CLASS_DESCRIPTOR =
+        "$UTILS_PATH/ReturnYouTubeDislikePatch;"
+
+    lateinit var conversionContextFieldReference: Reference
+    var tmpRegister: Int = 12
+
     override fun execute(context: BytecodeContext) {
-        listOf(
+        setOf(
             LikeFingerprint.toPatch(Vote.LIKE),
             DislikeFingerprint.toPatch(Vote.DISLIKE),
             RemoveLikeFingerprint.toPatch(Vote.REMOVE_LIKE)
@@ -177,14 +195,6 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
 
         SettingsPatch.updatePatchStatus("return-youtube-dislike")
 
-    }
-
-    private companion object {
-        const val INTEGRATIONS_RYD_CLASS_DESCRIPTOR =
-            "$UTILS_PATH/ReturnYouTubeDislikePatch;"
-
-        lateinit var conversionContextFieldReference: Reference
-        var tmpRegister: Int = 12
     }
 
     private fun MethodFingerprint.toPatch(voteKind: Vote) = VotePatch(this, voteKind)

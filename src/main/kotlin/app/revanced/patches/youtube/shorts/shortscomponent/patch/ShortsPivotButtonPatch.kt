@@ -11,15 +11,15 @@ import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.youtube.shorts.shortscomponent.fingerprints.ShortsPivotFingerprint
 import app.revanced.patches.youtube.shorts.shortscomponent.fingerprints.ShortsPivotLegacyFingerprint
-import app.revanced.patches.youtube.utils.resourceid.patch.SharedResourceIdPatch.Companion.ReelForcedMuteButton
-import app.revanced.patches.youtube.utils.resourceid.patch.SharedResourceIdPatch.Companion.ReelPivotButton
+import app.revanced.patches.youtube.utils.resourceid.patch.SharedResourceIdPatch.ReelForcedMuteButton
+import app.revanced.patches.youtube.utils.resourceid.patch.SharedResourceIdPatch.ReelPivotButton
 import app.revanced.util.bytecode.getWideLiteralIndex
 import app.revanced.util.integrations.Constants.SHORTS
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
-class ShortsPivotButtonPatch : BytecodePatch(
-    listOf(
+object ShortsPivotButtonPatch : BytecodePatch(
+    setOf(
         ShortsPivotFingerprint,
         ShortsPivotLegacyFingerprint
     )
@@ -59,31 +59,29 @@ class ShortsPivotButtonPatch : BytecodePatch(
 
     }
 
-    private companion object {
-        fun MutableMethod.getTargetIndexDownTo(
-            startIndex: Int,
-            opcode: Opcode
-        ): Int {
-            for (index in startIndex downTo 0) {
-                if (getInstruction(index).opcode != opcode)
-                    continue
+    fun MutableMethod.getTargetIndexDownTo(
+        startIndex: Int,
+        opcode: Opcode
+    ): Int {
+        for (index in startIndex downTo 0) {
+            if (getInstruction(index).opcode != opcode)
+                continue
 
-                return index
-            }
-            throw PatchException("Failed to find hook method")
+            return index
         }
+        throw PatchException("Failed to find hook method")
+    }
 
-        fun MutableMethod.getTargetIndexUpTo(
-            startIndex: Int,
-            opcode: Opcode
-        ): Int {
-            for (index in startIndex until implementation!!.instructions.size) {
-                if (getInstruction(index).opcode != opcode)
-                    continue
+    fun MutableMethod.getTargetIndexUpTo(
+        startIndex: Int,
+        opcode: Opcode
+    ): Int {
+        for (index in startIndex until implementation!!.instructions.size) {
+            if (getInstruction(index).opcode != opcode)
+                continue
 
-                return index
-            }
-            throw PatchException("Failed to find hook method")
+            return index
         }
+        throw PatchException("Failed to find hook method")
     }
 }

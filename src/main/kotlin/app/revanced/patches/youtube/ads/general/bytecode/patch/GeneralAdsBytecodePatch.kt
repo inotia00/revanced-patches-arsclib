@@ -5,17 +5,19 @@ import app.revanced.extensions.injectHideCall
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.DependsOn
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.youtube.utils.resourceid.patch.SharedResourceIdPatch
-import app.revanced.patches.youtube.utils.resourceid.patch.SharedResourceIdPatch.Companion.AdAttribution
+import app.revanced.patches.youtube.utils.resourceid.patch.SharedResourceIdPatch.AdAttribution
 import app.revanced.util.bytecode.getWideLiteralIndex
 import app.revanced.util.bytecode.isWideLiteralExists
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction35c
 
-@DependsOn([SharedResourceIdPatch::class])
+@Patch(
+    dependencies = [SharedResourceIdPatch::class]
+)
 @Suppress("LABEL_NAME_CLASH")
-class GeneralAdsBytecodePatch : BytecodePatch() {
+object GeneralAdsBytecodePatch : BytecodePatch() {
     override fun execute(context: BytecodeContext) {
         context.classes.forEach { classDef ->
             classDef.methods.forEach { method ->

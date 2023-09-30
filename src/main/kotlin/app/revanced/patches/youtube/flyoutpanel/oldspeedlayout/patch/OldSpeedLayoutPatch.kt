@@ -7,7 +7,7 @@ import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWith
 import app.revanced.patcher.extensions.InstructionExtensions.removeInstruction
 import app.revanced.patcher.extensions.or
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.DependsOn
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableField.Companion.toMutable
 import app.revanced.patches.youtube.flyoutpanel.oldspeedlayout.fingerprints.CustomPlaybackSpeedIntegrationsFingerprint
 import app.revanced.patches.youtube.flyoutpanel.oldspeedlayout.fingerprints.PlaybackRateBottomSheetBuilderFingerprint
@@ -19,15 +19,23 @@ import app.revanced.util.integrations.Constants.VIDEO_PATH
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.immutable.ImmutableField
 
-@DependsOn([LithoFilterPatch::class])
-class OldSpeedLayoutPatch : BytecodePatch(
-    listOf(
+@Patch(
+    dependencies = [LithoFilterPatch::class]
+)
+object OldSpeedLayoutPatch : BytecodePatch(
+    setOf(
         CustomPlaybackSpeedIntegrationsFingerprint,
         PlaybackRateBottomSheetClassFingerprint,
         PlaybackRateBottomSheetBuilderFingerprint,
         RecyclerViewTreeObserverFingerprint
     )
 ) {
+    private const val INTEGRATIONS_CLASS_DESCRIPTOR =
+        "$VIDEO_PATH/CustomPlaybackSpeedPatch;"
+
+    lateinit var PLAYBACK_RATE_BOTTOM_SHEET_CLASS: String
+    lateinit var PLAYBACK_RATE_BOTTOM_SHEET_BUILDER_METHOD: String
+
     override fun execute(context: BytecodeContext) {
 
         /**
@@ -103,13 +111,5 @@ class OldSpeedLayoutPatch : BytecodePatch(
 
         LithoFilterPatch.addFilter("$PATCHES_PATH/ads/PlaybackSpeedMenuFilter;")
 
-    }
-
-    private companion object {
-        private const val INTEGRATIONS_CLASS_DESCRIPTOR =
-            "$VIDEO_PATH/CustomPlaybackSpeedPatch;"
-
-        lateinit var PLAYBACK_RATE_BOTTOM_SHEET_CLASS: String
-        lateinit var PLAYBACK_RATE_BOTTOM_SHEET_BUILDER_METHOD: String
     }
 }
