@@ -1,14 +1,9 @@
-@file:Suppress("DEPRECATION")
-
 plugins {
     kotlin("jvm") version "1.9.10"
     alias(libs.plugins.ksp)
 }
 
 group = "app.revanced"
-
-val githubUsername: String = project.findProperty("gpr.user") as? String ?: System.getenv("GITHUB_ACTOR")
-val githubPassword: String = project.findProperty("gpr.key") as? String ?: System.getenv("GITHUB_TOKEN")
 
 repositories {
     google()
@@ -17,10 +12,11 @@ repositories {
     maven {
         url = uri("https://maven.pkg.github.com/revanced/revanced-patcher")
         credentials {
-            username = githubUsername
-            password = githubPassword
+            username = project.findProperty("gpr.user") as? String ?: System.getenv("GITHUB_ACTOR")
+            password = project.findProperty("gpr.key") as? String ?: System.getenv("GITHUB_TOKEN")
         }
     }
+    // Required for FlexVer-Java
     maven {
         url = uri("https://repo.sleeping.town")
         content {
@@ -36,7 +32,12 @@ dependencies {
     // TODO: Required because build fails without it. Find a way to remove this dependency.
     implementation(libs.guava)
     implementation(libs.gson)
+    implementation(libs.flexver)
     ksp(libs.revanced.patch.annotation.processor)
+}
+
+kotlin {
+    jvmToolchain(17)
 }
 
 tasks {
