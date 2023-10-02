@@ -100,10 +100,10 @@ ReVanced Extended Patches.
 | `language-switch` | Add language switch toggle. | 18.22.37 ~ 18.32.39 |
 | `layout-switch` | Tricks the dpi to use some tablet/phone layouts. | 18.22.37 ~ 18.32.39 |
 | `materialyou` | Enables MaterialYou theme for Android 12+ | 18.22.37 ~ 18.32.39 |
-| `microg-support` | Allows ReVanced to run without root and under a different package name with MicroG. | 18.22.37 ~ 18.32.39 |
+| `microg-support` | Allows ReVanced Extended to run without root and under a different package name with MicroG. | 18.22.37 ~ 18.32.39 |
 | `overlay-buttons` | Add overlay buttons to the player. | 18.22.37 ~ 18.32.39 |
 | `return-youtube-dislike` | Shows the dislike count of videos using the Return YouTube Dislike API. | 18.22.37 ~ 18.32.39 |
-| `settings` | Applies mandatory patches to implement ReVanced settings into the application. | 18.22.37 ~ 18.32.39 |
+| `settings` | Applies mandatory patches to implement ReVanced Extended settings into the application. | 18.22.37 ~ 18.32.39 |
 | `sponsorblock` | Integrates SponsorBlock which allows skipping video segments such as sponsored content. | 18.22.37 ~ 18.32.39 |
 | `spoof-app-version` | Tricks YouTube into thinking, you are running an older version of the app. One of the side effects also includes restoring the old UI. | 18.22.37 ~ 18.32.39 |
 | `spoof-player-parameters` | Spoofs player parameters to prevent playback issues. | 18.22.37 ~ 18.32.39 |
@@ -164,7 +164,7 @@ ReVanced Extended Patches.
 | `hide-terms-container` | Hides terms of service container at the account menu. | 6.15.52 ~ 6.21.51 |
 | `hide-tooltip-content` | Hides the tooltip box that appears on first install. | 6.15.52 ~ 6.21.51 |
 | `hook-download-button` | Replaces the offline download button with an external download button. | 6.15.52 ~ 6.21.51 |
-| `microg-support` | Allows ReVanced Music to run without root and under a different package name with MicroG. | 6.15.52 ~ 6.21.51 |
+| `microg-support` | Allows ReVanced Extended Music to run without root and under a different package name with MicroG. | 6.15.52 ~ 6.21.51 |
 | `remember-playback-speed` | Save the playback speed value whenever you change the playback speed. | 6.15.52 ~ 6.21.51 |
 | `remember-repeat-state` | Remembers the state of the repeat. | 6.15.52 ~ 6.21.51 |
 | `remember-shuffle-state` | Remembers the state of the shuffle. | 6.15.52 ~ 6.21.51 |
@@ -172,7 +172,7 @@ ReVanced Extended Patches.
 | `replace-cast-button` | Replace the cast button in the player with the open music button. | 6.15.52 ~ 6.21.51 |
 | `replace-dismiss-queue` | Replace dismiss queue menu to watch on YouTube. | 6.15.52 ~ 6.21.51 |
 | `return-youtube-dislike` | Shows the dislike count of videos using the Return YouTube Dislike API. | 6.15.52 ~ 6.21.51 |
-| `settings` | Adds settings for ReVanced to YouTube Music. | 6.15.52 ~ 6.21.51 |
+| `settings` | Adds settings for ReVanced Extended to YouTube Music. | 6.15.52 ~ 6.21.51 |
 | `sponsorblock` | Integrates SponsorBlock which allows skipping video segments such as sponsored content. | 6.15.52 ~ 6.21.51 |
 | `spoof-app-version` | Spoof the YouTube Music client version. | 6.15.52 ~ 6.21.51 |
 | `start-page` | Set the default start page. | 6.15.52 ~ 6.21.51 |
@@ -191,7 +191,7 @@ ReVanced Extended Patches.
 | `open-links-directly` | Skips over redirection URLs to external links. | all |
 | `open-links-externally` | Open links outside of the app directly in your browser. | all |
 | `premium-icon` | Unlocks premium icons. | all |
-| `reddit-settings` | Adds ReVanced settings to Reddit. | all |
+| `reddit-settings` | Adds ReVanced Extended settings to Reddit. | all |
 | `sanitize-sharing-links` | Removes (tracking) query parameters from the URLs when sharing links. | all |
 </details>
 
