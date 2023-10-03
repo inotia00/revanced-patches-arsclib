@@ -647,6 +647,7 @@ If later turned off, the old UI may remain until clear the app data"</string>
     <string name="revanced_spoof_player_parameter_summary">Spoofs player parameters to prevent playback issue</string>
     <string name="revanced_spoof_player_parameter_type_title">Spoofs player parameter type</string>
     <string name="revanced_spoof_player_parameter_type_summary_off">"Player parameters of Notifications Video
+
 Known issues: None"</string>
     <string name="revanced_spoof_player_parameter_type_summary_on">"Player parameters of Incognito Mode
 
