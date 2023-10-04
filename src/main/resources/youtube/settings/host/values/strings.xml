@@ -635,16 +635,18 @@ If later turned off, the old UI may remain until clear the app data"</string>
     <string name="revanced_spoof_app_version_target_summary">Type the spoof app version target</string>
     <string name="revanced_spoof_app_version_target_title">Edit spoof app version</string>
     <string name="revanced_spoof_app_version_title">Spoof app version</string>
-    <string name="revanced_spoof_player_parameter_summary">"Spoofs player parameters to prevent playback issues
+    <string name="revanced_spoof_player_parameter_summary">Spoofs player parameters to prevent playback issues</string>
+    <string name="revanced_spoof_player_parameter_type_title">Spoofs player parameter type</string>
+    <string name="revanced_spoof_player_parameter_type_summary_off">"Player parameters of Notifications Video
+
+Known issues: None"</string>
+    <string name="revanced_spoof_player_parameter_type_summary_on">"Player parameters of Incognito Mode
 
 Known issues:
 • Enhanced bitrate is not available
 • No seekbar thumbnails for paid videos
 • Offline downloads may not work
 • Video may not start from the last watched time"</string>
-    <string name="revanced_spoof_player_parameter_type_title">Spoofs player parameter type</string>
-    <string name="revanced_spoof_player_parameter_type_summary_off">Player parameters of Notifications Video</string>
-    <string name="revanced_spoof_player_parameter_type_summary_on">Player parameters of Incognito Mode</string>
     <string name="revanced_spoof_player_parameter_title">Spoof player parameter</string>
     <string name="revanced_swipe_controls">Swipe controls</string>
     <string name="revanced_swipe_magnitude_threshold_summary">The amount of threshold for swipe to occur</string>
