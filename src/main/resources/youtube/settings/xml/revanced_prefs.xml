@@ -423,6 +423,7 @@
             <Preference android:title="Enable seekbar tapping" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="Hide seekbar" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="Hide time stamp" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
+            <Preference android:title="Higher fullscreen seekbar height" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
 
             <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_shorts" />
             <Preference android:title="Disable shorts on startup" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
