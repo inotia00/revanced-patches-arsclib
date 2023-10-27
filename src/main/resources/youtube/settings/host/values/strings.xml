@@ -63,7 +63,7 @@
     <string name="revanced_default_video_quality_mobile_title">Default video quality on Mobile network</string>
     <string name="revanced_default_video_quality_wifi_title">Default video quality on Wi-Fi network</string>
     <string name="revanced_description_title">Description</string>
-    <string name="revanced_disable_ambient_mode_in_fullscreen_summary">Disables ambient mode in full screen</string>
+    <string name="revanced_disable_ambient_mode_in_fullscreen_summary">Disables ambient mode in fullscreen</string>
     <string name="revanced_disable_ambient_mode_in_fullscreen_title">Disable ambient mode in fullscreen</string>
     <string name="revanced_disable_ambient_mode_summary">Always disable ambient mode</string>
     <string name="revanced_disable_ambient_mode_title">Disable ambient mode</string>
