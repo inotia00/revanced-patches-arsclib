@@ -173,7 +173,7 @@ Note: Disabling the speed overlay does not restore the 'Slide to seek' behavior 
     <string name="revanced_enable_wide_search_bar_summary_off">Wide search bar is disabled.</string>
     <string name="revanced_enable_wide_search_bar_summary_on">Wide search bar is enabled.</string>
     <string name="revanced_enable_wide_search_bar_title">Enable wide search bar</string>
-    <string name="revanced_enable_wide_search_bar_in_you_tab_summary">"Enabling this setting will disable the settings button in the You tab
+    <string name="revanced_enable_wide_search_bar_in_you_tab_summary">"Enabling this setting will disable the settings button in the You tab.
 
 In this case, please use the following path:
 You tab > View channel > Menu > Settings."</string>
