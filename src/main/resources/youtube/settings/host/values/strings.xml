@@ -557,39 +557,39 @@ Known issue: Autoplay does not work."</string>
 • Shopping
 • Watch it Again"</string>
     <string name="revanced_hide_suggestions_shelf_title">Hide suggestions shelf</string>
-    <string name="revanced_hide_ticket_shelf_summary_off">Ticket shelves are shown</string>
-    <string name="revanced_hide_ticket_shelf_summary_on">Ticket shelves are hidden</string>
+    <string name="revanced_hide_ticket_shelf_summary_off">Ticket shelves are shown.</string>
+    <string name="revanced_hide_ticket_shelf_summary_on">Ticket shelves are hidden.</string>
     <string name="revanced_hide_ticket_shelf_title">Hide ticket shelf</string>
-    <string name="revanced_hide_timed_reactions_summary_off">Timed reactions are shown</string>
-    <string name="revanced_hide_timed_reactions_summary_on">Timed reactions are hidden</string>
+    <string name="revanced_hide_timed_reactions_summary_off">Timed reactions are shown.</string>
+    <string name="revanced_hide_timed_reactions_summary_on">Timed reactions are hidden.</string>
     <string name="revanced_hide_timed_reactions_title">Hide timed reactions</string>
-    <string name="revanced_hide_time_stamp_summary_off">Time stamp is shown</string>
-    <string name="revanced_hide_time_stamp_summary_on">Time stamp is hidden</string>
+    <string name="revanced_hide_time_stamp_summary_off">Time stamp is shown.</string>
+    <string name="revanced_hide_time_stamp_summary_on">Time stamp is hidden.</string>
     <string name="revanced_hide_time_stamp_title">Hide time stamp</string>
-    <string name="revanced_hide_transcript_section_summary_off">Transcript sections are shown</string>
-    <string name="revanced_hide_transcript_section_summary_on">Transcript sections are hidden</string>
+    <string name="revanced_hide_transcript_section_summary_off">Transcript sections are shown.</string>
+    <string name="revanced_hide_transcript_section_summary_on">Transcript sections are hidden.</string>
     <string name="revanced_hide_transcript_section_title">Hide transcript sections</string>
-    <string name="revanced_hide_toolbar_create_notification_button_summary_off">Create and Notification buttons are shown</string>
-    <string name="revanced_hide_toolbar_create_notification_button_summary_on">Create and Notification buttons are hidden</string>
+    <string name="revanced_hide_toolbar_create_notification_button_summary_off">Create and Notification buttons are shown.</string>
+    <string name="revanced_hide_toolbar_create_notification_button_summary_on">Create and Notification buttons are hidden.</string>
     <string name="revanced_hide_toolbar_create_notification_button_title">Hide buttons in toolbar</string>
-    <string name="revanced_hide_trending_searches_summary_off">Trending searches are shown</string>
-    <string name="revanced_hide_trending_searches_summary_on">Trending searches are hidden</string>
+    <string name="revanced_hide_trending_searches_summary_off">Trending searches are shown.</string>
+    <string name="revanced_hide_trending_searches_summary_on">Trending searches are hidden.</string>
     <string name="revanced_hide_trending_searches_title">Hide trending searches</string>
-    <string name="revanced_hide_video_ads_summary_off">Video ads are shown</string>
-    <string name="revanced_hide_video_ads_summary_on">Video ads are hidden</string>
+    <string name="revanced_hide_video_ads_summary_off">Video ads are shown.</string>
+    <string name="revanced_hide_video_ads_summary_on">Video ads are hidden.</string>
     <string name="revanced_hide_video_ads_title">Hide video ads</string>
-    <string name="revanced_hide_view_products_summary_off">View products banner is shown</string>
-    <string name="revanced_hide_view_products_summary_on">View products banner is hidden</string>
+    <string name="revanced_hide_view_products_summary_off">View products banner is shown.</string>
+    <string name="revanced_hide_view_products_summary_on">View products banner is hidden.</string>
     <string name="revanced_hide_view_products_title">Hide view products banner</string>
-    <string name="revanced_hide_web_search_results_summary_off">Web search results are shown</string>
-    <string name="revanced_hide_web_search_results_summary_on">Web search results are hidden</string>
+    <string name="revanced_hide_web_search_results_summary_off">Web search results are shown.</string>
+    <string name="revanced_hide_web_search_results_summary_on">Web search results are hidden.</string>
     <string name="revanced_hide_web_search_results_title">Hide web search results</string>
-    <string name="revanced_hide_youtube_music_button_summary_off">YouTube Music button is shown</string>
-    <string name="revanced_hide_youtube_music_button_summary_on">YouTube Music button is hidden</string>
+    <string name="revanced_hide_youtube_music_button_summary_off">YouTube Music button is shown.</string>
+    <string name="revanced_hide_youtube_music_button_summary_on">YouTube Music button is hidden.</string>
     <string name="revanced_hide_youtube_music_button_title">Hide youtube music button</string>
-    <string name="revanced_hook_download_button_summary">"Replace download button with external download button"</string>
+    <string name="revanced_hook_download_button_summary">"Replace download button with external download button."</string>
     <string name="revanced_hook_download_button_title">Hook download button</string>
-    <string name="revanced_import_settings_inform">"Following settings may not be imported, so please open the ReVanced Extended settings once after importing settings
+    <string name="revanced_import_settings_inform">"Following settings may not be imported, so please open the ReVanced Extended settings once after importing settings:
 
 • Hide additional settings menu (player flyout panel)
 • Hide shorts toolbar"</string>
