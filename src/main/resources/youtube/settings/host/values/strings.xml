@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="microg_not_installed_notice">Please install MicroG.</string>
-    <string name="microg_not_installed_warning">MicroG is not found!</string>
-    <string name="microg_not_running_warning">MicroG does not run in the background!</string>
+    <string name="microg_not_installed_warning">MicroG is not found.</string>
+    <string name="microg_not_running_warning">MicroG does not run in the background.</string>
     <string name="microg_settings_summary">Enable cloud messaging settings to receive notifications.</string>
     <string name="microg_settings_title">Open MicroG</string>
 
@@ -700,51 +700,51 @@ Known issues:
 • Video may not start from the last watched time."</string>
     <string name="revanced_spoof_player_parameter_title">Spoof player parameter</string>
     <string name="revanced_swipe_controls">Swipe controls</string>
-    <string name="revanced_swipe_magnitude_threshold_summary">The amount of threshold for swipe to occur</string>
+    <string name="revanced_swipe_magnitude_threshold_summary">The amount of threshold for swipe to occur.</string>
     <string name="revanced_swipe_magnitude_threshold_title">Swipe magnitude threshold</string>
-    <string name="revanced_swipe_overlay_background_alpha_summary">The visibility of swipe overlay background</string>
+    <string name="revanced_swipe_overlay_background_alpha_summary">The visibility of swipe overlay background.</string>
     <string name="revanced_swipe_overlay_background_alpha_title">Swipe background visibility</string>
-    <string name="revanced_swipe_overlay_text_size_summary">The text size for swipe overlay</string>
+    <string name="revanced_swipe_overlay_text_size_summary">The text size for swipe overlay.</string>
     <string name="revanced_swipe_overlay_text_size_title">Swipe overlay text size</string>
-    <string name="revanced_swipe_overlay_timeout_summary">The amount of milliseconds the overlay is visible</string>
+    <string name="revanced_swipe_overlay_timeout_summary">The amount of milliseconds the overlay is visible.</string>
     <string name="revanced_swipe_overlay_timeout_title">Swipe overlay timeout</string>
-    <string name="revanced_switching_create_notification_summary">Note: If this setting does not apply properly, reboot the device</string>
+    <string name="revanced_switching_create_notification_summary">Note: If this setting does not apply properly, reboot the device.</string>
     <string name="revanced_switching_create_notification_title">Switch create with notifications button</string>
     <string name="revanced_tool_used">Tool used</string>
     <string name="revanced_video">Video</string>
 
     <string name="sb_enable_sb">Enable SponsorBlock</string>
-    <string name="sb_enable_sb_sum">SponsorBlock is a crowd-sourced system for skipping annoying parts of YouTube videos</string>
+    <string name="sb_enable_sb_sum">SponsorBlock is a crowd-sourced system for skipping annoying parts of YouTube videos.</string>
 
     <string name="sb_appearance_category">Appearance</string>
     <string name="sb_enable_voting">Show voting button</string>
-    <string name="sb_enable_voting_sum_on">Segment voting button is shown</string>
-    <string name="sb_enable_voting_sum_off">Segment voting button is not shown</string>
+    <string name="sb_enable_voting_sum_on">Segment voting button is shown.</string>
+    <string name="sb_enable_voting_sum_off">Segment voting button is not shown.</string>
     <string name="sb_enable_compact_skip_button">Use compact skip button</string>
-    <string name="sb_enable_compact_skip_button_sum_on">Skip button styled for minimum width</string>
-    <string name="sb_enable_compact_skip_button_sum_off">Skip button styled for best appearance</string>
+    <string name="sb_enable_compact_skip_button_sum_on">Skip button styled for minimum width.</string>
+    <string name="sb_enable_compact_skip_button_sum_off">Skip button styled for best appearance.</string>
     <string name="sb_enable_auto_hide_skip_segment_button">Automatically hide skip button</string>
-    <string name="sb_enable_auto_hide_skip_segment_button_sum_on">Skip button hides after a few seconds</string>
-    <string name="sb_enable_auto_hide_skip_segment_button_sum_off">Skip button displayed for entire segment</string>
+    <string name="sb_enable_auto_hide_skip_segment_button_sum_on">Skip button hides after a few seconds.</string>
+    <string name="sb_enable_auto_hide_skip_segment_button_sum_off">Skip button displayed for entire segment.</string>
     <string name="sb_general_skiptoast">Show a toast when skipping automatically</string>
-    <string name="sb_general_skiptoast_sum_on">Toast shown when a segment is automatically skipped. Tap here to see an example</string>
-    <string name="sb_general_skiptoast_sum_off">Toast not shown. Tap here to see an example</string>
+    <string name="sb_general_skiptoast_sum_on">Toast shown when a segment is automatically skipped. Tap here to see an example.</string>
+    <string name="sb_general_skiptoast_sum_off">Toast not shown. Tap here to see an example.</string>
     <string name="sb_general_time_without">Show video length without segments</string>
-    <string name="sb_general_time_without_sum_on">Video length minus all segments, shown in parentheses next to the full video length</string>
-    <string name="sb_general_time_without_sum_off">Full video length shown</string>
+    <string name="sb_general_time_without_sum_on">Video length minus all segments, shown in parentheses next to the full video length.</string>
+    <string name="sb_general_time_without_sum_off">Full video length shown.</string>
 
     <string name="sb_create_segment_category">Creating new segments</string>
     <string name="sb_enable_create_segment">Show create new segment button</string>
-    <string name="sb_enable_create_segment_sum_on">Create new segment button is shown</string>
-    <string name="sb_enable_create_segment_sum_off">Create new segment button is not shown</string>
+    <string name="sb_enable_create_segment_sum_on">Create new segment button is shown.</string>
+    <string name="sb_enable_create_segment_sum_off">Create new segment button is not shown.</string>
 
     <string name="sb_general_adjusting">Adjust new segment step</string>
-    <string name="sb_general_adjusting_sum">Number of milliseconds the time adjustment buttons move when creating new segments</string>
-    <string name="sb_general_adjusting_invalid">Value must be a positive number</string>
+    <string name="sb_general_adjusting_sum">Number of milliseconds the time adjustment buttons move when creating new segments.</string>
+    <string name="sb_general_adjusting_invalid">Value must be a positive number.</string>
     <string name="sb_guidelines_preference_title">View guidelines</string>
-    <string name="sb_guidelines_preference_sum">Guidelines contain rules and tips for creating new segments</string>
+    <string name="sb_guidelines_preference_sum">Guidelines contain rules and tips for creating new segments.</string>
     <string name="sb_guidelines_popup_title">Follow the guidelines</string>
-    <string name="sb_guidelines_popup_content">Read the SponsorBlock guidelines before creating new segments</string>
+    <string name="sb_guidelines_popup_content">Read the SponsorBlock guidelines before creating new segments.</string>
     <string name="sb_guidelines_popup_already_read">Already read</string>
     <string name="sb_guidelines_popup_open">Show me</string>
 
