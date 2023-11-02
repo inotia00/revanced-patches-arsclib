@@ -856,24 +856,24 @@ Known issues:
     <string name="sb_new_segment_edit_by_hand_parse_error">Invalid time given.</string>
 
     <string name="sb_stats">Stats</string>
-    <string name="sb_stats_connection_failure">Stats temporarily not available (API is down)</string>
+    <string name="sb_stats_connection_failure">Stats temporarily not available (API is down).</string>
     <string name="sb_stats_sb_disabled">SponsorBlock is disabled</string>
     <string name="sb_stats_username" formatted="false">Your username: &lt;b>%s&lt;/b></string>
     <string name="sb_stats_username_change">Tap here to change your username</string>
-    <string name="sb_stats_username_change_unknown_error" formatted="false">Unable to change username: Status: %d %s</string>
-    <string name="sb_stats_username_changed">Username successfully changed</string>
+    <string name="sb_stats_username_change_unknown_error" formatted="false">Unable to change username: Status: %d %s.</string>
+    <string name="sb_stats_username_changed">Username successfully changed.</string>
     <string name="sb_stats_reputation" formatted="false">Your reputation is &lt;b>%.2f&lt;/b></string>
     <string name="sb_stats_submissions" formatted="false">You\'ve created &lt;b>%s&lt;/b> segments</string>
     <string name="sb_stats_saved_zero">SponsorBlock leaderboard</string>
     <string name="sb_stats_saved" formatted="false">You\'ve saved people from &lt;b>%s&lt;/b> segments</string>
-    <string name="sb_stats_saved_sum_zero">Tap here to see the global stats and top contributors</string>
-    <string name="sb_stats_saved_sum" formatted="false">That\'s &lt;b>%s&lt;/b> of their lives.&lt;br>Tap here to see the leaderboard</string>
+    <string name="sb_stats_saved_sum_zero">Tap here to see the global stats and top contributors.</string>
+    <string name="sb_stats_saved_sum" formatted="false">That\'s &lt;b>%s&lt;/b> of their lives.&lt;br>Tap here to see the leaderboard.</string>
     <string name="sb_stats_self_saved" formatted="false">You\'ve skipped &lt;b>%s&lt;/b> segments</string>
     <string name="sb_stats_self_saved_sum" formatted="false">That\'s &lt;b>%s&lt;/b></string>
     <string name="sb_stats_self_saved_reset_title">Reset skipped segments counter?</string>
-    <string name="sb_stats_saved_hour_format" formatted="false">%d hours %d minutes</string>
-    <string name="sb_stats_saved_minute_format" formatted="false">%d minutes %d seconds</string>
-    <string name="sb_stats_saved_second_format" formatted="false">%d seconds</string>
+    <string name="sb_stats_saved_hour_format" formatted="false">%d hours %d minutes.</string>
+    <string name="sb_stats_saved_minute_format" formatted="false">%d minutes %d seconds.</string>
+    <string name="sb_stats_saved_second_format" formatted="false">%d seconds.</string>
 
     <string name="sb_color_dot_label">Color:</string>
     <string name="sb_color_changed">Color changed.</string>
