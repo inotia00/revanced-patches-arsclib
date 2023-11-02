@@ -857,7 +857,7 @@ Known issues:
 
     <string name="sb_stats">Stats</string>
     <string name="sb_stats_connection_failure">Stats temporarily not available (API is down).</string>
-    <string name="sb_stats_sb_disabled">SponsorBlock is disabled</string>
+    <string name="sb_stats_sb_disabled">SponsorBlock is disabled.</string>
     <string name="sb_stats_username" formatted="false">Your username: &lt;b>%s&lt;/b></string>
     <string name="sb_stats_username_change">Tap here to change your username</string>
     <string name="sb_stats_username_change_unknown_error" formatted="false">Unable to change username: Status: %d %s.</string>
