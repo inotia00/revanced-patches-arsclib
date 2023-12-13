@@ -15,6 +15,13 @@
     <string name="revanced_category_navigation">Navigation</string>
     <string name="revanced_category_player">Player</string>
     <string name="revanced_category_video">Video</string>
+    <string name="revanced_change_start_page_entry_chart">Chart</string>
+    <string name="revanced_change_start_page_entry_explore">Explore</string>
+    <string name="revanced_change_start_page_entry_home">Home</string>
+    <string name="revanced_change_start_page_entry_library">Library</string>
+    <string name="revanced_change_start_page_entry_subscription">Subscription</string>
+    <string name="revanced_change_start_page_summary">Changes the start page of the app.</string>
+    <string name="revanced_change_start_page_title">Change start page</string>
     <string name="revanced_close_interstitial_ads_summary">Automatically close interstitial ads.</string>
     <string name="revanced_close_interstitial_ads_title">Close interstitial ads</string>
     <string name="revanced_close_interstitial_ads_toast">Closing interstitial ads.</string>
@@ -185,7 +192,7 @@ WARNING: Do not enable new player backgrounds while this is enabled."</string>
     <string name="revanced_ryd_failure_connection_status_code" formatted="false">Dislikes not available (status %d).</string>
     <string name="revanced_ryd_failure_client_rate_limit_requested">Dislikes not available (client API limit reached).</string>
     <string name="revanced_ryd_failure_generic">Dislikes not available (%s).</string>
-    <string name="revanced_ryd_toast_on_connection_error_summary">Toast shown if ReturnYouTubeDislike API is not available.</string>
+    <string name="revanced_ryd_toast_on_connection_error_summary">Toast is shown if Return YouTube Dislike is not available.</string>
     <string name="revanced_ryd_toast_on_connection_error_title">Show a toast if API is not available</string>
     <string name="revanced_ryd_video_likes_hidden_by_video_owner">Hidden</string>
     <string name="revanced_sanitize_sharing_links_summary">Removes tracking query parameters from the URLs when sharing links.</string>
@@ -204,22 +211,15 @@ WARNING: Do not enable new player backgrounds while this is enabled."</string>
     <string name="revanced_spoof_app_version_target_summary">Select the spoof app version target.</string>
     <string name="revanced_spoof_app_version_target_title">Spoof app version target</string>
     <string name="revanced_spoof_app_version_title">Spoof app version</string>
-    <string name="revanced_start_page_entry_chart">Chart</string>
-    <string name="revanced_start_page_entry_explore">Explore</string>
-    <string name="revanced_start_page_entry_home">Home</string>
-    <string name="revanced_start_page_entry_library">Library</string>
-    <string name="revanced_start_page_entry_subscription">Subscription</string>
-    <string name="revanced_start_page_summary">Set the start page.</string>
-    <string name="revanced_start_page_title">Start page</string>
 
     <string name="sb_enabled">Enable SponsorBlock</string>
     <string name="sb_enabled_sum">SponsorBlock is a crowd-sourced system for skipping annoying parts of YouTube videos.</string>
 
     <string name="sb_toast_on_connection_error">Show a toast if API is not available</string>
-    <string name="sb_toast_on_connection_error_sum">Toast shown if SponsorBlock API is not available.</string>
+    <string name="sb_toast_on_connection_error_sum">Toast is shown if SponsorBlock is not available.</string>
 
     <string name="sb_toast_on_skip">Show a toast when skipping automatically</string>
-    <string name="sb_toast_on_skip_sum">Toast shown when a segment is automatically skipped.</string>
+    <string name="sb_toast_on_skip_sum">Toast is shown when a segment is automatically skipped.</string>
 
     <string name="sb_api_url">Change API URL</string>
     <string name="sb_api_url_sum">The address SponsorBlock uses to make calls to the server. Do not change this unless you know what you\'re doing.</string>

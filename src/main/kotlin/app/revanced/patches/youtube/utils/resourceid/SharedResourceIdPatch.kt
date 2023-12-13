@@ -22,7 +22,6 @@ object SharedResourceIdPatch : ResourcePatch() {
     var AppRelatedEndScreenResults: Long = -1
     var AutoNavPreviewStub: Long = -1
     var AutoNavToggle: Long = -1
-    var AvatarImageWithTextTab: Long = -1
     var BackgroundCategory: Long = -1
     var Bar: Long = -1
     var BarContainerHeight: Long = -1
@@ -45,6 +44,7 @@ object SharedResourceIdPatch : ResourcePatch() {
     var Fab: Long = -1
     var FilterBarHeight: Long = -1
     var FloatyBarTopMargin: Long = -1
+    var FullScreenEngagementOverlay: Long = -1
     var FullScreenEngagementPanel: Long = -1
     var HorizontalCardList: Long = -1
     var ImageOnlyTab: Long = -1
@@ -77,6 +77,7 @@ object SharedResourceIdPatch : ResourcePatch() {
     var SettingsBooleanTimeRangeDialog: Long = -1
     var SubtitleMenuSettingsFooterInfo: Long = -1
     var SuggestedAction: Long = -1
+    var TabsBarTextTabView: Long = -1
     var ToolBarPaddingHome: Long = -1
     var ToolTipContentView: Long = -1
     var TotalTime: Long = -1
@@ -102,7 +103,6 @@ object SharedResourceIdPatch : ResourcePatch() {
         AppRelatedEndScreenResults = find(LAYOUT, "app_related_endscreen_results")
         AutoNavPreviewStub = find(ID, "autonav_preview_stub")
         AutoNavToggle = find(ID, "autonav_toggle")
-        AvatarImageWithTextTab = find(LAYOUT, "avatar_image_with_text_tab")
         BackgroundCategory = find(STRING, "pref_background_and_offline_category")
         Bar = find(LAYOUT, "bar")
         BarContainerHeight = find(DIMEN, "bar_container_height")
@@ -125,6 +125,7 @@ object SharedResourceIdPatch : ResourcePatch() {
         Fab = find(ID, "fab")
         FilterBarHeight = find(DIMEN, "filter_bar_height")
         FloatyBarTopMargin = find(DIMEN, "floaty_bar_button_top_margin")
+        FullScreenEngagementOverlay = find(LAYOUT, "fullscreen_engagement_overlay")
         FullScreenEngagementPanel = find(ID, "fullscreen_engagement_panel_holder")
         HorizontalCardList = find(LAYOUT, "horizontal_card_list")
         ImageOnlyTab = find(LAYOUT, "image_only_tab")
@@ -159,6 +160,7 @@ object SharedResourceIdPatch : ResourcePatch() {
         SettingsBooleanTimeRangeDialog = find(LAYOUT, "setting_boolean_time_range_dialog")
         SubtitleMenuSettingsFooterInfo = find(STRING, "subtitle_menu_settings_footer_info")
         SuggestedAction = find(LAYOUT, "suggested_action")
+        TabsBarTextTabView = find(ID, "tabs_bar_text_tab_view")
         ToolBarPaddingHome = find(DIMEN, "toolbar_padding_home_action_up")
         ToolTipContentView = find(LAYOUT, "tooltip_content_view")
         TotalTime = find(STRING, "total_time")

@@ -1,23 +1,28 @@
-package app.revanced.patches.youtube.general.musicsearch
+package app.revanced.patches.youtube.general.startpage
 
 import app.revanced.patcher.data.BytecodeContext
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
+import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
-import app.revanced.patches.youtube.general.musicsearch.fingerprints.VoiceSearchConfigFingerprint
+import app.revanced.patches.youtube.general.startpage.fingerprints.StartActivityFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.GENERAL
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
+import app.revanced.patches.youtube.utils.settings.SettingsPatch.contexts
+import app.revanced.util.copyXmlNode
 import app.revanced.util.exception
 
 @Patch(
-    name = "Enable music search",
-    description = "Enables music search in the voice search screen.",
+    name = "Change start page",
+    description = "Changes the start page of the app.",
     dependencies = [SettingsPatch::class],
     compatiblePackages = [
         CompatiblePackage(
             "com.google.android.youtube",
             [
+                "18.25.40",
+                "18.27.36",
+                "18.29.38",
                 "18.30.37",
                 "18.31.40",
                 "18.32.39",
@@ -36,26 +41,26 @@ import app.revanced.util.exception
                 "18.45.43"
             ]
         )
-    ],
-    use = false
+    ]
 )
 @Suppress("unused")
-object MusicSearchPatch : BytecodePatch(
-    setOf(VoiceSearchConfigFingerprint)
+object ChangeStartPagePatch : BytecodePatch(
+    setOf(StartActivityFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
-
-        VoiceSearchConfigFingerprint.result?.let {
+        StartActivityFingerprint.result?.let {
             it.mutableMethod.apply {
-                addInstructions(
-                    0, """
-                        invoke-static { }, $GENERAL->enableMusicSearch()Z
-                        move-result v0
-                        return v0
-                    """
+                addInstruction(
+                    0,
+                    "invoke-static { p1 }, $GENERAL->changeStartPage(Landroid/content/Intent;)V"
                 )
             }
-        } ?: throw VoiceSearchConfigFingerprint.exception
+        } ?: throw StartActivityFingerprint.exception
+
+        /**
+         * Copy arrays
+         */
+        contexts.copyXmlNode("youtube/startpage/host", "values/arrays.xml", "resources")
 
         /**
          * Add settings
@@ -63,10 +68,11 @@ object MusicSearchPatch : BytecodePatch(
         SettingsPatch.addPreference(
             arrayOf(
                 "PREFERENCE: GENERAL_SETTINGS",
-                "SETTINGS: ENABLE_MUSIC_SEARCH"
+                "SETTINGS: CHANGE_START_PAGE"
             )
         )
 
-        SettingsPatch.updatePatchStatus("Enable music search")
+        SettingsPatch.updatePatchStatus("Change start page")
+
     }
 }

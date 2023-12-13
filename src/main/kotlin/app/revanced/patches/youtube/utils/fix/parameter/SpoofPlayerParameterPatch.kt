@@ -9,12 +9,12 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.smali.ExternalLabel
-import app.revanced.patches.youtube.utils.fingerprints.PlayerParameterBuilderFingerprint
 import app.revanced.patches.youtube.utils.fix.parameter.fingerprints.PlayerResponseModelImplGeneralFingerprint
 import app.revanced.patches.youtube.utils.fix.parameter.fingerprints.PlayerResponseModelImplLiveStreamFingerprint
-import app.revanced.patches.youtube.utils.fix.parameter.fingerprints.PlayerResponseModelImplRecommendedLevel
+import app.revanced.patches.youtube.utils.fix.parameter.fingerprints.PlayerResponseModelImplRecommendedLevelFingerprint
+import app.revanced.patches.youtube.utils.fix.parameter.fingerprints.StoryboardRendererDecoderRecommendedLevelFingerprint
+import app.revanced.patches.youtube.utils.fix.parameter.fingerprints.StoryboardRendererDecoderSpecFingerprint
 import app.revanced.patches.youtube.utils.fix.parameter.fingerprints.StoryboardRendererSpecFingerprint
-import app.revanced.patches.youtube.utils.fix.parameter.fingerprints.StoryboardRendererSpecRecommendedLevelFingerprint
 import app.revanced.patches.youtube.utils.fix.parameter.fingerprints.StoryboardThumbnailFingerprint
 import app.revanced.patches.youtube.utils.fix.parameter.fingerprints.StoryboardThumbnailParentFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.MISC_PATH
@@ -23,7 +23,6 @@ import app.revanced.patches.youtube.utils.playertype.PlayerTypeHookPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.patches.youtube.utils.videoid.general.VideoIdPatch
 import app.revanced.util.exception
-import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch(
@@ -64,28 +63,28 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 )
 object SpoofPlayerParameterPatch : BytecodePatch(
     setOf(
-        PlayerParameterBuilderFingerprint,
         PlayerResponseModelImplGeneralFingerprint,
         PlayerResponseModelImplLiveStreamFingerprint,
-        PlayerResponseModelImplRecommendedLevel,
+        PlayerResponseModelImplRecommendedLevelFingerprint,
         StoryboardRendererSpecFingerprint,
-        StoryboardRendererSpecRecommendedLevelFingerprint,
+        StoryboardRendererDecoderSpecFingerprint,
+        StoryboardRendererDecoderRecommendedLevelFingerprint,
         StoryboardThumbnailParentFingerprint
     )
 ) {
+    private const val INTEGRATIONS_CLASS_DESCRIPTOR =
+        "$MISC_PATH/SpoofPlayerParameterPatch;"
+
     override fun execute(context: BytecodeContext) {
 
-        /**
-         * Hook player parameter
-         */
+        // Hook the player parameters.
         PlayerResponsePatch += PlayerResponsePatch.Hook.PlayerParameter(
             "$INTEGRATIONS_CLASS_DESCRIPTOR->spoofParameter(Ljava/lang/String;Ljava/lang/String;Z)Ljava/lang/String;"
         )
 
-        /**
-         * Forces the SeekBar thumbnail preview container to be shown
-         * I don't think this code is needed anymore
-         */
+        // Force the seekbar time and chapters to always show up.
+        // This is used if the storyboard spec fetch fails, for viewing paid videos,
+        // or if storyboard spoofing is turned off.
         StoryboardThumbnailParentFingerprint.result?.classDef?.let { classDef ->
             StoryboardThumbnailFingerprint.also {
                 it.resolve(
@@ -112,46 +111,34 @@ object SpoofPlayerParameterPatch : BytecodePatch(
             } ?: throw StoryboardThumbnailFingerprint.exception
         } ?: throw StoryboardThumbnailParentFingerprint.exception
 
-        /**
-         * Hook StoryBoard Renderer URL
-         */
+        // Hook storyboard renderer url.
         arrayOf(
             PlayerResponseModelImplGeneralFingerprint,
-            PlayerResponseModelImplLiveStreamFingerprint,
-            StoryboardRendererSpecFingerprint
+            PlayerResponseModelImplLiveStreamFingerprint
         ).forEach { fingerprint ->
             fingerprint.result?.let {
                 it.mutableMethod.apply {
-                    val getStoryBoardIndex = it.scanResult.patternScanResult!!.endIndex
-                    val getStoryBoardRegister =
-                        getInstruction<OneRegisterInstruction>(getStoryBoardIndex).registerA
+                    val getStoryboardIndex = it.scanResult.patternScanResult!!.endIndex
+                    val getStoryboardRegister =
+                        getInstruction<OneRegisterInstruction>(getStoryboardIndex).registerA
 
-                    addInstructionsWithLabels(
-                        getStoryBoardIndex, """
-                            if-nez v$getStoryBoardRegister, :ignore
-                            invoke-static {}, $INTEGRATIONS_CLASS_DESCRIPTOR->getStoryboardRendererSpec()Ljava/lang/String;
-                            move-result-object v$getStoryBoardRegister
-                            """, ExternalLabel("ignore", getInstruction(getStoryBoardIndex))
+                    addInstructions(
+                        getStoryboardIndex,
+                        """
+                            invoke-static { v$getStoryboardRegister }, $INTEGRATIONS_CLASS_DESCRIPTOR->getStoryboardRendererSpec(Ljava/lang/String;)Ljava/lang/String;
+                            move-result-object v$getStoryboardRegister
+                            """
                     )
                 }
             } ?: throw fingerprint.exception
         }
 
-        /**
-         * Hook recommended value and StoryBoard Renderer for live stream
-         */
-        StoryboardRendererSpecRecommendedLevelFingerprint.result?.let {
+        // Hook recommended seekbar thumbnails quality level.
+        StoryboardRendererDecoderRecommendedLevelFingerprint.result?.let {
             it.mutableMethod.apply {
                 val moveOriginalRecommendedValueIndex = it.scanResult.patternScanResult!!.endIndex
                 val originalValueRegister =
                     getInstruction<OneRegisterInstruction>(moveOriginalRecommendedValueIndex).registerA
-
-                val liveStreamStoryBoardUrlIndex =
-                    implementation!!.instructions.indexOfFirst { instruction ->
-                        instruction.opcode == Opcode.INVOKE_INTERFACE
-                    } + 1
-                val liveStreamStoryBoardUrlRegister =
-                    getInstruction<OneRegisterInstruction>(liveStreamStoryBoardUrlIndex).registerA
 
                 addInstructions(
                     moveOriginalRecommendedValueIndex + 1, """
@@ -159,17 +146,11 @@ object SpoofPlayerParameterPatch : BytecodePatch(
                         move-result v$originalValueRegister
                         """
                 )
-
-                addInstructions(
-                    liveStreamStoryBoardUrlIndex + 1, """
-                        invoke-static { v$liveStreamStoryBoardUrlRegister }, $INTEGRATIONS_CLASS_DESCRIPTOR->getStoryboardRendererSpec(Ljava/lang/String;)Ljava/lang/String;
-                        move-result-object v$liveStreamStoryBoardUrlRegister
-                        """
-                )
             }
-        } ?: throw StoryboardRendererSpecRecommendedLevelFingerprint.exception
+        } ?: throw StoryboardRendererDecoderRecommendedLevelFingerprint.exception
 
-        PlayerResponseModelImplRecommendedLevel.result?.let {
+        // Hook the recommended precise seeking thumbnails quality level.
+        PlayerResponseModelImplRecommendedLevelFingerprint.result?.let {
             it.mutableMethod.apply {
                 val moveOriginalRecommendedValueIndex = it.scanResult.patternScanResult!!.endIndex
                 val originalValueRegister =
@@ -182,7 +163,35 @@ object SpoofPlayerParameterPatch : BytecodePatch(
                         """
                 )
             }
-        } ?: throw PlayerResponseModelImplRecommendedLevel.exception
+        } ?: throw PlayerResponseModelImplRecommendedLevelFingerprint.exception
+
+        StoryboardRendererSpecFingerprint.result?.let {
+            it.mutableMethod.apply {
+                val storyBoardUrlParams = 0
+
+                addInstructionsWithLabels(
+                    0, """
+                        if-nez p$storyBoardUrlParams, :ignore
+                        invoke-static { p$storyBoardUrlParams }, $INTEGRATIONS_CLASS_DESCRIPTOR->getStoryboardRendererSpec(Ljava/lang/String;)Ljava/lang/String;
+                        move-result-object p$storyBoardUrlParams
+                        """, ExternalLabel("ignore", getInstruction(0))
+                )
+            }
+        } ?: throw StoryboardRendererSpecFingerprint.exception
+
+        // Hook the seekbar thumbnail decoder and use a NULL spec for live streams.
+        StoryboardRendererDecoderSpecFingerprint.result?.let {
+            val storyBoardUrlIndex = it.scanResult.patternScanResult!!.startIndex + 1
+            val storyboardUrlRegister =
+                it.mutableMethod.getInstruction<OneRegisterInstruction>(storyBoardUrlIndex).registerA
+
+            it.mutableMethod.addInstructions(
+                storyBoardUrlIndex + 1, """
+                        invoke-static { v$storyboardUrlRegister }, $INTEGRATIONS_CLASS_DESCRIPTOR->getStoryboardDecoderRendererSpec(Ljava/lang/String;)Ljava/lang/String;
+                        move-result-object v$storyboardUrlRegister
+                        """
+            )
+        } ?: throw StoryboardRendererDecoderSpecFingerprint.exception
 
         /**
          * Add settings
@@ -197,7 +206,4 @@ object SpoofPlayerParameterPatch : BytecodePatch(
         SettingsPatch.updatePatchStatus("Spoof player parameters")
 
     }
-
-    private const val INTEGRATIONS_CLASS_DESCRIPTOR =
-        "$MISC_PATH/SpoofPlayerParameterPatch;"
 }
