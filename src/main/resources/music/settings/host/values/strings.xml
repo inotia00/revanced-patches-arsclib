@@ -182,7 +182,7 @@ WARNING: Do not enable new player backgrounds while this is enabled."</string>
     <string name="revanced_playlist_dismiss">Already playing official music source.</string>
     <string name="revanced_playlist_error">Official music source not available.</string>
     <string name="revanced_remove_viewer_discretion_dialog_summary">"Remove viewer discretion dialog.
-This does not bypass the age restriction, it just accepts it automatically."</string>
+This does not bypass the age restriction. It just accepts it automatically."</string>
     <string name="revanced_remove_viewer_discretion_dialog_title">Remove viewer discretion dialog</string>
     <string name="revanced_restart_first_run">Restart to load the layout normally</string>
     <string name="revanced_restart_message">Refresh and restart</string>
