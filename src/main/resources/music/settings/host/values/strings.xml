@@ -46,7 +46,7 @@ Known issues:
     <string name="revanced_enable_compact_dialog_title">Enable compact dialog</string>
     <string name="revanced_enable_debug_logging_summary">Prints the debug log.</string>
     <string name="revanced_enable_debug_logging_title">Enable debug logging</string>
-    <string name="revanced_enable_flyout_panel_playback_speed_summary">Add an playback speed button to the flyout panel.</string>
+    <string name="revanced_enable_flyout_panel_playback_speed_summary">Add a playback speed button to the flyout panel.</string>
     <string name="revanced_enable_flyout_panel_playback_speed_title">Enable playback speed</string>
     <string name="revanced_enable_force_minimized_player_summary">Keep player permanently minimized even if another track is played.</string>
     <string name="revanced_enable_force_minimized_player_title">Enable force minimized player</string>
