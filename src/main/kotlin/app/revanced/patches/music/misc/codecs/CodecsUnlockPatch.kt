@@ -10,7 +10,7 @@ import app.revanced.patches.shared.patch.opus.AbstractOpusCodecsPatch
 
 @Patch(
     name = "Enable opus codec",
-    description = "Adds an option to use the opus codec for audio playback.",
+    description = "Adds an option use the opus audio codec instead of the mp4a audio codec.",
     dependencies = [SettingsPatch::class],
     compatiblePackages = [CompatiblePackage("com.google.android.apps.youtube.music")]
 )
