@@ -15,11 +15,11 @@
     <string name="revanced_category_navigation">Navigation</string>
     <string name="revanced_category_player">Player</string>
     <string name="revanced_category_video">Video</string>
-    <string name="revanced_change_start_page_entry_chart">Chart</string>
+    <string name="revanced_change_start_page_entry_chart">Charts</string>
     <string name="revanced_change_start_page_entry_explore">Explore</string>
     <string name="revanced_change_start_page_entry_home">Home</string>
     <string name="revanced_change_start_page_entry_library">Library</string>
-    <string name="revanced_change_start_page_entry_subscription">Subscription</string>
+    <string name="revanced_change_start_page_entry_subscription">Subscriptions</string>
     <string name="revanced_change_start_page_summary">Changes the start page of the app.</string>
     <string name="revanced_change_start_page_title">Change start page</string>
     <string name="revanced_custom_filter_strings_summary">Configure which components to filter, separated by new lines.</string>
