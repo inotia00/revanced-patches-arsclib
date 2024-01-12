@@ -55,7 +55,7 @@ Known issues:
     <string name="revanced_enable_new_player_background_summary">Enables the new player background.</string>
     <string name="revanced_enable_new_player_background_title">Enable new player background</string>
     <string name="revanced_enable_old_player_layout_summary">"Returns the player layout to the old style.
-Some settings may not work properly in the old player layout.
+Some features may not work properly in the old player layout.
 
 WARNING: Do not enable \"New player background\" while this is enabled."</string>
     <string name="revanced_enable_old_player_layout_title">Enable old player layout</string>
