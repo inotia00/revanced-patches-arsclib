@@ -25,7 +25,7 @@
     <string name="revanced_custom_filter_strings_summary">Configure which components to filter, separated by new lines.</string>
     <string name="revanced_custom_filter_strings_title">Edit custom filter</string>
     <string name="revanced_custom_filter_strings_warning">Invalid custom filter. Filter reset to default.</string>
-    <string name="revanced_custom_filter_summary">Enables custom filter to hide layout components.</string>
+    <string name="revanced_custom_filter_summary">Enables the custom filter to hide layout components.</string>
     <string name="revanced_custom_filter_title">Enable custom filter</string>
     <string name="revanced_custom_playback_speeds_invalid">Invalid custom playback speeds. Speeds reset to default.</string>
     <string name="revanced_custom_playback_speeds_summary">Configure the playback speeds available.</string>
@@ -46,7 +46,7 @@ Known issues:
     <string name="revanced_enable_compact_dialog_title">Enable compact dialog</string>
     <string name="revanced_enable_debug_logging_summary">Prints the debug log.</string>
     <string name="revanced_enable_debug_logging_title">Enable debug logging</string>
-    <string name="revanced_enable_flyout_panel_playback_speed_summary">Add a playback speed button to the flyout panel.</string>
+    <string name="revanced_enable_flyout_panel_playback_speed_summary">Adds a playback speed button to the flyout panel.</string>
     <string name="revanced_enable_flyout_panel_playback_speed_title">Enable playback speed</string>
     <string name="revanced_enable_force_minimized_player_summary">Keeps the miniplayer minimized even when another track is played.</string>
     <string name="revanced_enable_force_minimized_player_title">Enable force minimized player</string>
@@ -69,7 +69,7 @@ WARNING: Do not enable \"New player background\" while this is enabled."</string
     <string name="revanced_enable_save_playback_speed_title">Enable save playback speed</string>
     <string name="revanced_enable_save_video_quality_summary">Remembers the last video quality selected.</string>
     <string name="revanced_enable_save_video_quality_title">Enable save video quality</string>
-    <string name="revanced_enable_sleep_timer_summary">Add sleep timer to flyout menu.</string>
+    <string name="revanced_enable_sleep_timer_summary">Adds sleep timer to the flyout menu.</string>
     <string name="revanced_enable_sleep_timer_title">Enable sleep timer</string>
     <string name="revanced_enable_zen_mode_summary">Changes the player background to light grey to reduce eye strain.</string>
     <string name="revanced_enable_zen_mode_title">Enable zen mode</string>
