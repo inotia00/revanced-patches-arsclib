@@ -2,13 +2,15 @@ package app.revanced.patches.youtube.layout.branding.name
 
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.PatchException
+import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.patch.options.PatchOption.PatchExtensions.stringPatchOption
-import app.revanced.patches.shared.patch.elements.AbstractRemoveStringsElementsPatch
 import app.revanced.patches.youtube.utils.integrations.Constants.LANGUAGE_LIST
 import app.revanced.patches.youtube.utils.settings.ResourceUtils.updatePatchStatusLabel
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
+import org.w3c.dom.Element
+import kotlin.io.path.exists
 
 @Patch(
     name = "Custom branding name YouTube",
@@ -42,10 +44,7 @@ import app.revanced.patches.youtube.utils.settings.SettingsPatch
     ]
 )
 @Suppress("unused")
-object CustomBrandingNamePatch : AbstractRemoveStringsElementsPatch(
-    LANGUAGE_LIST,
-    arrayOf("application_name")
-) {
+object CustomBrandingNamePatch : ResourcePatch() {
     private const val APP_NAME = "ReVanced Extended"
 
     private val AppName by stringPatchOption(
@@ -61,21 +60,26 @@ object CustomBrandingNamePatch : AbstractRemoveStringsElementsPatch(
     )
 
     override fun execute(context: ResourceContext) {
-        super.execute(context)
 
         AppName?.let {
-            context.xmlEditor["res/values/strings.xml"].use { editor ->
-                val document = editor.file
+            LANGUAGE_LIST.forEach { path ->
+                val resDirectory = context["res"]
+                val targetXmlPath = resDirectory.resolve(path).resolve("strings.xml").toPath()
 
-                mapOf(
-                    "application_name" to it
-                ).forEach { (k, v) ->
-                    val stringElement = document.createElement("string")
+                if (targetXmlPath.exists()) {
+                    context.xmlEditor["res/$path/strings.xml"].use { editor ->
+                        val resourcesNode = editor.file.getElementsByTagName("resources").item(0) as Element
 
-                    stringElement.setAttribute("name", k)
-                    stringElement.textContent = v
+                        for (i in 0 until resourcesNode.childNodes.length) {
+                            val node = resourcesNode.childNodes.item(i) as? Element ?: continue
 
-                    document.getElementsByTagName("resources").item(0).appendChild(stringElement)
+                            node.textContent = when (node.getAttribute("name")) {
+                                "application_name" -> it
+
+                                else -> continue
+                            }
+                        }
+                    }
                 }
             }
             context.updatePatchStatusLabel(it)
