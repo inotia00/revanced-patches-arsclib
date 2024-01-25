@@ -106,7 +106,6 @@ object SuggestedVideoOverlayPatch : BytecodePatch(
         SettingsPatch.addPreference(
             arrayOf(
                 "PREFERENCE: PLAYER_SETTINGS",
-                "SETTINGS: PLAYER_EXPERIMENTAL_FLAGS",
                 "SETTINGS: HIDE_SUGGESTED_VIDEO_OVERLAY"
             )
         )
