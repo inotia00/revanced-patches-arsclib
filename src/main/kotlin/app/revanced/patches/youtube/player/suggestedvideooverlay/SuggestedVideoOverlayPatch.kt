@@ -95,7 +95,7 @@ object SuggestedVideoOverlayPatch : BytecodePatch(
                         targetIndex + 1,
                         "invoke-static {v$targetRegister}, $PLAYER->hideSuggestedVideoOverlay(Landroid/view/View;)V"
                     )
-                } ?: throw PatchException("Failed to find getView method")
+                } ?: throw PatchException("Failed to find onClick method")
 
             }
         } ?: throw TouchAreaOnClickListenerFingerprint.exception
