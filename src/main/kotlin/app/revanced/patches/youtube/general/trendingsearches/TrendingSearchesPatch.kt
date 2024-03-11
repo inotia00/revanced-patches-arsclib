@@ -11,6 +11,7 @@ import app.revanced.patches.youtube.utils.integrations.Constants.GENERAL
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.YtOutlineArrowTimeBlack
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.YtOutlineFireBlack
+import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.YtOutlineNewSearchBlack
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.YtOutlineSearchBlack
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.util.exception
@@ -66,20 +67,22 @@ object TrendingSearchesPatch : BytecodePatch(
         SearchBarEntryFingerprint.result?.let {
             it.mutableMethod.apply {
                 SearchTerm.entries
-                    .map { searchTerm -> getWideLiteralInstructionIndex(searchTerm.resourceId) to searchTerm.value }
+                    .map { searchTerm -> getWideLiteralInstructionIndex(searchTerm.resourceId) to searchTerm.booleanValue }
                     .sortedBy { searchTerm -> searchTerm.first }
                     .reversed()
-                    .forEach { (index, value) ->
-                        val freeRegister = getInstruction<OneRegisterInstruction>(index).registerA
-                        val viewRegister =
-                            getInstruction<TwoRegisterInstruction>(index - 1).registerA
+                    .forEach { (targetIndex, booleanValue) ->
+                        if (targetIndex > 1) {
+                            val freeRegister = getInstruction<OneRegisterInstruction>(targetIndex).registerA
+                            val viewRegister =
+                                getInstruction<TwoRegisterInstruction>(targetIndex - 1).registerA
 
-                        addInstructions(
-                            index, """
-                                const/4 v$freeRegister, $value
-                                invoke-static {v$viewRegister, v$freeRegister}, $GENERAL->hideTrendingSearches(Landroid/widget/ImageView;Z)V
-                                """
-                        )
+                            addInstructions(
+                                targetIndex, """
+                                    const/4 v$freeRegister, $booleanValue
+                                    invoke-static {v$viewRegister, v$freeRegister}, $GENERAL->hideTrendingSearches(Landroid/widget/ImageView;Z)V
+                                    """
+                            )
+                        }
                     }
             }
         } ?: throw SearchBarEntryFingerprint.exception
@@ -98,9 +101,10 @@ object TrendingSearchesPatch : BytecodePatch(
 
     }
 
-    private enum class SearchTerm(val resourceId: Long, val value: Int) {
+    private enum class SearchTerm(val resourceId: Long, val booleanValue: Int) {
         HISTORY(YtOutlineArrowTimeBlack, 0),
         SEARCH(YtOutlineSearchBlack, 0),
+        NEW_SEARCH(YtOutlineNewSearchBlack, 0),
         TRENDING(YtOutlineFireBlack, 1)
     }
 }
