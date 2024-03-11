@@ -9,17 +9,7 @@ object CommunityDrawerPresenterFingerprint : MethodFingerprint(
     returnType = "V",
     accessFlags = AccessFlags.PUBLIC or AccessFlags.FINAL,
     parameters = emptyList(),
-    opcodes = listOf(
-        Opcode.XOR_INT_2ADDR,
-        Opcode.INVOKE_STATIC,
-        Opcode.MOVE_RESULT_OBJECT,
-        Opcode.CHECK_CAST,
-        Opcode.IGET_OBJECT,
-        Opcode.IGET_OBJECT,
-        Opcode.INVOKE_STATIC,
-        Opcode.MOVE_RESULT_OBJECT,
-        Opcode.CHECK_CAST
-    ),
+    opcodes = listOf(Opcode.AGET),
     customFingerprint = { methodDef, _ ->
         methodDef.definingClass.endsWith("/CommunityDrawerPresenter;")
     }
