@@ -629,7 +629,8 @@
         <SwitchPreference android:title="@string/revanced_hide_filmstrip_overlay_title" android:key="revanced_hide_filmstrip_overlay" android:defaultValue="false" android:summaryOn="@string/revanced_hide_filmstrip_overlay_summary_on" android:summaryOff="@string/revanced_hide_filmstrip_overlay_summary_off" />SETTINGS: HIDE_FILMSTRIP_OVERLAY -->
 
         <!-- SETTINGS: HIDE_SUGGESTED_VIDEO_OVERLAY
-        <SwitchPreference android:title="@string/revanced_hide_suggested_video_overlay_title" android:key="revanced_hide_suggested_video_overlay" android:defaultValue="false" android:summary="@string/revanced_hide_suggested_video_overlay_summary" />SETTINGS: HIDE_SUGGESTED_VIDEO_OVERLAY -->
+        <SwitchPreference android:title="@string/revanced_hide_suggested_video_overlay_title" android:key="revanced_hide_suggested_video_overlay" android:defaultValue="false" android:summary="@string/revanced_hide_suggested_video_overlay_summary" />
+        <SwitchPreference android:title="@string/revanced_hide_suggested_video_overlay_auto_play_title" android:key="revanced_hide_suggested_video_overlay_auto_play" android:defaultValue="false" android:summary="@string/revanced_hide_suggested_video_overlay_auto_play_summary" android:dependency="revanced_hide_suggested_video_overlay" />SETTINGS: HIDE_SUGGESTED_VIDEO_OVERLAY -->
 
         <!-- SETTINGS: DISABLE_HAPTIC_FEEDBACK
         <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_haptic_feedback_title" />
