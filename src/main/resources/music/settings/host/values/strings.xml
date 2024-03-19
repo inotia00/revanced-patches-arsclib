@@ -178,6 +178,8 @@ Some features may not work properly in the old player layout."</string>
     <string name="revanced_hide_premium_renewal_title">Hide premium renewal banner</string>
     <string name="revanced_hide_samples_button_summary">Hides the samples button.</string>
     <string name="revanced_hide_samples_button_title">Hide samples button</string>
+    <string name="revanced_hide_samples_shelf_summary">Hides the samples shelf from the homepage.</string>
+    <string name="revanced_hide_samples_shelf_title">Hide samples shelf</string>
     <string name="revanced_hide_terms_container_summary">Hides terms of service container.</string>
     <string name="revanced_hide_terms_container_title">Hide terms container</string>
     <string name="revanced_hide_upgrade_button_summary">Hides the upgrade button.</string>
