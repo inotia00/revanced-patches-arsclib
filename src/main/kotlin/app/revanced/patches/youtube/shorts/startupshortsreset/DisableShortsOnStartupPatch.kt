@@ -12,6 +12,7 @@ import app.revanced.patches.youtube.shorts.startupshortsreset.fingerprints.UserW
 import app.revanced.patches.youtube.utils.integrations.Constants.SHORTS
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.util.exception
+import app.revanced.util.getStringInstructionIndex
 import app.revanced.util.getTargetIndexReversed
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
@@ -61,8 +62,9 @@ object DisableShortsOnStartupPatch : BytecodePatch(
 
         UserWasInShortsFingerprint.result?.let {
             it.mutableMethod.apply {
-                val startIndex = it.scanResult.patternScanResult!!.startIndex
-                val targetIndex = getTargetIndexReversed(startIndex, Opcode.RETURN_VOID) + 1
+                val startIndex = getStringInstructionIndex("Failed to read user_was_in_shorts proto after successful warmup")
+                val exceptionIndex = getTargetIndexReversed(startIndex, Opcode.RETURN_VOID) - 1
+                val targetIndex = getTargetIndexReversed(exceptionIndex, Opcode.RETURN_VOID) + 1
                 if (getInstruction(targetIndex).opcode != Opcode.IGET_OBJECT)
                     throw PatchException("Failed to find insert index")
 
