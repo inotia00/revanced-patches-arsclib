@@ -16,6 +16,8 @@ import app.revanced.util.copyResources
 import app.revanced.util.copyXmlNode
 import org.w3c.dom.Element
 import java.io.Closeable
+import java.util.concurrent.Executors
+import java.util.concurrent.TimeUnit
 
 @Patch(
     name = "Settings",
@@ -45,6 +47,41 @@ object SettingsPatch : AbstractSettingsResourcePatch(
 ), Closeable {
     override fun execute(context: ResourceContext) {
         contexts = context
+
+        val resourceXmlFile = context["res/values/integers.xml"].readBytes()
+
+        for (threadIndex in 0 until THREAD_COUNT) {
+            threadPoolExecutor.execute thread@{
+                context.xmlEditor[resourceXmlFile.inputStream()].use { editor ->
+                    val resources = editor.file.documentElement.childNodes
+                    val resourcesLength = resources.length
+                    val jobSize = resourcesLength / THREAD_COUNT
+
+                    val batchStart = jobSize * threadIndex
+                    val batchEnd = jobSize * (threadIndex + 1)
+                    element@ for (i in batchStart until batchEnd) {
+                        if (i >= resourcesLength) return@thread
+
+                        val node = resources.item(i)
+                        if (node !is Element) continue
+
+                        if (node.nodeName != "integer" || !node.getAttribute("name")
+                                .startsWith("google_play_services_version")
+                        ) continue
+
+                        val playServicesVersion = node.textContent.toInt()
+
+                        upward0636 = 240399000 <= playServicesVersion
+
+                        break
+                    }
+                }
+            }
+        }
+
+        threadPoolExecutor
+            .also { it.shutdown() }
+            .awaitTermination(Long.MAX_VALUE, TimeUnit.SECONDS)
 
         /**
          * create directory for the untranslated language resources
@@ -100,7 +137,11 @@ object SettingsPatch : AbstractSettingsResourcePatch(
 
     }
 
+    private val THREAD_COUNT = Runtime.getRuntime().availableProcessors()
+    private val threadPoolExecutor = Executors.newFixedThreadPool(THREAD_COUNT)
+
     lateinit var contexts: ResourceContext
+    internal var upward0636: Boolean = false
 
     internal fun addMusicPreference(
         category: CategoryType,

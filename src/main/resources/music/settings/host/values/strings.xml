@@ -121,6 +121,8 @@ Some features may not work properly in the old player layout."</string>
     <string name="revanced_hide_emoji_picker_title">Hide emoji picker and time stamp</string>
     <string name="revanced_hide_explore_button_summary">Hides the explore button.</string>
     <string name="revanced_hide_explore_button_title">Hide explore button</string>
+    <string name="revanced_hide_flyout_panel_3_column_component_summary">Hide play next, save to playlist, share menus.</string>
+    <string name="revanced_hide_flyout_panel_3_column_component_title">Hide 3-column component</string>
     <string name="revanced_hide_flyout_panel_add_to_queue_title">Hide add to queue menu</string>
     <string name="revanced_hide_flyout_panel_captions_title">Hide captions menu</string>
     <string name="revanced_hide_flyout_panel_delete_playlist_title">Hide delete playlist menu</string>

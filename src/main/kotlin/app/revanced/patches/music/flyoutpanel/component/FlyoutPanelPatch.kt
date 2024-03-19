@@ -12,7 +12,9 @@ import app.revanced.patches.music.flyoutpanel.component.fingerprints.SleepTimerF
 import app.revanced.patches.music.flyoutpanel.utils.EnumUtils.getEnumIndex
 import app.revanced.patches.music.utils.fingerprints.MenuItemFingerprint
 import app.revanced.patches.music.utils.flyoutbutton.FlyoutButtonContainerPatch
+import app.revanced.patches.music.utils.integrations.Constants.COMPONENTS_PATH
 import app.revanced.patches.music.utils.integrations.Constants.FLYOUT
+import app.revanced.patches.music.utils.litho.LithoFilterPatch
 import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
 import app.revanced.util.exception
@@ -26,6 +28,7 @@ import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
     description = "Adds options to hide flyout panel components.",
     dependencies = [
         FlyoutButtonContainerPatch::class,
+        LithoFilterPatch::class,
         SettingsPatch::class
     ],
     compatiblePackages = [
@@ -93,6 +96,16 @@ object FlyoutPanelPatch : BytecodePatch(
             }
         }
 
+        if (SettingsPatch.upward0636) {
+            LithoFilterPatch.addFilter(FILTER_CLASS_DESCRIPTOR)
+
+            SettingsPatch.addMusicPreference(
+                CategoryType.FLYOUT,
+                "revanced_hide_flyout_panel_3_column_component",
+                "false"
+            )
+        }
+
         SettingsPatch.addMusicPreferenceWithoutSummary(
             CategoryType.FLYOUT,
             "revanced_hide_flyout_panel_add_to_queue",
@@ -153,11 +166,13 @@ object FlyoutPanelPatch : BytecodePatch(
             "revanced_hide_flyout_panel_like_dislike",
             "false"
         )
-        SettingsPatch.addMusicPreferenceWithoutSummary(
-            CategoryType.FLYOUT,
-            "revanced_hide_flyout_panel_play_next",
-            "false"
-        )
+        if (!SettingsPatch.upward0636) {
+            SettingsPatch.addMusicPreferenceWithoutSummary(
+                CategoryType.FLYOUT,
+                "revanced_hide_flyout_panel_play_next",
+                "false"
+            )
+        }
         SettingsPatch.addMusicPreferenceWithoutSummary(
             CategoryType.FLYOUT,
             "revanced_hide_flyout_panel_quality",
@@ -188,16 +203,18 @@ object FlyoutPanelPatch : BytecodePatch(
             "revanced_hide_flyout_panel_save_to_library",
             "false"
         )
-        SettingsPatch.addMusicPreferenceWithoutSummary(
-            CategoryType.FLYOUT,
-            "revanced_hide_flyout_panel_save_to_playlist",
-            "false"
-        )
-        SettingsPatch.addMusicPreferenceWithoutSummary(
-            CategoryType.FLYOUT,
-            "revanced_hide_flyout_panel_share",
-            "false"
-        )
+        if (!SettingsPatch.upward0636) {
+            SettingsPatch.addMusicPreferenceWithoutSummary(
+                CategoryType.FLYOUT,
+                "revanced_hide_flyout_panel_save_to_playlist",
+                "false"
+            )
+            SettingsPatch.addMusicPreferenceWithoutSummary(
+                CategoryType.FLYOUT,
+                "revanced_hide_flyout_panel_share",
+                "false"
+            )
+        }
         SettingsPatch.addMusicPreferenceWithoutSummary(
             CategoryType.FLYOUT,
             "revanced_hide_flyout_panel_shuffle_play",
@@ -228,6 +245,8 @@ object FlyoutPanelPatch : BytecodePatch(
             "revanced_hide_flyout_panel_view_song_credit",
             "false"
         )
-
     }
+
+    private const val FILTER_CLASS_DESCRIPTOR =
+        "$COMPONENTS_PATH/PlayerFlyoutPanelsFilter;"
 }
