@@ -1,26 +1,31 @@
 package app.revanced.patches.music.player.zenmode
 
 import app.revanced.patcher.data.BytecodeContext
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.removeInstruction
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
+import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.music.player.zenmode.fingerprints.ZenModeFingerprint
-import app.revanced.patches.music.utils.fingerprints.PlayerColorFingerprint
+import app.revanced.patches.music.utils.fingerprints.MiniPlayerConstructorFingerprint
+import app.revanced.patches.music.utils.fingerprints.SwitchToggleColorFingerprint
 import app.revanced.patches.music.utils.integrations.Constants.PLAYER
+import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
 import app.revanced.util.exception
+import app.revanced.util.getTargetIndex
+import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
-import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 
 @Patch(
     name = "Enable zen mode",
-    description = "Adds an option to change the player background to light grey to reduce eye strain. Deprecated on YT Music 6.34.51+.",
-    dependencies = [SettingsPatch::class],
+    description = "Adds an option to change the player background to light grey to reduce eye strain.",
+    dependencies = [
+        SettingsPatch::class,
+        SharedResourceIdPatch::class
+    ],
     compatiblePackages = [
         CompatiblePackage(
             "com.google.android.apps.youtube.music",
@@ -37,48 +42,55 @@ import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
                 "6.33.52"
             ]
         )
-    ],
-    use = false
+    ]
 )
 @Suppress("unused")
 object ZenModePatch : BytecodePatch(
-    setOf(PlayerColorFingerprint)
+    setOf(MiniPlayerConstructorFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
 
-        PlayerColorFingerprint.result?.let { parentResult ->
-            ZenModeFingerprint.also { it.resolve(context, parentResult.classDef) }.result?.let {
+        MiniPlayerConstructorFingerprint.result?.let { parentResult ->
+            // Resolves fingerprints
+            SwitchToggleColorFingerprint.resolve(context, parentResult.classDef)
+            ZenModeFingerprint.resolve(context, parentResult.classDef)
+
+            // This method is used for old player background
+            // Deprecated since YT Music v6.34.51
+            ZenModeFingerprint.result?.let {
                 it.mutableMethod.apply {
                     val startIndex = it.scanResult.patternScanResult!!.startIndex
+                    val targetRegister = getInstruction<OneRegisterInstruction>(startIndex).registerA
 
-                    val firstRegister = getInstruction<OneRegisterInstruction>(startIndex).registerA
-                    val secondRegister =
-                        getInstruction<OneRegisterInstruction>(startIndex + 2).registerA
-                    val dummyRegister = secondRegister + 1
+                    val insertIndex = it.scanResult.patternScanResult!!.endIndex + 1
 
-                    val replaceReferenceIndex = it.scanResult.patternScanResult!!.endIndex + 1
-                    val replaceReference =
-                        getInstruction<ReferenceInstruction>(replaceReferenceIndex).reference
-
-                    val insertIndex = replaceReferenceIndex + 1
-
-                    addInstructionsWithLabels(
+                    addInstructions(
                         insertIndex, """
-                            invoke-static {}, $PLAYER->enableZenMode()Z
-                            move-result v$dummyRegister
-                            if-eqz v$dummyRegister, :off
-                            const v$dummyRegister, -0xfcfcfd
-                            if-ne v$firstRegister, v$dummyRegister, :off
-                            const v$firstRegister, -0xbfbfc0
-                            const v$secondRegister, -0xbfbfc0
-                            :off
-                            sget-object v0, $replaceReference
+                            invoke-static {v$targetRegister}, $PLAYER->enableZenMode(I)I
+                            move-result v$targetRegister
                             """
                     )
-                    removeInstruction(replaceReferenceIndex)
                 }
-            } ?: throw ZenModeFingerprint.exception
-        } ?: throw PatchException("This version is not supported. Please use YT Music 6.33.52 or earlier.")
+            }
+
+            SwitchToggleColorFingerprint.result?.let {
+                val invokeDirectIndex = it.mutableMethod.getTargetIndex(0, Opcode.INVOKE_DIRECT)
+                val targetMethod = context.toMethodWalker(it.method)
+                    .nextMethod(invokeDirectIndex, true)
+                    .getMethod() as MutableMethod
+
+                targetMethod.apply {
+                    addInstructions(
+                        0, """
+                            invoke-static {p1}, $PLAYER->enableZenMode(I)I
+                            move-result p1
+                            invoke-static {p2}, $PLAYER->enableZenMode(I)I
+                            move-result p2
+                            """
+                    )
+                }
+            } ?: throw SwitchToggleColorFingerprint.exception
+        } ?: throw MiniPlayerConstructorFingerprint.exception
 
         SettingsPatch.addMusicPreference(
             CategoryType.PLAYER,

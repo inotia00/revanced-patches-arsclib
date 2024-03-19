@@ -14,6 +14,7 @@ object ZenModeFingerprint : MethodFingerprint(
         Opcode.INVOKE_STATIC,
         Opcode.MOVE_RESULT,
         Opcode.GOTO,
-        Opcode.NOP
+        Opcode.NOP,
+        Opcode.SGET_OBJECT
     )
 )
