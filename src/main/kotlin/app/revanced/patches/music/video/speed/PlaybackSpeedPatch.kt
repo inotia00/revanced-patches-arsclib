@@ -6,7 +6,6 @@ import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
-import app.revanced.patches.music.utils.integrations.Constants.UTILS_PATH
 import app.revanced.patches.music.utils.integrations.Constants.VIDEO_PATH
 import app.revanced.patches.music.utils.overridespeed.OverrideSpeedHookPatch
 import app.revanced.patches.music.utils.settings.CategoryType
@@ -14,7 +13,6 @@ import app.revanced.patches.music.utils.settings.SettingsPatch
 import app.revanced.patches.music.video.speed.fingerprints.PlaybackSpeedBottomSheetFingerprint
 import app.revanced.patches.music.video.speed.fingerprints.PlaybackSpeedBottomSheetParentFingerprint
 import app.revanced.util.exception
-import app.revanced.util.updatePatchStatus
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 
 @Patch(
@@ -46,6 +44,9 @@ import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 object PlaybackSpeedPatch : BytecodePatch(
     setOf(PlaybackSpeedBottomSheetParentFingerprint)
 ) {
+    private const val INTEGRATIONS_CLASS_DESCRIPTOR =
+        "$VIDEO_PATH/PlaybackSpeedPatch;"
+
     override fun execute(context: BytecodeContext) {
 
         PlaybackSpeedBottomSheetParentFingerprint.result?.let { parentResult ->
@@ -73,11 +74,5 @@ object PlaybackSpeedPatch : BytecodePatch(
             "revanced_enable_save_playback_speed",
             "true"
         )
-
-        context.updatePatchStatus("$UTILS_PATH/PatchStatus;","RememberPlaybackSpeed")
-
     }
-
-    private const val INTEGRATIONS_CLASS_DESCRIPTOR =
-        "$VIDEO_PATH/PlaybackSpeedPatch;"
 }

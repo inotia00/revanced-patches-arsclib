@@ -1,13 +1,23 @@
 package app.revanced.patches.music.flyoutpanel.playbackspeed
 
 import app.revanced.patcher.data.BytecodeContext
+import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
+import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
+import app.revanced.patches.music.flyoutpanel.playbackspeed.fingerprints.TouchOutsideFingerprint
 import app.revanced.patches.music.utils.flyoutbutton.FlyoutButtonContainerPatch
+import app.revanced.patches.music.utils.integrations.Constants.FLYOUT
 import app.revanced.patches.music.utils.overridespeed.OverrideSpeedHookPatch
+import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
+import app.revanced.patches.music.video.information.VideoInformationPatch
+import app.revanced.util.exception
+import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
+import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
+import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 
 @Patch(
     name = "Enable playback speed",
@@ -15,7 +25,9 @@ import app.revanced.patches.music.utils.settings.SettingsPatch
     dependencies = [
         FlyoutButtonContainerPatch::class,
         OverrideSpeedHookPatch::class,
-        SettingsPatch::class
+        SettingsPatch::class,
+        SharedResourceIdPatch::class,
+        VideoInformationPatch::class
     ],
     compatiblePackages = [
         CompatiblePackage(
@@ -36,8 +48,25 @@ import app.revanced.patches.music.utils.settings.SettingsPatch
     ]
 )
 @Suppress("unused")
-object PlaybackSpeedPatch : BytecodePatch(emptySet()) {
+object PlaybackSpeedPatch : BytecodePatch(
+    setOf(TouchOutsideFingerprint)
+) {
     override fun execute(context: BytecodeContext) {
+
+        TouchOutsideFingerprint.result?.let {
+            it.mutableMethod.apply {
+                val setOnClickListenerIndex =
+                    implementation!!.instructions.indexOfFirst { instruction ->
+                        ((instruction as? ReferenceInstruction)?.reference as? MethodReference)?.name == "setOnClickListener"
+                    }
+                val setOnClickListenerRegister = getInstruction<FiveRegisterInstruction>(setOnClickListenerIndex).registerC
+
+                addInstruction(
+                    setOnClickListenerIndex + 1,
+                    "sput-object v$setOnClickListenerRegister, $FLYOUT->touchOutSideView:Landroid/view/View;"
+                )
+            }
+        } ?: throw TouchOutsideFingerprint.exception
 
         SettingsPatch.addMusicPreference(
             CategoryType.FLYOUT,

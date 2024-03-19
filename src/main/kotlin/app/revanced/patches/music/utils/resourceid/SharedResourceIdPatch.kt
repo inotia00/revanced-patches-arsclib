@@ -42,6 +42,7 @@ object SharedResourceIdPatch : ResourcePatch() {
     var Text1: Long = -1
     var ToolTipContentView: Long = -1
     var TosFooter: Long = -1
+    var TouchOutside: Long = -1
 
     override fun execute(context: ResourceContext) {
 
@@ -77,6 +78,7 @@ object SharedResourceIdPatch : ResourcePatch() {
         Text1 = find(ID, "text1")
         ToolTipContentView = find(LAYOUT, "tooltip_content_view")
         TosFooter = find(ID, "tos_footer")
+        TouchOutside = find(ID, "touch_outside")
 
     }
 }
