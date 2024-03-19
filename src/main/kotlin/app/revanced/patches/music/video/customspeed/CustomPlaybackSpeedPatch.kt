@@ -4,7 +4,6 @@ import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.music.utils.integrations.Constants.VIDEO_PATH
-import app.revanced.patches.music.utils.intenthook.IntentHookPatch
 import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
 import app.revanced.patches.shared.patch.customspeed.AbstractCustomPlaybackSpeedPatch
@@ -12,7 +11,7 @@ import app.revanced.patches.shared.patch.customspeed.AbstractCustomPlaybackSpeed
 @Patch(
     name = "Custom playback speed",
     description = "Adds an option to customize available playback speeds.",
-    dependencies = [IntentHookPatch::class],
+    dependencies = [SettingsPatch::class],
     compatiblePackages = [
         CompatiblePackage(
             "com.google.android.apps.youtube.music",

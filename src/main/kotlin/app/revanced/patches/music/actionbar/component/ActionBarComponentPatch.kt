@@ -14,7 +14,6 @@ import app.revanced.patches.music.actionbar.component.fingerprints.ActionBarComp
 import app.revanced.patches.music.actionbar.component.fingerprints.LikeDislikeContainerFingerprint
 import app.revanced.patches.music.actionbar.component.fingerprints.LikeDislikeContainerVisibilityFingerprint
 import app.revanced.patches.music.utils.integrations.Constants.ACTIONBAR
-import app.revanced.patches.music.utils.intenthook.IntentHookPatch
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch.LikeDislikeContainer
 import app.revanced.patches.music.utils.settings.CategoryType
@@ -34,7 +33,6 @@ import kotlin.math.min
     name = "Hide action bar component",
     description = "Adds options to hide action bar components and replace the offline download button with an external download button.",
     dependencies = [
-        IntentHookPatch::class,
         SettingsPatch::class,
         SharedResourceIdPatch::class,
         VideoInformationPatch::class

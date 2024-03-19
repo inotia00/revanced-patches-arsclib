@@ -7,11 +7,14 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.music.utils.integrations.Constants.INTEGRATIONS_PATH
+import app.revanced.patches.music.utils.integrations.IntegrationsPatch
 import app.revanced.patches.music.utils.intenthook.fingerprints.GoogleApiActivityFingerprint
-import app.revanced.patches.music.utils.settings.SettingsPatch
 import app.revanced.util.exception
 
-@Patch(dependencies = [SettingsPatch::class])
+@Patch(
+    dependencies = [IntegrationsPatch::class],
+    requiresIntegrations = true
+)
 object IntentHookPatch : BytecodePatch(
     setOf(GoogleApiActivityFingerprint)
 ) {

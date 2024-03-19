@@ -5,7 +5,6 @@ import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.music.general.oldstylelibraryshelf.OldStyleLibraryShelfPatch
 import app.revanced.patches.music.utils.integrations.Constants.MISC_PATH
-import app.revanced.patches.music.utils.intenthook.IntentHookPatch
 import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
 import app.revanced.patches.music.utils.settings.SettingsPatch.contexts
@@ -17,7 +16,6 @@ import app.revanced.util.copyXmlNode
     description = "Adds options to spoof the YouTube Music client version. " + 
             "This can remove the radio mode restriction in Canadian regions or disable real-time lyrics.",
     dependencies = [
-        IntentHookPatch::class,
         OldStyleLibraryShelfPatch::class,
         SettingsPatch::class
     ],
