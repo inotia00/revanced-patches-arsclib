@@ -39,6 +39,12 @@ object DebuggingPatch : ResourcePatch() {
             "revanced_enable_debug_logging",
             "false"
         )
+        SettingsPatch.addMusicPreference(
+            CategoryType.MISC,
+            "revanced_enable_debug_buffer_logging",
+            "false",
+            "revanced_enable_debug_logging"
+        )
 
     }
 }

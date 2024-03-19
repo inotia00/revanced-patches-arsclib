@@ -44,6 +44,8 @@ Known issues:
 • Album art in the library tab becomes smaller when organized in a grid.
 • Sleep timer layout may appear unusual."</string>
     <string name="revanced_enable_compact_dialog_title">Enable compact dialog</string>
+    <string name="revanced_enable_debug_buffer_logging_summary">Prints the debug logs include buffer.</string>
+    <string name="revanced_enable_debug_buffer_logging_title">Enable debug buffer logging</string>
     <string name="revanced_enable_debug_logging_summary">Prints the debug log.</string>
     <string name="revanced_enable_debug_logging_title">Enable debug logging</string>
     <string name="revanced_enable_flyout_panel_playback_speed_summary">Adds a playback speed button to the flyout panel.</string>
@@ -144,6 +146,8 @@ Some features may not work properly in the old player layout."</string>
     <string name="revanced_hide_flyout_panel_stats_for_nerds_title">Hide stats for nerds menu</string>
     <string name="revanced_hide_flyout_panel_subscribe_title">Hide subscribe / unsubscribe menu</string>
     <string name="revanced_hide_flyout_panel_view_song_credit_title">Hide view song credit menu</string>
+    <string name="revanced_hide_fullscreen_share_button_summary">Hides the share button in the fullscreen player.</string>
+    <string name="revanced_hide_fullscreen_share_button_title">Hide fullscreen share button</string>
     <string name="revanced_hide_general_ads_summary">Hides general ads.</string>
     <string name="revanced_hide_general_ads_title">Hide general ads</string>
     <string name="revanced_hide_handle_summary">Hides the handle in the account menu.</string>
@@ -170,8 +174,6 @@ Some features may not work properly in the old player layout."</string>
     <string name="revanced_hide_premium_renewal_title">Hide premium renewal banner</string>
     <string name="revanced_hide_samples_button_summary">Hides the samples button.</string>
     <string name="revanced_hide_samples_button_title">Hide samples button</string>
-    <string name="revanced_hide_fullscreen_share_button_summary">Hides the share button in the fullscreen player.</string>
-    <string name="revanced_hide_fullscreen_share_button_title">Hide fullscreen share button</string>
     <string name="revanced_hide_terms_container_summary">Hides terms of service container.</string>
     <string name="revanced_hide_terms_container_title">Hide terms container</string>
     <string name="revanced_hide_upgrade_button_summary">Hides the upgrade button.</string>
