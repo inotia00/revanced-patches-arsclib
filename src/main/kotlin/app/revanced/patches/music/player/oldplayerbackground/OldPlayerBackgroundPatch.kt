@@ -2,6 +2,7 @@ package app.revanced.patches.music.player.oldplayerbackground
 
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
+import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.annotation.CompatiblePackage
@@ -10,6 +11,10 @@ import app.revanced.patches.music.player.oldplayerbackground.fingerprints.OldPla
 import app.revanced.patches.music.utils.integrations.Constants.PLAYER
 import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
+import app.revanced.util.getTargetIndex
+import app.revanced.util.getWideLiteralInstructionIndex
+import com.android.tools.smali.dexlib2.Opcode
+import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch(
     name = "Enable old player background",
@@ -42,11 +47,14 @@ object OldPlayerBackgroundPatch : BytecodePatch(
 
         OldPlayerBackgroundFingerprint.result?.let {
             it.mutableMethod.apply {
+                val startIndex = getWideLiteralInstructionIndex(45415319)
+                val targetIndex = getTargetIndex(startIndex, Opcode.MOVE_RESULT)
+                val targetRegister = getInstruction<OneRegisterInstruction>(targetIndex).registerA
+
                 addInstructions(
-                    0, """
-                        invoke-static {}, $PLAYER->enableOldPlayerBackground()Z
-                        move-result v0
-                        return v0
+                    targetIndex + 1, """
+                        invoke-static {v$targetRegister}, $PLAYER->enableOldPlayerBackground(Z)Z
+                        move-result v$targetRegister
                         """
                 )
             }
