@@ -8,7 +8,6 @@ import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.music.utils.integrations.Constants.COMPONENTS_PATH
 import app.revanced.patches.music.utils.litho.fingerprints.LithoFilterFingerprint
 import app.revanced.patches.shared.patch.litho.ComponentParserPatch
-import app.revanced.patches.shared.patch.litho.ComponentParserPatch.pathBuilderHook
 import app.revanced.util.exception
 import java.io.Closeable
 
@@ -25,7 +24,7 @@ object LithoFilterPatch : BytecodePatch(
     private var filterCount = 0
 
     override fun execute(context: BytecodeContext) {
-        pathBuilderHook("$INTEGRATIONS_CLASS_DESCRIPTOR->filter")
+        ComponentParserPatch.injectCall(INTEGRATIONS_CLASS_DESCRIPTOR)
 
         LithoFilterFingerprint.result?.let {
             it.mutableMethod.apply {

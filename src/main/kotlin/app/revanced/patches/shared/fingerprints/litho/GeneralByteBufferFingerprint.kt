@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.utils.litho.fingerprints
+package app.revanced.patches.shared.fingerprints.litho
 
 import app.revanced.patcher.extensions.or
 import app.revanced.patcher.fingerprint.MethodFingerprint
@@ -10,7 +10,7 @@ object GeneralByteBufferFingerprint : MethodFingerprint(
     accessFlags = AccessFlags.PUBLIC or AccessFlags.FINAL,
     parameters = listOf("I", "Ljava/nio/ByteBuffer;"),
     opcodes = listOf(
-        Opcode.IPUT_OBJECT,
+        null,
         Opcode.IF_EQZ,
         Opcode.IPUT,
         Opcode.INVOKE_VIRTUAL,

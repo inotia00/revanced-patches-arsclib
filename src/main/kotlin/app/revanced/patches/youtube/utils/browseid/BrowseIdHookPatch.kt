@@ -63,7 +63,7 @@ object BrowseIdHookPatch : BytecodePatch(
         /**
          * Set BrowseId to integrations.
          */
-        ComponentParserPatch.insertMethod.apply {
+        ComponentParserPatch.pathBuilderMethod.apply {
             addInstruction(
                 0,
                 "invoke-static {}, $INTEGRATIONS_CLASS_DESCRIPTOR->setBrowseIdFromField()V"

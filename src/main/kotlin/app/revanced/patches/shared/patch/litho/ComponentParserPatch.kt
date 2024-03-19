@@ -1,12 +1,14 @@
 package app.revanced.patches.shared.patch.litho
 
 import app.revanced.patcher.data.BytecodeContext
+import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.shared.fingerprints.litho.EmptyComponentBuilderFingerprint
+import app.revanced.patches.shared.fingerprints.litho.GeneralByteBufferFingerprint
 import app.revanced.util.exception
 import app.revanced.util.getEmptyStringInstructionIndex
 import app.revanced.util.getReference
@@ -20,10 +22,14 @@ import com.android.tools.smali.dexlib2.iface.reference.FieldReference
 import kotlin.properties.Delegates
 
 object ComponentParserPatch : BytecodePatch(
-    setOf(EmptyComponentBuilderFingerprint)
+    setOf(
+        EmptyComponentBuilderFingerprint,
+        GeneralByteBufferFingerprint
+    )
 ) {
     private lateinit var emptyComponentLabel: String
-    internal lateinit var insertMethod: MutableMethod
+    private lateinit var byteBufferMethod: MutableMethod
+    internal lateinit var pathBuilderMethod: MutableMethod
 
     private var emptyComponentIndex by Delegates.notNull<Int>()
     private var insertIndex by Delegates.notNull<Int>()
@@ -32,24 +38,20 @@ object ComponentParserPatch : BytecodePatch(
     private var objectRegister by Delegates.notNull<Int>()
     private var stringBuilderRegister by Delegates.notNull<Int>()
 
-    internal fun generalHook(descriptor: String) {
-        insertMethod.apply {
-            addInstructionsWithLabels(
-                insertIndex, """
-                    invoke-static {v$stringBuilderRegister, v$identifierRegister, v$objectRegister}, $descriptor(Ljava/lang/StringBuilder;Ljava/lang/String;Ljava/lang/Object;)Z
-                    move-result v$stringBuilderRegister
-                    if-eqz v$stringBuilderRegister, :filter
-                    """ + emptyComponentLabel,
-                ExternalLabel("filter", getInstruction(insertIndex))
+    internal fun injectCall(descriptor: String) {
+        byteBufferMethod.apply {
+            val insertIndex = getTargetIndex(0, Opcode.IF_EQZ) + 1
+
+            addInstruction(
+                insertIndex,
+                "invoke-static { p2 }, $descriptor->setProtoBuffer(Ljava/nio/ByteBuffer;)V"
             )
         }
-    }
 
-    internal fun pathBuilderHook(descriptor: String) {
-        insertMethod.apply {
+        pathBuilderMethod.apply {
             addInstructionsWithLabels(
                 insertIndex, """
-                    invoke-static {v$stringBuilderRegister}, $descriptor(Ljava/lang/StringBuilder;)Z
+                    invoke-static {v$stringBuilderRegister, v$identifierRegister, v$objectRegister}, $descriptor->filter(Ljava/lang/StringBuilder;Ljava/lang/String;Ljava/lang/Object;)Z
                     move-result v$stringBuilderRegister
                     if-eqz v$stringBuilderRegister, :filter
                     """ + emptyComponentLabel,
@@ -60,12 +62,12 @@ object ComponentParserPatch : BytecodePatch(
 
     override fun execute(context: BytecodeContext) {
 
-        /**
-         * Shared fingerprint
-         */
+        byteBufferMethod = GeneralByteBufferFingerprint.result?.mutableMethod
+            ?: throw GeneralByteBufferFingerprint.exception
+
         EmptyComponentBuilderFingerprint.result?.let {
             it.mutableMethod.apply {
-                insertMethod = this
+                pathBuilderMethod = this
                 emptyComponentIndex = it.scanResult.patternScanResult!!.startIndex + 1
 
                 val builderMethodDescriptor =
