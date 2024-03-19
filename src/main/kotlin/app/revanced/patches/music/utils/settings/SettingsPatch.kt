@@ -3,6 +3,7 @@ package app.revanced.patches.music.utils.settings
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
+import app.revanced.patches.music.utils.intenthook.IntentHookPatch
 import app.revanced.patches.music.utils.settings.ResourceUtils.YOUTUBE_MUSIC_SETTINGS_KEY
 import app.revanced.patches.music.utils.settings.ResourceUtils.addMusicPreference
 import app.revanced.patches.music.utils.settings.ResourceUtils.addMusicPreferenceCategory
@@ -22,7 +23,10 @@ import java.util.concurrent.TimeUnit
 @Patch(
     name = "Settings",
     description = "Adds ReVanced Extended settings to YouTube Music.",
-    dependencies = [SettingsBytecodePatch::class],
+    dependencies = [
+        IntentHookPatch::class,
+        SettingsBytecodePatch::class
+    ],
     compatiblePackages = [
         CompatiblePackage(
             "com.google.android.apps.youtube.music",
