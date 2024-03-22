@@ -17,7 +17,6 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch(
     dependencies = [
-        FlyoutButtonContainerResourcePatch::class,
         SharedResourceIdPatch::class
     ]
 )

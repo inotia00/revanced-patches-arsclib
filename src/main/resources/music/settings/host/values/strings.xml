@@ -50,8 +50,6 @@ Known issues:
     <string name="revanced_enable_debug_buffer_logging_title">Enable debug buffer logging</string>
     <string name="revanced_enable_debug_logging_summary">Prints the debug log.</string>
     <string name="revanced_enable_debug_logging_title">Enable debug logging</string>
-    <string name="revanced_enable_flyout_panel_playback_speed_summary">Adds a playback speed button to the flyout panel.</string>
-    <string name="revanced_enable_flyout_panel_playback_speed_title">Enable playback speed</string>
     <string name="revanced_enable_force_minimized_player_summary">Keeps the player minimized even when another track is played.</string>
     <string name="revanced_enable_force_minimized_player_title">Enable force minimized player</string>
     <string name="revanced_enable_landscape_mode_summary">Enables landscape mode when rotating the screen on phones.</string>

@@ -1,4 +1,4 @@
-package app.revanced.patches.music.flyoutpanel.playbackspeed.fingerprints
+package app.revanced.patches.music.flyoutpanel.replace.fingerprints
 
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch.TouchOutside
 import app.revanced.util.fingerprint.LiteralValueFingerprint
