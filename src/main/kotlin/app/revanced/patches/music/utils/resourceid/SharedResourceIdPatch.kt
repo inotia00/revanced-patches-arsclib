@@ -22,6 +22,7 @@ object SharedResourceIdPatch : ResourcePatch() {
     var ColorGrey: Long = -1
     var DesignBottomSheetDialog: Long = -1
     var DialogSolid: Long = -1
+    var EndButtonsContainer: Long = -1
     var FloatingLayout: Long = -1
     var HistoryMenuItem: Long = -1
     var InlineTimeBarAdBreakMarkerColor: Long = -1
@@ -30,7 +31,6 @@ object SharedResourceIdPatch : ResourcePatch() {
     var MenuEntry: Long = -1
     var MiniPlayerMdxPlaying: Long = -1
     var MiniPlayerPlayPauseReplayButton: Long = -1
-    var MusicMenuLikeButtons: Long = -1
     var MusicNotifierShelf: Long = -1
     var MusicTasteBuilderShelf: Long = -1
     var NamesInactiveAccountThumbnailSize: Long = -1
@@ -59,6 +59,7 @@ object SharedResourceIdPatch : ResourcePatch() {
         ColorGrey = find(COLOR, "ytm_color_grey_12")
         DesignBottomSheetDialog = find(LAYOUT, "design_bottom_sheet_dialog")
         DialogSolid = find(STYLE, "Theme.YouTubeMusic.Dialog.Solid")
+        EndButtonsContainer = find(ID, "end_buttons_container")
         FloatingLayout = find(ID, "floating_layout")
         HistoryMenuItem = find(ID, "history_menu_item")
         InlineTimeBarAdBreakMarkerColor = find(COLOR, "inline_time_bar_ad_break_marker_color")
@@ -67,7 +68,6 @@ object SharedResourceIdPatch : ResourcePatch() {
         MenuEntry = find(LAYOUT, "menu_entry")
         MiniPlayerMdxPlaying = find(STRING, "mini_player_mdx_playing")
         MiniPlayerPlayPauseReplayButton = find(ID, "mini_player_play_pause_replay_button")
-        MusicMenuLikeButtons = find(LAYOUT, "music_menu_like_buttons")
         MusicNotifierShelf = find(LAYOUT, "music_notifier_shelf")
         MusicTasteBuilderShelf = find(LAYOUT, "music_tastebuilder_shelf")
         NamesInactiveAccountThumbnailSize = find(DIMEN, "names_inactive_account_thumbnail_size")

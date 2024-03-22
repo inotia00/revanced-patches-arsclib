@@ -91,19 +91,13 @@ fun Method.getWideLiteralInstructionIndex(literal: Long) = implementation?.let {
     }
 } ?: -1
 
-fun Method.getEmptyStringInstructionIndex() = implementation?.let {
-    it.instructions.indexOfFirst { instruction ->
-        instruction.opcode == Opcode.CONST_STRING
-                && (instruction as? BuilderInstruction21c)?.reference.toString().isEmpty()
-    }
-} ?: -1
+fun MutableMethod.getEmptyStringInstructionIndex()
+= getStringInstructionIndex("")
 
-fun Method.getStringInstructionIndex(value: String) = implementation?.let {
-    it.instructions.indexOfFirst { instruction ->
-        instruction.opcode == Opcode.CONST_STRING
-                && (instruction as? BuilderInstruction21c)?.reference.toString() == value
-    }
-} ?: -1
+fun MutableMethod.getStringInstructionIndex(value: String) = indexOfFirstInstruction {
+    opcode == Opcode.CONST_STRING
+            && (this as? BuilderInstruction21c)?.reference.toString() == value
+}
 
 /**
  * Check if the method contains a literal with the given value.

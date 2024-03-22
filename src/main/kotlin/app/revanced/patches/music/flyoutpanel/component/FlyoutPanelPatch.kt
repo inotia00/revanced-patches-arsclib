@@ -2,34 +2,34 @@ package app.revanced.patches.music.flyoutpanel.component
 
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
-import app.revanced.patcher.util.smali.ExternalLabel
+import app.revanced.patches.music.flyoutpanel.component.fingerprints.EndButtonsContainerFingerprint
 import app.revanced.patches.music.flyoutpanel.component.fingerprints.SleepTimerFingerprint
-import app.revanced.patches.music.flyoutpanel.utils.EnumUtils.getEnumIndex
-import app.revanced.patches.music.utils.fingerprints.MenuItemFingerprint
-import app.revanced.patches.music.utils.flyoutbutton.FlyoutButtonContainerPatch
+import app.revanced.patches.music.flyoutpanel.shared.FlyoutPanelMenuItemPatch
 import app.revanced.patches.music.utils.integrations.Constants.COMPONENTS_PATH
 import app.revanced.patches.music.utils.integrations.Constants.FLYOUT
 import app.revanced.patches.music.utils.litho.LithoFilterPatch
+import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch
+import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch.EndButtonsContainer
 import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
 import app.revanced.util.exception
+import app.revanced.util.getTargetIndex
+import app.revanced.util.getWideLiteralInstructionIndex
 import com.android.tools.smali.dexlib2.Opcode
-import com.android.tools.smali.dexlib2.iface.instruction.Instruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
-import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 
 @Patch(
     name = "Hide flyout panel",
     description = "Adds options to hide flyout panel components.",
     dependencies = [
-        FlyoutButtonContainerPatch::class,
+        FlyoutPanelMenuItemPatch::class,
         LithoFilterPatch::class,
-        SettingsPatch::class
+        SettingsPatch::class,
+        SharedResourceIdPatch::class
     ],
     compatiblePackages = [
         CompatiblePackage(
@@ -52,37 +52,29 @@ import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 @Suppress("unused")
 object FlyoutPanelPatch : BytecodePatch(
     setOf(
-        MenuItemFingerprint,
+        EndButtonsContainerFingerprint,
         SleepTimerFingerprint
     )
 ) {
     override fun execute(context: BytecodeContext) {
-        MenuItemFingerprint.result?.let {
+        FlyoutPanelMenuItemPatch.hideComponents()
+
+        EndButtonsContainerFingerprint.result?.let {
             it.mutableMethod.apply {
-                val freeIndex = implementation!!.instructions.indexOfFirst { instruction ->
-                    instruction.opcode == Opcode.OR_INT_LIT16
-                }
-                val freeRegister = getInstruction<TwoRegisterInstruction>(freeIndex).registerA
+                val startIndex = getWideLiteralInstructionIndex(EndButtonsContainer)
+                val targetIndex = getTargetIndex(startIndex, Opcode.MOVE_RESULT_OBJECT)
+                val targetRegister = getInstruction<OneRegisterInstruction>(targetIndex).registerA
 
-                val enumIndex = getEnumIndex()
-                val enumRegister = getInstruction<OneRegisterInstruction>(enumIndex).registerA
-
-                val jumpInstruction =
-                    getInstruction<Instruction>(implementation!!.instructions.size - 1)
-
-                addInstructionsWithLabels(
-                    enumIndex + 1, """
-                        invoke-static {v$enumRegister}, $FLYOUT->hideFlyoutPanels(Ljava/lang/Enum;)Z
-                        move-result v$freeRegister
-                        if-nez v$freeRegister, :hide
-                        """, ExternalLabel("hide", jumpInstruction)
+                addInstruction(
+                    targetIndex + 1,
+                    "invoke-static {v$targetRegister}, $FLYOUT->hideLikeDislikeContainer(Landroid/view/View;)V"
                 )
             }
-        } ?: throw MenuItemFingerprint.exception
+        } ?: throw EndButtonsContainerFingerprint.exception
 
         /**
          * Forces sleep timer menu to be enabled.
-         * This method may be deperated in the future.
+         * This method may be desperate in the future.
          */
         SleepTimerFingerprint.result?.let {
             it.mutableMethod.apply {
@@ -166,13 +158,11 @@ object FlyoutPanelPatch : BytecodePatch(
             "revanced_hide_flyout_panel_like_dislike",
             "false"
         )
-        if (!SettingsPatch.upward0636) {
-            SettingsPatch.addMusicPreferenceWithoutSummary(
-                CategoryType.FLYOUT,
-                "revanced_hide_flyout_panel_play_next",
-                "false"
-            )
-        }
+        SettingsPatch.addMusicPreferenceWithoutSummary(
+            CategoryType.FLYOUT,
+            "revanced_hide_flyout_panel_play_next",
+            "false"
+        )
         SettingsPatch.addMusicPreferenceWithoutSummary(
             CategoryType.FLYOUT,
             "revanced_hide_flyout_panel_quality",
@@ -203,18 +193,16 @@ object FlyoutPanelPatch : BytecodePatch(
             "revanced_hide_flyout_panel_save_to_library",
             "false"
         )
-        if (!SettingsPatch.upward0636) {
-            SettingsPatch.addMusicPreferenceWithoutSummary(
-                CategoryType.FLYOUT,
-                "revanced_hide_flyout_panel_save_to_playlist",
-                "false"
-            )
-            SettingsPatch.addMusicPreferenceWithoutSummary(
-                CategoryType.FLYOUT,
-                "revanced_hide_flyout_panel_share",
-                "false"
-            )
-        }
+        SettingsPatch.addMusicPreferenceWithoutSummary(
+            CategoryType.FLYOUT,
+            "revanced_hide_flyout_panel_save_to_playlist",
+            "false"
+        )
+        SettingsPatch.addMusicPreferenceWithoutSummary(
+            CategoryType.FLYOUT,
+            "revanced_hide_flyout_panel_share",
+            "false"
+        )
         SettingsPatch.addMusicPreferenceWithoutSummary(
             CategoryType.FLYOUT,
             "revanced_hide_flyout_panel_shuffle_play",
