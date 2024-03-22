@@ -69,7 +69,7 @@ object SharedResourceIdPatch : ResourcePatch() {
         MiniPlayerPlayPauseReplayButton = find(ID, "mini_player_play_pause_replay_button")
         MusicMenuLikeButtons = find(LAYOUT, "music_menu_like_buttons")
         MusicNotifierShelf = find(LAYOUT, "music_notifier_shelf")
-        MusicTastebuilderShelf = find(LAYOUT, "music_tastebuilder_shelf")
+        MusicTasteBuilderShelf = find(LAYOUT, "music_tastebuilder_shelf")
         NamesInactiveAccountThumbnailSize = find(DIMEN, "names_inactive_account_thumbnail_size")
         OfflineSettingsMenuItem = find(ID, "offline_settings_menu_item")
         PlayerCastMediaRouteButton = find(LAYOUT, "player_cast_media_route_button")

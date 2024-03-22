@@ -143,6 +143,15 @@ fun BytecodeContext.traverseClassHierarchy(
 inline fun <reified T : Reference> Instruction.getReference() =
     (this as? ReferenceInstruction)?.reference as? T
 
+/**
+ * Get the index of the first [Instruction] that matches the predicate.
+ *
+ * @param predicate The predicate to match.
+ * @return The index of the first [Instruction] that matches the predicate.
+ */
+fun Method.indexOfFirstInstruction(predicate: Instruction.() -> Boolean) =
+    this.implementation!!.instructions.indexOfFirst(predicate)
+
 fun MutableMethod.getTargetIndex(opcode: Opcode) = getTargetIndex(0, opcode)
 
 fun MutableMethod.getTargetIndexReversed(opcode: Opcode) =
@@ -219,6 +228,12 @@ fun MutableMethod.getTargetIndexWithMethodReferenceNameReversed(startIndex: Int,
     }
     return -1
 }
+
+fun MutableMethod.getTargetIndexWithReference(reference: String)
+= getTargetIndexWithReference(0, reference)
+
+fun MutableMethod.getTargetIndexWithReferenceReversed(reference: String)
+        = getTargetIndexWithReferenceReversed(implementation!!.instructions.size - 1, reference)
 
 fun MutableMethod.getTargetIndexWithReference(startIndex: Int, reference: String) =
     implementation!!.instructions.let {

@@ -16,7 +16,7 @@ import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch.contexts
 import app.revanced.patches.youtube.utils.videoid.general.VideoIdPatch
 import app.revanced.patches.youtube.utils.videoid.withoutshorts.VideoIdWithoutShortsPatch
-import app.revanced.patches.youtube.video.quality.fingerprints.VideoQualitySetterFingerprint
+import app.revanced.patches.youtube.utils.fingerprints.VideoQualitySetterFingerprint
 import app.revanced.util.copyXmlNode
 import app.revanced.util.exception
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
