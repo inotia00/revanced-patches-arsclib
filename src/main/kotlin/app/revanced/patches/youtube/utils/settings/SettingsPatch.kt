@@ -12,11 +12,13 @@ import app.revanced.patches.youtube.utils.settings.ResourceUtils.addReVancedPref
 import app.revanced.patches.youtube.utils.settings.ResourceUtils.updatePatchStatus
 import app.revanced.patches.youtube.utils.settings.ResourceUtils.updatePatchStatusSettings
 import app.revanced.util.ResourceGroup
+import app.revanced.util.classLoader
 import app.revanced.util.copyResources
 import org.w3c.dom.Element
 import java.io.Closeable
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
+import java.util.jar.Manifest
 
 @Patch(
     name = "Settings",
@@ -181,6 +183,19 @@ object SettingsPatch : AbstractSettingsResourcePatch(
     }
 
     override fun close() {
+        // Set ReVanced Patches Version
+        val jarManifest = classLoader.getResources("META-INF/MANIFEST.MF")
+        while (jarManifest.hasMoreElements())
+            contexts.updatePatchStatusSettings(
+                "ReVanced Patches",
+                Manifest(jarManifest.nextElement().openStream())
+                    .mainAttributes
+                    .getValue("Version") + ""
+            )
+
+        // Endregion
+
+        // Set ReVanced Integrations Version
         SettingsBytecodePatch.contexts.classes.forEach { classDef ->
             if (classDef.sourceFile != "BuildConfig.java")
                 return@forEach
@@ -204,5 +219,8 @@ object SettingsPatch : AbstractSettingsResourcePatch(
                     )
             )
         }
+
+        // Endregion
+
     }
 }
