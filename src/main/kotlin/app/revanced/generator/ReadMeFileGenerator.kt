@@ -1,10 +1,10 @@
-package app.revanced.meta
+package app.revanced.generator
 
 import app.revanced.patcher.PatchSet
 import app.revanced.patcher.patch.Patch
 import java.io.File
 
-internal class ReadmeGenerator : PatchesFileGenerator {
+internal class ReadMeFileGenerator : PatchesFileGenerator {
     private companion object {
         private const val TABLE_HEADER =
             "| \uD83D\uDC8A Patch | \uD83D\uDCDC Description | \uD83C\uDFF9 Target Version |\n" +

@@ -1,7 +1,10 @@
 import org.gradle.kotlin.dsl.support.listFilesOrdered
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
-    kotlin("jvm") version "1.9.20"
+    alias(libs.plugins.kotlin)
+    `maven-publish`
+    signing
 }
 
 group = "app.revanced"
@@ -10,7 +13,13 @@ repositories {
     mavenCentral()
     mavenLocal()
     google()
-    maven { url = uri("https://jitpack.io") }
+    maven {
+        url = uri("https://maven.pkg.github.com/revanced/multidexlib2")
+        credentials {
+            username = project.findProperty("gpr.user") as String? ?: System.getenv("GITHUB_ACTOR")
+            password = project.findProperty("gpr.key") as String? ?: System.getenv("GITHUB_TOKEN")
+        }
+    }
 }
 
 dependencies {
@@ -21,45 +30,120 @@ dependencies {
 }
 
 kotlin {
-    jvmToolchain(11)
+    compilerOptions {
+        jvmTarget.set(JvmTarget.JVM_11)
+    }
+}
+
+java {
+    targetCompatibility = JavaVersion.VERSION_11
 }
 
 tasks {
-    register<DefaultTask>("generateBundle") {
-        description = "Generate dex files from build and bundle them in the jar file"
+    withType(Jar::class) {
+        exclude("app/revanced/generator")
+
+        manifest {
+            attributes["Name"] = "ReVanced Patches"
+            attributes["Description"] = "Patches for ReVanced."
+            attributes["Version"] = version
+            attributes["Timestamp"] = System.currentTimeMillis().toString()
+            attributes["Source"] = "git@github.com:revanced/revanced-patches.git"
+            attributes["Author"] = "ReVanced"
+            attributes["Contact"] = "contact@revanced.app"
+            attributes["Origin"] = "https://revanced.app"
+            attributes["License"] = "GNU General Public License v3.0"
+        }
+    }
+
+    register("buildDexJar") {
+        description = "Build and add a DEX to the JAR file"
+        group = "build"
+
         dependsOn(build)
 
         doLast {
             val d8 = File(System.getenv("ANDROID_HOME")).resolve("build-tools")
                 .listFilesOrdered().last().resolve("d8").absolutePath
 
-            val artifacts = configurations.archives.get().allArtifacts.files.files.first().absolutePath
+            val patchesJar = configurations.archives.get().allArtifacts.files.files.first().absolutePath
             val workingDirectory = layout.buildDirectory.dir("libs").get().asFile
 
             exec {
                 workingDir = workingDirectory
-                commandLine = listOf(d8, artifacts)
+                commandLine = listOf(d8, "--release", patchesJar)
             }
 
             exec {
                 workingDir = workingDirectory
-                commandLine = listOf("zip", "-u", artifacts, "classes.dex")
+                commandLine = listOf("zip", "-u", patchesJar, "classes.dex")
             }
         }
     }
 
-    register<JavaExec>("generateMeta") {
-        description = "Generate metadata for this bundle"
+    register<JavaExec>("generatePatchesFiles") {
+        description = "Generate patches files"
+
         dependsOn(build)
 
         classpath = sourceSets["main"].runtimeClasspath
-        mainClass.set("app.revanced.meta.PatchesFileGenerator")
+        mainClass.set("app.revanced.generator.MainKt")
     }
 
-    // Required to run tasks because Gradle semantic-release plugin runs the publish task.
+    // Needed by gradle-semantic-release-plugin.
     // Tracking: https://github.com/KengoTODA/gradle-semantic-release-plugin/issues/435
-    register<DefaultTask>("publish") {
-        dependsOn("generateBundle")
-        dependsOn("generateMeta")
+    publish {
+        dependsOn("buildDexJar")
+        dependsOn("generatePatchesFiles")
     }
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/revanced/revanced-patches")
+            credentials {
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
+
+    publications {
+        create<MavenPublication>("revanced-patches-publication") {
+            from(components["java"])
+
+            pom {
+                name = "ReVanced Patches"
+                description = "Patches for ReVanced."
+                url = "https://revanced.app"
+
+                licenses {
+                    license {
+                        name = "GNU General Public License v3.0"
+                        url = "https://www.gnu.org/licenses/gpl-3.0.en.html"
+                    }
+                }
+                developers {
+                    developer {
+                        id = "ReVanced"
+                        name = "ReVanced"
+                        email = "contact@revanced.app"
+                    }
+                }
+                scm {
+                    connection = "scm:git:git://github.com/revanced/revanced-patches.git"
+                    developerConnection = "scm:git:git@github.com:revanced/revanced-patches.git"
+                    url = "https://github.com/revanced/revanced-patches"
+                }
+            }
+        }
+    }
+}
+
+signing {
+    useGpgCmd()
+
+    sign(publishing.publications["revanced-patches-publication"])
 }
