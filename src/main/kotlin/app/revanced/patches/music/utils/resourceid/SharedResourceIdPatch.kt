@@ -32,7 +32,7 @@ object SharedResourceIdPatch : ResourcePatch() {
     var MiniPlayerPlayPauseReplayButton: Long = -1
     var MusicMenuLikeButtons: Long = -1
     var MusicNotifierShelf: Long = -1
-    var MusicTastebuilderShelf: Long = -1
+    var MusicTasteBuilderShelf: Long = -1
     var NamesInactiveAccountThumbnailSize: Long = -1
     var OfflineSettingsMenuItem: Long = -1
     var PlayerCastMediaRouteButton: Long = -1

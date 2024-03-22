@@ -9,7 +9,6 @@ import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.music.general.startpage.fingerprints.ColdStartUpFingerprint
 import app.revanced.patches.music.utils.integrations.Constants.GENERAL
-import app.revanced.patches.music.utils.intenthook.IntentHookPatch
 import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
 import app.revanced.patches.music.utils.settings.SettingsPatch.contexts
@@ -20,10 +19,7 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 @Patch(
     name = "Change start page",
     description = "Adds an option to set which page the app opens in instead of the homepage.",
-    dependencies = [
-        IntentHookPatch::class,
-        SettingsPatch::class
-    ],
+    dependencies = [SettingsPatch::class],
     compatiblePackages = [
         CompatiblePackage(
             "com.google.android.apps.youtube.music",

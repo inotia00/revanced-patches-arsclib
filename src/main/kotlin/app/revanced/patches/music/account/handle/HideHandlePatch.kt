@@ -14,12 +14,9 @@ import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
 import app.revanced.util.exception
-import app.revanced.util.getReference
-import app.revanced.util.indexOfFirstInstruction
-import com.android.tools.smali.dexlib2.Opcode
+import app.revanced.util.getTargetIndexWithMethodReferenceName
+import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
-import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction35c
-import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 
 @Patch(
     name = "Hide handle",
@@ -61,19 +58,12 @@ object HideHandlePatch : BytecodePatch(
         AccountSwitcherAccessibilityLabelFingerprint.result?.let { result ->
             result.mutableMethod.apply {
 
-                val textColorIndex = indexOfFirstInstruction {
-                    getReference<MethodReference>()?.name == "setTextColor"
-                }
-                val setTextIndex = implementation!!.instructions.let {
-                    textColorIndex + it.subList(textColorIndex, textColorIndex + 10).indexOfFirst { instruction ->
-                        instruction.opcode == Opcode.INVOKE_VIRTUAL
-                                && instruction.getReference<MethodReference>()?.name == "setVisibility"
-                    }
-                }
-                val textViewInstruction = getInstruction<Instruction35c>(setTextIndex)
+                val textColorIndex = getTargetIndexWithMethodReferenceName("setTextColor")
+                val setVisibilityIndex = getTargetIndexWithMethodReferenceName(textColorIndex, "setVisibility")
+                val textViewInstruction = getInstruction<FiveRegisterInstruction>(setVisibilityIndex)
 
                 replaceInstruction(
-                    setTextIndex,
+                    setVisibilityIndex,
                     "invoke-static {v${textViewInstruction.registerC}, v${textViewInstruction.registerD}}, $ACCOUNT->hideHandle(Landroid/widget/TextView;I)V"
                 )
             }

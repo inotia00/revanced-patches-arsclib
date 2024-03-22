@@ -11,17 +11,11 @@ import app.revanced.patches.youtube.utils.integrations.Constants.SEEKBAR
 import app.revanced.patches.youtube.utils.overridequality.OverrideQualityHookPatch
 import app.revanced.patches.youtube.utils.overridespeed.OverrideSpeedHookPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
-import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.TotalTime
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.util.exception
-import app.revanced.util.getReference
-import app.revanced.util.getTargetIndex
-import app.revanced.util.getWideLiteralInstructionIndex
-import app.revanced.util.indexOfFirstInstruction
-import com.android.tools.smali.dexlib2.Opcode
+import app.revanced.util.getTargetIndexWithMethodReferenceName
+import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
-import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction35c
-import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 
 @Patch(
     name = "Append time stamps information",
@@ -71,14 +65,11 @@ object AppendTimeStampInformationPatch : BytecodePatch(
     override fun execute(context: BytecodeContext) {
         TotalTimeFingerprint.result?.let {
             it.mutableMethod.apply {
-                val constIndex = getWideLiteralInstructionIndex(TotalTime)
-                val charSequenceIndex = getTargetIndex(constIndex, Opcode.MOVE_RESULT_OBJECT)
+                val charSequenceIndex = getTargetIndexWithMethodReferenceName("getString") + 1
                 val charSequenceRegister = getInstruction<OneRegisterInstruction>(charSequenceIndex).registerA
-                val textViewIndex = indexOfFirstInstruction {
-                    getReference<MethodReference>()?.name == "getText"
-                }
+                val textViewIndex = getTargetIndexWithMethodReferenceName("getText")
                 val textViewRegister =
-                    getInstruction<Instruction35c>(textViewIndex).registerC
+                    getInstruction<FiveRegisterInstruction>(textViewIndex).registerC
 
                 addInstructions(
                     textViewIndex, """

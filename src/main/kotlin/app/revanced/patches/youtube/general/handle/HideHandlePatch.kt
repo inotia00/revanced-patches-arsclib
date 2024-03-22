@@ -11,9 +11,14 @@ import app.revanced.patches.youtube.utils.integrations.Constants.COMPONENTS_PATH
 import app.revanced.patches.youtube.utils.integrations.Constants.GENERAL
 import app.revanced.patches.youtube.utils.litho.LithoFilterPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
+import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.AccountSwitcherAccessibility
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.util.exception
-import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
+import app.revanced.util.getTargetIndex
+import app.revanced.util.getTargetIndexWithMethodReferenceName
+import app.revanced.util.getWideLiteralInstructionIndex
+import com.android.tools.smali.dexlib2.Opcode
+import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 
 @Patch(
     name = "Hide handle",
@@ -66,13 +71,15 @@ object HideHandlePatch : BytecodePatch(
 
         AccountSwitcherAccessibilityLabelFingerprint.result?.let {
             it.mutableMethod.apply {
-                val targetIndex = it.scanResult.patternScanResult!!.endIndex - 2
-                val targetRegister = getInstruction<OneRegisterInstruction>(targetIndex).registerA
+                val constIndex = getWideLiteralInstructionIndex(AccountSwitcherAccessibility)
+                val insertIndex = getTargetIndex(constIndex, Opcode.IF_EQZ)
+                val setVisibilityIndex = getTargetIndexWithMethodReferenceName(insertIndex, "setVisibility")
+                val visibilityRegister = getInstruction<FiveRegisterInstruction>(setVisibilityIndex).registerD
 
                 addInstructions(
-                    targetIndex + 2, """
-                        invoke-static {v$targetRegister}, $GENERAL->hideHandle(I)I
-                        move-result v$targetRegister
+                    insertIndex, """
+                        invoke-static {v$visibilityRegister}, $GENERAL->hideHandle(I)I
+                        move-result v$visibilityRegister
                         """
                 )
             }
