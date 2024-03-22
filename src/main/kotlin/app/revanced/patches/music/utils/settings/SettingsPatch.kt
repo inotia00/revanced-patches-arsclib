@@ -76,6 +76,7 @@ object SettingsPatch : AbstractSettingsResourcePatch(
                         val playServicesVersion = node.textContent.toInt()
 
                         upward0636 = 240399000 <= playServicesVersion
+                        upward0642 = 240999000 <= playServicesVersion
 
                         break
                     }
@@ -146,6 +147,7 @@ object SettingsPatch : AbstractSettingsResourcePatch(
 
     lateinit var contexts: ResourceContext
     internal var upward0636: Boolean = false
+    internal var upward0642: Boolean = false
 
     internal fun addMusicPreference(
         category: CategoryType,
