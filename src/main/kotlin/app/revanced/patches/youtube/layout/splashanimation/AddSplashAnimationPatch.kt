@@ -16,8 +16,6 @@ import kotlin.io.path.exists
         CompatiblePackage(
             "com.google.android.youtube",
             [
-                "18.25.40",
-                "18.27.36",
                 "18.29.38",
                 "18.30.37",
                 "18.31.40",
