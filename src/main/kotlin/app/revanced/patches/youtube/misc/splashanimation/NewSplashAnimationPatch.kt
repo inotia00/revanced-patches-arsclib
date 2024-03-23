@@ -4,11 +4,9 @@ import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
-import app.revanced.patches.youtube.misc.splashanimation.fingerprints.WatchWhileActivityWithInFlagsFingerprint
 import app.revanced.patches.youtube.misc.splashanimation.fingerprints.WatchWhileActivityWithOutFlagsFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.MISC_PATH
 import app.revanced.patches.youtube.utils.mainactivity.MainActivityResolvePatch
@@ -16,6 +14,7 @@ import app.revanced.patches.youtube.utils.mainactivity.MainActivityResolvePatch.
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.DarkSplashAnimation
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
+import app.revanced.util.exception
 import app.revanced.util.getWideLiteralInstructionIndex
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
@@ -61,24 +60,11 @@ import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 )
 @Suppress("unused")
 object NewSplashAnimationPatch : BytecodePatch(emptySet()) {
+    private const val INTEGRATIONS_CLASS_DESCRIPTOR =
+        "$MISC_PATH/SplashAnimationPatch;"
+
     override fun execute(context: BytecodeContext) {
-
-        WatchWhileActivityWithInFlagsFingerprint.resolve(context, mainActivityClassDef)
         WatchWhileActivityWithOutFlagsFingerprint.resolve(context, mainActivityClassDef)
-
-        WatchWhileActivityWithInFlagsFingerprint.result
-            ?: WatchWhileActivityWithOutFlagsFingerprint.result
-            ?: throw PatchException("Failed to resolve fingerprints")
-
-        /**
-         * ~YouTube v18.27.36
-         */
-        WatchWhileActivityWithInFlagsFingerprint.result?.let {
-            it.mutableMethod.apply {
-                val targetIndex = getWideLiteralInstructionIndex(45407550) + 3
-                inject(targetIndex)
-            }
-        }
 
         /**
          * YouTube v18.28.xx~
@@ -97,7 +83,7 @@ object NewSplashAnimationPatch : BytecodePatch(emptySet()) {
                     arrayOf(
                         index,
                         index - 8
-                    ).forEach { insertIndex -> inject(insertIndex) }
+                    ).forEach { insertIndex -> injectCall(insertIndex) }
 
                     break
                 }
@@ -106,12 +92,12 @@ object NewSplashAnimationPatch : BytecodePatch(emptySet()) {
                     if (getInstruction(index).opcode != Opcode.IF_NE)
                         continue
 
-                    inject(index)
+                    injectCall(index)
 
                     break
                 }
             }
-        }
+        } ?: throw WatchWhileActivityWithOutFlagsFingerprint.exception
 
         /**
          * Add settings
@@ -126,7 +112,7 @@ object NewSplashAnimationPatch : BytecodePatch(emptySet()) {
 
     }
 
-    private fun MutableMethod.inject(
+    private fun MutableMethod.injectCall(
         index: Int
     ) {
         if (getInstruction(index).opcode == Opcode.IF_NE)
@@ -140,7 +126,7 @@ object NewSplashAnimationPatch : BytecodePatch(emptySet()) {
 
         addInstructions(
             index, """
-                    invoke-static {v$register}, $MISC_PATH/SplashAnimationPatch;->enableNewSplashAnimationBoolean(Z)Z
+                    invoke-static {v$register}, $INTEGRATIONS_CLASS_DESCRIPTOR->enableNewSplashAnimationBoolean(Z)Z
                     move-result v$register
                     """
         )
@@ -151,7 +137,7 @@ object NewSplashAnimationPatch : BytecodePatch(emptySet()) {
 
         addInstructions(
             index, """
-                    invoke-static {v$register}, $MISC_PATH/SplashAnimationPatch;->enableNewSplashAnimationInt(I)I
+                    invoke-static {v$register}, $INTEGRATIONS_CLASS_DESCRIPTOR->enableNewSplashAnimationInt(I)I
                     move-result v$register
                     """
         )

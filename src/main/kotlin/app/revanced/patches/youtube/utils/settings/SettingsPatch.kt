@@ -91,7 +91,6 @@ object SettingsPatch : AbstractSettingsResourcePatch(
 
                         val playServicesVersion = node.textContent.toInt()
 
-                        upward1828 = 232900000 <= playServicesVersion
                         upward1831 = 233200000 <= playServicesVersion
                         upward1834 = 233502000 <= playServicesVersion
                         upward1839 = 234002000 <= playServicesVersion
@@ -161,7 +160,6 @@ object SettingsPatch : AbstractSettingsResourcePatch(
     private val threadPoolExecutor = Executors.newFixedThreadPool(THREAD_COUNT)
 
     internal lateinit var contexts: ResourceContext
-    internal var upward1828: Boolean = false
     internal var upward1831: Boolean = false
     internal var upward1834: Boolean = false
     internal var upward1839: Boolean = false

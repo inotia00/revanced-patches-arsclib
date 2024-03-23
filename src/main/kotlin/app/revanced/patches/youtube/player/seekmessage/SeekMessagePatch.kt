@@ -110,18 +110,8 @@ object SeekMessagePatch : BytecodePatch(
                         if-nez v$insertRegister, :default
                         """, ExternalLabel("default", getInstruction(jumpIndex + 1))
                 )
-
-                /**
-                 * Add settings
-                 */
-                SettingsPatch.addPreference(
-                    arrayOf(
-                        "PREFERENCE: PLAYER_SETTINGS",
-                        "SETTINGS: HIDE_SEEK_UNDO_MESSAGE"
-                    )
-                )
             }
-        }
+        } ?: throw SeekEduUndoOverlayFingerprint.exception
 
         /**
          * Add settings

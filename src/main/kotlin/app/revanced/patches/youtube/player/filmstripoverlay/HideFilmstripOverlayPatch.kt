@@ -21,13 +21,10 @@ import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.util.exception
 import com.android.tools.smali.dexlib2.Opcode
-import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.WideLiteralInstruction
-import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction35c
-import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 
 @Patch(
     name = "Hide filmstrip overlay",
@@ -94,48 +91,28 @@ object HideFilmstripOverlayPatch : BytecodePatch(
 
         FineScrubbingOverlayFingerprint.result?.let {
             it.mutableMethod.apply {
-                if (SettingsPatch.upward1828) {
-                    var insertIndex = it.scanResult.patternScanResult!!.startIndex + 2
-                    val jumpIndex = getTargetIndexUpTo(insertIndex, Opcode.GOTO, Opcode.GOTO_16)
-                    val initialIndex = jumpIndex - 1
+                var insertIndex = it.scanResult.patternScanResult!!.startIndex + 2
+                val jumpIndex = getTargetIndexUpTo(insertIndex, Opcode.GOTO, Opcode.GOTO_16)
+                val initialIndex = jumpIndex - 1
 
-                    if (getInstruction(insertIndex).opcode == Opcode.INVOKE_VIRTUAL)
-                        insertIndex++
+                if (getInstruction(insertIndex).opcode == Opcode.INVOKE_VIRTUAL)
+                    insertIndex++
 
-                    val replaceInstruction = getInstruction<TwoRegisterInstruction>(insertIndex)
-                    val replaceReference =
-                        getInstruction<ReferenceInstruction>(insertIndex).reference
+                val replaceInstruction = getInstruction<TwoRegisterInstruction>(insertIndex)
+                val replaceReference =
+                    getInstruction<ReferenceInstruction>(insertIndex).reference
 
-                    addComponentUpward1828(insertIndex, initialIndex)
+                addLiteralValues(insertIndex, initialIndex)
 
-                    addInstructionsWithLabels(
-                        insertIndex + 1, fixComponent + """
-                            invoke-static {}, $PLAYER->hideFilmstripOverlay()Z
-                            move-result v${replaceInstruction.registerA}
-                            if-nez v${replaceInstruction.registerA}, :hidden
-                            iget-object v${replaceInstruction.registerA}, v${replaceInstruction.registerB}, $replaceReference
-                            """, ExternalLabel("hidden", getInstruction(jumpIndex))
-                    )
-                    removeInstruction(insertIndex)
-                } else {
-                    val setOnClickListenerIndex = getIndex("setOnClickListener")
-                    val jumpIndex = setOnClickListenerIndex + 3
-                    val initialIndex = setOnClickListenerIndex - 1
-
-                    val insertIndex = getIndex("bringChildToFront") + 1
-                    val insertRegister =
-                        getInstruction<TwoRegisterInstruction>(insertIndex).registerA
-
-                    addComponentBelow1828(insertIndex, initialIndex)
-
-                    addInstructionsWithLabels(
-                        insertIndex, fixComponent + """
-                            invoke-static {}, $PLAYER->hideFilmstripOverlay()Z
-                            move-result v$insertRegister
-                            if-nez v$insertRegister, :hidden
-                            """, ExternalLabel("hidden", getInstruction(jumpIndex))
-                    )
-                }
+                addInstructionsWithLabels(
+                    insertIndex + 1, literalComponent + """
+                        invoke-static {}, $PLAYER->hideFilmstripOverlay()Z
+                        move-result v${replaceInstruction.registerA}
+                        if-nez v${replaceInstruction.registerA}, :hidden
+                        iget-object v${replaceInstruction.registerA}, v${replaceInstruction.registerB}, $replaceReference
+                        """, ExternalLabel("hidden", getInstruction(jumpIndex))
+                )
+                removeInstruction(insertIndex)
             }
         } ?: throw FineScrubbingOverlayFingerprint.exception
 
@@ -154,34 +131,9 @@ object HideFilmstripOverlayPatch : BytecodePatch(
 
     }
 
-    private var fixComponent: String = ""
+    private var literalComponent: String = ""
 
-    private fun MutableMethod.addComponentBelow1828(
-        startIndex: Int,
-        endIndex: Int
-    ) {
-        val fixRegister =
-            getInstruction<FiveRegisterInstruction>(endIndex).registerE
-
-        for (index in endIndex downTo startIndex) {
-            val opcode = getInstruction(index).opcode
-            if (opcode != Opcode.CONST_16)
-                continue
-
-            val register = getInstruction<OneRegisterInstruction>(index).registerA
-
-            if (register != fixRegister)
-                continue
-
-            val fixValue = getInstruction<WideLiteralInstruction>(index).wideLiteral.toInt()
-
-            fixComponent = "const/16 v$fixRegister, $fixValue"
-
-            break
-        }
-    }
-
-    private fun MutableMethod.addComponentUpward1828(
+    private fun MutableMethod.addLiteralValues(
         startIndex: Int,
         endIndex: Int
     ) {
@@ -213,7 +165,7 @@ object HideFilmstripOverlayPatch : BytecodePatch(
                     else -> ""
                 }
 
-            fixComponent += line
+            literalComponent += line
         }
     }
 
@@ -241,13 +193,5 @@ object HideFilmstripOverlayPatch : BytecodePatch(
                     return v0
                     """, ExternalLabel("shown", getInstruction(0))
         )
-    }
-
-    private fun MutableMethod.getIndex(methodName: String): Int {
-        return implementation!!.instructions.indexOfFirst { instruction ->
-            if (instruction.opcode != Opcode.INVOKE_VIRTUAL) return@indexOfFirst false
-
-            return@indexOfFirst ((instruction as Instruction35c).reference as MethodReference).name == methodName
-        }
     }
 }
