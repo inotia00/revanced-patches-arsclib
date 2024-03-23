@@ -16,6 +16,7 @@ import app.revanced.patches.youtube.utils.returnyoutubedislike.shorts.fingerprin
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.util.exception
 import app.revanced.util.getTargetIndexReversed
+import app.revanced.util.getTargetIndexWithReference
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
@@ -74,7 +75,7 @@ object ReturnYouTubeDislikeShortsPatch : BytecodePatch(
         if (SettingsPatch.upward1834) {
             TextComponentSpecFingerprint.result?.let {
                 it.mutableMethod.apply {
-                    val insertIndex = it.scanResult.patternScanResult!!.startIndex
+                    val insertIndex = getTargetIndexWithReference("Landroid/text/SpannableString;->valueOf(Ljava/lang/CharSequence;)Landroid/text/SpannableString;")
 
                     val charSequenceRegister =
                         getInstruction<FiveRegisterInstruction>(insertIndex).registerC
