@@ -10,9 +10,7 @@ import app.revanced.patches.youtube.utils.fix.doublebacktoclose.fingerprint.Scro
 import app.revanced.patches.youtube.utils.fix.doublebacktoclose.fingerprint.ScrollTopParentFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.UTILS_PATH
 import app.revanced.patches.youtube.utils.mainactivity.MainActivityResolvePatch
-import app.revanced.patches.youtube.utils.mainactivity.MainActivityResolvePatch.onBackPressedMethod
 import app.revanced.util.exception
-import com.android.tools.smali.dexlib2.Opcode
 
 @Patch(dependencies = [MainActivityResolvePatch::class])
 object DoubleBackToClosePatch : BytecodePatch(
@@ -21,23 +19,15 @@ object DoubleBackToClosePatch : BytecodePatch(
         ScrollTopParentFingerprint
     )
 ) {
+    private const val INTEGRATIONS_CLASS_DESCRIPTOR =
+        "$UTILS_PATH/DoubleBackToClosePatch;"
+
     override fun execute(context: BytecodeContext) {
 
         /**
          * Hook onBackPressed method inside MainActivity (WatchWhileActivity)
          */
-        onBackPressedMethod.apply {
-            val insertIndex = implementation!!.instructions.indexOfFirst { instruction ->
-                instruction.opcode == Opcode.RETURN_VOID
-            }
-
-            addInstruction(
-                insertIndex,
-                "invoke-static {p0}, $INTEGRATIONS_CLASS_DESCRIPTOR" +
-                        "->" +
-                        "closeActivityOnBackPressed(Landroid/app/Activity;)V"
-            )
-        }
+        MainActivityResolvePatch.injectOnBackPressedMethodCall(INTEGRATIONS_CLASS_DESCRIPTOR, "closeActivityOnBackPressed")
 
 
         /**
@@ -66,9 +56,6 @@ object DoubleBackToClosePatch : BytecodePatch(
         } ?: throw ScrollTopParentFingerprint.exception
 
     }
-
-    private const val INTEGRATIONS_CLASS_DESCRIPTOR =
-        "$UTILS_PATH/DoubleBackToClosePatch;"
 
     private fun MutableMethod.injectScrollView(
         index: Int,

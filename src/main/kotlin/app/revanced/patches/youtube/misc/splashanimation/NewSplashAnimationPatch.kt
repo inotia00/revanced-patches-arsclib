@@ -10,7 +10,7 @@ import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.youtube.misc.splashanimation.fingerprints.WatchWhileActivityWithOutFlagsFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.MISC_PATH
 import app.revanced.patches.youtube.utils.mainactivity.MainActivityResolvePatch
-import app.revanced.patches.youtube.utils.mainactivity.MainActivityResolvePatch.mainActivityClassDef
+import app.revanced.patches.youtube.utils.mainactivity.MainActivityResolvePatch.mainActivityMutableClass
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.DarkSplashAnimation
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
@@ -64,7 +64,7 @@ object NewSplashAnimationPatch : BytecodePatch(emptySet()) {
         "$MISC_PATH/SplashAnimationPatch;"
 
     override fun execute(context: BytecodeContext) {
-        WatchWhileActivityWithOutFlagsFingerprint.resolve(context, mainActivityClassDef)
+        WatchWhileActivityWithOutFlagsFingerprint.resolve(context, mainActivityMutableClass)
 
         /**
          * YouTube v18.28.xx~

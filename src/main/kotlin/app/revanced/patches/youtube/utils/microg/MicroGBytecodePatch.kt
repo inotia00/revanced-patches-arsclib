@@ -8,8 +8,8 @@ import app.revanced.patches.shared.patch.microg.MicroGBytecodeHelper
 import app.revanced.patches.shared.patch.packagename.PackageNamePatch
 import app.revanced.patches.youtube.utils.fix.clientspoof.ClientSpoofPatch
 import app.revanced.patches.youtube.utils.fix.parameter.SpoofPlayerParameterPatch
+import app.revanced.patches.youtube.utils.integrations.Constants.UTILS_PATH
 import app.revanced.patches.youtube.utils.mainactivity.MainActivityResolvePatch
-import app.revanced.patches.youtube.utils.mainactivity.MainActivityResolvePatch.injectInit
 import app.revanced.patches.youtube.utils.microg.Constants.PACKAGE_NAME
 import app.revanced.patches.youtube.utils.microg.fingerprints.CastContextFetchFingerprint
 import app.revanced.patches.youtube.utils.microg.fingerprints.CastDynamiteModuleFingerprint
@@ -36,6 +36,9 @@ object MicroGBytecodePatch : BytecodePatch(
         ServiceCheckFingerprint
     )
 ) {
+    private const val INTEGRATIONS_CLASS_DESCRIPTOR =
+        "$UTILS_PATH/MicroGPatch;"
+
     override fun execute(context: BytecodeContext) {
 
         val packageName = PackageNamePatch.PackageNameYouTube
@@ -66,7 +69,7 @@ object MicroGBytecodePatch : BytecodePatch(
             )
         )
 
-        injectInit("MicroGPatch", "checkAvailability")
+        MainActivityResolvePatch.injectOnCreateMethodCall(INTEGRATIONS_CLASS_DESCRIPTOR, "checkAvailability")
 
     }
 }
