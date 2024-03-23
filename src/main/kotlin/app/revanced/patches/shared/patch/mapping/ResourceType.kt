@@ -7,6 +7,7 @@ enum class ResourceType(val value: String) {
     DIMEN("dimen"),
     DRAWABLE("drawable"),
     ID("id"),
+    INTEGER("integer"),
     LAYOUT("layout"),
     STRING("string"),
     STYLE("style")

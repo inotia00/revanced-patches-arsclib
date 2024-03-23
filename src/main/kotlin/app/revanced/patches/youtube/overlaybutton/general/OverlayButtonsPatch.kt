@@ -8,6 +8,7 @@ import app.revanced.patcher.patch.options.PatchOption.PatchExtensions.booleanPat
 import app.revanced.patches.youtube.overlaybutton.alwaysrepeat.AlwaysRepeatPatch
 import app.revanced.patches.youtube.overlaybutton.download.hook.DownloadButtonHookPatch
 import app.revanced.patches.youtube.overlaybutton.download.pip.DisablePiPPatch
+import app.revanced.patches.youtube.overlaybutton.fullscreen.FullscreenButtonPatch
 import app.revanced.patches.youtube.utils.integrations.Constants.OVERLAY_BUTTONS_PATH
 import app.revanced.patches.youtube.utils.overridespeed.OverrideSpeedHookPatch
 import app.revanced.patches.youtube.utils.playerbutton.PlayerButtonHookPatch
@@ -28,6 +29,7 @@ import org.w3c.dom.Element
         AlwaysRepeatPatch::class,
         DisablePiPPatch::class,
         DownloadButtonHookPatch::class,
+        FullscreenButtonPatch::class,
         OverrideSpeedHookPatch::class,
         PlayerButtonHookPatch::class,
         PlayerControlsPatch::class,

@@ -564,6 +564,7 @@
     <!-- PREFERENCE: OVERLAY_BUTTONS
     <PreferenceScreen android:title="@string/revanced_overlay_button" android:key="overlay_button">
         <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_overlay_button" />
+        <SwitchPreference android:title="@string/revanced_hide_fullscreen_button_title" android:key="revanced_hide_fullscreen_button" android:defaultValue="false" android:summaryOn="@string/revanced_hide_fullscreen_button_summary_on" android:summaryOff="@string/revanced_hide_fullscreen_button_summary_off" />
         <SwitchPreference android:title="@string/revanced_overlay_button_always_repeat_title" android:key="revanced_overlay_button_always_repeat" android:defaultValue="false" android:summary="@string/revanced_overlay_button_always_repeat_summary" />
         <SwitchPreference android:title="@string/revanced_overlay_button_copy_video_url_timestamp_title" android:key="revanced_overlay_button_copy_video_url_timestamp" android:defaultValue="false" android:summary="@string/revanced_overlay_button_copy_video_url_timestamp_summary" />
         <SwitchPreference android:title="@string/revanced_overlay_button_copy_video_url_title" android:key="revanced_overlay_button_copy_video_url" android:defaultValue="false" android:summary="@string/revanced_overlay_button_copy_video_url_summary" />

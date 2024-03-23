@@ -9,6 +9,7 @@ import app.revanced.patches.shared.patch.mapping.ResourceType.COLOR
 import app.revanced.patches.shared.patch.mapping.ResourceType.DIMEN
 import app.revanced.patches.shared.patch.mapping.ResourceType.DRAWABLE
 import app.revanced.patches.shared.patch.mapping.ResourceType.ID
+import app.revanced.patches.shared.patch.mapping.ResourceType.INTEGER
 import app.revanced.patches.shared.patch.mapping.ResourceType.LAYOUT
 import app.revanced.patches.shared.patch.mapping.ResourceType.STRING
 
@@ -42,8 +43,10 @@ object SharedResourceIdPatch : ResourcePatch() {
     var EmojiPickerIcon: Long = -1
     var ExpandButtonDown: Long = -1
     var Fab: Long = -1
+    var FadeDurationFast: Long = -1
     var FilterBarHeight: Long = -1
     var FloatyBarTopMargin: Long = -1
+    var FullScreenButton: Long = -1
     var FullScreenEngagementOverlay: Long = -1
     var FullScreenEngagementPanel: Long = -1
     var HorizontalCardList: Long = -1
@@ -125,8 +128,10 @@ object SharedResourceIdPatch : ResourcePatch() {
         EmojiPickerIcon = find(ID, "emoji_picker_icon")
         ExpandButtonDown = find(LAYOUT, "expand_button_down")
         Fab = find(ID, "fab")
+        FadeDurationFast = find(INTEGER, "fade_duration_fast")
         FilterBarHeight = find(DIMEN, "filter_bar_height")
         FloatyBarTopMargin = find(DIMEN, "floaty_bar_button_top_margin")
+        FullScreenButton = find(ID, "fullscreen_button")
         FullScreenEngagementOverlay = find(LAYOUT, "fullscreen_engagement_overlay")
         FullScreenEngagementPanel = find(ID, "fullscreen_engagement_panel_holder")
         HorizontalCardList = find(LAYOUT, "horizontal_card_list")
