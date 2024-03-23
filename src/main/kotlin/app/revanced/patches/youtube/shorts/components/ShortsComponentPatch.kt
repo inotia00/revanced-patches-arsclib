@@ -1,25 +1,21 @@
-package app.revanced.patches.youtube.shorts.shortscomponent
+package app.revanced.patches.youtube.shorts.components
 
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
+import app.revanced.patcher.fingerprint.MethodFingerprint
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patcher.util.smali.ExternalLabel
-import app.revanced.patches.youtube.shorts.shortscomponent.fingerprints.ShortsCommentFingerprint
-import app.revanced.patches.youtube.shorts.shortscomponent.fingerprints.ShortsDislikeFingerprint
-import app.revanced.patches.youtube.shorts.shortscomponent.fingerprints.ShortsInfoPanelFingerprint
-import app.revanced.patches.youtube.shorts.shortscomponent.fingerprints.ShortsLikeFingerprint
-import app.revanced.patches.youtube.shorts.shortscomponent.fingerprints.ShortsPaidPromotionFingerprint
-import app.revanced.patches.youtube.shorts.shortscomponent.fingerprints.ShortsPivotFingerprint
-import app.revanced.patches.youtube.shorts.shortscomponent.fingerprints.ShortsPivotLegacyFingerprint
-import app.revanced.patches.youtube.shorts.shortscomponent.fingerprints.ShortsRemixFingerprint
-import app.revanced.patches.youtube.shorts.shortscomponent.fingerprints.ShortsShareFingerprint
+import app.revanced.patches.youtube.shorts.components.fingerprints.ShortsButtonFingerprint
+import app.revanced.patches.youtube.shorts.components.fingerprints.ShortsInfoPanelFingerprint
+import app.revanced.patches.youtube.shorts.components.fingerprints.ShortsPaidPromotionFingerprint
+import app.revanced.patches.youtube.shorts.components.fingerprints.ShortsPivotFingerprint
+import app.revanced.patches.youtube.shorts.components.fingerprints.ShortsPivotLegacyFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPONENTS_PATH
 import app.revanced.patches.youtube.utils.integrations.Constants.SHORTS
 import app.revanced.patches.youtube.utils.litho.LithoFilterPatch
@@ -86,15 +82,11 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 @Suppress("unused")
 object ShortsComponentPatch : BytecodePatch(
     setOf(
-        ShortsCommentFingerprint,
-        ShortsDislikeFingerprint,
+        ShortsButtonFingerprint,
         ShortsInfoPanelFingerprint,
-        ShortsLikeFingerprint,
         ShortsPaidPromotionFingerprint,
         ShortsPivotFingerprint,
-        ShortsPivotLegacyFingerprint,
-        ShortsRemixFingerprint,
-        ShortsShareFingerprint,
+        ShortsPivotLegacyFingerprint
     )
 ) {
     override fun execute(context: BytecodeContext) {
@@ -102,59 +94,41 @@ object ShortsComponentPatch : BytecodePatch(
         /**
          * Comment button
          */
-        ShortsCommentFingerprint.result?.let {
-            it.mutableMethod.apply {
-                val insertIndex = getWideLiteralInstructionIndex(RightComment) + 3
-
-                hideButton(insertIndex, 1, "hideShortsPlayerCommentsButton")
-            }
-        } ?: throw ShortsCommentFingerprint.exception
+        ShortsButtonFingerprint.hideButton(RightComment, "hideShortsPlayerCommentsButton", false)
 
         /**
          * Dislike button
          */
-        ShortsDislikeFingerprint.result?.let {
+        ShortsButtonFingerprint.result?.let {
             it.mutableMethod.apply {
-                val insertIndex = getWideLiteralInstructionIndex(ReelRightDislikeIcon)
-                val insertRegister = getInstruction<OneRegisterInstruction>(insertIndex).registerA
+                val constIndex = getWideLiteralInstructionIndex(ReelRightDislikeIcon)
+                val constRegister = getInstruction<OneRegisterInstruction>(constIndex).registerA
 
-                val jumpIndex = getTargetIndex(insertIndex, Opcode.CONST_CLASS) + 2
+                val jumpIndex = getTargetIndex(constIndex, Opcode.CONST_CLASS) + 2
 
                 addInstructionsWithLabels(
-                    insertIndex + 1, """
+                    constIndex + 1, """
                         invoke-static {}, $SHORTS->hideShortsPlayerDislikeButton()Z
-                        move-result v$insertRegister
-                        if-nez v$insertRegister, :hide
-                        const v$insertRegister, $ReelRightDislikeIcon
+                        move-result v$constRegister
+                        if-nez v$constRegister, :hide
+                        const v$constRegister, $ReelRightDislikeIcon
                         """, ExternalLabel("hide", getInstruction(jumpIndex))
                 )
             }
-        } ?: throw ShortsDislikeFingerprint.exception
+        } ?: throw ShortsButtonFingerprint.exception
 
         /**
          * Info panel
          */
-        ShortsInfoPanelFingerprint.result?.let {
-            it.mutableMethod.apply {
-                val insertIndex = getWideLiteralInstructionIndex(ReelPlayerInfoPanel) + 3
-
-                hideButtons(
-                    insertIndex,
-                    1,
-                    "hideShortsPlayerInfoPanel(Landroid/view/ViewGroup;)Landroid/view/ViewGroup;"
-                )
-            }
-        } ?: throw ShortsInfoPanelFingerprint.exception
+        ShortsInfoPanelFingerprint.hideButtons(ReelPlayerInfoPanel, "hideShortsPlayerInfoPanel(Landroid/view/ViewGroup;)Landroid/view/ViewGroup;")
 
         /**
          * Like button
          */
-        ShortsLikeFingerprint.result?.let {
+        ShortsButtonFingerprint.result?.let {
             it.mutableMethod.apply {
                 val insertIndex = getWideLiteralInstructionIndex(ReelRightLikeIcon)
-
                 val insertRegister = getInstruction<OneRegisterInstruction>(insertIndex).registerA
-
                 val jumpIndex = getTargetIndex(insertIndex, Opcode.CONST_CLASS) + 2
 
                 addInstructionsWithLabels(
@@ -166,41 +140,13 @@ object ShortsComponentPatch : BytecodePatch(
                         """, ExternalLabel("hide", getInstruction(jumpIndex))
                 )
             }
-        } ?: throw ShortsLikeFingerprint.exception
+        } ?: throw ShortsButtonFingerprint.exception
 
         /**
          * Paid promotion
          */
-        ShortsPaidPromotionFingerprint.result?.let {
-            it.mutableMethod.apply {
-                val primaryIndex = getWideLiteralInstructionIndex(ReelPlayerBadge) + 3
-                val secondaryIndex = getWideLiteralInstructionIndex(ReelPlayerBadge2) + 3
-
-                if (primaryIndex > secondaryIndex) {
-                    hideButtons(
-                        primaryIndex,
-                        1,
-                        "hideShortsPlayerPaidPromotionBanner(Landroid/view/ViewStub;)Landroid/view/ViewStub;"
-                    )
-                    hideButtons(
-                        secondaryIndex,
-                        1,
-                        "hideShortsPlayerPaidPromotionBanner(Landroid/view/ViewStub;)Landroid/view/ViewStub;"
-                    )
-                } else {
-                    hideButtons(
-                        secondaryIndex,
-                        1,
-                        "hideShortsPlayerPaidPromotionBanner(Landroid/view/ViewStub;)Landroid/view/ViewStub;"
-                    )
-                    hideButtons(
-                        primaryIndex,
-                        1,
-                        "hideShortsPlayerPaidPromotionBanner(Landroid/view/ViewStub;)Landroid/view/ViewStub;"
-                    )
-                }
-            }
-        } ?: throw ShortsPaidPromotionFingerprint.exception
+        ShortsPaidPromotionFingerprint.hideButtons(ReelPlayerBadge, "hideShortsPlayerPaidPromotionBanner(Landroid/view/ViewStub;)Landroid/view/ViewStub;")
+        ShortsPaidPromotionFingerprint.hideButtons(ReelPlayerBadge2, "hideShortsPlayerPaidPromotionBanner(Landroid/view/ViewStub;)Landroid/view/ViewStub;")
 
         /**
          * Pivot button
@@ -224,37 +170,21 @@ object ShortsComponentPatch : BytecodePatch(
         } ?: ShortsPivotFingerprint.result?.let {
             it.mutableMethod.apply {
                 val targetIndex = getWideLiteralInstructionIndex(ReelPivotButton)
-                val insertIndex = getTargetIndexReversed(targetIndex, Opcode.INVOKE_STATIC) + 2
+                val insertIndex = getTargetIndexReversed(targetIndex, Opcode.INVOKE_STATIC) + 1
 
-                hideButtons(
-                    insertIndex,
-                    0,
-                    "hideShortsPlayerPivotButton(Ljava/lang/Object;)Ljava/lang/Object;"
-                )
+                hideButtons(insertIndex, "hideShortsPlayerPivotButton(Ljava/lang/Object;)Ljava/lang/Object;")
             }
         } ?: throw ShortsPivotFingerprint.exception
 
         /**
          * Remix button
          */
-        ShortsRemixFingerprint.result?.let {
-            it.mutableMethod.apply {
-                val insertIndex = getWideLiteralInstructionIndex(ReelDynRemix) - 2
-
-                hideButton(insertIndex, 0, "hideShortsPlayerRemixButton")
-            }
-        } ?: throw ShortsRemixFingerprint.exception
+        ShortsButtonFingerprint.hideButton(ReelDynRemix, "hideShortsPlayerRemixButton", true)
 
         /**
          * Share button
          */
-        ShortsShareFingerprint.result?.let {
-            it.mutableMethod.apply {
-                val insertIndex = getWideLiteralInstructionIndex(ReelDynShare) - 2
-
-                hideButton(insertIndex, 0, "hideShortsPlayerShareButton")
-            }
-        } ?: throw ShortsShareFingerprint.exception
+        ShortsButtonFingerprint.hideButton(ReelDynShare, "hideShortsPlayerShareButton", true)
 
         LithoFilterPatch.addFilter("$COMPONENTS_PATH/ShortsFilter;")
 
@@ -274,28 +204,50 @@ object ShortsComponentPatch : BytecodePatch(
 
     }
 
-    private fun MutableMethod.hideButton(
-        insertIndex: Int,
-        offset: Int,
+    private fun MethodFingerprint.hideButton(
+        id: Long,
+        descriptor: String,
+        reversed: Boolean
+    ) {
+        result?.let {
+            it.mutableMethod.apply {
+                val constIndex = getWideLiteralInstructionIndex(id)
+                val insertIndex = if (reversed)
+                    getTargetIndexReversed(constIndex, Opcode.CHECK_CAST)
+                else
+                    getTargetIndex(constIndex, Opcode.CHECK_CAST)
+                val insertRegister = getInstruction<OneRegisterInstruction>(insertIndex).registerA
+
+                addInstruction(
+                    insertIndex,
+                    "invoke-static {v$insertRegister}, $SHORTS->$descriptor(Landroid/view/View;)V"
+                )
+            }
+        } ?: throw exception
+    }
+
+    private fun MethodFingerprint.hideButtons(
+        id: Long,
         descriptor: String
     ) {
-        val insertRegister = getInstruction<OneRegisterInstruction>(insertIndex).registerA
+        result?.let {
+            it.mutableMethod.apply {
+                val constIndex = getWideLiteralInstructionIndex(id)
+                val insertIndex = getTargetIndex(constIndex, Opcode.CHECK_CAST)
 
-        addInstruction(
-            insertIndex + offset,
-            "invoke-static {v$insertRegister}, $SHORTS->$descriptor(Landroid/view/View;)V"
-        )
+                hideButtons(insertIndex, descriptor)
+            }
+        } ?: throw exception
     }
 
     private fun MutableMethod.hideButtons(
         insertIndex: Int,
-        offset: Int,
         descriptor: String
     ) {
         val insertRegister = getInstruction<OneRegisterInstruction>(insertIndex).registerA
 
         addInstructions(
-            insertIndex + offset, """
+            insertIndex + 1, """
                 invoke-static {v$insertRegister}, $SHORTS->$descriptor
                 move-result-object v$insertRegister
                 """

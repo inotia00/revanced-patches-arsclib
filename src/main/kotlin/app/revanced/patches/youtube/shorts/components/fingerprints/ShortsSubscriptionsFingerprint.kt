@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.shorts.shortscomponent.fingerprints
+package app.revanced.patches.youtube.shorts.components.fingerprints
 
 import app.revanced.patcher.extensions.or
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.ReelPlayerPausedStateButton

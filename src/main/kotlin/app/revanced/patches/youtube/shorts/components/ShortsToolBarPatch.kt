@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.shorts.shortscomponent
+package app.revanced.patches.youtube.shorts.components
 
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
@@ -7,7 +7,7 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patcher.util.smali.ExternalLabel
-import app.revanced.patches.youtube.shorts.shortscomponent.fingerprints.ToolBarBannerFingerprint
+import app.revanced.patches.youtube.shorts.components.fingerprints.ToolBarBannerFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.SHORTS
 import app.revanced.patches.youtube.utils.toolbar.ToolBarHookPatch
 import app.revanced.util.exception

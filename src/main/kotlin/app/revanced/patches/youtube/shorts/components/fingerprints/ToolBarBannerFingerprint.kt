@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.shorts.shortscomponent.fingerprints
+package app.revanced.patches.youtube.shorts.components.fingerprints
 
 import app.revanced.patcher.fingerprint.MethodFingerprint
 import com.android.tools.smali.dexlib2.Opcode

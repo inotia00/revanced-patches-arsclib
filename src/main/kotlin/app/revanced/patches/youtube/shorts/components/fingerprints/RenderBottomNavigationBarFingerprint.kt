@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.shorts.shortscomponent.fingerprints
+package app.revanced.patches.youtube.shorts.components.fingerprints
 
 import app.revanced.patcher.fingerprint.MethodFingerprint
 import com.android.tools.smali.dexlib2.Opcode
@@ -6,10 +6,11 @@ import com.android.tools.smali.dexlib2.Opcode
 object RenderBottomNavigationBarFingerprint : MethodFingerprint(
     returnType = "V",
     opcodes = listOf(
-        Opcode.CHECK_CAST,
-        Opcode.IGET_OBJECT,
         Opcode.CONST_STRING,
-        Opcode.INVOKE_VIRTUAL
+        Opcode.INVOKE_VIRTUAL,
+        Opcode.INVOKE_VIRTUAL,
+        Opcode.MOVE_RESULT,
+        Opcode.IF_NEZ
     ),
-    strings = listOf("r_as")
+    strings = listOf("r_ipl")
 )

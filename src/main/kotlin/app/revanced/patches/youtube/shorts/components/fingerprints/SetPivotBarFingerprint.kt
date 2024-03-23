@@ -1,17 +1,16 @@
-package app.revanced.patches.youtube.shorts.shortscomponent.fingerprints
+package app.revanced.patches.youtube.shorts.components.fingerprints
 
 import app.revanced.patcher.extensions.or
 import app.revanced.patcher.fingerprint.MethodFingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 
-object ShortsSubscriptionsTabletFingerprint : MethodFingerprint(
+object SetPivotBarFingerprint : MethodFingerprint(
     returnType = "V",
     accessFlags = AccessFlags.PRIVATE or AccessFlags.FINAL,
-    parameters = listOf("L", "L", "Z"),
+    parameters = listOf("Z"),
     opcodes = listOf(
-        Opcode.INVOKE_STATIC,
-        Opcode.IGET,
+        Opcode.CHECK_CAST,
         Opcode.IF_EQZ
     )
 )
