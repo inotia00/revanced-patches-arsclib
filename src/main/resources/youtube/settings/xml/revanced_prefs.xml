@@ -652,7 +652,7 @@
         <SwitchPreference android:title="@string/revanced_append_time_stamp_information_type_title" android:key="revanced_append_time_stamp_information_type" android:defaultValue="true" android:summaryOn="@string/revanced_append_time_stamp_information_type_summary_on" android:summaryOff="@string/revanced_append_time_stamp_information_type_summary_off" android:dependency="revanced_append_time_stamp_information" />SETTINGS: APPEND_TIME_STAMP_INFORMATION -->
 
         <!-- SETTINGS: CUSTOM_SEEKBAR_COLOR
-        <SwitchPreference android:title="@string/revanced_enable_custom_seekbar_color_title" android:key="revanced_enable_custom_seekbar_color" android:defaultValue="true" android:summaryOn="@string/revanced_enable_custom_seekbar_color_summary_on" android:summaryOff="@string/revanced_enable_custom_seekbar_color_summary_off" />
+        <SwitchPreference android:title="@string/revanced_enable_custom_seekbar_color_title" android:key="revanced_enable_custom_seekbar_color" android:defaultValue="false" android:summaryOn="@string/revanced_enable_custom_seekbar_color_summary_on" android:summaryOff="@string/revanced_enable_custom_seekbar_color_summary_off" />
         <app.revanced.integrations.youtube.settingsmenu.ResettableEditTextPreference android:title="@string/revanced_custom_seekbar_color_value_title" android:key="revanced_custom_seekbar_color_value" android:summary="@string/revanced_custom_seekbar_color_value_summary" android:defaultValue="#ff0000" android:hint="#ff0000" android:inputType="text" />SETTINGS: CUSTOM_SEEKBAR_COLOR -->
 
         <!-- SETTINGS: ENABLE_NEW_THUMBNAIL_PREVIEW
@@ -755,7 +755,7 @@
         <app.revanced.integrations.youtube.settingsmenu.ResettableEditTextPreference android:title="@string/revanced_custom_playback_speeds_title" android:key="revanced_custom_playback_speeds" android:summary="@string/revanced_custom_playback_speeds_summary" android:defaultValue="0.25\n0.5\n0.75\n1.0\n1.25\n1.5\n1.75\n2.0\n2.25\n2.5" android:inputType="textMultiLine" />SETTINGS: CUSTOM_PLAYBACK_SPEED -->
 
         <!-- SETTINGS: DEFAULT_PLAYBACK_SPEED
-        <SwitchPreference android:title="@string/revanced_enable_save_playback_speed_title" android:key="revanced_enable_save_playback_speed" android:defaultValue="false" android:summaryOn="@string/revanced_enable_save_playback_speed_summary_on" android:summaryOff="@string/revanced_enable_save_playback_speed_summary_off" />SETTINGS: DEFAULT_PLAYBACK_SPEED -->
+        <SwitchPreference android:title="@string/revanced_enable_save_playback_speed_title" android:key="revanced_enable_save_playback_speed" android:defaultValue="true" android:summaryOn="@string/revanced_enable_save_playback_speed_summary_on" android:summaryOff="@string/revanced_enable_save_playback_speed_summary_off" />SETTINGS: DEFAULT_PLAYBACK_SPEED -->
 
         <!-- SETTINGS: DEFAULT_VIDEO_QUALITY
         <SwitchPreference android:title="@string/revanced_enable_save_video_quality_title" android:key="revanced_enable_save_video_quality" android:defaultValue="true" android:summaryOn="@string/revanced_enable_save_video_quality_summary_on" android:summaryOff="@string/revanced_enable_save_video_quality_summary_off" />SETTINGS: DEFAULT_VIDEO_QUALITY -->
