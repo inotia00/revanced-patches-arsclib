@@ -802,14 +802,12 @@ Toca aquí para obtener más información.</string>
 
 Esto cambiará la apariencia de la aplicación, pero pueden producirse efectos secundarios desconocidos
 Si más tarde se desactiva, la antigua interfaz de usuario puede permanecer hasta que se borren los datos de la aplicación"</string>
-    <string name="revanced_spoof_app_version_target_entry_17_08_35">17.08.35 - Restaurar el antiguo diseño de la interfaz de usuario</string>
     <string name="revanced_spoof_app_version_target_entry_17_41_37">17.41.37 - Restaurar la antigua lista de reproducción shelf</string>
     <string name="revanced_spoof_app_version_target_entry_18_05_40">18.05.40 - Restaurar la vieja caja de entrada de comentarios</string>
     <string name="revanced_spoof_app_version_target_entry_18_17_43">18.17.43 - Restaurar el antiguo estilo del panel desplegable del reproductor</string>
     <string name="revanced_spoof_app_version_target_entry_18_33_40">18.33.40 - Restaurar la antigua barra de acción de Shorts</string>
     <string name="revanced_spoof_app_version_target_entry_18_38_45">18.38.45 - Restaurar el comportamiento antiguo de la calidad predeterminada de vídeo</string>
-    <string name="revanced_spoof_app_version_target_entry_18_40_34">"18.40.34 - Desactiva la actualización en tiempo real de vistas y me gusta"</string>
-    <string name="revanced_spoof_app_version_target_entry_18_42_41">18.42.41 - Corrige el problema por el que el tema no se aplica en los resultados de búsqueda</string>
+    <string name="revanced_spoof_app_version_target_entry_18_48_39">"18.48.39 - Desactiva la actualización en tiempo real de vistas y me gusta"</string>
     <string name="revanced_spoof_app_version_target_entry_title">Versión a usar de la aplicación</string>
     <string name="revanced_spoof_app_version_target_summary">Escriba la versión a modificar de la app</string>
     <string name="revanced_spoof_app_version_target_title">Modificar versión de aplicación</string>

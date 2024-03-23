@@ -799,14 +799,12 @@
 
 • Это изменит внешний вид приложения, но могут возникнуть неизвестные проблемы.
 • Если отключить данную опцию после её активации, старый интерфейс может оставаться до тех пор, пока данные приложения не будут очищены."</string>
-    <string name="revanced_spoof_app_version_target_entry_17_08_35">17.08.35 - Восстановить старый интерфейс</string>
     <string name="revanced_spoof_app_version_target_entry_17_41_37">17.41.37 - Восстановить старую секцию плейлистов</string>
     <string name="revanced_spoof_app_version_target_entry_18_05_40">18.05.40 - Восстановить старое поле ввода комментария</string>
     <string name="revanced_spoof_app_version_target_entry_18_17_43">18.17.43 - Вернуть старую выдвижную панель плеера</string>
     <string name="revanced_spoof_app_version_target_entry_18_33_40">18.33.40 - Восстановить старую панель действий в Shorts</string>
     <string name="revanced_spoof_app_version_target_entry_18_38_45">18.38.45 - Восстановить старое поведение качества по умолчанию</string>
-    <string name="revanced_spoof_app_version_target_entry_18_40_34">"18.40.34 - Отключает обновление числа просмотров и отметок \"Нравится\" в реальном времени"</string>
-    <string name="revanced_spoof_app_version_target_entry_18_42_41">18.42.41 - Устраняет проблему, когда тема не применялась в результатах поиска</string>
+    <string name="revanced_spoof_app_version_target_entry_18_48_39">"18.48.39 - Отключает обновление числа просмотров и отметок \"Нравится\" в реальном времени"</string>
     <string name="revanced_spoof_app_version_target_entry_title">Целевая версия приложения при подмене</string>
     <string name="revanced_spoof_app_version_target_summary">Введите целевую версию приложения для подмены.</string>
     <string name="revanced_spoof_app_version_target_title">Изменить значение подмены версии</string>

@@ -800,13 +800,12 @@ DeArrow の詳細については、ここをタップしてください。"</str
 • アプリの外観が変わりますが、未知の問題が発生する場合があります。
 • 後からこの機能を無効にしても、アプリのデータを消去するまで古い UI のままになる場合があります。
 "</string>
-    <string name="revanced_spoof_app_version_target_entry_17_08_35">17.08.35 - 古い UI レイアウトを復元</string>
     <string name="revanced_spoof_app_version_target_entry_17_41_37">17.41.37 - 古い再生リスト欄を復元</string>
     <string name="revanced_spoof_app_version_target_entry_18_05_40">18.05.40 - 古いコメント入力ボックスを復元</string>
     <string name="revanced_spoof_app_version_target_entry_18_17_43">18.17.43 - 古いプレーヤーフライアウトパネルを復元</string>
     <string name="revanced_spoof_app_version_target_entry_18_33_40">18.33.40 - 古いショートのアクションバーを復元</string>
     <string name="revanced_spoof_app_version_target_entry_18_38_45">18.38.45 - 以前のデフォルトの画質の動作を復元</string>
-    <string name="revanced_spoof_app_version_target_entry_18_40_34">"18.40.34 - リアルタイムでの視聴回数と高評価の更新を無効化"</string>
+    <string name="revanced_spoof_app_version_target_entry_18_48_39">"18.48.39 - リアルタイムでの視聴回数と高評価の更新を無効化"</string>
     <string name="revanced_spoof_app_version_target_entry_title">偽装するバージョンの選択</string>
     <string name="revanced_spoof_app_version_target_summary">偽装するバージョンを入力してください。</string>
     <string name="revanced_spoof_app_version_target_title">偽装するアプリバージョンの編集</string>

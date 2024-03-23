@@ -795,14 +795,12 @@ Cela ne contourne pas la restriction d'âge, mais confirme automatiquement."</st
 
 Celle-ci modifiera l'apparence de l'application, mais des effets indésirables inconnus peuvent se produire
 Si elle est désactivée ultérieurement, l'ancienne interface utilisateur peut subsister jusqu'à ce que les données de l'application soient effacées"</string>
-    <string name="revanced_spoof_app_version_target_entry_17_08_35">17.08.35 - Restaure l\'ancienne interface</string>
     <string name="revanced_spoof_app_version_target_entry_17_41_37">17.41.37 - La catégorie \"Playlist\" dans la \"Bibliothèque\" utilise l\'ancienne interface</string>
     <string name="revanced_spoof_app_version_target_entry_18_05_40">18.05.40 - Restaure l\'ancienne interface de saisie commentaire</string>
     <string name="revanced_spoof_app_version_target_entry_18_17_43">18.17.43 - Restaure l\'ancienne interface du lecteur</string>
     <string name="revanced_spoof_app_version_target_entry_18_33_40">18.33.40 - Restaure l\'ancienne barre d\'action Shorts</string>
     <string name="revanced_spoof_app_version_target_entry_18_38_45">18.38.45 - Restaure l\'ancien fonctionnement par défaut de la qualité vidéo</string>
-    <string name="revanced_spoof_app_version_target_entry_18_40_34">"18.40.34 - Désactive les \"vues\" et \"j'aime\" en temps réel"</string>
-    <string name="revanced_spoof_app_version_target_entry_18_42_41">18.42.41 - Correction d\'un problème où le thème n\'est pas appliqué dans les résultats de recherche</string>
+    <string name="revanced_spoof_app_version_target_entry_18_48_39">"18.48.39 - Désactive les \"vues\" et \"j'aime\" en temps réel"</string>
     <string name="revanced_spoof_app_version_target_entry_title">Version cible pour la falsification</string>
     <string name="revanced_spoof_app_version_target_summary">Saisissez la version cible de l\'application à falsifier</string>
     <string name="revanced_spoof_app_version_target_title">Falsifier la version de l\'application</string>

@@ -800,14 +800,12 @@ Ez nem kerüli meg a korhatárt, csak automatikusan elfogadja."</string>
 
 • Ez megváltoztatja az alkalmazás megjelenését, de ismeretlen mellékhatások léphetnek fel.
 • Ha később kikapcsolja, a régi felhasználói felület megmaradhat az alkalmazás adatainak törléséig."</string>
-    <string name="revanced_spoof_app_version_target_entry_17_08_35">17.08.35 - Régi felhasználói felület visszaállítása</string>
     <string name="revanced_spoof_app_version_target_entry_17_41_37">17.41.37 - Régi lejátszási lista polc visszállítása</string>
     <string name="revanced_spoof_app_version_target_entry_18_05_40">18.05.40 - Régi megjegyzési szövegdoboz visszaállítása</string>
     <string name="revanced_spoof_app_version_target_entry_18_17_43">18.17.43 - Régi előugró lejátszói ablak visszaállítása</string>
     <string name="revanced_spoof_app_version_target_entry_18_33_40">18.33.40 - visszaállítja a régi Shorts akció sávot</string>
     <string name="revanced_spoof_app_version_target_entry_18_38_45">18.38.45 - Visszaállítja a régi alapértelmezett videó minőség viselkedést</string>
-    <string name="revanced_spoof_app_version_target_entry_18_40_34">"18.40.34 - Letiltja a 'Megtekintések' és a 'Kedvelések' valós idejű frissítését"</string>
-    <string name="revanced_spoof_app_version_target_entry_18_42_41">18.42.41 – Kijavítja azt a hibát, amely miatt a téma nem érvényesül a keresési eredményekben</string>
+    <string name="revanced_spoof_app_version_target_entry_18_48_39">"18.48.39 - Letiltja a 'Megtekintések' és a 'Kedvelések' valós idejű frissítését"</string>
     <string name="revanced_spoof_app_version_target_entry_title">Hamis alkalmazásverzió</string>
     <string name="revanced_spoof_app_version_target_summary">Írja be a hamis alkalmazásverziót.</string>
     <string name="revanced_spoof_app_version_target_title">Hamis alkalmazás verzió szerkesztése</string>

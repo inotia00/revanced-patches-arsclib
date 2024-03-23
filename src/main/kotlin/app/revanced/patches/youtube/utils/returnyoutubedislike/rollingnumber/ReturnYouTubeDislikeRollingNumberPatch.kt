@@ -42,12 +42,12 @@ object ReturnYouTubeDislikeRollingNumberPatch : BytecodePatch(
 
     override fun execute(context: BytecodeContext) {
         /**
-         * RollingNumber is applied to YouTube v18.41.39+.
+         * RollingNumber is applied to YouTube v18.49.37+.
          *
-         * In order to maintain compatibility with YouTube v18.40.34 or previous versions,
-         * This patch is applied only to the version after YouTube v18.41.39
+         * In order to maintain compatibility with YouTube v18.48.39 or previous versions,
+         * This patch is applied only to the version after YouTube v18.49.37
          */
-        if (SettingsPatch.upward1841) {
+        if (SettingsPatch.upward1849) {
 
             RollingNumberSetterFingerprint.result?.let {
                 it.mutableMethod.apply {
