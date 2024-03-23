@@ -3,7 +3,6 @@ package app.revanced.patches.music.misc.spoofappversion
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
-import app.revanced.patches.music.general.oldstylelibraryshelf.OldStyleLibraryShelfPatch
 import app.revanced.patches.music.utils.integrations.Constants.MISC_PATH
 import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
@@ -15,10 +14,7 @@ import app.revanced.util.copyXmlNode
     name = "Spoof app version",
     description = "Adds options to spoof the YouTube Music client version. " + 
             "This can remove the radio mode restriction in Canadian regions or disable real-time lyrics.",
-    dependencies = [
-        OldStyleLibraryShelfPatch::class,
-        SettingsPatch::class
-    ],
+    dependencies = [SettingsPatch::class],
     compatiblePackages = [
         CompatiblePackage(
             "com.google.android.apps.youtube.music",
