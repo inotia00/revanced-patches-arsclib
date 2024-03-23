@@ -54,6 +54,10 @@ Known issues:
     <string name="revanced_enable_force_minimized_player_title">Enable force minimized player</string>
     <string name="revanced_enable_landscape_mode_summary">Enables landscape mode when rotating the screen on phones.</string>
     <string name="revanced_enable_landscape_mode_title">Enable landscape mode</string>
+    <string name="revanced_enable_mini_player_next_button_summary">Enables next button in the miniplayer.</string>
+    <string name="revanced_enable_mini_player_next_button_title">Enable miniplayer next button</string>
+    <string name="revanced_enable_mini_player_previous_button_summary">Enables previous button in the miniplayer.</string>
+    <string name="revanced_enable_mini_player_previous_button_title">Enable miniplayer previous button</string>
     <string name="revanced_enable_old_player_background_summary">Returns the player background to the old style.</string>
     <string name="revanced_enable_old_player_background_title">Enable old player background</string>
     <string name="revanced_enable_old_player_layout_summary">"Returns the player layout to the old style.

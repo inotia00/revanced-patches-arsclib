@@ -43,6 +43,8 @@ object SharedResourceIdPatch : ResourcePatch() {
     var RemixGenericButtonSize: Long = -1
     var Text1: Long = -1
     var ToolTipContentView: Long = -1
+    var TopEnd: Long = -1
+    var TopStart: Long = -1
     var TosFooter: Long = -1
     var TouchOutside: Long = -1
 
@@ -81,6 +83,8 @@ object SharedResourceIdPatch : ResourcePatch() {
         RemixGenericButtonSize = find(DIMEN, "remix_generic_button_size")
         Text1 = find(ID, "text1")
         ToolTipContentView = find(LAYOUT, "tooltip_content_view")
+        TopEnd = find(ID, "TOP_END")
+        TopStart = find(ID, "TOP_START")
         TosFooter = find(ID, "tos_footer")
         TouchOutside = find(ID, "touch_outside")
 
