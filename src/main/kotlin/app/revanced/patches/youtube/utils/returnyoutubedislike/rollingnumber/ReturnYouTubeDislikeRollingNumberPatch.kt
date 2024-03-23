@@ -18,13 +18,13 @@ import app.revanced.patches.youtube.utils.returnyoutubedislike.rollingnumber.fin
 import app.revanced.patches.youtube.utils.returnyoutubedislike.rollingnumber.fingerprints.RollingNumberTextViewFingerprint
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.util.exception
+import app.revanced.util.getTargetIndexWithMethodReferenceName
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.builder.instruction.BuilderInstruction21c
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
-import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 import com.android.tools.smali.dexlib2.iface.reference.Reference
 
 @Patch(dependencies = [SettingsPatch::class])
@@ -158,10 +158,7 @@ object ReturnYouTubeDislikeRollingNumberPatch : BytecodePatch(
                     realTimeUpdateTextViewMethod
                 ).forEach { insertMethod ->
                     insertMethod.apply {
-                        val setTextIndex =
-                            implementation!!.instructions.indexOfFirst { instruction ->
-                                ((instruction as? ReferenceInstruction)?.reference as? MethodReference)?.name == "setText"
-                            }
+                        val setTextIndex = getTargetIndexWithMethodReferenceName("setText")
                         val textViewRegister =
                             getInstruction<FiveRegisterInstruction>(setTextIndex).registerC
                         val textSpanRegister =

@@ -16,17 +16,14 @@ import app.revanced.patches.youtube.utils.returnyoutubedislike.general.fingerpri
 import app.revanced.patches.youtube.utils.returnyoutubedislike.general.fingerprints.RemoveLikeFingerprint
 import app.revanced.patches.youtube.utils.returnyoutubedislike.general.fingerprints.TextComponentConstructorFingerprint
 import app.revanced.patches.youtube.utils.returnyoutubedislike.general.fingerprints.TextComponentContextFingerprint
-import app.revanced.patches.youtube.utils.returnyoutubedislike.oldlayout.ReturnYouTubeDislikeOldLayoutPatch
 import app.revanced.patches.youtube.utils.returnyoutubedislike.rollingnumber.ReturnYouTubeDislikeRollingNumberPatch
 import app.revanced.patches.youtube.utils.returnyoutubedislike.shorts.ReturnYouTubeDislikeShortsPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.patches.youtube.utils.videoid.general.VideoIdPatch
 import app.revanced.util.exception
-import app.revanced.util.getReference
-import com.android.tools.smali.dexlib2.Opcode
+import app.revanced.util.getTargetIndexWithFieldReferenceType
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
-import com.android.tools.smali.dexlib2.iface.reference.FieldReference
 
 @Patch(
     name = "Return YouTube Dislike",
@@ -34,7 +31,6 @@ import com.android.tools.smali.dexlib2.iface.reference.FieldReference
     dependencies = [
         LithoFilterPatch::class,
         PlayerResponsePatch::class,
-        ReturnYouTubeDislikeOldLayoutPatch::class,
         ReturnYouTubeDislikeRollingNumberPatch::class,
         ReturnYouTubeDislikeShortsPatch::class,
         SettingsPatch::class,
@@ -79,6 +75,12 @@ object ReturnYouTubeDislikePatch : BytecodePatch(
         TextComponentConstructorFingerprint
     )
 ) {
+    private const val INTEGRATIONS_RYD_CLASS_DESCRIPTOR =
+        "$UTILS_PATH/ReturnYouTubeDislikePatch;"
+
+    private const val FILTER_CLASS_DESCRIPTOR =
+        "$COMPONENTS_PATH/ReturnYouTubeDislikeFilterPatch;"
+
     override fun execute(context: BytecodeContext) {
         listOf(
             LikeFingerprint.toPatch(Vote.LIKE),
@@ -103,17 +105,11 @@ object ReturnYouTubeDislikePatch : BytecodePatch(
 
             TextComponentContextFingerprint.result?.let {
                 it.mutableMethod.apply {
-                    val conversionContextFieldIndex = implementation!!.instructions.indexOfFirst { instruction ->
-                        instruction.opcode == Opcode.IGET_OBJECT
-                                && instruction.getReference<FieldReference>()?.type == "Ljava/util/Map;"
-                    } - 1
+                    val conversionContextFieldIndex = getTargetIndexWithFieldReferenceType("Ljava/util/Map;") - 1
                     val conversionContextFieldReference =
                         getInstruction<ReferenceInstruction>(conversionContextFieldIndex).reference
 
-                    val charSequenceIndex = implementation!!.instructions.indexOfFirst { instruction ->
-                        instruction.opcode == Opcode.IGET_OBJECT
-                                && instruction.getReference<FieldReference>()?.type == "Ljava/util/BitSet;"
-                    } - 1
+                    val charSequenceIndex = getTargetIndexWithFieldReferenceType("Ljava/util/BitSet;") - 1
                     val charSequenceRegister = getInstruction<TwoRegisterInstruction>(charSequenceIndex).registerA
                     val freeRegister = getInstruction<TwoRegisterInstruction>(charSequenceIndex).registerB
 
@@ -145,12 +141,6 @@ object ReturnYouTubeDislikePatch : BytecodePatch(
         SettingsPatch.updatePatchStatus("Return YouTube Dislike")
 
     }
-
-    private const val INTEGRATIONS_RYD_CLASS_DESCRIPTOR =
-        "$UTILS_PATH/ReturnYouTubeDislikePatch;"
-
-    private const val FILTER_CLASS_DESCRIPTOR =
-        "$COMPONENTS_PATH/ReturnYouTubeDislikeFilterPatch;"
 
     private fun MethodFingerprint.toPatch(voteKind: Vote) = VotePatch(this, voteKind)
 

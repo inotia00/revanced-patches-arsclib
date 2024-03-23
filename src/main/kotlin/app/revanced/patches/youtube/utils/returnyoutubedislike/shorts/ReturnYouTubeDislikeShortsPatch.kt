@@ -15,6 +15,7 @@ import app.revanced.patches.youtube.utils.returnyoutubedislike.shorts.fingerprin
 import app.revanced.patches.youtube.utils.returnyoutubedislike.shorts.fingerprints.TextComponentSpecFingerprint
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.util.exception
+import app.revanced.util.getTargetIndex
 import app.revanced.util.getTargetIndexReversed
 import app.revanced.util.getTargetIndexWithReference
 import com.android.tools.smali.dexlib2.Opcode
@@ -51,9 +52,7 @@ object ReturnYouTubeDislikeShortsPatch : BytecodePatch(
                 // Check if the hooked TextView object is that of the dislike button.
                 // If RYD is disabled, or the TextView object is not that of the dislike button, the execution flow is not interrupted.
                 // Otherwise, the TextView object is modified, and the execution flow is interrupted to prevent it from being changed afterward.
-                val insertIndex = implementation!!.instructions.indexOfFirst { instruction ->
-                    instruction.opcode == Opcode.CHECK_CAST
-                } + 1
+                val insertIndex = getTargetIndex(Opcode.CHECK_CAST) + 1
 
                 addInstructionsWithLabels(
                     insertIndex, """
