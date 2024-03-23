@@ -2,20 +2,30 @@ package app.revanced.patches.youtube.flyoutpanel.oldqualitylayout
 
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
+import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
+import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.youtube.flyoutpanel.recyclerview.BottomSheetRecyclerViewPatch
 import app.revanced.patches.youtube.utils.fingerprints.QualityMenuViewInflateFingerprint
 import app.revanced.patches.youtube.utils.fingerprints.RecyclerViewTreeObserverFingerprint
+import app.revanced.patches.youtube.utils.fingerprints.VideoQualitySetterFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPONENTS_PATH
 import app.revanced.patches.youtube.utils.integrations.Constants.FLYOUT_PANEL
 import app.revanced.patches.youtube.utils.litho.LithoFilterPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.util.exception
+import app.revanced.util.getReference
+import app.revanced.util.getTargetIndex
+import app.revanced.util.indexOfFirstInstruction
+import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
+import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
+import com.android.tools.smali.dexlib2.iface.reference.FieldReference
 
 @Patch(
     name = "Enable old quality layout",
@@ -62,7 +72,8 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 object OldQualityLayoutPatch : BytecodePatch(
     setOf(
         RecyclerViewTreeObserverFingerprint,
-        QualityMenuViewInflateFingerprint
+        QualityMenuViewInflateFingerprint,
+        VideoQualitySetterFingerprint
     )
 ) {
     override fun execute(context: BytecodeContext) {
@@ -70,6 +81,9 @@ object OldQualityLayoutPatch : BytecodePatch(
         /**
          * Old method
          */
+        val videoQualityClass = VideoQualitySetterFingerprint.result?.mutableMethod?.definingClass
+            ?: throw VideoQualitySetterFingerprint.exception
+
         QualityMenuViewInflateFingerprint.result?.let {
             it.mutableMethod.apply {
                 val insertIndex = it.scanResult.patternScanResult!!.endIndex
@@ -80,6 +94,26 @@ object OldQualityLayoutPatch : BytecodePatch(
                     "invoke-static { v$insertRegister }, $FLYOUT_PANEL->enableOldQualityMenu(Landroid/widget/ListView;)V"
                 )
             }
+            val onItemClickMethod =
+                it.mutableClass.methods.find { method -> method.name == "onItemClick" }
+
+            onItemClickMethod?.apply {
+                val insertIndex = getTargetIndex(Opcode.IGET_OBJECT)
+                val insertRegister = getInstruction<TwoRegisterInstruction>(insertIndex).registerA
+
+                val jumpIndex = indexOfFirstInstruction {
+                    opcode == Opcode.IGET_OBJECT
+                            && this.getReference<FieldReference>()?.type == videoQualityClass
+                }
+
+                addInstructionsWithLabels(
+                    insertIndex, """
+                        invoke-static {}, $FLYOUT_PANEL->enableOldQualityMenu()Z
+                        move-result v$insertRegister
+                        if-nez v$insertRegister, :show
+                        """, ExternalLabel("show", getInstruction(jumpIndex))
+                )
+            } ?: throw PatchException("Failed to find onItemClick method")
         } ?: throw QualityMenuViewInflateFingerprint.exception
 
         /**
