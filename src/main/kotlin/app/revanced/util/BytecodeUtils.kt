@@ -110,6 +110,10 @@ fun Method.containsWideLiteralInstructionIndex(literal: Long) =
 fun Method.containsMethodReferenceNameInstructionIndex(methodName: String) =
     getTargetIndexWithMethodReferenceName(methodName) >= 0
 
+fun Method.containsReferenceInstructionIndex(reference: String) =
+    getTargetIndexWithReference(reference) >= 0
+
+
 /**
  * Traverse the class hierarchy starting from the given root class.
  *
@@ -223,11 +227,17 @@ fun MutableMethod.getTargetIndexWithMethodReferenceNameReversed(startIndex: Int,
     return -1
 }
 
-fun MutableMethod.getTargetIndexWithReference(reference: String)
-= getTargetIndexWithReference(0, reference)
+fun Method.getTargetIndexWithReference(reference: String) = implementation?.let {
+    it.instructions.indexOfFirst { instruction ->
+        (instruction as? ReferenceInstruction)?.reference.toString().contains(reference)
+    }
+} ?: -1
 
-fun MutableMethod.getTargetIndexWithReferenceReversed(reference: String)
-        = getTargetIndexWithReferenceReversed(implementation!!.instructions.size - 1, reference)
+fun MutableMethod.getTargetIndexWithReference(reference: String) =
+    getTargetIndexWithReference(0, reference)
+
+fun MutableMethod.getTargetIndexWithReferenceReversed(reference: String) =
+    getTargetIndexWithReferenceReversed(implementation!!.instructions.size - 1, reference)
 
 fun MutableMethod.getTargetIndexWithReference(startIndex: Int, reference: String) =
     implementation!!.instructions.let {
