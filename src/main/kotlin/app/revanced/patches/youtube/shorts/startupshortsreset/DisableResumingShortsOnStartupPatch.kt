@@ -19,7 +19,7 @@ import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 
 @Patch(
-    name = "Disable shorts on startup",
+    name = "Disable resuming shorts on startup",
     description = "Adds an option to disable the Shorts player from resuming on app startup when Shorts were last being watched.",
     dependencies = [SettingsPatch::class],
     compatiblePackages = [
@@ -53,7 +53,7 @@ import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
     ]
 )
 @Suppress("unused")
-object DisableShortsOnStartupPatch : BytecodePatch(
+object DisableResumingShortsOnStartupPatch : BytecodePatch(
     setOf(UserWasInShortsFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
@@ -72,11 +72,11 @@ object DisableShortsOnStartupPatch : BytecodePatch(
                 addInstructionsWithLabels(
                     targetIndex + 1,
                     """
-                        invoke-static { }, $SHORTS->disableStartupShortsPlayer()Z
+                        invoke-static {}, $SHORTS->disableResumingStartupShortsPlayer()Z
                         move-result v${replaceInstruction.registerA}
-                        if-eqz v${replaceInstruction.registerA}, :show_startup_shorts_player
+                        if-eqz v${replaceInstruction.registerA}, :show
                         return-void
-                        :show_startup_shorts_player
+                        :show
                         iget-object v${replaceInstruction.registerA}, v${replaceInstruction.registerB}, $replaceReference
                         """
                 )
@@ -91,11 +91,11 @@ object DisableShortsOnStartupPatch : BytecodePatch(
             arrayOf(
                 "PREFERENCE: SHORTS_SETTINGS",
                 "SETTINGS: SHORTS_PLAYER_PARENT",
-                "SETTINGS: DISABLE_STARTUP_SHORTS_PLAYER"
+                "SETTINGS: DISABLE_RESUMING_SHORTS_PLAYER"
             )
         )
 
-        SettingsPatch.updatePatchStatus("Disable shorts on startup")
+        SettingsPatch.updatePatchStatus("Disable resuming shorts on startup")
 
     }
 }
