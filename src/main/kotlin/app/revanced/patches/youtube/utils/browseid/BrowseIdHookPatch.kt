@@ -14,6 +14,7 @@ import app.revanced.patches.youtube.utils.litho.LithoFilterPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.util.exception
 import app.revanced.util.getStringInstructionIndex
+import app.revanced.util.getTargetIndex
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.reference.FieldReference
@@ -44,9 +45,7 @@ object BrowseIdHookPatch : BytecodePatch(
 
                 targetClass.methods.find { method -> method.name == "<init>" }
                     ?.apply {
-                        val browseIdFieldIndex = implementation!!.instructions.indexOfFirst { instruction ->
-                            instruction.opcode == Opcode.IPUT_OBJECT
-                        }
+                        val browseIdFieldIndex = getTargetIndex(Opcode.IPUT_OBJECT)
                         val browseIdFieldName =
                             (getInstruction<ReferenceInstruction>(browseIdFieldIndex).reference as FieldReference).name
 

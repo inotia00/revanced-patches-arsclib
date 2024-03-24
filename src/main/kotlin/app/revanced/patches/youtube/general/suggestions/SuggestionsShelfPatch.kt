@@ -7,7 +7,6 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.youtube.general.suggestions.fingerprints.BreakingNewsFingerprint
-import app.revanced.patches.youtube.utils.browseid.BrowseIdHookPatch
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPONENTS_PATH
 import app.revanced.patches.youtube.utils.litho.LithoFilterPatch
 import app.revanced.patches.youtube.utils.navbarindex.NavBarIndexHookPatch
@@ -19,7 +18,6 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
     name = "Hide suggestions shelf",
     description = "Adds an option to hide the suggestions shelf in feed.",
     dependencies = [
-        BrowseIdHookPatch::class,
         LithoFilterPatch::class,
         NavBarIndexHookPatch::class,
         SettingsPatch::class
@@ -64,7 +62,7 @@ object SuggestionsShelfPatch : BytecodePatch(
     override fun execute(context: BytecodeContext) {
 
         /**
-         * Only used to tablet layout and the old UI components.
+         * Only used to tablet layout.
          */
         BreakingNewsFingerprint.result?.let {
             it.mutableMethod.apply {
@@ -87,7 +85,6 @@ object SuggestionsShelfPatch : BytecodePatch(
         SettingsPatch.addPreference(
             arrayOf(
                 "PREFERENCE: GENERAL_SETTINGS",
-                "SETTINGS: GENERAL_EXPERIMENTAL_FLAGS",
                 "SETTINGS: HIDE_SUGGESTIONS_SHELF"
             )
         )
