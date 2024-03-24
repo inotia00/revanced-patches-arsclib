@@ -9,6 +9,7 @@ import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.youtube.flyoutpanel.feed.fingerprints.BottomSheetMenuItemBuilderFingerprint
+import app.revanced.patches.youtube.flyoutpanel.feed.fingerprints.BottomSheetMenuItemBuilderLegacyFingerprint
 import app.revanced.patches.youtube.flyoutpanel.feed.fingerprints.ContextualMenuItemBuilderFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.FLYOUT_PANEL
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
@@ -60,6 +61,7 @@ import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 object FeedFlyoutPanelPatch : BytecodePatch(
     setOf(
         BottomSheetMenuItemBuilderFingerprint,
+        BottomSheetMenuItemBuilderLegacyFingerprint,
         ContextualMenuItemBuilderFingerprint
     )
 ) {
@@ -68,7 +70,11 @@ object FeedFlyoutPanelPatch : BytecodePatch(
         /**
          * Phone
          */
-        BottomSheetMenuItemBuilderFingerprint.result?.let {
+        val bottomSheetMenuItemBuilderResult = BottomSheetMenuItemBuilderLegacyFingerprint.result
+            ?: BottomSheetMenuItemBuilderFingerprint.result
+            ?: throw BottomSheetMenuItemBuilderFingerprint.exception
+
+        bottomSheetMenuItemBuilderResult.let {
             it.mutableMethod.apply {
                 val targetIndex = it.scanResult.patternScanResult!!.endIndex
                 val targetRegister = getInstruction<OneRegisterInstruction>(targetIndex).registerA
@@ -85,7 +91,7 @@ object FeedFlyoutPanelPatch : BytecodePatch(
                         """
                 )
             }
-        } ?: throw BottomSheetMenuItemBuilderFingerprint.exception
+        }
 
         /**
          * Tablet
