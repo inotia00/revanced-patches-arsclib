@@ -633,6 +633,9 @@ Some components may not be hidden."</string>
     <string name="revanced_hide_shorts_player_subscriptions_button_summary_off">Subscriptions button is shown.</string>
     <string name="revanced_hide_shorts_player_subscriptions_button_summary_on">Subscriptions button is hidden.</string>
     <string name="revanced_hide_shorts_player_subscriptions_button_title">Hide subscriptions button</string>
+    <string name="revanced_hide_shorts_shelf_exception_history_summary_off">Shorts shelves in watch history is hidden.</string>
+    <string name="revanced_hide_shorts_shelf_exception_history_summary_on">Shorts shelves in watch history is shown.</string>
+    <string name="revanced_hide_shorts_shelf_exception_history_title">Show in watch history</string>
     <string name="revanced_hide_shorts_shelf_summary">"Hides Shorts shelves.
 
 Known issue: Official headers in search results will be hidden."</string>

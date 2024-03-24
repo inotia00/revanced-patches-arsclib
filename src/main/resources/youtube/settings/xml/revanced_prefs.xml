@@ -681,7 +681,8 @@
 
         <!-- SETTINGS: HIDE_SHORTS_SHELF
         <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_shorts" />
-        <SwitchPreference android:title="@string/revanced_hide_shorts_shelf_title" android:key="revanced_hide_shorts_shelf" android:defaultValue="true" android:summary="@string/revanced_hide_shorts_shelf_summary" />SETTINGS: HIDE_SHORTS_SHELF -->
+        <SwitchPreference android:title="@string/revanced_hide_shorts_shelf_title" android:key="revanced_hide_shorts_shelf" android:defaultValue="true" android:summary="@string/revanced_hide_shorts_shelf_summary" />
+        <SwitchPreference android:title="@string/revanced_hide_shorts_shelf_exception_history_title" android:key="revanced_hide_shorts_shelf_exception_history" android:defaultValue="false" android:summaryOn="@string/revanced_hide_shorts_shelf_exception_history_summary_on" android:summaryOff="@string/revanced_hide_shorts_shelf_exception_history_summary_off" android:dependency="revanced_hide_shorts_shelf" />SETTINGS: HIDE_SHORTS_SHELF -->
 
         <!-- SETTINGS: SHORTS_PLAYER_PARENT
         <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_shorts_player_title" />SETTINGS: SHORTS_PLAYER_PARENT -->

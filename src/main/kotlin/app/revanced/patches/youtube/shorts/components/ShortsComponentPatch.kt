@@ -16,9 +16,11 @@ import app.revanced.patches.youtube.shorts.components.fingerprints.ShortsInfoPan
 import app.revanced.patches.youtube.shorts.components.fingerprints.ShortsPaidPromotionFingerprint
 import app.revanced.patches.youtube.shorts.components.fingerprints.ShortsPivotFingerprint
 import app.revanced.patches.youtube.shorts.components.fingerprints.ShortsPivotLegacyFingerprint
+import app.revanced.patches.youtube.utils.browseid.BrowseIdHookPatch
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPONENTS_PATH
 import app.revanced.patches.youtube.utils.integrations.Constants.SHORTS
 import app.revanced.patches.youtube.utils.litho.LithoFilterPatch
+import app.revanced.patches.youtube.utils.playertype.PlayerTypeHookPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.ReelDynRemix
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.ReelDynShare
@@ -42,7 +44,9 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
     name = "Hide shorts components",
     description = "Adds options to hide components related to YouTube Shorts.",
     dependencies = [
+        BrowseIdHookPatch::class,
         LithoFilterPatch::class,
+        PlayerTypeHookPatch::class,
         SettingsPatch::class,
         SharedResourceIdPatch::class,
         ShortsNavigationBarPatch::class,
@@ -186,7 +190,8 @@ object ShortsComponentPatch : BytecodePatch(
          */
         ShortsButtonFingerprint.hideButton(ReelDynShare, "hideShortsPlayerShareButton", true)
 
-        LithoFilterPatch.addFilter("$COMPONENTS_PATH/ShortsFilter;")
+        LithoFilterPatch.addFilter("$COMPONENTS_PATH/ShortsButtonFilter;")
+        LithoFilterPatch.addFilter("$COMPONENTS_PATH/ShortsShelfFilter;")
 
         /**
          * Add settings
