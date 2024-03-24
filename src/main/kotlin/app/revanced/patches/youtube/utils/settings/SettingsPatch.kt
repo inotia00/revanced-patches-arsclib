@@ -64,6 +64,17 @@ import java.util.jar.Manifest
 object SettingsPatch : AbstractSettingsResourcePatch(
     "youtube/settings"
 ), Closeable {
+
+    private val THREAD_COUNT = Runtime.getRuntime().availableProcessors()
+    private val threadPoolExecutor = Executors.newFixedThreadPool(THREAD_COUNT)
+
+    internal lateinit var contexts: ResourceContext
+    internal var upward1831: Boolean = false
+    internal var upward1834: Boolean = false
+    internal var upward1839: Boolean = false
+    internal var upward1849: Boolean = false
+    internal var upward1902: Boolean = false
+
     override fun execute(context: ResourceContext) {
         super.execute(context)
         contexts = context
@@ -92,9 +103,10 @@ object SettingsPatch : AbstractSettingsResourcePatch(
                         val playServicesVersion = node.textContent.toInt()
 
                         upward1831 = 233200000 <= playServicesVersion
-                        upward1834 = 233502000 <= playServicesVersion
-                        upward1839 = 234002000 <= playServicesVersion
-                        upward1849 = 235002000 <= playServicesVersion
+                        upward1834 = 233500000 <= playServicesVersion
+                        upward1839 = 234000000 <= playServicesVersion
+                        upward1849 = 235000000 <= playServicesVersion
+                        upward1902 = 240204000 < playServicesVersion
 
                         break
                     }
@@ -154,15 +166,6 @@ object SettingsPatch : AbstractSettingsResourcePatch(
         }
 
     }
-
-    private val THREAD_COUNT = Runtime.getRuntime().availableProcessors()
-    private val threadPoolExecutor = Executors.newFixedThreadPool(THREAD_COUNT)
-
-    internal lateinit var contexts: ResourceContext
-    internal var upward1831: Boolean = false
-    internal var upward1834: Boolean = false
-    internal var upward1839: Boolean = false
-    internal var upward1849: Boolean = false
 
     internal fun addPreference(settingArray: Array<String>) {
         contexts.addPreference(settingArray)

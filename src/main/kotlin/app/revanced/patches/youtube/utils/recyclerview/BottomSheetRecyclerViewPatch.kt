@@ -1,17 +1,24 @@
-package app.revanced.patches.youtube.flyoutpanel.recyclerview
+package app.revanced.patches.youtube.utils.recyclerview
 
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
+import app.revanced.patcher.fingerprint.MethodFingerprintResult
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patches.youtube.flyoutpanel.recyclerview.fingerprints.BottomSheetRecyclerViewBuilderFingerprint
+import app.revanced.patches.youtube.utils.recyclerview.fingerprints.BottomSheetRecyclerViewBuilderFingerprint
+import app.revanced.patches.youtube.utils.recyclerview.fingerprints.RecyclerViewTreeObserverFingerprint
 import app.revanced.util.exception
 import app.revanced.util.getWideLiteralInstructionIndex
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 object BottomSheetRecyclerViewPatch : BytecodePatch(
-    setOf(BottomSheetRecyclerViewBuilderFingerprint)
+    setOf(
+        BottomSheetRecyclerViewBuilderFingerprint,
+        RecyclerViewTreeObserverFingerprint
+    )
 ) {
+    private lateinit var recyclerViewTreeObserverResult: MethodFingerprintResult
+
     override fun execute(context: BytecodeContext) {
 
         /**
@@ -31,6 +38,24 @@ object BottomSheetRecyclerViewPatch : BytecodePatch(
                 )
             }
         } ?: throw BottomSheetRecyclerViewBuilderFingerprint.exception
+
+        recyclerViewTreeObserverResult = RecyclerViewTreeObserverFingerprint.result
+            ?: throw RecyclerViewTreeObserverFingerprint.exception
+
+    }
+
+    fun injectCall(descriptor: String) {
+        recyclerViewTreeObserverResult.let {
+            it.mutableMethod.apply {
+                val insertIndex = it.scanResult.patternScanResult!!.startIndex
+                val recyclerViewRegister = 2
+
+                addInstruction(
+                    insertIndex,
+                    "invoke-static/range { p$recyclerViewRegister .. p$recyclerViewRegister }, $descriptor"
+                )
+            }
+        }
 
     }
 }

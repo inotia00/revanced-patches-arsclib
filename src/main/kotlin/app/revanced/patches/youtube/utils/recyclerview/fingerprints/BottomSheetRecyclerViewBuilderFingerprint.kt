@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.flyoutpanel.recyclerview.fingerprints
+package app.revanced.patches.youtube.utils.recyclerview.fingerprints
 
 import app.revanced.util.fingerprint.LiteralValueFingerprint
 

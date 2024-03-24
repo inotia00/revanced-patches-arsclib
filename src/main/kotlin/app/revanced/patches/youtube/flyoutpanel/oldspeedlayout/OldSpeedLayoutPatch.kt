@@ -11,11 +11,10 @@ import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableField.Companion.toMutable
 import app.revanced.patches.youtube.flyoutpanel.oldspeedlayout.fingerprints.CustomPlaybackSpeedIntegrationsFingerprint
 import app.revanced.patches.youtube.flyoutpanel.oldspeedlayout.fingerprints.PlaybackRateBottomSheetClassFingerprint
-import app.revanced.patches.youtube.flyoutpanel.recyclerview.BottomSheetRecyclerViewPatch
-import app.revanced.patches.youtube.utils.fingerprints.RecyclerViewTreeObserverFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPONENTS_PATH
 import app.revanced.patches.youtube.utils.integrations.Constants.VIDEO_PATH
 import app.revanced.patches.youtube.utils.litho.LithoFilterPatch
+import app.revanced.patches.youtube.utils.recyclerview.BottomSheetRecyclerViewPatch
 import app.revanced.util.exception
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.immutable.ImmutableField
@@ -30,8 +29,7 @@ import com.android.tools.smali.dexlib2.immutable.ImmutableField
 object OldSpeedLayoutPatch : BytecodePatch(
     setOf(
         CustomPlaybackSpeedIntegrationsFingerprint,
-        PlaybackRateBottomSheetClassFingerprint,
-        RecyclerViewTreeObserverFingerprint
+        PlaybackRateBottomSheetClassFingerprint
     )
 ) {
     override fun execute(context: BytecodeContext) {
@@ -91,17 +89,7 @@ object OldSpeedLayoutPatch : BytecodePatch(
         /**
          * New method
          */
-        RecyclerViewTreeObserverFingerprint.result?.let {
-            it.mutableMethod.apply {
-                val insertIndex = it.scanResult.patternScanResult!!.startIndex
-                val recyclerViewRegister = 2
-
-                addInstruction(
-                    insertIndex,
-                    "invoke-static/range { p$recyclerViewRegister .. p$recyclerViewRegister }, $INTEGRATIONS_CLASS_DESCRIPTOR->onFlyoutMenuCreate(Landroid/support/v7/widget/RecyclerView;)V"
-                )
-            }
-        } ?: throw RecyclerViewTreeObserverFingerprint.exception
+        BottomSheetRecyclerViewPatch.injectCall("$INTEGRATIONS_CLASS_DESCRIPTOR->onFlyoutMenuCreate(Landroid/support/v7/widget/RecyclerView;)V")
 
         LithoFilterPatch.addFilter("$COMPONENTS_PATH/PlaybackSpeedMenuFilter;")
 

@@ -9,13 +9,12 @@ import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.smali.ExternalLabel
-import app.revanced.patches.youtube.flyoutpanel.recyclerview.BottomSheetRecyclerViewPatch
 import app.revanced.patches.youtube.utils.fingerprints.QualityMenuViewInflateFingerprint
-import app.revanced.patches.youtube.utils.fingerprints.RecyclerViewTreeObserverFingerprint
 import app.revanced.patches.youtube.utils.fingerprints.VideoQualitySetterFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPONENTS_PATH
 import app.revanced.patches.youtube.utils.integrations.Constants.FLYOUT_PANEL
 import app.revanced.patches.youtube.utils.litho.LithoFilterPatch
+import app.revanced.patches.youtube.utils.recyclerview.BottomSheetRecyclerViewPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.util.exception
@@ -69,7 +68,6 @@ import com.android.tools.smali.dexlib2.iface.reference.FieldReference
 @Suppress("unused")
 object OldQualityLayoutPatch : BytecodePatch(
     setOf(
-        RecyclerViewTreeObserverFingerprint,
         QualityMenuViewInflateFingerprint,
         VideoQualitySetterFingerprint
     )
@@ -117,17 +115,7 @@ object OldQualityLayoutPatch : BytecodePatch(
         /**
          * New method
          */
-        RecyclerViewTreeObserverFingerprint.result?.let {
-            it.mutableMethod.apply {
-                val insertIndex = it.scanResult.patternScanResult!!.startIndex
-                val recyclerViewRegister = 2
-
-                addInstruction(
-                    insertIndex,
-                    "invoke-static/range { p$recyclerViewRegister .. p$recyclerViewRegister }, $FLYOUT_PANEL->onFlyoutMenuCreate(Landroid/support/v7/widget/RecyclerView;)V"
-                )
-            }
-        } ?: throw RecyclerViewTreeObserverFingerprint.exception
+        BottomSheetRecyclerViewPatch.injectCall("$FLYOUT_PANEL->onFlyoutMenuCreate(Landroid/support/v7/widget/RecyclerView;)V")
 
         LithoFilterPatch.addFilter("$COMPONENTS_PATH/VideoQualityMenuFilter;")
 

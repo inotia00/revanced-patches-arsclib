@@ -1,17 +1,26 @@
 package app.revanced.patches.youtube.general.descriptions
 
 import app.revanced.patcher.data.BytecodeContext
+import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
+import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
+import app.revanced.patches.youtube.general.descriptions.fingerprints.TextViewComponentFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPONENTS_PATH
+import app.revanced.patches.youtube.utils.integrations.Constants.GENERAL
 import app.revanced.patches.youtube.utils.litho.LithoFilterPatch
+import app.revanced.patches.youtube.utils.recyclerview.BottomSheetRecyclerViewPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
+import app.revanced.util.exception
+import app.revanced.util.getTargetIndexWithMethodReferenceName
+import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 
 @Patch(
-    name = "Hide description components",
-    description = "Adds an option to hide description components.",
+    name = "Description components",
+    description = "Adds an option to hide or disable description components.",
     dependencies = [
+        BottomSheetRecyclerViewPatch::class,
         LithoFilterPatch::class,
         SettingsPatch::class
     ],
@@ -46,8 +55,37 @@ import app.revanced.patches.youtube.utils.settings.SettingsPatch
     ]
 )
 @Suppress("unused")
-object DescriptionComponentsPatch : BytecodePatch(emptySet()) {
+object DescriptionComponentsPatch : BytecodePatch(
+    setOf(TextViewComponentFingerprint)
+) {
     override fun execute(context: BytecodeContext) {
+
+        if (SettingsPatch.upward1902) {
+            TextViewComponentFingerprint.result?.let {
+                it.mutableMethod.apply {
+                    val insertIndex = getTargetIndexWithMethodReferenceName("setTextIsSelectable")
+                    val insertInstruction = getInstruction<FiveRegisterInstruction>(insertIndex)
+
+                    replaceInstruction(
+                        insertIndex,
+                        "invoke-static {v${insertInstruction.registerC}, v${insertInstruction.registerD}}, " +
+                                "$GENERAL->disableDescriptionInteraction(Landroid/widget/TextView;Z)V"
+                    )
+                }
+            } ?: throw TextViewComponentFingerprint.exception
+
+            BottomSheetRecyclerViewPatch.injectCall("$GENERAL->onDescriptionPanelCreate(Landroid/support/v7/widget/RecyclerView;)V")
+
+            /**
+             * Add settings
+             */
+            SettingsPatch.addPreference(
+                arrayOf(
+                    "SETTINGS: DESCRIPTION_PANEL_INTERACTION"
+                )
+            )
+        }
+
         LithoFilterPatch.addFilter("$COMPONENTS_PATH/DescriptionsFilter;")
 
         /**
@@ -56,11 +94,11 @@ object DescriptionComponentsPatch : BytecodePatch(emptySet()) {
         SettingsPatch.addPreference(
             arrayOf(
                 "PREFERENCE: GENERAL_SETTINGS",
-                "SETTINGS: HIDE_DESCRIPTION_COMPONENTS"
+                "SETTINGS: DESCRIPTION_COMPONENTS"
             )
         )
 
-        SettingsPatch.updatePatchStatus("Hide description components")
+        SettingsPatch.updatePatchStatus("Description components")
 
     }
 }

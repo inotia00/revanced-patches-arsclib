@@ -50,6 +50,9 @@ Tap here to learn more about DeArrow."</string>
     <string name="revanced_append_time_stamp_information_type_summary_off">Append playback speed.</string>
     <string name="revanced_append_time_stamp_information_type_summary_on">Append video quality.</string>
     <string name="revanced_append_time_stamp_information_type_title">Append information type</string>
+    <string name="revanced_always_expand_panel_summary_off">Description panel is expanded manually.</string>
+    <string name="revanced_always_expand_panel_summary_on">Description panel is always expanded.</string>
+    <string name="revanced_always_expand_panel_title">Always expand panel</string>
     <string name="revanced_bottom_player">Bottom player</string>
     <string name="revanced_button_container_title">Button container</string>
     <string name="revanced_bypass_ambient_mode_restrictions_summary_off">Ambient mode is disabled in battery saver mode.</string>
@@ -110,6 +113,11 @@ Note: This feature hasn't been tested."</string>
     <string name="revanced_disable_auto_captions_summary_off">Forced auto captions are enabled.</string>
     <string name="revanced_disable_auto_captions_summary_on">Forced auto captions are disabled.</string>
     <string name="revanced_disable_auto_captions_title">Disable forced auto captions</string>
+    <string name="revanced_disable_description_interaction_summary">"Disables the following interactions when the description panel is expanded:
+
+• Tap to scroll.
+• Tap and hold to select text."</string>
+    <string name="revanced_disable_description_interaction_title">Disable description interaction</string>
     <string name="revanced_disable_default_playback_speed_live_summary_off">Default playback speed is enabled in live stream.</string>
     <string name="revanced_disable_default_playback_speed_live_summary_on">Default playback speed is disabled in live stream.</string>
     <string name="revanced_disable_default_playback_speed_live_title">Disable playback speed in live stream</string>

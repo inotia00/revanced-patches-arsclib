@@ -300,8 +300,12 @@
         <SwitchPreference android:title="@string/revanced_hide_for_you_shelf_title" android:key="revanced_hide_for_you_shelf" android:defaultValue="true" android:summaryOn="@string/revanced_hide_for_you_shelf_summary_on" android:summaryOff="@string/revanced_hide_for_you_shelf_summary_off" />
         <SwitchPreference android:title="@string/revanced_hide_store_tab_title" android:key="revanced_hide_store_tab" android:defaultValue="true" android:summaryOn="@string/revanced_hide_store_tab_summary_on" android:summaryOff="@string/revanced_hide_store_tab_summary_off" />SETTINGS: HIDE_CHANNEL_PROFILE_COMPONENTS -->
 
-        <!-- SETTINGS: HIDE_DESCRIPTION_COMPONENTS
-        <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_description_title" />
+        <!-- SETTINGS: DESCRIPTION_COMPONENTS
+        <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_description_title" />SETTINGS: DESCRIPTION_COMPONENTS -->
+        <!-- SETTINGS: DESCRIPTION_PANEL_INTERACTION
+        <SwitchPreference android:title="@string/revanced_always_expand_panel_title" android:key="revanced_always_expand_panel" android:defaultValue="false" android:summaryOn="@string/revanced_always_expand_panel_summary_on" android:summaryOff="@string/revanced_always_expand_panel_summary_off" />
+        <SwitchPreference android:title="@string/revanced_disable_description_interaction_title" android:key="revanced_disable_description_interaction" android:defaultValue="false" android:summary="@string/revanced_disable_description_interaction_summary" />SETTINGS: DESCRIPTION_PANEL_INTERACTION -->
+        <!-- SETTINGS: DESCRIPTION_COMPONENTS
         <SwitchPreference android:title="@string/revanced_hide_chapters_title" android:key="revanced_hide_chapters" android:defaultValue="false" android:summaryOn="@string/revanced_hide_chapters_summary_on" android:summaryOff="@string/revanced_hide_chapters_summary_off" />
         <SwitchPreference android:title="@string/revanced_hide_game_section_title" android:key="revanced_hide_game_section" android:defaultValue="false" android:summaryOn="@string/revanced_hide_game_section_summary_on" android:summaryOff="@string/revanced_hide_game_section_summary_off" />
         <SwitchPreference android:title="@string/revanced_hide_info_cards_section_title" android:key="revanced_hide_info_cards_section" android:defaultValue="false" android:summaryOn="@string/revanced_hide_info_cards_section_summary_on" android:summaryOff="@string/revanced_hide_info_cards_section_summary_off" />
@@ -309,7 +313,7 @@
         <SwitchPreference android:title="@string/revanced_hide_place_section_title" android:key="revanced_hide_place_section" android:defaultValue="false" android:summaryOn="@string/revanced_hide_place_section_summary_on" android:summaryOff="@string/revanced_hide_place_section_summary_off" />
         <SwitchPreference android:title="@string/revanced_hide_podcast_section_title" android:key="revanced_hide_podcast_section" android:defaultValue="false" android:summaryOn="@string/revanced_hide_podcast_section_summary_on" android:summaryOff="@string/revanced_hide_podcast_section_summary_off" />
         <SwitchPreference android:title="@string/revanced_hide_shopping_links_title" android:key="revanced_hide_shopping_links" android:defaultValue="true" android:summaryOn="@string/revanced_hide_shopping_links_summary_on" android:summaryOff="@string/revanced_hide_shopping_links_summary_off" />
-        <SwitchPreference android:title="@string/revanced_hide_transcript_section_title" android:key="revanced_hide_transcript_section" android:defaultValue="false" android:summaryOn="@string/revanced_hide_transcript_section_summary_on" android:summaryOff="@string/revanced_hide_transcript_section_summary_off" />SETTINGS: HIDE_DESCRIPTION_COMPONENTS -->
+        <SwitchPreference android:title="@string/revanced_hide_transcript_section_title" android:key="revanced_hide_transcript_section" android:defaultValue="false" android:summaryOn="@string/revanced_hide_transcript_section_summary_on" android:summaryOff="@string/revanced_hide_transcript_section_summary_off" />SETTINGS: DESCRIPTION_COMPONENTS -->
 	
     <!-- PREFERENCE: GENERAL_SETTINGS
     </PreferenceScreen>PREFERENCE: GENERAL_SETTINGS -->
@@ -427,6 +431,7 @@
 
             <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_general" />
             <Preference android:title="Change start page" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
+            <Preference android:title="Description components" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="Disable auto captions" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="Enable gradient loading screen" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="Enable song search" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
@@ -438,7 +443,6 @@
             <Preference android:title="Hide category bar" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="Hide channel avatar section" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="Hide crowdfunding box" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
-            <Preference android:title="Hide description components" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="Hide floating microphone" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="Hide handle" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="Hide latest videos button" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
