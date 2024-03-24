@@ -8,11 +8,15 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
+import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
+import app.revanced.patcher.util.smali.ExternalLabel
+import app.revanced.patches.youtube.shorts.startupshortsreset.fingerprints.UserWasInShortsABConfigFingerprint
 import app.revanced.patches.youtube.shorts.startupshortsreset.fingerprints.UserWasInShortsFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.SHORTS
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.util.exception
 import app.revanced.util.getStringInstructionIndex
+import app.revanced.util.getTargetIndex
 import app.revanced.util.getTargetIndexReversed
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
@@ -54,9 +58,35 @@ import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 )
 @Suppress("unused")
 object DisableResumingShortsOnStartupPatch : BytecodePatch(
-    setOf(UserWasInShortsFingerprint)
+    setOf(
+        UserWasInShortsABConfigFingerprint,
+        UserWasInShortsFingerprint
+    )
 ) {
     override fun execute(context: BytecodeContext) {
+
+        UserWasInShortsABConfigFingerprint.result?.let {
+            val insertMethod = context.toMethodWalker(it.method)
+                .nextMethod(it.scanResult.patternScanResult!!.startIndex, true)
+                .getMethod() as MutableMethod
+
+            // This method will only be called for the user being A/B tested.
+            // Presumably a method that processes the ProtoDataStore value (boolean) for the 'user_was_in_shorts' key.
+            insertMethod.apply {
+                val insertIndex = getTargetIndex(Opcode.IGET_OBJECT)
+                val insertRegister = getInstruction<TwoRegisterInstruction>(insertIndex).registerA
+
+                addInstructionsWithLabels(
+                    insertIndex, """
+                        invoke-static {}, $SHORTS->disableResumingStartupShortsPlayer()Z
+                        move-result v$insertRegister
+                        if-eqz v$insertRegister, :show
+                        const/4 v$insertRegister, 0x0
+                        return v$insertRegister
+                        """, ExternalLabel("show", getInstruction(insertIndex))
+                )
+            }
+        } ?: throw UserWasInShortsABConfigFingerprint.exception
 
         UserWasInShortsFingerprint.result?.let {
             it.mutableMethod.apply {
