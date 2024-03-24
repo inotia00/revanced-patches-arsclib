@@ -17,6 +17,7 @@ import app.revanced.patches.youtube.utils.settings.SettingsPatch.contexts
 import app.revanced.patches.youtube.utils.videoid.general.VideoIdPatch
 import app.revanced.patches.youtube.utils.videoid.withoutshorts.VideoIdWithoutShortsPatch
 import app.revanced.patches.youtube.utils.fingerprints.VideoQualitySetterFingerprint
+import app.revanced.patches.youtube.utils.fix.shortsplayback.ShortsPlaybackPatch
 import app.revanced.util.copyXmlNode
 import app.revanced.util.exception
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
@@ -29,6 +30,7 @@ import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
         OverrideSpeedHookPatch::class,
         PlayerTypeHookPatch::class,
         SettingsPatch::class,
+        ShortsPlaybackPatch::class,
         VideoIdPatch::class,
         VideoIdWithoutShortsPatch::class
     ],
