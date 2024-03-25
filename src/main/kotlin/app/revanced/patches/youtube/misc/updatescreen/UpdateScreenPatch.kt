@@ -2,23 +2,18 @@ package app.revanced.patches.youtube.misc.updatescreen
 
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
-import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
-import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.youtube.misc.updatescreen.fingerprints.AppBlockingCheckResultToStringFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.MISC_PATH
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.util.exception
-import com.android.tools.smali.dexlib2.Opcode
-import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.util.MethodUtil
 
 @Patch(
     name = "Disable update screen",
-    description = "Adds an option to disable the \"Update your app\" screen that appears when using an outdated client.",
+    description = "Disable the \"Update your app\" screen that appears when using an outdated client.",
     dependencies = [SettingsPatch::class],
     compatiblePackages = [
         CompatiblePackage(
@@ -62,20 +57,9 @@ object UpdateScreenPatch : BytecodePatch(
             MethodUtil.isConstructor(method)
                     && method.parameters == listOf("Landroid/content/Intent;", "Z")
         }?.addInstructions(
-            1, """
-                invoke-static {}, $INTEGRATIONS_CLASS_DESCRIPTOR->disableUpdateScreen(Landroid/content/Intent;)Landroid/content/Intent;
-                move-result-object p1
-                """
+            1,
+            "const/4 p1, 0x0"
         ) ?: throw AppBlockingCheckResultToStringFingerprint.exception
-
-        /**
-         * Add settings
-         */
-        SettingsPatch.addPreference(
-            arrayOf(
-                "SETTINGS: DISABLE_UPDATE_SCREEN"
-            )
-        )
 
         SettingsPatch.updatePatchStatus("Disable update screen")
     }
