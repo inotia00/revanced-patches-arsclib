@@ -131,7 +131,16 @@ object SwipeControlsPatch : BytecodePatch(
                         """, ExternalLabel("default", getInstruction(0))
                 )
             }
-        } ?: throw HDRBrightnessFingerprint.exception
+
+            /**
+             * Add settings
+             */
+            SettingsPatch.addPreference(
+                arrayOf(
+                    "SETTINGS: DISABLE_HDR_BRIGHTNESS"
+                )
+            )
+        }
 
         /**
          * Add settings
