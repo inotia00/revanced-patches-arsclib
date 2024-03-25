@@ -2,24 +2,23 @@ package app.revanced.patches.youtube.player.suggestedvideooverlay
 
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
+import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.youtube.player.suggestedvideooverlay.fingerprints.CoreContainerBuilderFingerprint
+import app.revanced.patches.youtube.player.suggestedvideooverlay.fingerprints.MiniPlayerPlayButtonFingerprint
 import app.revanced.patches.youtube.player.suggestedvideooverlay.fingerprints.TouchAreaOnClickListenerFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.PLAYER
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
-import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.CoreContainer
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.util.exception
-import app.revanced.util.getWideLiteralInstructionIndex
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
-import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
-import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction35c
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 
@@ -69,23 +68,32 @@ object SuggestedVideoOverlayPatch : BytecodePatch(
 ) {
     override fun execute(context: BytecodeContext) {
 
-        CoreContainerBuilderFingerprint.result?.let {
-            it.mutableMethod.apply {
-                val targetIndex = getWideLiteralInstructionIndex(CoreContainer) + 4
-                val targetReference =
-                    getInstruction<ReferenceInstruction>(targetIndex).reference
-
-                if (!targetReference.toString().endsWith("Landroid/view/ViewGroup;"))
-                    throw PatchException("Reference did not match: $targetReference")
-
-                val targetRegister =
-                    getInstruction<TwoRegisterInstruction>(targetIndex).registerA
+        CoreContainerBuilderFingerprint.result?.let { parentResult ->
+            parentResult.mutableMethod.apply {
+                val addOnClickEventListenerIndex = parentResult.scanResult.patternScanResult!!.endIndex - 1
+                val viewRegister = getInstruction<FiveRegisterInstruction>(addOnClickEventListenerIndex).registerC
 
                 addInstruction(
-                    targetIndex,
-                    "invoke-static {v$targetRegister}, $PLAYER->hideSuggestedVideoOverlay(Landroid/view/ViewGroup;)V"
+                    addOnClickEventListenerIndex + 1,
+                    "invoke-static {v$viewRegister}, $PLAYER->hideSuggestedVideoOverlay(Landroid/widget/ImageView;)V"
                 )
             }
+
+            // Resolves fingerprints
+            MiniPlayerPlayButtonFingerprint.resolve(context, parentResult.classDef)
+
+            MiniPlayerPlayButtonFingerprint.result?.let {
+                it.mutableMethod.apply {
+                    addInstructionsWithLabels(
+                        0, """
+                            invoke-static {}, $PLAYER->hideSuggestedVideoOverlay()Z
+                            move-result v0
+                            if-eqz v0, :show
+                            return-void
+                            """, ExternalLabel("show", getInstruction(0))
+                    )
+                }
+            } ?: throw MiniPlayerPlayButtonFingerprint.exception
         } ?: throw CoreContainerBuilderFingerprint.exception
 
         TouchAreaOnClickListenerFingerprint.result?.let {
