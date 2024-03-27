@@ -257,6 +257,11 @@ fun MutableMethod.getTargetIndexWithReferenceReversed(startIndex: Int, reference
     return -1
 }
 
+fun MutableMethod.getWalkerMethod(context: BytecodeContext, index: Int) =
+    context.toMethodWalker(this)
+        .nextMethod(index, true)
+        .getMethod() as MutableMethod
+
 fun BytecodeContext.updatePatchStatus(
     className: String,
     methodName: String
