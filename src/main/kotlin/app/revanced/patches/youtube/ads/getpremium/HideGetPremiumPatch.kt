@@ -5,6 +5,7 @@ import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWith
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.util.smali.ExternalLabel
+import app.revanced.patches.music.utils.integrations.Constants
 import app.revanced.patches.youtube.ads.getpremium.fingerprints.CompactYpcOfferModuleViewFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPONENTS_PATH
 import app.revanced.util.exception
@@ -13,6 +14,9 @@ import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 object HideGetPremiumPatch : BytecodePatch(
     setOf(CompactYpcOfferModuleViewFingerprint)
 ) {
+    private const val FILTER_CLASS_DESCRIPTOR =
+        "$COMPONENTS_PATH/AdsFilter;"
+
     override fun execute(context: BytecodeContext) {
 
         CompactYpcOfferModuleViewFingerprint.result?.let {
@@ -27,7 +31,7 @@ object HideGetPremiumPatch : BytecodePatch(
 
                 addInstructionsWithLabels(
                     startIndex + 2, """
-                        invoke-static {}, $COMPONENTS_PATH/AdsFilter;->hideGetPremium()Z
+                        invoke-static {}, $FILTER_CLASS_DESCRIPTOR->hideGetPremium()Z
                         move-result v$tempRegister
                         if-eqz v$tempRegister, :show
                         const/4 v$measuredWidthRegister, 0x0

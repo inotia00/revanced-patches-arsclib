@@ -7,6 +7,7 @@
         <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_ads" />PREFERENCE: ADS_SETTINGS -->
 
         <!-- SETTINGS: HIDE_GENERAL_ADS
+        <SwitchPreference android:title="@string/revanced_hide_fullscreen_ads_title" android:key="revanced_hide_fullscreen_ads" android:defaultValue="true" android:summaryOn="@string/revanced_hide_fullscreen_ads_summary_on" android:summaryOff="@string/revanced_hide_fullscreen_ads_summary_off" />
         <SwitchPreference android:title="@string/revanced_hide_general_ads_title" android:key="revanced_hide_general_ads" android:defaultValue="true" android:summaryOn="@string/revanced_hide_general_ads_summary_on" android:summaryOff="@string/revanced_hide_general_ads_summary_off" />
         <SwitchPreference android:title="@string/revanced_hide_image_shelf_title" android:key="revanced_hide_image_shelf" android:defaultValue="true" android:summaryOn="@string/revanced_hide_image_shelf_summary_on" android:summaryOff="@string/revanced_hide_image_shelf_summary_off" />
         <SwitchPreference android:title="@string/revanced_hide_merchandise_shelf_title" android:key="revanced_hide_merchandise_shelf" android:defaultValue="true" android:summaryOn="@string/revanced_hide_merchandise_shelf_summary_on" android:summaryOff="@string/revanced_hide_merchandise_shelf_summary_off" />

@@ -12,6 +12,7 @@ import app.revanced.patches.shared.patch.mapping.ResourceType.ID
 import app.revanced.patches.shared.patch.mapping.ResourceType.INTEGER
 import app.revanced.patches.shared.patch.mapping.ResourceType.LAYOUT
 import app.revanced.patches.shared.patch.mapping.ResourceType.STRING
+import app.revanced.patches.shared.patch.mapping.ResourceType.STYLE
 
 @Patch(dependencies = [ResourceMappingPatch::class])
 object SharedResourceIdPatch : ResourcePatch() {
@@ -53,6 +54,7 @@ object SharedResourceIdPatch : ResourcePatch() {
     var InlineTimeBarColorizedBarPlayedColorDark: Long = -1
     var InlineTimeBarPlayedNotHighlightedColor: Long = -1
     var InsetOverlayViewLayout: Long = -1
+    var InterstitialsContainer: Long = -1
     var LiveChatButton: Long = -1
     var MenuItemView: Long = -1
     var MusicAppDeeplinkButtonView: Long = -1
@@ -77,6 +79,7 @@ object SharedResourceIdPatch : ResourcePatch() {
     var Scrubbing: Long = -1
     var SeekUndoEduOverlayStub: Long = -1
     var SettingsBooleanTimeRangeDialog: Long = -1
+    var SlidingDialogAnimation: Long = -1
     var SubtitleMenuSettingsFooterInfo: Long = -1
     var SuggestedAction: Long = -1
     var TabsBarTextTabView: Long = -1
@@ -139,6 +142,7 @@ object SharedResourceIdPatch : ResourcePatch() {
         InlineTimeBarPlayedNotHighlightedColor =
             find(COLOR, "inline_time_bar_played_not_highlighted_color")
         InsetOverlayViewLayout = find(ID, "inset_overlay_view_layout")
+        InterstitialsContainer = find(ID, "interstitials_container")
         LiveChatButton = find(ID, "live_chat_overlay_button")
         MenuItemView = find(ID, "menu_item_view")
         MusicAppDeeplinkButtonView = find(ID, "music_app_deeplink_button_view")
@@ -163,6 +167,7 @@ object SharedResourceIdPatch : ResourcePatch() {
         Scrubbing = find(DIMEN, "vertical_touch_offset_to_enter_fine_scrubbing")
         SeekUndoEduOverlayStub = find(ID, "seek_undo_edu_overlay_stub")
         SettingsBooleanTimeRangeDialog = find(LAYOUT, "setting_boolean_time_range_dialog")
+        SlidingDialogAnimation = find(STYLE, "SlidingDialogAnimation")
         SubtitleMenuSettingsFooterInfo = find(STRING, "subtitle_menu_settings_footer_info")
         SuggestedAction = find(LAYOUT, "suggested_action")
         TabsBarTextTabView = find(ID, "tabs_bar_text_tab_view")

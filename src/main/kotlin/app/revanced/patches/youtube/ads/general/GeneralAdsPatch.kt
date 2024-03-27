@@ -4,6 +4,7 @@ import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
+import app.revanced.patches.youtube.ads.fullscreen.FullscreenAdsPatch
 import app.revanced.patches.youtube.ads.getpremium.HideGetPremiumPatch
 import app.revanced.patches.youtube.utils.fix.doublebacktoclose.DoubleBackToClosePatch
 import app.revanced.patches.youtube.utils.fix.swiperefresh.SwipeRefreshPatch
@@ -20,6 +21,7 @@ import org.w3c.dom.Element
     description = "Adds options to hide general ads.",
     dependencies = [
         DoubleBackToClosePatch::class,
+        FullscreenAdsPatch::class,
         GeneralAdsBytecodePatch::class,
         HideGetPremiumPatch::class,
         LithoFilterPatch::class,
