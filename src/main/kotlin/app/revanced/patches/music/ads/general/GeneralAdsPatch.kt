@@ -102,7 +102,7 @@ object GeneralAdsPatch : BytecodePatch(
         ShowDialogCommandFingerprint.result?.let {
             it.mutableMethod.apply {
                 // In this method, custom dialog is created and shown.
-                // There were no issues despite adding °∞return-void°± to the first index.
+                // There were no issues despite adding ‚Äúreturn-void‚Äù to the first index.
                 //
                 // If an issue occurs due to patching due to server-side changes in the future,
                 // Find the instruction whose name is "show" in [MethodReference] and click the 'AlertDialog.BUTTON_POSITIVE' button.
@@ -195,6 +195,11 @@ object GeneralAdsPatch : BytecodePatch(
         SettingsPatch.addMusicPreference(
             CategoryType.ADS,
             "revanced_hide_music_ads",
+            "true"
+        )
+        SettingsPatch.addMusicPreference(
+            CategoryType.ADS,
+            "revanced_hide_paid_promotion",
             "true"
         )
         SettingsPatch.addMusicPreference(
