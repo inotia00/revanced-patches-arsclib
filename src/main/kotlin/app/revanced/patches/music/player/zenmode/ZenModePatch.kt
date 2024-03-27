@@ -14,6 +14,7 @@ import app.revanced.patches.music.utils.integrations.Constants.PLAYER
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
+import app.revanced.patches.music.utils.videotype.VideoTypeHookPatch
 import app.revanced.util.exception
 import app.revanced.util.getTargetIndex
 import com.android.tools.smali.dexlib2.Opcode
@@ -24,7 +25,8 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
     description = "Adds an option to change the player background to light grey to reduce eye strain.",
     dependencies = [
         SettingsPatch::class,
-        SharedResourceIdPatch::class
+        SharedResourceIdPatch::class,
+        VideoTypeHookPatch::class
     ],
     compatiblePackages = [
         CompatiblePackage(
@@ -96,6 +98,12 @@ object ZenModePatch : BytecodePatch(
             CategoryType.PLAYER,
             "revanced_enable_zen_mode",
             "false"
+        )
+        SettingsPatch.addMusicPreference(
+            CategoryType.PLAYER,
+            "revanced_enable_zen_mode_podcast",
+            "false",
+            "revanced_enable_zen_mode"
         )
 
     }

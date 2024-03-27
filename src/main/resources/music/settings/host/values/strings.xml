@@ -75,6 +75,8 @@ Some features may not work properly in the old player layout."</string>
     <string name="revanced_enable_save_video_quality_title">Enable save video quality</string>
     <string name="revanced_enable_swipe_to_dismiss_mini_player_summary">Enables swipe down to dismiss miniplayer.</string>
     <string name="revanced_enable_swipe_to_dismiss_mini_player_title">Enable swipe to dismiss miniplayer</string>
+    <string name="revanced_enable_zen_mode_podcast_summary">Zen mode is also applied to podcasts.</string>
+    <string name="revanced_enable_zen_mode_podcast_title">Enable zen mode in podcasts</string>
     <string name="revanced_enable_zen_mode_summary">Changes the player background to light grey to reduce eye strain.</string>
     <string name="revanced_enable_zen_mode_title">Enable zen mode</string>
     <string name="revanced_extended_settings_export_as_file">Export settings to file</string>
