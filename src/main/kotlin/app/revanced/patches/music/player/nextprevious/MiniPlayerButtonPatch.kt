@@ -1,16 +1,23 @@
 package app.revanced.patches.music.player.nextprevious
 
 import app.revanced.patcher.data.BytecodeContext
+import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
+import app.revanced.patcher.extensions.or
 import app.revanced.patcher.patch.BytecodePatch
+import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
+import app.revanced.patcher.util.proxy.mutableTypes.MutableField.Companion.toMutable
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
-import app.revanced.patches.music.utils.fingerprints.MiniPlayerConstructorFingerprint
 import app.revanced.patches.music.player.nextprevious.fingerprints.MiniPlayerParentFingerprint
 import app.revanced.patches.music.player.nextprevious.fingerprints.MppWatchWhileLayoutFingerprint
 import app.revanced.patches.music.player.nextprevious.fingerprints.NextButtonVisibilityFingerprint
+import app.revanced.patches.music.player.nextprevious.fingerprints.PlayerPatchConstructorFingerprint
+import app.revanced.patches.music.utils.fingerprints.MiniPlayerConstructorFingerprint
+import app.revanced.patches.music.utils.fingerprints.PendingIntentReceiverFingerprint
 import app.revanced.patches.music.utils.integrations.Constants.PLAYER
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch.MiniPlayerPlayPauseReplayButton
@@ -19,11 +26,17 @@ import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch.TopStar
 import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
 import app.revanced.util.exception
+import app.revanced.util.getStringInstructionIndex
 import app.revanced.util.getTargetIndex
+import app.revanced.util.getTargetIndexReversed
 import app.revanced.util.getWideLiteralInstructionIndex
+import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
+import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
+import com.android.tools.smali.dexlib2.iface.reference.MethodReference
+import com.android.tools.smali.dexlib2.immutable.ImmutableField
 
 @Patch(
     name = "Enable next previous button",
@@ -56,17 +69,31 @@ object MiniPlayerButtonPatch : BytecodePatch(
     setOf(
         MiniPlayerConstructorFingerprint,
         MiniPlayerParentFingerprint,
-        MppWatchWhileLayoutFingerprint
+        MppWatchWhileLayoutFingerprint,
+        PendingIntentReceiverFingerprint,
+        PlayerPatchConstructorFingerprint
     )
 ) {
     private const val NEXT_BUTTON_FIELD_NAME =
         "nextButton"
     private const val PREVIOUS_BUTTON_FIELD_NAME =
         "previousButton"
+    private const val NEXT_BUTTON_CLASS_FIELD_NAME =
+        "nextButtonClass"
+    private const val PREVIOUS_BUTTON_CLASS_FIELD_NAME =
+        "previousButtonClass"
     private const val NEXT_BUTTON_METHOD_NAME =
-        "setNextButtonOnClickListener"
+        "setNextButton"
     private const val PREVIOUS_BUTTON_METHOD_NAME =
+        "setPreviousButton"
+    private const val NEXT_BUTTON_ONCLICK_METHOD_NAME =
+        "setNextButtonOnClickListener"
+    private const val PREVIOUS_BUTTON_ONCLICK_METHOD_NAME =
         "setPreviousButtonOnClickListener"
+    private const val NEXT_BUTTON_INTENT_STRING =
+        "YTM Next"
+    private const val PREVIOUS_BUTTON_INTENT_STRING =
+        "YTM Previous"
 
     private var arrayCount = 1
 
@@ -79,6 +106,10 @@ object MiniPlayerButtonPatch : BytecodePatch(
         val mppWatchWhileLayoutMutableMethod =
             MppWatchWhileLayoutFingerprint.result?.mutableMethod
                 ?: throw MppWatchWhileLayoutFingerprint.exception
+
+        val pendingIntentReceiverMutableMethod =
+            PendingIntentReceiverFingerprint.result?.mutableMethod
+                ?: throw PendingIntentReceiverFingerprint.exception
 
         if (!SettingsPatch.upward0642) {
             MiniPlayerParentFingerprint.result?.let { parentResult ->
@@ -103,10 +134,12 @@ object MiniPlayerButtonPatch : BytecodePatch(
         } else {
             miniPlayerConstructorMutableMethod.setInstanceFieldValue(NEXT_BUTTON_METHOD_NAME, TopStart)
             mppWatchWhileLayoutMutableMethod.setStaticFieldValue(NEXT_BUTTON_FIELD_NAME, TopStart)
+            pendingIntentReceiverMutableMethod.setOnClickListener(context, NEXT_BUTTON_INTENT_STRING, NEXT_BUTTON_ONCLICK_METHOD_NAME, NEXT_BUTTON_CLASS_FIELD_NAME)
         }
 
         miniPlayerConstructorMutableMethod.setInstanceFieldValue(PREVIOUS_BUTTON_METHOD_NAME, TopEnd)
         mppWatchWhileLayoutMutableMethod.setStaticFieldValue(PREVIOUS_BUTTON_FIELD_NAME, TopEnd)
+        pendingIntentReceiverMutableMethod.setOnClickListener(context, PREVIOUS_BUTTON_INTENT_STRING, PREVIOUS_BUTTON_ONCLICK_METHOD_NAME, PREVIOUS_BUTTON_CLASS_FIELD_NAME)
 
         mppWatchWhileLayoutMutableMethod.setViewArray()
 
@@ -121,19 +154,6 @@ object MiniPlayerButtonPatch : BytecodePatch(
             "false"
         )
 
-    }
-
-    private fun MutableMethod.setViewArray() {
-        val miniPlayerPlayPauseReplayButtonIndex = getWideLiteralInstructionIndex(MiniPlayerPlayPauseReplayButton)
-        val invokeStaticIndex = getTargetIndex(miniPlayerPlayPauseReplayButtonIndex, Opcode.INVOKE_STATIC)
-        val viewArrayRegister = getInstruction<FiveRegisterInstruction>(invokeStaticIndex).registerC
-
-        addInstructions(
-            invokeStaticIndex, """
-                invoke-static {v$viewArrayRegister}, $PLAYER->getViewArray([Landroid/view/View;)[Landroid/view/View;
-                move-result-object v$viewArrayRegister
-                """
-        )
     }
 
     private fun MutableMethod.setInstanceFieldValue(
@@ -172,5 +192,68 @@ object MiniPlayerButtonPatch : BytecodePatch(
                 sput-object v$constRegister, $PLAYER->$fieldName:Landroid/view/View;
                 """
         )
+    }
+
+    private fun MutableMethod.setViewArray() {
+        val miniPlayerPlayPauseReplayButtonIndex = getWideLiteralInstructionIndex(MiniPlayerPlayPauseReplayButton)
+        val invokeStaticIndex = getTargetIndex(miniPlayerPlayPauseReplayButtonIndex, Opcode.INVOKE_STATIC)
+        val viewArrayRegister = getInstruction<FiveRegisterInstruction>(invokeStaticIndex).registerC
+
+        addInstructions(
+            invokeStaticIndex, """
+                invoke-static {v$viewArrayRegister}, $PLAYER->getViewArray([Landroid/view/View;)[Landroid/view/View;
+                move-result-object v$viewArrayRegister
+                """
+        )
+    }
+
+    private fun MutableMethod.setOnClickListener(
+        context: BytecodeContext,
+        intentString: String,
+        methodName: String,
+        fieldName: String
+    ) {
+        val startIndex = getStringInstructionIndex(intentString)
+        val onClickIndex = getTargetIndexReversed(startIndex, Opcode.INVOKE_VIRTUAL)
+        val onClickReference = getInstruction<ReferenceInstruction>(onClickIndex).reference
+        val onClickReferenceDefiningClass = (onClickReference as MethodReference).definingClass
+
+        val onClickClass =
+            context.findClass(onClickReferenceDefiningClass)!!.mutableClass
+
+        onClickClass.methods.find { method -> method.name == "<init>" }
+            ?.apply {
+                addInstruction(
+                    implementation!!.instructions.size - 1,
+                    "sput-object p0, $PLAYER->$fieldName:$onClickReferenceDefiningClass"
+                )
+            } ?: throw PatchException("onClickClass not found!")
+
+        PlayerPatchConstructorFingerprint.result?.let {
+            val mutableClass = it.mutableClass
+            mutableClass.methods.find { method -> method.name == methodName }
+                ?.apply {
+                    mutableClass.staticFields.add(
+                        ImmutableField(
+                            definingClass,
+                            fieldName,
+                            onClickReferenceDefiningClass,
+                            AccessFlags.PUBLIC or AccessFlags.STATIC,
+                            null,
+                            annotations,
+                            null
+                        ).toMutable()
+                    )
+                    addInstructionsWithLabels(
+                        0, """
+                            sget-object v0, $PLAYER->$fieldName:$onClickReferenceDefiningClass
+                            if-eqz v0, :ignore
+                            invoke-virtual {v0}, $onClickReference
+                            :ignore
+                            return-void
+                            """
+                    )
+                }
+        } ?: throw PlayerPatchConstructorFingerprint.exception
     }
 }
