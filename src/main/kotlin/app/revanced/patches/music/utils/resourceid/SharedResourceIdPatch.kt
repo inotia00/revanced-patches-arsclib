@@ -26,6 +26,7 @@ object SharedResourceIdPatch : ResourcePatch() {
     var FloatingLayout: Long = -1
     var HistoryMenuItem: Long = -1
     var InlineTimeBarAdBreakMarkerColor: Long = -1
+    var InterstitialsContainer: Long = -1
     var IsTablet: Long = -1
     var LikeDislikeContainer: Long = -1
     var MenuEntry: Long = -1
@@ -41,6 +42,7 @@ object SharedResourceIdPatch : ResourcePatch() {
     var PrivacyTosFooter: Long = -1
     var QualityAuto: Long = -1
     var RemixGenericButtonSize: Long = -1
+    var SlidingDialogAnimation: Long = -1
     var Text1: Long = -1
     var ToolTipContentView: Long = -1
     var TopEnd: Long = -1
@@ -66,6 +68,7 @@ object SharedResourceIdPatch : ResourcePatch() {
         FloatingLayout = find(ID, "floating_layout")
         HistoryMenuItem = find(ID, "history_menu_item")
         InlineTimeBarAdBreakMarkerColor = find(COLOR, "inline_time_bar_ad_break_marker_color")
+        InterstitialsContainer = find(ID, "interstitials_container")
         IsTablet = find(BOOL, "is_tablet")
         LikeDislikeContainer = find(ID, "like_dislike_container")
         MenuEntry = find(LAYOUT, "menu_entry")
@@ -81,6 +84,7 @@ object SharedResourceIdPatch : ResourcePatch() {
         PrivacyTosFooter = find(ID, "privacy_tos_footer")
         QualityAuto = find(STRING, "quality_auto")
         RemixGenericButtonSize = find(DIMEN, "remix_generic_button_size")
+        SlidingDialogAnimation = find(STYLE, "SlidingDialogAnimation")
         Text1 = find(ID, "text1")
         ToolTipContentView = find(LAYOUT, "tooltip_content_view")
         TopEnd = find(ID, "TOP_END")
