@@ -3,6 +3,7 @@ package app.revanced.patches.music.utils.settings
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
+import app.revanced.patches.music.utils.fix.accessibility.AccessibilityNodeInfoPatch
 import app.revanced.patches.music.utils.intenthook.IntentHookPatch
 import app.revanced.patches.music.utils.settings.ResourceUtils.YOUTUBE_MUSIC_SETTINGS_KEY
 import app.revanced.patches.music.utils.settings.ResourceUtils.addMusicPreference
@@ -24,6 +25,7 @@ import java.util.concurrent.TimeUnit
     name = "Settings",
     description = "Adds ReVanced Extended settings to YouTube Music.",
     dependencies = [
+        AccessibilityNodeInfoPatch::class,
         IntentHookPatch::class,
         SettingsBytecodePatch::class
     ],
@@ -49,6 +51,13 @@ import java.util.concurrent.TimeUnit
 object SettingsPatch : AbstractSettingsResourcePatch(
     "music/settings"
 ), Closeable {
+    private val THREAD_COUNT = Runtime.getRuntime().availableProcessors()
+    private val threadPoolExecutor = Executors.newFixedThreadPool(THREAD_COUNT)
+
+    lateinit var contexts: ResourceContext
+    internal var upward0636: Boolean = false
+    internal var upward0642: Boolean = false
+
     override fun execute(context: ResourceContext) {
         contexts = context
 
@@ -141,13 +150,6 @@ object SettingsPatch : AbstractSettingsResourcePatch(
         super.execute(context)
 
     }
-
-    private val THREAD_COUNT = Runtime.getRuntime().availableProcessors()
-    private val threadPoolExecutor = Executors.newFixedThreadPool(THREAD_COUNT)
-
-    lateinit var contexts: ResourceContext
-    internal var upward0636: Boolean = false
-    internal var upward0642: Boolean = false
 
     internal fun addMusicPreference(
         category: CategoryType,
