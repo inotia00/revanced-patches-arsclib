@@ -5,8 +5,7 @@ import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
-import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
-import app.revanced.patches.music.misc.backgroundplay.fingerprints.BackgroundPlaybackParentFingerprint
+import app.revanced.patches.music.misc.backgroundplay.fingerprints.BackgroundPlaybackFingerprint
 import app.revanced.util.exception
 
 @Patch(
@@ -32,17 +31,12 @@ import app.revanced.util.exception
 )
 @Suppress("unused")
 object BackgroundPlayPatch : BytecodePatch(
-    setOf(BackgroundPlaybackParentFingerprint)
+    setOf(BackgroundPlaybackFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
 
-        BackgroundPlaybackParentFingerprint.result?.let {
-            with(
-                context
-                    .toMethodWalker(it.method)
-                    .nextMethod(it.scanResult.patternScanResult!!.startIndex, true)
-                    .getMethod() as MutableMethod
-            ) {
+        BackgroundPlaybackFingerprint.result?.let {
+            it.mutableMethod.apply {
                 addInstructions(
                     0, """
                         const/4 v0, 0x1
@@ -50,7 +44,7 @@ object BackgroundPlayPatch : BytecodePatch(
                         """
                 )
             }
-        } ?: throw BackgroundPlaybackParentFingerprint.exception
+        } ?: throw BackgroundPlaybackFingerprint.exception
 
     }
 }
