@@ -5,8 +5,8 @@ import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
-import app.revanced.patches.shared.fingerprints.tracking.CopyTextEndpointFingerprint
-import app.revanced.patches.shared.patch.tracking.AbstractSanitizeUrlQueryPatch
+import app.revanced.patches.shared.tracking.AbstractSanitizeUrlQueryPatch
+import app.revanced.patches.shared.tracking.fingerprints.CopyTextEndpointFingerprint
 import app.revanced.patches.youtube.misc.tracking.fingerprints.ShareLinkFormatterFingerprint
 import app.revanced.patches.youtube.misc.tracking.fingerprints.SystemShareLinkFormatterFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.MISC_PATH

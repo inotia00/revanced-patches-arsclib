@@ -11,8 +11,7 @@ import kotlin.io.path.exists
 @Patch(
     name = "Settings",
     description = "Adds ReVanced Extended settings to Reddit.",
-    dependencies =
-    [
+    dependencies = [
         IntegrationsPatch::class,
         SettingsBytecodePatch::class
     ],
@@ -27,6 +26,7 @@ import kotlin.io.path.exists
     ],
     requiresIntegrations = true,
 )
+@Suppress("DEPRECATION")
 object SettingsPatch : ResourcePatch() {
     override fun execute(context: ResourceContext) {
 

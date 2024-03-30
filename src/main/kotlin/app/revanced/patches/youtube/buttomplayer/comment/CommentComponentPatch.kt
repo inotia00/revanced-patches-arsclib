@@ -8,12 +8,12 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
+import app.revanced.patches.shared.litho.LithoFilterPatch
 import app.revanced.patches.youtube.buttomplayer.comment.fingerprints.ShortsLiveStreamEmojiPickerOnClickListenerFingerprint
 import app.revanced.patches.youtube.buttomplayer.comment.fingerprints.ShortsLiveStreamEmojiPickerOpacityFingerprint
 import app.revanced.patches.youtube.buttomplayer.comment.fingerprints.ShortsLiveStreamThanksFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.BOTTOM_PLAYER
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPONENTS_PATH
-import app.revanced.patches.youtube.utils.litho.LithoFilterPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.util.exception

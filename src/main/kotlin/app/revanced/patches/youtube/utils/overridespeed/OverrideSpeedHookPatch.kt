@@ -91,7 +91,7 @@ object OverrideSpeedHookPatch : BytecodePatch(
                     ) {
                         addInstruction(
                             this.implementation!!.instructions.size - 1,
-                            "sput p1, $INTEGRATIONS_VIDEO_HELPER_CLASS_DESCRIPTOR->currentSpeed:F"
+                            "sput p1, $INTEGRATIONS_VIDEO_UTILS_CLASS_DESCRIPTOR->currentSpeed:F"
                         )
                     }
                 }
@@ -146,8 +146,8 @@ object OverrideSpeedHookPatch : BytecodePatch(
     private const val INTEGRATIONS_PLAYBACK_SPEED_CLASS_DESCRIPTOR =
         "$VIDEO_PATH/PlaybackSpeedPatch;"
 
-    private const val INTEGRATIONS_VIDEO_HELPER_CLASS_DESCRIPTOR =
-        "$INTEGRATIONS_PATH/utils/VideoHelpers;"
+    private const val INTEGRATIONS_VIDEO_UTILS_CLASS_DESCRIPTOR =
+        "$INTEGRATIONS_PATH/utils/VideoUtils;"
 
     lateinit var playbackSpeedChangedResult: MethodFingerprintResult
 

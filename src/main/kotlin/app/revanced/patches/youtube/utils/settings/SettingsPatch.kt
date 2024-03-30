@@ -3,12 +3,12 @@ package app.revanced.patches.youtube.utils.settings
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
-import app.revanced.patches.shared.patch.mapping.ResourceMappingPatch
-import app.revanced.patches.shared.patch.settings.AbstractSettingsResourcePatch
+import app.revanced.patches.shared.mapping.ResourceMappingPatch
+import app.revanced.patches.shared.settings.AbstractSettingsResourcePatch
 import app.revanced.patches.youtube.utils.integrations.IntegrationsPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.settings.ResourceUtils.addPreference
-import app.revanced.patches.youtube.utils.settings.ResourceUtils.addReVancedPreference
+import app.revanced.patches.youtube.utils.settings.ResourceUtils.addPreferenceFragment
 import app.revanced.patches.youtube.utils.settings.ResourceUtils.updatePatchStatus
 import app.revanced.patches.youtube.utils.settings.ResourceUtils.updatePatchStatusSettings
 import app.revanced.util.ResourceGroup
@@ -60,7 +60,7 @@ import java.util.jar.Manifest
     ],
     requiresIntegrations = true
 )
-@Suppress("unused")
+@Suppress("DEPRECATION", "unused")
 object SettingsPatch : AbstractSettingsResourcePatch(
     "youtube/settings"
 ), Closeable {
@@ -139,7 +139,7 @@ object SettingsPatch : AbstractSettingsResourcePatch(
         /**
          * initialize ReVanced Extended Settings
          */
-        addReVancedPreference("extended_settings")
+        addPreferenceFragment("revanced_extended_settings")
 
         /**
          * remove ReVanced Extended Settings divider
@@ -171,8 +171,8 @@ object SettingsPatch : AbstractSettingsResourcePatch(
         contexts.addPreference(settingArray)
     }
 
-    internal fun addReVancedPreference(key: String) {
-        contexts.addReVancedPreference(key)
+    internal fun addPreferenceFragment(key: String) {
+        contexts.addPreferenceFragment(key)
     }
 
     internal fun updatePatchStatus(patchTitle: String) {

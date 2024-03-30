@@ -6,7 +6,7 @@ import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.music.utils.integrations.Constants.GENERAL
 import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
-import app.revanced.patches.shared.patch.dialog.AbstractRemoveViewerDiscretionDialogPatch
+import app.revanced.patches.shared.dialog.AbstractRemoveViewerDiscretionDialogPatch
 
 @Patch(
     name = "Remove viewer discretion dialog",

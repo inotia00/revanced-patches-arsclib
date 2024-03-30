@@ -5,13 +5,13 @@ import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.music.utils.integrations.Constants.UTILS_PATH
-import app.revanced.patches.shared.patch.litho.LithoThemePatch
+import app.revanced.patches.shared.drawable.DrawableColorPatch
 import org.w3c.dom.Element
 
 @Patch(
     name = "Amoled",
     description = "Applies a pure black theme to some components.",
-    dependencies = [LithoThemePatch::class],
+    dependencies = [DrawableColorPatch::class],
     compatiblePackages = [
         CompatiblePackage(
             "com.google.android.apps.youtube.music",
@@ -34,7 +34,7 @@ import org.w3c.dom.Element
 object AmoledPatch : ResourcePatch() {
     override fun execute(context: ResourceContext) {
 
-        LithoThemePatch.injectCall("$UTILS_PATH/LithoThemePatch;->applyLithoTheme(I)I")
+        DrawableColorPatch.injectCall("$UTILS_PATH/DrawableColorPatch;->getColor(I)I")
 
         context.xmlEditor["res/values/colors.xml"].use { editor ->
             val resourcesNode = editor.file.getElementsByTagName("resources").item(0) as Element

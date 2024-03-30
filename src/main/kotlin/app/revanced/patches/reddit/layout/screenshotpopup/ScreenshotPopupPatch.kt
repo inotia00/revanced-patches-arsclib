@@ -8,6 +8,7 @@ import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.reddit.layout.screenshotpopup.fingerprints.ScreenshotTakenBannerFingerprint
+import app.revanced.patches.reddit.utils.integrations.Constants.PATCHES_PATH
 import app.revanced.patches.reddit.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.reddit.utils.settings.SettingsBytecodePatch.updateSettingsStatus
 import app.revanced.patches.reddit.utils.settings.SettingsPatch
@@ -32,8 +33,7 @@ object ScreenshotPopupPatch : BytecodePatch(
     setOf(ScreenshotTakenBannerFingerprint)
 ) {
     private const val INTEGRATIONS_METHOD_DESCRIPTOR =
-        "Lapp/revanced/integrations/reddit/patches/ScreenshotPopupPatch;" +
-                "->disableScreenshotPopup()Z"
+        "$PATCHES_PATH/ScreenshotPopupPatch;->disableScreenshotPopup()Z"
 
     override fun execute(context: BytecodeContext) {
 
@@ -50,7 +50,7 @@ object ScreenshotPopupPatch : BytecodePatch(
             }
         } ?: throw ScreenshotTakenBannerFingerprint.exception
 
-        updateSettingsStatus("ScreenshotPopup")
+        updateSettingsStatus("enableScreenshotPopup")
 
     }
 }

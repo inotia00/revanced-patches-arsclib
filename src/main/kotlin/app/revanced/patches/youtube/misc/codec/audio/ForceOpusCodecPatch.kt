@@ -3,7 +3,7 @@ package app.revanced.patches.youtube.misc.codec.audio
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
-import app.revanced.patches.shared.patch.opus.AbstractOpusCodecsPatch
+import app.revanced.patches.shared.opus.AbstractOpusCodecsPatch
 import app.revanced.patches.youtube.utils.integrations.Constants.MISC_PATH
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 

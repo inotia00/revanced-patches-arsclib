@@ -91,7 +91,7 @@ object ResourceUtils {
         }
     }
 
-    fun ResourceContext.addReVancedPreference(key: String) {
+    fun ResourceContext.addPreferenceFragment(key: String) {
         val targetClass =
             "com.google.android.apps.youtube.app.settings.videoquality.VideoQualitySettingsActivity"
 
@@ -102,14 +102,14 @@ object ResourceUtils {
                     it.getAttributeNode("android:key")?.let { attribute ->
                         if (attribute.textContent == "@string/about_key" && it.getAttributeNode("app:iconSpaceReserved").textContent == "false") {
                             it.insertNode("Preference", it) {
-                                setAttribute("android:title", "@string/revanced_" + key + "_title")
+                                setAttribute("android:title", "@string/" + key + "_title")
                                 this.appendChild(
                                     ownerDocument.createElement("intent").also { intentNode ->
                                         intentNode.setAttribute(
                                             "android:targetPackage",
                                             targetPackage
                                         )
-                                        intentNode.setAttribute("android:data", key)
+                                        intentNode.setAttribute("android:data", key + "_intent")
                                         intentNode.setAttribute("android:targetClass", targetClass)
                                     })
                             }

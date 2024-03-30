@@ -8,6 +8,7 @@ import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.reddit.layout.subredditdialog.fingerprints.FrequentUpdatesSheetScreenFingerprint
 import app.revanced.patches.reddit.layout.subredditdialog.fingerprints.RedditAlertDialogsFingerprint
+import app.revanced.patches.reddit.utils.integrations.Constants.PATCHES_PATH
 import app.revanced.patches.reddit.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.reddit.utils.resourceid.SharedResourceIdPatch.CancelButton
 import app.revanced.patches.reddit.utils.resourceid.SharedResourceIdPatch.TextAppearanceRedditBaseOldButtonColored
@@ -40,7 +41,7 @@ object RemoveSubRedditDialogPatch : BytecodePatch(
     )
 ) {
     private const val INTEGRATIONS_CLASS_DESCRIPTOR =
-        "Lapp/revanced/integrations/reddit/patches/RemoveSubRedditDialogPatch;"
+        "$PATCHES_PATH/RemoveSubRedditDialogPatch;"
 
     override fun execute(context: BytecodeContext) {
 
@@ -68,7 +69,7 @@ object RemoveSubRedditDialogPatch : BytecodePatch(
             }
         } ?: throw RedditAlertDialogsFingerprint.exception
 
-        updateSettingsStatus("RemoveSubRedditDialog")
+        updateSettingsStatus("enableSubRedditDialog")
 
     }
 }

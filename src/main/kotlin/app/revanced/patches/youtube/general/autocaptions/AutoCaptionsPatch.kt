@@ -3,7 +3,7 @@ package app.revanced.patches.youtube.general.autocaptions
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
-import app.revanced.patches.shared.patch.captions.AbstractAutoCaptionsPatch
+import app.revanced.patches.shared.captions.AbstractAutoCaptionsPatch
 import app.revanced.patches.youtube.utils.integrations.Constants.GENERAL
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.patches.youtube.utils.videoid.general.VideoIdPatch

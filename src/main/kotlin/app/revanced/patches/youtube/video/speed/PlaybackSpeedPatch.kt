@@ -14,8 +14,8 @@ import app.revanced.patches.youtube.utils.integrations.Constants.VIDEO_PATH
 import app.revanced.patches.youtube.utils.overridespeed.OverrideSpeedHookPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.patches.youtube.utils.videocpn.VideoCpnPatch
-import app.revanced.patches.youtube.video.speed.fingerprints.PlaybackSpeedInitializeFingerprint
 import app.revanced.patches.youtube.video.speed.fingerprints.NewPlaybackSpeedChangedFingerprint
+import app.revanced.patches.youtube.video.speed.fingerprints.PlaybackSpeedInitializeFingerprint
 import app.revanced.util.exception
 import app.revanced.util.updatePatchStatus
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction

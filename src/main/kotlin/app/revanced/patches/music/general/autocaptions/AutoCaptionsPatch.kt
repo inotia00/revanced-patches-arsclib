@@ -7,7 +7,7 @@ import app.revanced.patches.music.utils.integrations.Constants.GENERAL
 import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
 import app.revanced.patches.music.video.videoid.VideoIdPatch
-import app.revanced.patches.shared.patch.captions.AbstractAutoCaptionsPatch
+import app.revanced.patches.shared.captions.AbstractAutoCaptionsPatch
 
 @Patch(
     name = "Disable auto captions",

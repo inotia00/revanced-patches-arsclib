@@ -7,6 +7,7 @@ import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.revanced.patcher.fingerprint.MethodFingerprint
+import app.revanced.patcher.fingerprint.MethodFingerprintResult
 import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.util.proxy.mutableTypes.MutableClass
 import app.revanced.patcher.util.proxy.mutableTypes.MutableField
@@ -172,6 +173,33 @@ fun MutableMethod.getTargetIndexReversed(startIndex: Int, opcode: Opcode): Int {
     return -1
 }
 
+fun Method.getTargetIndexWithFieldReferenceName(filedName: String) = implementation?.let {
+    it.instructions.indexOfFirst { instruction ->
+        instruction.getReference<FieldReference>()?.name == filedName
+    }
+} ?: -1
+
+fun MutableMethod.getTargetIndexWithFieldReferenceNameReversed(returnType: String)
+        = getTargetIndexWithFieldReferenceTypeReversed(implementation!!.instructions.size - 1, returnType)
+
+fun MutableMethod.getTargetIndexWithFieldReferenceName(startIndex: Int, filedName: String) =
+    implementation!!.instructions.let {
+        startIndex + it.subList(startIndex, it.size - 1).indexOfFirst { instruction ->
+            instruction.getReference<FieldReference>()?.name == filedName
+        }
+    }
+
+fun MutableMethod.getTargetIndexWithFieldReferenceNameReversed(startIndex: Int, filedName: String): Int {
+    for (index in startIndex downTo 0) {
+        val instruction = getInstruction(index)
+        if (instruction.getReference<FieldReference>()?.name != filedName)
+            continue
+
+        return index
+    }
+    return -1
+}
+
 fun Method.getTargetIndexWithFieldReferenceType(returnType: String) = implementation?.let {
     it.instructions.indexOfFirst { instruction ->
         instruction.getReference<FieldReference>()?.type == returnType
@@ -256,6 +284,9 @@ fun MutableMethod.getTargetIndexWithReferenceReversed(startIndex: Int, reference
     }
     return -1
 }
+
+fun MethodFingerprintResult.getWalkerMethod(context: BytecodeContext, index: Int) =
+    mutableMethod.getWalkerMethod(context, index)
 
 fun MutableMethod.getWalkerMethod(context: BytecodeContext, index: Int) =
     context.toMethodWalker(this)

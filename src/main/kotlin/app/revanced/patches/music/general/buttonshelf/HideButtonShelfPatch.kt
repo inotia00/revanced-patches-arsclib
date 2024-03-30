@@ -5,9 +5,9 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.music.utils.integrations.Constants.COMPONENTS_PATH
-import app.revanced.patches.music.utils.litho.LithoFilterPatch
 import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
+import app.revanced.patches.shared.litho.LithoFilterPatch
 
 @Patch(
     name = "Hide button shelf",

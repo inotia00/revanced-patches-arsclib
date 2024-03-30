@@ -1,12 +1,13 @@
 package app.revanced.patches.youtube.utils.integrations.fingerprints
 
 import app.revanced.patcher.extensions.or
-import app.revanced.patches.shared.patch.integrations.AbstractIntegrationsPatch.IntegrationsFingerprint
+import app.revanced.patches.shared.integrations.BaseIntegrationsPatch.IntegrationsFingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 
 /**
  * For embedded playback.  Likely covers Google Play store and other Google products.
  */
+@Suppress("DEPRECATION")
 object RemoteEmbedFragmentFingerprint : IntegrationsFingerprint(
     accessFlags = AccessFlags.PUBLIC or AccessFlags.CONSTRUCTOR,
     returnType = "V",

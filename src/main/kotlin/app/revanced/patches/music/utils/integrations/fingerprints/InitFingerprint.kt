@@ -1,8 +1,9 @@
 package app.revanced.patches.music.utils.integrations.fingerprints
 
-import app.revanced.patches.shared.patch.integrations.AbstractIntegrationsPatch.IntegrationsFingerprint
+import app.revanced.patches.shared.integrations.BaseIntegrationsPatch.IntegrationsFingerprint
 import com.android.tools.smali.dexlib2.Opcode
 
+@Suppress("DEPRECATION")
 object InitFingerprint : IntegrationsFingerprint(
     returnType = "V",
     parameters = emptyList(),

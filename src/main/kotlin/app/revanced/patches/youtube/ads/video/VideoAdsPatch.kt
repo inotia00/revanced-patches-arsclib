@@ -3,7 +3,7 @@ package app.revanced.patches.youtube.ads.video
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
-import app.revanced.patches.shared.patch.ads.AbstractAdsPatch
+import app.revanced.patches.shared.ads.AbstractAdsPatch
 import app.revanced.patches.youtube.utils.integrations.Constants.ADS_PATH
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 
@@ -43,7 +43,8 @@ import app.revanced.patches.youtube.utils.settings.SettingsPatch
 )
 @Suppress("unused")
 object VideoAdsPatch : AbstractAdsPatch(
-    "$ADS_PATH/VideoAdsPatch;->hideVideoAds()Z"
+    "$ADS_PATH/VideoAdsPatch;",
+    "hideVideoAds"
 ) {
     override fun execute(context: BytecodeContext) {
         super.execute(context)

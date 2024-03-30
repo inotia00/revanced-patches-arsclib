@@ -6,8 +6,8 @@ import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.DomFileEditor
 import app.revanced.patches.music.utils.settings.SettingsPatch
 import app.revanced.util.adoptChild
-import app.revanced.util.insertNode
 import app.revanced.util.doRecursively
+import app.revanced.util.insertNode
 import org.w3c.dom.Element
 import java.io.Closeable
 

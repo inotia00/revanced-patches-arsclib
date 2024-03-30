@@ -5,7 +5,7 @@ import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
-import app.revanced.patches.shared.patch.transformation.BaseTransformInstructionsPatch
+import app.revanced.patches.shared.transformation.BaseTransformInstructionsPatch
 import app.revanced.patches.youtube.utils.integrations.Constants.MISC_PATH
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import com.android.tools.smali.dexlib2.iface.ClassDef

@@ -7,6 +7,7 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.reddit.layout.navigation.fingerprints.BottomNavScreenFingerprint
+import app.revanced.patches.reddit.utils.integrations.Constants.PATCHES_PATH
 import app.revanced.patches.reddit.utils.settings.SettingsBytecodePatch.updateSettingsStatus
 import app.revanced.patches.reddit.utils.settings.SettingsPatch
 import app.revanced.util.exception
@@ -31,8 +32,7 @@ object NavigationButtonsPatch : BytecodePatch(
     setOf(BottomNavScreenFingerprint)
 ) {
     private const val INTEGRATIONS_METHOD_DESCRIPTOR =
-        "Lapp/revanced/integrations/reddit/patches/NavigationButtonsPatch;" +
-                "->hideNavigationButtons(Landroid/view/ViewGroup;)V"
+        "$PATCHES_PATH/NavigationButtonsPatch;->hideNavigationButtons(Landroid/view/ViewGroup;)V"
 
     override fun execute(context: BytecodeContext) {
 
@@ -49,7 +49,7 @@ object NavigationButtonsPatch : BytecodePatch(
             }
         } ?: throw BottomNavScreenFingerprint.exception
 
-        updateSettingsStatus("NavigationButtons")
+        updateSettingsStatus("enableNavigationButtons")
 
     }
 }

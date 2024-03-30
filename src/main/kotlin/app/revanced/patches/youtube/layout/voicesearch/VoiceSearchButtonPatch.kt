@@ -3,7 +3,7 @@ package app.revanced.patches.youtube.layout.voicesearch
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
-import app.revanced.patches.shared.patch.voicesearch.AbstractVoiceSearchButtonPatch
+import app.revanced.patches.shared.voicesearch.AbstractVoiceSearchButtonPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 
 @Patch(

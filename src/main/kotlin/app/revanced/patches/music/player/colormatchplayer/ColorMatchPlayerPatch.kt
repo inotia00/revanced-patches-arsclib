@@ -8,8 +8,8 @@ import app.revanced.patcher.extensions.or
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
-import app.revanced.patches.music.utils.fingerprints.SwitchToggleColorFingerprint
 import app.revanced.patches.music.utils.fingerprints.MiniPlayerConstructorFingerprint
+import app.revanced.patches.music.utils.fingerprints.SwitchToggleColorFingerprint
 import app.revanced.patches.music.utils.integrations.Constants.PLAYER
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch.ColorGrey

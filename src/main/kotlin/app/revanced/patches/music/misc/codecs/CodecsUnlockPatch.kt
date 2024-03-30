@@ -6,7 +6,7 @@ import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.music.utils.integrations.Constants.MISC_PATH
 import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
-import app.revanced.patches.shared.patch.opus.AbstractOpusCodecsPatch
+import app.revanced.patches.shared.opus.AbstractOpusCodecsPatch
 
 @Patch(
     name = "Enable opus codec",

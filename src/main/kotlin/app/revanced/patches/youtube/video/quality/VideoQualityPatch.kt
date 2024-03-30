@@ -8,6 +8,8 @@ import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.youtube.utils.fingerprints.NewVideoQualityChangedFingerprint
+import app.revanced.patches.youtube.utils.fingerprints.VideoQualitySetterFingerprint
+import app.revanced.patches.youtube.utils.fix.shortsplayback.ShortsPlaybackPatch
 import app.revanced.patches.youtube.utils.integrations.Constants.VIDEO_PATH
 import app.revanced.patches.youtube.utils.overridequality.OverrideQualityHookPatch
 import app.revanced.patches.youtube.utils.overridespeed.OverrideSpeedHookPatch
@@ -16,8 +18,6 @@ import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch.contexts
 import app.revanced.patches.youtube.utils.videoid.general.VideoIdPatch
 import app.revanced.patches.youtube.utils.videoid.withoutshorts.VideoIdWithoutShortsPatch
-import app.revanced.patches.youtube.utils.fingerprints.VideoQualitySetterFingerprint
-import app.revanced.patches.youtube.utils.fix.shortsplayback.ShortsPlaybackPatch
 import app.revanced.util.copyXmlNode
 import app.revanced.util.exception
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction

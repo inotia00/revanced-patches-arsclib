@@ -6,9 +6,9 @@ import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
+import app.revanced.patches.shared.litho.LithoFilterPatch
 import app.revanced.patches.youtube.general.suggestions.fingerprints.BreakingNewsFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPONENTS_PATH
-import app.revanced.patches.youtube.utils.litho.LithoFilterPatch
 import app.revanced.patches.youtube.utils.navbarindex.NavBarIndexHookPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.util.exception

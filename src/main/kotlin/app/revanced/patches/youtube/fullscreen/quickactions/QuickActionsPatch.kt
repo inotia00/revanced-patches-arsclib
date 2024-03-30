@@ -4,8 +4,8 @@ import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
+import app.revanced.patches.shared.litho.LithoFilterPatch
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPONENTS_PATH
-import app.revanced.patches.youtube.utils.litho.LithoFilterPatch
 import app.revanced.patches.youtube.utils.quickactions.QuickActionsHookPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 

@@ -6,7 +6,7 @@ import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.patch.options.PatchOption.PatchExtensions.stringPatchOption
 import app.revanced.patches.music.utils.integrations.Constants.LANGUAGE_LIST
-import app.revanced.patches.shared.patch.elements.AbstractRemoveStringsElementsPatch
+import app.revanced.patches.shared.elements.AbstractRemoveStringsElementsPatch
 
 @Patch(
     name = "Custom branding name YouTube Music",

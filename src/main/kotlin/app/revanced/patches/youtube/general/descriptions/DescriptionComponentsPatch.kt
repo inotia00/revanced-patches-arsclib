@@ -6,10 +6,10 @@ import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
+import app.revanced.patches.shared.litho.LithoFilterPatch
 import app.revanced.patches.youtube.general.descriptions.fingerprints.TextViewComponentFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPONENTS_PATH
 import app.revanced.patches.youtube.utils.integrations.Constants.GENERAL
-import app.revanced.patches.youtube.utils.litho.LithoFilterPatch
 import app.revanced.patches.youtube.utils.recyclerview.BottomSheetRecyclerViewPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.util.exception

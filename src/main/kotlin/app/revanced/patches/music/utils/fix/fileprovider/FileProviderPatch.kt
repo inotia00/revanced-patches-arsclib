@@ -8,7 +8,7 @@ import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.music.utils.fix.fileprovider.fingerprints.FileProviderResolverFingerprint
-import app.revanced.patches.shared.patch.packagename.PackageNamePatch
+import app.revanced.patches.shared.packagename.PackageNamePatch
 import app.revanced.util.exception
 
 @Patch(dependencies = [PackageNamePatch::class])

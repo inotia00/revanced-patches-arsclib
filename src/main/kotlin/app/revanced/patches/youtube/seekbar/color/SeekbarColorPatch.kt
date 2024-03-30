@@ -8,7 +8,7 @@ import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
-import app.revanced.patches.shared.patch.litho.LithoThemePatch
+import app.revanced.patches.shared.drawable.DrawableColorPatch
 import app.revanced.patches.youtube.seekbar.color.fingerprints.ControlsOverlayStyleFingerprint
 import app.revanced.patches.youtube.seekbar.color.fingerprints.ShortsSeekbarColorFingerprint
 import app.revanced.patches.youtube.utils.fingerprints.PlayerSeekbarColorFingerprint
@@ -29,7 +29,7 @@ import org.w3c.dom.Element
     name = "Custom seekbar color",
     description = "Adds an option to customize seekbar colors in video players and video thumbnails.",
     dependencies = [
-        LithoThemePatch::class,
+        DrawableColorPatch::class,
         SettingsPatch::class,
         SharedResourceIdPatch::class,
     ],
@@ -99,7 +99,7 @@ object SeekbarColorPatch : BytecodePatch(
             }
         } ?: throw ControlsOverlayStyleFingerprint.exception
 
-        LithoThemePatch.injectCall("$SEEKBAR->getLithoColor(I)I")
+        DrawableColorPatch.injectCall("$SEEKBAR->getColor(I)I")
 
         contexts.xmlEditor["res/drawable/resume_playback_progressbar_drawable.xml"].use {
             val layerList = it.file.getElementsByTagName("layer-list").item(0) as Element

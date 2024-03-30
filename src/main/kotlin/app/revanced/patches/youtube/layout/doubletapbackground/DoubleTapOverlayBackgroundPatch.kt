@@ -3,7 +3,7 @@ package app.revanced.patches.youtube.layout.doubletapbackground
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
-import app.revanced.patches.shared.patch.overlaybackground.AbstractOverlayBackgroundPatch
+import app.revanced.patches.shared.overlaybackground.AbstractOverlayBackgroundPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 
 @Patch(

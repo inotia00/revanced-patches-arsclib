@@ -7,7 +7,7 @@ import app.revanced.patches.music.utils.integrations.Constants.MISC_PATH
 import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
 import app.revanced.patches.music.utils.settings.SettingsPatch.contexts
-import app.revanced.patches.shared.patch.versionspoof.AbstractVersionSpoofPatch
+import app.revanced.patches.shared.versionspoof.AbstractVersionSpoofPatch
 import app.revanced.util.copyXmlNode
 
 @Patch(

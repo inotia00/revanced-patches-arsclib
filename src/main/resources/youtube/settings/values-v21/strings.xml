@@ -75,19 +75,9 @@
 
     <string name="revanced_ryd_settings_title">Return YouTube Dislike</string>
 
-    <string name="revanced_sponsorblock_settings_title">SponsorBlock</string>
+    <string name="revanced_sb_settings_title">SponsorBlock</string>
 
     <string name="revanced_theme_default">Stock</string>
 
-    <string name="sb_about_api">sponsor.ajay.app</string>
-    <string name="sb_skip_button_intro_middle">@string/sb_skip_button_intro_beginning</string>
-    <string name="sb_skip_button_intro_end">@string/sb_skip_button_intro_beginning</string>
-    <string name="sb_skip_button_preview_middle">@string/sb_skip_button_preview_beginning</string>
-    <string name="sb_skip_button_preview_end">@string/sb_skip_button_preview_beginning</string>
-    <string name="sb_skipped_intro_middle">@string/sb_skipped_intro_beginning</string>
-    <string name="sb_skipped_intro_end">@string/sb_skipped_intro_beginning</string>
-    <string name="sb_skipped_preview_middle">@string/sb_skipped_preview_beginning</string>
-    <string name="sb_skipped_preview_end">@string/sb_skipped_preview_beginning</string>
-
-    <string name="sb_stats_loading">@string/aag_widget_loading</string>
+    <string name="revanced_sb_about_api">sponsor.ajay.app</string>
 </resources>

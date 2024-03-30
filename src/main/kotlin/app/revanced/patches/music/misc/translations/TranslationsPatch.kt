@@ -3,7 +3,7 @@ package app.revanced.patches.music.misc.translations
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.music.utils.settings.SettingsPatch
-import app.revanced.patches.shared.patch.translations.AbstractTranslationsPatch
+import app.revanced.patches.shared.translations.AbstractTranslationsPatch
 
 @Patch(
     name = "Translations",

@@ -90,7 +90,7 @@ object OverrideQualityHookPatch : BytecodePatch(
 
                 addInstruction(
                     textIndex + 1,
-                    "sput-object v$textRegister, $INTEGRATIONS_VIDEO_HELPER_CLASS_DESCRIPTOR->currentQuality:Ljava/lang/String;"
+                    "sput-object v$textRegister, $INTEGRATIONS_VIDEO_UTILS_CLASS_DESCRIPTOR->currentQuality:Ljava/lang/String;"
                 )
             }
         } ?: throw VideoQualityTextFingerprint.exception
@@ -99,8 +99,8 @@ object OverrideQualityHookPatch : BytecodePatch(
     private const val INTEGRATIONS_VIDEO_QUALITY_CLASS_DESCRIPTOR =
         "$VIDEO_PATH/VideoQualityPatch;"
 
-    private const val INTEGRATIONS_VIDEO_HELPER_CLASS_DESCRIPTOR =
-        "$INTEGRATIONS_PATH/utils/VideoHelpers;"
+    private const val INTEGRATIONS_VIDEO_UTILS_CLASS_DESCRIPTOR =
+        "$INTEGRATIONS_PATH/utils/VideoUtils;"
 
     private lateinit var QUALITY_CLASS: String
     private lateinit var QUALITY_METHOD: String

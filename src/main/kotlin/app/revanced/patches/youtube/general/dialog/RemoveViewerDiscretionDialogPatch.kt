@@ -3,7 +3,7 @@ package app.revanced.patches.youtube.general.dialog
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
-import app.revanced.patches.shared.patch.dialog.AbstractRemoveViewerDiscretionDialogPatch
+import app.revanced.patches.shared.dialog.AbstractRemoveViewerDiscretionDialogPatch
 import app.revanced.patches.youtube.general.dialog.fingerprints.AgeVerifiedFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.GENERAL
 import app.revanced.patches.youtube.utils.settings.SettingsPatch

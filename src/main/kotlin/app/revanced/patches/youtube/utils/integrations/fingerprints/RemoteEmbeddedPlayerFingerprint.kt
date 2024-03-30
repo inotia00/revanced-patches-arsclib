@@ -1,12 +1,13 @@
 package app.revanced.patches.youtube.utils.integrations.fingerprints
 
 import app.revanced.patcher.extensions.or
-import app.revanced.patches.shared.patch.integrations.AbstractIntegrationsPatch.IntegrationsFingerprint
+import app.revanced.patches.shared.integrations.BaseIntegrationsPatch.IntegrationsFingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 
 /**
  * For embedded playback inside 3rd party android app (such as 3rd party Reddit apps).
  */
+@Suppress("DEPRECATION")
 object RemoteEmbeddedPlayerFingerprint : IntegrationsFingerprint(
     accessFlags = AccessFlags.PRIVATE or AccessFlags.CONSTRUCTOR,
     returnType = "V",

@@ -11,11 +11,11 @@ import app.revanced.patches.music.flyoutpanel.component.fingerprints.SleepTimerF
 import app.revanced.patches.music.flyoutpanel.shared.FlyoutPanelMenuItemPatch
 import app.revanced.patches.music.utils.integrations.Constants.COMPONENTS_PATH
 import app.revanced.patches.music.utils.integrations.Constants.FLYOUT
-import app.revanced.patches.music.utils.litho.LithoFilterPatch
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch.EndButtonsContainer
 import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
+import app.revanced.patches.shared.litho.LithoFilterPatch
 import app.revanced.util.exception
 import app.revanced.util.getTargetIndex
 import app.revanced.util.getWideLiteralInstructionIndex

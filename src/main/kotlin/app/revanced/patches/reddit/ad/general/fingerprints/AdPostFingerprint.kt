@@ -9,10 +9,6 @@ object AdPostFingerprint : MethodFingerprint(
     returnType = "V",
     accessFlags = AccessFlags.PUBLIC or AccessFlags.CONSTRUCTOR,
     opcodes = listOf(
-        Opcode.CONST_STRING,
-        null,
-        Opcode.CONST_STRING,
-        null,
         Opcode.INVOKE_DIRECT,
         Opcode.IPUT_OBJECT
     ),

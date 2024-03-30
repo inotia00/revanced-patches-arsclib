@@ -47,7 +47,7 @@ import app.revanced.util.copyXmlNode
         )
     ]
 )
-@Suppress("unused")
+@Suppress("DEPRECATION", "unused")
 object SponsorBlockPatch : ResourcePatch() {
     private val OutlineIcon by booleanPatchOption(
         key = "OutlineIcon",
@@ -64,13 +64,13 @@ object SponsorBlockPatch : ResourcePatch() {
         arrayOf(
             ResourceGroup(
                 "layout",
-                "inline_sponsor_overlay.xml",
-                "skip_sponsor_button.xml"
+                "revanced_sb_inline_sponsor_overlay.xml",
+                "revanced_sb_skip_sponsor_button.xml"
             ),
             ResourceGroup(
                 "drawable",
-                "ns_bg.xml",
-                "sb_btn_bg.xml"
+                "revanced_sb_new_segment_background.xml",
+                "revanced_sb_skip_sponsor_button_background.xml"
             )
         ).forEach { resourceGroup ->
             context.copyResources("youtube/sponsorblock/shared", resourceGroup)
@@ -80,18 +80,18 @@ object SponsorBlockPatch : ResourcePatch() {
             arrayOf(
                 ResourceGroup(
                     "layout",
-                    "new_segment.xml"
+                    "revanced_sb_new_segment.xml"
                 ),
                 ResourceGroup(
                     "drawable",
-                    "ic_sb_adjust.xml",
-                    "ic_sb_backward.xml",
-                    "ic_sb_compare.xml",
-                    "ic_sb_edit.xml",
-                    "ic_sb_forward.xml",
-                    "ic_sb_logo.xml",
-                    "ic_sb_publish.xml",
-                    "ic_sb_voting.xml"
+                    "revanced_sb_adjust.xml",
+                    "revanced_sb_backward.xml",
+                    "revanced_sb_compare.xml",
+                    "revanced_sb_edit.xml",
+                    "revanced_sb_forward.xml",
+                    "revanced_sb_logo.xml",
+                    "revanced_sb_publish.xml",
+                    "revanced_sb_voting.xml"
                 )
             ).forEach { resourceGroup ->
                 context.copyResources("youtube/sponsorblock/outline", resourceGroup)
@@ -100,16 +100,16 @@ object SponsorBlockPatch : ResourcePatch() {
             arrayOf(
                 ResourceGroup(
                     "layout",
-                    "new_segment.xml"
+                    "revanced_sb_new_segment.xml"
                 ),
                 ResourceGroup(
                     "drawable",
-                    "ic_sb_adjust.xml",
-                    "ic_sb_compare.xml",
-                    "ic_sb_edit.xml",
-                    "ic_sb_logo.xml",
-                    "ic_sb_publish.xml",
-                    "ic_sb_voting.xml"
+                    "revanced_sb_adjust.xml",
+                    "revanced_sb_compare.xml",
+                    "revanced_sb_edit.xml",
+                    "revanced_sb_logo.xml",
+                    "revanced_sb_publish.xml",
+                    "revanced_sb_voting.xml"
                 )
             ).forEach { resourceGroup ->
                 context.copyResources("youtube/sponsorblock/default", resourceGroup)
@@ -125,6 +125,9 @@ object SponsorBlockPatch : ResourcePatch() {
 
         val targetXmlEditor = context.xmlEditor["res/layout/youtube_controls_layout.xml"]
 
+        // voting button id from the voting button view from the youtube_controls_layout.xml host file
+        val votingButtonId = "@+id/revanced_sb_voting_button"
+
         "RelativeLayout".copyXmlNode(
             context.xmlEditor[hostingResourceStream],
             targetXmlEditor
@@ -137,13 +140,10 @@ object SponsorBlockPatch : ResourcePatch() {
                 val view = children.item(i)
 
                 // Replace the attribute for a specific node only
-                if (!(view.hasAttributes() && view.attributes.getNamedItem("android:id").nodeValue.endsWith(
-                        "player_video_heading"
-                    ))
-                ) continue
-
-                // voting button id from the voting button view from the youtube_controls_layout.xml host file
-                val votingButtonId = "@+id/sb_voting_button"
+                if (!view.hasAttributes())
+                    continue
+                if (!view.attributes.getNamedItem("android:id").nodeValue.endsWith("player_video_heading"))
+                    continue
 
                 view.attributes.getNamedItem("android:layout_toStartOf").nodeValue =
                     votingButtonId
@@ -156,7 +156,7 @@ object SponsorBlockPatch : ResourcePatch() {
         /**
          * Add ReVanced Extended Settings
          */
-        SettingsPatch.addReVancedPreference("sponsorblock_settings")
+        SettingsPatch.addPreferenceFragment("revanced_sb_settings")
 
         SettingsPatch.updatePatchStatus("SponsorBlock")
 

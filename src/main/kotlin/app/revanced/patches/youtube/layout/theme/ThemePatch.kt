@@ -6,7 +6,7 @@ import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.patch.options.PatchOption.PatchExtensions.stringPatchOption
-import app.revanced.patches.youtube.layout.theme.GeneralThemePatch.isMonetPatchIncluded
+import app.revanced.patches.youtube.layout.theme.ThemeBytecodePatch.isMonetPatchIncluded
 import app.revanced.patches.youtube.utils.settings.ResourceUtils.updatePatchStatusTheme
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import org.w3c.dom.Element
@@ -15,8 +15,8 @@ import org.w3c.dom.Element
     name = "Theme",
     description = "Change the app's theme to the values specified in options.json.",
     dependencies = [
-        GeneralThemePatch::class,
-        SettingsPatch::class
+        SettingsPatch::class,
+        ThemeBytecodePatch::class
     ],
     compatiblePackages = [
         CompatiblePackage(

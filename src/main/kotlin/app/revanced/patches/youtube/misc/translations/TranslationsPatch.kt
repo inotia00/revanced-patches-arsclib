@@ -3,7 +3,7 @@ package app.revanced.patches.youtube.misc.translations
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
-import app.revanced.patches.shared.patch.translations.AbstractTranslationsPatch
+import app.revanced.patches.shared.translations.AbstractTranslationsPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 
 @Patch(

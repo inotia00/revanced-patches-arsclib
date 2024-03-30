@@ -68,7 +68,7 @@ object ReturnYouTubeDislikeBytecodePatch : BytecodePatch(
 
                     addInstructions(
                         insertIndex, """
-                            invoke-static {v$insertRegister}, $INTEGRATIONS_RYD_CLASS_DESCRIPTOR->onComponentCreated(Landroid/text/Spanned;)Landroid/text/Spanned;
+                            invoke-static {v$insertRegister}, $INTEGRATIONS_RYD_CLASS_DESCRIPTOR->onSpannedCreated(Landroid/text/Spanned;)Landroid/text/Spanned;
                             move-result-object v$insertRegister
                             """
                     )

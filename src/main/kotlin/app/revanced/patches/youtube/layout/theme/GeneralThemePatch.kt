@@ -3,15 +3,15 @@ package app.revanced.patches.youtube.layout.theme
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotation.Patch
-import app.revanced.patches.shared.patch.litho.LithoThemePatch
+import app.revanced.patches.shared.drawable.DrawableColorPatch
 import app.revanced.patches.youtube.utils.integrations.Constants.UTILS_PATH
 import org.w3c.dom.Element
 
-@Patch(dependencies = [LithoThemePatch::class])
-object GeneralThemePatch : ResourcePatch() {
+@Patch(dependencies = [DrawableColorPatch::class])
+object ThemeBytecodePatch : ResourcePatch() {
     override fun execute(context: ResourceContext) {
 
-        LithoThemePatch.injectCall("$UTILS_PATH/LithoThemePatch;->applyLithoTheme(I)I")
+        DrawableColorPatch.injectCall("$UTILS_PATH/DrawableColorPatch;->getColor(I)I")
 
         // edit the resource files to change the splash screen color
         val attrsPath = "res/values/attrs.xml"

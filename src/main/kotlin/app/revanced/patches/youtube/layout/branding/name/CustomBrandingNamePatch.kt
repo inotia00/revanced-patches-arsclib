@@ -5,7 +5,7 @@ import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.patch.options.PatchOption.PatchExtensions.stringPatchOption
-import app.revanced.patches.shared.patch.elements.AbstractRemoveStringsElementsPatch
+import app.revanced.patches.shared.elements.AbstractRemoveStringsElementsPatch
 import app.revanced.patches.youtube.utils.integrations.Constants.LANGUAGE_LIST
 import app.revanced.patches.youtube.utils.settings.ResourceUtils.updatePatchStatusLabel
 import app.revanced.patches.youtube.utils.settings.SettingsPatch

@@ -17,8 +17,8 @@ import app.revanced.patches.music.utils.microg.fingerprints.CastDynamiteModuleV2
 import app.revanced.patches.music.utils.microg.fingerprints.GooglePlayUtilityFingerprint
 import app.revanced.patches.music.utils.microg.fingerprints.PrimeFingerprint
 import app.revanced.patches.music.utils.microg.fingerprints.ServiceCheckFingerprint
-import app.revanced.patches.shared.patch.microg.MicroGBytecodeHelper
-import app.revanced.patches.shared.patch.packagename.PackageNamePatch
+import app.revanced.patches.shared.microg.MicroGBytecodeHelper
+import app.revanced.patches.shared.packagename.PackageNamePatch
 
 @Patch(
     name = "MicroG support",

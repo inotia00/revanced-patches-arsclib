@@ -6,6 +6,7 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.reddit.misc.openlink.fingerprints.ScreenNavigatorFingerprint
+import app.revanced.patches.reddit.utils.integrations.Constants.PATCHES_PATH
 import app.revanced.patches.reddit.utils.settings.SettingsBytecodePatch.updateSettingsStatus
 import app.revanced.patches.reddit.utils.settings.SettingsPatch
 import app.revanced.util.exception
@@ -29,8 +30,7 @@ object OpenLinksDirectlyPatch : BytecodePatch(
     setOf(ScreenNavigatorFingerprint)
 ) {
     private const val INTEGRATIONS_METHOD_DESCRIPTOR =
-        "Lapp/revanced/integrations/reddit/patches/OpenLinksDirectlyPatch;" +
-                "->parseRedirectUri(Landroid/net/Uri;)Landroid/net/Uri;"
+        "$PATCHES_PATH/OpenLinksDirectlyPatch;->parseRedirectUri(Landroid/net/Uri;)Landroid/net/Uri;"
 
     override fun execute(context: BytecodeContext) {
         ScreenNavigatorFingerprint.result?.let {
@@ -44,7 +44,7 @@ object OpenLinksDirectlyPatch : BytecodePatch(
             }
         } ?: throw ScreenNavigatorFingerprint.exception
 
-        updateSettingsStatus("OpenLinksDirectly")
+        updateSettingsStatus("enableOpenLinksDirectly")
 
     }
 }

@@ -2,7 +2,7 @@ package app.revanced.patches.music.layout.doubletapbackground
 
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
-import app.revanced.patches.shared.patch.overlaybackground.AbstractOverlayBackgroundPatch
+import app.revanced.patches.shared.overlaybackground.AbstractOverlayBackgroundPatch
 
 @Patch(
     name = "Hide double tap overlay filter",

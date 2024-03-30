@@ -11,6 +11,7 @@ import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patcher.util.smali.ExternalLabel
+import app.revanced.patches.shared.litho.LithoFilterPatch
 import app.revanced.patches.youtube.shorts.components.fingerprints.ShortsButtonFingerprint
 import app.revanced.patches.youtube.shorts.components.fingerprints.ShortsInfoPanelFingerprint
 import app.revanced.patches.youtube.shorts.components.fingerprints.ShortsPaidPromotionFingerprint
@@ -19,7 +20,6 @@ import app.revanced.patches.youtube.shorts.components.fingerprints.ShortsPivotLe
 import app.revanced.patches.youtube.utils.browseid.BrowseIdHookPatch
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPONENTS_PATH
 import app.revanced.patches.youtube.utils.integrations.Constants.SHORTS
-import app.revanced.patches.youtube.utils.litho.LithoFilterPatch
 import app.revanced.patches.youtube.utils.playertype.PlayerTypeHookPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.ReelDynRemix

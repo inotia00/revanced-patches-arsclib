@@ -16,13 +16,13 @@ import app.revanced.patches.music.ads.music.MusicAdsPatch
 import app.revanced.patches.music.navigation.component.NavigationBarComponentPatch
 import app.revanced.patches.music.utils.integrations.Constants.ADS_PATH
 import app.revanced.patches.music.utils.integrations.Constants.COMPONENTS_PATH
-import app.revanced.patches.music.utils.litho.LithoFilterPatch
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch.ButtonContainer
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch.FloatingLayout
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch.InterstitialsContainer
 import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
+import app.revanced.patches.shared.litho.LithoFilterPatch
 import app.revanced.util.exception
 import app.revanced.util.getWideLiteralInstructionIndex
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction

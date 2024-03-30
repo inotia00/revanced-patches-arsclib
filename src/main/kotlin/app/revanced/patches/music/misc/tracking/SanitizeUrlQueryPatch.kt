@@ -7,8 +7,8 @@ import app.revanced.patches.music.misc.tracking.fingerprints.ShareLinkFormatterF
 import app.revanced.patches.music.utils.integrations.Constants.MISC_PATH
 import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
-import app.revanced.patches.shared.fingerprints.tracking.CopyTextEndpointFingerprint
-import app.revanced.patches.shared.patch.tracking.AbstractSanitizeUrlQueryPatch
+import app.revanced.patches.shared.tracking.AbstractSanitizeUrlQueryPatch
+import app.revanced.patches.shared.tracking.fingerprints.CopyTextEndpointFingerprint
 
 @Patch(
     name = "Sanitize sharing links",

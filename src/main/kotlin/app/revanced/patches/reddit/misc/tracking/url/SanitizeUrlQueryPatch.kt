@@ -8,6 +8,7 @@ import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.reddit.misc.tracking.url.fingerprints.ShareLinkFormatterFingerprint
+import app.revanced.patches.reddit.utils.integrations.Constants.PATCHES_PATH
 import app.revanced.patches.reddit.utils.settings.SettingsBytecodePatch.updateSettingsStatus
 import app.revanced.patches.reddit.utils.settings.SettingsPatch
 import app.revanced.util.exception
@@ -31,13 +32,11 @@ object SanitizeUrlQueryPatch : BytecodePatch(
     setOf(ShareLinkFormatterFingerprint)
 ) {
     private const val SANITIZE_METHOD_DESCRIPTOR =
-        "Lapp/revanced/integrations/reddit/patches/SanitizeUrlQueryPatch;" +
-                "->stripQueryParameters()Z"
+        "$PATCHES_PATH/SanitizeUrlQueryPatch;->stripQueryParameters()Z"
 
     override fun execute(context: BytecodeContext) {
         ShareLinkFormatterFingerprint.result?.let { result ->
             result.mutableMethod.apply {
-
                 addInstructionsWithLabels(
                     0,
                     """
@@ -50,7 +49,7 @@ object SanitizeUrlQueryPatch : BytecodePatch(
             }
         } ?: throw ShareLinkFormatterFingerprint.exception
 
-        updateSettingsStatus("SanitizeUrlQuery")
+        updateSettingsStatus("enableSanitizeUrlQuery")
 
     }
 }

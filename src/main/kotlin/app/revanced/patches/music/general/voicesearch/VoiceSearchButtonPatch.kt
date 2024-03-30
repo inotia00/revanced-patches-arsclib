@@ -2,7 +2,7 @@ package app.revanced.patches.music.general.voicesearch
 
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
-import app.revanced.patches.shared.patch.voicesearch.AbstractVoiceSearchButtonPatch
+import app.revanced.patches.shared.voicesearch.AbstractVoiceSearchButtonPatch
 
 @Patch(
     name = "Hide voice search button",

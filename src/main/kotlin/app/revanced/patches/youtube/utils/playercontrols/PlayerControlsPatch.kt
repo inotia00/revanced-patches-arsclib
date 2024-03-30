@@ -198,7 +198,7 @@ object PlayerControlsPatch : BytecodePatch(
 
             addInstruction(
                 endIndex + 1,
-                "invoke-static {v$viewRegister}, $descriptor->initialize(Ljava/lang/Object;)V"
+                "invoke-static {v$viewRegister}, $descriptor->initialize(Landroid/view/View;)V"
             )
         }
     }

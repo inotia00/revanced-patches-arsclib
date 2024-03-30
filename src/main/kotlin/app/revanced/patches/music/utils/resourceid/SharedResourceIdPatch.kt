@@ -3,15 +3,15 @@ package app.revanced.patches.music.utils.resourceid
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotation.Patch
-import app.revanced.patches.shared.patch.mapping.ResourceMappingPatch
-import app.revanced.patches.shared.patch.mapping.ResourceType
-import app.revanced.patches.shared.patch.mapping.ResourceType.BOOL
-import app.revanced.patches.shared.patch.mapping.ResourceType.COLOR
-import app.revanced.patches.shared.patch.mapping.ResourceType.DIMEN
-import app.revanced.patches.shared.patch.mapping.ResourceType.ID
-import app.revanced.patches.shared.patch.mapping.ResourceType.LAYOUT
-import app.revanced.patches.shared.patch.mapping.ResourceType.STRING
-import app.revanced.patches.shared.patch.mapping.ResourceType.STYLE
+import app.revanced.patches.shared.mapping.ResourceMappingPatch
+import app.revanced.patches.shared.mapping.ResourceType
+import app.revanced.patches.shared.mapping.ResourceType.BOOL
+import app.revanced.patches.shared.mapping.ResourceType.COLOR
+import app.revanced.patches.shared.mapping.ResourceType.DIMEN
+import app.revanced.patches.shared.mapping.ResourceType.ID
+import app.revanced.patches.shared.mapping.ResourceType.LAYOUT
+import app.revanced.patches.shared.mapping.ResourceType.STRING
+import app.revanced.patches.shared.mapping.ResourceType.STYLE
 
 @Patch(dependencies = [ResourceMappingPatch::class])
 object SharedResourceIdPatch : ResourcePatch() {

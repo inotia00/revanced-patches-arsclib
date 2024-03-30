@@ -4,7 +4,6 @@ import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.music.utils.fix.accessibility.AccessibilityNodeInfoPatch
-import app.revanced.patches.music.utils.intenthook.IntentHookPatch
 import app.revanced.patches.music.utils.settings.ResourceUtils.YOUTUBE_MUSIC_SETTINGS_KEY
 import app.revanced.patches.music.utils.settings.ResourceUtils.addMusicPreference
 import app.revanced.patches.music.utils.settings.ResourceUtils.addMusicPreferenceCategory
@@ -12,7 +11,7 @@ import app.revanced.patches.music.utils.settings.ResourceUtils.addMusicPreferenc
 import app.revanced.patches.music.utils.settings.ResourceUtils.addMusicPreferenceWithoutSummary
 import app.revanced.patches.music.utils.settings.ResourceUtils.addReVancedMusicPreference
 import app.revanced.patches.music.utils.settings.ResourceUtils.sortMusicPreferenceCategory
-import app.revanced.patches.shared.patch.settings.AbstractSettingsResourcePatch
+import app.revanced.patches.shared.settings.AbstractSettingsResourcePatch
 import app.revanced.util.ResourceGroup
 import app.revanced.util.copyResources
 import app.revanced.util.copyXmlNode
@@ -26,7 +25,6 @@ import java.util.concurrent.TimeUnit
     description = "Adds ReVanced Extended settings to YouTube Music.",
     dependencies = [
         AccessibilityNodeInfoPatch::class,
-        IntentHookPatch::class,
         SettingsBytecodePatch::class
     ],
     compatiblePackages = [
@@ -47,7 +45,7 @@ import java.util.concurrent.TimeUnit
         )
     ]
 )
-@Suppress("unused")
+@Suppress("DEPRECATION", "unused")
 object SettingsPatch : AbstractSettingsResourcePatch(
     "music/settings"
 ), Closeable {

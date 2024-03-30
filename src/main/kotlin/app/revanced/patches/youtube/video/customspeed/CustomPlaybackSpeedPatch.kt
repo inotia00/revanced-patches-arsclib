@@ -3,7 +3,7 @@ package app.revanced.patches.youtube.video.customspeed
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
-import app.revanced.patches.shared.patch.customspeed.AbstractCustomPlaybackSpeedPatch
+import app.revanced.patches.shared.customspeed.AbstractCustomPlaybackSpeedPatch
 import app.revanced.patches.youtube.flyoutpanel.oldspeedlayout.OldSpeedLayoutPatch
 import app.revanced.patches.youtube.utils.integrations.Constants.VIDEO_PATH
 import app.revanced.patches.youtube.utils.overridespeed.OverrideSpeedHookPatch

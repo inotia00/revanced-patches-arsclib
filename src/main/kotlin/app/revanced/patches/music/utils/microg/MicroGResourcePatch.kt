@@ -11,10 +11,10 @@ import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.ResourceUtils.addMicroGPreference
 import app.revanced.patches.music.utils.settings.ResourceUtils.setMicroG
 import app.revanced.patches.music.utils.settings.SettingsPatch
-import app.revanced.patches.shared.patch.microg.Constants.MICROG_PACKAGE_NAME
-import app.revanced.patches.shared.patch.microg.MicroGManifestHelper.addSpoofingMetadata
-import app.revanced.patches.shared.patch.microg.MicroGResourceHelper.patchManifest
-import app.revanced.patches.shared.patch.packagename.PackageNamePatch
+import app.revanced.patches.shared.microg.Constants.MICROG_PACKAGE_NAME
+import app.revanced.patches.shared.microg.MicroGManifestHelper.addSpoofingMetadata
+import app.revanced.patches.shared.microg.MicroGResourceHelper.patchManifest
+import app.revanced.patches.shared.packagename.PackageNamePatch
 
 @Patch(
     dependencies = [

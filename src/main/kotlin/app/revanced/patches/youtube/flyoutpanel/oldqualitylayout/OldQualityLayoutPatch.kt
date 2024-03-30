@@ -9,11 +9,11 @@ import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.smali.ExternalLabel
+import app.revanced.patches.shared.litho.LithoFilterPatch
 import app.revanced.patches.youtube.utils.fingerprints.QualityMenuViewInflateFingerprint
 import app.revanced.patches.youtube.utils.fingerprints.VideoQualitySetterFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPONENTS_PATH
 import app.revanced.patches.youtube.utils.integrations.Constants.FLYOUT_PANEL
-import app.revanced.patches.youtube.utils.litho.LithoFilterPatch
 import app.revanced.patches.youtube.utils.recyclerview.BottomSheetRecyclerViewPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch

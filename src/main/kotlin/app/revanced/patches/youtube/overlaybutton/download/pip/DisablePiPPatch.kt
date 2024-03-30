@@ -16,8 +16,8 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 object DisablePiPPatch : BytecodePatch(
     setOf(PiPPlaybackFingerprint)
 ) {
-    private const val INTEGRATIONS_VIDEO_HELPER_CLASS_DESCRIPTOR =
-        "$INTEGRATIONS_PATH/utils/VideoHelpers;"
+    private const val INTEGRATIONS_VIDEO_UTILS_CLASS_DESCRIPTOR =
+        "$INTEGRATIONS_PATH/utils/VideoUtils;"
 
     override fun execute(context: BytecodeContext) {
         PiPPlaybackFingerprint.result?.let {
@@ -27,7 +27,7 @@ object DisablePiPPatch : BytecodePatch(
 
                 addInstructions(
                     insertIndex, """
-                        invoke-static {v$insertRegister}, $INTEGRATIONS_VIDEO_HELPER_CLASS_DESCRIPTOR->isPiPAvailable(Z)Z
+                        invoke-static {v$insertRegister}, $INTEGRATIONS_VIDEO_UTILS_CLASS_DESCRIPTOR->isPiPAvailable(Z)Z
                         move-result v$insertRegister
                         """
                 )

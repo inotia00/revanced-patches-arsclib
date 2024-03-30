@@ -7,10 +7,10 @@ import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.annotation.Patch
-import app.revanced.patches.shared.patch.litho.ComponentParserPatch
+import app.revanced.patches.shared.litho.LithoFilterPatch
+import app.revanced.patches.shared.litho.fingerprints.PathBuilderFingerprint
 import app.revanced.patches.youtube.utils.browseid.fingerprints.BrowseIdClassFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.UTILS_PATH
-import app.revanced.patches.youtube.utils.litho.LithoFilterPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.util.exception
 import app.revanced.util.getStringInstructionIndex
@@ -26,7 +26,10 @@ import com.android.tools.smali.dexlib2.iface.reference.FieldReference
     ]
 )
 object BrowseIdHookPatch : BytecodePatch(
-    setOf(BrowseIdClassFingerprint)
+    setOf(
+        BrowseIdClassFingerprint,
+        PathBuilderFingerprint
+    )
 ) {
     private const val INTEGRATIONS_CLASS_DESCRIPTOR =
         "$UTILS_PATH/BrowseIdPatch;"
@@ -62,11 +65,13 @@ object BrowseIdHookPatch : BytecodePatch(
         /**
          * Set BrowseId to integrations.
          */
-        ComponentParserPatch.pathBuilderMethod.apply {
-            addInstruction(
-                0,
-                "invoke-static {}, $INTEGRATIONS_CLASS_DESCRIPTOR->setBrowseIdFromField()V"
-            )
-        }
+        PathBuilderFingerprint.result?.let {
+            it.mutableMethod.apply {
+                addInstruction(
+                    0,
+                    "invoke-static {}, $INTEGRATIONS_CLASS_DESCRIPTOR->setBrowseIdFromField()V"
+                )
+            }
+        } ?: throw PathBuilderFingerprint.exception
     }
 }

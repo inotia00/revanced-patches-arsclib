@@ -4,8 +4,8 @@ import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.annotation.Patch
-import app.revanced.patches.shared.patch.microg.MicroGBytecodeHelper
-import app.revanced.patches.shared.patch.packagename.PackageNamePatch
+import app.revanced.patches.shared.microg.MicroGBytecodeHelper
+import app.revanced.patches.shared.packagename.PackageNamePatch
 import app.revanced.patches.youtube.utils.fix.clientspoof.ClientSpoofPatch
 import app.revanced.patches.youtube.utils.fix.parameter.SpoofPlayerParameterPatch
 import app.revanced.patches.youtube.utils.integrations.Constants.UTILS_PATH
