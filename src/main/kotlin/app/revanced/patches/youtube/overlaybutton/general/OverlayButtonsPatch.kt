@@ -11,7 +11,6 @@ import app.revanced.patches.youtube.overlaybutton.download.pip.DisablePiPPatch
 import app.revanced.patches.youtube.overlaybutton.fullscreen.FullscreenButtonPatch
 import app.revanced.patches.youtube.utils.integrations.Constants.OVERLAY_BUTTONS_PATH
 import app.revanced.patches.youtube.utils.overridespeed.OverrideSpeedHookPatch
-import app.revanced.patches.youtube.utils.playerbutton.PlayerButtonHookPatch
 import app.revanced.patches.youtube.utils.playercontrols.PlayerControlsPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
@@ -31,7 +30,6 @@ import org.w3c.dom.Element
         DownloadButtonHookPatch::class,
         FullscreenButtonPatch::class,
         OverrideSpeedHookPatch::class,
-        PlayerButtonHookPatch::class,
         PlayerControlsPatch::class,
         SettingsPatch::class,
         SharedResourceIdPatch::class,

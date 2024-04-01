@@ -66,8 +66,10 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
                 "19.02.39"
             ]
         )
-    ]
+    ],
+    use = false
 )
+@Suppress("unused")
 object SpoofPlayerParameterPatch : BytecodePatch(
     setOf(
         ParamsMapPutFingerprint,

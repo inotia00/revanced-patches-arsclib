@@ -1,6 +1,7 @@
 package app.revanced.patches.shared.packagename
 
 import app.revanced.patcher.data.ResourceContext
+import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
@@ -18,11 +19,16 @@ import app.revanced.patcher.patch.options.PatchOption.PatchExtensions.stringPatc
 object PackageNamePatch : ResourcePatch() {
     private const val CLONE_PACKAGE_NAME_YOUTUBE = "com.rvx.android.youtube"
     private const val DEFAULT_PACKAGE_NAME_YOUTUBE = "app.rvx.android.youtube"
+    internal const val ORIGINAL_PACKAGE_NAME_YOUTUBE = "com.google.android.youtube"
 
     private const val CLONE_PACKAGE_NAME_YOUTUBE_MUSIC = "com.rvx.android.apps.youtube.music"
     private const val DEFAULT_PACKAGE_NAME_YOUTUBE_MUSIC = "app.rvx.android.apps.youtube.music"
+    internal const val ORIGINAL_PACKAGE_NAME_YOUTUBE_MUSIC = "com.google.android.apps.youtube.music"
 
-    internal val PackageNameYouTube by stringPatchOption(
+    internal var packageNameYouTube = DEFAULT_PACKAGE_NAME_YOUTUBE
+    internal var packageNameYouTubeMusic = DEFAULT_PACKAGE_NAME_YOUTUBE_MUSIC
+
+    private val PackageNameYouTube by stringPatchOption(
         key = "PackageNameYouTube",
         default = DEFAULT_PACKAGE_NAME_YOUTUBE,
         values = mapOf(
@@ -34,7 +40,7 @@ object PackageNamePatch : ResourcePatch() {
         required = true
     )
 
-    internal val PackageNameYouTubeMusic by stringPatchOption(
+    private val PackageNameYouTubeMusic by stringPatchOption(
         key = "PackageNameYouTubeMusic",
         default = DEFAULT_PACKAGE_NAME_YOUTUBE_MUSIC,
         values = mapOf(
@@ -47,5 +53,20 @@ object PackageNamePatch : ResourcePatch() {
     )
 
     override fun execute(context: ResourceContext) {
+        if (PackageNameYouTube != null && PackageNameYouTube!! != ORIGINAL_PACKAGE_NAME_YOUTUBE) {
+            packageNameYouTube = PackageNameYouTube!!
+        }
+        if (PackageNameYouTubeMusic != null && PackageNameYouTubeMusic!! != ORIGINAL_PACKAGE_NAME_YOUTUBE_MUSIC) {
+            packageNameYouTubeMusic = PackageNameYouTubeMusic!!
+        }
+    }
+
+    fun getPackageName(originalPackageName: String): String {
+        if (originalPackageName == ORIGINAL_PACKAGE_NAME_YOUTUBE) {
+            return packageNameYouTube
+        } else if (originalPackageName == ORIGINAL_PACKAGE_NAME_YOUTUBE_MUSIC) {
+            return packageNameYouTubeMusic
+        }
+        throw PatchException("Unknown package name!")
     }
 }

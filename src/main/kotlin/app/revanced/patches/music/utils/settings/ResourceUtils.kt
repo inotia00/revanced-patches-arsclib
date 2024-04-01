@@ -7,7 +7,7 @@ import app.revanced.util.doRecursively
 import app.revanced.util.insertNode
 import org.w3c.dom.Element
 
-@Suppress("MemberVisibilityCanBePrivate")
+@Suppress("DEPRECATION", "MemberVisibilityCanBePrivate")
 object ResourceUtils {
 
     const val YOUTUBE_MUSIC_SETTINGS_PATH = "res/xml/settings_headers.xml"
@@ -25,10 +25,10 @@ object ResourceUtils {
     const val YOUTUBE_MUSIC_PREFERENCE_TARGET_CLASS =
         "com.google.android.gms.common.api.GoogleApiActivity"
 
-    var targetPackage = "com.google.android.apps.youtube.music"
+    var musicPackageName = "com.google.android.apps.youtube.music"
 
-    fun ResourceContext.setMicroG(newPackage: String) {
-        targetPackage = newPackage
+    fun ResourceContext.updatePackageName(newPackage: String) {
+        musicPackageName = newPackage
         replacePackageName()
     }
 
@@ -86,7 +86,7 @@ object ResourceUtils {
     fun ResourceContext.replacePackageName() {
         this[YOUTUBE_MUSIC_SETTINGS_PATH].writeText(
             this[YOUTUBE_MUSIC_SETTINGS_PATH].readText()
-                .replace("\"com.google.android.apps.youtube.music\"", "\"" + targetPackage + "\"")
+                .replace("\"com.google.android.apps.youtube.music\"", "\"" + musicPackageName + "\"")
         )
     }
 
@@ -159,7 +159,7 @@ object ResourceUtils {
                             setAttribute("android:dependency", dependencyKey)
                         }
                         this.adoptChild("intent") {
-                            setAttribute("android:targetPackage", targetPackage)
+                            setAttribute("android:targetPackage", musicPackageName)
                             setAttribute("android:data", key)
                             setAttribute(
                                 "android:targetClass",

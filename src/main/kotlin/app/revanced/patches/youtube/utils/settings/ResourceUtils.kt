@@ -5,17 +5,30 @@ import app.revanced.util.doRecursively
 import app.revanced.util.insertNode
 import org.w3c.dom.Element
 
-@Suppress("MemberVisibilityCanBePrivate")
+@Suppress("DEPRECATION", "MemberVisibilityCanBePrivate")
 object ResourceUtils {
 
     const val TARGET_PREFERENCE_PATH = "res/xml/revanced_prefs.xml"
 
     const val YOUTUBE_SETTINGS_PATH = "res/xml/settings_fragment.xml"
 
-    var targetPackage = "com.google.android.youtube"
+    var youtubePackageName = "com.google.android.youtube"
 
-    fun setMicroG(newPackage: String) {
-        targetPackage = newPackage
+    fun ResourceContext.updatePackageName(
+        fromPackageName: String,
+        toPackageName: String
+    ) {
+        youtubePackageName = toPackageName
+
+        val prefs = this["res/xml/settings_fragment.xml"]
+
+        prefs.writeText(
+            prefs.readText()
+                .replace(
+                    "android:targetPackage=\"$fromPackageName",
+                    "android:targetPackage=\"$toPackageName"
+                )
+        )
     }
 
     fun ResourceContext.addEntryValues(
@@ -107,7 +120,7 @@ object ResourceUtils {
                                     ownerDocument.createElement("intent").also { intentNode ->
                                         intentNode.setAttribute(
                                             "android:targetPackage",
-                                            targetPackage
+                                            youtubePackageName
                                         )
                                         intentNode.setAttribute("android:data", key + "_intent")
                                         intentNode.setAttribute("android:targetClass", targetClass)

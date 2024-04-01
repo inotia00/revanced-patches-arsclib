@@ -29,7 +29,7 @@ object MainActivityResolvePatch : BytecodePatch(
         onCreateMethod.apply {
             addInstruction(
                 2,
-                "invoke-static/range {p0 .. p0}, $UTILS_PATH/$methods;->$descriptor(Landroid/content/Context;)V"
+                "invoke-static/range {p0 .. p0}, $UTILS_PATH/$methods;->$descriptor(Landroid/app/Activity;)V"
             )
         }
     }

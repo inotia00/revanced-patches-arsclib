@@ -1,4 +1,4 @@
-package app.revanced.patches.music.utils.microg.fingerprints
+package app.revanced.patches.shared.gms.fingerprints
 
 import app.revanced.patcher.extensions.or
 import app.revanced.patcher.fingerprint.MethodFingerprint

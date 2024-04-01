@@ -353,10 +353,10 @@
 
         <Preference android:title="@string/revanced_default_app_settings_title" android:key="revanced_default_app_settings" android:summary="@string/revanced_default_app_settings_summary" />
 
-        <!-- PREFERENCE: MICROG_SETTINGS
-        <Preference android:title="@string/microg_settings_title" android:summary="@string/microg_settings_summary">
-            <intent android:targetPackage="com.mgoogle.android.gms" android:targetClass="org.microg.gms.ui.SettingsActivity" />
-        </Preference>PREFERENCE: MICROG_SETTINGS -->
+        <!-- PREFERENCE: GMS_CORE_SETTINGS
+        <Preference android:title="@string/gms_core_settings_title" android:summary="@string/gms_core_settings_summary">
+            <intent android:targetPackage="app.revanced.android.gms" android:targetClass="org.microg.gms.ui.SettingsActivity" />
+        </Preference>PREFERENCE: GMS_CORE_SETTINGS -->
 
         <!-- SETTINGS: SANITIZE_SHARING_LINKS
         <SwitchPreference android:title="@string/revanced_sanitize_sharing_links_title" android:key="revanced_sanitize_sharing_links" android:defaultValue="true" android:summary="@string/revanced_sanitize_sharing_links_summary" />SETTINGS: SANITIZE_SHARING_LINKS -->
@@ -527,7 +527,7 @@
             <Preference android:title="Hide voice search button" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="Icon" android:summary="@string/revanced_icon_default" android:selectable="false"/>
             <Preference android:title="Label" android:summary="@string/revanced_label_default" android:selectable="false"/>
-            <Preference android:title="MicroG support" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
+            <Preference android:title="GmsCore support" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="Return YouTube Dislike" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="SponsorBlock" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="Theme" android:summary="@string/revanced_theme_default" android:selectable="false"/>

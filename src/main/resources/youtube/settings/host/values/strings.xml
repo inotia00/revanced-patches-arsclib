@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="microg_not_installed_notice">Please install MicroG.</string>
-    <string name="microg_not_installed_warning">MicroG is not found.</string>
-    <string name="microg_not_running_warning">MicroG does not run in the background.</string>
-    <string name="microg_settings_summary">Enable cloud messaging settings to receive notifications.</string>
-    <string name="microg_settings_title">Open MicroG</string>
+    <string name="gms_core_dialog_not_whitelisted_not_allowed_in_background_message">GmsCore does not have permission to run in the background.</string>
+    <string name="gms_core_dialog_not_whitelisted_using_battery_optimizations_message">GmsCore is not whitelisted from battery optimization.</string>
+    <string name="gms_core_dialog_title">Action needed</string>
+    <string name="gms_core_settings_summary">Enable cloud messaging to receive notifications.</string>
+    <string name="gms_core_settings_title">Open GmsCore</string>
+    <string name="gms_core_toast_not_installed_message">GmsCore is not installed. Install it.</string>
+    <string name="gms_core_toast_not_whitelisted_message">"Follow the 'Don't kill my app' guide for GmsCore."</string>
 
     <string name="revanced_ads">Ads</string>
     <string name="revanced_alt_thumbnails">Alternative thumbnails</string>

@@ -73,7 +73,7 @@ object SponsorBlockPatch : ResourcePatch() {
             context["res/xml/sponsorblock_prefs.xml"].readText()
                 .replace(
                     "\"com.google.android.apps.youtube.music\"",
-                    "\"" + ResourceUtils.targetPackage + "\""
+                    "\"" + ResourceUtils.musicPackageName + "\""
                 )
         )
 
