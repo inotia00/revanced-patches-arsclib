@@ -4,11 +4,9 @@ import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.removeInstruction
-import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotation.CompatiblePackage
-import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.music.player.replace.fingerprints.CastButtonContainerFingerprint
-import app.revanced.patches.music.utils.integrations.Constants.PLAYER
+import app.revanced.patches.music.utils.integrations.Constants.COMPATIBLE_PACKAGE
+import app.revanced.patches.music.utils.integrations.Constants.PLAYER_CLASS_DESCRIPTOR
 import app.revanced.patches.music.utils.integrations.Constants.UTILS_PATH
 import app.revanced.patches.music.utils.mainactivity.MainActivityResolvePatch
 import app.revanced.patches.music.utils.mainactivity.MainActivityResolvePatch.mainActivityClassDef
@@ -23,6 +21,7 @@ import app.revanced.util.ResourceGroup
 import app.revanced.util.copyResources
 import app.revanced.util.exception
 import app.revanced.util.getWideLiteralInstructionIndex
+import app.revanced.util.patch.BaseBytecodePatch
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
@@ -30,37 +29,20 @@ import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction35c
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 
-@Patch(
+@Suppress("unused")
+object ReplaceCastButtonPatch : BaseBytecodePatch(
     name = "Replace cast button",
     description = "Adds an option to replace the cast button in the player with the \"Open music\" button.",
-    dependencies = [
+    dependencies = setOf(
         MainActivityResolvePatch::class,
         PlayerResponsePatch::class,
         SettingsPatch::class,
         SharedResourceIdPatch::class,
         VideoTypeHookPatch::class
-    ],
-    compatiblePackages = [
-        CompatiblePackage(
-            "com.google.android.apps.youtube.music",
-            [
-                "6.21.52",
-                "6.22.52",
-                "6.23.56",
-                "6.25.53",
-                "6.26.51",
-                "6.27.54",
-                "6.28.53",
-                "6.29.58",
-                "6.31.55",
-                "6.33.52"
-            ]
-        )
-    ],
+    ),
+    compatiblePackages = COMPATIBLE_PACKAGE,
     use = false
-)
-@Suppress("unused")
-object ReplaceCastButtonPatch : BytecodePatch(emptySet()) {
+) {
     override fun execute(context: BytecodeContext) {
         CastButtonContainerFingerprint.resolve(context, mainActivityClassDef)
 
@@ -87,7 +69,7 @@ object ReplaceCastButtonPatch : BytecodePatch(emptySet()) {
                     addInstruction(
                         index + 1,
                         "invoke-static {v$freeRegister, v${viewGroupInstruction.registerC}, v${viewGroupInstruction.registerD}}, " +
-                                PLAYER +
+                                PLAYER_CLASS_DESCRIPTOR +
                                 "->" +
                                 "replaceCastButton(Landroid/app/Activity;Landroid/view/ViewGroup;Landroid/view/View;)V"
                     )

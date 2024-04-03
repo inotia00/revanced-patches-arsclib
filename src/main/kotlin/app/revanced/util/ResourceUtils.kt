@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION", "MemberVisibilityCanBePrivate", "SpellCheckingInspection")
+
 package app.revanced.util
 
 import app.revanced.patcher.data.ResourceContext

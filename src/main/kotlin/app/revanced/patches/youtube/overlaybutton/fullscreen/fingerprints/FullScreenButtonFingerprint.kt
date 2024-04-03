@@ -7,7 +7,7 @@ import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.FullS
 import app.revanced.util.containsWideLiteralInstructionIndex
 import com.android.tools.smali.dexlib2.AccessFlags
 
-object FullScreenButtonFingerprint : MethodFingerprint(
+internal object FullScreenButtonFingerprint : MethodFingerprint(
     returnType = "V",
     accessFlags = AccessFlags.PUBLIC or AccessFlags.FINAL,
     parameters = listOf("Landroid/view/View;"),

@@ -3,14 +3,12 @@ package app.revanced.patches.music.flyoutpanel.component
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotation.CompatiblePackage
-import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.music.flyoutpanel.component.fingerprints.EndButtonsContainerFingerprint
 import app.revanced.patches.music.flyoutpanel.component.fingerprints.SleepTimerFingerprint
 import app.revanced.patches.music.flyoutpanel.shared.FlyoutPanelMenuItemPatch
+import app.revanced.patches.music.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.music.utils.integrations.Constants.COMPONENTS_PATH
-import app.revanced.patches.music.utils.integrations.Constants.FLYOUT
+import app.revanced.patches.music.utils.integrations.Constants.FLYOUT_CLASS_DESCRIPTOR
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch.EndButtonsContainer
 import app.revanced.patches.music.utils.settings.CategoryType
@@ -19,43 +17,29 @@ import app.revanced.patches.shared.litho.LithoFilterPatch
 import app.revanced.util.exception
 import app.revanced.util.getTargetIndex
 import app.revanced.util.getWideLiteralInstructionIndex
+import app.revanced.util.patch.BaseBytecodePatch
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
-@Patch(
+@Suppress("unused")
+object FlyoutPanelPatch : BaseBytecodePatch(
     name = "Hide flyout panel",
     description = "Adds options to hide flyout panel components.",
-    dependencies = [
+    dependencies = setOf(
         FlyoutPanelMenuItemPatch::class,
         LithoFilterPatch::class,
         SettingsPatch::class,
         SharedResourceIdPatch::class
-    ],
-    compatiblePackages = [
-        CompatiblePackage(
-            "com.google.android.apps.youtube.music",
-            [
-                "6.21.52",
-                "6.22.52",
-                "6.23.56",
-                "6.25.53",
-                "6.26.51",
-                "6.27.54",
-                "6.28.53",
-                "6.29.58",
-                "6.31.55",
-                "6.33.52"
-            ]
-        )
-    ]
-)
-@Suppress("unused")
-object FlyoutPanelPatch : BytecodePatch(
-    setOf(
+    ),
+    compatiblePackages = COMPATIBLE_PACKAGE,
+    fingerprints = setOf(
         EndButtonsContainerFingerprint,
         SleepTimerFingerprint
     )
 ) {
+    private const val FILTER_CLASS_DESCRIPTOR =
+        "$COMPONENTS_PATH/PlayerFlyoutPanelsFilter;"
+
     override fun execute(context: BytecodeContext) {
         FlyoutPanelMenuItemPatch.hideComponents()
 
@@ -67,7 +51,7 @@ object FlyoutPanelPatch : BytecodePatch(
 
                 addInstruction(
                     targetIndex + 1,
-                    "invoke-static {v$targetRegister}, $FLYOUT->hideLikeDislikeContainer(Landroid/view/View;)V"
+                    "invoke-static {v$targetRegister}, $FLYOUT_CLASS_DESCRIPTOR->hideLikeDislikeContainer(Landroid/view/View;)V"
                 )
             }
         } ?: throw EndButtonsContainerFingerprint.exception
@@ -234,7 +218,4 @@ object FlyoutPanelPatch : BytecodePatch(
             "false"
         )
     }
-
-    private const val FILTER_CLASS_DESCRIPTOR =
-        "$COMPONENTS_PATH/PlayerFlyoutPanelsFilter;"
 }

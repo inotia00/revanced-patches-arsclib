@@ -5,7 +5,7 @@ import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.Quick
 import app.revanced.util.fingerprint.LiteralValueFingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 
-object QuickActionsElementFingerprint : LiteralValueFingerprint(
+internal object QuickActionsElementFingerprint : LiteralValueFingerprint(
     accessFlags = AccessFlags.PUBLIC or AccessFlags.FINAL,
     parameters = listOf("Landroid/view/View;"),
     returnType = "V",

@@ -33,10 +33,10 @@ object SettingsBytecodePatch : BytecodePatch(
     private const val INTEGRATIONS_METHOD_DESCRIPTOR =
         "$INTEGRATIONS_PATH/settings/ActivityHook;->initialize(Landroid/app/Activity;)V"
 
-    private lateinit var settingsMethod: MutableMethod
+    private lateinit var settingsStatusLoadMethod: MutableMethod
 
     internal fun updateSettingsStatus(description: String) {
-        settingsMethod.addInstruction(
+        settingsStatusLoadMethod.addInstruction(
             0,
             "invoke-static {}, $INTEGRATIONS_PATH/settings/SettingsStatus;->$description()V"
         )
@@ -92,7 +92,7 @@ object SettingsBytecodePatch : BytecodePatch(
             }
         } ?: throw OssLicensesMenuActivityOnCreateFingerprint.exception
 
-        settingsMethod = SettingsStatusLoadFingerprint.result?.mutableMethod
+        settingsStatusLoadMethod = SettingsStatusLoadFingerprint.result?.mutableMethod
             ?: throw SettingsStatusLoadFingerprint.exception
 
     }

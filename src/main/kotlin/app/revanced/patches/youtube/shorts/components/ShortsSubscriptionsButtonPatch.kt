@@ -9,7 +9,7 @@ import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.youtube.shorts.components.fingerprints.ShortsSubscriptionsFingerprint
 import app.revanced.patches.youtube.shorts.components.fingerprints.ShortsSubscriptionsTabletFingerprint
 import app.revanced.patches.youtube.shorts.components.fingerprints.ShortsSubscriptionsTabletParentFingerprint
-import app.revanced.patches.youtube.utils.integrations.Constants.SHORTS
+import app.revanced.patches.youtube.utils.integrations.Constants.SHORTS_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.ReelPlayerFooter
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.ReelPlayerPausedStateButton
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
@@ -36,7 +36,7 @@ object ShortsSubscriptionsButtonPatch : BytecodePatch(
 
                 addInstruction(
                     insertIndex + 1,
-                    "invoke-static {v$insertRegister}, $SHORTS->hideShortsPlayerSubscriptionsButton(Landroid/view/View;)V"
+                    "invoke-static {v$insertRegister}, $SHORTS_CLASS_DESCRIPTOR->hideShortsPlayerSubscriptionsButton(Landroid/view/View;)V"
                 )
             }
         } ?: throw ShortsSubscriptionsFingerprint.exception
@@ -71,7 +71,7 @@ object ShortsSubscriptionsButtonPatch : BytecodePatch(
 
                             it.addInstructions(
                                 insertIndex, """
-                                invoke-static {v$register}, $SHORTS->hideShortsPlayerSubscriptionsButton(I)I
+                                invoke-static {v$register}, $SHORTS_CLASS_DESCRIPTOR->hideShortsPlayerSubscriptionsButton(I)I
                                 move-result v$register
                                 """
                             )

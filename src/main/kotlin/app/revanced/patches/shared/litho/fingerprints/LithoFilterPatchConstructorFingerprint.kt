@@ -5,7 +5,7 @@ import app.revanced.patcher.fingerprint.MethodFingerprint
 import app.revanced.patches.shared.integrations.Constants.COMPONENTS_PATH
 import com.android.tools.smali.dexlib2.AccessFlags
 
-object LithoFilterPatchConstructorFingerprint : MethodFingerprint(
+internal object LithoFilterPatchConstructorFingerprint : MethodFingerprint(
     returnType = "V",
     accessFlags = AccessFlags.PUBLIC or AccessFlags.STATIC or AccessFlags.CONSTRUCTOR,
     customFingerprint = { methodDef, _ ->

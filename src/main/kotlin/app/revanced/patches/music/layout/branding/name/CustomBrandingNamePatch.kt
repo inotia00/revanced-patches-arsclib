@@ -2,37 +2,17 @@ package app.revanced.patches.music.layout.branding.name
 
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.PatchException
-import app.revanced.patcher.patch.annotation.CompatiblePackage
-import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.patch.options.PatchOption.PatchExtensions.stringPatchOption
+import app.revanced.patches.music.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.music.utils.integrations.Constants.LANGUAGE_LIST
-import app.revanced.patches.shared.elements.AbstractRemoveStringsElementsPatch
+import app.revanced.patches.shared.elements.StringsElementsUtils.removeStringsElements
+import app.revanced.util.patch.BaseResourcePatch
 
-@Patch(
+@Suppress("DEPRECATION", "unused")
+object CustomBrandingNamePatch : BaseResourcePatch(
     name = "Custom branding name YouTube Music",
     description = "Renames the YouTube Music app to the name specified in options.json.",
-    compatiblePackages = [
-        CompatiblePackage(
-            "com.google.android.apps.youtube.music",
-            [
-                "6.21.52",
-                "6.22.52",
-                "6.23.56",
-                "6.25.53",
-                "6.26.51",
-                "6.27.54",
-                "6.28.53",
-                "6.29.58",
-                "6.31.55",
-                "6.33.52"
-            ]
-        )
-    ]
-)
-@Suppress("unused")
-object CustomBrandingNamePatch : AbstractRemoveStringsElementsPatch(
-    LANGUAGE_LIST,
-    arrayOf("app_launcher_name", "app_name")
+    compatiblePackages = COMPATIBLE_PACKAGE
 ) {
     private const val APP_NAME_NOTIFICATION = "ReVanced Extended Music"
     private const val APP_NAME_LAUNCHER = "RVX Music"
@@ -62,7 +42,11 @@ object CustomBrandingNamePatch : AbstractRemoveStringsElementsPatch(
     )
 
     override fun execute(context: ResourceContext) {
-        super.execute(context)
+
+        context.removeStringsElements(
+            LANGUAGE_LIST,
+            arrayOf("app_launcher_name", "app_name")
+        )
 
         AppNameNotification?.let { notificationName ->
             AppNameLauncher?.let { launcherName ->

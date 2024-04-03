@@ -4,7 +4,7 @@ import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.Actio
 import app.revanced.util.fingerprint.LiteralValueFingerprint
 import com.android.tools.smali.dexlib2.Opcode
 
-object SetActionBarRingoFingerprint : LiteralValueFingerprint(
+internal object SetActionBarRingoFingerprint : LiteralValueFingerprint(
     returnType = "L",
     parameters = listOf("L", "L"),
     opcodes = listOf(

@@ -21,6 +21,7 @@ import app.revanced.patches.youtube.utils.videoid.general.fingerprint.VideoIdFin
 import app.revanced.patches.youtube.utils.videoid.general.fingerprint.VideoIdParentFingerprint
 import app.revanced.patches.youtube.utils.videoid.general.fingerprint.VideoLengthFingerprint
 import app.revanced.util.exception
+import app.revanced.util.getWalkerMethod
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.builder.MutableMethodImplementation
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
@@ -75,9 +76,7 @@ object VideoIdPatch : BytecodePatch(
                 )
                 it.mutableClass.methods.add(seekHelperMethod)
 
-                val videoEndMethod = context.toMethodWalker(it.method)
-                    .nextMethod(it.scanResult.patternScanResult!!.startIndex + 1, true)
-                    .getMethod() as MutableMethod
+                val videoEndMethod = getWalkerMethod(context, it.scanResult.patternScanResult!!.startIndex + 1)
 
                 videoEndMethod.apply {
                     addInstructionsWithLabels(
@@ -96,9 +95,7 @@ object VideoIdPatch : BytecodePatch(
          * Set current video time
          */
         PlayerControllerSetTimeReferenceFingerprint.result?.let {
-            timeMethod = context.toMethodWalker(it.method)
-                .nextMethod(it.scanResult.patternScanResult!!.startIndex, true)
-                .getMethod() as MutableMethod
+            timeMethod = it.getWalkerMethod(context, it.scanResult.patternScanResult!!.startIndex)
         } ?: throw PlayerControllerSetTimeReferenceFingerprint.exception
 
         /**

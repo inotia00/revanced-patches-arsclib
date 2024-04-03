@@ -6,7 +6,7 @@ import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.music.layout.overlayfilter.fingerprints.DesignBottomSheetDialogFingerprint
-import app.revanced.patches.music.utils.integrations.Constants.GENERAL
+import app.revanced.patches.music.utils.integrations.Constants.GENERAL_CLASS_DESCRIPTOR
 import app.revanced.patches.music.utils.integrations.IntegrationsPatch
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch
 import app.revanced.util.exception
@@ -33,7 +33,7 @@ object OverlayFilterBytecodePatch : BytecodePatch(
                     insertIndex, """
                         invoke-virtual {p0}, $definingClass->getWindow()Landroid/view/Window;
                         move-result-object v$freeRegister
-                        invoke-static {v$freeRegister}, $GENERAL->disableDimBehind(Landroid/view/Window;)V
+                        invoke-static {v$freeRegister}, $GENERAL_CLASS_DESCRIPTOR->disableDimBehind(Landroid/view/Window;)V
                         """
                 )
             }

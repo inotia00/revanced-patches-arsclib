@@ -8,7 +8,7 @@ import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.ReelR
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.RightComment
 import app.revanced.util.containsWideLiteralInstructionIndex
 
-object ShortsButtonFingerprint : MethodFingerprint(
+internal object ShortsButtonFingerprint : MethodFingerprint(
     returnType = "V",
     customFingerprint = { methodDef, _ ->
         methodDef.containsWideLiteralInstructionIndex(ReelDynRemix)

@@ -4,9 +4,12 @@ import app.revanced.patcher.extensions.or
 import app.revanced.patcher.fingerprint.MethodFingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 
-object CustomPlaybackSpeedIntegrationsFingerprint : MethodFingerprint(
+internal object CustomPlaybackSpeedIntegrationsFingerprint : MethodFingerprint(
     returnType = "V",
     accessFlags = AccessFlags.PRIVATE or AccessFlags.STATIC,
     parameters = emptyList(),
-    customFingerprint = { methodDef, _ -> methodDef.definingClass.endsWith("/CustomPlaybackSpeedPatch;") && methodDef.name == "showOldPlaybackSpeedMenu" }
+    customFingerprint = { methodDef, _ ->
+        methodDef.definingClass.endsWith("/CustomPlaybackSpeedPatch;")
+                && methodDef.name == "showOldPlaybackSpeedMenu"
+    }
 )

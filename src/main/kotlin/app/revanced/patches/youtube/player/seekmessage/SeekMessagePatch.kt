@@ -3,67 +3,34 @@ package app.revanced.patches.youtube.player.seekmessage
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotation.CompatiblePackage
-import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.youtube.player.seekmessage.fingerprints.SeekEduContainerFingerprint
 import app.revanced.patches.youtube.player.seekmessage.fingerprints.SeekEduUndoOverlayFingerprint
-import app.revanced.patches.youtube.utils.controlsoverlay.DisableControlsOverlayConfigPatch
-import app.revanced.patches.youtube.utils.integrations.Constants.PLAYER
+import app.revanced.patches.youtube.utils.controlsoverlay.ControlsOverlayConfigPatch
+import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
+import app.revanced.patches.youtube.utils.integrations.Constants.PLAYER_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.SeekUndoEduOverlayStub
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.util.exception
-import com.android.tools.smali.dexlib2.Opcode
+import app.revanced.util.getTargetIndexWithMethodReferenceName
+import app.revanced.util.patch.BaseBytecodePatch
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
-import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.WideLiteralInstruction
-import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 
-@Patch(
+@Suppress("unused")
+object SeekMessagePatch : BaseBytecodePatch(
     name = "Hide seek message",
     description = "Adds an option to hide the 'Slide left or right to seek' or 'Release to cancel' message container in the video player.",
-    dependencies = [
-        DisableControlsOverlayConfigPatch::class,
+    dependencies = setOf(
+        ControlsOverlayConfigPatch::class,
         SettingsPatch::class,
         SharedResourceIdPatch::class
-    ],
-    compatiblePackages = [
-        CompatiblePackage(
-            "com.google.android.youtube",
-            [
-                "18.29.38",
-                "18.30.37",
-                "18.31.40",
-                "18.32.39",
-                "18.33.40",
-                "18.34.38",
-                "18.35.36",
-                "18.36.39",
-                "18.37.36",
-                "18.38.44",
-                "18.39.41",
-                "18.40.34",
-                "18.41.39",
-                "18.42.41",
-                "18.43.45",
-                "18.44.41",
-                "18.45.43",
-                "18.46.45",
-                "18.48.39",
-                "18.49.37",
-                "19.01.34",
-                "19.02.39"
-            ]
-        )
-    ]
-)
-@Suppress("unused")
-object SeekMessagePatch : BytecodePatch(
-    setOf(
+    ),
+    compatiblePackages = COMPATIBLE_PACKAGE,
+    fingerprints = setOf(
         SeekEduContainerFingerprint,
         SeekEduUndoOverlayFingerprint
     )
@@ -74,7 +41,7 @@ object SeekMessagePatch : BytecodePatch(
             it.mutableMethod.apply {
                 addInstructionsWithLabels(
                     0, """
-                        invoke-static {}, $PLAYER->hideSeekMessage()Z
+                        invoke-static {}, $PLAYER_CLASS_DESCRIPTOR->hideSeekMessage()Z
                         move-result v0
                         if-eqz v0, :default
                         return-void
@@ -95,20 +62,15 @@ object SeekMessagePatch : BytecodePatch(
                 val insertIndex = seekUndoCalls.elementAt(seekUndoCalls.size - 1).index
                 val insertRegister = getInstruction<OneRegisterInstruction>(insertIndex).registerA
 
-                val jumpIndex = implementation!!.instructions.let {
-                    insertIndex + it.subList(insertIndex, it.size - 1).indexOfFirst { instruction ->
-                        instruction.opcode == Opcode.INVOKE_VIRTUAL
-                                && ((instruction as? ReferenceInstruction)?.reference as? MethodReference)?.name == "setOnClickListener"
-                    }
-                }
-                val constComponent = getConstComponent(insertIndex, jumpIndex - 1)
+                val onClickListenerIndex = getTargetIndexWithMethodReferenceName(insertIndex, "setOnClickListener")
+                val constComponent = getConstComponent(insertIndex, onClickListenerIndex - 1)
 
                 addInstructionsWithLabels(
                     insertIndex, constComponent + """
-                        invoke-static {}, $PLAYER->hideSeekUndoMessage()Z
+                        invoke-static {}, $PLAYER_CLASS_DESCRIPTOR->hideSeekUndoMessage()Z
                         move-result v$insertRegister
                         if-nez v$insertRegister, :default
-                        """, ExternalLabel("default", getInstruction(jumpIndex + 1))
+                        """, ExternalLabel("default", getInstruction(onClickListenerIndex + 1))
                 )
             }
         } ?: throw SeekEduUndoOverlayFingerprint.exception
@@ -135,13 +97,14 @@ object SeekMessagePatch : BytecodePatch(
             getInstruction<FiveRegisterInstruction>(endIndex).registerE
 
         for (index in endIndex downTo startIndex) {
-            if (getInstruction(index).opcode != Opcode.CONST_16)
+            val instruction = getInstruction(index)
+            if (instruction !is WideLiteralInstruction)
                 continue
 
-            if (getInstruction<OneRegisterInstruction>(index).registerA != constRegister)
+            if ((instruction as OneRegisterInstruction).registerA != constRegister)
                 continue
 
-            val constValue = getInstruction<WideLiteralInstruction>(index).wideLiteral.toInt()
+            val constValue = (instruction as WideLiteralInstruction).wideLiteral.toInt()
 
             return "const/16 v$constRegister, $constValue"
         }

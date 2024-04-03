@@ -1,9 +1,8 @@
 package app.revanced.patches.music.utils.settings
 
 import app.revanced.patcher.data.ResourceContext
-import app.revanced.patcher.patch.annotation.CompatiblePackage
-import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.music.utils.fix.accessibility.AccessibilityNodeInfoPatch
+import app.revanced.patches.music.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.music.utils.settings.ResourceUtils.YOUTUBE_MUSIC_SETTINGS_KEY
 import app.revanced.patches.music.utils.settings.ResourceUtils.addMusicPreference
 import app.revanced.patches.music.utils.settings.ResourceUtils.addMusicPreferenceCategory
@@ -11,50 +10,32 @@ import app.revanced.patches.music.utils.settings.ResourceUtils.addMusicPreferenc
 import app.revanced.patches.music.utils.settings.ResourceUtils.addMusicPreferenceWithoutSummary
 import app.revanced.patches.music.utils.settings.ResourceUtils.addReVancedMusicPreference
 import app.revanced.patches.music.utils.settings.ResourceUtils.sortMusicPreferenceCategory
-import app.revanced.patches.shared.settings.AbstractSettingsResourcePatch
 import app.revanced.util.ResourceGroup
 import app.revanced.util.copyResources
 import app.revanced.util.copyXmlNode
+import app.revanced.util.patch.BaseResourcePatch
 import org.w3c.dom.Element
 import java.io.Closeable
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
-@Patch(
+@Suppress("DEPRECATION", "SpellCheckingInspection", "unused")
+object SettingsPatch : BaseResourcePatch(
     name = "Settings",
     description = "Adds ReVanced Extended settings to YouTube Music.",
-    dependencies = [
+    dependencies = setOf(
         AccessibilityNodeInfoPatch::class,
         SettingsBytecodePatch::class
-    ],
-    compatiblePackages = [
-        CompatiblePackage(
-            "com.google.android.apps.youtube.music",
-            [
-                "6.21.52",
-                "6.22.52",
-                "6.23.56",
-                "6.25.53",
-                "6.26.51",
-                "6.27.54",
-                "6.28.53",
-                "6.29.58",
-                "6.31.55",
-                "6.33.52"
-            ]
-        )
-    ]
-)
-@Suppress("DEPRECATION", "unused")
-object SettingsPatch : AbstractSettingsResourcePatch(
-    "music/settings"
+    ),
+    compatiblePackages = COMPATIBLE_PACKAGE,
+    requiresIntegrations = true
 ), Closeable {
     private val THREAD_COUNT = Runtime.getRuntime().availableProcessors()
     private val threadPoolExecutor = Executors.newFixedThreadPool(THREAD_COUNT)
 
     lateinit var contexts: ResourceContext
-    internal var upward0636: Boolean = false
-    internal var upward0642: Boolean = false
+    internal var upward0636 = false
+    internal var upward0642 = false
 
     override fun execute(context: ResourceContext) {
         contexts = context
@@ -94,6 +75,11 @@ object SettingsPatch : AbstractSettingsResourcePatch(
         threadPoolExecutor
             .also { it.shutdown() }
             .awaitTermination(Long.MAX_VALUE, TimeUnit.SECONDS)
+
+        /**
+         * copy strings
+         */
+        context.copyXmlNode("music/settings/host", "values/strings.xml", "resources")
 
         /**
          * create directory for the untranslated language resources
@@ -144,9 +130,6 @@ object SettingsPatch : AbstractSettingsResourcePatch(
         }
 
         context.addReVancedMusicPreference(YOUTUBE_MUSIC_SETTINGS_KEY)
-
-        super.execute(context)
-
     }
 
     internal fun addMusicPreference(

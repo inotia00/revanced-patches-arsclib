@@ -5,7 +5,7 @@ import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.ReelT
 import app.revanced.util.fingerprint.LiteralValueFingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 
-object ShortsSeekbarColorFingerprint : LiteralValueFingerprint(
+internal object ShortsSeekbarColorFingerprint : LiteralValueFingerprint(
     returnType = "V",
     accessFlags = AccessFlags.PUBLIC or AccessFlags.CONSTRUCTOR,
     literalSupplier = { ReelTimeBarPlayedColor }

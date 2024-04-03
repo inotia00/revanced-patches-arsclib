@@ -1,5 +1,6 @@
 package app.revanced.patches.shared.mapping
 
+@Suppress("unused")
 enum class ResourceType(val value: String) {
     ATTR("attr"),
     BOOL("bool"),

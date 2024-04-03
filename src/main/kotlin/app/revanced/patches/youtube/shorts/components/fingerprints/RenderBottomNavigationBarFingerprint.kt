@@ -3,7 +3,7 @@ package app.revanced.patches.youtube.shorts.components.fingerprints
 import app.revanced.patcher.fingerprint.MethodFingerprint
 import com.android.tools.smali.dexlib2.Opcode
 
-object RenderBottomNavigationBarFingerprint : MethodFingerprint(
+internal object RenderBottomNavigationBarFingerprint : MethodFingerprint(
     returnType = "V",
     opcodes = listOf(
         Opcode.CONST_STRING,

@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package app.revanced.patches.music.player.nextprevious
 
 import app.revanced.patcher.data.ResourceContext

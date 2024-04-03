@@ -11,6 +11,7 @@ import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.music.video.videoid.fingerprints.PlayerResponseModelStoryboardRendererFingerprint
 import app.revanced.patches.music.video.videoid.fingerprints.VideoIdParentFingerprint
 import app.revanced.util.exception
+import app.revanced.util.getTargetIndexReversed
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
@@ -66,9 +67,7 @@ object VideoIdPatch : BytecodePatch(
 
     override fun close () {
         backgroundPlaybackMethod.apply {
-            val videoIdIndex = implementation!!.instructions.indexOfLast {
-                it.opcode == Opcode.IGET_OBJECT
-            }
+            val videoIdIndex = getTargetIndexReversed(Opcode.IGET_OBJECT)
             val videoIdRegister = getInstruction<TwoRegisterInstruction>(videoIdIndex).registerB
             val videoIdReference = getInstruction<ReferenceInstruction>(videoIdIndex).reference
             val videoIdInstructionCall = "iget-object p0, v$videoIdRegister, $videoIdReference"

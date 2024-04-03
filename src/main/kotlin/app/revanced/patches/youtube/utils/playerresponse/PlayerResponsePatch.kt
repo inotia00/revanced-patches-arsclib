@@ -5,7 +5,7 @@ import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
-import app.revanced.patches.youtube.utils.fingerprints.PlayerParameterBuilderFingerprint
+import app.revanced.patches.youtube.utils.playerresponse.fingerprints.PlayerParameterBuilderFingerprint
 import app.revanced.util.exception
 import java.io.Closeable
 

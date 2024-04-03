@@ -4,7 +4,7 @@ import app.revanced.patches.shared.integrations.BaseIntegrationsPatch.Integratio
 import com.android.tools.smali.dexlib2.Opcode
 
 @Suppress("DEPRECATION")
-object InitFingerprint : IntegrationsFingerprint(
+internal object InitFingerprint : IntegrationsFingerprint(
     returnType = "V",
     parameters = emptyList(),
     opcodes = listOf(

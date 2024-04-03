@@ -10,7 +10,7 @@ import app.revanced.patches.shared.integrations.BaseIntegrationsPatch.Integratio
  * https://developers.google.com/youtube/android/player
  */
 @Suppress("DEPRECATION")
-object StandalonePlayerActivityFingerprint : IntegrationsFingerprint(
+internal object StandalonePlayerActivityFingerprint : IntegrationsFingerprint(
     customFingerprint = { methodDef, _ ->
         methodDef.definingClass == "Lcom/google/android/youtube/api/StandalonePlayerActivity;"
                 && methodDef.name == "onCreate"

@@ -1,37 +1,19 @@
 package app.revanced.patches.music.general.amoled
 
 import app.revanced.patcher.data.ResourceContext
-import app.revanced.patcher.patch.ResourcePatch
-import app.revanced.patcher.patch.annotation.CompatiblePackage
-import app.revanced.patcher.patch.annotation.Patch
+import app.revanced.patches.music.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.music.utils.integrations.Constants.UTILS_PATH
 import app.revanced.patches.shared.drawable.DrawableColorPatch
+import app.revanced.util.patch.BaseResourcePatch
 import org.w3c.dom.Element
 
-@Patch(
+@Suppress("DEPRECATION", "unused")
+object AmoledPatch : BaseResourcePatch(
     name = "Amoled",
     description = "Applies a pure black theme to some components.",
-    dependencies = [DrawableColorPatch::class],
-    compatiblePackages = [
-        CompatiblePackage(
-            "com.google.android.apps.youtube.music",
-            [
-                "6.21.52",
-                "6.22.52",
-                "6.23.56",
-                "6.25.53",
-                "6.26.51",
-                "6.27.54",
-                "6.28.53",
-                "6.29.58",
-                "6.31.55",
-                "6.33.52"
-            ]
-        )
-    ],
-)
-@Suppress("unused")
-object AmoledPatch : ResourcePatch() {
+    dependencies = setOf(DrawableColorPatch::class),
+    compatiblePackages = COMPATIBLE_PACKAGE
+) {
     override fun execute(context: ResourceContext) {
 
         DrawableColorPatch.injectCall("$UTILS_PATH/DrawableColorPatch;->getColor(I)I")

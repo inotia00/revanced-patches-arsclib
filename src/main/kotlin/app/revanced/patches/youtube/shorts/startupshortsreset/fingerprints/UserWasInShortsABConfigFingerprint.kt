@@ -6,7 +6,7 @@ import com.android.tools.smali.dexlib2.Opcode
 /**
  * This fingerprint is compatible with all YouTube versions after v18.15.40.
  */
-object UserWasInShortsABConfigFingerprint : MethodFingerprint(
+internal object UserWasInShortsABConfigFingerprint : MethodFingerprint(
     returnType = "V",
     opcodes = listOf(
         Opcode.INVOKE_VIRTUAL,

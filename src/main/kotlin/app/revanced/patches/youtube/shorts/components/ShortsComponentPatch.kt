@@ -6,9 +6,6 @@ import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.fingerprint.MethodFingerprint
-import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotation.CompatiblePackage
-import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.shared.litho.LithoFilterPatch
@@ -18,8 +15,9 @@ import app.revanced.patches.youtube.shorts.components.fingerprints.ShortsPaidPro
 import app.revanced.patches.youtube.shorts.components.fingerprints.ShortsPivotFingerprint
 import app.revanced.patches.youtube.shorts.components.fingerprints.ShortsPivotLegacyFingerprint
 import app.revanced.patches.youtube.utils.browseid.BrowseIdHookPatch
+import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPONENTS_PATH
-import app.revanced.patches.youtube.utils.integrations.Constants.SHORTS
+import app.revanced.patches.youtube.utils.integrations.Constants.SHORTS_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.playertype.PlayerTypeHookPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.ReelDynRemix
@@ -37,13 +35,15 @@ import app.revanced.util.exception
 import app.revanced.util.getTargetIndex
 import app.revanced.util.getTargetIndexReversed
 import app.revanced.util.getWideLiteralInstructionIndex
+import app.revanced.util.patch.BaseBytecodePatch
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
-@Patch(
+@Suppress("unused")
+object ShortsComponentPatch : BaseBytecodePatch(
     name = "Hide shorts components",
     description = "Adds options to hide components related to YouTube Shorts.",
-    dependencies = [
+    dependencies = setOf(
         BrowseIdHookPatch::class,
         LithoFilterPatch::class,
         PlayerTypeHookPatch::class,
@@ -52,40 +52,9 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
         ShortsNavigationBarPatch::class,
         ShortsSubscriptionsButtonPatch::class,
         ShortsToolBarPatch::class
-    ],
-    compatiblePackages = [
-        CompatiblePackage(
-            "com.google.android.youtube",
-            [
-                "18.29.38",
-                "18.30.37",
-                "18.31.40",
-                "18.32.39",
-                "18.33.40",
-                "18.34.38",
-                "18.35.36",
-                "18.36.39",
-                "18.37.36",
-                "18.38.44",
-                "18.39.41",
-                "18.40.34",
-                "18.41.39",
-                "18.42.41",
-                "18.43.45",
-                "18.44.41",
-                "18.45.43",
-                "18.46.45",
-                "18.48.39",
-                "18.49.37",
-                "19.01.34",
-                "19.02.39"
-            ]
-        )
-    ]
-)
-@Suppress("unused")
-object ShortsComponentPatch : BytecodePatch(
-    setOf(
+    ),
+    compatiblePackages = COMPATIBLE_PACKAGE,
+    fingerprints = setOf(
         ShortsButtonFingerprint,
         ShortsInfoPanelFingerprint,
         ShortsPaidPromotionFingerprint,
@@ -112,7 +81,7 @@ object ShortsComponentPatch : BytecodePatch(
 
                 addInstructionsWithLabels(
                     constIndex + 1, """
-                        invoke-static {}, $SHORTS->hideShortsPlayerDislikeButton()Z
+                        invoke-static {}, $SHORTS_CLASS_DESCRIPTOR->hideShortsPlayerDislikeButton()Z
                         move-result v$constRegister
                         if-nez v$constRegister, :hide
                         const v$constRegister, $ReelRightDislikeIcon
@@ -137,7 +106,7 @@ object ShortsComponentPatch : BytecodePatch(
 
                 addInstructionsWithLabels(
                     insertIndex + 1, """
-                        invoke-static {}, $SHORTS->hideShortsPlayerLikeButton()Z
+                        invoke-static {}, $SHORTS_CLASS_DESCRIPTOR->hideShortsPlayerLikeButton()Z
                         move-result v$insertRegister
                         if-nez v$insertRegister, :hide
                         const v$insertRegister, $ReelRightLikeIcon
@@ -165,7 +134,7 @@ object ShortsComponentPatch : BytecodePatch(
 
                 addInstructionsWithLabels(
                     insertIndex, """
-                        invoke-static {}, $SHORTS->hideShortsPlayerPivotButton()Z
+                        invoke-static {}, $SHORTS_CLASS_DESCRIPTOR->hideShortsPlayerPivotButton()Z
                         move-result v$targetRegister
                         if-nez v$targetRegister, :hide
                         """, ExternalLabel("hide", getInstruction(jumpIndex))
@@ -225,7 +194,7 @@ object ShortsComponentPatch : BytecodePatch(
 
                 addInstruction(
                     insertIndex,
-                    "invoke-static {v$insertRegister}, $SHORTS->$descriptor(Landroid/view/View;)V"
+                    "invoke-static {v$insertRegister}, $SHORTS_CLASS_DESCRIPTOR->$descriptor(Landroid/view/View;)V"
                 )
             }
         } ?: throw exception
@@ -253,7 +222,7 @@ object ShortsComponentPatch : BytecodePatch(
 
         addInstructions(
             insertIndex + 1, """
-                invoke-static {v$insertRegister}, $SHORTS->$descriptor
+                invoke-static {v$insertRegister}, $SHORTS_CLASS_DESCRIPTOR->$descriptor
                 move-result-object v$insertRegister
                 """
         )

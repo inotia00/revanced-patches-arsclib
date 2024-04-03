@@ -5,7 +5,7 @@ import app.revanced.patcher.fingerprint.MethodFingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 
-object DrawableFingerprint : MethodFingerprint(
+internal object DrawableFingerprint : MethodFingerprint(
     returnType = "V",
     accessFlags = AccessFlags.PROTECTED or AccessFlags.FINAL,
     parameters = listOf("L"),

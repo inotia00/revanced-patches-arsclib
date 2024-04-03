@@ -6,91 +6,68 @@ import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.removeInstruction
-import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotation.CompatiblePackage
-import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.music.actionbar.component.fingerprints.ActionBarComponentFingerprint
 import app.revanced.patches.music.actionbar.component.fingerprints.LikeDislikeContainerFingerprint
 import app.revanced.patches.music.actionbar.component.fingerprints.LikeDislikeContainerVisibilityFingerprint
-import app.revanced.patches.music.utils.integrations.Constants.ACTIONBAR
+import app.revanced.patches.music.utils.integrations.Constants.ACTIONBAR_CLASS_DESCRIPTOR
+import app.revanced.patches.music.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch.LikeDislikeContainer
 import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
 import app.revanced.patches.music.video.information.VideoInformationPatch
 import app.revanced.util.exception
+import app.revanced.util.getTargetIndexWithMethodReferenceName
+import app.revanced.util.getTargetIndexWithReference
 import app.revanced.util.getWideLiteralInstructionIndex
+import app.revanced.util.indexOfFirstInstruction
+import app.revanced.util.patch.BaseBytecodePatch
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
-import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 import kotlin.math.min
 
-@Patch(
+@Suppress("unused")
+object ActionBarComponentPatch : BaseBytecodePatch(
     name = "Hide action bar component",
     description = "Adds options to hide action bar components and replace the offline download button with an external download button.",
-    dependencies = [
+    dependencies = setOf(
         SettingsPatch::class,
         SharedResourceIdPatch::class,
         VideoInformationPatch::class
-    ],
-    compatiblePackages = [
-        CompatiblePackage(
-            "com.google.android.apps.youtube.music",
-            [
-                "6.21.52",
-                "6.22.52",
-                "6.23.56",
-                "6.25.53",
-                "6.26.51",
-                "6.27.54",
-                "6.28.53",
-                "6.29.58",
-                "6.31.55",
-                "6.33.52"
-            ]
-        )
-    ]
-)
-@Suppress("unused")
-object ActionBarComponentPatch : BytecodePatch(
-    setOf(
+    ),
+    compatiblePackages = COMPATIBLE_PACKAGE,
+    fingerprints = setOf(
         ActionBarComponentFingerprint,
         LikeDislikeContainerFingerprint
     )
 ) {
-    private var spannedReference = ""
-
     override fun execute(context: BytecodeContext) {
         ActionBarComponentFingerprint.result?.let {
             it.mutableMethod.apply {
-                val instructions = implementation!!.instructions
 
                 // hook download button
-                val addViewIndex = instructions.indexOfLast { instruction ->
-                    ((instruction as? ReferenceInstruction)?.reference as? MethodReference)?.name == "addView"
-                }
+                val addViewIndex = getTargetIndexWithMethodReferenceName("addView")
                 val addViewRegister = getInstruction<FiveRegisterInstruction>(addViewIndex).registerD
 
                 addInstruction(
                     addViewIndex + 1,
-                    "invoke-static {v$addViewRegister}, $ACTIONBAR->hookDownloadButton(Landroid/view/View;)V"
+                    "invoke-static {v$addViewRegister}, $ACTIONBAR_CLASS_DESCRIPTOR->hookDownloadButton(Landroid/view/View;)V"
                 )
 
                 // hide action button label
-                val noLabelIndex = instructions.indexOfFirst { instruction ->
-                    val reference = (instruction as? ReferenceInstruction)?.reference.toString()
-                    instruction.opcode == Opcode.INVOKE_DIRECT
+                val noLabelIndex = indexOfFirstInstruction {
+                    val reference = (this as? ReferenceInstruction)?.reference.toString()
+                    opcode == Opcode.INVOKE_DIRECT
                             && reference.endsWith("<init>(Landroid/content/Context;)V")
                             && !reference.contains("Lcom/google/android/libraries/youtube/common/ui/YouTubeButton;")
                 } - 2
-
-                val replaceIndex = instructions.indexOfFirst { instruction ->
-                    val reference = (instruction as? ReferenceInstruction)?.reference.toString()
-                    instruction.opcode == Opcode.INVOKE_DIRECT
+                val replaceIndex = indexOfFirstInstruction {
+                    val reference = (this as? ReferenceInstruction)?.reference.toString()
+                    opcode == Opcode.INVOKE_DIRECT
                             && reference.endsWith("Lcom/google/android/libraries/youtube/common/ui/YouTubeButton;-><init>(Landroid/content/Context;)V")
                 } - 2
                 val replaceInstruction = getInstruction<TwoRegisterInstruction>(replaceIndex)
@@ -98,7 +75,7 @@ object ActionBarComponentPatch : BytecodePatch(
 
                 addInstructionsWithLabels(
                     replaceIndex + 1, """
-                        invoke-static {}, $ACTIONBAR->hideActionBarLabel()Z
+                        invoke-static {}, $ACTIONBAR_CLASS_DESCRIPTOR->hideActionBarLabel()Z
                         move-result v${replaceInstruction.registerA}
                         if-nez v${replaceInstruction.registerA}, :hidden
                         iget-object v${replaceInstruction.registerA}, v${replaceInstruction.registerB}, $replaceReference
@@ -107,21 +84,16 @@ object ActionBarComponentPatch : BytecodePatch(
                 removeInstruction(replaceIndex)
 
                 // hide action button
-                val hasNextIndex = instructions.indexOfFirst { instruction ->
-                    ((instruction as? ReferenceInstruction)?.reference as? MethodReference)?.name == "hasNext"
-                }
-
+                val hasNextIndex = getTargetIndexWithMethodReferenceName("hasNext")
                 val freeRegister = min(implementation!!.registerCount - parameters.size - 2, 15)
 
-                val spannedIndex = instructions.indexOfFirst { instruction ->
-                    spannedReference = (instruction as? ReferenceInstruction)?.reference.toString()
-                    spannedReference.endsWith("Landroid/text/Spanned;")
-                }
+                val spannedIndex = getTargetIndexWithReference(")Landroid/text/Spanned;")
                 val spannedRegister = getInstruction<FiveRegisterInstruction>(spannedIndex).registerC
+                val spannedReference = getInstruction<ReferenceInstruction>(spannedIndex).reference
 
                 addInstructionsWithLabels(
                     spannedIndex + 1, """
-                        invoke-static {}, $ACTIONBAR->hideActionButton()Z
+                        invoke-static {}, $ACTIONBAR_CLASS_DESCRIPTOR->hideActionButton()Z
                         move-result v$freeRegister
                         if-nez v$freeRegister, :hidden
                         invoke-static {v$spannedRegister}, $spannedReference
@@ -138,12 +110,12 @@ object ActionBarComponentPatch : BytecodePatch(
 
                 addInstruction(
                     buttonTypeIndex + 2,
-                    "invoke-static {v$buttonTypeRegister}, $ACTIONBAR->setButtonType(Ljava/lang/Object;)V"
+                    "invoke-static {v$buttonTypeRegister}, $ACTIONBAR_CLASS_DESCRIPTOR->setButtonType(Ljava/lang/Object;)V"
                 )
 
                 addInstruction(
                     buttonTypeDownloadIndex,
-                    "invoke-static {v$buttonTypeDownloadRegister}, $ACTIONBAR->setButtonTypeDownload(I)V"
+                    "invoke-static {v$buttonTypeDownloadRegister}, $ACTIONBAR_CLASS_DESCRIPTOR->setButtonTypeDownload(I)V"
                 )
             }
         } ?: throw ActionBarComponentFingerprint.exception
@@ -163,7 +135,7 @@ object ActionBarComponentPatch : BytecodePatch(
 
                     addInstructions(
                         targetIndex + 1, """
-                            invoke-static {v$targetRegister}, $ACTIONBAR->hideLikeDislikeButton(Z)Z
+                            invoke-static {v$targetRegister}, $ACTIONBAR_CLASS_DESCRIPTOR->hideLikeDislikeButton(Z)Z
                             move-result v$targetRegister
                             """
                     )
@@ -176,7 +148,7 @@ object ActionBarComponentPatch : BytecodePatch(
 
                 addInstruction(
                     insertIndex + 1,
-                    "invoke-static {v$insertRegister}, $ACTIONBAR->hideLikeDislikeButton(Landroid/view/View;)V"
+                    "invoke-static {v$insertRegister}, $ACTIONBAR_CLASS_DESCRIPTOR->hideLikeDislikeButton(Landroid/view/View;)V"
                 )
             }
         } ?: throw LikeDislikeContainerFingerprint.exception

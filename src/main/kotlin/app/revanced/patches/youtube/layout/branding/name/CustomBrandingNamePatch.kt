@@ -2,52 +2,20 @@ package app.revanced.patches.youtube.layout.branding.name
 
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.PatchException
-import app.revanced.patcher.patch.annotation.CompatiblePackage
-import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.patch.options.PatchOption.PatchExtensions.stringPatchOption
-import app.revanced.patches.shared.elements.AbstractRemoveStringsElementsPatch
+import app.revanced.patches.shared.elements.StringsElementsUtils.removeStringsElements
+import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.LANGUAGE_LIST
 import app.revanced.patches.youtube.utils.settings.ResourceUtils.updatePatchStatusLabel
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
+import app.revanced.util.patch.BaseResourcePatch
 
-@Patch(
+@Suppress("DEPRECATION", "unused")
+object CustomBrandingNamePatch : BaseResourcePatch(
     name = "Custom branding name YouTube",
     description = "Rename the YouTube app to the name specified in options.json.",
-    dependencies = [SettingsPatch::class],
-    compatiblePackages = [
-        CompatiblePackage(
-            "com.google.android.youtube",
-            [
-                "18.29.38",
-                "18.30.37",
-                "18.31.40",
-                "18.32.39",
-                "18.33.40",
-                "18.34.38",
-                "18.35.36",
-                "18.36.39",
-                "18.37.36",
-                "18.38.44",
-                "18.39.41",
-                "18.40.34",
-                "18.41.39",
-                "18.42.41",
-                "18.43.45",
-                "18.44.41",
-                "18.45.43",
-                "18.46.45",
-                "18.48.39",
-                "18.49.37",
-                "19.01.34",
-                "19.02.39"
-            ]
-        )
-    ]
-)
-@Suppress("unused")
-object CustomBrandingNamePatch : AbstractRemoveStringsElementsPatch(
-    LANGUAGE_LIST,
-    arrayOf("application_name")
+    dependencies = setOf(SettingsPatch::class),
+    compatiblePackages = COMPATIBLE_PACKAGE
 ) {
     private const val APP_NAME = "ReVanced Extended"
 
@@ -64,7 +32,11 @@ object CustomBrandingNamePatch : AbstractRemoveStringsElementsPatch(
     )
 
     override fun execute(context: ResourceContext) {
-        super.execute(context)
+
+        context.removeStringsElements(
+            LANGUAGE_LIST,
+            arrayOf("application_name")
+        )
 
         AppName?.let {
             context.xmlEditor["res/values/strings.xml"].use { editor ->

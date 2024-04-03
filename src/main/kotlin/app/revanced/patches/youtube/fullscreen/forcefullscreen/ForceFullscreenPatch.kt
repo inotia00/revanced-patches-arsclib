@@ -4,60 +4,29 @@ import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchException
-import app.revanced.patcher.patch.annotation.CompatiblePackage
-import app.revanced.patcher.patch.annotation.Patch
-import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.youtube.fullscreen.forcefullscreen.fingerprints.ClientSettingEndpointFingerprint
 import app.revanced.patches.youtube.fullscreen.forcefullscreen.fingerprints.VideoPortraitParentFingerprint
-import app.revanced.patches.youtube.utils.integrations.Constants.FULLSCREEN
+import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
+import app.revanced.patches.youtube.utils.integrations.Constants.FULLSCREEN_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.util.exception
 import app.revanced.util.getStringInstructionIndex
+import app.revanced.util.getTargetIndex
+import app.revanced.util.patch.BaseBytecodePatch
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 
-@Patch(
+@Suppress("unused")
+object ForceFullscreenPatch : BaseBytecodePatch(
     name = "Force fullscreen",
     description = "Adds an option to forcefully open videos in fullscreen.",
-    dependencies = [SettingsPatch::class],
-    compatiblePackages = [
-        CompatiblePackage(
-            "com.google.android.youtube",
-            [
-                "18.29.38",
-                "18.30.37",
-                "18.31.40",
-                "18.32.39",
-                "18.33.40",
-                "18.34.38",
-                "18.35.36",
-                "18.36.39",
-                "18.37.36",
-                "18.38.44",
-                "18.39.41",
-                "18.40.34",
-                "18.41.39",
-                "18.42.41",
-                "18.43.45",
-                "18.44.41",
-                "18.45.43",
-                "18.46.45",
-                "18.48.39",
-                "18.49.37",
-                "19.01.34",
-                "19.02.39"
-            ]
-        )
-    ]
-)
-@Suppress("unused")
-object ForceFullscreenPatch : BytecodePatch(
-    setOf(
+    dependencies = setOf(SettingsPatch::class),
+    compatiblePackages = COMPATIBLE_PACKAGE,
+    fingerprints = setOf(
         ClientSettingEndpointFingerprint,
         VideoPortraitParentFingerprint
     )
@@ -81,7 +50,7 @@ object ForceFullscreenPatch : BytecodePatch(
 
                 addInstructions(
                     watchDescriptorMethodIndex, """
-                        invoke-static {v$watchDescriptorRegister}, $FULLSCREEN->forceFullscreen(Z)Z
+                        invoke-static {v$watchDescriptorRegister}, $FULLSCREEN_CLASS_DESCRIPTOR->forceFullscreen(Z)Z
                         move-result v$watchDescriptorRegister
                         """
                 )
@@ -93,7 +62,7 @@ object ForceFullscreenPatch : BytecodePatch(
                     insertIndex, """
                         iget-object v$freeRegister, v$classRegister, $getActivityReference
                         check-cast v$freeRegister, Landroid/app/Activity;
-                        sput-object v$freeRegister, $FULLSCREEN->watchDescriptorActivity:Landroid/app/Activity;
+                        sput-object v$freeRegister, $FULLSCREEN_CLASS_DESCRIPTOR->watchDescriptorActivity:Landroid/app/Activity;
                         """
                 )
             }
@@ -107,8 +76,8 @@ object ForceFullscreenPatch : BytecodePatch(
             it.mutableMethod.apply {
                 val stringIndex =
                     getStringInstructionIndex("Acquiring NetLatencyActionLogger failed. taskId=")
-                val invokeIndex = getTargetIndexTo(stringIndex, Opcode.INVOKE_INTERFACE)
-                val targetIndex = getTargetIndexTo(invokeIndex, Opcode.CHECK_CAST)
+                val invokeIndex = getTargetIndex(stringIndex, Opcode.INVOKE_INTERFACE)
+                val targetIndex = getTargetIndex(invokeIndex, Opcode.CHECK_CAST)
                 val targetClass = context
                     .findClass(getInstruction<ReferenceInstruction>(targetIndex).reference.toString())!!
                     .mutableClass
@@ -117,7 +86,7 @@ object ForceFullscreenPatch : BytecodePatch(
                     ?.apply {
                         addInstruction(
                             1,
-                            "invoke-static {p1, p2}, $FULLSCREEN->setVideoPortrait(II)V"
+                            "invoke-static {p1, p2}, $FULLSCREEN_CLASS_DESCRIPTOR->setVideoPortrait(II)V"
                         )
                     } ?: throw PatchException("Could not find targetMethod")
             }
@@ -136,18 +105,5 @@ object ForceFullscreenPatch : BytecodePatch(
 
         SettingsPatch.updatePatchStatus("Force fullscreen")
 
-    }
-
-    private fun MutableMethod.getTargetIndexTo(
-        startIndex: Int,
-        opcode: Opcode
-    ): Int {
-        for (index in startIndex until implementation!!.instructions.size) {
-            if (getInstruction(index).opcode != opcode)
-                continue
-
-            return index
-        }
-        throw PatchException("Failed to find target index")
     }
 }

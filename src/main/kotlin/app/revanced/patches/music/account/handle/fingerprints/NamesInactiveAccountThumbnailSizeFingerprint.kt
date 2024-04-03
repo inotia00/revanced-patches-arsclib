@@ -4,7 +4,7 @@ import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch.NamesIn
 import app.revanced.util.fingerprint.LiteralValueFingerprint
 import com.android.tools.smali.dexlib2.Opcode
 
-object NamesInactiveAccountThumbnailSizeFingerprint : LiteralValueFingerprint(
+internal object NamesInactiveAccountThumbnailSizeFingerprint : LiteralValueFingerprint(
     returnType = "V",
     parameters = listOf("L", "Ljava/lang/Object;"),
     opcodes = listOf(

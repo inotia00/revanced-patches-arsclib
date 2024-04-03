@@ -3,7 +3,7 @@ package app.revanced.patches.youtube.player.filmstripoverlay.fingerprints
 import app.revanced.patcher.fingerprint.MethodFingerprint
 import com.android.tools.smali.dexlib2.Opcode
 
-object FilmStripOverlayPreviewFingerprint : MethodFingerprint(
+internal object FilmStripOverlayPreviewFingerprint : MethodFingerprint(
     returnType = "Z",
     parameters = listOf("F"),
     opcodes = listOf(

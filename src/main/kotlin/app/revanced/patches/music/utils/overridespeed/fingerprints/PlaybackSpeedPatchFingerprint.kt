@@ -5,7 +5,7 @@ import app.revanced.patcher.fingerprint.MethodFingerprint
 import app.revanced.patches.music.utils.integrations.Constants.VIDEO_PATH
 import com.android.tools.smali.dexlib2.AccessFlags
 
-object PlaybackSpeedPatchFingerprint : MethodFingerprint(
+internal object PlaybackSpeedPatchFingerprint : MethodFingerprint(
     returnType = "V",
     accessFlags = AccessFlags.PUBLIC or AccessFlags.STATIC,
     parameters = emptyList(),

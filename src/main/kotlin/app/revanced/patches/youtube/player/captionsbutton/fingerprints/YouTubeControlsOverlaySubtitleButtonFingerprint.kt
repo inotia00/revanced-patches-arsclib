@@ -11,7 +11,7 @@ import com.android.tools.smali.dexlib2.AccessFlags
  *
  * This fingerprint is compatible from YouTube v18.25.40 to YouTube v18.45.43
  */
-object YouTubeControlsOverlaySubtitleButtonFingerprint : LiteralValueFingerprint(
+internal object YouTubeControlsOverlaySubtitleButtonFingerprint : LiteralValueFingerprint(
     returnType = "L",
     accessFlags = AccessFlags.PUBLIC or AccessFlags.STATIC,
     literalSupplier = { YoutubeControlsOverlaySubtitleButton }

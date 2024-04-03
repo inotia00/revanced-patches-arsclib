@@ -6,10 +6,7 @@ import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.or
-import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchException
-import app.revanced.patcher.patch.annotation.CompatiblePackage
-import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableField.Companion.toMutable
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.music.player.nextprevious.fingerprints.MiniPlayerParentFingerprint
@@ -18,7 +15,8 @@ import app.revanced.patches.music.player.nextprevious.fingerprints.NextButtonVis
 import app.revanced.patches.music.player.nextprevious.fingerprints.PlayerPatchConstructorFingerprint
 import app.revanced.patches.music.utils.fingerprints.MiniPlayerConstructorFingerprint
 import app.revanced.patches.music.utils.fingerprints.PendingIntentReceiverFingerprint
-import app.revanced.patches.music.utils.integrations.Constants.PLAYER
+import app.revanced.patches.music.utils.integrations.Constants.COMPATIBLE_PACKAGE
+import app.revanced.patches.music.utils.integrations.Constants.PLAYER_CLASS_DESCRIPTOR
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch.MiniPlayerPlayPauseReplayButton
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch.TopEnd
@@ -30,6 +28,7 @@ import app.revanced.util.getStringInstructionIndex
 import app.revanced.util.getTargetIndex
 import app.revanced.util.getTargetIndexReversed
 import app.revanced.util.getWideLiteralInstructionIndex
+import app.revanced.util.patch.BaseBytecodePatch
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
@@ -38,35 +37,17 @@ import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 import com.android.tools.smali.dexlib2.immutable.ImmutableField
 
-@Patch(
+@Suppress("unused")
+object MiniPlayerButtonPatch : BaseBytecodePatch(
     name = "Enable next previous button",
     description = "Adds an options to show the next and previous buttons to the miniplayer.",
-    dependencies = [
+    dependencies = setOf(
         MiniPlayerButtonResourcePatch::class,
         SettingsPatch::class,
         SharedResourceIdPatch::class
-    ],
-    compatiblePackages = [
-        CompatiblePackage(
-            "com.google.android.apps.youtube.music",
-            [
-                "6.21.52",
-                "6.22.52",
-                "6.23.56",
-                "6.25.53",
-                "6.26.51",
-                "6.27.54",
-                "6.28.53",
-                "6.29.58",
-                "6.31.55",
-                "6.33.52"
-            ]
-        )
-    ]
-)
-@Suppress("unused")
-object MiniPlayerButtonPatch : BytecodePatch(
-    setOf(
+    ),
+    compatiblePackages = COMPATIBLE_PACKAGE,
+    fingerprints = setOf(
         MiniPlayerConstructorFingerprint,
         MiniPlayerParentFingerprint,
         MppWatchWhileLayoutFingerprint,
@@ -124,7 +105,7 @@ object MiniPlayerButtonPatch : BytecodePatch(
 
                         addInstructions(
                             targetIndex + 1, """
-                                invoke-static {v$targetRegister}, $PLAYER->enableMiniPlayerNextButton(Z)Z
+                                invoke-static {v$targetRegister}, $PLAYER_CLASS_DESCRIPTOR->enableMiniPlayerNextButton(Z)Z
                                 move-result v$targetRegister
                                 """
                         )
@@ -170,7 +151,7 @@ object MiniPlayerButtonPatch : BytecodePatch(
                 const v$miniPlayerPlayPauseReplayButtonRegister, $viewId
                 invoke-virtual {v$parentViewRegister, v$miniPlayerPlayPauseReplayButtonRegister}, Landroid/view/View;->findViewById(I)Landroid/view/View;
                 move-result-object v$miniPlayerPlayPauseReplayButtonRegister
-                invoke-static {v$miniPlayerPlayPauseReplayButtonRegister}, $PLAYER->$methodName(Landroid/view/View;)V
+                invoke-static {v$miniPlayerPlayPauseReplayButtonRegister}, $PLAYER_CLASS_DESCRIPTOR->$methodName(Landroid/view/View;)V
                 """
         )
     }
@@ -189,7 +170,7 @@ object MiniPlayerButtonPatch : BytecodePatch(
                 const v$constRegister, $viewId
                 invoke-virtual {v$findViewByIdRegister, v$constRegister}, $definingClass->findViewById(I)Landroid/view/View;
                 move-result-object v$constRegister
-                sput-object v$constRegister, $PLAYER->$fieldName:Landroid/view/View;
+                sput-object v$constRegister, $PLAYER_CLASS_DESCRIPTOR->$fieldName:Landroid/view/View;
                 """
         )
     }
@@ -201,7 +182,7 @@ object MiniPlayerButtonPatch : BytecodePatch(
 
         addInstructions(
             invokeStaticIndex, """
-                invoke-static {v$viewArrayRegister}, $PLAYER->getViewArray([Landroid/view/View;)[Landroid/view/View;
+                invoke-static {v$viewArrayRegister}, $PLAYER_CLASS_DESCRIPTOR->getViewArray([Landroid/view/View;)[Landroid/view/View;
                 move-result-object v$viewArrayRegister
                 """
         )
@@ -225,7 +206,7 @@ object MiniPlayerButtonPatch : BytecodePatch(
             ?.apply {
                 addInstruction(
                     implementation!!.instructions.size - 1,
-                    "sput-object p0, $PLAYER->$fieldName:$onClickReferenceDefiningClass"
+                    "sput-object p0, $PLAYER_CLASS_DESCRIPTOR->$fieldName:$onClickReferenceDefiningClass"
                 )
             } ?: throw PatchException("onClickClass not found!")
 
@@ -246,7 +227,7 @@ object MiniPlayerButtonPatch : BytecodePatch(
                     )
                     addInstructionsWithLabels(
                         0, """
-                            sget-object v0, $PLAYER->$fieldName:$onClickReferenceDefiningClass
+                            sget-object v0, $PLAYER_CLASS_DESCRIPTOR->$fieldName:$onClickReferenceDefiningClass
                             if-eqz v0, :ignore
                             invoke-virtual {v0}, $onClickReference
                             :ignore

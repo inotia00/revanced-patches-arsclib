@@ -5,7 +5,7 @@ import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch.ColorGr
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch.MiniPlayerPlayPauseReplayButton
 import app.revanced.util.containsWideLiteralInstructionIndex
 
-object MiniPlayerConstructorFingerprint : MethodFingerprint(
+internal object MiniPlayerConstructorFingerprint : MethodFingerprint(
     returnType = "V",
     strings = listOf("sharedToggleMenuItemMutations"),
     customFingerprint = { methodDef, _ ->

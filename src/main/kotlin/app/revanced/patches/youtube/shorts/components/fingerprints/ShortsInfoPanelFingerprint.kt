@@ -5,7 +5,7 @@ import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.ReelP
 import app.revanced.util.fingerprint.LiteralValueFingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 
-object ShortsInfoPanelFingerprint : LiteralValueFingerprint(
+internal object ShortsInfoPanelFingerprint : LiteralValueFingerprint(
     returnType = "V",
     accessFlags = AccessFlags.PUBLIC or AccessFlags.FINAL,
     literalSupplier = { ReelPlayerInfoPanel }

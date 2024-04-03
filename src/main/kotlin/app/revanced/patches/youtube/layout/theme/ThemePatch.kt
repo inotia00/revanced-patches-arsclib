@@ -2,54 +2,24 @@ package app.revanced.patches.youtube.layout.theme
 
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.PatchException
-import app.revanced.patcher.patch.ResourcePatch
-import app.revanced.patcher.patch.annotation.CompatiblePackage
-import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.patch.options.PatchOption.PatchExtensions.stringPatchOption
 import app.revanced.patches.youtube.layout.theme.ThemeBytecodePatch.isMonetPatchIncluded
+import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.settings.ResourceUtils.updatePatchStatusTheme
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
+import app.revanced.util.patch.BaseResourcePatch
 import org.w3c.dom.Element
 
-@Patch(
+@Suppress("DEPRECATION", "unused")
+object ThemePatch : BaseResourcePatch(
     name = "Theme",
     description = "Change the app's theme to the values specified in options.json.",
-    dependencies = [
+    dependencies = setOf(
         SettingsPatch::class,
         ThemeBytecodePatch::class
-    ],
-    compatiblePackages = [
-        CompatiblePackage(
-            "com.google.android.youtube",
-            [
-                "18.29.38",
-                "18.30.37",
-                "18.31.40",
-                "18.32.39",
-                "18.33.40",
-                "18.34.38",
-                "18.35.36",
-                "18.36.39",
-                "18.37.36",
-                "18.38.44",
-                "18.39.41",
-                "18.40.34",
-                "18.41.39",
-                "18.42.41",
-                "18.43.45",
-                "18.44.41",
-                "18.45.43",
-                "18.46.45",
-                "18.48.39",
-                "18.49.37",
-                "19.01.34",
-                "19.02.39"
-            ]
-        )
-    ]
-)
-@Suppress("unused")
-object ThemePatch : ResourcePatch() {
+    ),
+    compatiblePackages = COMPATIBLE_PACKAGE
+) {
     private const val AMOLED_BLACK_COLOR = "@android:color/black"
     private const val CATPPUCCIN_MOCHA_COLOR = "#FF181825"
     private const val DARK_PINK_COLOR = "#FF290025"

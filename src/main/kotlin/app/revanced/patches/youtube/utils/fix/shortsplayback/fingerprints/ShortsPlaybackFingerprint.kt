@@ -4,7 +4,7 @@ import app.revanced.patcher.extensions.or
 import app.revanced.util.fingerprint.LiteralValueFingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 
-object ShortsPlaybackFingerprint : LiteralValueFingerprint(
+internal object ShortsPlaybackFingerprint : LiteralValueFingerprint(
     returnType = "Z",
     accessFlags = AccessFlags.PUBLIC or AccessFlags.FINAL,
     literalSupplier = { 45387052 }

@@ -6,7 +6,7 @@ import app.revanced.patches.youtube.utils.integrations.Constants.INTEGRATIONS_PA
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 
-object SegmentPlaybackControllerFingerprint : MethodFingerprint(
+internal object SegmentPlaybackControllerFingerprint : MethodFingerprint(
     returnType = "V",
     accessFlags = AccessFlags.PUBLIC or AccessFlags.STATIC,
     parameters = listOf("Ljava/lang/Object;"),

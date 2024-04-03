@@ -5,7 +5,7 @@ import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch.LikeDis
 import app.revanced.util.fingerprint.LiteralValueFingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 
-object LikeDislikeContainerFingerprint : LiteralValueFingerprint(
+internal object LikeDislikeContainerFingerprint : LiteralValueFingerprint(
     returnType = "V",
     accessFlags = AccessFlags.PUBLIC or AccessFlags.CONSTRUCTOR,
     literalSupplier = { LikeDislikeContainer }

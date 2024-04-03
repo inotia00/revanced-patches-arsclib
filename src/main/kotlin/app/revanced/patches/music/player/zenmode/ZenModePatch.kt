@@ -3,52 +3,33 @@ package app.revanced.patches.music.player.zenmode
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotation.CompatiblePackage
-import app.revanced.patcher.patch.annotation.Patch
-import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.music.player.zenmode.fingerprints.ZenModeFingerprint
 import app.revanced.patches.music.utils.fingerprints.MiniPlayerConstructorFingerprint
 import app.revanced.patches.music.utils.fingerprints.SwitchToggleColorFingerprint
-import app.revanced.patches.music.utils.integrations.Constants.PLAYER
+import app.revanced.patches.music.utils.integrations.Constants.COMPATIBLE_PACKAGE
+import app.revanced.patches.music.utils.integrations.Constants.PLAYER_CLASS_DESCRIPTOR
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
 import app.revanced.patches.music.utils.videotype.VideoTypeHookPatch
 import app.revanced.util.exception
 import app.revanced.util.getTargetIndex
+import app.revanced.util.getWalkerMethod
+import app.revanced.util.patch.BaseBytecodePatch
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
-@Patch(
+@Suppress("unused")
+object ZenModePatch : BaseBytecodePatch(
     name = "Enable zen mode",
     description = "Adds an option to change the player background to light grey to reduce eye strain.",
-    dependencies = [
+    dependencies = setOf(
         SettingsPatch::class,
         SharedResourceIdPatch::class,
         VideoTypeHookPatch::class
-    ],
-    compatiblePackages = [
-        CompatiblePackage(
-            "com.google.android.apps.youtube.music",
-            [
-                "6.21.52",
-                "6.22.52",
-                "6.23.56",
-                "6.25.53",
-                "6.26.51",
-                "6.27.54",
-                "6.28.53",
-                "6.29.58",
-                "6.31.55",
-                "6.33.52"
-            ]
-        )
-    ]
-)
-@Suppress("unused")
-object ZenModePatch : BytecodePatch(
-    setOf(MiniPlayerConstructorFingerprint)
+    ),
+    compatiblePackages = COMPATIBLE_PACKAGE,
+    fingerprints = setOf(MiniPlayerConstructorFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
 
@@ -68,7 +49,7 @@ object ZenModePatch : BytecodePatch(
 
                     addInstructions(
                         insertIndex, """
-                            invoke-static {v$targetRegister}, $PLAYER->enableZenMode(I)I
+                            invoke-static {v$targetRegister}, $PLAYER_CLASS_DESCRIPTOR->enableZenMode(I)I
                             move-result v$targetRegister
                             """
                     )
@@ -76,17 +57,15 @@ object ZenModePatch : BytecodePatch(
             }
 
             SwitchToggleColorFingerprint.result?.let {
-                val invokeDirectIndex = it.mutableMethod.getTargetIndex(0, Opcode.INVOKE_DIRECT)
-                val targetMethod = context.toMethodWalker(it.method)
-                    .nextMethod(invokeDirectIndex, true)
-                    .getMethod() as MutableMethod
+                it.mutableMethod.apply {
+                    val invokeDirectIndex = getTargetIndex(Opcode.INVOKE_DIRECT)
+                    val walkerMethod = getWalkerMethod(context, invokeDirectIndex)
 
-                targetMethod.apply {
-                    addInstructions(
+                    walkerMethod.addInstructions(
                         0, """
-                            invoke-static {p1}, $PLAYER->enableZenMode(I)I
+                            invoke-static {p1}, $PLAYER_CLASS_DESCRIPTOR->enableZenMode(I)I
                             move-result p1
-                            invoke-static {p2}, $PLAYER->enableZenMode(I)I
+                            invoke-static {p2}, $PLAYER_CLASS_DESCRIPTOR->enableZenMode(I)I
                             move-result p2
                             """
                     )

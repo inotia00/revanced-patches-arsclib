@@ -1,5 +1,7 @@
 package app.revanced.patches.youtube.utils.integrations
 
+import app.revanced.patcher.patch.Patch
+
 @Suppress("MemberVisibilityCanBePrivate")
 object Constants {
     const val INTEGRATIONS_PATH = "Lapp/revanced/integrations/youtube"
@@ -22,15 +24,45 @@ object Constants {
     const val UTILS_PATH = "$PATCHES_PATH/utils"
     const val VIDEO_PATH = "$PATCHES_PATH/video"
 
-    const val ALTERNATIVE_THUMBNAILS = "$ALTERNATIVE_THUMBNAILS_PATH/AlternativeThumbnailsPatch;"
-    const val BOTTOM_PLAYER = "$BOTTOM_PLAYER_PATH/BottomPlayerPatch;"
-    const val FLYOUT_PANEL = "$FLYOUT_PANEL_PATH/FlyoutPanelPatch;"
-    const val FULLSCREEN = "$FULLSCREEN_PATH/FullscreenPatch;"
-    const val GENERAL = "$GENERAL_PATH/GeneralPatch;"
-    const val NAVIGATION = "$NAVIGATION_PATH/NavigationPatch;"
-    const val PLAYER = "$PLAYER_PATH/PlayerPatch;"
-    const val SEEKBAR = "$SEEKBAR_PATH/SeekBarPatch;"
-    const val SHORTS = "$SHORTS_PATH/ShortsPatch;"
+    const val ALTERNATIVE_THUMBNAILS_CLASS_DESCRIPTOR = "$ALTERNATIVE_THUMBNAILS_PATH/AlternativeThumbnailsPatch;"
+    const val BOTTOM_PLAYER_CLASS_DESCRIPTOR = "$BOTTOM_PLAYER_PATH/BottomPlayerPatch;"
+    const val FLYOUT_PANEL_CLASS_DESCRIPTOR = "$FLYOUT_PANEL_PATH/FlyoutPanelPatch;"
+    const val FULLSCREEN_CLASS_DESCRIPTOR = "$FULLSCREEN_PATH/FullscreenPatch;"
+    const val GENERAL_CLASS_DESCRIPTOR = "$GENERAL_PATH/GeneralPatch;"
+    const val NAVIGATION_CLASS_DESCRIPTOR = "$NAVIGATION_PATH/NavigationPatch;"
+    const val PLAYER_CLASS_DESCRIPTOR = "$PLAYER_PATH/PlayerPatch;"
+    const val SEEKBAR_CLASS_DESCRIPTOR = "$SEEKBAR_PATH/SeekBarPatch;"
+    const val SHORTS_CLASS_DESCRIPTOR = "$SHORTS_PATH/ShortsPatch;"
+
+    val COMPATIBLE_PACKAGE = setOf(
+        Patch.CompatiblePackage(
+            "com.google.android.youtube",
+            setOf(
+                "18.29.38",
+                "18.30.37",
+                "18.31.40",
+                "18.32.39",
+                "18.33.40",
+                "18.34.38",
+                "18.35.36",
+                "18.36.39",
+                "18.37.36",
+                "18.38.44",
+                "18.39.41",
+                "18.40.34",
+                "18.41.39",
+                "18.42.41",
+                "18.43.45",
+                "18.44.41",
+                "18.45.43",
+                "18.46.45",
+                "18.48.39",
+                "18.49.37",
+                "19.01.34",
+                "19.02.39"
+            )
+        )
+    )
 
     val LANGUAGE_LIST = arrayOf(
         "values",

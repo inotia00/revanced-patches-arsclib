@@ -2,51 +2,21 @@ package app.revanced.patches.youtube.layout.header
 
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.PatchException
-import app.revanced.patcher.patch.ResourcePatch
-import app.revanced.patcher.patch.annotation.CompatiblePackage
-import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.patch.options.PatchOption.PatchExtensions.booleanPatchOption
+import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.settings.ResourceUtils.updatePatchStatusHeader
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
+import app.revanced.util.patch.BaseResourcePatch
 import kotlin.io.path.copyTo
 
-@Patch(
+@Suppress("DEPRECATION", "unused")
+object PremiumHeadingPatch : BaseResourcePatch(
     name = "Premium heading",
     description = "Show or hide the premium heading.",
-    dependencies = [SettingsPatch::class],
-    compatiblePackages = [
-        CompatiblePackage(
-            "com.google.android.youtube",
-            [
-                "18.29.38",
-                "18.30.37",
-                "18.31.40",
-                "18.32.39",
-                "18.33.40",
-                "18.34.38",
-                "18.35.36",
-                "18.36.39",
-                "18.37.36",
-                "18.38.44",
-                "18.39.41",
-                "18.40.34",
-                "18.41.39",
-                "18.42.41",
-                "18.43.45",
-                "18.44.41",
-                "18.45.43",
-                "18.46.45",
-                "18.48.39",
-                "18.49.37",
-                "19.01.34",
-                "19.02.39"
-            ]
-        )
-    ],
+    dependencies = setOf(SettingsPatch::class),
+    compatiblePackages = COMPATIBLE_PACKAGE,
     use = false
-)
-@Suppress("unused")
-object PremiumHeadingPatch : ResourcePatch() {
+) {
     private const val DEFAULT_HEADING_RES = "yt_wordmark_header"
     private const val PREMIUM_HEADING_RES = "yt_premium_wordmark_header"
 

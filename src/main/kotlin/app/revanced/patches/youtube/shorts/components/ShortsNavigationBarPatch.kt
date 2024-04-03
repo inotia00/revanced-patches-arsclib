@@ -10,7 +10,7 @@ import app.revanced.patches.youtube.shorts.components.fingerprints.BottomNavigat
 import app.revanced.patches.youtube.shorts.components.fingerprints.RenderBottomNavigationBarFingerprint
 import app.revanced.patches.youtube.shorts.components.fingerprints.SetPivotBarFingerprint
 import app.revanced.patches.youtube.utils.fingerprints.PivotBarCreateButtonViewFingerprint
-import app.revanced.patches.youtube.utils.integrations.Constants.SHORTS
+import app.revanced.patches.youtube.utils.integrations.Constants.SHORTS_CLASS_DESCRIPTOR
 import app.revanced.util.exception
 import app.revanced.util.getTargetIndexWithMethodReferenceName
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
@@ -32,7 +32,7 @@ object ShortsNavigationBarPatch : BytecodePatch(
 
                     addInstruction(
                         startIndex + 1,
-                        "sput-object v$register, $SHORTS->pivotBar:Ljava/lang/Object;"
+                        "sput-object v$register, $SHORTS_CLASS_DESCRIPTOR->pivotBar:Ljava/lang/Object;"
                     )
                 }
             } ?: throw SetPivotBarFingerprint.exception
@@ -46,7 +46,7 @@ object ShortsNavigationBarPatch : BytecodePatch(
 
             targetMethod.addInstruction(
                 0,
-                "invoke-static {}, $SHORTS->hideShortsPlayerNavigationBar()V"
+                "invoke-static {}, $SHORTS_CLASS_DESCRIPTOR->hideShortsPlayerNavigationBar()V"
             )
         } ?: throw RenderBottomNavigationBarFingerprint.exception
 
@@ -57,7 +57,7 @@ object ShortsNavigationBarPatch : BytecodePatch(
 
                 addInstructions(
                     targetIndex + 1, """
-                        invoke-static {v$insertRegister}, $SHORTS->hideShortsPlayerNavigationBar(Landroid/view/View;)Landroid/view/View;
+                        invoke-static {v$insertRegister}, $SHORTS_CLASS_DESCRIPTOR->hideShortsPlayerNavigationBar(Landroid/view/View;)Landroid/view/View;
                         move-result-object v$insertRegister
                         """
                 )

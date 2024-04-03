@@ -4,44 +4,25 @@ import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotation.CompatiblePackage
-import app.revanced.patcher.patch.annotation.Patch
-import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.music.misc.exclusiveaudio.fingerprints.DataSavingSettingsFragmentFingerprint
 import app.revanced.patches.music.misc.exclusiveaudio.fingerprints.MusicBrowserServiceFingerprint
 import app.revanced.patches.music.misc.exclusiveaudio.fingerprints.PodCastConfigFingerprint
+import app.revanced.patches.music.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.util.exception
 import app.revanced.util.getStringInstructionIndex
+import app.revanced.util.getWalkerMethod
+import app.revanced.util.patch.BaseBytecodePatch
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 
-@Patch(
+@Suppress("unused")
+object ExclusiveAudioPatch : BaseBytecodePatch(
     name = "Exclusive audio playback",
     description = "Unlocks the option to play music without video.",
-    compatiblePackages = [
-        CompatiblePackage(
-            "com.google.android.apps.youtube.music",
-            [
-                "6.21.52",
-                "6.22.52",
-                "6.23.56",
-                "6.25.53",
-                "6.26.51",
-                "6.27.54",
-                "6.28.53",
-                "6.29.58",
-                "6.31.55",
-                "6.33.52"
-            ]
-        )
-    ]
-)
-@Suppress("unused")
-object ExclusiveAudioPatch : BytecodePatch(
-    setOf(
+    compatiblePackages = COMPATIBLE_PACKAGE,
+    fingerprints = setOf(
         DataSavingSettingsFragmentFingerprint,
         MusicBrowserServiceFingerprint,
         PodCastConfigFingerprint
@@ -64,19 +45,14 @@ object ExclusiveAudioPatch : BytecodePatch(
 
                     if (!targetReference.toString().endsWith("()Z")) continue
 
-                    with(
-                        context
-                            .toMethodWalker(it.method)
-                            .nextMethod(index, true)
-                            .getMethod() as MutableMethod
-                    ) {
-                        addInstructions(
-                            0, """
-                                const/4 v0, 0x1
-                                return v0
-                                """
-                        )
-                    }
+                    val walkerMethod = getWalkerMethod(context, index)
+
+                    walkerMethod.addInstructions(
+                        0, """
+                            const/4 v0, 0x1
+                            return v0
+                            """
+                    )
                     break
                 }
             }

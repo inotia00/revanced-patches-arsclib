@@ -1,0 +1,80 @@
+package app.revanced.patches.reddit.ad.general
+
+import app.revanced.patcher.data.BytecodeContext
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
+import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
+import app.revanced.patcher.util.smali.ExternalLabel
+import app.revanced.patches.reddit.ad.banner.BannerAdsPatch
+import app.revanced.patches.reddit.ad.comments.CommentAdsPatch
+import app.revanced.patches.reddit.ad.general.fingerprints.AdPostFingerprint
+import app.revanced.patches.reddit.ad.general.fingerprints.NewAdPostFingerprint
+import app.revanced.patches.reddit.utils.integrations.Constants.COMPATIBLE_PACKAGE
+import app.revanced.patches.reddit.utils.integrations.Constants.PATCHES_PATH
+import app.revanced.patches.reddit.utils.settings.SettingsBytecodePatch.updateSettingsStatus
+import app.revanced.patches.reddit.utils.settings.SettingsPatch
+import app.revanced.util.exception
+import app.revanced.util.getTargetIndexWithFieldReferenceName
+import app.revanced.util.getTargetIndexWithMethodReferenceName
+import app.revanced.util.patch.BaseBytecodePatch
+import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
+import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
+
+@Suppress("unused")
+object AdsPatch : BaseBytecodePatch(
+    name = "Hide ads",
+    description = "Adds options to hide ads.",
+    dependencies = setOf(
+        BannerAdsPatch::class,
+        CommentAdsPatch::class,
+        SettingsPatch::class
+    ),
+    compatiblePackages = COMPATIBLE_PACKAGE,
+    fingerprints = setOf(
+        AdPostFingerprint,
+        NewAdPostFingerprint
+    ),
+    requiresIntegrations = true
+) {
+    private const val INTEGRATIONS_CLASS_DESCRIPTOR =
+        "$PATCHES_PATH/GeneralAdsPatch;"
+
+    override fun execute(context: BytecodeContext) {
+        // region Filter promoted ads (does not work in popular or latest feed)
+        AdPostFingerprint.result?.let {
+            it.mutableMethod.apply {
+                val targetIndex = getTargetIndexWithFieldReferenceName("children")
+                val targetRegister = getInstruction<TwoRegisterInstruction>(targetIndex).registerA
+
+                addInstructions(
+                    targetIndex, """
+                        invoke-static {v$targetRegister}, $INTEGRATIONS_CLASS_DESCRIPTOR->hideOldPostAds(Ljava/util/List;)Ljava/util/List;
+                        move-result-object v$targetRegister
+                        """
+                )
+            }
+        } ?: throw AdPostFingerprint.exception
+
+        // The new feeds work by inserting posts into lists.
+        // AdElementConverter is conveniently responsible for inserting all feed ads.
+        // By removing the appending instruction no ad posts gets appended to the feed.
+        NewAdPostFingerprint.result?.let {
+            it.mutableMethod.apply {
+                val targetIndex = getTargetIndexWithMethodReferenceName("add")
+                val targetRegister =
+                    getInstruction<FiveRegisterInstruction>(targetIndex).registerD + 1
+
+                addInstructionsWithLabels(
+                    targetIndex, """
+                        invoke-static {}, $INTEGRATIONS_CLASS_DESCRIPTOR->hideNewPostAds()Z
+                        move-result v$targetRegister
+                        if-nez v$targetRegister, :show
+                        """, ExternalLabel("show", getInstruction(targetIndex + 1))
+                )
+            }
+        } ?: throw NewAdPostFingerprint.exception
+
+        updateSettingsStatus("enableGeneralAds")
+
+    }
+}

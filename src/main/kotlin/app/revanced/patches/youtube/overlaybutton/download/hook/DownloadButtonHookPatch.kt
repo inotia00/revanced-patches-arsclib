@@ -12,6 +12,8 @@ import app.revanced.util.exception
 object DownloadButtonHookPatch : BytecodePatch(
     setOf(DownloadActionsFingerprint)
 ) {
+    private const val INTEGRATIONS_CLASS_DESCRIPTOR =
+        "$UTILS_PATH/HookDownloadButtonPatch;"
     override fun execute(context: BytecodeContext) {
         DownloadActionsFingerprint.result?.let {
             it.mutableMethod.apply {
@@ -19,10 +21,10 @@ object DownloadButtonHookPatch : BytecodePatch(
 
                 addInstructionsWithLabels(
                     targetIndex, """
-                        invoke-static {}, $UTILS_PATH/HookDownloadButtonPatch;->shouldHookDownloadButton()Z
+                        invoke-static {}, $INTEGRATIONS_CLASS_DESCRIPTOR->shouldHookDownloadButton()Z
                         move-result v0
                         if-eqz v0, :default
-                        invoke-static {}, $UTILS_PATH/HookDownloadButtonPatch;->startDownloadActivity()V
+                        invoke-static {}, $INTEGRATIONS_CLASS_DESCRIPTOR->startDownloadActivity()V
                         return-void
                         """, ExternalLabel("default", getInstruction(targetIndex))
                 )

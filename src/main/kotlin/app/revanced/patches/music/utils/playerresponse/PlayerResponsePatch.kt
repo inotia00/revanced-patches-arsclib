@@ -37,9 +37,8 @@ object PlayerResponsePatch : BytecodePatch(
 
     override fun execute(context: BytecodeContext) {
 
-        PlaybackStartDescriptorFingerprint.result?.let {
-            insertMethod = it.mutableMethod
-        } ?: throw PlaybackStartDescriptorFingerprint.exception
+        insertMethod = PlaybackStartDescriptorFingerprint.result?.mutableMethod
+            ?: throw PlaybackStartDescriptorFingerprint.exception
 
     }
 

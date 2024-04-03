@@ -5,7 +5,7 @@ import app.revanced.patcher.fingerprint.MethodFingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 
-object ShortsSubscriptionsTabletFingerprint : MethodFingerprint(
+internal object ShortsSubscriptionsTabletFingerprint : MethodFingerprint(
     returnType = "V",
     accessFlags = AccessFlags.PRIVATE or AccessFlags.FINAL,
     parameters = listOf("L", "L", "Z"),

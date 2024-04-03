@@ -5,17 +5,11 @@ import app.revanced.patcher.fingerprint.MethodFingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 
-object PivotBarSetTextFingerprint : MethodFingerprint(
+internal object PivotBarSetTextFingerprint : MethodFingerprint(
     returnType = "V",
     accessFlags = AccessFlags.PUBLIC or AccessFlags.CONSTRUCTOR,
-    parameters = listOf("L", "L", "L"),
+    parameters = listOf("Lcom/google/android/libraries/youtube/rendering/ui/pivotbar/PivotBar;", "Landroid/widget/TextView;", "Ljava/lang/CharSequence;"),
     opcodes = listOf(
-        Opcode.IPUT_OBJECT,
-        Opcode.INVOKE_DIRECT,
-        Opcode.INVOKE_VIRTUAL,
-        Opcode.IPUT_OBJECT,
-        Opcode.MOVE_OBJECT,
-        Opcode.CHECK_CAST,
         Opcode.INVOKE_VIRTUAL,
         Opcode.RETURN_VOID
     ),

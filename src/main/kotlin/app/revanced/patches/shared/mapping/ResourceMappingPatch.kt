@@ -9,8 +9,7 @@ import java.util.concurrent.TimeUnit
 
 @Suppress("DEPRECATION")
 object ResourceMappingPatch : ResourcePatch() {
-    internal lateinit var resourceMappings: List<ResourceElement>
-        private set
+    private lateinit var resourceMappings: List<ResourceElement>
 
     private val THREAD_COUNT = Runtime.getRuntime().availableProcessors()
     private val threadPoolExecutor = Executors.newFixedThreadPool(THREAD_COUNT)

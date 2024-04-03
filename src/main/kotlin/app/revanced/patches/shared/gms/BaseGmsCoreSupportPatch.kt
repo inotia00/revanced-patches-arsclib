@@ -120,7 +120,7 @@ abstract class BaseGmsCoreSupportPatch(
             val implementation = methodDef.implementation ?: return@classLoop
 
             val mutableMethod by lazy {
-                mutableClass.methods.first { MethodUtil.methodSignaturesMatch(it, methodDef) }
+                mutableClass.methods.first { method -> MethodUtil.methodSignaturesMatch(method, methodDef) }
             }
 
             implementation.instructions.forEachIndexed insnLoop@{ index, instruction ->

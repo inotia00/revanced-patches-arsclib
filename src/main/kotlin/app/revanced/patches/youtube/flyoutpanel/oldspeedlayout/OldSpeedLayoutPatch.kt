@@ -20,8 +20,7 @@ import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.immutable.ImmutableField
 
 @Patch(
-    dependencies =
-    [
+    dependencies = [
         BottomSheetRecyclerViewPatch::class,
         LithoFilterPatch::class
     ]
@@ -32,6 +31,15 @@ object OldSpeedLayoutPatch : BytecodePatch(
         PlaybackRateBottomSheetClassFingerprint
     )
 ) {
+    private const val FILTER_CLASS_DESCRIPTOR =
+        "$COMPONENTS_PATH/PlaybackSpeedMenuFilter;"
+
+    private const val INTEGRATIONS_CLASS_DESCRIPTOR =
+        "$VIDEO_PATH/CustomPlaybackSpeedPatch;"
+
+    private lateinit var playbackRateBottomSheetClass: String
+    private lateinit var playbackRateBottomSheetBuilderMethod: String
+
     override fun execute(context: BytecodeContext) {
 
         /**
@@ -39,15 +47,15 @@ object OldSpeedLayoutPatch : BytecodePatch(
          */
         PlaybackRateBottomSheetClassFingerprint.result?.let {
             it.mutableMethod.apply {
-                PLAYBACK_RATE_BOTTOM_SHEET_CLASS = definingClass
-                PLAYBACK_RATE_BOTTOM_SHEET_BUILDER_METHOD =
+                playbackRateBottomSheetClass = definingClass
+                playbackRateBottomSheetBuilderMethod =
                     it.mutableClass.methods.find { method -> method.parameters.isEmpty() && method.returnType == "V" }
                         ?.name
                         ?: throw PatchException("Could not find PlaybackRateBottomSheetBuilderMethod")
 
                 addInstruction(
                     0,
-                    "sput-object p0, $INTEGRATIONS_CLASS_DESCRIPTOR->playbackRateBottomSheetClass:$PLAYBACK_RATE_BOTTOM_SHEET_CLASS"
+                    "sput-object p0, $INTEGRATIONS_CLASS_DESCRIPTOR->playbackRateBottomSheetClass:$playbackRateBottomSheetClass"
                 )
             }
         } ?: throw PlaybackRateBottomSheetClassFingerprint.exception
@@ -63,7 +71,7 @@ object OldSpeedLayoutPatch : BytecodePatch(
                     ImmutableField(
                         definingClass,
                         "playbackRateBottomSheetClass",
-                        PLAYBACK_RATE_BOTTOM_SHEET_CLASS,
+                        playbackRateBottomSheetClass,
                         AccessFlags.PUBLIC or AccessFlags.STATIC,
                         null,
                         annotations,
@@ -76,28 +84,19 @@ object OldSpeedLayoutPatch : BytecodePatch(
 
                 addInstructionsWithLabels(
                     0, """
-                        sget-object v0, $INTEGRATIONS_CLASS_DESCRIPTOR->playbackRateBottomSheetClass:$PLAYBACK_RATE_BOTTOM_SHEET_CLASS
+                        sget-object v0, $INTEGRATIONS_CLASS_DESCRIPTOR->playbackRateBottomSheetClass:$playbackRateBottomSheetClass
                         if-nez v0, :not_null
                         return-void
                         :not_null
-                        invoke-virtual {v0}, $PLAYBACK_RATE_BOTTOM_SHEET_CLASS->$PLAYBACK_RATE_BOTTOM_SHEET_BUILDER_METHOD()V
+                        invoke-virtual {v0}, $playbackRateBottomSheetClass->$playbackRateBottomSheetBuilderMethod()V
                         """
                 )
             }
         } ?: throw CustomPlaybackSpeedIntegrationsFingerprint.exception
 
-        /**
-         * New method
-         */
         BottomSheetRecyclerViewPatch.injectCall("$INTEGRATIONS_CLASS_DESCRIPTOR->onFlyoutMenuCreate(Landroid/support/v7/widget/RecyclerView;)V")
 
-        LithoFilterPatch.addFilter("$COMPONENTS_PATH/PlaybackSpeedMenuFilter;")
+        LithoFilterPatch.addFilter(FILTER_CLASS_DESCRIPTOR)
 
     }
-
-    private const val INTEGRATIONS_CLASS_DESCRIPTOR =
-        "$VIDEO_PATH/CustomPlaybackSpeedPatch;"
-
-    private lateinit var PLAYBACK_RATE_BOTTOM_SHEET_CLASS: String
-    private lateinit var PLAYBACK_RATE_BOTTOM_SHEET_BUILDER_METHOD: String
 }

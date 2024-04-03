@@ -5,7 +5,7 @@ import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch.PlayerO
 import app.revanced.util.fingerprint.LiteralValueFingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 
-object PlayerOverlayChipFingerprint : LiteralValueFingerprint(
+internal object PlayerOverlayChipFingerprint : LiteralValueFingerprint(
     returnType = "L",
     accessFlags = AccessFlags.PUBLIC or AccessFlags.FINAL,
     literalSupplier = { PlayerOverlayChip }

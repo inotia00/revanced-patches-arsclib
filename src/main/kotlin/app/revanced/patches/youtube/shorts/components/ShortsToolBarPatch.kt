@@ -8,7 +8,7 @@ import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.youtube.shorts.components.fingerprints.ToolBarBannerFingerprint
-import app.revanced.patches.youtube.utils.integrations.Constants.SHORTS
+import app.revanced.patches.youtube.utils.integrations.Constants.SHORTS_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.toolbar.ToolBarHookPatch
 import app.revanced.util.exception
 
@@ -27,7 +27,7 @@ object ShortsToolBarPatch : BytecodePatch(
                 addInstructionsWithLabels(
                     0,
                     """
-                        invoke-static {}, $SHORTS->hideShortsToolBarBanner()Z
+                        invoke-static {}, $SHORTS_CLASS_DESCRIPTOR->hideShortsToolBarBanner()Z
                         move-result v0
                         if-nez v0, :hide
                         """,
@@ -36,6 +36,6 @@ object ShortsToolBarPatch : BytecodePatch(
             }
         } ?: throw ToolBarBannerFingerprint.exception
 
-        ToolBarHookPatch.injectCall("$SHORTS->hideShortsToolBarButton")
+        ToolBarHookPatch.injectCall("$SHORTS_CLASS_DESCRIPTOR->hideShortsToolBarButton")
     }
 }

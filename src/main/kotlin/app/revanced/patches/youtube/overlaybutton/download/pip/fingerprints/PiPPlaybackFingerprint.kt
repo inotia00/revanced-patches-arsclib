@@ -3,7 +3,7 @@ package app.revanced.patches.youtube.overlaybutton.download.pip.fingerprints
 import app.revanced.patcher.fingerprint.MethodFingerprint
 import com.android.tools.smali.dexlib2.Opcode
 
-object PiPPlaybackFingerprint : MethodFingerprint(
+internal object PiPPlaybackFingerprint : MethodFingerprint(
     returnType = "Z",
     parameters = listOf("Lcom/google/android/libraries/youtube/innertube/model/player/PlayerResponseModel;"),
     opcodes = listOf(

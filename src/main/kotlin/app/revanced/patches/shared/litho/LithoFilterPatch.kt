@@ -23,7 +23,7 @@ import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 import java.io.Closeable
 
-@Suppress("unused")
+@Suppress("SpellCheckingInspection", "unused")
 object LithoFilterPatch : BytecodePatch(
     setOf(
         LithoFilterPatchConstructorFingerprint,

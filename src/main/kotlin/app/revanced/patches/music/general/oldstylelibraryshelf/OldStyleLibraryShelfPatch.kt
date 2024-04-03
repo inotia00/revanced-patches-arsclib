@@ -3,53 +3,37 @@ package app.revanced.patches.music.general.oldstylelibraryshelf
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotation.CompatiblePackage
-import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.music.general.oldstylelibraryshelf.fingerprints.BrowseIdFingerprint
-import app.revanced.patches.music.utils.integrations.Constants.GENERAL
+import app.revanced.patches.music.utils.integrations.Constants.COMPATIBLE_PACKAGE
+import app.revanced.patches.music.utils.integrations.Constants.GENERAL_CLASS_DESCRIPTOR
 import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
 import app.revanced.util.exception
 import app.revanced.util.getStringInstructionIndex
+import app.revanced.util.getTargetIndexReversed
+import app.revanced.util.patch.BaseBytecodePatch
+import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 
-@Patch(
+@Suppress("unused")
+object OldStyleLibraryShelfPatch : BaseBytecodePatch(
     name = "Enable old style library shelf",
     description = "Adds an option to return the library tab to the old style.",
-    dependencies = [SettingsPatch::class],
-    compatiblePackages = [
-        CompatiblePackage(
-            "com.google.android.apps.youtube.music",
-            [
-                "6.21.52",
-                "6.22.52",
-                "6.23.56",
-                "6.25.53",
-                "6.26.51",
-                "6.27.54",
-                "6.28.53",
-                "6.29.58",
-                "6.31.55",
-                "6.33.52"
-            ]
-        )
-    ]
-)
-@Suppress("unused")
-object OldStyleLibraryShelfPatch : BytecodePatch(
-    setOf(BrowseIdFingerprint)
+    dependencies = setOf(SettingsPatch::class),
+    compatiblePackages = COMPATIBLE_PACKAGE,
+    fingerprints = setOf(BrowseIdFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
 
         BrowseIdFingerprint.result?.let {
             it.mutableMethod.apply {
-                val targetIndex = getStringInstructionIndex("FEmusic_offline") - 5
+                val stringIndex = getStringInstructionIndex("FEmusic_offline")
+                val targetIndex = getTargetIndexReversed(stringIndex, Opcode.IGET_OBJECT)
                 val targetRegister = getInstruction<TwoRegisterInstruction>(targetIndex).registerA
 
                 addInstructions(
                     targetIndex + 1, """
-                        invoke-static {v$targetRegister}, $GENERAL->enableOldStyleLibraryShelf(Ljava/lang/String;)Ljava/lang/String;
+                        invoke-static {v$targetRegister}, $GENERAL_CLASS_DESCRIPTOR->enableOldStyleLibraryShelf(Ljava/lang/String;)Ljava/lang/String;
                         move-result-object v$targetRegister
                         """
                 )

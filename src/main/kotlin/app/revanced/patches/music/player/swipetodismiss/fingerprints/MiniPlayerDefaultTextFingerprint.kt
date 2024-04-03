@@ -4,7 +4,7 @@ import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch.MiniPla
 import app.revanced.util.fingerprint.LiteralValueFingerprint
 import com.android.tools.smali.dexlib2.Opcode
 
-object MiniPlayerDefaultTextFingerprint : LiteralValueFingerprint(
+internal object MiniPlayerDefaultTextFingerprint : LiteralValueFingerprint(
     returnType = "V",
     parameters = listOf("Ljava/lang/Object;"),
     opcodes = listOf(

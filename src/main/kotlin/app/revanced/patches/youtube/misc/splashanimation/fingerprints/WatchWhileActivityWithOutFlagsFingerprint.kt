@@ -5,7 +5,7 @@ import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.DarkS
 import app.revanced.util.containsWideLiteralInstructionIndex
 import com.android.tools.smali.dexlib2.Opcode
 
-object WatchWhileActivityWithOutFlagsFingerprint : MethodFingerprint(
+internal object WatchWhileActivityWithOutFlagsFingerprint : MethodFingerprint(
     returnType = "V",
     parameters = listOf("Landroid/os/Bundle;"),
     opcodes = listOf(

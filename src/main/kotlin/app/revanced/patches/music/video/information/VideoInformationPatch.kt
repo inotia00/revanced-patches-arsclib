@@ -17,6 +17,9 @@ import app.revanced.patches.music.video.information.fingerprints.VideoEndFingerp
 import app.revanced.patches.music.video.information.fingerprints.VideoLengthFingerprint
 import app.revanced.patches.music.video.videoid.VideoIdPatch
 import app.revanced.util.exception
+import app.revanced.util.getTargetIndexWithFieldReferenceTypeReversed
+import app.revanced.util.getTargetIndexWithMethodReferenceNameReversed
+import app.revanced.util.getWalkerMethod
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.builder.MutableMethodImplementation
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
@@ -131,9 +134,9 @@ object VideoInformationPatch : BytecodePatch(
                 )
             }.result?.let {
                 it.mutableMethod.apply {
-                    val rectangleReference =
-                        getInstruction<ReferenceInstruction>(implementation!!.instructions.count() - 3).reference
-                    rectangleFieldName = (rectangleReference as FieldReference).name
+                    val invalidateIndex = getTargetIndexWithMethodReferenceNameReversed("invalidate")
+                    val rectangleIndex = getTargetIndexWithFieldReferenceTypeReversed(invalidateIndex + 1, "Landroid/graphics/Rect;")
+                    rectangleFieldName = (getInstruction<ReferenceInstruction>(rectangleIndex).reference as FieldReference).name
 
                     val videoLengthRegisterIndex = it.scanResult.patternScanResult!!.startIndex + 1
                     val videoLengthRegister =
@@ -154,9 +157,7 @@ object VideoInformationPatch : BytecodePatch(
          * Set the video time method
          */
         PlayerControllerSetTimeReferenceFingerprint.result?.let {
-            timeMethod = context.toMethodWalker(it.method)
-                .nextMethod(it.scanResult.patternScanResult!!.startIndex, true)
-                .getMethod() as MutableMethod
+            timeMethod = it.getWalkerMethod(context, it.scanResult.patternScanResult!!.startIndex)
         } ?: throw PlayerControllerSetTimeReferenceFingerprint.exception
 
 

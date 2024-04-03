@@ -5,7 +5,7 @@ import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch.ToolTip
 import app.revanced.util.fingerprint.LiteralValueFingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 
-object TooltipContentViewFingerprint : LiteralValueFingerprint(
+internal object TooltipContentViewFingerprint : LiteralValueFingerprint(
     returnType = "V",
     accessFlags = AccessFlags.PUBLIC or AccessFlags.FINAL,
     parameters = listOf("L"),

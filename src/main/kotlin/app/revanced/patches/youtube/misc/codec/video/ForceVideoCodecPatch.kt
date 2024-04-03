@@ -5,64 +5,37 @@ import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.removeInstruction
 import app.revanced.patcher.fingerprint.MethodFingerprintResult
-import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotation.CompatiblePackage
-import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.youtube.misc.codec.video.fingerprints.VideoPrimaryFingerprint
 import app.revanced.patches.youtube.misc.codec.video.fingerprints.VideoPropsFingerprint
 import app.revanced.patches.youtube.misc.codec.video.fingerprints.VideoPropsParentFingerprint
 import app.revanced.patches.youtube.misc.codec.video.fingerprints.VideoSecondaryFingerprint
 import app.revanced.patches.youtube.utils.fingerprints.LayoutSwitchFingerprint
+import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.MISC_PATH
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.util.exception
-import com.android.tools.smali.dexlib2.Opcode
-import com.android.tools.smali.dexlib2.dexbacked.reference.DexBackedFieldReference
+import app.revanced.util.getTargetIndexWithFieldReferenceName
+import app.revanced.util.patch.BaseBytecodePatch
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
-import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 
-@Patch(
+@Suppress("unused")
+object ForceVideoCodecPatch : BaseBytecodePatch(
     name = "Force video codec",
     description = "Adds an option to force the video codec.",
-    dependencies = [SettingsPatch::class],
-    compatiblePackages = [
-        CompatiblePackage(
-            "com.google.android.youtube",
-            [
-                "18.29.38",
-                "18.30.37",
-                "18.31.40",
-                "18.32.39",
-                "18.33.40",
-                "18.34.38",
-                "18.35.36",
-                "18.36.39",
-                "18.37.36",
-                "18.38.44",
-                "18.39.41",
-                "18.40.34",
-                "18.41.39",
-                "18.42.41",
-                "18.43.45",
-                "18.44.41",
-                "18.45.43",
-                "18.46.45",
-                "18.48.39",
-                "18.49.37",
-                "19.01.34",
-                "19.02.39"
-            ]
-        )
-    ]
-)
-@Suppress("unused")
-object ForceVideoCodecPatch : BytecodePatch(
-    setOf(
+    dependencies = setOf(SettingsPatch::class),
+    compatiblePackages = COMPATIBLE_PACKAGE,
+    fingerprints = setOf(
         LayoutSwitchFingerprint,
         VideoPropsParentFingerprint
     )
 ) {
+    private const val INTEGRATIONS_CLASS_DESCRIPTOR =
+        "$MISC_PATH/CodecOverridePatch;"
+
+    private const val INTEGRATIONS_CLASS_METHOD_REFERENCE =
+        "$INTEGRATIONS_CLASS_DESCRIPTOR->shouldForceCodec(Z)Z"
+
     override fun execute(context: BytecodeContext) {
 
         LayoutSwitchFingerprint.result?.classDef?.let { classDef ->
@@ -106,12 +79,6 @@ object ForceVideoCodecPatch : BytecodePatch(
 
     }
 
-    private const val INTEGRATIONS_CLASS_DESCRIPTOR =
-        "$MISC_PATH/CodecOverridePatch;"
-
-    private const val INTEGRATIONS_CLASS_METHOD_REFERENCE =
-        "$INTEGRATIONS_CLASS_DESCRIPTOR->shouldForceCodec(Z)Z"
-
     private fun MethodFingerprintResult.injectOverride() {
         mutableMethod.apply {
             val startIndex = scanResult.patternScanResult!!.startIndex
@@ -144,28 +111,15 @@ object ForceVideoCodecPatch : BytecodePatch(
         fieldName: String,
         descriptor: String
     ) {
-        val targetString = "Landroid/os/Build;->" +
-                fieldName +
-                ":Ljava/lang/String;"
+        val index = getTargetIndexWithFieldReferenceName(fieldName)
+        val register = getInstruction<OneRegisterInstruction>(index).registerA
 
-        for ((index, instruction) in implementation!!.instructions.withIndex()) {
-            if (instruction.opcode != Opcode.SGET_OBJECT) continue
-
-            val indexString =
-                ((instruction as? ReferenceInstruction)?.reference as? DexBackedFieldReference).toString()
-
-            if (indexString != targetString) continue
-
-            val register = getInstruction<OneRegisterInstruction>(index).registerA
-
-            addInstructions(
-                index + 1, """
-                        invoke-static {v$register}, $INTEGRATIONS_CLASS_DESCRIPTOR->$descriptor(Ljava/lang/String;)Ljava/lang/String;
-                        move-result-object v$register
-                        """
-            )
-            break
-        }
+        addInstructions(
+            index + 1, """
+                invoke-static {v$register}, $INTEGRATIONS_CLASS_DESCRIPTOR->$descriptor(Ljava/lang/String;)Ljava/lang/String;
+                move-result-object v$register
+                """
+        )
     }
 
 }

@@ -7,7 +7,7 @@ import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.ReelP
 import app.revanced.util.containsWideLiteralInstructionIndex
 import com.android.tools.smali.dexlib2.AccessFlags
 
-object ShortsPaidPromotionFingerprint : MethodFingerprint(
+internal object ShortsPaidPromotionFingerprint : MethodFingerprint(
     returnType = "V",
     accessFlags = AccessFlags.PUBLIC or AccessFlags.FINAL,
     customFingerprint = { methodDef, _ ->

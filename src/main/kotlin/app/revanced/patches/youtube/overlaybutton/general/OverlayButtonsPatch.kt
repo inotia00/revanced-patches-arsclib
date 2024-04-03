@@ -1,14 +1,13 @@
 package app.revanced.patches.youtube.overlaybutton.general
 
 import app.revanced.patcher.data.ResourceContext
-import app.revanced.patcher.patch.ResourcePatch
-import app.revanced.patcher.patch.annotation.CompatiblePackage
-import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.patch.options.PatchOption.PatchExtensions.booleanPatchOption
 import app.revanced.patches.youtube.overlaybutton.alwaysrepeat.AlwaysRepeatPatch
 import app.revanced.patches.youtube.overlaybutton.download.hook.DownloadButtonHookPatch
 import app.revanced.patches.youtube.overlaybutton.download.pip.DisablePiPPatch
 import app.revanced.patches.youtube.overlaybutton.fullscreen.FullscreenButtonPatch
+import app.revanced.patches.youtube.utils.fix.fullscreen.FullscreenButtonViewStubPatch
+import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.OVERLAY_BUTTONS_PATH
 import app.revanced.patches.youtube.utils.overridespeed.OverrideSpeedHookPatch
 import app.revanced.patches.youtube.utils.playercontrols.PlayerControlsPatch
@@ -19,54 +18,27 @@ import app.revanced.util.ResourceGroup
 import app.revanced.util.copyResources
 import app.revanced.util.copyXmlNode
 import app.revanced.util.doRecursively
+import app.revanced.util.patch.BaseResourcePatch
 import org.w3c.dom.Element
 
-@Patch(
+@Suppress("DEPRECATION", "unused")
+object OverlayButtonsPatch : BaseResourcePatch(
     name = "Overlay buttons",
     description = "Adds an option to display overlay buttons in the video player.",
-    dependencies = [
+    dependencies = setOf(
         AlwaysRepeatPatch::class,
         DisablePiPPatch::class,
         DownloadButtonHookPatch::class,
         FullscreenButtonPatch::class,
+        FullscreenButtonViewStubPatch::class,
         OverrideSpeedHookPatch::class,
         PlayerControlsPatch::class,
         SettingsPatch::class,
         SharedResourceIdPatch::class,
         VideoIdPatch::class
-    ],
-    compatiblePackages = [
-        CompatiblePackage(
-            "com.google.android.youtube",
-            [
-                "18.29.38",
-                "18.30.37",
-                "18.31.40",
-                "18.32.39",
-                "18.33.40",
-                "18.34.38",
-                "18.35.36",
-                "18.36.39",
-                "18.37.36",
-                "18.38.44",
-                "18.39.41",
-                "18.40.34",
-                "18.41.39",
-                "18.42.41",
-                "18.43.45",
-                "18.44.41",
-                "18.45.43",
-                "18.46.45",
-                "18.48.39",
-                "18.49.37",
-                "19.01.34",
-                "19.02.39"
-            ]
-        )
-    ]
-)
-@Suppress("unused")
-object OverlayButtonsPatch : ResourcePatch() {
+    ),
+    compatiblePackages = COMPATIBLE_PACKAGE
+) {
     private val OutlineIcon by booleanPatchOption(
         key = "OutlineIcon",
         default = false,
@@ -88,14 +60,14 @@ object OverlayButtonsPatch : ResourcePatch() {
          * Inject hook
          */
         arrayOf(
-            "AlwaysRepeat",
-            "CopyVideoUrl",
-            "CopyVideoUrlTimestamp",
-            "ExternalDownload",
-            "SpeedDialog"
-        ).forEach { patch ->
-            PlayerControlsPatch.initializeControl("$OVERLAY_BUTTONS_PATH/$patch;")
-            PlayerControlsPatch.injectVisibility("$OVERLAY_BUTTONS_PATH/$patch;")
+            "AlwaysRepeat;",
+            "CopyVideoUrl;",
+            "CopyVideoUrlTimestamp;",
+            "ExternalDownload;",
+            "SpeedDialog;"
+        ).forEach { className ->
+            PlayerControlsPatch.initializeControl("$OVERLAY_BUTTONS_PATH/$className")
+            PlayerControlsPatch.injectVisibility("$OVERLAY_BUTTONS_PATH/$className")
         }
 
         /**
@@ -174,6 +146,11 @@ object OverlayButtonsPatch : ResourcePatch() {
             "android.support.constraint.ConstraintLayout"
         )
 
+        val fullscreenButtonId = if (SettingsPatch.upward1909)
+            "youtube_controls_fullscreen_button_stub"
+        else
+            "fullscreen_button"
+
         val bottomPadding = if (WiderBottomPadding == true) "31.0dip" else "22.0dip"
         context.xmlEditor["res/layout/youtube_controls_bottom_ui_container.xml"].use { editor ->
             editor.file.doRecursively loop@{
@@ -186,15 +163,15 @@ object OverlayButtonsPatch : ResourcePatch() {
                     }
                 }
 
-                // Adjust Fullscreen Button size and padding
                 it.getAttributeNode("android:id")?.let { attribute ->
+                    // Adjust Fullscreen Button size and padding
                     arrayOf(
                         "speed_dialog_button",
                         "copy_video_url_button",
                         "copy_video_url_timestamp_button",
                         "always_repeat_button",
                         "external_download_button",
-                        "fullscreen_button"
+                        fullscreenButtonId
                     ).forEach { targetId ->
                         if (attribute.textContent.endsWith(targetId)) {
                             arrayOf(
@@ -203,7 +180,7 @@ object OverlayButtonsPatch : ResourcePatch() {
                                 "48.0dip" to arrayOf("layout_height", "layout_width")
                             ).forEach { (replace, attributes) ->
                                 attributes.forEach { name ->
-                                    it.getAttributeNode("android:$name").textContent = replace
+                                    it.getAttributeNode("android:$name")?.textContent = replace
                                 }
                             }
                         }
@@ -225,6 +202,37 @@ object OverlayButtonsPatch : ResourcePatch() {
                 }
             }
         }
+
+        arrayOf(
+            "youtube_controls_cf_fullscreen_button.xml",
+            "youtube_controls_fullscreen_button.xml"
+        ).forEach { xmlFile ->
+            val targetXml = context["res"].resolve("layout").resolve(xmlFile)
+            if (targetXml.exists()) {
+                context.xmlEditor["res/layout/$xmlFile"].use { editor ->
+                    editor.file.doRecursively loop@{
+                        if (it !is Element) return@loop
+
+                        it.getAttributeNode("android:id")?.let { attribute ->
+                            // Adjust Fullscreen Button size and padding
+                            if (attribute.textContent.endsWith("fullscreen_button")) {
+                                arrayOf(
+                                    "0.0dip" to arrayOf("paddingLeft", "paddingRight"),
+                                    bottomPadding to arrayOf("paddingBottom"),
+                                    "48.0dip" to arrayOf("layout_height", "layout_width")
+                                ).forEach { (replace, attributes) ->
+                                    attributes.forEach { name ->
+                                        it.getAttributeNode("android:$name")?.textContent = replace
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+
 
         /**
          * Add settings

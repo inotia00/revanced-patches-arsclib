@@ -4,7 +4,7 @@ import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch.ChipClo
 import app.revanced.util.fingerprint.LiteralValueFingerprint
 import com.android.tools.smali.dexlib2.Opcode
 
-object ChipCloudFingerprint : LiteralValueFingerprint(
+internal object ChipCloudFingerprint : LiteralValueFingerprint(
     returnType = "V",
     opcodes = listOf(
         Opcode.CONST,

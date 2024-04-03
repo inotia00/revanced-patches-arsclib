@@ -5,7 +5,7 @@ import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.Image
 import app.revanced.util.fingerprint.LiteralValueFingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 
-object PivotBarCreateButtonViewFingerprint : LiteralValueFingerprint(
+internal object PivotBarCreateButtonViewFingerprint : LiteralValueFingerprint(
     returnType = "V",
     accessFlags = AccessFlags.PUBLIC or AccessFlags.FINAL,
     literalSupplier = { ImageOnlyTab }

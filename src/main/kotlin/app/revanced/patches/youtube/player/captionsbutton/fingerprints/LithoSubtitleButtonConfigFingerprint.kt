@@ -8,7 +8,7 @@ import app.revanced.util.fingerprint.LiteralValueFingerprint
  * When this value is TRUE, litho subtitle button is used.
  * In this case, the empty area remains, so set this value to FALSE.
  */
-object LithoSubtitleButtonConfigFingerprint : LiteralValueFingerprint(
+internal object LithoSubtitleButtonConfigFingerprint : LiteralValueFingerprint(
     returnType = "Z",
     literalSupplier = { 45421555 }
 )

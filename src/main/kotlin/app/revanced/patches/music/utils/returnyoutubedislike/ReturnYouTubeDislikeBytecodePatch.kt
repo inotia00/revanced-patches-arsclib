@@ -5,7 +5,6 @@ import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.fingerprint.MethodFingerprint
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.music.utils.integrations.Constants.UTILS_PATH
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch
@@ -15,9 +14,10 @@ import app.revanced.patches.music.utils.returnyoutubedislike.fingerprints.Remove
 import app.revanced.patches.music.utils.returnyoutubedislike.fingerprints.TextComponentFingerprint
 import app.revanced.patches.music.video.videoid.VideoIdPatch
 import app.revanced.util.exception
+import app.revanced.util.indexOfFirstInstruction
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
-import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction35c
+import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 
 @Patch(
     dependencies = [
@@ -55,28 +55,18 @@ object ReturnYouTubeDislikeBytecodePatch : BytecodePatch(
 
         TextComponentFingerprint.result?.let {
             it.mutableMethod.apply {
-                var insertIndex = -1
-                for ((index, instruction) in implementation!!.instructions.withIndex()) {
-                    if (instruction.opcode != Opcode.INVOKE_STATIC) continue
+                val insertIndex = indexOfFirstInstruction {
+                    opcode == Opcode.INVOKE_STATIC
+                            && (this as ReferenceInstruction).reference.toString().endsWith("Ljava/lang/CharSequence;")
+                } + 2
+                val insertRegister = getInstruction<OneRegisterInstruction>(insertIndex - 1).registerA
 
-                    val reference = getInstruction<Instruction35c>(index).reference.toString()
-                    if (!reference.endsWith("Ljava/lang/CharSequence;") && !reference.endsWith("Landroid/text/Spanned;")) continue
-
-                    val insertRegister = getInstruction<OneRegisterInstruction>(index + 1).registerA
-
-                    insertIndex = index + 2
-
-                    addInstructions(
-                        insertIndex, """
-                            invoke-static {v$insertRegister}, $INTEGRATIONS_RYD_CLASS_DESCRIPTOR->onSpannedCreated(Landroid/text/Spanned;)Landroid/text/Spanned;
-                            move-result-object v$insertRegister
-                            """
-                    )
-
-                    break
-                }
-                if (insertIndex == -1)
-                    throw PatchException("target Instruction not found!")
+                addInstructions(
+                    insertIndex, """
+                        invoke-static {v$insertRegister}, $INTEGRATIONS_RYD_CLASS_DESCRIPTOR->onSpannedCreated(Landroid/text/Spanned;)Landroid/text/Spanned;
+                        move-result-object v$insertRegister
+                        """
+                )
             }
         } ?: throw TextComponentFingerprint.exception
 

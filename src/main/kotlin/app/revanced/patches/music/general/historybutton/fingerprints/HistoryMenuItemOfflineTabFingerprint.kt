@@ -8,7 +8,7 @@ import app.revanced.util.containsWideLiteralInstructionIndex
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 
-object HistoryMenuItemOfflineTabFingerprint : MethodFingerprint(
+internal object HistoryMenuItemOfflineTabFingerprint : MethodFingerprint(
     returnType = "V",
     accessFlags = AccessFlags.PUBLIC or AccessFlags.FINAL,
     parameters = listOf("Landroid/view/Menu;"),

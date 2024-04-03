@@ -6,7 +6,7 @@ import com.android.tools.smali.dexlib2.Opcode
 /**
  * Copy URL from sharing panel
  */
-object CopyTextEndpointFingerprint : MethodFingerprint(
+internal object CopyTextEndpointFingerprint : MethodFingerprint(
     returnType = "V",
     parameters = listOf("L", "Ljava/util/Map;"),
     opcodes = listOf(

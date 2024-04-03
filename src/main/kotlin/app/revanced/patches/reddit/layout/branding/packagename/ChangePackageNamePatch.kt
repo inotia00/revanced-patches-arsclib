@@ -1,29 +1,19 @@
 package app.revanced.patches.reddit.layout.branding.packagename
 
 import app.revanced.patcher.data.ResourceContext
-import app.revanced.patcher.patch.ResourcePatch
-import app.revanced.patcher.patch.annotation.CompatiblePackage
-import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.patch.options.PatchOption.PatchExtensions.stringPatchOption
+import app.revanced.patches.reddit.utils.integrations.Constants.COMPATIBLE_PACKAGE
+import app.revanced.util.patch.BaseResourcePatch
 import org.w3c.dom.Element
 import java.io.Closeable
 
-@Patch(
+@Suppress("DEPRECATION", "unused")
+object ChangePackageNamePatch : BaseResourcePatch(
     name = "Change package name",
     description = "Changes the package name for Reddit to the name specified in options.json.",
-    compatiblePackages = [
-        CompatiblePackage(
-            "com.reddit.frontpage",
-            [
-                "2023.12.0",
-                "2024.04.0"
-            ]
-        )
-    ],
+    compatiblePackages = COMPATIBLE_PACKAGE,
     use = false
-)
-@Suppress("DEPRECATION", "unused")
-object ChangePackageNamePatch : ResourcePatch(), Closeable {
+), Closeable {
     private const val PACKAGE_NAME_REDDIT = "com.reddit.frontpage"
     private const val CLONE_PACKAGE_NAME_REDDIT = "$PACKAGE_NAME_REDDIT.revanced"
     private const val DEFAULT_PACKAGE_NAME_REDDIT = "$PACKAGE_NAME_REDDIT.rvx"

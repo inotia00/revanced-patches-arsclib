@@ -3,7 +3,7 @@ package app.revanced.patches.youtube.general.accountmenu.fingerprints
 import app.revanced.patcher.fingerprint.MethodFingerprint
 import com.android.tools.smali.dexlib2.Opcode
 
-object AccountMenuFingerprint : MethodFingerprint(
+internal object AccountMenuFingerprint : MethodFingerprint(
     returnType = "V",
     opcodes = listOf(
         Opcode.INVOKE_STATIC,

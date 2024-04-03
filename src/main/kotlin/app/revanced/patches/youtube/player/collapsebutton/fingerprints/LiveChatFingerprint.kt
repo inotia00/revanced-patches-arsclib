@@ -4,7 +4,7 @@ import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.LiveC
 import app.revanced.util.fingerprint.LiteralValueFingerprint
 import com.android.tools.smali.dexlib2.Opcode
 
-object LiveChatFingerprint : LiteralValueFingerprint(
+internal object LiveChatFingerprint : LiteralValueFingerprint(
     opcodes = listOf(Opcode.NEW_INSTANCE),
     literalSupplier = { LiveChatButton }
 )

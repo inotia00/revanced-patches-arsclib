@@ -4,7 +4,7 @@ import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.Sugge
 import app.revanced.util.fingerprint.LiteralValueFingerprint
 import com.android.tools.smali.dexlib2.Opcode
 
-object SuggestedActionsFingerprint : LiteralValueFingerprint(
+internal object SuggestedActionsFingerprint : LiteralValueFingerprint(
     returnType = "V",
     opcodes = listOf(
         Opcode.CONST,

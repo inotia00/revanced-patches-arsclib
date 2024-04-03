@@ -6,7 +6,7 @@ import app.revanced.util.fingerprint.LiteralValueFingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 
-object AdvancedQualityBottomSheetFingerprint : LiteralValueFingerprint(
+internal object AdvancedQualityBottomSheetFingerprint : LiteralValueFingerprint(
     accessFlags = AccessFlags.PUBLIC or AccessFlags.FINAL,
     parameters = listOf("L", "L", "L"),
     returnType = "L",

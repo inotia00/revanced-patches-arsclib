@@ -1,5 +1,7 @@
 package app.revanced.patches.music.utils.integrations
 
+import app.revanced.patcher.patch.Patch
+
 @Suppress("MemberVisibilityCanBePrivate")
 object Constants {
     const val INTEGRATIONS_PATH = "Lapp/revanced/integrations/music"
@@ -17,12 +19,30 @@ object Constants {
     const val VIDEO_PATH = "$PATCHES_PATH/video"
     const val UTILS_PATH = "$PATCHES_PATH/utils"
 
-    const val ACCOUNT = "$ACCOUNT_PATH/AccountPatch;"
-    const val ACTIONBAR = "$ACTIONBAR_PATH/ActionBarPatch;"
-    const val FLYOUT = "$FLYOUT_PATH/FlyoutPatch;"
-    const val GENERAL = "$GENERAL_PATH/GeneralPatch;"
-    const val NAVIGATION = "$NAVIGATION_PATH/NavigationPatch;"
-    const val PLAYER = "$PLAYER_PATH/PlayerPatch;"
+    const val ACCOUNT_CLASS_DESCRIPTOR = "$ACCOUNT_PATH/AccountPatch;"
+    const val ACTIONBAR_CLASS_DESCRIPTOR = "$ACTIONBAR_PATH/ActionBarPatch;"
+    const val FLYOUT_CLASS_DESCRIPTOR = "$FLYOUT_PATH/FlyoutPatch;"
+    const val GENERAL_CLASS_DESCRIPTOR = "$GENERAL_PATH/GeneralPatch;"
+    const val NAVIGATION_CLASS_DESCRIPTOR = "$NAVIGATION_PATH/NavigationPatch;"
+    const val PLAYER_CLASS_DESCRIPTOR = "$PLAYER_PATH/PlayerPatch;"
+
+    val COMPATIBLE_PACKAGE = setOf(
+        Patch.CompatiblePackage(
+            "com.google.android.apps.youtube.music",
+            setOf(
+                "6.21.52",
+                "6.22.52",
+                "6.23.56",
+                "6.25.53",
+                "6.26.51",
+                "6.27.54",
+                "6.28.53",
+                "6.29.58",
+                "6.31.55",
+                "6.33.52"
+            )
+        )
+    )
 
     val LANGUAGE_LIST = arrayOf(
         "values",

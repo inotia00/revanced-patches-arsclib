@@ -3,63 +3,41 @@ package app.revanced.patches.music.account.component
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.PatchException
-import app.revanced.patcher.patch.annotation.CompatiblePackage
-import app.revanced.patcher.patch.annotation.Patch
-import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.music.account.component.fingerprints.MenuEntryFingerprint
-import app.revanced.patches.music.utils.integrations.Constants.ACCOUNT
+import app.revanced.patches.music.utils.integrations.Constants.ACCOUNT_CLASS_DESCRIPTOR
+import app.revanced.patches.music.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
 import app.revanced.util.exception
+import app.revanced.util.getTargetIndexWithMethodReferenceName
+import app.revanced.util.patch.BaseBytecodePatch
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
-import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
-import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 
-@Patch(
+@Suppress("unused")
+object MenuComponentPatch : BaseBytecodePatch(
     name = "Hide account menu",
     description = "Adds the ability to hide account menu elements using a custom filter.",
-    dependencies = [
+    dependencies = setOf(
         SettingsPatch::class,
         SharedResourceIdPatch::class
-    ],
-    compatiblePackages = [
-        CompatiblePackage(
-            "com.google.android.apps.youtube.music",
-            [
-                "6.21.52",
-                "6.22.52",
-                "6.23.56",
-                "6.25.53",
-                "6.26.51",
-                "6.27.54",
-                "6.28.53",
-                "6.29.58",
-                "6.31.55",
-                "6.33.52"
-            ]
-        )
-    ]
-)
-@Suppress("unused")
-object MenuComponentPatch : BytecodePatch(
-    setOf(MenuEntryFingerprint)
+    ),
+    compatiblePackages = COMPATIBLE_PACKAGE,
+    fingerprints = setOf(MenuEntryFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
 
         MenuEntryFingerprint.result?.let {
             it.mutableMethod.apply {
-                val textIndex = targetIndex("setText")
-                val viewIndex = targetIndex("addView")
+                val textIndex = getTargetIndexWithMethodReferenceName("setText")
+                val viewIndex = getTargetIndexWithMethodReferenceName("addView")
 
                 val textRegister = getInstruction<FiveRegisterInstruction>(textIndex).registerD
                 val viewRegister = getInstruction<FiveRegisterInstruction>(viewIndex).registerD
 
                 addInstruction(
                     textIndex + 1,
-                    "invoke-static {v$textRegister, v$viewRegister}, $ACCOUNT->hideAccountMenu(Ljava/lang/CharSequence;Landroid/view/View;)V"
+                    "invoke-static {v$textRegister, v$viewRegister}, $ACCOUNT_CLASS_DESCRIPTOR->hideAccountMenu(Ljava/lang/CharSequence;Landroid/view/View;)V"
                 )
             }
         } ?: throw MenuEntryFingerprint.exception
@@ -80,13 +58,5 @@ object MenuComponentPatch : BytecodePatch(
             "false",
             "revanced_hide_account_menu"
         )
-    }
-
-    private fun MutableMethod.targetIndex(descriptor: String): Int {
-        return implementation?.let {
-            it.instructions.indexOfFirst { instruction ->
-                ((instruction as? ReferenceInstruction)?.reference as? MethodReference)?.name == descriptor
-            }
-        } ?: throw PatchException("No Method Implementation found!")
     }
 }

@@ -10,6 +10,7 @@ import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 
 typealias Instruction35cInfo = Triple<IMethodCall, Instruction35c, Int>
 
+@Suppress("unused")
 interface IMethodCall {
     val definedClassName: String
     val methodName: String

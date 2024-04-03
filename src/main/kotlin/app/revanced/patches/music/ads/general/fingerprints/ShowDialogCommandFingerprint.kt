@@ -3,7 +3,7 @@ package app.revanced.patches.music.ads.general.fingerprints
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch.SlidingDialogAnimation
 import app.revanced.util.fingerprint.LiteralValueFingerprint
 
-object ShowDialogCommandFingerprint : LiteralValueFingerprint(
+internal object ShowDialogCommandFingerprint : LiteralValueFingerprint(
     returnType = "V",
     literalSupplier = { SlidingDialogAnimation }
 )

@@ -7,7 +7,7 @@ import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.Subti
 import app.revanced.util.containsWideLiteralInstructionIndex
 import com.android.tools.smali.dexlib2.AccessFlags
 
-object CaptionsBottomSheetFingerprint : MethodFingerprint(
+internal object CaptionsBottomSheetFingerprint : MethodFingerprint(
     accessFlags = AccessFlags.PUBLIC or AccessFlags.FINAL,
     customFingerprint = { methodDef, _ ->
         methodDef.containsWideLiteralInstructionIndex(BottomSheetFooterText)

@@ -10,7 +10,6 @@ import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.shared.mapping.ResourceMappingPatch
 import app.revanced.patches.youtube.utils.integrations.Constants.INTEGRATIONS_PATH
 import app.revanced.patches.youtube.utils.integrations.Constants.UTILS_PATH
-import app.revanced.patches.youtube.utils.integrations.IntegrationsPatch
 import app.revanced.patches.youtube.utils.mainactivity.MainActivityResolvePatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.settings.fingerprints.ThemeSetterSystemFingerprint
@@ -19,7 +18,6 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch(
     dependencies = [
-        IntegrationsPatch::class,
         MainActivityResolvePatch::class,
         ResourceMappingPatch::class,
         SharedResourceIdPatch::class

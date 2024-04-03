@@ -5,7 +5,7 @@ import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch.MusicTa
 import app.revanced.util.fingerprint.LiteralValueFingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 
-object TasteBuilderConstructorFingerprint : LiteralValueFingerprint(
+internal object TasteBuilderConstructorFingerprint : LiteralValueFingerprint(
     returnType = "V",
     accessFlags = AccessFlags.PUBLIC or AccessFlags.CONSTRUCTOR,
     literalSupplier = { MusicTasteBuilderShelf }

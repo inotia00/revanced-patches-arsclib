@@ -8,7 +8,6 @@ import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.or
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableField.Companion.toMutable
-import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.music.utils.integrations.Constants.INTEGRATIONS_PATH
 import app.revanced.patches.music.utils.integrations.Constants.VIDEO_PATH
 import app.revanced.patches.music.utils.overridespeed.fingerprints.PlaybackSpeedFingerprint
@@ -17,6 +16,7 @@ import app.revanced.patches.music.utils.overridespeed.fingerprints.PlaybackSpeed
 import app.revanced.patches.music.utils.overridespeed.fingerprints.PlaybackSpeedPatchFingerprint
 import app.revanced.util.exception
 import app.revanced.util.getTargetIndex
+import app.revanced.util.getWalkerMethod
 import app.revanced.util.getWideLiteralInstructionIndex
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
@@ -93,10 +93,7 @@ object OverrideSpeedHookPatch : BytecodePatch(
                     val speedRegister =
                         getInstruction<OneRegisterInstruction>(startIndex + 1).registerA
 
-                    val speedMethod = context
-                        .toMethodWalker(this)
-                        .nextMethod(endIndex, true)
-                        .getMethod() as MutableMethod
+                    val speedMethod = getWalkerMethod(context, endIndex)
 
                     speedMethod.addInstruction(
                         speedMethod.implementation!!.instructions.size - 1,

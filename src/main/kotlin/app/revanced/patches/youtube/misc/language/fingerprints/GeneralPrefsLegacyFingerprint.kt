@@ -6,7 +6,7 @@ import com.android.tools.smali.dexlib2.Opcode
 /**
  * Compatible with ~YouTube v18.32.39
  */
-object GeneralPrefsLegacyFingerprint : MethodFingerprint(
+internal object GeneralPrefsLegacyFingerprint : MethodFingerprint(
     returnType = "V",
     parameters = emptyList(),
     opcodes = listOf(

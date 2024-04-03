@@ -6,12 +6,11 @@ import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
-import app.revanced.patches.youtube.utils.integrations.Constants.FULLSCREEN
+import app.revanced.patches.youtube.utils.integrations.Constants.FULLSCREEN_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.quickactions.fingerprints.QuickActionsElementFingerprint
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.QuickActionsElementContainer
 import app.revanced.util.exception
-import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.WideLiteralInstruction
 
@@ -27,21 +26,19 @@ object QuickActionsHookPatch : BytecodePatch(
         QuickActionsElementFingerprint.result?.let {
             it.mutableMethod.apply {
                 insertMethod = this
-                for (index in implementation!!.instructions.size - 1 downTo 0) {
-                    if (getInstruction(index).opcode == Opcode.CONST && (getInstruction(index) as WideLiteralInstruction).wideLiteral == QuickActionsElementContainer) {
-                        insertIndex = index + 3
-                        insertRegister =
-                            getInstruction<OneRegisterInstruction>(index + 2).registerA
-
-                        addInstruction(
-                            insertIndex,
-                            "invoke-static {v$insertRegister}, $FULLSCREEN->hideQuickActions(Landroid/view/View;)V"
-                        )
-                        insertIndex += 2
-
-                        break
+                val containerCalls = implementation!!.instructions.withIndex()
+                    .filter { instruction ->
+                        (instruction.value as? WideLiteralInstruction)?.wideLiteral == QuickActionsElementContainer
                     }
-                }
+                val constIndex = containerCalls.elementAt(containerCalls.size - 1).index
+                insertRegister =
+                    getInstruction<OneRegisterInstruction>(constIndex + 2).registerA
+
+                addInstruction(
+                    constIndex + 3,
+                    "invoke-static {v$insertRegister}, $FULLSCREEN_CLASS_DESCRIPTOR->hideQuickActions(Landroid/view/View;)V"
+                )
+                insertIndex = constIndex + 5
             }
         } ?: throw QuickActionsElementFingerprint.exception
     }
@@ -50,7 +47,7 @@ object QuickActionsHookPatch : BytecodePatch(
         insertMethod.apply {
             addInstruction(
                 insertIndex,
-                "invoke-static {v$insertRegister}, $FULLSCREEN->setQuickActionMargin(Landroid/widget/FrameLayout;)V"
+                "invoke-static {v$insertRegister}, $FULLSCREEN_CLASS_DESCRIPTOR->setQuickActionMargin(Landroid/widget/FrameLayout;)V"
             )
         }
     }

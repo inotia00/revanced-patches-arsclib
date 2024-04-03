@@ -4,17 +4,14 @@ import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotation.CompatiblePackage
-import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.music.ads.general.fingerprints.FloatingLayoutFingerprint
 import app.revanced.patches.music.ads.general.fingerprints.InterstitialsContainerFingerprint
 import app.revanced.patches.music.ads.general.fingerprints.NotifierShelfFingerprint
 import app.revanced.patches.music.ads.general.fingerprints.ShowDialogCommandFingerprint
 import app.revanced.patches.music.ads.music.MusicAdsPatch
-import app.revanced.patches.music.navigation.component.NavigationBarComponentPatch
 import app.revanced.patches.music.utils.integrations.Constants.ADS_PATH
+import app.revanced.patches.music.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.music.utils.integrations.Constants.COMPONENTS_PATH
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch.ButtonContainer
@@ -25,39 +22,21 @@ import app.revanced.patches.music.utils.settings.SettingsPatch
 import app.revanced.patches.shared.litho.LithoFilterPatch
 import app.revanced.util.exception
 import app.revanced.util.getWideLiteralInstructionIndex
+import app.revanced.util.patch.BaseBytecodePatch
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
-@Patch(
+@Suppress("unused")
+object GeneralAdsPatch : BaseBytecodePatch(
     name = "Hide general ads",
     description = "Adds options to hide general ads.",
-    dependencies = [
+    dependencies = setOf(
         LithoFilterPatch::class,
         MusicAdsPatch::class,
-        NavigationBarComponentPatch::class,
         SettingsPatch::class,
         SharedResourceIdPatch::class
-    ],
-    compatiblePackages = [
-        CompatiblePackage(
-            "com.google.android.apps.youtube.music",
-            [
-                "6.21.52",
-                "6.22.52",
-                "6.23.56",
-                "6.25.53",
-                "6.26.51",
-                "6.27.54",
-                "6.28.53",
-                "6.29.58",
-                "6.31.55",
-                "6.33.52"
-            ]
-        )
-    ]
-)
-@Suppress("unused")
-object GeneralAdsPatch : BytecodePatch(
-    setOf(
+    ),
+    compatiblePackages = COMPATIBLE_PACKAGE,
+    fingerprints = setOf(
         FloatingLayoutFingerprint,
         InterstitialsContainerFingerprint,
         NotifierShelfFingerprint,
@@ -103,14 +82,6 @@ object GeneralAdsPatch : BytecodePatch(
             it.mutableMethod.apply {
                 // In this method, custom dialog is created and shown.
                 // There were no issues despite adding “return-void” to the first index.
-                //
-                // If an issue occurs due to patching due to server-side changes in the future,
-                // Find the instruction whose name is "show" in [MethodReference] and click the 'AlertDialog.BUTTON_POSITIVE' button.
-                //
-                // In this case, an instruction for 'getButton' must be added to smali, not in integrations
-                // (This custom dialog cannot be cast to [AlertDialog] or [Dialog])
-                //
-                // See the comments below.
                 addInstructionsWithLabels(
                     0,
                     """
@@ -121,33 +92,38 @@ object GeneralAdsPatch : BytecodePatch(
                         """, ExternalLabel("show", getInstruction(0))
                 )
 
-                /*
-                val dialogIndex = getTargetIndexWithMethodReferenceName("show")
-                val dialogReference = getInstruction<ReferenceInstruction>(dialogIndex).reference
-                val dialogDefiningClass = (dialogReference as MethodReference).definingClass
-                val getButtonMethod = context.findClass(dialogDefiningClass)!!
-                    .mutableClass.methods.first { method ->
-                        method.parameters == listOf("I")
-                                && method.returnType == "Landroid/widget/Button;"
-                    }
-                val getButtonCall = dialogDefiningClass + "->" + getButtonMethod.name + "(I)Landroid/widget/Button;"
+                // If an issue occurs due to patching due to server-side changes in the future,
+                // Find the instruction whose name is "show" in [MethodReference] and click the 'AlertDialog.BUTTON_POSITIVE' button.
+                //
+                // In this case, an instruction for 'getButton' must be added to smali, not in integrations
+                // (This custom dialog cannot be cast to [AlertDialog] or [Dialog])
+                //
+                // See the comments below.
 
-                val dialogRegister = getInstruction<FiveRegisterInstruction>(dialogIndex).registerC
-                val freeIndex = getTargetIndex(dialogIndex, Opcode.IF_EQZ)
-                val freeRegister = getInstruction<OneRegisterInstruction>(freeIndex).registerA
+                // val dialogIndex = getTargetIndexWithMethodReferenceName("show")
+                // val dialogReference = getInstruction<ReferenceInstruction>(dialogIndex).reference
+                // val dialogDefiningClass = (dialogReference as MethodReference).definingClass
+                // val getButtonMethod = context.findClass(dialogDefiningClass)!!
+                //     .mutableClass.methods.first { method ->
+                //         method.parameters == listOf("I")
+                //                 && method.returnType == "Landroid/widget/Button;"
+                //     }
+                // val getButtonCall = dialogDefiningClass + "->" + getButtonMethod.name + "(I)Landroid/widget/Button;"
+                // val dialogRegister = getInstruction<FiveRegisterInstruction>(dialogIndex).registerC
+                // val freeIndex = getTargetIndex(dialogIndex, Opcode.IF_EQZ)
+                // val freeRegister = getInstruction<OneRegisterInstruction>(freeIndex).registerA
 
-                addInstructions(
-                    dialogIndex + 1, """
-                        # Get the 'AlertDialog.BUTTON_POSITIVE' from custom dialog
-                        # Since this custom dialog cannot be cast to AlertDialog or Dialog,
-                        # It should come from smali, not integrations.
-                        const/4 v$freeRegister, -0x1
-                        invoke-virtual {v$dialogRegister, $freeRegister}, $getButtonCall
-                        move-result-object $freeRegister
-                        invoke-static {$freeRegister}, $FULLSCREEN_ADS_CLASS_DESCRIPTOR->confirmDialog(Landroid/widget/Button;)V
-                        """
-                )
-                 */
+                // addInstructions(
+                //     dialogIndex + 1, """
+                //         # Get the 'AlertDialog.BUTTON_POSITIVE' from custom dialog
+                //         # Since this custom dialog cannot be cast to AlertDialog or Dialog,
+                //         # It should come from smali, not integrations.
+                //         const/4 v$freeRegister, -0x1
+                //         invoke-virtual {v$dialogRegister, $freeRegister}, $getButtonCall
+                //         move-result-object $freeRegister
+                //         invoke-static {$freeRegister}, $FULLSCREEN_ADS_CLASS_DESCRIPTOR->confirmDialog(Landroid/widget/Button;)V
+                //         """
+                // )
             }
         } ?: throw ShowDialogCommandFingerprint.exception
 

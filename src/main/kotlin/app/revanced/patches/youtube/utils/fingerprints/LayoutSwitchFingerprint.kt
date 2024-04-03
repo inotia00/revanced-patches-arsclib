@@ -5,7 +5,7 @@ import app.revanced.patcher.fingerprint.MethodFingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 
-object LayoutSwitchFingerprint : MethodFingerprint(
+internal object LayoutSwitchFingerprint : MethodFingerprint(
     returnType = "I",
     accessFlags = AccessFlags.PUBLIC or AccessFlags.STATIC,
     parameters = listOf("L"),

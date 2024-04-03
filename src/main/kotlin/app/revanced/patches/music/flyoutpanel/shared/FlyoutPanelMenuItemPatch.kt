@@ -8,7 +8,7 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.music.flyoutpanel.shared.fingerprints.MenuItemFingerprint
-import app.revanced.patches.music.utils.integrations.Constants.FLYOUT
+import app.revanced.patches.music.utils.integrations.Constants.FLYOUT_CLASS_DESCRIPTOR
 import app.revanced.util.exception
 import app.revanced.util.getTargetIndex
 import app.revanced.util.indexOfFirstInstruction
@@ -58,7 +58,7 @@ object FlyoutPanelMenuItemPatch : BytecodePatch(
 
             addInstructionsWithLabels(
                 enumIndex + 1, """
-                    invoke-static {v$enumRegister}, $FLYOUT->hideComponents(Ljava/lang/Enum;)Z
+                    invoke-static {v$enumRegister}, $FLYOUT_CLASS_DESCRIPTOR->hideComponents(Ljava/lang/Enum;)Z
                     move-result v$freeRegister
                     if-nez v$freeRegister, :hide
                     """, ExternalLabel("hide", getInstruction(implementation!!.instructions.size - 1))
@@ -74,7 +74,7 @@ object FlyoutPanelMenuItemPatch : BytecodePatch(
 
                 addInstruction(
                     enumIndex + 1,
-                    "invoke-static {v$enumRegister, v$textViewRegister, v$imageViewRegister}, $FLYOUT->replaceComponents(Ljava/lang/Enum;Landroid/widget/TextView;Landroid/widget/ImageView;)V"
+                    "invoke-static {v$enumRegister, v$textViewRegister, v$imageViewRegister}, $FLYOUT_CLASS_DESCRIPTOR->replaceComponents(Ljava/lang/Enum;Landroid/widget/TextView;Landroid/widget/ImageView;)V"
                 )
             }
             instructionAdded = true

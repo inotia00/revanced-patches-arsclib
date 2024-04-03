@@ -4,7 +4,7 @@ import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.Expan
 import app.revanced.util.fingerprint.LiteralValueFingerprint
 import com.android.tools.smali.dexlib2.Opcode
 
-object LoadMoreButtonFingerprint : LiteralValueFingerprint(
+internal object LoadMoreButtonFingerprint : LiteralValueFingerprint(
     opcodes = listOf(
         Opcode.CONST,
         Opcode.CONST_4,

@@ -4,10 +4,7 @@ import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchException
-import app.revanced.patcher.patch.annotation.CompatiblePackage
-import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.music.player.swipetodismiss.fingerprints.HandleSearchRenderedFingerprint
@@ -17,7 +14,8 @@ import app.revanced.patches.music.player.swipetodismiss.fingerprints.MiniPlayerD
 import app.revanced.patches.music.player.swipetodismiss.fingerprints.MiniPlayerDefaultViewVisibilityFingerprint
 import app.revanced.patches.music.player.swipetodismiss.fingerprints.MusicActivityWidgetFingerprint
 import app.revanced.patches.music.player.swipetodismiss.fingerprints.SwipeToCloseFingerprint
-import app.revanced.patches.music.utils.integrations.Constants.PLAYER
+import app.revanced.patches.music.utils.integrations.Constants.COMPATIBLE_PACKAGE
+import app.revanced.patches.music.utils.integrations.Constants.PLAYER_CLASS_DESCRIPTOR
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
@@ -28,6 +26,7 @@ import app.revanced.util.getTargetIndex
 import app.revanced.util.getTargetIndexReversed
 import app.revanced.util.getTargetIndexWithFieldReferenceType
 import app.revanced.util.getWideLiteralInstructionIndex
+import app.revanced.util.patch.BaseBytecodePatch
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
@@ -37,34 +36,16 @@ import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 import com.android.tools.smali.dexlib2.iface.reference.Reference
 import kotlin.properties.Delegates
 
-@Patch(
+@Suppress("unused")
+object SwipeToDismissMiniPlayerPatch : BaseBytecodePatch(
     name = "Enable swipe to dismiss miniplayer",
     description = "Adds an option to swipe down to dismiss the miniplayer.",
-    dependencies = [
+    dependencies = setOf(
         SettingsPatch::class,
         SharedResourceIdPatch::class
-    ],
-    compatiblePackages = [
-        CompatiblePackage(
-            "com.google.android.apps.youtube.music",
-            [
-                "6.21.52",
-                "6.22.52",
-                "6.23.56",
-                "6.25.53",
-                "6.26.51",
-                "6.27.54",
-                "6.28.53",
-                "6.29.58",
-                "6.31.55",
-                "6.33.52"
-            ]
-        )
-    ]
-)
-@Suppress("unused")
-object SwipeToDismissMiniPlayerPatch : BytecodePatch(
-    setOf(
+    ),
+    compatiblePackages = COMPATIBLE_PACKAGE,
+    fingerprints = setOf(
         HandleSearchRenderedFingerprint,
         InteractionLoggingEnumFingerprint,
         MiniPlayerDefaultTextFingerprint,
@@ -93,7 +74,7 @@ object SwipeToDismissMiniPlayerPatch : BytecodePatch(
 
                     addInstructions(
                         insertIndex, """
-                            invoke-static {v$targetRegister}, $PLAYER->enableSwipeToDismissMiniPlayer(Z)Z
+                            invoke-static {v$targetRegister}, $PLAYER_CLASS_DESCRIPTOR->enableSwipeToDismissMiniPlayer(Z)Z
                             move-result v$targetRegister
                             """
                     )
@@ -145,7 +126,7 @@ object SwipeToDismissMiniPlayerPatch : BytecodePatch(
 
                         addInstructionsWithLabels(
                             insertIndex, """
-                                invoke-static {}, $PLAYER->enableSwipeToDismissMiniPlayer()Z
+                                invoke-static {}, $PLAYER_CLASS_DESCRIPTOR->enableSwipeToDismissMiniPlayer()Z
                                 move-result v$freeRegister
                                 if-nez v$freeRegister, :dismiss
                                 iget-object v$primaryRegister, v$primaryRegister, $iGetObjectReference
@@ -178,7 +159,7 @@ object SwipeToDismissMiniPlayerPatch : BytecodePatch(
 
                     addInstructions(
                         insertIndex, """
-                            invoke-static {v$insertRegister}, $PLAYER->enableSwipeToDismissMiniPlayer(Ljava/lang/Object;)Ljava/lang/Object;
+                            invoke-static {v$insertRegister}, $PLAYER_CLASS_DESCRIPTOR->enableSwipeToDismissMiniPlayer(Ljava/lang/Object;)Ljava/lang/Object;
                             move-result-object v$insertRegister
                             """
                     )
@@ -205,7 +186,7 @@ object SwipeToDismissMiniPlayerPatch : BytecodePatch(
 
                     addInstructionsWithLabels(
                         bottomSheetBehaviorIndex - 2, """
-                            invoke-static {}, $PLAYER->enableSwipeToDismissMiniPlayer()Z
+                            invoke-static {}, $PLAYER_CLASS_DESCRIPTOR->enableSwipeToDismissMiniPlayer()Z
                             move-result v$freeRegister
                             if-nez v$freeRegister, :dismiss
                             """, ExternalLabel("dismiss", getInstruction(bottomSheetBehaviorIndex + 1))

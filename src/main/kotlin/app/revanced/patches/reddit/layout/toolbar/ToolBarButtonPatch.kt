@@ -3,10 +3,8 @@ package app.revanced.patches.reddit.layout.toolbar
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotation.CompatiblePackage
-import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.reddit.layout.toolbar.fingerprints.HomePagerScreenFingerprint
+import app.revanced.patches.reddit.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.reddit.utils.integrations.Constants.PATCHES_PATH
 import app.revanced.patches.reddit.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.reddit.utils.resourceid.SharedResourceIdPatch.ToolBarNavSearchCtaContainer
@@ -14,29 +12,19 @@ import app.revanced.patches.reddit.utils.settings.SettingsBytecodePatch.updateSe
 import app.revanced.patches.reddit.utils.settings.SettingsPatch
 import app.revanced.util.exception
 import app.revanced.util.getWideLiteralInstructionIndex
+import app.revanced.util.patch.BaseBytecodePatch
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
-@Patch(
+@Suppress("unused")
+object ToolBarButtonPatch : BaseBytecodePatch(
     name = "Hide toolbar button",
     description = "Adds an option to hide the r/place or Reddit recap button in the toolbar.",
-    dependencies =
-    [
+    dependencies = setOf(
         SettingsPatch::class,
         SharedResourceIdPatch::class
-    ],
-    compatiblePackages = [
-        CompatiblePackage(
-            "com.reddit.frontpage",
-            [
-                "2023.12.0",
-                "2024.04.0"
-            ]
-        )
-    ]
-)
-@Suppress("unused")
-object ToolBarButtonPatch : BytecodePatch(
-    setOf(HomePagerScreenFingerprint)
+    ),
+    compatiblePackages = COMPATIBLE_PACKAGE,
+    fingerprints = setOf(HomePagerScreenFingerprint)
 ) {
     private const val INTEGRATIONS_METHOD_DESCRIPTOR =
         "$PATCHES_PATH/ToolBarButtonPatch;->hideToolBarButton(Landroid/view/View;)V"

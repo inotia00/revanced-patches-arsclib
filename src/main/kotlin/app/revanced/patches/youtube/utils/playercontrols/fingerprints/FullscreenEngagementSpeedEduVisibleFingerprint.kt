@@ -5,7 +5,7 @@ import app.revanced.patcher.fingerprint.MethodFingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 
-object FullscreenEngagementSpeedEduVisibleFingerprint : MethodFingerprint(
+internal object FullscreenEngagementSpeedEduVisibleFingerprint : MethodFingerprint(
     returnType = "V",
     accessFlags = AccessFlags.PUBLIC or AccessFlags.CONSTRUCTOR,
     opcodes = listOf(Opcode.IPUT_BOOLEAN)

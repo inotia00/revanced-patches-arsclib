@@ -8,7 +8,7 @@ import com.android.tools.smali.dexlib2.Opcode
 /**
  * Compatible with YouTube v19.11.43~
  */
-object BottomSheetMenuItemBuilderFingerprint : MethodFingerprint(
+internal object BottomSheetMenuItemBuilderFingerprint : MethodFingerprint(
     accessFlags = AccessFlags.PUBLIC or AccessFlags.FINAL,
     returnType = "L",
     parameters = listOf("L"),

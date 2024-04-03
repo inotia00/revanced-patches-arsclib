@@ -4,7 +4,7 @@ import app.revanced.patcher.extensions.or
 import app.revanced.patcher.fingerprint.MethodFingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 
-object MusicBrowserServiceFingerprint : MethodFingerprint(
+internal object MusicBrowserServiceFingerprint : MethodFingerprint(
     returnType = "L",
     accessFlags = AccessFlags.PUBLIC or AccessFlags.FINAL,
     parameters = listOf("Ljava/lang/String;", "Landroid/os/Bundle;"),

@@ -6,7 +6,7 @@ import com.android.tools.smali.dexlib2.Opcode
 /**
  * Compatible with ~YouTube v19.10.39
  */
-object BottomSheetMenuItemBuilderLegacyFingerprint : MethodFingerprint(
+internal object BottomSheetMenuItemBuilderLegacyFingerprint : MethodFingerprint(
     returnType = "L",
     parameters = listOf("L"),
     opcodes = listOf(

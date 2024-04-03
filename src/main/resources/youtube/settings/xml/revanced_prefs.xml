@@ -415,13 +415,12 @@
             <Preference android:title="Hide player flyout panel" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
 
             <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_fullscreen" />
-            <Preference android:title="Disable landscape mode" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="Enable compact controls overlay" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="Force fullscreen" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="Hide autoplay preview" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="Hide end screen overlay" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="Hide fullscreen panels" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
-            <Preference android:title="Keep landscape mode" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
+            <Preference android:title="Landscape mode" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="Quick actions components" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
 
             <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_general" />

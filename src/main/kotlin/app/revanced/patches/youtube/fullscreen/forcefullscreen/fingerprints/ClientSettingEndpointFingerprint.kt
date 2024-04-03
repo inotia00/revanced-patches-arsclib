@@ -4,7 +4,7 @@ import app.revanced.patcher.extensions.or
 import app.revanced.patcher.fingerprint.MethodFingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 
-object ClientSettingEndpointFingerprint : MethodFingerprint(
+internal object ClientSettingEndpointFingerprint : MethodFingerprint(
     returnType = "V",
     accessFlags = AccessFlags.PUBLIC or AccessFlags.FINAL,
     parameters = listOf("L", "Ljava/util/Map;"),

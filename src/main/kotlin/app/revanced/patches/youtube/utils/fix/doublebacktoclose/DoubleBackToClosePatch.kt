@@ -11,6 +11,7 @@ import app.revanced.patches.youtube.utils.fix.doublebacktoclose.fingerprint.Scro
 import app.revanced.patches.youtube.utils.integrations.Constants.UTILS_PATH
 import app.revanced.patches.youtube.utils.mainactivity.MainActivityResolvePatch
 import app.revanced.util.exception
+import app.revanced.util.getWalkerMethod
 
 @Patch(dependencies = [MainActivityResolvePatch::class])
 object DoubleBackToClosePatch : BytecodePatch(
@@ -34,13 +35,10 @@ object DoubleBackToClosePatch : BytecodePatch(
          * Inject the methods which start of ScrollView
          */
         ScrollPositionFingerprint.result?.let {
-            val insertMethod = context.toMethodWalker(it.method)
-                .nextMethod(it.scanResult.patternScanResult!!.startIndex + 1, true)
-                .getMethod() as MutableMethod
+            val walkerMethod = it.getWalkerMethod(context, it.scanResult.patternScanResult!!.startIndex + 1)
+            val insertIndex = walkerMethod.implementation!!.instructions.size - 1 - 1
 
-            val insertIndex = insertMethod.implementation!!.instructions.size - 1 - 1
-
-            insertMethod.injectScrollView(insertIndex, "onStartScrollView")
+            walkerMethod.injectScrollView(insertIndex, "onStartScrollView")
         } ?: throw ScrollPositionFingerprint.exception
 
 

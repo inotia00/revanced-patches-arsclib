@@ -1,29 +1,19 @@
 package app.revanced.patches.reddit.layout.branding.name
 
 import app.revanced.patcher.data.ResourceContext
-import app.revanced.patcher.patch.ResourcePatch
-import app.revanced.patcher.patch.annotation.CompatiblePackage
-import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.patch.options.PatchOption.PatchExtensions.stringPatchOption
+import app.revanced.patches.reddit.utils.integrations.Constants.COMPATIBLE_PACKAGE
+import app.revanced.util.patch.BaseResourcePatch
 import java.io.FileWriter
 import java.nio.file.Files
 
-@Patch(
+@Suppress("DEPRECATION", "unused")
+object CustomBrandingNamePatch : BaseResourcePatch(
     name = "Custom branding name Reddit",
     description = "Renames the Reddit app to the name specified in options.json.",
-    compatiblePackages = [
-        CompatiblePackage(
-            "com.reddit.frontpage",
-            [
-                "2023.12.0",
-                "2024.04.0"
-            ]
-        )
-    ],
+    compatiblePackages = COMPATIBLE_PACKAGE,
     use = false
-)
-@Suppress("DEPRECATION", "unused")
-object CustomBrandingNamePatch : ResourcePatch() {
+) {
     private const val ORIGINAL_APP_NAME = "Reddit"
     private const val APP_NAME = "RVX Reddit"
 

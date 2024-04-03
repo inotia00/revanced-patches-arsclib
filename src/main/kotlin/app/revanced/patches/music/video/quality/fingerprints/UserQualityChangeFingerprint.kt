@@ -3,7 +3,7 @@ package app.revanced.patches.music.video.quality.fingerprints
 import app.revanced.patcher.fingerprint.MethodFingerprint
 import com.android.tools.smali.dexlib2.Opcode
 
-object UserQualityChangeFingerprint : MethodFingerprint(
+internal object UserQualityChangeFingerprint : MethodFingerprint(
     returnType = "V",
     opcodes = listOf(
         Opcode.CONST_STRING,

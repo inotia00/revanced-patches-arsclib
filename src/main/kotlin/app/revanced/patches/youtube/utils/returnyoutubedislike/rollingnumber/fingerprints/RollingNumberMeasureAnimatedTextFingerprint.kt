@@ -6,7 +6,7 @@ import com.android.tools.smali.dexlib2.Opcode
 /**
  * Compatible with YouTube v18.30.xx to v18.49.xx
  */
-object RollingNumberMeasureAnimatedTextFingerprint : ReferenceFingerprint(
+internal object RollingNumberMeasureAnimatedTextFingerprint : ReferenceFingerprint(
     opcodes = listOf(
         Opcode.INVOKE_VIRTUAL,
         Opcode.MOVE_RESULT,

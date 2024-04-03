@@ -4,11 +4,9 @@ import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotation.CompatiblePackage
-import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.youtube.utils.fingerprints.NewVideoQualityChangedFingerprint
 import app.revanced.patches.youtube.utils.fingerprints.VideoEndFingerprint
+import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.UTILS_PATH
 import app.revanced.patches.youtube.utils.integrations.Constants.VIDEO_PATH
 import app.revanced.patches.youtube.utils.overridespeed.OverrideSpeedHookPatch
@@ -17,51 +15,22 @@ import app.revanced.patches.youtube.utils.videocpn.VideoCpnPatch
 import app.revanced.patches.youtube.video.speed.fingerprints.NewPlaybackSpeedChangedFingerprint
 import app.revanced.patches.youtube.video.speed.fingerprints.PlaybackSpeedInitializeFingerprint
 import app.revanced.util.exception
+import app.revanced.util.patch.BaseBytecodePatch
 import app.revanced.util.updatePatchStatus
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
-@Patch(
+@Suppress("unused")
+object PlaybackSpeedPatch : BaseBytecodePatch(
     name = "Default playback speed",
     description = "Adds an option to set the default playback speed.",
-    dependencies = [
+    dependencies = setOf(
         OverrideSpeedHookPatch::class,
         SettingsPatch::class,
         VideoCpnPatch::class
-    ],
-    compatiblePackages = [
-        CompatiblePackage(
-            "com.google.android.youtube",
-            [
-                "18.29.38",
-                "18.30.37",
-                "18.31.40",
-                "18.32.39",
-                "18.33.40",
-                "18.34.38",
-                "18.35.36",
-                "18.36.39",
-                "18.37.36",
-                "18.38.44",
-                "18.39.41",
-                "18.40.34",
-                "18.41.39",
-                "18.42.41",
-                "18.43.45",
-                "18.44.41",
-                "18.45.43",
-                "18.46.45",
-                "18.48.39",
-                "18.49.37",
-                "19.01.34",
-                "19.02.39"
-            ]
-        )
-    ]
-)
-@Suppress("unused")
-object PlaybackSpeedPatch : BytecodePatch(
-    setOf(
+    ),
+    compatiblePackages = COMPATIBLE_PACKAGE,
+    fingerprints = setOf(
         NewVideoQualityChangedFingerprint,
         VideoEndFingerprint
     )

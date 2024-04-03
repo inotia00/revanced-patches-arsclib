@@ -5,7 +5,7 @@ import app.revanced.patcher.fingerprint.MethodFingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 
-object AdPostFingerprint : MethodFingerprint(
+internal object AdPostFingerprint : MethodFingerprint(
     returnType = "V",
     accessFlags = AccessFlags.PUBLIC or AccessFlags.CONSTRUCTOR,
     opcodes = listOf(
@@ -17,5 +17,9 @@ object AdPostFingerprint : MethodFingerprint(
         "children",
         "uxExperiences"
     ),
-    customFingerprint = { methodDef, classDef -> methodDef.definingClass.endsWith("/Listing;") && methodDef.name == "<init>" && classDef.sourceFile == "Listing.kt" },
+    customFingerprint = { methodDef, classDef ->
+        methodDef.definingClass.endsWith("/Listing;")
+                && methodDef.name == "<init>"
+                && classDef.sourceFile == "Listing.kt"
+    },
 )

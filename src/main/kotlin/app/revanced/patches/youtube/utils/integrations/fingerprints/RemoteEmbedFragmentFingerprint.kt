@@ -8,7 +8,7 @@ import com.android.tools.smali.dexlib2.AccessFlags
  * For embedded playback.  Likely covers Google Play store and other Google products.
  */
 @Suppress("DEPRECATION")
-object RemoteEmbedFragmentFingerprint : IntegrationsFingerprint(
+internal object RemoteEmbedFragmentFingerprint : IntegrationsFingerprint(
     accessFlags = AccessFlags.PUBLIC or AccessFlags.CONSTRUCTOR,
     returnType = "V",
     parameters = listOf("Landroid/content/Context;", "L", "L"),

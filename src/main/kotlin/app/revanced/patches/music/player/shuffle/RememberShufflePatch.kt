@@ -6,18 +6,17 @@ import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.or
-import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotation.CompatiblePackage
-import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableField.Companion.toMutable
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod.Companion.toMutable
 import app.revanced.patches.music.player.shuffle.fingerprints.MusicPlaybackControlsFingerprint
 import app.revanced.patches.music.player.shuffle.fingerprints.ShuffleClassReferenceFingerprint
-import app.revanced.patches.music.utils.integrations.Constants.PLAYER
+import app.revanced.patches.music.utils.integrations.Constants.COMPATIBLE_PACKAGE
+import app.revanced.patches.music.utils.integrations.Constants.PLAYER_CLASS_DESCRIPTOR
 import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
 import app.revanced.util.exception
+import app.revanced.util.patch.BaseBytecodePatch
 import app.revanced.util.transformFields
 import app.revanced.util.traverseClassHierarchy
 import com.android.tools.smali.dexlib2.AccessFlags
@@ -29,35 +28,24 @@ import com.android.tools.smali.dexlib2.immutable.ImmutableField
 import com.android.tools.smali.dexlib2.immutable.ImmutableMethod
 import com.android.tools.smali.dexlib2.util.MethodUtil
 
-@Patch(
+@Suppress("unused")
+object RememberShufflePatch : BaseBytecodePatch(
     name = "Remember shuffle state",
     description = "Adds an option to remember the state of the shuffle toggle.",
-    dependencies = [SettingsPatch::class],
-    compatiblePackages = [
-        CompatiblePackage(
-            "com.google.android.apps.youtube.music",
-            [
-                "6.21.52",
-                "6.22.52",
-                "6.23.56",
-                "6.25.53",
-                "6.26.51",
-                "6.27.54",
-                "6.28.53",
-                "6.29.58",
-                "6.31.55",
-                "6.33.52"
-            ]
-        )
-    ]
-)
-@Suppress("unused")
-object RememberShufflePatch : BytecodePatch(
-    setOf(
+    dependencies = setOf(SettingsPatch::class),
+    compatiblePackages = COMPATIBLE_PACKAGE,
+    fingerprints = setOf(
         MusicPlaybackControlsFingerprint,
         ShuffleClassReferenceFingerprint
     )
 ) {
+    private const val PLAYBACK_CONTROLS_CLASS_DESCRIPTOR =
+        "Lcom/google/android/apps/youtube/music/watchpage/MusicPlaybackControls;"
+
+    private lateinit var objectClass: String
+    private lateinit var imageViewReference: Reference
+    private lateinit var shuffleStateLabel: String
+
     override fun execute(context: BytecodeContext) {
 
         ShuffleClassReferenceFingerprint.result?.let {
@@ -68,7 +56,7 @@ object RememberShufflePatch : BytecodePatch(
                     ((instruction as? ReferenceInstruction)?.reference as? FieldReference)?.type == "Landroid/widget/ImageView;"
                 }
 
-                SHUFFLE_CLASS = it.classDef.type
+                objectClass = it.classDef.type
 
                 val shuffleReference1 = descriptor(startIndex)
                 val shuffleReference2 = descriptor(startIndex + 1)
@@ -94,7 +82,7 @@ object RememberShufflePatch : BytecodePatch(
             constructorMethod.apply {
                 addInstruction(
                     implementation!!.instructions.size - 1,
-                    "sput-object p0, $PLAYBACK_CONTROLS_CLASS_DESCRIPTOR->shuffleClass:$SHUFFLE_CLASS"
+                    "sput-object p0, $PLAYBACK_CONTROLS_CLASS_DESCRIPTOR->shuffleClass:$objectClass"
                 )
             }
 
@@ -103,7 +91,7 @@ object RememberShufflePatch : BytecodePatch(
                     0, """
                         move-object v0, p0
                         """ + shuffleStateLabel + """
-                        invoke-static {v1}, $PLAYER->setShuffleState(I)V
+                        invoke-static {v1}, $PLAYER_CLASS_DESCRIPTOR->setShuffleState(I)V
                         """
                 )
             }
@@ -134,7 +122,7 @@ object RememberShufflePatch : BytecodePatch(
                 val shuffleField = ImmutableField(
                     definingClass,
                     "shuffleClass",
-                    SHUFFLE_CLASS,
+                    objectClass,
                     AccessFlags.PUBLIC or AccessFlags.STATIC,
                     null,
                     annotations,
@@ -153,10 +141,10 @@ object RememberShufflePatch : BytecodePatch(
 
                 shuffleMethod.addInstructionsWithLabels(
                     0, """
-                            invoke-static {}, $PLAYER->getShuffleState()I
+                            invoke-static {}, $PLAYER_CLASS_DESCRIPTOR->getShuffleState()I
                             move-result v2
                             if-nez v2, :dont_shuffle
-                            sget-object v0, $PLAYBACK_CONTROLS_CLASS_DESCRIPTOR->shuffleClass:$SHUFFLE_CLASS
+                            sget-object v0, $PLAYBACK_CONTROLS_CLASS_DESCRIPTOR->shuffleClass:$objectClass
                             """ + shuffleStateLabel + """
                             iget-object v3, v0, $imageViewReference
                             invoke-virtual {v3}, Landroid/widget/ImageView;->performClick()Z
@@ -179,13 +167,6 @@ object RememberShufflePatch : BytecodePatch(
         )
 
     }
-
-    private const val PLAYBACK_CONTROLS_CLASS_DESCRIPTOR =
-        "Lcom/google/android/apps/youtube/music/watchpage/MusicPlaybackControls;"
-
-    private lateinit var SHUFFLE_CLASS: String
-    private lateinit var imageViewReference: Reference
-    private lateinit var shuffleStateLabel: String
 
     private fun MutableMethod.descriptor(index: Int): Reference {
         return getInstruction<ReferenceInstruction>(index).reference

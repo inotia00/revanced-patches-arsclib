@@ -1,10 +1,8 @@
 package app.revanced.patches.youtube.utils.settings
 
 import app.revanced.patcher.data.ResourceContext
-import app.revanced.patcher.patch.annotation.CompatiblePackage
-import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.mapping.ResourceMappingPatch
-import app.revanced.patches.shared.settings.AbstractSettingsResourcePatch
+import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.IntegrationsPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.settings.ResourceUtils.addPreference
@@ -14,69 +12,40 @@ import app.revanced.patches.youtube.utils.settings.ResourceUtils.updatePatchStat
 import app.revanced.util.ResourceGroup
 import app.revanced.util.classLoader
 import app.revanced.util.copyResources
+import app.revanced.util.copyXmlNode
+import app.revanced.util.patch.BaseResourcePatch
 import org.w3c.dom.Element
 import java.io.Closeable
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 import java.util.jar.Manifest
 
-@Patch(
+@Suppress("DEPRECATION", "SpellCheckingInspection", "unused")
+object SettingsPatch : BaseResourcePatch(
     name = "Settings",
     description = "Applies mandatory patches to implement ReVanced Extended settings into the application.",
-    dependencies = [
+    dependencies = setOf(
         IntegrationsPatch::class,
         ResourceMappingPatch::class,
         SharedResourceIdPatch::class,
         SettingsBytecodePatch::class
-    ],
-    compatiblePackages = [
-        CompatiblePackage(
-            "com.google.android.youtube",
-            [
-                "18.29.38",
-                "18.30.37",
-                "18.31.40",
-                "18.32.39",
-                "18.33.40",
-                "18.34.38",
-                "18.35.36",
-                "18.36.39",
-                "18.37.36",
-                "18.38.44",
-                "18.39.41",
-                "18.40.34",
-                "18.41.39",
-                "18.42.41",
-                "18.43.45",
-                "18.44.41",
-                "18.45.43",
-                "18.46.45",
-                "18.48.39",
-                "18.49.37",
-                "19.01.34",
-                "19.02.39"
-            ]
-        )
-    ],
+    ),
+    compatiblePackages = COMPATIBLE_PACKAGE,
     requiresIntegrations = true
-)
-@Suppress("DEPRECATION", "unused")
-object SettingsPatch : AbstractSettingsResourcePatch(
-    "youtube/settings"
 ), Closeable {
 
     private val THREAD_COUNT = Runtime.getRuntime().availableProcessors()
     private val threadPoolExecutor = Executors.newFixedThreadPool(THREAD_COUNT)
 
     internal lateinit var contexts: ResourceContext
-    internal var upward1831: Boolean = false
-    internal var upward1834: Boolean = false
-    internal var upward1839: Boolean = false
-    internal var upward1849: Boolean = false
-    internal var upward1902: Boolean = false
+    internal var upward1831 = false
+    internal var upward1834 = false
+    internal var upward1839 = false
+    internal var upward1849 = false
+    internal var upward1902 = false
+    internal var upward1909 = false
 
     override fun execute(context: ResourceContext) {
-        super.execute(context)
         contexts = context
 
         val resourceXmlFile = context["res/values/integers.xml"].readBytes()
@@ -107,6 +76,7 @@ object SettingsPatch : AbstractSettingsResourcePatch(
                         upward1839 = 234000000 <= playServicesVersion
                         upward1849 = 235000000 <= playServicesVersion
                         upward1902 = 240204000 < playServicesVersion
+                        upward1909 = 241002000 <= playServicesVersion
 
                         break
                     }
@@ -117,6 +87,15 @@ object SettingsPatch : AbstractSettingsResourcePatch(
         threadPoolExecutor
             .also { it.shutdown() }
             .awaitTermination(Long.MAX_VALUE, TimeUnit.SECONDS)
+
+        /**
+         * copy strings and preference
+         */
+        context.copyXmlNode("youtube/settings/host", "values/strings.xml", "resources")
+        context.copyResources(
+            "youtube/settings",
+            ResourceGroup("xml", "revanced_prefs.xml")
+        )
 
         /**
          * create directory for the untranslated language resources

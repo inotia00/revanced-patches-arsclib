@@ -1,65 +1,35 @@
 package app.revanced.patches.youtube.ads.general
 
 import app.revanced.patcher.data.ResourceContext
-import app.revanced.patcher.patch.ResourcePatch
-import app.revanced.patcher.patch.annotation.CompatiblePackage
-import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.litho.LithoFilterPatch
 import app.revanced.patches.youtube.ads.fullscreen.FullscreenAdsPatch
-import app.revanced.patches.youtube.ads.getpremium.HideGetPremiumPatch
+import app.revanced.patches.youtube.ads.getpremium.GetPremiumPatch
 import app.revanced.patches.youtube.utils.fix.doublebacktoclose.DoubleBackToClosePatch
 import app.revanced.patches.youtube.utils.fix.swiperefresh.SwipeRefreshPatch
+import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPONENTS_PATH
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.util.copyXmlNode
 import app.revanced.util.doRecursively
+import app.revanced.util.patch.BaseResourcePatch
 import app.revanced.util.startsWithAny
 import org.w3c.dom.Element
 
-@Patch(
+@Suppress("DEPRECATION", "unused")
+object GeneralAdsPatch : BaseResourcePatch(
     name = "Hide general ads",
     description = "Adds options to hide general ads.",
-    dependencies = [
+    dependencies = setOf(
         DoubleBackToClosePatch::class,
         FullscreenAdsPatch::class,
         GeneralAdsBytecodePatch::class,
-        HideGetPremiumPatch::class,
+        GetPremiumPatch::class,
         LithoFilterPatch::class,
         SettingsPatch::class,
         SwipeRefreshPatch::class
-    ],
-    compatiblePackages = [
-        CompatiblePackage(
-            "com.google.android.youtube",
-            [
-                "18.29.38",
-                "18.30.37",
-                "18.31.40",
-                "18.32.39",
-                "18.33.40",
-                "18.34.38",
-                "18.35.36",
-                "18.36.39",
-                "18.37.36",
-                "18.38.44",
-                "18.39.41",
-                "18.40.34",
-                "18.41.39",
-                "18.42.41",
-                "18.43.45",
-                "18.44.41",
-                "18.45.43",
-                "18.46.45",
-                "18.48.39",
-                "18.49.37",
-                "19.01.34",
-                "19.02.39"
-            ]
-        )
-    ]
-)
-@Suppress("unused")
-object GeneralAdsPatch : ResourcePatch() {
+    ),
+    compatiblePackages = COMPATIBLE_PACKAGE
+) {
     private val resourceFileNames = arrayOf(
         "promoted_",
         "promotion_",
@@ -81,8 +51,11 @@ object GeneralAdsPatch : ResourcePatch() {
         "Top"
     )
 
+    private const val FILTER_CLASS_DESCRIPTOR =
+        "$COMPONENTS_PATH/AdsFilter;"
+
     override fun execute(context: ResourceContext) {
-        LithoFilterPatch.addFilter("$COMPONENTS_PATH/AdsFilter;")
+        LithoFilterPatch.addFilter(FILTER_CLASS_DESCRIPTOR)
 
         context.forEach {
 

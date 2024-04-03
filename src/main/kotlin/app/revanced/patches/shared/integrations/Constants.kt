@@ -1,6 +1,6 @@
 package app.revanced.patches.shared.integrations
 
-@Suppress("MemberVisibilityCanBePrivate")
+@Suppress("MemberVisibilityCanBePrivate", "SpellCheckingInspection")
 object Constants {
     const val INTEGRATIONS_PATH = "Lapp/revanced/integrations/shared"
     const val COMPONENTS_PATH = "$INTEGRATIONS_PATH/patches/components"

@@ -6,7 +6,7 @@ import app.revanced.patches.shared.integrations.BaseIntegrationsPatch.Integratio
  * Hooks the context when the app is launched as a regular application (and is not an embedded video playback).
  */
 @Suppress("DEPRECATION")
-object ApplicationInitFingerprint : IntegrationsFingerprint(
+internal object ApplicationInitFingerprint : IntegrationsFingerprint(
     strings = listOf("Application creation", "Application.onCreate"),
     // Integrations context is the Activity itself.
 )

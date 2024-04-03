@@ -5,7 +5,7 @@ import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.ReelF
 import app.revanced.util.fingerprint.LiteralValueFingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 
-object ShortsPivotLegacyFingerprint : LiteralValueFingerprint(
+internal object ShortsPivotLegacyFingerprint : LiteralValueFingerprint(
     returnType = "V",
     accessFlags = AccessFlags.PRIVATE or AccessFlags.FINAL,
     parameters = listOf("Z", "Z", "L"),

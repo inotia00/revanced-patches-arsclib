@@ -1,33 +1,15 @@
 package app.revanced.patches.music.misc.bitrate
 
 import app.revanced.patcher.data.ResourceContext
-import app.revanced.patcher.patch.ResourcePatch
-import app.revanced.patcher.patch.annotation.CompatiblePackage
-import app.revanced.patcher.patch.annotation.Patch
+import app.revanced.patches.music.utils.integrations.Constants.COMPATIBLE_PACKAGE
+import app.revanced.util.patch.BaseResourcePatch
 
-@Patch(
+@Suppress("DEPRECATION", "unused")
+object BitrateDefaultValuePatch : BaseResourcePatch(
     name = "Bitrate default value",
     description = "Sets the audio quality to \"Always High\" when you first install the app.",
-    compatiblePackages = [
-        CompatiblePackage(
-            "com.google.android.apps.youtube.music",
-            [
-                "6.21.52",
-                "6.22.52",
-                "6.23.56",
-                "6.25.53",
-                "6.26.51",
-                "6.27.54",
-                "6.28.53",
-                "6.29.58",
-                "6.31.55",
-                "6.33.52"
-            ]
-        )
-    ]
-)
-@Suppress("unused")
-object BitrateDefaultValuePatch : ResourcePatch() {
+    compatiblePackages = COMPATIBLE_PACKAGE
+) {
     override fun execute(context: ResourceContext) {
         context.xmlEditor[RESOURCE_FILE_PATH].use { editor ->
             editor.file.getElementsByTagName("com.google.android.apps.youtube.music.ui.preference.PreferenceCategoryCompat")

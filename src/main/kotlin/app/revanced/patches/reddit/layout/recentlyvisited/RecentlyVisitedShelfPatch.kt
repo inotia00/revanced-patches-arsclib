@@ -3,11 +3,9 @@ package app.revanced.patches.reddit.layout.recentlyvisited
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchException
-import app.revanced.patcher.patch.annotation.CompatiblePackage
-import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.reddit.layout.recentlyvisited.fingerprints.CommunityDrawerPresenterFingerprint
+import app.revanced.patches.reddit.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.reddit.utils.integrations.Constants.PATCHES_PATH
 import app.revanced.patches.reddit.utils.settings.SettingsBytecodePatch.updateSettingsStatus
 import app.revanced.patches.reddit.utils.settings.SettingsPatch
@@ -16,31 +14,24 @@ import app.revanced.util.getTargetIndex
 import app.revanced.util.getTargetIndexReversed
 import app.revanced.util.getTargetIndexWithFieldReferenceName
 import app.revanced.util.getTargetIndexWithReference
+import app.revanced.util.patch.BaseBytecodePatch
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.reference.Reference
 
-@Patch(
+@Suppress("unused")
+object RecentlyVisitedShelfPatch : BaseBytecodePatch(
     name = "Hide recently visited shelf",
     description = "Adds an option to hide the recently visited shelf in the sidebar.",
-    dependencies = [SettingsPatch::class],
-    compatiblePackages = [
-        CompatiblePackage(
-            "com.reddit.frontpage",
-            [
-                "2023.12.0",
-                "2024.04.0"
-            ]
-        )
-    ]
-)
-@Suppress("unused")
-object RecentlyVisitedShelfPatch : BytecodePatch(
-    setOf(CommunityDrawerPresenterFingerprint)
+    dependencies = setOf(SettingsPatch::class),
+    compatiblePackages = COMPATIBLE_PACKAGE,
+    fingerprints = setOf(CommunityDrawerPresenterFingerprint)
 ) {
     private const val INTEGRATIONS_METHOD_DESCRIPTOR =
-        "$PATCHES_PATH/RecentlyVisitedShelfPatch;->hideRecentlyVisitedShelf(Ljava/util/List;)Ljava/util/List;"
+        "$PATCHES_PATH/RecentlyVisitedShelfPatch;" +
+                "->" +
+                "hideRecentlyVisitedShelf(Ljava/util/List;)Ljava/util/List;"
 
     override fun execute(context: BytecodeContext) {
 

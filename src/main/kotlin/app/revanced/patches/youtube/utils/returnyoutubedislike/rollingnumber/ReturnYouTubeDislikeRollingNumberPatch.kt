@@ -9,15 +9,16 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.smali.ExternalLabel
-import app.revanced.patches.youtube.utils.fingerprints.RollingNumberTextViewAnimationUpdateFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.UTILS_PATH
 import app.revanced.patches.youtube.utils.returnyoutubedislike.rollingnumber.fingerprints.RollingNumberMeasureAnimatedTextFingerprint
 import app.revanced.patches.youtube.utils.returnyoutubedislike.rollingnumber.fingerprints.RollingNumberMeasureStaticLabelFingerprint
 import app.revanced.patches.youtube.utils.returnyoutubedislike.rollingnumber.fingerprints.RollingNumberMeasureTextParentFingerprint
 import app.revanced.patches.youtube.utils.returnyoutubedislike.rollingnumber.fingerprints.RollingNumberSetterFingerprint
+import app.revanced.patches.youtube.utils.returnyoutubedislike.rollingnumber.fingerprints.RollingNumberTextViewAnimationUpdateFingerprint
 import app.revanced.patches.youtube.utils.returnyoutubedislike.rollingnumber.fingerprints.RollingNumberTextViewFingerprint
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.util.exception
+import app.revanced.util.getTargetIndex
 import app.revanced.util.getTargetIndexWithMethodReferenceName
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.builder.instruction.BuilderInstruction21c
@@ -61,10 +62,7 @@ object ReturnYouTubeDislikeRollingNumberPatch : BytecodePatch(
 
                     rollingNumberClass.methods.find { method -> method.name == "<init>" }
                         ?.apply {
-                            val rollingNumberFieldIndex =
-                                implementation!!.instructions.indexOfFirst { instruction ->
-                                    instruction.opcode == Opcode.IPUT_OBJECT
-                                }
+                            val rollingNumberFieldIndex = getTargetIndex(Opcode.IPUT_OBJECT)
                             charSequenceFieldReference =
                                 getInstruction<ReferenceInstruction>(rollingNumberFieldIndex).reference
                         } ?: throw PatchException("RollingNumberClass not found!")
@@ -107,9 +105,7 @@ object ReturnYouTubeDislikeRollingNumberPatch : BytecodePatch(
                             """
                     )
 
-                    val ifGeIndex = implementation!!.instructions.indexOfFirst { instruction ->
-                        instruction.opcode == Opcode.IF_GE
-                    }
+                    val ifGeIndex = getTargetIndex(Opcode.IF_GE)
                     val ifGeInstruction = getInstruction<TwoRegisterInstruction>(ifGeIndex)
 
                     removeInstruction(ifGeIndex)

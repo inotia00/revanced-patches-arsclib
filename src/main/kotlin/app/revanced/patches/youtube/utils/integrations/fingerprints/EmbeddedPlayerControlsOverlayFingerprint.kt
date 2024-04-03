@@ -11,7 +11,7 @@ import com.android.tools.smali.dexlib2.AccessFlags
  * [RemoteEmbedFragmentFingerprint] may be set before this hook is called.
  */
 @Suppress("DEPRECATION")
-object EmbeddedPlayerControlsOverlayFingerprint : IntegrationsFingerprint(
+internal object EmbeddedPlayerControlsOverlayFingerprint : IntegrationsFingerprint(
     accessFlags = AccessFlags.PRIVATE or AccessFlags.CONSTRUCTOR,
     returnType = "V",
     parameters = listOf("Landroid/content/Context;", "L", "L"),

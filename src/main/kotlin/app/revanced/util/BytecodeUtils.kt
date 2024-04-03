@@ -17,6 +17,7 @@ import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.builder.instruction.BuilderInstruction21c
 import com.android.tools.smali.dexlib2.iface.Method
 import com.android.tools.smali.dexlib2.iface.instruction.Instruction
+import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.WideLiteralInstruction
 import com.android.tools.smali.dexlib2.iface.reference.FieldReference
@@ -81,6 +82,68 @@ fun MutableMethod.injectHideViewCall(
     insertIndex,
     "invoke-static { v$viewRegister }, $classDescriptor->$targetMethod(Landroid/view/View;)V"
 )
+
+fun MethodFingerprint.literalInstructionBooleanHook(
+    literal: Int,
+    descriptor: String
+) = literalInstructionBooleanHook(literal.toLong(), descriptor)
+
+fun MethodFingerprint.literalInstructionBooleanHook(
+    literal: Int,
+    descriptor: String,
+    message: String
+) = literalInstructionBooleanHook(literal.toLong(), descriptor, message)
+
+fun MethodFingerprint.literalInstructionBooleanHook(
+    literal: Long,
+    descriptor: String
+) = literalInstructionBooleanHook(literal, descriptor, "")
+
+fun MethodFingerprint.literalInstructionBooleanHook(
+    literal: Long,
+    descriptor: String,
+    message: String
+) {
+    val method = result?.mutableMethod
+        ?: if (message.isEmpty())
+            throw exception
+        else
+            throw PatchException("This version is not supported. $message")
+
+    method.apply {
+        val literalIndex = getWideLiteralInstructionIndex(literal)
+        val targetIndex = getTargetIndex(literalIndex, Opcode.MOVE_RESULT)
+        val targetRegister = getInstruction<OneRegisterInstruction>(targetIndex).registerA
+
+        val smaliInstruction = if (descriptor.endsWith("(Z)Z"))
+            "invoke-static {v$targetRegister}, $descriptor"
+        else
+            "invoke-static {}, $descriptor"
+
+        addInstructions(
+            targetIndex + 1, """
+                $smaliInstruction
+                move-result v$targetRegister
+                """
+        )
+    }
+}
+
+fun MethodFingerprint.literalInstructionViewHook(
+    literal: Long,
+    descriptor: String
+) {
+    result?.mutableMethod?.apply {
+        val literalIndex = getWideLiteralInstructionIndex(literal)
+        val targetIndex = getTargetIndex(literalIndex, Opcode.MOVE_RESULT_OBJECT)
+        val targetRegister = getInstruction<OneRegisterInstruction>(targetIndex).registerA
+
+        addInstruction(
+            targetIndex + 1,
+            "invoke-static {v$targetRegister}, $descriptor"
+        )
+    } ?: throw exception
+}
 
 /**
  * Find the index of the first wide literal instruction with the given value.
@@ -155,7 +218,7 @@ fun Method.indexOfFirstInstruction(predicate: Instruction.() -> Boolean) =
 fun MutableMethod.getTargetIndex(opcode: Opcode) = getTargetIndex(0, opcode)
 
 fun MutableMethod.getTargetIndexReversed(opcode: Opcode) =
-    getTargetIndex(implementation!!.instructions.size - 1, opcode)
+    getTargetIndexReversed(implementation!!.instructions.size - 1, opcode)
 
 fun MutableMethod.getTargetIndex(startIndex: Int, opcode: Opcode) =
     implementation!!.instructions.let {

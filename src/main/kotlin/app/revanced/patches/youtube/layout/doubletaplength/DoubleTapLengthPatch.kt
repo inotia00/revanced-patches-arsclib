@@ -2,51 +2,21 @@ package app.revanced.patches.youtube.layout.doubletaplength
 
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.PatchException
-import app.revanced.patcher.patch.ResourcePatch
-import app.revanced.patcher.patch.annotation.CompatiblePackage
-import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.patch.options.PatchOption.PatchExtensions.stringPatchOption
+import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.settings.ResourceUtils.addEntryValues
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.util.ResourceGroup
 import app.revanced.util.copyResources
+import app.revanced.util.patch.BaseResourcePatch
 
-@Patch(
+@Suppress("unused")
+object DoubleTapLengthPatch : BaseResourcePatch(
     name = "Custom double tap length",
     description = "Add 'double-tap to seek' value.",
-    dependencies = [SettingsPatch::class],
-    compatiblePackages = [
-        CompatiblePackage(
-            "com.google.android.youtube",
-            [
-                "18.29.38",
-                "18.30.37",
-                "18.31.40",
-                "18.32.39",
-                "18.33.40",
-                "18.34.38",
-                "18.35.36",
-                "18.36.39",
-                "18.37.36",
-                "18.38.44",
-                "18.39.41",
-                "18.40.34",
-                "18.41.39",
-                "18.42.41",
-                "18.43.45",
-                "18.44.41",
-                "18.45.43",
-                "18.46.45",
-                "18.48.39",
-                "18.49.37",
-                "19.01.34",
-                "19.02.39"
-            ]
-        )
-    ]
-)
-@Suppress("unused")
-object DoubleTapLengthPatch : ResourcePatch() {
+    dependencies = setOf(SettingsPatch::class),
+    compatiblePackages = COMPATIBLE_PACKAGE
+) {
     private val DoubleTapLengthArrays by stringPatchOption(
         key = "DoubleTapLengthArrays",
         default = "3, 5, 10, 15, 20, 30, 60, 120, 180",

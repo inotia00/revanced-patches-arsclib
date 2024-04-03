@@ -3,59 +3,45 @@ package app.revanced.patches.music.navigation.component
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchException
-import app.revanced.patcher.patch.annotation.CompatiblePackage
-import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.music.navigation.component.fingerprints.TabLayoutTextFingerprint
-import app.revanced.patches.music.utils.integrations.Constants.NAVIGATION
+import app.revanced.patches.music.utils.integrations.Constants.COMPATIBLE_PACKAGE
+import app.revanced.patches.music.utils.integrations.Constants.NAVIGATION_CLASS_DESCRIPTOR
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
 import app.revanced.util.exception
+import app.revanced.util.getTargetIndex
+import app.revanced.util.getTargetIndexWithMethodReferenceName
 import app.revanced.util.getWideLiteralInstructionIndex
+import app.revanced.util.patch.BaseBytecodePatch
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction35c
-import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 
-@Patch(
+@Suppress("DEPRECATION", "SpellCheckingInspection", "unused")
+object NavigationBarComponentPatch : BaseBytecodePatch(
     name = "Hide navigation bar component",
     description = "Adds options to hide navigation bar components.",
-    dependencies = [
+    dependencies = setOf(
         SettingsPatch::class,
         SharedResourceIdPatch::class
-    ],
-    compatiblePackages = [
-        CompatiblePackage(
-            "com.google.android.apps.youtube.music",
-            [
-                "6.21.52",
-                "6.22.52",
-                "6.23.56",
-                "6.25.53",
-                "6.26.51",
-                "6.27.54",
-                "6.28.53",
-                "6.29.58",
-                "6.31.55",
-                "6.33.52"
-            ]
-        )
-    ]
-)
-@Suppress("unused")
-object NavigationBarComponentPatch : BytecodePatch(
-    setOf(TabLayoutTextFingerprint)
+    ),
+    compatiblePackages = COMPATIBLE_PACKAGE,
+    fingerprints = setOf(TabLayoutTextFingerprint)
 ) {
+    private const val FLAG = "android:layout_weight"
+    private const val RESOURCE_FILE_PATH = "res/layout/image_with_text_tab.xml"
+
     override fun execute(context: BytecodeContext) {
         /**
          * Hide navigation labels
          */
         TabLayoutTextFingerprint.result?.let {
             it.mutableMethod.apply {
-                val targetIndex = getWideLiteralInstructionIndex(SharedResourceIdPatch.Text1) + 3
+                val constIndex = getWideLiteralInstructionIndex(SharedResourceIdPatch.Text1)
+                val targetIndex = getTargetIndex(constIndex, Opcode.CHECK_CAST)
                 val targetParameter = getInstruction<ReferenceInstruction>(targetIndex).reference
                 val targetRegister = getInstruction<OneRegisterInstruction>(targetIndex).registerA
 
@@ -64,7 +50,7 @@ object NavigationBarComponentPatch : BytecodePatch(
 
                 addInstruction(
                     targetIndex + 1,
-                    "invoke-static {v$targetRegister}, $NAVIGATION->hideNavigationLabel(Landroid/widget/TextView;)V"
+                    "invoke-static {v$targetRegister}, $NAVIGATION_CLASS_DESCRIPTOR->hideNavigationLabel(Landroid/widget/TextView;)V"
                 )
             }
         } ?: throw TabLayoutTextFingerprint.exception
@@ -89,24 +75,19 @@ object NavigationBarComponentPatch : BytecodePatch(
             it.mutableMethod.apply {
                 val enumIndex = it.scanResult.patternScanResult!!.startIndex + 3
                 val enumRegister = getInstruction<OneRegisterInstruction>(enumIndex).registerA
+                val insertEnumIndex = getTargetIndex(Opcode.AND_INT_LIT8) - 2
 
-                val insertIndex = implementation!!.instructions.indexOfFirst { instruction ->
-                    instruction.opcode == Opcode.AND_INT_LIT8
-                } - 2
-
-                val pivotTabIndex = implementation!!.instructions.indexOfFirst { instruction ->
-                    ((instruction as? ReferenceInstruction)?.reference as? MethodReference)?.name == "getVisibility"
-                }
+                val pivotTabIndex = getTargetIndexWithMethodReferenceName("getVisibility")
                 val pivotTabRegister = getInstruction<Instruction35c>(pivotTabIndex).registerC
 
                 addInstruction(
                     pivotTabIndex,
-                    "invoke-static {v$pivotTabRegister}, $NAVIGATION->hideNavigationButton(Landroid/view/View;)V"
+                    "invoke-static {v$pivotTabRegister}, $NAVIGATION_CLASS_DESCRIPTOR->hideNavigationButton(Landroid/view/View;)V"
                 )
 
                 addInstruction(
-                    insertIndex,
-                    "sput-object v$enumRegister, $NAVIGATION->lastPivotTab:Ljava/lang/Enum;"
+                    insertEnumIndex,
+                    "sput-object v$enumRegister, $NAVIGATION_CLASS_DESCRIPTOR->lastPivotTab:Ljava/lang/Enum;"
                 )
             }
         } ?: throw TabLayoutTextFingerprint.exception
@@ -147,7 +128,4 @@ object NavigationBarComponentPatch : BytecodePatch(
             "true"
         )
     }
-
-    private const val FLAG = "android:layout_weight"
-    private const val RESOURCE_FILE_PATH = "res/layout/image_with_text_tab.xml"
 }

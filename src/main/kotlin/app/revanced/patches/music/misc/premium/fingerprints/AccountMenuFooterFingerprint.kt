@@ -6,7 +6,7 @@ import app.revanced.util.fingerprint.LiteralValueFingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 
-object AccountMenuFooterFingerprint : LiteralValueFingerprint(
+internal object AccountMenuFooterFingerprint : LiteralValueFingerprint(
     returnType = "L",
     accessFlags = AccessFlags.PUBLIC or AccessFlags.FINAL,
     opcodes = listOf(

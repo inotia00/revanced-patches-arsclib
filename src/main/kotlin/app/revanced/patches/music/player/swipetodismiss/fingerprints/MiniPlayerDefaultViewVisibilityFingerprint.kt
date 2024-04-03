@@ -5,7 +5,7 @@ import app.revanced.patcher.fingerprint.MethodFingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 
-object MiniPlayerDefaultViewVisibilityFingerprint : MethodFingerprint(
+internal object MiniPlayerDefaultViewVisibilityFingerprint : MethodFingerprint(
     returnType = "V",
     accessFlags = AccessFlags.PUBLIC or AccessFlags.FINAL,
     parameters = listOf("Landroid/view/View;", "F"),
@@ -16,6 +16,7 @@ object MiniPlayerDefaultViewVisibilityFingerprint : MethodFingerprint(
         Opcode.INVOKE_VIRTUAL
     ),
     customFingerprint = { methodDef, classDef ->
-        methodDef.name == "a" && classDef.methods.count() == 3
+        methodDef.name == "a"
+                && classDef.methods.count() == 3
     }
 )

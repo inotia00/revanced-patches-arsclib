@@ -3,7 +3,7 @@ package app.revanced.patches.youtube.navigation.navigationbuttons.fingerprints
 import app.revanced.patcher.fingerprint.MethodFingerprint
 import com.android.tools.smali.dexlib2.Opcode
 
-object AutoMotiveFingerprint : MethodFingerprint(
+internal object AutoMotiveFingerprint : MethodFingerprint(
     opcodes = listOf(
         Opcode.GOTO,
         Opcode.INVOKE_STATIC,

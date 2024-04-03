@@ -10,7 +10,7 @@ import com.android.tools.smali.dexlib2.AccessFlags
  * [EmbeddedPlayerControlsOverlayFingerprint]
  */
 @Suppress("DEPRECATION")
-object APIPlayerServiceFingerprint : IntegrationsFingerprint(
+internal object APIPlayerServiceFingerprint : IntegrationsFingerprint(
     accessFlags = AccessFlags.PUBLIC or AccessFlags.CONSTRUCTOR,
     customFingerprint = { methodDef, _ -> methodDef.definingClass == "Lcom/google/android/apps/youtube/embeddedplayer/service/service/jar/ApiPlayerService;" },
     // Integrations context is the first method parameter.

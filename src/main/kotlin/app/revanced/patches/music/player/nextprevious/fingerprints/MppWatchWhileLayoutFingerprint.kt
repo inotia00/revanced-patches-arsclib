@@ -5,7 +5,7 @@ import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch.MiniPla
 import app.revanced.util.containsWideLiteralInstructionIndex
 import com.android.tools.smali.dexlib2.Opcode
 
-object MppWatchWhileLayoutFingerprint : MethodFingerprint(
+internal object MppWatchWhileLayoutFingerprint : MethodFingerprint(
     returnType = "V",
     opcodes = listOf(Opcode.NEW_ARRAY),
     customFingerprint = { methodDef, _ ->

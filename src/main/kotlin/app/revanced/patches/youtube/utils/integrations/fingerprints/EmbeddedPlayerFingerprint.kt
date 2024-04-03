@@ -11,7 +11,7 @@ import com.android.tools.smali.dexlib2.AccessFlags
  * [RemoteEmbedFragmentFingerprint] might be set before this is called.
  */
 @Suppress("DEPRECATION")
-object EmbeddedPlayerFingerprint : IntegrationsFingerprint(
+internal object EmbeddedPlayerFingerprint : IntegrationsFingerprint(
     accessFlags = AccessFlags.PUBLIC or AccessFlags.STATIC,
     returnType = "L",
     parameters = listOf("L", "L", "Landroid/content/Context;"),

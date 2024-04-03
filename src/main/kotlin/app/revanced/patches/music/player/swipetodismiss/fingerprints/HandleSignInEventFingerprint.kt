@@ -3,7 +3,7 @@ package app.revanced.patches.music.player.swipetodismiss.fingerprints
 import app.revanced.patcher.fingerprint.MethodFingerprint
 import com.android.tools.smali.dexlib2.Opcode
 
-object HandleSignInEventFingerprint : MethodFingerprint(
+internal object HandleSignInEventFingerprint : MethodFingerprint(
     returnType = "V",
     parameters = listOf("L"),
     opcodes = listOf(

@@ -4,7 +4,7 @@ import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch.Quality
 import app.revanced.util.fingerprint.LiteralValueFingerprint
 import com.android.tools.smali.dexlib2.Opcode
 
-object VideoQualityListFingerprint : LiteralValueFingerprint(
+internal object VideoQualityListFingerprint : LiteralValueFingerprint(
     returnType = "V",
     parameters = listOf("L"),
     opcodes = listOf(

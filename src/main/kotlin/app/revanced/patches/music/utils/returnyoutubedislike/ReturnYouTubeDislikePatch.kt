@@ -1,42 +1,24 @@
 package app.revanced.patches.music.utils.returnyoutubedislike
 
 import app.revanced.patcher.data.ResourceContext
-import app.revanced.patcher.patch.ResourcePatch
-import app.revanced.patcher.patch.annotation.CompatiblePackage
-import app.revanced.patcher.patch.annotation.Patch
+import app.revanced.patches.music.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.music.utils.settings.ResourceUtils.RETURN_YOUTUBE_DISLIKE_SETTINGS_KEY
 import app.revanced.patches.music.utils.settings.ResourceUtils.addReVancedMusicPreference
 import app.revanced.patches.music.utils.settings.SettingsPatch
+import app.revanced.util.patch.BaseResourcePatch
 import org.w3c.dom.Element
 import org.w3c.dom.Node
 
-@Patch(
+@Suppress("DEPRECATION", "unused")
+object ReturnYouTubeDislikePatch : BaseResourcePatch(
     name = "Return YouTube Dislike",
     description = "Adds an option to show the dislike count of songs using the Return YouTube Dislike API.",
-    dependencies = [
+    dependencies = setOf(
         ReturnYouTubeDislikeBytecodePatch::class,
         SettingsPatch::class
-    ],
-    compatiblePackages = [
-        CompatiblePackage(
-            "com.google.android.apps.youtube.music",
-            [
-                "6.21.52",
-                "6.22.52",
-                "6.23.56",
-                "6.25.53",
-                "6.26.51",
-                "6.27.54",
-                "6.28.53",
-                "6.29.58",
-                "6.31.55",
-                "6.33.52"
-            ]
-        )
-    ]
-)
-@Suppress("unused")
-object ReturnYouTubeDislikePatch : ResourcePatch() {
+    ),
+    compatiblePackages = COMPATIBLE_PACKAGE
+) {
     override fun execute(context: ResourceContext) {
 
         context.addReVancedMusicPreference(RETURN_YOUTUBE_DISLIKE_SETTINGS_KEY)

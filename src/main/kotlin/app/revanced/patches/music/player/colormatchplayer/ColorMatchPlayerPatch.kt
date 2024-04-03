@@ -5,12 +5,10 @@ import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWith
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.removeInstruction
 import app.revanced.patcher.extensions.or
-import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotation.CompatiblePackage
-import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.music.utils.fingerprints.MiniPlayerConstructorFingerprint
 import app.revanced.patches.music.utils.fingerprints.SwitchToggleColorFingerprint
-import app.revanced.patches.music.utils.integrations.Constants.PLAYER
+import app.revanced.patches.music.utils.integrations.Constants.COMPATIBLE_PACKAGE
+import app.revanced.patches.music.utils.integrations.Constants.PLAYER_CLASS_DESCRIPTOR
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch.ColorGrey
 import app.revanced.patches.music.utils.settings.CategoryType
@@ -19,6 +17,7 @@ import app.revanced.util.exception
 import app.revanced.util.getTargetIndex
 import app.revanced.util.getTargetIndexReversed
 import app.revanced.util.getWideLiteralInstructionIndex
+import app.revanced.util.patch.BaseBytecodePatch
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.MethodParameter
@@ -26,34 +25,16 @@ import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.reference.FieldReference
 import com.android.tools.smali.dexlib2.iface.reference.Reference
 
-@Patch(
+@Suppress("unused")
+object ColorMatchPlayerPatch : BaseBytecodePatch(
     name = "Enable color match player",
     description = "Adds an option to match the color of the miniplayer to the fullscreen player.",
-    dependencies = [
+    dependencies = setOf(
         SettingsPatch::class,
         SharedResourceIdPatch::class
-    ],
-    compatiblePackages = [
-        CompatiblePackage(
-            "com.google.android.apps.youtube.music",
-            [
-                "6.21.52",
-                "6.22.52",
-                "6.23.56",
-                "6.25.53",
-                "6.26.51",
-                "6.27.54",
-                "6.28.53",
-                "6.29.58",
-                "6.31.55",
-                "6.33.52"
-            ]
-        )
-    ]
-)
-@Suppress("unused")
-object ColorMatchPlayerPatch : BytecodePatch(
-    setOf(MiniPlayerConstructorFingerprint)
+    ),
+    compatiblePackages = COMPATIBLE_PACKAGE,
+    fingerprints = setOf(MiniPlayerConstructorFingerprint)
 ) {
     private lateinit var invokeVirtualReference: Reference
     private lateinit var iGetReference: Reference
@@ -98,7 +79,7 @@ object ColorMatchPlayerPatch : BytecodePatch(
 
                         addInstructionsWithLabels(
                             invokeDirectIndex + 1, """
-                                invoke-static {}, $PLAYER->enableColorMatchPlayer()Z
+                                invoke-static {}, $PLAYER_CLASS_DESCRIPTOR->enableColorMatchPlayer()Z
                                 move-result v$freeRegister
                                 if-eqz v$freeRegister, :off
                                 invoke-virtual {p1}, $invokeVirtualReference

@@ -35,6 +35,15 @@ object OverrideSpeedHookPatch : BytecodePatch(
         SpeedClassFingerprint
     )
 ) {
+    private const val INTEGRATIONS_PLAYBACK_SPEED_CLASS_DESCRIPTOR =
+        "$VIDEO_PATH/PlaybackSpeedPatch;"
+
+    private const val INTEGRATIONS_VIDEO_UTILS_CLASS_DESCRIPTOR =
+        "$INTEGRATIONS_PATH/utils/VideoUtils;"
+
+    lateinit var playbackSpeedChangedResult: MethodFingerprintResult
+
+    private lateinit var objectClass: String
     override fun execute(context: BytecodeContext) {
 
         PlaybackSpeedParentFingerprint.result?.let { parentResult ->
@@ -104,10 +113,10 @@ object OverrideSpeedHookPatch : BytecodePatch(
             it.mutableMethod.apply {
                 val index = it.scanResult.patternScanResult!!.endIndex
                 val register = getInstruction<OneRegisterInstruction>(index).registerA
-                SPEED_CLASS = this.returnType
+                objectClass = this.returnType
                 replaceInstruction(
                     index,
-                    "sput-object v$register, $INTEGRATIONS_PLAYBACK_SPEED_CLASS_DESCRIPTOR->speedClass:$SPEED_CLASS"
+                    "sput-object v$register, $INTEGRATIONS_PLAYBACK_SPEED_CLASS_DESCRIPTOR->speedClass:$objectClass"
                 )
                 addInstruction(
                     index + 1,
@@ -123,7 +132,7 @@ object OverrideSpeedHookPatch : BytecodePatch(
                     ImmutableField(
                         definingClass,
                         "speedClass",
-                        SPEED_CLASS,
+                        objectClass,
                         AccessFlags.PUBLIC or AccessFlags.STATIC,
                         null,
                         annotations,
@@ -133,8 +142,8 @@ object OverrideSpeedHookPatch : BytecodePatch(
 
                 addInstructions(
                     0, """
-                        sget-object v0, $INTEGRATIONS_PLAYBACK_SPEED_CLASS_DESCRIPTOR->speedClass:$SPEED_CLASS
-                        invoke-virtual {v0, p0}, $SPEED_CLASS->overrideSpeed(F)V
+                        sget-object v0, $INTEGRATIONS_PLAYBACK_SPEED_CLASS_DESCRIPTOR->speedClass:$objectClass
+                        invoke-virtual {v0, p0}, $objectClass->overrideSpeed(F)V
                         """
                 )
             }
@@ -142,14 +151,4 @@ object OverrideSpeedHookPatch : BytecodePatch(
         } ?: throw PlaybackSpeedPatchFingerprint.exception
 
     }
-
-    private const val INTEGRATIONS_PLAYBACK_SPEED_CLASS_DESCRIPTOR =
-        "$VIDEO_PATH/PlaybackSpeedPatch;"
-
-    private const val INTEGRATIONS_VIDEO_UTILS_CLASS_DESCRIPTOR =
-        "$INTEGRATIONS_PATH/utils/VideoUtils;"
-
-    lateinit var playbackSpeedChangedResult: MethodFingerprintResult
-
-    private lateinit var SPEED_CLASS: String
 }

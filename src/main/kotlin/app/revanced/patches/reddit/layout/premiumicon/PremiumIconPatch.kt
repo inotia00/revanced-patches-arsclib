@@ -2,28 +2,17 @@ package app.revanced.patches.reddit.layout.premiumicon
 
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
-import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotation.CompatiblePackage
-import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.reddit.layout.premiumicon.fingerprints.PremiumIconFingerprint
+import app.revanced.patches.reddit.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.util.exception
+import app.revanced.util.patch.BaseBytecodePatch
 
-@Patch(
+@Suppress("unused")
+object PremiumIconPatch : BaseBytecodePatch(
     name = "Premium icon",
     description = "Unlocks premium app icons.",
-    compatiblePackages = [
-        CompatiblePackage(
-            "com.reddit.frontpage",
-            [
-                "2023.12.0",
-                "2024.04.0"
-            ]
-        )
-    ]
-)
-@Suppress("unused")
-object PremiumIconPatch : BytecodePatch(
-    setOf(PremiumIconFingerprint)
+    compatiblePackages = COMPATIBLE_PACKAGE,
+    fingerprints = setOf(PremiumIconFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
 

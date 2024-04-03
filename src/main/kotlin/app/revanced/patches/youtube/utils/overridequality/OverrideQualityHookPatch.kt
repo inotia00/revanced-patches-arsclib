@@ -33,6 +33,15 @@ object OverrideQualityHookPatch : BytecodePatch(
         VideoQualityTextFingerprint
     )
 ) {
+    private const val INTEGRATIONS_VIDEO_QUALITY_CLASS_DESCRIPTOR =
+        "$VIDEO_PATH/VideoQualityPatch;"
+
+    private const val INTEGRATIONS_VIDEO_UTILS_CLASS_DESCRIPTOR =
+        "$INTEGRATIONS_PATH/utils/VideoUtils;"
+
+    private lateinit var objectClass: String
+    private lateinit var objectMethod: String
+
     override fun execute(context: BytecodeContext) {
 
         VideoQualityListFingerprint.result?.let {
@@ -41,14 +50,14 @@ object OverrideQualityHookPatch : BytecodePatch(
             val overrideMethod =
                 it.mutableClass.methods.find { method -> method.parameterTypes.first() == "I" }
 
-            QUALITY_CLASS = it.method.definingClass
-            QUALITY_METHOD = overrideMethod?.name
+            objectClass = it.method.definingClass
+            objectMethod = overrideMethod?.name
                 ?: throw PatchException("Failed to find hook method")
 
             constructorMethod.apply {
                 addInstruction(
                     2,
-                    "sput-object p0, $INTEGRATIONS_VIDEO_QUALITY_CLASS_DESCRIPTOR->qualityClass:$QUALITY_CLASS"
+                    "sput-object p0, $INTEGRATIONS_VIDEO_QUALITY_CLASS_DESCRIPTOR->qualityClass:$objectClass"
                 )
             }
 
@@ -78,7 +87,7 @@ object OverrideQualityHookPatch : BytecodePatch(
                     ImmutableField(
                         definingClass,
                         "qualityClass",
-                        QUALITY_CLASS,
+                        objectClass,
                         AccessFlags.PUBLIC or AccessFlags.STATIC,
                         null,
                         annotations,
@@ -88,8 +97,8 @@ object OverrideQualityHookPatch : BytecodePatch(
 
                 addInstructions(
                     0, """
-                        sget-object v0, $INTEGRATIONS_VIDEO_QUALITY_CLASS_DESCRIPTOR->qualityClass:$QUALITY_CLASS
-                        invoke-virtual {v0, p0}, $QUALITY_CLASS->$QUALITY_METHOD(I)V
+                        sget-object v0, $INTEGRATIONS_VIDEO_QUALITY_CLASS_DESCRIPTOR->qualityClass:$objectClass
+                        invoke-virtual {v0, p0}, $objectClass->$objectMethod(I)V
                         """
                 )
             }
@@ -107,13 +116,4 @@ object OverrideQualityHookPatch : BytecodePatch(
             }
         } ?: throw VideoQualityTextFingerprint.exception
     }
-
-    private const val INTEGRATIONS_VIDEO_QUALITY_CLASS_DESCRIPTOR =
-        "$VIDEO_PATH/VideoQualityPatch;"
-
-    private const val INTEGRATIONS_VIDEO_UTILS_CLASS_DESCRIPTOR =
-        "$INTEGRATIONS_PATH/utils/VideoUtils;"
-
-    private lateinit var QUALITY_CLASS: String
-    private lateinit var QUALITY_METHOD: String
 }

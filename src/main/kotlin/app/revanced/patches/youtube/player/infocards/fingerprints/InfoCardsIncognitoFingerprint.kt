@@ -5,7 +5,7 @@ import app.revanced.patcher.fingerprint.MethodFingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 
-object InfoCardsIncognitoFingerprint : MethodFingerprint(
+internal object InfoCardsIncognitoFingerprint : MethodFingerprint(
     returnType = "Ljava/lang/Boolean;",
     accessFlags = AccessFlags.PUBLIC or AccessFlags.FINAL,
     parameters = listOf("L", "J"),

@@ -10,10 +10,13 @@ import app.revanced.patches.music.utils.videotype.fingerprint.VideoTypeParentFin
 import app.revanced.util.exception
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 
-@Suppress("unused")
+@Suppress("SpellCheckingInspection", "unused")
 object VideoTypeHookPatch : BytecodePatch(
     setOf(VideoTypeParentFingerprint)
 ) {
+    private const val INTEGRATIONS_CLASS_DESCRIPTOR =
+        "$UTILS_PATH/VideoTypeHookPatch;"
+
     override fun execute(context: BytecodeContext) {
 
         VideoTypeParentFingerprint.result?.let { parentResult ->
@@ -41,7 +44,4 @@ object VideoTypeHookPatch : BytecodePatch(
             } ?: throw VideoTypeFingerprint.exception
         } ?: throw VideoTypeParentFingerprint.exception
     }
-
-    private const val INTEGRATIONS_CLASS_DESCRIPTOR =
-        "$UTILS_PATH/VideoTypeHookPatch;"
 }

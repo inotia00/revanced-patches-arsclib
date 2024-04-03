@@ -6,7 +6,7 @@ import app.revanced.util.fingerprint.LiteralValueFingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 
-object ContextualMenuItemBuilderFingerprint : LiteralValueFingerprint(
+internal object ContextualMenuItemBuilderFingerprint : LiteralValueFingerprint(
     accessFlags = AccessFlags.PUBLIC or AccessFlags.FINAL or AccessFlags.SYNTHETIC,
     parameters = listOf("L", "L"),
     returnType = "V",
