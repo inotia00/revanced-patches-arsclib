@@ -2,17 +2,60 @@ package app.revanced.generator
 
 import app.revanced.patcher.PatchSet
 import app.revanced.patcher.patch.Patch
+import app.revanced.patcher.patch.Patch.CompatiblePackage
 import java.io.File
+import java.nio.file.Paths
 
 internal class ReadMeFileGenerator : PatchesFileGenerator {
-    private companion object {
-        private const val TABLE_HEADER =
-            "| \uD83D\uDC8A Patch | \uD83D\uDCDC Description | \uD83C\uDFF9 Target Version |\n" +
-                    "|:--------:|:--------------:|:-----------------:|"
-    }
+    // For this exception to apply to [README.md],
+    // Supported version of [app.revanced.patches.music.utils.integrations.Constants.COMPATIBLE_PACKAGE] should be empty.
+    private val exception = mapOf(
+        "com.google.android.apps.youtube.music" to "6.21.52"
+    )
+
+    private val readMeFile = File("README.md")
+    private val readMeTemplateFile = File("README-template.md")
+
+    private val tableHeader =
+        "| \uD83D\uDC8A Patch | \uD83D\uDCDC Description | \uD83C\uDFF9 Target Version |\n" +
+                "|:--------:|:--------------:|:-----------------:|"
 
     override fun generate(patches: PatchSet) {
         val output = StringBuilder()
+
+        // create a temp file
+        val readMeTemplateTempFile = File.createTempFile("README", ".md", File(Paths.get("").toAbsolutePath().toString()))
+
+        // copy the contents of 'README-template.md' to the temp file
+        StringBuilder(readMeTemplateFile.readText())
+            .toString()
+            .let(readMeTemplateTempFile::writeText)
+
+        // add a list of supported versions to a temp file
+        mapOf(
+            app.revanced.patches.music.utils.integrations.Constants.COMPATIBLE_PACKAGE to "COMPATIBLE_PACKAGE_MUSIC",
+            app.revanced.patches.reddit.utils.integrations.Constants.COMPATIBLE_PACKAGE to "COMPATIBLE_PACKAGE_REDDIT",
+            app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE to "COMPATIBLE_PACKAGE_YOUTUBE"
+        ).forEach { (compatiblePackage, replaceString) ->
+            compatiblePackage.map { CompatiblePackage(it.name, it.versions?.toSet()?.ifEmpty { null }) }
+                .forEach { compatiblePackages ->
+                    val pkgName = compatiblePackages.name
+                    val supportedVersion = if (compatiblePackages.versions == null && exception.containsKey(pkgName)) {
+                        exception[pkgName] + "+"
+                    } else {
+                        compatiblePackages.versions
+                            ?.toString()
+                            ?.replace("[", "[\n          \"")
+                            ?.replace("]", "\"\n        ]")
+                            ?.replace(", ", "\",\n          \"")
+                            ?: "all"
+                    }
+
+                    StringBuilder(readMeTemplateTempFile.readText())
+                        .replace(Regex(replaceString), supportedVersion)
+                        .let(readMeTemplateTempFile::writeText)
+                }
+        }
 
         mutableMapOf<String, MutableSet<Patch<*>>>()
             .apply {
@@ -29,7 +72,7 @@ internal class ReadMeFileGenerator : PatchesFileGenerator {
                 output.apply {
                     appendLine("### [\uD83D\uDCE6 `$pkg`](https://play.google.com/store/apps/details?id=$pkg)")
                     appendLine("<details>\n")
-                    appendLine(TABLE_HEADER)
+                    appendLine(tableHeader)
                     patches.sortedBy { it.name }.forEach { patch ->
                         val supportedVersionArray =
                             patch.compatiblePackages?.single { it.name == pkg }?.versions
@@ -42,7 +85,9 @@ internal class ReadMeFileGenerator : PatchesFileGenerator {
                                     maxVersion
                                 else
                                     "$minVersion ~ $maxVersion"
-                            } else
+                            } else if (exception.containsKey(pkg))
+                                exception[pkg] + "+"
+                            else
                                 "all"
 
                         appendLine(
@@ -55,8 +100,12 @@ internal class ReadMeFileGenerator : PatchesFileGenerator {
                 }
             }
 
-        StringBuilder(File("README-template.md").readText())
+        // copy the contents of the temp file to 'README.md'
+        StringBuilder(readMeTemplateTempFile.readText())
             .replace(Regex("\\{\\{\\s?table\\s?}}"), output.toString())
-            .let(File("README.md")::writeText)
+            .let(readMeFile::writeText)
+
+        // delete temp file
+        readMeTemplateTempFile.delete()
     }
 }
