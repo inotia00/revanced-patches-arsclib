@@ -10,9 +10,9 @@ import app.revanced.patches.youtube.utils.integrations.Constants.COMPONENTS_PATH
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.TabsBarTextTabView
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.getWideLiteralInstructionIndex
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Suppress("unused")
@@ -32,7 +32,7 @@ object ChannelProfileComponentsPatch : BaseBytecodePatch(
 
     override fun execute(context: BytecodeContext) {
 
-        DefaultsTabsBarFingerprint.result?.let {
+        DefaultsTabsBarFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val viewIndex = getWideLiteralInstructionIndex(TabsBarTextTabView) + 2
                 val viewRegister = getInstruction<OneRegisterInstruction>(viewIndex).registerA
@@ -42,7 +42,7 @@ object ChannelProfileComponentsPatch : BaseBytecodePatch(
                     "sput-object v$viewRegister, $FILTER_CLASS_DESCRIPTOR->channelTabView:Landroid/view/View;"
                 )
             }
-        } ?: throw DefaultsTabsBarFingerprint.exception
+        }
 
         LithoFilterPatch.addFilter(FILTER_CLASS_DESCRIPTOR)
 

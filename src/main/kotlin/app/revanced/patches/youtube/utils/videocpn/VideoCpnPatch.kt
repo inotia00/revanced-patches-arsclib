@@ -7,7 +7,7 @@ import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.youtube.utils.fingerprints.OrganicPlaybackContextModelFingerprint
 import app.revanced.patches.youtube.utils.videoid.general.VideoIdPatch
-import app.revanced.util.exception
+import app.revanced.util.resultOrThrow
 
 @Patch(dependencies = [VideoIdPatch::class])
 object VideoCpnPatch : BytecodePatch(
@@ -15,8 +15,7 @@ object VideoCpnPatch : BytecodePatch(
 ) {
     override fun execute(context: BytecodeContext) {
 
-        insertMethod = OrganicPlaybackContextModelFingerprint.result?.mutableMethod
-            ?: throw OrganicPlaybackContextModelFingerprint.exception
+        insertMethod = OrganicPlaybackContextModelFingerprint.resultOrThrow().mutableMethod
 
     }
 

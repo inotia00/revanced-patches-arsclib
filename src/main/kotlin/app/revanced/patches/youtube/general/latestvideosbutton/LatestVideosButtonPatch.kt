@@ -8,8 +8,8 @@ import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACK
 import app.revanced.patches.youtube.utils.integrations.Constants.GENERAL_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Suppress("unused")
@@ -24,7 +24,7 @@ object LatestVideosButtonPatch : BaseBytecodePatch(
     fingerprints = setOf(LatestVideosButtonFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
-        LatestVideosButtonFingerprint.result?.let {
+        LatestVideosButtonFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val targetIndex = it.scanResult.patternScanResult!!.endIndex
                 val targetRegister = getInstruction<OneRegisterInstruction>(targetIndex).registerA
@@ -34,7 +34,7 @@ object LatestVideosButtonPatch : BaseBytecodePatch(
                     "invoke-static {v$targetRegister}, $GENERAL_CLASS_DESCRIPTOR->hideLatestVideosButton(Landroid/view/View;)V"
                 )
             }
-        } ?: throw LatestVideosButtonFingerprint.exception
+        }
 
         /**
          * Add settings

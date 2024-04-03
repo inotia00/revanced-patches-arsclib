@@ -9,8 +9,8 @@ import app.revanced.patches.reddit.utils.integrations.Constants.COMPATIBLE_PACKA
 import app.revanced.patches.reddit.utils.integrations.Constants.PATCHES_PATH
 import app.revanced.patches.reddit.utils.settings.SettingsBytecodePatch.updateSettingsStatus
 import app.revanced.patches.reddit.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 
 @Suppress("unused")
 object SanitizeUrlQueryPatch : BaseBytecodePatch(
@@ -24,7 +24,7 @@ object SanitizeUrlQueryPatch : BaseBytecodePatch(
         "$PATCHES_PATH/SanitizeUrlQueryPatch;->stripQueryParameters()Z"
 
     override fun execute(context: BytecodeContext) {
-        ShareLinkFormatterFingerprint.result?.let { result ->
+        ShareLinkFormatterFingerprint.resultOrThrow().let { result ->
             result.mutableMethod.apply {
                 addInstructionsWithLabels(
                     0,
@@ -36,7 +36,7 @@ object SanitizeUrlQueryPatch : BaseBytecodePatch(
                         """, ExternalLabel("off", getInstruction(0))
                 )
             }
-        } ?: throw ShareLinkFormatterFingerprint.exception
+        }
 
         updateSettingsStatus("enableSanitizeUrlQuery")
 

@@ -12,9 +12,9 @@ import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACK
 import app.revanced.patches.youtube.utils.integrations.Constants.MISC_PATH
 import app.revanced.patches.youtube.utils.integrations.IntegrationsPatch
 import app.revanced.patches.youtube.utils.playertype.PlayerTypeHookPatch
-import app.revanced.util.exception
 import app.revanced.util.getWalkerMethod
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
@@ -39,16 +39,16 @@ object MinimizedPlaybackPatch : BaseBytecodePatch(
         "$MISC_PATH/MinimizedPlaybackPatch;->isPlaybackNotShort()Z"
 
     override fun execute(context: BytecodeContext) {
-        KidsMinimizedPlaybackPolicyControllerFingerprint.result?.let {
+        KidsMinimizedPlaybackPolicyControllerFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 addInstruction(
                     0,
                     "return-void"
                 )
             }
-        } ?: throw KidsMinimizedPlaybackPolicyControllerFingerprint.exception
+        }
 
-        MinimizedPlaybackManagerFingerprint.result?.let {
+        MinimizedPlaybackManagerFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 addInstructions(
                     0, """
@@ -58,9 +58,9 @@ object MinimizedPlaybackPatch : BaseBytecodePatch(
                         """
                 )
             }
-        } ?: throw MinimizedPlaybackManagerFingerprint.exception
+        }
 
-        MinimizedPlaybackSettingsFingerprint.result?.let {
+        MinimizedPlaybackSettingsFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val booleanCalls = implementation!!.instructions.withIndex()
                     .filter { instruction ->
@@ -77,9 +77,9 @@ object MinimizedPlaybackPatch : BaseBytecodePatch(
                         """
                 )
             }
-        } ?: throw MinimizedPlaybackSettingsFingerprint.exception
+        }
 
-        PiPControllerFingerprint.result?.let {
+        PiPControllerFingerprint.resultOrThrow().let {
             val targetMethod = it.getWalkerMethod(context, it.scanResult.patternScanResult!!.endIndex)
 
             targetMethod.apply {
@@ -90,6 +90,6 @@ object MinimizedPlaybackPatch : BaseBytecodePatch(
                     "const/4 v$targetRegister, 0x1"
                 )
             }
-        } ?: throw PiPControllerFingerprint.exception
+        }
     }
 }

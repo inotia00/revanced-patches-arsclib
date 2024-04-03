@@ -230,7 +230,6 @@ object OverlayButtonsPatch : BaseResourcePatch(
                     }
                 }
             }
-
         }
 
 

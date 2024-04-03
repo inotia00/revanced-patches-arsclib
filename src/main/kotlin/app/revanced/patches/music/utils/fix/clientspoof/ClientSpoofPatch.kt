@@ -1,5 +1,5 @@
 package app.revanced.patches.music.utils.fix.clientspoof
 
-import app.revanced.patches.shared.clientspoof.AbstractClientSpoofPatch
+import app.revanced.patches.shared.clientspoof.BaseClientSpoofPatch
 
-object ClientSpoofPatch : AbstractClientSpoofPatch("com.google.android.apps.youtube.music")
+object ClientSpoofPatch : BaseClientSpoofPatch("com.google.android.apps.youtube.music")

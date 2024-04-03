@@ -7,8 +7,8 @@ import app.revanced.patches.youtube.utils.fingerprints.PlayerControlsVisibilityM
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.PLAYER_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction3rc
 
 @Suppress("unused")
@@ -27,7 +27,7 @@ object PreviousNextButtonPatch : BaseBytecodePatch(
 
     override fun execute(context: BytecodeContext) {
 
-        PlayerControlsVisibilityModelFingerprint.result?.let {
+        PlayerControlsVisibilityModelFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val callIndex = it.scanResult.patternScanResult!!.endIndex
                 val callInstruction = getInstruction<Instruction3rc>(callIndex)
@@ -44,7 +44,7 @@ object PreviousNextButtonPatch : BaseBytecodePatch(
                         """
                 )
             }
-        } ?: throw PlayerControlsVisibilityModelFingerprint.exception
+        }
 
         /**
          * Add settings

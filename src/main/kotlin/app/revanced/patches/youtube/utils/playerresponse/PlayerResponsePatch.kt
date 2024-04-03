@@ -6,7 +6,7 @@ import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.youtube.utils.playerresponse.fingerprints.PlayerParameterBuilderFingerprint
-import app.revanced.util.exception
+import app.revanced.util.resultOrThrow
 import java.io.Closeable
 
 object PlayerResponsePatch : BytecodePatch(
@@ -21,8 +21,7 @@ object PlayerResponsePatch : BytecodePatch(
     private lateinit var playerResponseMethod: MutableMethod
 
     override fun execute(context: BytecodeContext) {
-        playerResponseMethod = PlayerParameterBuilderFingerprint.result?.mutableMethod
-            ?: throw PlayerParameterBuilderFingerprint.exception
+        playerResponseMethod = PlayerParameterBuilderFingerprint.resultOrThrow().mutableMethod
 
         playerResponseMethod.apply {
             freeRegister = implementation!!.registerCount - parameters.size - 2

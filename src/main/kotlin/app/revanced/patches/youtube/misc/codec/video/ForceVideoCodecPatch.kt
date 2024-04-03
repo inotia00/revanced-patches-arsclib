@@ -14,9 +14,9 @@ import app.revanced.patches.youtube.utils.fingerprints.LayoutSwitchFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.MISC_PATH
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.getTargetIndexWithFieldReferenceName
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Suppress("unused")
@@ -38,23 +38,22 @@ object ForceVideoCodecPatch : BaseBytecodePatch(
 
     override fun execute(context: BytecodeContext) {
 
-        LayoutSwitchFingerprint.result?.classDef?.let { classDef ->
+        LayoutSwitchFingerprint.resultOrThrow().classDef.let { classDef ->
             arrayOf(
                 VideoPrimaryFingerprint,
                 VideoSecondaryFingerprint
             ).forEach { fingerprint ->
-                fingerprint.also { it.resolve(context, classDef) }.result?.injectOverride()
-                    ?: throw fingerprint.exception
+                fingerprint.also { it.resolve(context, classDef) }.resultOrThrow().injectOverride()
             }
-        } ?: throw LayoutSwitchFingerprint.exception
+        }
 
-        VideoPropsParentFingerprint.result?.let { parentResult ->
+        VideoPropsParentFingerprint.resultOrThrow().let { parentResult ->
             VideoPropsFingerprint.also {
                 it.resolve(
                     context,
                     parentResult.classDef
                 )
-            }.result?.mutableMethod?.let {
+            }.resultOrThrow().mutableMethod.let {
                 mapOf(
                     "MANUFACTURER" to "getManufacturer",
                     "BRAND" to "getBrand",
@@ -62,8 +61,8 @@ object ForceVideoCodecPatch : BaseBytecodePatch(
                 ).forEach { (fieldName, descriptor) ->
                     it.hookProps(fieldName, descriptor)
                 }
-            } ?: throw VideoPropsFingerprint.exception
-        } ?: throw VideoPropsParentFingerprint.exception
+            }
+        }
 
         /**
          * Add settings
@@ -100,10 +99,10 @@ object ForceVideoCodecPatch : BaseBytecodePatch(
     ) {
         addInstructions(
             index, """
-                    invoke-static {v$register}, $INTEGRATIONS_CLASS_METHOD_REFERENCE
-                    move-result v$register
-                    return v$register
-                    """
+                invoke-static {v$register}, $INTEGRATIONS_CLASS_METHOD_REFERENCE
+                move-result v$register
+                return v$register
+                """
         )
     }
 

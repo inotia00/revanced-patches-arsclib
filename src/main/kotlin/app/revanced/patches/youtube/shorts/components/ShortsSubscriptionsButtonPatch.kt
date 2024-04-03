@@ -13,8 +13,8 @@ import app.revanced.patches.youtube.utils.integrations.Constants.SHORTS_CLASS_DE
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.ReelPlayerFooter
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.ReelPlayerPausedStateButton
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.getWideLiteralInstructionIndex
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
@@ -28,8 +28,10 @@ object ShortsSubscriptionsButtonPatch : BytecodePatch(
         ShortsSubscriptionsTabletParentFingerprint
     )
 ) {
+    private lateinit var subscriptionFieldReference: FieldReference
+
     override fun execute(context: BytecodeContext) {
-        ShortsSubscriptionsFingerprint.result?.let {
+        ShortsSubscriptionsFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val insertIndex = getWideLiteralInstructionIndex(ReelPlayerPausedStateButton) + 2
                 val insertRegister = getInstruction<OneRegisterInstruction>(insertIndex).registerA
@@ -39,17 +41,15 @@ object ShortsSubscriptionsButtonPatch : BytecodePatch(
                     "invoke-static {v$insertRegister}, $SHORTS_CLASS_DESCRIPTOR->hideShortsPlayerSubscriptionsButton(Landroid/view/View;)V"
                 )
             }
-        } ?: throw ShortsSubscriptionsFingerprint.exception
+        }
 
         /**
          * Deprecated in YouTube v18.31.xx+
          */
         if (!SettingsPatch.upward1831) {
-            ShortsSubscriptionsTabletParentFingerprint.result?.let { parentResult ->
+            ShortsSubscriptionsTabletParentFingerprint.resultOrThrow().let { parentResult ->
                 parentResult.mutableMethod.apply {
                     val targetIndex = getWideLiteralInstructionIndex(ReelPlayerFooter) - 1
-                    if (getInstruction(targetIndex).opcode != Opcode.IPUT)
-                        throw ShortsSubscriptionsTabletFingerprint.exception
                     subscriptionFieldReference =
                         (getInstruction<ReferenceInstruction>(targetIndex)).reference as FieldReference
                 }
@@ -59,28 +59,25 @@ object ShortsSubscriptionsButtonPatch : BytecodePatch(
                         context,
                         parentResult.classDef
                     )
-                }.result?.mutableMethod?.let {
-                    with(it.implementation!!.instructions) {
-                        filter { instruction ->
-                            val fieldReference =
-                                (instruction as? ReferenceInstruction)?.reference as? FieldReference
-                            instruction.opcode == Opcode.IGET && fieldReference == subscriptionFieldReference
-                        }.forEach { instruction ->
-                            val insertIndex = indexOf(instruction) + 1
-                            val register = (instruction as TwoRegisterInstruction).registerA
+                }.resultOrThrow().mutableMethod.apply {
+                    implementation!!.instructions.filter { instruction ->
+                        val fieldReference =
+                            (instruction as? ReferenceInstruction)?.reference as? FieldReference
+                        instruction.opcode == Opcode.IGET
+                                && fieldReference == subscriptionFieldReference
+                    }.forEach { instruction ->
+                        val insertIndex = implementation!!.instructions.indexOf(instruction) + 1
+                        val register = (instruction as TwoRegisterInstruction).registerA
 
-                            it.addInstructions(
-                                insertIndex, """
+                        addInstructions(
+                            insertIndex, """
                                 invoke-static {v$register}, $SHORTS_CLASS_DESCRIPTOR->hideShortsPlayerSubscriptionsButton(I)I
                                 move-result v$register
                                 """
-                            )
-                        }
+                        )
                     }
-                } ?: throw ShortsSubscriptionsTabletFingerprint.exception
-            } ?: throw ShortsSubscriptionsTabletParentFingerprint.exception
+                }
+            }
         }
     }
-
-    private lateinit var subscriptionFieldReference: FieldReference
 }

@@ -12,12 +12,12 @@ import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACK
 import app.revanced.patches.youtube.utils.integrations.Constants.GENERAL_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.getStringInstructionIndex
 import app.revanced.util.getTargetIndex
 import app.revanced.util.getTargetIndexReversed
 import app.revanced.util.getWalkerMethod
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
@@ -38,17 +38,17 @@ object TabletMiniPlayerPatch : BaseBytecodePatch(
 ) {
     override fun execute(context: BytecodeContext) {
 
-        MiniPlayerDimensionsCalculatorFingerprint.result?.let { parentResult ->
+        MiniPlayerDimensionsCalculatorFingerprint.resultOrThrow().let { parentResult ->
             MiniPlayerOverrideNoContextFingerprint.resolve(context, parentResult.classDef)
-            MiniPlayerOverrideNoContextFingerprint.result?.let {
+            MiniPlayerOverrideNoContextFingerprint.resultOrThrow().let {
                 it.mutableMethod.apply {
                     hook(getTargetIndex(Opcode.RETURN))
                     hook(getTargetIndexReversed(Opcode.RETURN))
                 }
-            } ?: throw MiniPlayerOverrideNoContextFingerprint.exception
-        } ?: throw MiniPlayerDimensionsCalculatorFingerprint.exception
+            }
+        }
 
-        MiniPlayerOverrideFingerprint.result?.let {
+        MiniPlayerOverrideFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val walkerMethod = getWalkerMethod(context, getStringInstructionIndex("appName") + 2)
 
@@ -57,13 +57,13 @@ object TabletMiniPlayerPatch : BaseBytecodePatch(
                     hook(getTargetIndexReversed(Opcode.RETURN))
                 }
             }
-        } ?: throw MiniPlayerOverrideFingerprint.exception
+        }
 
-        MiniPlayerResponseModelSizeCheckFingerprint.result?.let {
+        MiniPlayerResponseModelSizeCheckFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 hook(it.scanResult.patternScanResult!!.endIndex)
             }
-        } ?: throw MiniPlayerResponseModelSizeCheckFingerprint.exception
+        }
 
         /**
          * Add settings

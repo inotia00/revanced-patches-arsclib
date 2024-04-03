@@ -14,10 +14,10 @@ import app.revanced.patches.music.utils.overridespeed.fingerprints.PlaybackSpeed
 import app.revanced.patches.music.utils.overridespeed.fingerprints.PlaybackSpeedOnClickListenerFingerprint
 import app.revanced.patches.music.utils.overridespeed.fingerprints.PlaybackSpeedParentFingerprint
 import app.revanced.patches.music.utils.overridespeed.fingerprints.PlaybackSpeedPatchFingerprint
-import app.revanced.util.exception
 import app.revanced.util.getTargetIndex
 import app.revanced.util.getWalkerMethod
 import app.revanced.util.getWideLiteralInstructionIndex
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
@@ -49,7 +49,7 @@ object OverrideSpeedHookPatch : BytecodePatch(
 
     override fun execute(context: BytecodeContext) {
 
-        PlaybackSpeedOnClickListenerFingerprint.result?.let {
+        PlaybackSpeedOnClickListenerFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val startIndex = getWideLiteralInstructionIndex(147448)
                 val iGetObjectIndex = getTargetIndex(startIndex, Opcode.IGET_OBJECT)
@@ -77,15 +77,15 @@ object OverrideSpeedHookPatch : BytecodePatch(
                     "sput-object v$iPutRegister, $INTEGRATIONS_PLAYBACK_SPEED_CLASS_DESCRIPTOR->objectClass:$objectClass"
                 )
             }
-        } ?: throw PlaybackSpeedOnClickListenerFingerprint.exception
+        }
 
-        PlaybackSpeedParentFingerprint.result?.let { parentResult ->
+        PlaybackSpeedParentFingerprint.resultOrThrow().let { parentResult ->
             PlaybackSpeedFingerprint.also {
                 it.resolve(
                     context,
                     parentResult.classDef
                 )
-            }.result?.let {
+            }.resultOrThrow().let {
                 it.mutableMethod.apply {
                     val startIndex = it.scanResult.patternScanResult!!.startIndex
                     val endIndex = it.scanResult.patternScanResult!!.endIndex
@@ -108,10 +108,10 @@ object OverrideSpeedHookPatch : BytecodePatch(
                     )
                 }
 
-            } ?: throw PlaybackSpeedFingerprint.exception
-        } ?: throw PlaybackSpeedParentFingerprint.exception
+            }
+        }
 
-        PlaybackSpeedPatchFingerprint.result?.let {
+        PlaybackSpeedPatchFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 it.mutableClass.staticFields.add(
                     ImmutableField(
@@ -138,6 +138,6 @@ object OverrideSpeedHookPatch : BytecodePatch(
                         """
                 )
             }
-        } ?: throw PlaybackSpeedPatchFingerprint.exception
+        }
     }
 }

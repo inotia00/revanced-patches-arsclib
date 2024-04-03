@@ -10,9 +10,9 @@ import app.revanced.patches.youtube.utils.integrations.Constants.PLAYER_CLASS_DE
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.ScrimOverlay
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.getWideLiteralInstructionIndex
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 
@@ -29,7 +29,7 @@ object CustomPlayerOverlayOpacityPatch : BaseBytecodePatch(
 ) {
     override fun execute(context: BytecodeContext) {
 
-        YouTubeControlsOverlayFingerprint.result?.let {
+        YouTubeControlsOverlayFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val targetIndex = getWideLiteralInstructionIndex(ScrimOverlay) + 3
                 val targetParameter = getInstruction<ReferenceInstruction>(targetIndex).reference
@@ -43,7 +43,7 @@ object CustomPlayerOverlayOpacityPatch : BaseBytecodePatch(
                     "invoke-static {v$targetRegister}, $PLAYER_CLASS_DESCRIPTOR->changePlayerOpacity(Landroid/widget/ImageView;)V"
                 )
             }
-        } ?: throw YouTubeControlsOverlayFingerprint.exception
+        }
 
         /**
          * Add settings

@@ -10,8 +10,8 @@ import app.revanced.patches.youtube.utils.fix.doublebacktoclose.fingerprint.Scro
 import app.revanced.patches.youtube.utils.fix.doublebacktoclose.fingerprint.ScrollTopParentFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.UTILS_PATH
 import app.revanced.patches.youtube.utils.mainactivity.MainActivityResolvePatch
-import app.revanced.util.exception
 import app.revanced.util.getWalkerMethod
+import app.revanced.util.resultOrThrow
 
 @Patch(dependencies = [MainActivityResolvePatch::class])
 object DoubleBackToClosePatch : BytecodePatch(
@@ -34,24 +34,24 @@ object DoubleBackToClosePatch : BytecodePatch(
         /**
          * Inject the methods which start of ScrollView
          */
-        ScrollPositionFingerprint.result?.let {
+        ScrollPositionFingerprint.resultOrThrow().let {
             val walkerMethod = it.getWalkerMethod(context, it.scanResult.patternScanResult!!.startIndex + 1)
             val insertIndex = walkerMethod.implementation!!.instructions.size - 1 - 1
 
             walkerMethod.injectScrollView(insertIndex, "onStartScrollView")
-        } ?: throw ScrollPositionFingerprint.exception
+        }
 
 
         /**
          * Inject the methods which stop of ScrollView
          */
-        ScrollTopParentFingerprint.result?.let { parentResult ->
-            ScrollTopFingerprint.also { it.resolve(context, parentResult.classDef) }.result?.let {
+        ScrollTopParentFingerprint.resultOrThrow().let { parentResult ->
+            ScrollTopFingerprint.also { it.resolve(context, parentResult.classDef) }.resultOrThrow().let {
                 val insertIndex = it.scanResult.patternScanResult!!.endIndex
 
                 it.mutableMethod.injectScrollView(insertIndex, "onStopScrollView")
-            } ?: throw ScrollTopFingerprint.exception
-        } ?: throw ScrollTopParentFingerprint.exception
+            }
+        }
 
     }
 

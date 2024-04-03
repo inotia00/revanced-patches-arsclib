@@ -9,12 +9,12 @@ import app.revanced.patches.reddit.utils.integrations.Constants.COMPATIBLE_PACKA
 import app.revanced.patches.reddit.utils.integrations.Constants.PATCHES_PATH
 import app.revanced.patches.reddit.utils.settings.SettingsBytecodePatch.updateSettingsStatus
 import app.revanced.patches.reddit.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.getTargetIndex
 import app.revanced.util.getTargetIndexReversed
 import app.revanced.util.getTargetIndexWithFieldReferenceName
 import app.revanced.util.getTargetIndexWithReference
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
@@ -35,7 +35,7 @@ object RecentlyVisitedShelfPatch : BaseBytecodePatch(
 
     override fun execute(context: BytecodeContext) {
 
-        CommunityDrawerPresenterFingerprint.result?.let {
+        CommunityDrawerPresenterFingerprint.resultOrThrow().let {
             lateinit var recentlyVisitedReference: Reference
 
             it.mutableClass.methods.find { method -> method.name == "<init>" }
@@ -63,7 +63,7 @@ object RecentlyVisitedShelfPatch : BaseBytecodePatch(
                     )
                 }
             }
-        } ?: throw CommunityDrawerPresenterFingerprint.exception
+        }
 
         updateSettingsStatus("enableRecentlyVisitedShelf")
 

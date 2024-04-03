@@ -10,8 +10,8 @@ import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACK
 import app.revanced.patches.youtube.utils.integrations.Constants.SEEKBAR_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 
 @Suppress("unused")
 object TimeStampPatch : BaseBytecodePatch(
@@ -26,8 +26,8 @@ object TimeStampPatch : BaseBytecodePatch(
 ) {
     override fun execute(context: BytecodeContext) {
 
-        PlayerSeekbarColorFingerprint.result?.let { parentResult ->
-            TimeCounterFingerprint.also { it.resolve(context, parentResult.classDef) }.result?.let {
+        PlayerSeekbarColorFingerprint.resultOrThrow().let { parentResult ->
+            TimeCounterFingerprint.also { it.resolve(context, parentResult.classDef) }.resultOrThrow().let {
                 it.mutableMethod.apply {
                     addInstructionsWithLabels(
                         0, """
@@ -38,8 +38,8 @@ object TimeStampPatch : BaseBytecodePatch(
                         """, ExternalLabel("show", getInstruction(0))
                     )
                 }
-            } ?: throw TimeCounterFingerprint.exception
-        } ?: throw PlayerSeekbarColorFingerprint.exception
+            }
+        }
 
         /**
          * Add settings

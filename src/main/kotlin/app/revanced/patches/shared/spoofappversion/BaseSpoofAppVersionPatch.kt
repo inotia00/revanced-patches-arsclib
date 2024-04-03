@@ -6,9 +6,9 @@ import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patches.shared.spoofappversion.fingerprints.ClientInfoFingerprint
 import app.revanced.patches.shared.spoofappversion.fingerprints.ClientInfoParentFingerprint
-import app.revanced.util.exception
 import app.revanced.util.getTargetIndexReversed
 import app.revanced.util.getTargetIndexWithFieldReferenceName
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 
@@ -19,10 +19,10 @@ abstract class BaseSpoofAppVersionPatch(
 ) {
     override fun execute(context: BytecodeContext) {
 
-        ClientInfoParentFingerprint.result?.let { parentResult ->
+        ClientInfoParentFingerprint.resultOrThrow().let { parentResult ->
             ClientInfoFingerprint.resolve(context, parentResult.classDef)
 
-            ClientInfoFingerprint.result?.let {
+            ClientInfoFingerprint.resultOrThrow().let {
                 it.mutableMethod.apply {
                     val versionIndex = getTargetIndexWithFieldReferenceName("RELEASE") + 1
                     val insertIndex = getTargetIndexReversed(versionIndex, Opcode.IPUT_OBJECT)
@@ -35,8 +35,8 @@ abstract class BaseSpoofAppVersionPatch(
                             """
                     )
                 }
-            } ?: throw ClientInfoFingerprint.exception
-        } ?: throw ClientInfoParentFingerprint.exception
+            }
+        }
 
     }
 }

@@ -9,8 +9,8 @@ import app.revanced.patches.music.utils.integrations.Constants.GENERAL_CLASS_DES
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Suppress("unused")
@@ -25,7 +25,7 @@ object CategoryBarPatch : BaseBytecodePatch(
     fingerprints = setOf(ChipCloudFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
-        ChipCloudFingerprint.result?.let {
+        ChipCloudFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val targetIndex = it.scanResult.patternScanResult!!.endIndex
                 val targetRegister = getInstruction<OneRegisterInstruction>(targetIndex).registerA
@@ -35,7 +35,7 @@ object CategoryBarPatch : BaseBytecodePatch(
                     "invoke-static { v$targetRegister }, $GENERAL_CLASS_DESCRIPTOR->hideCategoryBar(Landroid/view/View;)V"
                 )
             }
-        } ?: throw ChipCloudFingerprint.exception
+        }
 
         SettingsPatch.addMusicPreference(
             CategoryType.GENERAL,

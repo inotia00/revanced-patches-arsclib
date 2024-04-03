@@ -14,8 +14,8 @@ import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACK
 import app.revanced.patches.youtube.utils.integrations.Constants.GENERAL_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 
@@ -36,10 +36,10 @@ object AccountMenuPatch : BaseBytecodePatch(
 ) {
     override fun execute(context: BytecodeContext) {
 
-        AccountListParentFingerprint.result?.let { parentResult ->
+        AccountListParentFingerprint.resultOrThrow().let { parentResult ->
             AccountListFingerprint.resolve(context, parentResult.classDef)
 
-            AccountListFingerprint.result?.let {
+            AccountListFingerprint.resultOrThrow().let {
                 it.mutableMethod.apply {
                     val targetIndex = it.scanResult.patternScanResult!!.startIndex + 3
                     val targetInstruction = getInstruction<FiveRegisterInstruction>(targetIndex)
@@ -50,14 +50,14 @@ object AccountMenuPatch : BaseBytecodePatch(
                                 "$GENERAL_CLASS_DESCRIPTOR->hideAccountList(Landroid/view/View;Ljava/lang/CharSequence;)V"
                     )
                 }
-            } ?: throw AccountListFingerprint.exception
-        } ?: throw AccountListParentFingerprint.exception
+            }
+        }
 
-        AccountMenuParentFingerprint.result?.let { parentResult ->
+        AccountMenuParentFingerprint.resultOrThrow().let { parentResult ->
             AccountMenuFingerprint.resolve(context, parentResult.classDef)
             SetViewGroupMarginFingerprint.resolve(context, parentResult.classDef)
 
-            AccountMenuFingerprint.result?.let {
+            AccountMenuFingerprint.resultOrThrow().let {
                 it.mutableMethod.apply {
                     val targetIndex = it.scanResult.patternScanResult!!.startIndex + 2
                     val targetInstruction = getInstruction<FiveRegisterInstruction>(targetIndex)
@@ -68,23 +68,23 @@ object AccountMenuPatch : BaseBytecodePatch(
                                 "$GENERAL_CLASS_DESCRIPTOR->hideAccountMenu(Landroid/view/View;Ljava/lang/CharSequence;)V"
                     )
                 }
-            } ?: throw AccountMenuFingerprint.exception
+            }
 
-            SetViewGroupMarginFingerprint.result?.let {
+            SetViewGroupMarginFingerprint.resultOrThrow().let {
                 it.mutableMethod.apply {
                     val setViewGroupMarginIndex = it.scanResult.patternScanResult!!.startIndex
                     val setViewGroupMarginReference =
                         getInstruction<ReferenceInstruction>(setViewGroupMarginIndex).reference
 
-                    AccountMenuPatchFingerprint.result?.mutableMethod?.addInstructions(
+                    AccountMenuPatchFingerprint.resultOrThrow().mutableMethod.addInstructions(
                         0, """
                             const/4 v0, 0x0
                             invoke-static {p0, v0, v0}, $setViewGroupMarginReference
                             """
-                    ) ?: throw AccountMenuPatchFingerprint.exception
+                    )
                 }
-            } ?: throw SetViewGroupMarginFingerprint.exception
-        } ?: throw AccountMenuParentFingerprint.exception
+            }
+        }
 
         /**
          * Add settings

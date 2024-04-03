@@ -10,8 +10,8 @@ import app.revanced.patches.reddit.utils.integrations.Constants.PATCHES_PATH
 import app.revanced.patches.reddit.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.reddit.utils.settings.SettingsBytecodePatch.updateSettingsStatus
 import app.revanced.patches.reddit.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 
 @Suppress("unused")
 object ScreenshotPopupPatch : BaseBytecodePatch(
@@ -29,7 +29,7 @@ object ScreenshotPopupPatch : BaseBytecodePatch(
 
     override fun execute(context: BytecodeContext) {
 
-        ScreenshotTakenBannerFingerprint.result?.let {
+        ScreenshotTakenBannerFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 addInstructionsWithLabels(
                     0, """
@@ -40,7 +40,7 @@ object ScreenshotPopupPatch : BaseBytecodePatch(
                         """, ExternalLabel("dismiss", getInstruction(0))
                 )
             }
-        } ?: throw ScreenshotTakenBannerFingerprint.exception
+        }
 
         updateSettingsStatus("enableScreenshotPopup")
 

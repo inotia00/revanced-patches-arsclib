@@ -17,9 +17,10 @@ import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.Inlin
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.ReelTimeBarPlayedColor
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch.contexts
-import app.revanced.util.exception
+import app.revanced.util.getWalkerMethod
 import app.revanced.util.getWideLiteralInstructionIndex
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 import org.w3c.dom.Element
@@ -41,22 +42,18 @@ object SeekbarColorPatch : BaseBytecodePatch(
     )
 ) {
     override fun execute(context: BytecodeContext) {
-        PlayerSeekbarColorFingerprint.result?.mutableMethod?.apply {
+        PlayerSeekbarColorFingerprint.resultOrThrow().mutableMethod.apply {
             hook(getWideLiteralInstructionIndex(InlineTimeBarColorizedBarPlayedColorDark) + 2)
             hook(getWideLiteralInstructionIndex(InlineTimeBarPlayedNotHighlightedColor) + 2)
-        } ?: throw PlayerSeekbarColorFingerprint.exception
+        }
 
-        ShortsSeekbarColorFingerprint.result?.mutableMethod?.apply {
+        ShortsSeekbarColorFingerprint.resultOrThrow().mutableMethod.apply {
             hook(getWideLiteralInstructionIndex(ReelTimeBarPlayedColor) + 2)
-        } ?: throw ShortsSeekbarColorFingerprint.exception
+        }
 
-        ControlsOverlayStyleFingerprint.result?.let {
-            with(
-                context
-                    .toMethodWalker(it.method)
-                    .nextMethod(it.scanResult.patternScanResult!!.startIndex + 1, true)
-                    .getMethod() as MutableMethod
-            ) {
+        ControlsOverlayStyleFingerprint.resultOrThrow().let {
+            val walkerMethod = it.getWalkerMethod(context, it.scanResult.patternScanResult!!.startIndex + 1)
+            walkerMethod.apply {
                 val colorRegister = getInstruction<TwoRegisterInstruction>(0).registerA
 
                 addInstructions(
@@ -66,7 +63,7 @@ object SeekbarColorPatch : BaseBytecodePatch(
                     """
                 )
             }
-        } ?: throw ControlsOverlayStyleFingerprint.exception
+        }
 
         DrawableColorPatch.injectCall("$SEEKBAR_CLASS_DESCRIPTOR->getColor(I)I")
 

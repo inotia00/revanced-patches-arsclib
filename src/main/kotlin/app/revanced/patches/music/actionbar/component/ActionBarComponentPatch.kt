@@ -17,12 +17,12 @@ import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch.LikeDis
 import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
 import app.revanced.patches.music.video.information.VideoInformationPatch
-import app.revanced.util.exception
 import app.revanced.util.getTargetIndexWithMethodReferenceName
 import app.revanced.util.getTargetIndexWithReference
 import app.revanced.util.getWideLiteralInstructionIndex
 import app.revanced.util.indexOfFirstInstruction
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
@@ -46,7 +46,7 @@ object ActionBarComponentPatch : BaseBytecodePatch(
     )
 ) {
     override fun execute(context: BytecodeContext) {
-        ActionBarComponentFingerprint.result?.let {
+        ActionBarComponentFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
 
                 // hook download button
@@ -118,9 +118,9 @@ object ActionBarComponentPatch : BaseBytecodePatch(
                     "invoke-static {v$buttonTypeDownloadRegister}, $ACTIONBAR_CLASS_DESCRIPTOR->setButtonTypeDownload(I)V"
                 )
             }
-        } ?: throw ActionBarComponentFingerprint.exception
+        }
 
-        LikeDislikeContainerFingerprint.result?.let { parentResult ->
+        LikeDislikeContainerFingerprint.resultOrThrow().let { parentResult ->
             // Resolves fingerprints
             LikeDislikeContainerVisibilityFingerprint.resolve(context, parentResult.classDef)
 
@@ -151,7 +151,7 @@ object ActionBarComponentPatch : BaseBytecodePatch(
                     "invoke-static {v$insertRegister}, $ACTIONBAR_CLASS_DESCRIPTOR->hideLikeDislikeButton(Landroid/view/View;)V"
                 )
             }
-        } ?: throw LikeDislikeContainerFingerprint.exception
+        }
 
         SettingsPatch.addMusicPreference(
             CategoryType.ACTION_BAR,

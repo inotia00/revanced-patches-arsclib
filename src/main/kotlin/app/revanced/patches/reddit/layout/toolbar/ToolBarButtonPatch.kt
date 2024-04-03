@@ -10,9 +10,9 @@ import app.revanced.patches.reddit.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.reddit.utils.resourceid.SharedResourceIdPatch.ToolBarNavSearchCtaContainer
 import app.revanced.patches.reddit.utils.settings.SettingsBytecodePatch.updateSettingsStatus
 import app.revanced.patches.reddit.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.getWideLiteralInstructionIndex
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Suppress("unused")
@@ -31,7 +31,7 @@ object ToolBarButtonPatch : BaseBytecodePatch(
 
     override fun execute(context: BytecodeContext) {
 
-        HomePagerScreenFingerprint.result?.let {
+        HomePagerScreenFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val targetIndex =
                     getWideLiteralInstructionIndex(ToolBarNavSearchCtaContainer) + 3
@@ -43,7 +43,7 @@ object ToolBarButtonPatch : BaseBytecodePatch(
                     "invoke-static {v$targetRegister}, $INTEGRATIONS_METHOD_DESCRIPTOR"
                 )
             }
-        } ?: throw HomePagerScreenFingerprint.exception
+        }
 
         updateSettingsStatus("enableToolBarButton")
 

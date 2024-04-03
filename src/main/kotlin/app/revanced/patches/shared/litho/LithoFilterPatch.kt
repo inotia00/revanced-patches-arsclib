@@ -12,11 +12,11 @@ import app.revanced.patches.shared.integrations.Constants.COMPONENTS_PATH
 import app.revanced.patches.shared.litho.fingerprints.LithoFilterPatchConstructorFingerprint
 import app.revanced.patches.shared.litho.fingerprints.PathBuilderFingerprint
 import app.revanced.patches.shared.litho.fingerprints.SetByteBufferFingerprint
-import app.revanced.util.exception
 import app.revanced.util.getEmptyStringInstructionIndex
 import app.revanced.util.getTargetIndex
 import app.revanced.util.getTargetIndexReversed
 import app.revanced.util.getTargetIndexWithFieldReferenceType
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.builder.instruction.BuilderInstruction35c
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
@@ -44,7 +44,7 @@ object LithoFilterPatch : BytecodePatch(
 
     override fun execute(context: BytecodeContext) {
 
-        SetByteBufferFingerprint.result?.let {
+        SetByteBufferFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val insertIndex = getTargetIndex(Opcode.IF_EQZ) + 1
 
@@ -53,9 +53,9 @@ object LithoFilterPatch : BytecodePatch(
                     "invoke-static { p2 }, $INTEGRATIONS_LITHO_FILER_CLASS_DESCRIPTOR->setProtoBuffer(Ljava/nio/ByteBuffer;)V"
                 )
             }
-        } ?: throw SetByteBufferFingerprint.exception
+        }
 
-        PathBuilderFingerprint.result?.let {
+        PathBuilderFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val emptyComponentMethodIndex = it.scanResult.patternScanResult!!.startIndex + 1
                 val emptyComponentMethodReference =
@@ -89,9 +89,9 @@ object LithoFilterPatch : BytecodePatch(
                         """, ExternalLabel("filter", getInstruction(insertIndex))
                 )
             }
-        } ?: throw PathBuilderFingerprint.exception
+        }
 
-        LithoFilterPatchConstructorFingerprint.result?.let {
+        LithoFilterPatchConstructorFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 removeInstructions(0, 6)
 
@@ -106,7 +106,7 @@ object LithoFilterPatch : BytecodePatch(
                     )
                 }
             }
-        } ?: throw LithoFilterPatchConstructorFingerprint.exception
+        }
     }
 
     override fun close() = LithoFilterPatchConstructorFingerprint.result!!

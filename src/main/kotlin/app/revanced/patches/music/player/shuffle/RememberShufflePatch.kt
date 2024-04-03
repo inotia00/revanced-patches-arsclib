@@ -15,8 +15,8 @@ import app.revanced.patches.music.utils.integrations.Constants.COMPATIBLE_PACKAG
 import app.revanced.patches.music.utils.integrations.Constants.PLAYER_CLASS_DESCRIPTOR
 import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import app.revanced.util.transformFields
 import app.revanced.util.traverseClassHierarchy
 import com.android.tools.smali.dexlib2.AccessFlags
@@ -48,7 +48,7 @@ object RememberShufflePatch : BaseBytecodePatch(
 
     override fun execute(context: BytecodeContext) {
 
-        ShuffleClassReferenceFingerprint.result?.let {
+        ShuffleClassReferenceFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val startIndex = it.scanResult.patternScanResult!!.startIndex
                 val endIndex = it.scanResult.patternScanResult!!.endIndex
@@ -110,9 +110,9 @@ object RememberShufflePatch : BaseBytecodePatch(
                     ).toMutable()
                 }
             }
-        } ?: throw ShuffleClassReferenceFingerprint.exception
+        }
 
-        MusicPlaybackControlsFingerprint.result?.let {
+        MusicPlaybackControlsFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 addInstruction(
                     0,
@@ -158,7 +158,7 @@ object RememberShufflePatch : BaseBytecodePatch(
                 it.mutableClass.methods.add(shuffleMethod)
                 it.mutableClass.staticFields.add(shuffleField)
             }
-        } ?: throw MusicPlaybackControlsFingerprint.exception
+        }
 
         SettingsPatch.addMusicPreference(
             CategoryType.PLAYER,

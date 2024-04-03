@@ -8,8 +8,8 @@ import app.revanced.patches.youtube.misc.openlinksdirectly.fingerprints.OpenLink
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.MISC_PATH
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction35c
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
@@ -31,7 +31,7 @@ object OpenLinksDirectlyPatch : BaseBytecodePatch(
             OpenLinksDirectlyFingerprintPrimary,
             OpenLinksDirectlyFingerprintSecondary
         ).forEach { fingerprint ->
-            fingerprint.result?.let {
+            fingerprint.resultOrThrow().let {
                 it.mutableMethod.apply {
                     val insertIndex = implementation!!.instructions
                         .indexOfFirst { instruction ->
@@ -44,7 +44,7 @@ object OpenLinksDirectlyPatch : BaseBytecodePatch(
                         "invoke-static {v$insertRegister}, $MISC_PATH/OpenLinksDirectlyPatch;->enableBypassRedirect(Ljava/lang/String;)Landroid/net/Uri;"
                     )
                 }
-            } ?: throw fingerprint.exception
+            }
         }
 
         /**

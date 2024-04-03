@@ -19,9 +19,9 @@ import app.revanced.patches.music.utils.settings.SettingsPatch.contexts
 import app.revanced.patches.music.utils.videotype.VideoTypeHookPatch
 import app.revanced.util.ResourceGroup
 import app.revanced.util.copyResources
-import app.revanced.util.exception
 import app.revanced.util.getWideLiteralInstructionIndex
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
@@ -46,7 +46,7 @@ object ReplaceCastButtonPatch : BaseBytecodePatch(
     override fun execute(context: BytecodeContext) {
         CastButtonContainerFingerprint.resolve(context, mainActivityClassDef)
 
-        CastButtonContainerFingerprint.result?.let {
+        CastButtonContainerFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val freeIndex = getWideLiteralInstructionIndex(PlayerCastMediaRouteButton) + 1
                 val freeRegister = getInstruction<OneRegisterInstruction>(freeIndex).registerA
@@ -82,7 +82,7 @@ object ReplaceCastButtonPatch : BaseBytecodePatch(
                     break
                 }
             }
-        } ?: throw CastButtonContainerFingerprint.exception
+        }
 
         PlayerResponsePatch.injectPlaylistCall(
             "$UTILS_PATH/CheckMusicVideoPatch;" +

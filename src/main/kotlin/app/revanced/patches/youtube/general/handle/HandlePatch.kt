@@ -11,11 +11,11 @@ import app.revanced.patches.youtube.utils.integrations.Constants.GENERAL_CLASS_D
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.AccountSwitcherAccessibility
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.getTargetIndex
 import app.revanced.util.getTargetIndexWithMethodReferenceName
 import app.revanced.util.getWideLiteralInstructionIndex
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 
@@ -36,7 +36,7 @@ object HandlePatch : BaseBytecodePatch(
 
     override fun execute(context: BytecodeContext) {
 
-        AccountSwitcherAccessibilityLabelFingerprint.result?.let {
+        AccountSwitcherAccessibilityLabelFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val constIndex = getWideLiteralInstructionIndex(AccountSwitcherAccessibility)
                 val insertIndex = getTargetIndex(constIndex, Opcode.IF_EQZ)
@@ -50,7 +50,7 @@ object HandlePatch : BaseBytecodePatch(
                         """
                 )
             }
-        } ?: throw AccountSwitcherAccessibilityLabelFingerprint.exception
+        }
 
         LithoFilterPatch.addFilter(FILTER_CLASS_DESCRIPTOR)
 

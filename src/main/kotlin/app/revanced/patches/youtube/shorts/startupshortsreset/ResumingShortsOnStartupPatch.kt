@@ -11,12 +11,12 @@ import app.revanced.patches.youtube.shorts.startupshortsreset.fingerprints.UserW
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.SHORTS_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.getStringInstructionIndex
 import app.revanced.util.getTargetIndex
 import app.revanced.util.getTargetIndexReversed
 import app.revanced.util.getWalkerMethod
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
@@ -34,7 +34,7 @@ object ResumingShortsOnStartupPatch : BaseBytecodePatch(
 ) {
     override fun execute(context: BytecodeContext) {
 
-        UserWasInShortsABConfigFingerprint.result?.let {
+        UserWasInShortsABConfigFingerprint.resultOrThrow().let {
             val walkerMethod = it.getWalkerMethod(context, it.scanResult.patternScanResult!!.startIndex)
 
             // This method will only be called for the user being A/B tested.
@@ -53,9 +53,9 @@ object ResumingShortsOnStartupPatch : BaseBytecodePatch(
                         """, ExternalLabel("show", getInstruction(insertIndex))
                 )
             }
-        } ?: throw UserWasInShortsABConfigFingerprint.exception
+        }
 
-        UserWasInShortsFingerprint.result?.let {
+        UserWasInShortsFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val startIndex = getStringInstructionIndex("Failed to read user_was_in_shorts proto after successful warmup")
                 val exceptionIndex = getTargetIndexReversed(startIndex, Opcode.RETURN_VOID) - 1
@@ -79,7 +79,7 @@ object ResumingShortsOnStartupPatch : BaseBytecodePatch(
                 )
                 removeInstruction(targetIndex)
             }
-        } ?: throw UserWasInShortsFingerprint.exception
+        }
 
         /**
          * Add settings

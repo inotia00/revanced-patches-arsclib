@@ -11,10 +11,10 @@ import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.AutoNavPreviewStub
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.VideoZoomIndicatorLayout
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.getStringInstructionIndex
 import app.revanced.util.getWideLiteralInstructionIndex
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Suppress("unused")
@@ -30,7 +30,7 @@ object AutoplayButtonPatch : BaseBytecodePatch(
 ) {
     override fun execute(context: BytecodeContext) {
 
-        LayoutConstructorFingerprint.result?.let {
+        LayoutConstructorFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val dummyRegister =
                     getInstruction<OneRegisterInstruction>(getStringInstructionIndex("1.0x")).registerA
@@ -45,7 +45,7 @@ object AutoplayButtonPatch : BaseBytecodePatch(
                         """, ExternalLabel("hidden", getInstruction(jumpIndex))
                 )
             }
-        } ?: throw LayoutConstructorFingerprint.exception
+        }
 
         /**
          * Add settings

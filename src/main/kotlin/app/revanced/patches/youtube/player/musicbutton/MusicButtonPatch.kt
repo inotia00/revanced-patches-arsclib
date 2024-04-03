@@ -10,8 +10,8 @@ import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACK
 import app.revanced.patches.youtube.utils.integrations.Constants.PLAYER_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 
 @Suppress("unused")
 object MusicButtonPatch : BaseBytecodePatch(
@@ -26,11 +26,10 @@ object MusicButtonPatch : BaseBytecodePatch(
 ) {
     override fun execute(context: BytecodeContext) {
 
-        val mutableClass = MusicAppDeeplinkButtonParentFingerprint.result?.mutableClass
-            ?: throw MusicAppDeeplinkButtonParentFingerprint.exception
+        val mutableClass = MusicAppDeeplinkButtonParentFingerprint.resultOrThrow().mutableClass
         MusicAppDeeplinkButtonFingerprint.resolve(context, mutableClass)
 
-        MusicAppDeeplinkButtonFingerprint.result?.let {
+        MusicAppDeeplinkButtonFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 addInstructionsWithLabels(
                     0,
@@ -42,7 +41,7 @@ object MusicButtonPatch : BaseBytecodePatch(
                     ExternalLabel("hidden", getInstruction(implementation!!.instructions.size - 1))
                 )
             }
-        } ?: throw MusicAppDeeplinkButtonFingerprint.exception
+        }
 
         /**
          * Add settings

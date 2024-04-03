@@ -16,10 +16,10 @@ import app.revanced.patches.music.video.information.fingerprints.PlayerControlle
 import app.revanced.patches.music.video.information.fingerprints.VideoEndFingerprint
 import app.revanced.patches.music.video.information.fingerprints.VideoLengthFingerprint
 import app.revanced.patches.music.video.videoid.VideoIdPatch
-import app.revanced.util.exception
 import app.revanced.util.getTargetIndexWithFieldReferenceTypeReversed
 import app.revanced.util.getTargetIndexWithMethodReferenceNameReversed
 import app.revanced.util.getWalkerMethod
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.builder.MutableMethodImplementation
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
@@ -90,7 +90,7 @@ object VideoInformationPatch : BytecodePatch(
         )
 
     override fun execute(context: BytecodeContext) {
-        VideoEndFingerprint.result?.let {
+        VideoEndFingerprint.resultOrThrow().let {
             playerInitMethod =
                 it.mutableClass.methods.first { method -> MethodUtil.isConstructor(method) }
 
@@ -120,19 +120,19 @@ object VideoInformationPatch : BytecodePatch(
                 )
                 it.mutableClass.methods.add(seekHelperMethod)
             }
-        } ?: throw VideoEndFingerprint.exception
+        }
 
 
         /**
          * Set current video length
          */
-        SeekBarConstructorFingerprint.result?.classDef?.let { classDef ->
+        SeekBarConstructorFingerprint.resultOrThrow().classDef.let { classDef ->
             VideoLengthFingerprint.also {
                 it.resolve(
                     context,
                     classDef
                 )
-            }.result?.let {
+            }.resultOrThrow().let {
                 it.mutableMethod.apply {
                     val invalidateIndex = getTargetIndexWithMethodReferenceNameReversed("invalidate")
                     val rectangleIndex = getTargetIndexWithFieldReferenceTypeReversed(invalidateIndex + 1, "Landroid/graphics/Rect;")
@@ -149,16 +149,16 @@ object VideoInformationPatch : BytecodePatch(
                         "invoke-static {v$videoLengthRegister, v$dummyRegisterForLong}, $INTEGRATIONS_CLASS_DESCRIPTOR->setVideoLength(J)V"
                     )
                 }
-            } ?: throw VideoLengthFingerprint.exception
-        } ?: throw SeekBarConstructorFingerprint.exception
+            }
+        }
 
 
         /**
          * Set the video time method
          */
-        PlayerControllerSetTimeReferenceFingerprint.result?.let {
+        PlayerControllerSetTimeReferenceFingerprint.resultOrThrow().let {
             timeMethod = it.getWalkerMethod(context, it.scanResult.patternScanResult!!.startIndex)
-        } ?: throw PlayerControllerSetTimeReferenceFingerprint.exception
+        }
 
 
         /**

@@ -9,11 +9,11 @@ import app.revanced.patches.youtube.general.searchterm.fingerprints.CreateSearch
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.GENERAL_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.getTargetIndexWithReference
 import app.revanced.util.getTargetIndexWithReferenceReversed
 import app.revanced.util.getWideLiteralInstructionIndex
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 
@@ -26,7 +26,7 @@ object SearchTermThumbnailPatch : BaseBytecodePatch(
     fingerprints = setOf(CreateSearchSuggestionsFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
-        CreateSearchSuggestionsFingerprint.result?.let { result ->
+        CreateSearchSuggestionsFingerprint.resultOrThrow().let { result ->
             result.mutableMethod.apply {
                 val relativeIndex = getWideLiteralInstructionIndex(40)
                 val replaceIndex = getTargetIndexWithReferenceReversed(
@@ -53,7 +53,7 @@ object SearchTermThumbnailPatch : BaseBytecodePatch(
                 )
                 removeInstruction(replaceIndex)
             }
-        } ?: throw CreateSearchSuggestionsFingerprint.exception
+        }
 
         /**
          * Add settings

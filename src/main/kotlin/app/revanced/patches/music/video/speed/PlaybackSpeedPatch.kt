@@ -10,8 +10,8 @@ import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
 import app.revanced.patches.music.video.speed.fingerprints.PlaybackSpeedBottomSheetFingerprint
 import app.revanced.patches.music.video.speed.fingerprints.PlaybackSpeedBottomSheetParentFingerprint
-import app.revanced.util.exception
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 
 @Suppress("unused")
@@ -30,13 +30,13 @@ object PlaybackSpeedPatch : BaseBytecodePatch(
 
     override fun execute(context: BytecodeContext) {
 
-        PlaybackSpeedBottomSheetParentFingerprint.result?.let { parentResult ->
+        PlaybackSpeedBottomSheetParentFingerprint.resultOrThrow().let { parentResult ->
             PlaybackSpeedBottomSheetFingerprint.also {
                 it.resolve(
                     context,
                     parentResult.classDef
                 )
-            }.result?.let {
+            }.resultOrThrow().let {
                 it.mutableMethod.apply {
                     val targetIndex = it.scanResult.patternScanResult!!.startIndex
                     val targetRegister =
@@ -47,8 +47,8 @@ object PlaybackSpeedPatch : BaseBytecodePatch(
                         "invoke-static {v$targetRegister}, $INTEGRATIONS_CLASS_DESCRIPTOR->userChangedSpeed(F)V"
                     )
                 }
-            } ?: throw PlaybackSpeedBottomSheetFingerprint.exception
-        } ?: throw PlaybackSpeedBottomSheetParentFingerprint.exception
+            }
+        }
 
         SettingsPatch.addMusicPreference(
             CategoryType.VIDEO,

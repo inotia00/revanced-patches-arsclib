@@ -3,7 +3,7 @@ package app.revanced.patches.youtube.layout.theme
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.options.PatchOption.PatchExtensions.stringPatchOption
-import app.revanced.patches.youtube.layout.theme.ThemeBytecodePatch.isMonetPatchIncluded
+import app.revanced.patches.youtube.layout.theme.BaseThemePatch.isMonetPatchIncluded
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.settings.ResourceUtils.updatePatchStatusTheme
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
@@ -15,8 +15,8 @@ object ThemePatch : BaseResourcePatch(
     name = "Theme",
     description = "Change the app's theme to the values specified in options.json.",
     dependencies = setOf(
-        SettingsPatch::class,
-        ThemeBytecodePatch::class
+        BaseThemePatch::class,
+        SettingsPatch::class
     ),
     compatiblePackages = COMPATIBLE_PACKAGE
 ) {

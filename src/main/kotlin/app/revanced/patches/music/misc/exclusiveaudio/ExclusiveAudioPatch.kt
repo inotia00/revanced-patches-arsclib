@@ -8,10 +8,10 @@ import app.revanced.patches.music.misc.exclusiveaudio.fingerprints.DataSavingSet
 import app.revanced.patches.music.misc.exclusiveaudio.fingerprints.MusicBrowserServiceFingerprint
 import app.revanced.patches.music.misc.exclusiveaudio.fingerprints.PodCastConfigFingerprint
 import app.revanced.patches.music.utils.integrations.Constants.COMPATIBLE_PACKAGE
-import app.revanced.util.exception
 import app.revanced.util.getStringInstructionIndex
 import app.revanced.util.getWalkerMethod
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
@@ -33,7 +33,7 @@ object ExclusiveAudioPatch : BaseBytecodePatch(
         /**
          * Don't play music videos
          */
-        MusicBrowserServiceFingerprint.result?.let {
+        MusicBrowserServiceFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val targetIndex =
                     getStringInstructionIndex("MBS: Return empty root for client: %s, isFullMediaBrowserEnabled: %b, is client browsable: %b, isRedAccount: %b")
@@ -56,12 +56,12 @@ object ExclusiveAudioPatch : BaseBytecodePatch(
                     break
                 }
             }
-        } ?: throw MusicBrowserServiceFingerprint.exception
+        }
 
         /**
          * Don't play podcast videos
          */
-        PodCastConfigFingerprint.result?.let {
+        PodCastConfigFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val insertIndex = implementation!!.instructions.size - 1
                 val targetRegister = getInstruction<OneRegisterInstruction>(insertIndex).registerA
@@ -71,9 +71,9 @@ object ExclusiveAudioPatch : BaseBytecodePatch(
                     "const/4 v$targetRegister, 0x1"
                 )
             }
-        } ?: throw PodCastConfigFingerprint.exception
+        }
 
-        DataSavingSettingsFragmentFingerprint.result?.let {
+        DataSavingSettingsFragmentFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val insertIndex = getStringInstructionIndex("pref_key_dont_play_nma_video") + 4
                 val targetRegister = getInstruction<FiveRegisterInstruction>(insertIndex).registerD
@@ -83,6 +83,6 @@ object ExclusiveAudioPatch : BaseBytecodePatch(
                     "const/4 v$targetRegister, 0x1"
                 )
             }
-        } ?: throw DataSavingSettingsFragmentFingerprint.exception
+        }
     }
 }

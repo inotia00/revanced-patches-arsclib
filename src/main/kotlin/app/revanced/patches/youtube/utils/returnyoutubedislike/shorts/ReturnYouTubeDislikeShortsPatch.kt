@@ -14,10 +14,10 @@ import app.revanced.patches.youtube.utils.returnyoutubedislike.shorts.fingerprin
 import app.revanced.patches.youtube.utils.returnyoutubedislike.shorts.fingerprints.ShortsTextViewFingerprint
 import app.revanced.patches.youtube.utils.returnyoutubedislike.shorts.fingerprints.TextComponentSpecFingerprint
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.getTargetIndex
 import app.revanced.util.getTargetIndexReversed
 import app.revanced.util.getTargetIndexWithReference
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
@@ -35,7 +35,7 @@ object ReturnYouTubeDislikeShortsPatch : BytecodePatch(
         "$UTILS_PATH/ReturnYouTubeDislikePatch;"
 
     override fun execute(context: BytecodeContext) {
-        ShortsTextViewFingerprint.result?.let {
+        ShortsTextViewFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val startIndex = it.scanResult.patternScanResult!!.startIndex
 
@@ -69,10 +69,10 @@ object ReturnYouTubeDislikeShortsPatch : BytecodePatch(
                     """, ExternalLabel("ryd_disabled", getInstruction(insertIndex))
                 )
             }
-        } ?: throw ShortsTextViewFingerprint.exception
+        }
 
         if (SettingsPatch.upward1834) {
-            TextComponentSpecFingerprint.result?.let {
+            TextComponentSpecFingerprint.resultOrThrow().let {
                 it.mutableMethod.apply {
                     val insertIndex = getTargetIndexWithReference("Landroid/text/SpannableString;->valueOf(Ljava/lang/CharSequence;)Landroid/text/SpannableString;")
 
@@ -93,16 +93,16 @@ object ReturnYouTubeDislikeShortsPatch : BytecodePatch(
                     )
                     removeInstruction(insertIndex)
                 }
-            } ?: throw TextComponentSpecFingerprint.exception
+            }
 
-            IncognitoFingerprint.result?.let {
+            IncognitoFingerprint.resultOrThrow().let {
                 it.mutableMethod.apply {
                     addInstruction(
                         1,
                         "sput-boolean p4, $INTEGRATIONS_RYD_CLASS_DESCRIPTOR->isIncognito:Z"
                     )
                 }
-            } ?: throw IncognitoFingerprint.exception
+            }
         }
     }
 }

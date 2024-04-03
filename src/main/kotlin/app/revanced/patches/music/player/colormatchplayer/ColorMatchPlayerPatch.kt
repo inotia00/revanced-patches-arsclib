@@ -13,11 +13,11 @@ import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch.ColorGrey
 import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.getTargetIndex
 import app.revanced.util.getTargetIndexReversed
 import app.revanced.util.getWideLiteralInstructionIndex
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.MethodParameter
@@ -43,11 +43,11 @@ object ColorMatchPlayerPatch : BaseBytecodePatch(
 
     override fun execute(context: BytecodeContext) {
 
-        MiniPlayerConstructorFingerprint.result?.let { parentResult ->
+        MiniPlayerConstructorFingerprint.resultOrThrow().let { parentResult ->
             // Resolves fingerprints
             SwitchToggleColorFingerprint.resolve(context, parentResult.classDef)
 
-            SwitchToggleColorFingerprint.result?.let {
+            SwitchToggleColorFingerprint.resultOrThrow().let {
                 it.mutableMethod.apply {
                     methodParameter = parameters
 
@@ -94,8 +94,8 @@ object ColorMatchPlayerPatch : BaseBytecodePatch(
                         removeInstruction(invokeDirectIndex)
                     }
                 }
-            } ?: throw SwitchToggleColorFingerprint.exception
-        } ?: throw MiniPlayerConstructorFingerprint.exception
+            }
+        }
 
         SettingsPatch.addMusicPreference(
             CategoryType.PLAYER,

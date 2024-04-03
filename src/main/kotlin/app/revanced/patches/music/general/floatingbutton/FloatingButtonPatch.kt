@@ -11,8 +11,8 @@ import app.revanced.patches.music.utils.integrations.Constants.GENERAL_CLASS_DES
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 
 @Suppress("unused")
 object FloatingButtonPatch : BaseBytecodePatch(
@@ -27,13 +27,13 @@ object FloatingButtonPatch : BaseBytecodePatch(
 ) {
     override fun execute(context: BytecodeContext) {
 
-        FloatingButtonParentFingerprint.result?.let { parentResult ->
+        FloatingButtonParentFingerprint.resultOrThrow().let { parentResult ->
             FloatingButtonFingerprint.also {
                 it.resolve(
                     context,
                     parentResult.classDef
                 )
-            }.result?.let {
+            }.resultOrThrow().let {
                 it.mutableMethod.apply {
                     addInstructionsWithLabels(
                         1, """
@@ -44,8 +44,8 @@ object FloatingButtonPatch : BaseBytecodePatch(
                             """, ExternalLabel("show", getInstruction(1))
                     )
                 }
-            } ?: throw FloatingButtonFingerprint.exception
-        } ?: throw FloatingButtonParentFingerprint.exception
+            }
+        }
 
         SettingsPatch.addMusicPreference(
             CategoryType.GENERAL,

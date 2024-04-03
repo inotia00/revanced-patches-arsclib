@@ -6,8 +6,8 @@ import app.revanced.patches.youtube.misc.spoofdimensions.fingerprints.DeviceDime
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.MISC_PATH
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.util.MethodUtil
 
 @Suppress("unused")
@@ -22,7 +22,7 @@ object SpoofDeviceDimensionsPatch : BaseBytecodePatch(
         "$MISC_PATH/SpoofDeviceDimensionsPatch;"
 
     override fun execute(context: BytecodeContext) {
-        DeviceDimensionsModelToStringFingerprint.result?.let { result ->
+        DeviceDimensionsModelToStringFingerprint.resultOrThrow().let { result ->
             result.mutableClass.methods.first { method -> MethodUtil.isConstructor(method) }
                 .addInstructions(
                     1, // Add after super call.
@@ -38,7 +38,7 @@ object SpoofDeviceDimensionsPatch : BaseBytecodePatch(
                             """
                     }.joinToString("\n") { it }
                 )
-        } ?: throw DeviceDimensionsModelToStringFingerprint.exception
+        }
 
         /**
          * Add settings

@@ -10,7 +10,7 @@ import app.revanced.patches.youtube.utils.integrations.Constants.UTILS_PATH
 import app.revanced.patches.youtube.utils.navbarindex.fingerprints.MobileTopBarButtonOnClickFingerprint
 import app.revanced.patches.youtube.utils.navbarindex.fingerprints.PivotBarIndexFingerprint
 import app.revanced.patches.youtube.utils.navbarindex.fingerprints.SettingsActivityOnBackPressedFingerprint
-import app.revanced.util.exception
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 
 @Suppress("unused")
@@ -29,7 +29,7 @@ object NavBarIndexHookPatch : BytecodePatch(
         /**
          * Change NavBar Index value according to selected Tab.
          */
-        PivotBarIndexFingerprint.result?.let {
+        PivotBarIndexFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val insertIndex = it.scanResult.patternScanResult!!.startIndex + 1
                 val booleanRegister = getInstruction<FiveRegisterInstruction>(insertIndex).registerD
@@ -44,7 +44,7 @@ object NavBarIndexHookPatch : BytecodePatch(
                     "move/16 v$freeRegister, p1"
                 )
             }
-        } ?: throw PivotBarIndexFingerprint.exception
+        }
 
         /**
          * Since it is used only after opening the library tab, set index to 4.
@@ -58,7 +58,7 @@ object NavBarIndexHookPatch : BytecodePatch(
     }
 
     private fun MethodFingerprint.injectIndex() {
-        result?.let {
+        resultOrThrow().let {
             it.mutableMethod.apply {
                 addInstructions(
                     0, """
@@ -67,6 +67,6 @@ object NavBarIndexHookPatch : BytecodePatch(
                         """
                 )
             }
-        } ?: throw exception
+        }
     }
 }

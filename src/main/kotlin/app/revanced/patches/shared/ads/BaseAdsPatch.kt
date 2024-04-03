@@ -8,9 +8,9 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.shared.ads.fingerprints.MusicAdsFingerprint
 import app.revanced.patches.shared.ads.fingerprints.VideoAdsFingerprint
-import app.revanced.util.exception
 import app.revanced.util.getWalkerMethod
 import app.revanced.util.indexOfFirstInstruction
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
@@ -25,7 +25,7 @@ abstract class BaseAdsPatch(
     )
 ) {
     override fun execute(context: BytecodeContext) {
-        MusicAdsFingerprint.result?.let {
+        MusicAdsFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val targetIndex = indexOfFirstInstruction {
                     val reference = ((this as? ReferenceInstruction)?.reference as? MethodReference)
@@ -44,9 +44,9 @@ abstract class BaseAdsPatch(
                             """
                     )
             }
-        } ?: throw MusicAdsFingerprint.exception
+        }
 
-        VideoAdsFingerprint.result?.let {
+        VideoAdsFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 addInstructionsWithLabels(
                     0, """
@@ -57,6 +57,6 @@ abstract class BaseAdsPatch(
                         """, ExternalLabel("show_ads", getInstruction(0))
                 )
             }
-        } ?: throw VideoAdsFingerprint.exception
+        }
     }
 }

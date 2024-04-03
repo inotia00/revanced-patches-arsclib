@@ -9,8 +9,8 @@ import app.revanced.patches.music.utils.integrations.Constants.NAVIGATION_CLASS_
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Suppress("unused")
@@ -26,7 +26,7 @@ object BlackNavigationBarPatch : BaseBytecodePatch(
 ) {
     override fun execute(context: BytecodeContext) {
 
-        TabLayoutFingerprint.result?.let {
+        TabLayoutFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val targetIndex = it.scanResult.patternScanResult!!.endIndex
                 val targetRegister = getInstruction<OneRegisterInstruction>(targetIndex).registerA
@@ -38,7 +38,7 @@ object BlackNavigationBarPatch : BaseBytecodePatch(
                         """
                 )
             }
-        } ?: throw TabLayoutFingerprint.exception
+        }
 
         SettingsPatch.addMusicPreference(
             CategoryType.NAVIGATION,

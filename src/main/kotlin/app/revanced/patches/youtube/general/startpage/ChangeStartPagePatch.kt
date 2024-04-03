@@ -8,8 +8,8 @@ import app.revanced.patches.youtube.utils.integrations.Constants.GENERAL_CLASS_D
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch.contexts
 import app.revanced.util.copyXmlNode
-import app.revanced.util.exception
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 
 @Suppress("unused")
 object ChangeStartPagePatch : BaseBytecodePatch(
@@ -20,14 +20,14 @@ object ChangeStartPagePatch : BaseBytecodePatch(
     fingerprints = setOf(StartActivityFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
-        StartActivityFingerprint.result?.let {
+        StartActivityFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 addInstruction(
                     0,
                     "invoke-static { p1 }, $GENERAL_CLASS_DESCRIPTOR->changeStartPage(Landroid/content/Intent;)V"
                 )
             }
-        } ?: throw StartActivityFingerprint.exception
+        }
 
         /**
          * Copy arrays

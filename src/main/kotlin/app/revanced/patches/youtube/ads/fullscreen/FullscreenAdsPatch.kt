@@ -12,8 +12,8 @@ import app.revanced.patches.youtube.ads.fullscreen.fingerprints.ShowDialogComman
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPONENTS_PATH
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.InterstitialsContainer
-import app.revanced.util.exception
 import app.revanced.util.getWideLiteralInstructionIndex
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch(dependencies = [SharedResourceIdPatch::class])
@@ -31,7 +31,7 @@ object FullscreenAdsPatch : BytecodePatch(
          * Hides fullscreen ads
          * Non-litho view, used in some old clients.
          */
-        InterstitialsContainerFingerprint.result?.let {
+        InterstitialsContainerFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val targetIndex = getWideLiteralInstructionIndex(InterstitialsContainer) + 2
                 val targetRegister = getInstruction<OneRegisterInstruction>(targetIndex).registerA
@@ -41,13 +41,13 @@ object FullscreenAdsPatch : BytecodePatch(
                     "invoke-static {v$targetRegister}, $FILTER_CLASS_DESCRIPTOR->hideFullscreenAds(Landroid/view/View;)V"
                 )
             }
-        } ?: throw InterstitialsContainerFingerprint.exception
+        }
 
         /**
          * Hides fullscreen ads
          * Litho view, used in 'ShowDialogCommandOuterClass' in innertube
          */
-        ShowDialogCommandFingerprint.result?.let {
+        ShowDialogCommandFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 // In this method, custom dialog is created and shown.
                 // There were no issues despite adding “return-void” to the first index.
@@ -94,6 +94,6 @@ object FullscreenAdsPatch : BytecodePatch(
                 //         """
                 // )
             }
-        } ?: throw ShowDialogCommandFingerprint.exception
+        }
     }
 }

@@ -12,9 +12,9 @@ import app.revanced.patches.shared.litho.fingerprints.PathBuilderFingerprint
 import app.revanced.patches.youtube.utils.browseid.fingerprints.BrowseIdClassFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.UTILS_PATH
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
-import app.revanced.util.exception
 import app.revanced.util.getStringInstructionIndex
 import app.revanced.util.getTargetIndex
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.reference.FieldReference
@@ -40,7 +40,7 @@ object BrowseIdHookPatch : BytecodePatch(
          * This class handles BrowseId.
          * Pass an instance of this class to integrations to use Java Reflection.
          */
-        BrowseIdClassFingerprint.result?.let {
+        BrowseIdClassFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val targetIndex = getStringInstructionIndex("VL") - 1
                 val targetReference = getInstruction<ReferenceInstruction>(targetIndex).reference
@@ -60,18 +60,18 @@ object BrowseIdHookPatch : BytecodePatch(
                         )
                     } ?: throw PatchException("BrowseIdClass not found!")
             }
-        } ?: throw BrowseIdClassFingerprint.exception
+        }
 
         /**
          * Set BrowseId to integrations.
          */
-        PathBuilderFingerprint.result?.let {
+        PathBuilderFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 addInstruction(
                     0,
                     "invoke-static {}, $INTEGRATIONS_CLASS_DESCRIPTOR->setBrowseIdFromField()V"
                 )
             }
-        } ?: throw PathBuilderFingerprint.exception
+        }
     }
 }

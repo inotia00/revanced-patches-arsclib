@@ -8,9 +8,9 @@ import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACK
 import app.revanced.patches.youtube.utils.integrations.Constants.PLAYER_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.findMutableMethodOf
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.builder.instruction.BuilderInstruction21c
 import com.android.tools.smali.dexlib2.builder.instruction.BuilderInstruction35c
@@ -28,7 +28,7 @@ object CollapseButtonPatch : BaseBytecodePatch(
 ) {
     override fun execute(context: BytecodeContext) {
 
-        LiveChatFingerprint.result?.let {
+        LiveChatFingerprint.resultOrThrow().let {
             val endIndex = it.scanResult.patternScanResult!!.endIndex
             val instructions = it.mutableMethod.getInstruction(endIndex)
             val imageButtonClass = context
@@ -64,7 +64,7 @@ object CollapseButtonPatch : BaseBytecodePatch(
                     }
                 }
             }
-        } ?: throw LiveChatFingerprint.exception
+        }
 
         /**
          * Add settings

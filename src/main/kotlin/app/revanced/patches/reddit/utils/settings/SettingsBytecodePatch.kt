@@ -15,9 +15,9 @@ import app.revanced.patches.reddit.utils.settings.fingerprints.AcknowledgementsL
 import app.revanced.patches.reddit.utils.settings.fingerprints.OssLicensesMenuActivityOnCreateFingerprint
 import app.revanced.patches.reddit.utils.settings.fingerprints.SettingsStatusLoadFingerprint
 import app.revanced.patches.shared.settings.fingerprints.SharedSettingFingerprint
-import app.revanced.util.exception
 import app.revanced.util.getTargetIndex
 import app.revanced.util.getWideLiteralInstructionIndex
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
@@ -47,7 +47,7 @@ object SettingsBytecodePatch : BytecodePatch(
         /**
          * Set SharedPrefCategory
          */
-        SharedSettingFingerprint.result?.let {
+        SharedSettingFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val stringIndex = getTargetIndex(Opcode.CONST_STRING)
                 val stringRegister = getInstruction<OneRegisterInstruction>(stringIndex).registerA
@@ -57,12 +57,12 @@ object SettingsBytecodePatch : BytecodePatch(
                     "const-string v$stringRegister, \"reddit_revanced\""
                 )
             }
-        } ?: throw SharedSettingFingerprint.exception
+        }
 
         /**
          * Replace settings label
          */
-        AcknowledgementsLabelBuilderFingerprint.result?.let {
+        AcknowledgementsLabelBuilderFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val insertIndex =
                     getWideLiteralInstructionIndex(LabelAcknowledgements) + 3
@@ -74,12 +74,12 @@ object SettingsBytecodePatch : BytecodePatch(
                     "const-string v$insertRegister, \"ReVanced Extended\""
                 )
             }
-        } ?: throw AcknowledgementsLabelBuilderFingerprint.exception
+        }
 
         /**
          * Initialize settings activity
          */
-        OssLicensesMenuActivityOnCreateFingerprint.result?.let {
+        OssLicensesMenuActivityOnCreateFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val insertIndex = it.scanResult.patternScanResult!!.startIndex + 1
 
@@ -90,10 +90,9 @@ object SettingsBytecodePatch : BytecodePatch(
                         """
                 )
             }
-        } ?: throw OssLicensesMenuActivityOnCreateFingerprint.exception
+        }
 
-        settingsStatusLoadMethod = SettingsStatusLoadFingerprint.result?.mutableMethod
-            ?: throw SettingsStatusLoadFingerprint.exception
+        settingsStatusLoadMethod = SettingsStatusLoadFingerprint.resultOrThrow().mutableMethod
 
     }
 }

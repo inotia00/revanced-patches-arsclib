@@ -9,8 +9,8 @@ import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACK
 import app.revanced.patches.youtube.utils.integrations.Constants.GENERAL_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Suppress("unused")
@@ -25,7 +25,7 @@ object LoadMoreButtonPatch : BaseBytecodePatch(
     fingerprints = setOf(LoadMoreButtonFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
-        LoadMoreButtonFingerprint.result?.let {
+        LoadMoreButtonFingerprint.resultOrThrow().let {
             val getViewMethod =
                 it.mutableClass.methods.find { method ->
                     method.parameters.isEmpty() &&
@@ -41,7 +41,7 @@ object LoadMoreButtonPatch : BaseBytecodePatch(
                     "invoke-static {v$targetRegister}, $GENERAL_CLASS_DESCRIPTOR->hideLoadMoreButton(Landroid/view/View;)V"
                 )
             } ?: throw PatchException("Failed to find getView method")
-        } ?: throw LoadMoreButtonFingerprint.exception
+        }
 
         /**
          * Add settings

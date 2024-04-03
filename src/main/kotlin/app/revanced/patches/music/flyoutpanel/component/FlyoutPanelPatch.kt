@@ -14,10 +14,10 @@ import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch.EndButt
 import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
 import app.revanced.patches.shared.litho.LithoFilterPatch
-import app.revanced.util.exception
 import app.revanced.util.getTargetIndex
 import app.revanced.util.getWideLiteralInstructionIndex
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
@@ -43,7 +43,7 @@ object FlyoutPanelPatch : BaseBytecodePatch(
     override fun execute(context: BytecodeContext) {
         FlyoutPanelMenuItemPatch.hideComponents()
 
-        EndButtonsContainerFingerprint.result?.let {
+        EndButtonsContainerFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val startIndex = getWideLiteralInstructionIndex(EndButtonsContainer)
                 val targetIndex = getTargetIndex(startIndex, Opcode.MOVE_RESULT_OBJECT)
@@ -54,7 +54,7 @@ object FlyoutPanelPatch : BaseBytecodePatch(
                     "invoke-static {v$targetRegister}, $FLYOUT_CLASS_DESCRIPTOR->hideLikeDislikeContainer(Landroid/view/View;)V"
                 )
             }
-        } ?: throw EndButtonsContainerFingerprint.exception
+        }
 
         /**
          * Forces sleep timer menu to be enabled.

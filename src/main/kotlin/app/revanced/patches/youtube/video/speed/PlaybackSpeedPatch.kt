@@ -14,8 +14,8 @@ import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.patches.youtube.utils.videocpn.VideoCpnPatch
 import app.revanced.patches.youtube.video.speed.fingerprints.NewPlaybackSpeedChangedFingerprint
 import app.revanced.patches.youtube.video.speed.fingerprints.PlaybackSpeedInitializeFingerprint
-import app.revanced.util.exception
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import app.revanced.util.updatePatchStatus
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
@@ -35,15 +35,18 @@ object PlaybackSpeedPatch : BaseBytecodePatch(
         VideoEndFingerprint
     )
 ) {
+    private const val INTEGRATIONS_PLAYBACK_SPEED_CLASS_DESCRIPTOR =
+        "$VIDEO_PATH/PlaybackSpeedPatch;"
+
     override fun execute(context: BytecodeContext) {
 
-        NewVideoQualityChangedFingerprint.result?.let { parentResult ->
+        NewVideoQualityChangedFingerprint.resultOrThrow().let { parentResult ->
             NewPlaybackSpeedChangedFingerprint.also {
                 it.resolve(
                     context,
                     parentResult.classDef
                 )
-            }.result?.let { result ->
+            }.resultOrThrow().let { result ->
                 arrayOf(result, OverrideSpeedHookPatch.playbackSpeedChangedResult).forEach {
                     it.mutableMethod.apply {
                         val index = it.scanResult.patternScanResult!!.endIndex
@@ -55,16 +58,16 @@ object PlaybackSpeedPatch : BaseBytecodePatch(
                         )
                     }
                 }
-            } ?: throw NewPlaybackSpeedChangedFingerprint.exception
-        } ?: throw NewVideoQualityChangedFingerprint.exception
+            }
+        }
 
-        VideoEndFingerprint.result?.let { parentResult ->
+        VideoEndFingerprint.resultOrThrow().let { parentResult ->
             PlaybackSpeedInitializeFingerprint.also {
                 it.resolve(
                     context,
                     parentResult.classDef
                 )
-            }.result?.let {
+            }.resultOrThrow().let {
                 it.mutableMethod.apply {
                     val insertIndex = it.scanResult.patternScanResult!!.endIndex
                     val insertRegister = getInstruction<OneRegisterInstruction>(insertIndex).registerA
@@ -76,8 +79,8 @@ object PlaybackSpeedPatch : BaseBytecodePatch(
                             """
                     )
                 }
-            } ?: throw PlaybackSpeedInitializeFingerprint.exception
-        } ?: throw VideoEndFingerprint.exception
+            }
+        }
 
         VideoCpnPatch.injectCall("$INTEGRATIONS_PLAYBACK_SPEED_CLASS_DESCRIPTOR->newVideoStarted(Ljava/lang/String;)V")
 
@@ -97,7 +100,4 @@ object PlaybackSpeedPatch : BaseBytecodePatch(
         context.updatePatchStatus("$UTILS_PATH/PatchStatus;", "DefaultPlaybackSpeed")
 
     }
-
-    private const val INTEGRATIONS_PLAYBACK_SPEED_CLASS_DESCRIPTOR =
-        "$VIDEO_PATH/PlaybackSpeedPatch;"
 }

@@ -18,9 +18,9 @@ import app.revanced.patches.youtube.utils.returnyoutubedislike.rollingnumber.Ret
 import app.revanced.patches.youtube.utils.returnyoutubedislike.shorts.ReturnYouTubeDislikeShortsPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.patches.youtube.utils.videoid.general.VideoIdPatch
-import app.revanced.util.exception
 import app.revanced.util.getTargetIndexWithFieldReferenceType
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 
@@ -56,23 +56,20 @@ object ReturnYouTubeDislikePatch : BaseBytecodePatch(
             DislikeFingerprint.toPatch(Vote.DISLIKE),
             RemoveLikeFingerprint.toPatch(Vote.REMOVE_LIKE)
         ).forEach { (fingerprint, vote) ->
-            with(fingerprint.result ?: throw fingerprint.exception) {
-                mutableMethod.addInstructions(
-                    0,
-                    """
+            fingerprint.resultOrThrow().mutableMethod.addInstructions(
+                0, """
                     const/4 v0, ${vote.value}
                     invoke-static {v0}, $INTEGRATIONS_RYD_CLASS_DESCRIPTOR->sendVote(I)V
                     """
-                )
-            }
+            )
         }
 
 
-        TextComponentConstructorFingerprint.result?.let { parentResult ->
+        TextComponentConstructorFingerprint.resultOrThrow().let { parentResult ->
             // Resolves fingerprints
             TextComponentContextFingerprint.resolve(context, parentResult.classDef)
 
-            TextComponentContextFingerprint.result?.let {
+            TextComponentContextFingerprint.resultOrThrow().let {
                 it.mutableMethod.apply {
                     val conversionContextFieldIndex = getTargetIndexWithFieldReferenceType("Ljava/util/Map;") - 1
                     val conversionContextFieldReference =
@@ -91,8 +88,8 @@ object ReturnYouTubeDislikePatch : BaseBytecodePatch(
                             """
                     )
                 }
-            } ?: throw TextComponentContextFingerprint.exception
-        } ?: throw TextComponentConstructorFingerprint.exception
+            }
+        }
 
         VideoIdPatch.injectCall("$INTEGRATIONS_RYD_CLASS_DESCRIPTOR->newVideoLoaded(Ljava/lang/String;)V")
         VideoIdPatch.injectPlayerResponseVideoId("$INTEGRATIONS_RYD_CLASS_DESCRIPTOR->preloadVideoId(Ljava/lang/String;Z)V")

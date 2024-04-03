@@ -12,8 +12,9 @@ import app.revanced.patches.youtube.utils.integrations.Constants.GENERAL_CLASS_D
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch.contexts
-import app.revanced.util.exception
+import app.revanced.util.getWalkerMethod
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Suppress("DEPRECATION", "unused")
@@ -36,33 +37,29 @@ object WideSearchBarPatch : BaseBytecodePatch(
     override fun execute(context: BytecodeContext) {
 
         // resolves fingerprints
-        val parentClassDef = SetActionBarRingoFingerprint.result?.classDef
-            ?: throw SetActionBarRingoFingerprint.exception
+        val parentClassDef = SetActionBarRingoFingerprint.resultOrThrow().classDef
         YouActionBarFingerprint.resolve(context, parentClassDef)
 
         // patch methods
-        SetWordMarkHeaderFingerprint.result?.let {
-            val targetMethod =
-                context.toMethodWalker(it.method)
-                    .nextMethod(1, true)
-                    .getMethod() as MutableMethod
+        SetWordMarkHeaderFingerprint.resultOrThrow().let {
+            val walkerMethod = it.getWalkerMethod(context, it.scanResult.patternScanResult!!.startIndex + 1)
 
-            targetMethod.apply {
+            walkerMethod.apply {
                 injectSearchBarHook(
                     implementation!!.instructions.size - 1,
                     "enableWideSearchBar"
                 )
             }
-        } ?: throw SetWordMarkHeaderFingerprint.exception
+        }
 
-        YouActionBarFingerprint.result?.let {
+        YouActionBarFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 injectSearchBarHook(
                     it.scanResult.patternScanResult!!.endIndex,
                     "enableWideSearchBarInYouTab"
                 )
             }
-        } ?: throw YouActionBarFingerprint.exception
+        }
 
         /**
          * Set Wide SearchBar Start Margin

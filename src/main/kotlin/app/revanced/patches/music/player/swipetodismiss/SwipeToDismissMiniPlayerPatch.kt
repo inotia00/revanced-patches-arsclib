@@ -19,7 +19,6 @@ import app.revanced.patches.music.utils.integrations.Constants.PLAYER_CLASS_DESC
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.getReference
 import app.revanced.util.getStringInstructionIndex
 import app.revanced.util.getTargetIndex
@@ -27,6 +26,7 @@ import app.revanced.util.getTargetIndexReversed
 import app.revanced.util.getTargetIndexWithFieldReferenceType
 import app.revanced.util.getWideLiteralInstructionIndex
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
@@ -67,7 +67,7 @@ object SwipeToDismissMiniPlayerPatch : BaseBytecodePatch(
     override fun execute(context: BytecodeContext) {
 
         if (!SettingsPatch.upward0642) {
-            SwipeToCloseFingerprint.result?.let {
+            SwipeToCloseFingerprint.resultOrThrow().let {
                 it.mutableMethod.apply {
                     val insertIndex = implementation!!.instructions.size - 1
                     val targetRegister = getInstruction<OneRegisterInstruction>(insertIndex).registerA
@@ -79,21 +79,21 @@ object SwipeToDismissMiniPlayerPatch : BaseBytecodePatch(
                             """
                     )
                 }
-            } ?: throw SwipeToCloseFingerprint.exception
+            }
         } else {
 
             // Dismiss mini player by swiping down
 
-            InteractionLoggingEnumFingerprint.result?.let {
+            InteractionLoggingEnumFingerprint.resultOrThrow().let {
                 it.mutableMethod.apply {
                     val stringIndex = getStringInstructionIndex("INTERACTION_LOGGING_GESTURE_TYPE_SWIPE")
                     val sPutObjectIndex = getTargetIndex(stringIndex, Opcode.SPUT_OBJECT)
 
                     sGetObjectReference = getInstruction<ReferenceInstruction>(sPutObjectIndex).reference
                 }
-            } ?: throw InteractionLoggingEnumFingerprint.exception
+            }
 
-            MusicActivityWidgetFingerprint.result?.let {
+            MusicActivityWidgetFingerprint.resultOrThrow().let {
                 it.mutableMethod.apply {
                     widgetIndex = getWideLiteralInstructionIndex(79500)
 
@@ -105,13 +105,13 @@ object SwipeToDismissMiniPlayerPatch : BaseBytecodePatch(
                     invokeDirectReference = getReference(Opcode.INVOKE_DIRECT, false)
                     invokeInterfaceSecondaryReference = getReference(Opcode.INVOKE_INTERFACE, false)
                 }
-            } ?: throw MusicActivityWidgetFingerprint.exception
+            }
 
-            HandleSearchRenderedFingerprint.result?.let { parentResult ->
+            HandleSearchRenderedFingerprint.resultOrThrow().let { parentResult ->
                 // Resolves fingerprints
                 HandleSignInEventFingerprint.resolve(context, parentResult.classDef)
 
-                HandleSignInEventFingerprint.result?.let {
+                HandleSignInEventFingerprint.resultOrThrow().let {
                     val dismissBehaviorMethod = context.toMethodWalker(it.method)
                         .nextMethod(it.scanResult.patternScanResult!!.startIndex, true)
                         .getMethod() as MutableMethod
@@ -145,14 +145,14 @@ object SwipeToDismissMiniPlayerPatch : BaseBytecodePatch(
                                 """, ExternalLabel("dismiss", getInstruction(insertIndex))
                         )
                     }
-                } ?: throw HandleSignInEventFingerprint.exception
-            } ?: throw HandleSearchRenderedFingerprint.exception
+                }
+            }
 
             // Endregion
 
             // Hides default text display when the app is cold started
 
-            MiniPlayerDefaultTextFingerprint.result?.let {
+            MiniPlayerDefaultTextFingerprint.resultOrThrow().let {
                 it.mutableMethod.apply {
                     val insertIndex = it.scanResult.patternScanResult!!.endIndex
                     val insertRegister = getInstruction<TwoRegisterInstruction>(insertIndex).registerB
@@ -164,13 +164,13 @@ object SwipeToDismissMiniPlayerPatch : BaseBytecodePatch(
                             """
                     )
                 }
-            } ?: throw MiniPlayerDefaultTextFingerprint.exception
+            }
 
             // Endregion
 
             // Hides default text display after dismissing the mini player
 
-            MiniPlayerDefaultViewVisibilityFingerprint.result?.let {
+            MiniPlayerDefaultViewVisibilityFingerprint.resultOrThrow().let {
                 it.mutableClass.methods.find { method ->
                     method.parameters == listOf("Landroid/view/View;", "I")
                 }?.apply {
@@ -193,7 +193,7 @@ object SwipeToDismissMiniPlayerPatch : BaseBytecodePatch(
                     )
                 } ?: throw PatchException("Could not find targetMethod")
 
-            } ?: throw MiniPlayerDefaultViewVisibilityFingerprint.exception
+            }
 
             // Endregion
 

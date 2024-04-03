@@ -10,7 +10,7 @@ import app.revanced.patches.youtube.utils.integrations.Constants.FULLSCREEN_CLAS
 import app.revanced.patches.youtube.utils.quickactions.fingerprints.QuickActionsElementFingerprint
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.QuickActionsElementContainer
-import app.revanced.util.exception
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.WideLiteralInstruction
 
@@ -23,7 +23,7 @@ object QuickActionsHookPatch : BytecodePatch(
     private var insertRegister: Int = 0
     override fun execute(context: BytecodeContext) {
 
-        QuickActionsElementFingerprint.result?.let {
+        QuickActionsElementFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 insertMethod = this
                 val containerCalls = implementation!!.instructions.withIndex()
@@ -40,15 +40,13 @@ object QuickActionsHookPatch : BytecodePatch(
                 )
                 insertIndex = constIndex + 5
             }
-        } ?: throw QuickActionsElementFingerprint.exception
+        }
     }
 
     internal fun injectQuickActionMargin() {
-        insertMethod.apply {
-            addInstruction(
-                insertIndex,
-                "invoke-static {v$insertRegister}, $FULLSCREEN_CLASS_DESCRIPTOR->setQuickActionMargin(Landroid/widget/FrameLayout;)V"
-            )
-        }
+        insertMethod.addInstruction(
+            insertIndex,
+            "invoke-static {v$insertRegister}, $FULLSCREEN_CLASS_DESCRIPTOR->setQuickActionMargin(Landroid/widget/FrameLayout;)V"
+        )
     }
 }

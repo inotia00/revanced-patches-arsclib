@@ -10,9 +10,9 @@ import app.revanced.patches.youtube.utils.integrations.Constants.COMPONENTS_PATH
 import app.revanced.patches.youtube.utils.integrations.Constants.GENERAL_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.recyclerview.BottomSheetRecyclerViewPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.getTargetIndexWithMethodReferenceName
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 
 @Suppress("unused")
@@ -33,7 +33,7 @@ object DescriptionComponentsPatch : BaseBytecodePatch(
     override fun execute(context: BytecodeContext) {
 
         if (SettingsPatch.upward1902) {
-            TextViewComponentFingerprint.result?.let {
+            TextViewComponentFingerprint.resultOrThrow().let {
                 it.mutableMethod.apply {
                     val insertIndex = getTargetIndexWithMethodReferenceName("setTextIsSelectable")
                     val insertInstruction = getInstruction<FiveRegisterInstruction>(insertIndex)
@@ -44,7 +44,7 @@ object DescriptionComponentsPatch : BaseBytecodePatch(
                                 "$GENERAL_CLASS_DESCRIPTOR->disableDescriptionInteraction(Landroid/widget/TextView;Z)V"
                     )
                 }
-            } ?: throw TextViewComponentFingerprint.exception
+            }
 
             BottomSheetRecyclerViewPatch.injectCall("$GENERAL_CLASS_DESCRIPTOR->onDescriptionPanelCreate(Landroid/support/v7/widget/RecyclerView;)V")
 

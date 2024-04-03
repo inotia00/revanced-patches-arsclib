@@ -7,9 +7,9 @@ import app.revanced.patches.youtube.navigation.label.fingerprints.PivotBarSetTex
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.NAVIGATION_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.getTargetIndexWithMethodReferenceName
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 
 @Suppress("unused")
@@ -22,7 +22,7 @@ object NavigationLabelPatch : BaseBytecodePatch(
 ) {
     override fun execute(context: BytecodeContext) {
 
-        PivotBarSetTextFingerprint.result?.let {
+        PivotBarSetTextFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val targetIndex = getTargetIndexWithMethodReferenceName("setText")
                 val targetRegister = getInstruction<FiveRegisterInstruction>(targetIndex).registerC
@@ -32,7 +32,7 @@ object NavigationLabelPatch : BaseBytecodePatch(
                     "invoke-static {v$targetRegister}, $NAVIGATION_CLASS_DESCRIPTOR->hideNavigationLabel(Landroid/widget/TextView;)V"
                 )
             }
-        } ?: throw PivotBarSetTextFingerprint.exception
+        }
 
         /**
          * Add settings

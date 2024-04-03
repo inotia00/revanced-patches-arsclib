@@ -10,8 +10,8 @@ import app.revanced.patches.youtube.utils.fingerprints.SeekbarOnDrawFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.SEEKBAR_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 
 @Suppress("unused")
 object SeekbarPatch : BaseBytecodePatch(
@@ -26,8 +26,8 @@ object SeekbarPatch : BaseBytecodePatch(
 ) {
     override fun execute(context: BytecodeContext) {
 
-        SeekbarFingerprint.result?.mutableClass?.let { mutableClass ->
-            SeekbarOnDrawFingerprint.also { it.resolve(context, mutableClass) }.result?.let {
+        SeekbarFingerprint.resultOrThrow().mutableClass.let { mutableClass ->
+            SeekbarOnDrawFingerprint.also { it.resolve(context, mutableClass) }.resultOrThrow().let {
                 it.mutableMethod.apply {
                     addInstructionsWithLabels(
                         0, """
@@ -38,8 +38,8 @@ object SeekbarPatch : BaseBytecodePatch(
                             """, ExternalLabel("show", getInstruction(0))
                     )
                 }
-            } ?: throw SeekbarOnDrawFingerprint.exception
-        } ?: throw SeekbarFingerprint.exception
+            }
+        }
 
         /**
          * Add settings

@@ -5,25 +5,22 @@ import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWith
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.Patch
-import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.youtube.shorts.components.fingerprints.ToolBarBannerFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.SHORTS_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.toolbar.ToolBarHookPatch
-import app.revanced.util.exception
+import app.revanced.util.getWalkerMethod
+import app.revanced.util.resultOrThrow
 
 @Patch(dependencies = [ToolBarHookPatch::class])
 object ShortsToolBarPatch : BytecodePatch(
     setOf(ToolBarBannerFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
-        ToolBarBannerFingerprint.result?.let {
-            val targetMethod = context
-                .toMethodWalker(it.method)
-                .nextMethod(it.scanResult.patternScanResult!!.endIndex, true)
-                .getMethod() as MutableMethod
+        ToolBarBannerFingerprint.resultOrThrow().let {
+            val walkerMethod = it.getWalkerMethod(context, it.scanResult.patternScanResult!!.endIndex)
 
-            targetMethod.apply {
+            walkerMethod.apply {
                 addInstructionsWithLabels(
                     0,
                     """
@@ -34,7 +31,7 @@ object ShortsToolBarPatch : BytecodePatch(
                     ExternalLabel("hide", getInstruction(implementation!!.instructions.size - 1))
                 )
             }
-        } ?: throw ToolBarBannerFingerprint.exception
+        }
 
         ToolBarHookPatch.injectCall("$SHORTS_CLASS_DESCRIPTOR->hideShortsToolBarButton")
     }

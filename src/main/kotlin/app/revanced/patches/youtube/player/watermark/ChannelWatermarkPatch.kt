@@ -10,8 +10,8 @@ import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACK
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPONENTS_PATH
 import app.revanced.patches.youtube.utils.integrations.Constants.PLAYER_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 
 @Suppress("unused")
@@ -30,13 +30,13 @@ object ChannelWatermarkPatch : BaseBytecodePatch(
 
     override fun execute(context: BytecodeContext) {
 
-        WatermarkParentFingerprint.result?.let { parentResult ->
+        WatermarkParentFingerprint.resultOrThrow().let { parentResult ->
             WatermarkFingerprint.also {
                 it.resolve(
                     context,
                     parentResult.classDef
                 )
-            }.result?.let {
+            }.resultOrThrow().let {
                 it.mutableMethod.apply {
                     val insertIndex = it.scanResult.patternScanResult!!.endIndex
                     val register = getInstruction<TwoRegisterInstruction>(insertIndex).registerA
@@ -48,8 +48,8 @@ object ChannelWatermarkPatch : BaseBytecodePatch(
                             """
                     )
                 }
-            } ?: throw WatermarkFingerprint.exception
-        } ?: throw WatermarkParentFingerprint.exception
+            }
+        }
 
         LithoFilterPatch.addFilter(FILTER_CLASS_DESCRIPTOR)
 

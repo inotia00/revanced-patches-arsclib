@@ -12,8 +12,8 @@ import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACK
 import app.revanced.patches.youtube.utils.integrations.Constants.FLYOUT_PANEL_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction35c
@@ -40,8 +40,7 @@ object FeedFlyoutPanelPatch : BaseBytecodePatch(
          * Phone
          */
         val bottomSheetMenuItemBuilderResult = BottomSheetMenuItemBuilderLegacyFingerprint.result
-            ?: BottomSheetMenuItemBuilderFingerprint.result
-            ?: throw BottomSheetMenuItemBuilderFingerprint.exception
+            ?: BottomSheetMenuItemBuilderFingerprint.resultOrThrow()
 
         bottomSheetMenuItemBuilderResult.let {
             it.mutableMethod.apply {
@@ -65,7 +64,7 @@ object FeedFlyoutPanelPatch : BaseBytecodePatch(
         /**
          * Tablet
          */
-        ContextualMenuItemBuilderFingerprint.result?.let {
+        ContextualMenuItemBuilderFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val targetIndex = it.scanResult.patternScanResult!!.startIndex + 1
                 val targetInstruction = getInstruction<Instruction35c>(targetIndex)
@@ -81,7 +80,7 @@ object FeedFlyoutPanelPatch : BaseBytecodePatch(
                             "$FLYOUT_PANEL_CLASS_DESCRIPTOR->hideFeedFlyoutPanel(Landroid/widget/TextView;Ljava/lang/CharSequence;)V"
                 )
             }
-        } ?: throw ContextualMenuItemBuilderFingerprint.exception
+        }
 
         /**
          * Add settings

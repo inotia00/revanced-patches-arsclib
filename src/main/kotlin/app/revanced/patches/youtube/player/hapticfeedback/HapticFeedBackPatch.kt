@@ -13,9 +13,9 @@ import app.revanced.patches.youtube.player.hapticfeedback.fingerprints.ZoomHapti
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.PLAYER_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.getTargetIndex
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
@@ -60,7 +60,7 @@ object HapticFeedBackPatch : BaseBytecodePatch(
     }
 
     private fun MethodFingerprint.injectHook(methodName: String) {
-        result?.let {
+        resultOrThrow().let {
             it.mutableMethod.apply {
                 var index = 0
                 var register = 0
@@ -79,7 +79,7 @@ object HapticFeedBackPatch : BaseBytecodePatch(
                         """, ExternalLabel("vibrate", getInstruction(index))
                 )
             }
-        } ?: throw exception
+        }
     }
 }
 

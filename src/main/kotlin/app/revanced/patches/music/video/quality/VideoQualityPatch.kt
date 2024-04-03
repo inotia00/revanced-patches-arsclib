@@ -11,8 +11,8 @@ import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
 import app.revanced.patches.music.video.quality.fingerprints.UserQualityChangeFingerprint
 import app.revanced.patches.music.video.videoid.VideoIdPatch
-import app.revanced.util.exception
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.builder.instruction.BuilderInstruction21c
 
 @Suppress("unused")
@@ -32,7 +32,7 @@ object VideoQualityPatch : BaseBytecodePatch(
 
     override fun execute(context: BytecodeContext) {
 
-        UserQualityChangeFingerprint.result?.let {
+        UserQualityChangeFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val endIndex = it.scanResult.patternScanResult!!.endIndex
                 val qualityChangedClass =
@@ -54,7 +54,7 @@ object VideoQualityPatch : BaseBytecodePatch(
                     )
                 } ?: throw PatchException("Failed to find onItemClick method")
             }
-        } ?: throw UserQualityChangeFingerprint.exception
+        }
 
         VideoIdPatch.hookVideoId("$INTEGRATIONS_VIDEO_QUALITY_CLASS_DESCRIPTOR->newVideoStarted(Ljava/lang/String;)V")
 

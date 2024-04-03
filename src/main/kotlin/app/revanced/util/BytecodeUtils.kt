@@ -25,6 +25,8 @@ import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 import com.android.tools.smali.dexlib2.iface.reference.Reference
 import com.android.tools.smali.dexlib2.util.MethodUtil
 
+fun MethodFingerprint.resultOrThrow() = result ?: throw exception
+
 /**
  * The [PatchException] of failing to resolve a [MethodFingerprint].
  *
@@ -133,7 +135,7 @@ fun MethodFingerprint.literalInstructionViewHook(
     literal: Long,
     descriptor: String
 ) {
-    result?.mutableMethod?.apply {
+    resultOrThrow().mutableMethod.apply {
         val literalIndex = getWideLiteralInstructionIndex(literal)
         val targetIndex = getTargetIndex(literalIndex, Opcode.MOVE_RESULT_OBJECT)
         val targetRegister = getInstruction<OneRegisterInstruction>(targetIndex).registerA
@@ -142,7 +144,7 @@ fun MethodFingerprint.literalInstructionViewHook(
             targetIndex + 1,
             "invoke-static {v$targetRegister}, $descriptor"
         )
-    } ?: throw exception
+    }
 }
 
 /**
@@ -380,7 +382,7 @@ fun BytecodeContext.updatePatchStatus(
 fun List<MethodFingerprint>.returnEarly(bool: Boolean = false) {
     val const = if (bool) "0x1" else "0x0"
     this.forEach { fingerprint ->
-        fingerprint.result?.let { result ->
+        fingerprint.resultOrThrow().let { result ->
             val stringInstructions = when (result.method.returnType.first()) {
                 'L' -> """
                         const/4 v0, $const
@@ -395,6 +397,6 @@ fun List<MethodFingerprint>.returnEarly(bool: Boolean = false) {
             }
 
             result.mutableMethod.addInstructions(0, stringInstructions)
-        } ?: throw fingerprint.exception
+        }
     }
 }

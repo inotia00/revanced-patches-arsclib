@@ -10,8 +10,8 @@ import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.music.video.videoid.fingerprints.PlayerResponseModelStoryboardRendererFingerprint
 import app.revanced.patches.music.video.videoid.fingerprints.VideoIdParentFingerprint
-import app.revanced.util.exception
 import app.revanced.util.getTargetIndexReversed
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
@@ -36,7 +36,7 @@ object VideoIdPatch : BytecodePatch(
 
     override fun execute(context: BytecodeContext) {
 
-        VideoIdParentFingerprint.result?.let { result ->
+        VideoIdParentFingerprint.resultOrThrow().let { result ->
             val targetIndex = result.scanResult.patternScanResult!!.endIndex
             val targetReference = result.mutableMethod.getInstruction<ReferenceInstruction>(targetIndex).reference
             val targetClass = (targetReference as FieldReference).type
@@ -55,14 +55,17 @@ object VideoIdPatch : BytecodePatch(
 
                     videoIdRegister = getInstruction<OneRegisterInstruction>(videoIdInsertIndex - 1).registerA
                 }
-        } ?: throw VideoIdParentFingerprint.exception
+        }
 
-        PlayerResponseModelStoryboardRendererFingerprint.result
-            ?.mutableClass?.methods?.find { method -> method.name == backgroundPlaybackMethodName }
+        PlayerResponseModelStoryboardRendererFingerprint
+            .resultOrThrow()
+            .mutableClass
+            .methods
+            .find { method -> method.name == backgroundPlaybackMethodName }
             ?.apply {
                 backgroundPlaybackMethod = this
                 backgroundPlaybackInsertIndex = implementation!!.instructions.size - 1
-            } ?: throw PlayerResponseModelStoryboardRendererFingerprint.exception
+            }
     }
 
     override fun close () {

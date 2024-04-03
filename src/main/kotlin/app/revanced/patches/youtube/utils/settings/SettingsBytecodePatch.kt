@@ -13,7 +13,7 @@ import app.revanced.patches.youtube.utils.integrations.Constants.UTILS_PATH
 import app.revanced.patches.youtube.utils.mainactivity.MainActivityResolvePatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.settings.fingerprints.ThemeSetterSystemFingerprint
-import app.revanced.util.exception
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch(
@@ -38,12 +38,12 @@ object SettingsBytecodePatch : BytecodePatch(
         contexts = context
 
         // apply the current theme of the settings page
-        ThemeSetterSystemFingerprint.result?.let {
+        ThemeSetterSystemFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 injectCall(implementation!!.instructions.size - 1)
                 injectCall(it.scanResult.patternScanResult!!.startIndex)
             }
-        } ?: throw ThemeSetterSystemFingerprint.exception
+        }
 
         MainActivityResolvePatch.injectOnCreateMethodCall(INTEGRATIONS_INITIALIZATION_CLASS_DESCRIPTOR, "setDeviceInformation")
         MainActivityResolvePatch.injectOnCreateMethodCall(INTEGRATIONS_INITIALIZATION_CLASS_DESCRIPTOR, "onCreate")

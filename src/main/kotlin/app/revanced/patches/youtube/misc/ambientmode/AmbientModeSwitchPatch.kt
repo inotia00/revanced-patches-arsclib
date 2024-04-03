@@ -10,10 +10,10 @@ import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACK
 import app.revanced.patches.youtube.utils.integrations.Constants.FULLSCREEN_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.integrations.Constants.MISC_PATH
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.getTargetIndexWithMethodReferenceNameReversed
 import app.revanced.util.literalInstructionBooleanHook
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Suppress("unused")
@@ -29,7 +29,7 @@ object AmbientModeSwitchPatch : BaseBytecodePatch(
 ) {
     override fun execute(context: BytecodeContext) {
 
-        PowerSaveModeFingerprint.result?.let {
+        PowerSaveModeFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val powerSaveModePrimaryIndex = getTargetIndexWithMethodReferenceNameReversed("isPowerSaveMode")
                 val powerSaveModeSecondaryIndex = getTargetIndexWithMethodReferenceNameReversed(powerSaveModePrimaryIndex - 1, "isPowerSaveMode")
@@ -41,7 +41,7 @@ object AmbientModeSwitchPatch : BaseBytecodePatch(
                     hook(index)
                 }
             }
-        } ?: throw PowerSaveModeFingerprint.exception
+        }
 
         AmbientModeInFullscreenFingerprint.literalInstructionBooleanHook(
             45389368,

@@ -11,9 +11,9 @@ import app.revanced.patches.music.utils.overridespeed.OverrideSpeedHookPatch
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.getTargetIndexWithMethodReferenceName
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 
 @Suppress("unused")
@@ -33,7 +33,7 @@ object ReplaceReportPatch : BaseBytecodePatch(
     override fun execute(context: BytecodeContext) {
         FlyoutPanelMenuItemPatch.replaceComponents()
 
-        TouchOutsideFingerprint.result?.let {
+        TouchOutsideFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val setOnClickListenerIndex = getTargetIndexWithMethodReferenceName("setOnClickListener")
                 val setOnClickListenerRegister = getInstruction<FiveRegisterInstruction>(setOnClickListenerIndex).registerC
@@ -43,7 +43,7 @@ object ReplaceReportPatch : BaseBytecodePatch(
                     "sput-object v$setOnClickListenerRegister, $FLYOUT_CLASS_DESCRIPTOR->touchOutSideView:Landroid/view/View;"
                 )
             }
-        } ?: throw TouchOutsideFingerprint.exception
+        }
 
         SettingsPatch.addMusicPreference(
             CategoryType.FLYOUT,

@@ -10,8 +10,8 @@ import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACK
 import app.revanced.patches.youtube.utils.integrations.Constants.FULLSCREEN_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 
 @Suppress("unused")
 object EndScreenOverlayPatch : BaseBytecodePatch(
@@ -25,7 +25,7 @@ object EndScreenOverlayPatch : BaseBytecodePatch(
     fingerprints = setOf(EndScreenResultsParentFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
-        EndScreenResultsParentFingerprint.result?.let {
+        EndScreenResultsParentFingerprint.resultOrThrow().let {
             it.mutableClass.methods.find { method -> method.parameters == listOf("I", "Z", "I") }
                 ?.apply {
                     addInstructionsWithLabels(
@@ -37,7 +37,7 @@ object EndScreenOverlayPatch : BaseBytecodePatch(
                             """, ExternalLabel("show", getInstruction(0))
                     )
                 } ?: throw PatchException("Could not find targetMethod")
-        } ?: throw EndScreenResultsParentFingerprint.exception
+        }
 
         /**
          * Add settings

@@ -12,12 +12,12 @@ import app.revanced.patches.music.navigation.component.NavigationBarComponentPat
 import app.revanced.patches.music.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch.PrivacyTosFooter
-import app.revanced.util.exception
 import app.revanced.util.getTargetIndex
 import app.revanced.util.getTargetIndexWithReference
 import app.revanced.util.getWalkerMethod
 import app.revanced.util.getWideLiteralInstructionIndex
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
@@ -41,7 +41,7 @@ object GetPremiumPatch : BaseBytecodePatch(
     override fun execute(context: BytecodeContext) {
 
         // Hides get premium button at the bottom of the account switching menu
-        HideGetPremiumFingerprint.result?.let {
+        HideGetPremiumFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val insertIndex = it.scanResult.patternScanResult!!.startIndex
                 val register = getInstruction<TwoRegisterInstruction>(insertIndex).registerA
@@ -51,10 +51,10 @@ object GetPremiumPatch : BaseBytecodePatch(
                     "const/4 v$register, 0x0"
                 )
             }
-        } ?: throw HideGetPremiumFingerprint.exception
+        }
 
         // Hides get premium button at the top of the account switching menu
-        AccountMenuFooterFingerprint.result?.let {
+        AccountMenuFooterFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val constIndex = getWideLiteralInstructionIndex(PrivacyTosFooter)
                 val walkerIndex = getTargetIndex(constIndex + 2, Opcode.INVOKE_VIRTUAL)
@@ -73,18 +73,18 @@ object GetPremiumPatch : BaseBytecodePatch(
                     )
                 }
             }
-        } ?: throw AccountMenuFooterFingerprint.exception
+        }
 
         // Hides premium membership menu in settings
-        MembershipSettingsParentFingerprint.result?.classDef?.let { classDef ->
+        MembershipSettingsParentFingerprint.resultOrThrow().classDef.let { classDef ->
             MembershipSettingsFingerprint.resolve(context, classDef)
-            MembershipSettingsFingerprint.result?.mutableMethod?.addInstructions(
+            MembershipSettingsFingerprint.resultOrThrow().mutableMethod.addInstructions(
                 0, """
                     const/4 v0, 0x0
                     return-object v0
                     """
-            ) ?: throw MembershipSettingsFingerprint.exception
-        } ?: throw MembershipSettingsParentFingerprint.exception
+            )
+        }
 
     }
 }

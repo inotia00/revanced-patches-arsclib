@@ -5,7 +5,7 @@ import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.fingerprint.MethodFingerprint
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.util.exception
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 
 abstract class BaseSanitizeUrlQueryPatch(
@@ -19,7 +19,7 @@ abstract class BaseSanitizeUrlQueryPatch(
     }
 ) {
     private fun MethodFingerprint.invoke() {
-        result?.let {
+        resultOrThrow().let {
             it.mutableMethod.apply {
                 val targetIndex = it.scanResult.patternScanResult!!.startIndex
                 val targetRegister = getInstruction<TwoRegisterInstruction>(targetIndex).registerA
@@ -31,7 +31,7 @@ abstract class BaseSanitizeUrlQueryPatch(
                         """
                 )
             }
-        } ?: throw exception
+        }
     }
 
     override fun execute(context: BytecodeContext) {

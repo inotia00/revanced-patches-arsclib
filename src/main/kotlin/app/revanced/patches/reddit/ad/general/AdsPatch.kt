@@ -13,10 +13,10 @@ import app.revanced.patches.reddit.utils.integrations.Constants.COMPATIBLE_PACKA
 import app.revanced.patches.reddit.utils.integrations.Constants.PATCHES_PATH
 import app.revanced.patches.reddit.utils.settings.SettingsBytecodePatch.updateSettingsStatus
 import app.revanced.patches.reddit.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.getTargetIndexWithFieldReferenceName
 import app.revanced.util.getTargetIndexWithMethodReferenceName
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 
@@ -41,7 +41,7 @@ object AdsPatch : BaseBytecodePatch(
 
     override fun execute(context: BytecodeContext) {
         // region Filter promoted ads (does not work in popular or latest feed)
-        AdPostFingerprint.result?.let {
+        AdPostFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val targetIndex = getTargetIndexWithFieldReferenceName("children")
                 val targetRegister = getInstruction<TwoRegisterInstruction>(targetIndex).registerA
@@ -53,12 +53,12 @@ object AdsPatch : BaseBytecodePatch(
                         """
                 )
             }
-        } ?: throw AdPostFingerprint.exception
+        }
 
         // The new feeds work by inserting posts into lists.
         // AdElementConverter is conveniently responsible for inserting all feed ads.
         // By removing the appending instruction no ad posts gets appended to the feed.
-        NewAdPostFingerprint.result?.let {
+        NewAdPostFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val targetIndex = getTargetIndexWithMethodReferenceName("add")
                 val targetRegister =
@@ -72,7 +72,7 @@ object AdsPatch : BaseBytecodePatch(
                         """, ExternalLabel("show", getInstruction(targetIndex + 1))
                 )
             }
-        } ?: throw NewAdPostFingerprint.exception
+        }
 
         updateSettingsStatus("enableGeneralAds")
 

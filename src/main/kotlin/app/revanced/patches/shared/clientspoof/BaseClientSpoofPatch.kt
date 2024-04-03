@@ -16,7 +16,7 @@ import com.android.tools.smali.dexlib2.iface.instruction.Instruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 
-abstract class AbstractClientSpoofPatch(
+abstract class BaseClientSpoofPatch(
     private val packageName: String
 ) : BaseTransformInstructionsPatch<Instruction35cInfo>() {
     override fun filterMap(

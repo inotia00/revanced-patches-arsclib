@@ -11,10 +11,10 @@ import app.revanced.patches.youtube.general.mixplaylists.fingerprints.ElementPar
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPONENTS_PATH
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.getTargetIndex
 import app.revanced.util.indexOfFirstInstruction
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
@@ -36,10 +36,10 @@ object MixPlaylistsPatch : BaseBytecodePatch(
 
     override fun execute(context: BytecodeContext) {
 
-        ElementParserParentFingerprint.result?.let { parentResult ->
+        ElementParserParentFingerprint.resultOrThrow().let { parentResult ->
             ElementParserFingerprint.resolve(context, parentResult.classDef)
 
-            ElementParserFingerprint.result?.let {
+            ElementParserFingerprint.resultOrThrow().let {
                 it.mutableMethod.apply {
                     val freeRegister = implementation!!.registerCount - parameters.size - 2
                     val insertIndex = indexOfFirstInstruction {
@@ -68,8 +68,8 @@ object MixPlaylistsPatch : BaseBytecodePatch(
                         "move-object/from16 v$freeRegister, p3"
                     )
                 }
-            } ?: throw ElementParserFingerprint.exception
-        } ?: throw ElementParserParentFingerprint.exception
+            }
+        }
 
         LithoFilterPatch.addFilter(FILTER_CLASS_DESCRIPTOR)
 

@@ -10,9 +10,9 @@ import app.revanced.patches.music.utils.integrations.Constants.COMPATIBLE_PACKAG
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.getTargetIndexWithReference
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 
 @Suppress("unused")
@@ -28,7 +28,7 @@ object TermsContainerPatch : BaseBytecodePatch(
 ) {
     override fun execute(context: BytecodeContext) {
 
-        TermsOfServiceFingerprint.result?.let {
+        TermsOfServiceFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val insertIndex = getTargetIndexWithReference("/PrivacyTosFooter;->setVisibility(I)V")
                 val visibilityRegister =
@@ -45,7 +45,7 @@ object TermsContainerPatch : BaseBytecodePatch(
                         """
                 )
             }
-        } ?: throw TermsOfServiceFingerprint.exception
+        }
 
         SettingsPatch.addMusicPreference(
             CategoryType.ACCOUNT,

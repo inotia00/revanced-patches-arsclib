@@ -8,8 +8,8 @@ import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACK
 import app.revanced.patches.youtube.utils.integrations.Constants.GENERAL_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 
 @Suppress("unused")
@@ -25,7 +25,7 @@ object CrowdfundingBoxPatch : BaseBytecodePatch(
 ) {
     override fun execute(context: BytecodeContext) {
 
-        CrowdfundingBoxFingerprint.result?.let {
+        CrowdfundingBoxFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val insertIndex = it.scanResult.patternScanResult!!.endIndex
                 val register = getInstruction<TwoRegisterInstruction>(insertIndex).registerA
@@ -35,7 +35,7 @@ object CrowdfundingBoxPatch : BaseBytecodePatch(
                     "invoke-static {v$register}, $GENERAL_CLASS_DESCRIPTOR->hideCrowdfundingBox(Landroid/view/View;)V"
                 )
             }
-        } ?: throw CrowdfundingBoxFingerprint.exception
+        }
 
         /**
          * Add settings

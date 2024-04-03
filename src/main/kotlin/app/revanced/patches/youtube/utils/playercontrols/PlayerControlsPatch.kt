@@ -20,9 +20,9 @@ import app.revanced.patches.youtube.utils.playercontrols.fingerprints.QuickSeekV
 import app.revanced.patches.youtube.utils.playercontrols.fingerprints.SeekEDUVisibleFingerprint
 import app.revanced.patches.youtube.utils.playercontrols.fingerprints.UserScrubbingFingerprint
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
-import app.revanced.util.exception
 import app.revanced.util.getStringInstructionIndex
 import app.revanced.util.getTargetIndexWithReference
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
@@ -44,12 +44,10 @@ object PlayerControlsPatch : BytecodePatch(
     override fun execute(context: BytecodeContext) {
 
         val playerControlsVisibilityModelClass =
-            PlayerControlsVisibilityModelFingerprint.result?.mutableClass
-                ?: throw PlayerControlsVisibilityModelFingerprint.exception
+            PlayerControlsVisibilityModelFingerprint.resultOrThrow().mutableClass
 
         val youTubeControlsOverlayClass =
-            YouTubeControlsOverlayFingerprint.result?.mutableClass
-                ?: throw YouTubeControlsOverlayFingerprint.exception
+            YouTubeControlsOverlayFingerprint.resultOrThrow().mutableClass
 
         QuickSeekVisibleFingerprint.resolve(context, playerControlsVisibilityModelClass)
         SeekEDUVisibleFingerprint.resolve(context, playerControlsVisibilityModelClass)
@@ -57,39 +55,30 @@ object PlayerControlsPatch : BytecodePatch(
 
         PlayerControlsVisibilityFingerprint.resolve(context, youTubeControlsOverlayClass)
 
-        quickSeekVisibleMutableMethod = QuickSeekVisibleFingerprint.result?.mutableMethod
-            ?: throw QuickSeekVisibleFingerprint.exception
+        quickSeekVisibleMutableMethod = QuickSeekVisibleFingerprint.resultOrThrow().mutableMethod
 
-        seekEDUVisibleMutableMethod = SeekEDUVisibleFingerprint.result?.mutableMethod
-            ?: throw SeekEDUVisibleFingerprint.exception
+        seekEDUVisibleMutableMethod = SeekEDUVisibleFingerprint.resultOrThrow().mutableMethod
 
-        userScrubbingMutableMethod = UserScrubbingFingerprint.result?.mutableMethod
-            ?: throw UserScrubbingFingerprint.exception
+        userScrubbingMutableMethod = UserScrubbingFingerprint.resultOrThrow().mutableMethod
 
-        playerControlsVisibilityMutableMethod = PlayerControlsVisibilityFingerprint.result?.mutableMethod
-            ?: throw PlayerControlsVisibilityFingerprint.exception
+        playerControlsVisibilityMutableMethod = PlayerControlsVisibilityFingerprint.resultOrThrow().mutableMethod
 
-        controlsLayoutInflateResult =
-            ControlsLayoutInflateFingerprint.result
-                ?: throw ControlsLayoutInflateFingerprint.exception
+        controlsLayoutInflateResult = ControlsLayoutInflateFingerprint.resultOrThrow()
 
-        inflateResult =
-            BottomControlsInflateFingerprint.result
-                ?: throw BottomControlsInflateFingerprint.exception
+        inflateResult = BottomControlsInflateFingerprint.resultOrThrow()
 
-        FullscreenEngagementSpeedEduVisibleToStringFingerprint.result?.let {
+        FullscreenEngagementSpeedEduVisibleToStringFingerprint.resultOrThrow().let {
             FullscreenEngagementSpeedEduVisibleFingerprint.resolve(context, it.classDef)
-            fullscreenEngagementSpeedEduVisibleMutableMethod = FullscreenEngagementSpeedEduVisibleFingerprint.result?.mutableMethod
-                ?: throw FullscreenEngagementSpeedEduVisibleFingerprint.exception
+            fullscreenEngagementSpeedEduVisibleMutableMethod = FullscreenEngagementSpeedEduVisibleFingerprint.resultOrThrow().mutableMethod
 
             it.mutableMethod.apply {
                 fullscreenEngagementViewVisibleReference =
                     findReference(", isFullscreenEngagementViewVisible=")
                 speedEDUVisibleReference = findReference(", isSpeedmasterEDUVisible=")
             }
-        } ?: throw FullscreenEngagementSpeedEduVisibleToStringFingerprint.exception
+        }
 
-        ThumbnailPreviewConfigFingerprint.result?.let {
+        ThumbnailPreviewConfigFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 bigBoardsVisibilityMutableMethod = this
 
@@ -98,7 +87,7 @@ object PlayerControlsPatch : BytecodePatch(
                     "const/4 v0, 0x1"
                 )
             }
-        } ?: throw ThumbnailPreviewConfigFingerprint.exception
+        }
     }
 
     private lateinit var controlsLayoutInflateResult: MethodFingerprintResult

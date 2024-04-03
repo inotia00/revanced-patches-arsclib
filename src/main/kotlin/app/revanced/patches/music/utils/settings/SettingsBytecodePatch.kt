@@ -16,8 +16,8 @@ import app.revanced.patches.music.utils.settings.fingerprints.GoogleApiActivityF
 import app.revanced.patches.music.utils.settings.fingerprints.PreferenceFingerprint
 import app.revanced.patches.music.utils.settings.fingerprints.SettingsHeadersFragmentFingerprint
 import app.revanced.patches.shared.settings.fingerprints.SharedSettingFingerprint
-import app.revanced.util.exception
 import app.revanced.util.getTargetIndex
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
@@ -47,7 +47,7 @@ object SettingsBytecodePatch : BytecodePatch(
         /**
          * Set SharedPrefCategory
          */
-        SharedSettingFingerprint.result?.let {
+        SharedSettingFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val stringIndex = getTargetIndex(Opcode.CONST_STRING)
                 val stringRegister = getInstruction<OneRegisterInstruction>(stringIndex).registerA
@@ -57,12 +57,12 @@ object SettingsBytecodePatch : BytecodePatch(
                     "const-string v$stringRegister, \"youtube\""
                 )
             }
-        } ?: throw SharedSettingFingerprint.exception
+        }
 
         /**
          * Inject settings Activity
          */
-        SettingsHeadersFragmentFingerprint.result?.let {
+        SettingsHeadersFragmentFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val targetIndex = it.scanResult.patternScanResult!!.endIndex
                 val targetRegister = getInstruction<OneRegisterInstruction>(targetIndex).registerA
@@ -72,12 +72,12 @@ object SettingsBytecodePatch : BytecodePatch(
                     "invoke-static {v$targetRegister}, $INTEGRATIONS_ACTIVITY_CLASS_DESCRIPTOR->setActivity(Ljava/lang/Object;)V"
                 )
             }
-        } ?: throw SettingsHeadersFragmentFingerprint.exception
+        }
 
         /**
          * Values are loaded when preferences change
          */
-        PreferenceFingerprint.result?.let {
+        PreferenceFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val targetIndex = it.scanResult.patternScanResult!!.endIndex
                 val keyRegister = getInstruction<FiveRegisterInstruction>(targetIndex).registerD
@@ -88,12 +88,12 @@ object SettingsBytecodePatch : BytecodePatch(
                     "invoke-static {v$keyRegister, v$valueRegister}, $INTEGRATIONS_FRAGMENT_CLASS_DESCRIPTOR->onPreferenceChanged(Ljava/lang/String;Z)V"
                 )
             }
-        } ?: throw PreferenceFingerprint.exception
+        }
 
         /**
          * Inject dummy Activity for intent
          */
-        GoogleApiActivityFingerprint.result?.let {
+        GoogleApiActivityFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 addInstructionsWithLabels(
                     1, """
@@ -104,7 +104,7 @@ object SettingsBytecodePatch : BytecodePatch(
                         """, ExternalLabel("show", getInstruction(1))
                 )
             }
-        } ?: throw GoogleApiActivityFingerprint.exception
+        }
 
         injectInit("InitializationPatch", "setDeviceInformation")
         injectInit("InitializationPatch", "onCreate")

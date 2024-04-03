@@ -23,12 +23,12 @@ import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch.TopEnd
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch.TopStart
 import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.getStringInstructionIndex
 import app.revanced.util.getTargetIndex
 import app.revanced.util.getTargetIndexReversed
 import app.revanced.util.getWideLiteralInstructionIndex
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
@@ -81,23 +81,20 @@ object MiniPlayerButtonPatch : BaseBytecodePatch(
     override fun execute(context: BytecodeContext) {
 
         val miniPlayerConstructorMutableMethod =
-            MiniPlayerConstructorFingerprint.result?.mutableMethod
-            ?: throw MiniPlayerConstructorFingerprint.exception
+            MiniPlayerConstructorFingerprint.resultOrThrow().mutableMethod
 
         val mppWatchWhileLayoutMutableMethod =
-            MppWatchWhileLayoutFingerprint.result?.mutableMethod
-                ?: throw MppWatchWhileLayoutFingerprint.exception
+            MppWatchWhileLayoutFingerprint.resultOrThrow().mutableMethod
 
         val pendingIntentReceiverMutableMethod =
-            PendingIntentReceiverFingerprint.result?.mutableMethod
-                ?: throw PendingIntentReceiverFingerprint.exception
+            PendingIntentReceiverFingerprint.resultOrThrow().mutableMethod
 
         if (!SettingsPatch.upward0642) {
-            MiniPlayerParentFingerprint.result?.let { parentResult ->
+            MiniPlayerParentFingerprint.resultOrThrow().let { parentResult ->
                 // Resolves fingerprints
                 NextButtonVisibilityFingerprint.resolve(context, parentResult.classDef)
 
-                NextButtonVisibilityFingerprint.result?.let {
+                NextButtonVisibilityFingerprint.resultOrThrow().let {
                     it.mutableMethod.apply {
                         val targetIndex = it.scanResult.patternScanResult!!.startIndex + 1
                         val targetRegister =
@@ -110,8 +107,8 @@ object MiniPlayerButtonPatch : BaseBytecodePatch(
                                 """
                         )
                     }
-                } ?: throw NextButtonVisibilityFingerprint.exception
-            } ?: throw MiniPlayerParentFingerprint.exception
+                }
+            }
         } else {
             miniPlayerConstructorMutableMethod.setInstanceFieldValue(NEXT_BUTTON_METHOD_NAME, TopStart)
             mppWatchWhileLayoutMutableMethod.setStaticFieldValue(NEXT_BUTTON_FIELD_NAME, TopStart)
@@ -210,7 +207,7 @@ object MiniPlayerButtonPatch : BaseBytecodePatch(
                 )
             } ?: throw PatchException("onClickClass not found!")
 
-        PlayerPatchConstructorFingerprint.result?.let {
+        PlayerPatchConstructorFingerprint.resultOrThrow().let {
             val mutableClass = it.mutableClass
             mutableClass.methods.find { method -> method.name == methodName }
                 ?.apply {
@@ -227,14 +224,14 @@ object MiniPlayerButtonPatch : BaseBytecodePatch(
                     )
                     addInstructionsWithLabels(
                         0, """
-                            sget-object v0, $PLAYER_CLASS_DESCRIPTOR->$fieldName:$onClickReferenceDefiningClass
-                            if-eqz v0, :ignore
-                            invoke-virtual {v0}, $onClickReference
-                            :ignore
-                            return-void
-                            """
+                                sget-object v0, $PLAYER_CLASS_DESCRIPTOR->$fieldName:$onClickReferenceDefiningClass
+                                if-eqz v0, :ignore
+                                invoke-virtual {v0}, $onClickReference
+                                :ignore
+                                return-void
+                                """
                     )
                 }
-        } ?: throw PlayerPatchConstructorFingerprint.exception
+        }
     }
 }

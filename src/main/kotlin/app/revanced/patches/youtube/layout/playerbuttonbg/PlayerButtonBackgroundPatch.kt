@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.player.playerbuttonbg
+package app.revanced.patches.youtube.layout.playerbuttonbg
 
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE

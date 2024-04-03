@@ -9,8 +9,8 @@ import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.youtube.overlaybutton.fullscreen.fingerprints.FullScreenButtonFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.UTILS_PATH
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
-import app.revanced.util.exception
 import app.revanced.util.getTargetIndexWithReference
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 
 @Patch(dependencies = [SharedResourceIdPatch::class])
@@ -19,7 +19,7 @@ object FullscreenButtonPatch : BytecodePatch(
 ) {
     override fun execute(context: BytecodeContext) {
 
-        FullScreenButtonFingerprint.result?.let {
+        FullScreenButtonFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val viewIndex = getTargetIndexWithReference("Landroid/widget/ImageView;->getResources()Landroid/content/res/Resources;")
                 val viewRegister = getInstruction<FiveRegisterInstruction>(viewIndex).registerC
@@ -33,7 +33,7 @@ object FullscreenButtonPatch : BytecodePatch(
                         """, ExternalLabel("show", getInstruction(viewIndex))
                 )
             }
-        } ?: throw FullScreenButtonFingerprint.exception
+        }
 
     }
 }

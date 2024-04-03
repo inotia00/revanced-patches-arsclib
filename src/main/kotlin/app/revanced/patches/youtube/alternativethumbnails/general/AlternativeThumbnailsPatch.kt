@@ -18,8 +18,8 @@ import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACK
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch.contexts
 import app.revanced.util.copyXmlNode
-import app.revanced.util.exception
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.builder.MutableMethodImplementation
@@ -90,11 +90,8 @@ object AlternativeThumbnailsPatch : BaseBytecodePatch(
 
     override fun execute(context: BytecodeContext) {
 
-        fun MethodFingerprint.getResultOrThrow() =
-            result ?: throw exception
-
         fun MethodFingerprint.alsoResolve(fingerprint: MethodFingerprint) =
-            also { resolve(context, fingerprint.getResultOrThrow().classDef) }.getResultOrThrow()
+            also { resolve(context, fingerprint.resultOrThrow().classDef) }.resultOrThrow()
 
         fun MethodFingerprint.resolveAndLetMutableMethod(
             fingerprint: MethodFingerprint,
@@ -118,7 +115,7 @@ object AlternativeThumbnailsPatch : BaseBytecodePatch(
 
         // The URL is required for the failure callback hook, but the URL field is obfuscated.
         // Add a helper get method that returns the URL field.
-        RequestFingerprint.getResultOrThrow().apply {
+        RequestFingerprint.resultOrThrow().apply {
             // The url is the only string field that is set inside the constructor.
             val urlFieldInstruction = mutableMethod.getInstructions().first {
                 if (it.opcode != Opcode.IPUT_OBJECT)

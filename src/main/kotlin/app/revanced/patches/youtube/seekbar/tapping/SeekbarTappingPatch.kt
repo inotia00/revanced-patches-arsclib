@@ -10,8 +10,8 @@ import app.revanced.patches.youtube.seekbar.tapping.fingerprints.SeekbarTappingF
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.SEEKBAR_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.builder.instruction.BuilderInstruction35c
 import com.android.tools.smali.dexlib2.dexbacked.reference.DexBackedMethodReference
@@ -26,7 +26,7 @@ object SeekbarTappingPatch : BaseBytecodePatch(
     fingerprints = setOf(SeekbarTappingFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
-        SeekbarTappingFingerprint.result?.let {
+        SeekbarTappingFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val tapSeekIndex = it.scanResult.patternScanResult!!.startIndex + 1
                 val tapSeekReference = getInstruction<BuilderInstruction35c>(tapSeekIndex).reference
@@ -77,7 +77,7 @@ object SeekbarTappingPatch : BaseBytecodePatch(
                         """, ExternalLabel("disabled", getInstruction(insertIndex))
                 )
             }
-        } ?: throw SeekbarTappingFingerprint.exception
+        }
 
         /**
          * Add settings

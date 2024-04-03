@@ -12,10 +12,10 @@ import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
 import app.revanced.patches.music.utils.videotype.VideoTypeHookPatch
-import app.revanced.util.exception
 import app.revanced.util.getTargetIndex
 import app.revanced.util.getWalkerMethod
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
@@ -33,7 +33,7 @@ object ZenModePatch : BaseBytecodePatch(
 ) {
     override fun execute(context: BytecodeContext) {
 
-        MiniPlayerConstructorFingerprint.result?.let { parentResult ->
+        MiniPlayerConstructorFingerprint.resultOrThrow().let { parentResult ->
             // Resolves fingerprints
             SwitchToggleColorFingerprint.resolve(context, parentResult.classDef)
             ZenModeFingerprint.resolve(context, parentResult.classDef)
@@ -56,7 +56,7 @@ object ZenModePatch : BaseBytecodePatch(
                 }
             }
 
-            SwitchToggleColorFingerprint.result?.let {
+            SwitchToggleColorFingerprint.resultOrThrow().let {
                 it.mutableMethod.apply {
                     val invokeDirectIndex = getTargetIndex(Opcode.INVOKE_DIRECT)
                     val walkerMethod = getWalkerMethod(context, invokeDirectIndex)
@@ -70,8 +70,8 @@ object ZenModePatch : BaseBytecodePatch(
                             """
                     )
                 }
-            } ?: throw SwitchToggleColorFingerprint.exception
-        } ?: throw MiniPlayerConstructorFingerprint.exception
+            }
+        }
 
         SettingsPatch.addMusicPreference(
             CategoryType.PLAYER,

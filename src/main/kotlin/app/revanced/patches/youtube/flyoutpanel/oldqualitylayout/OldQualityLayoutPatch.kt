@@ -15,11 +15,11 @@ import app.revanced.patches.youtube.utils.integrations.Constants.FLYOUT_PANEL_CL
 import app.revanced.patches.youtube.utils.recyclerview.BottomSheetRecyclerViewPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.getReference
 import app.revanced.util.getTargetIndex
 import app.revanced.util.indexOfFirstInstruction
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
@@ -49,10 +49,9 @@ object OldQualityLayoutPatch : BaseBytecodePatch(
         /**
          * Non-litho view, used in old clients and Shorts.
          */
-        val videoQualityClass = VideoQualitySetterFingerprint.result?.mutableMethod?.definingClass
-            ?: throw VideoQualitySetterFingerprint.exception
+        val videoQualityClass = VideoQualitySetterFingerprint.resultOrThrow().mutableMethod.definingClass
 
-        QualityMenuViewInflateFingerprint.result?.let {
+        QualityMenuViewInflateFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val insertIndex = it.scanResult.patternScanResult!!.endIndex
                 val insertRegister = getInstruction<OneRegisterInstruction>(insertIndex).registerA
@@ -82,7 +81,7 @@ object OldQualityLayoutPatch : BaseBytecodePatch(
                         """, ExternalLabel("show", getInstruction(jumpIndex))
                 )
             } ?: throw PatchException("Failed to find onItemClick method")
-        } ?: throw QualityMenuViewInflateFingerprint.exception
+        }
 
         /**
          * Litho view

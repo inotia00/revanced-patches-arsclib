@@ -17,8 +17,8 @@ import app.revanced.patches.youtube.utils.settings.SettingsPatch.contexts
 import app.revanced.patches.youtube.utils.videoid.general.VideoIdPatch
 import app.revanced.patches.youtube.utils.videoid.withoutshorts.VideoIdWithoutShortsPatch
 import app.revanced.util.copyXmlNode
-import app.revanced.util.exception
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 
 @Suppress("unused")
@@ -42,7 +42,7 @@ object VideoQualityPatch : BaseBytecodePatch(
 ) {
     override fun execute(context: BytecodeContext) {
 
-        NewVideoQualityChangedFingerprint.result?.let {
+        NewVideoQualityChangedFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val index = it.scanResult.patternScanResult!!.startIndex
                 val qualityRegister = getInstruction<TwoRegisterInstruction>(index).registerA
@@ -53,9 +53,9 @@ object VideoQualityPatch : BaseBytecodePatch(
                 )
 
             }
-        } ?: throw NewVideoQualityChangedFingerprint.exception
+        }
 
-        VideoQualitySetterFingerprint.result?.let {
+        VideoQualitySetterFingerprint.resultOrThrow().let {
             val onItemClickMethod =
                 it.mutableClass.methods.find { method -> method.name == "onItemClick" }
 
@@ -67,7 +67,7 @@ object VideoQualityPatch : BaseBytecodePatch(
                     "invoke-static {p$listItemIndexParameter}, $INTEGRATIONS_VIDEO_QUALITY_CLASS_DESCRIPTOR->userChangedQualityIndex(I)V"
                 )
             } ?: throw PatchException("Failed to find onItemClick method")
-        } ?: throw VideoQualitySetterFingerprint.exception
+        }
 
         VideoIdPatch.injectCall("$INTEGRATIONS_VIDEO_QUALITY_CLASS_DESCRIPTOR->newVideoStarted(Ljava/lang/String;)V")
         VideoIdWithoutShortsPatch.injectCall("$INTEGRATIONS_VIDEO_QUALITY_CLASS_DESCRIPTOR->newVideoStarted(Ljava/lang/String;)V")

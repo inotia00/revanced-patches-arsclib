@@ -6,7 +6,7 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.music.utils.integrations.Constants.UTILS_PATH
 import app.revanced.patches.music.utils.mainactivity.fingerprints.MainActivityFingerprint
-import app.revanced.util.exception
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.ClassDef
 
 object MainActivityResolvePatch : BytecodePatch(
@@ -16,10 +16,10 @@ object MainActivityResolvePatch : BytecodePatch(
     private lateinit var onCreateMethod: MutableMethod
 
     override fun execute(context: BytecodeContext) {
-        MainActivityFingerprint.result?.let {
+        MainActivityFingerprint.resultOrThrow().let {
             mainActivityClassDef = it.classDef
             onCreateMethod = it.mutableMethod
-        } ?: throw MainActivityFingerprint.exception
+        }
     }
 
     fun injectInit(

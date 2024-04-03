@@ -11,8 +11,8 @@ import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
 import app.revanced.patches.music.utils.settings.SettingsPatch.contexts
 import app.revanced.util.copyXmlNode
-import app.revanced.util.exception
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Suppress("unused")
@@ -25,7 +25,7 @@ object ChangeStartPagePatch : BaseBytecodePatch(
 ) {
     override fun execute(context: BytecodeContext) {
 
-        ColdStartUpFingerprint.result?.let {
+        ColdStartUpFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val targetIndex = it.scanResult.patternScanResult!!.endIndex
                 val targetRegister = getInstruction<OneRegisterInstruction>(targetIndex).registerA
@@ -39,7 +39,7 @@ object ChangeStartPagePatch : BaseBytecodePatch(
                 )
                 removeInstruction(targetIndex)
             }
-        } ?: throw ColdStartUpFingerprint.exception
+        }
 
         /**
          * Copy arrays

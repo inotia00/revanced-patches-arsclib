@@ -9,7 +9,6 @@ import app.revanced.patcher.extensions.or
 import app.revanced.patcher.fingerprint.MethodFingerprintResult
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableField.Companion.toMutable
-import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod.Companion.toMutable
 import app.revanced.patcher.util.smali.toInstructions
 import app.revanced.patches.youtube.utils.integrations.Constants.INTEGRATIONS_PATH
@@ -18,7 +17,8 @@ import app.revanced.patches.youtube.utils.overridespeed.fingerprints.PlaybackSpe
 import app.revanced.patches.youtube.utils.overridespeed.fingerprints.PlaybackSpeedParentFingerprint
 import app.revanced.patches.youtube.utils.overridespeed.fingerprints.PlaybackSpeedPatchFingerprint
 import app.revanced.patches.youtube.utils.overridespeed.fingerprints.SpeedClassFingerprint
-import app.revanced.util.exception
+import app.revanced.util.getWalkerMethod
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
@@ -46,7 +46,7 @@ object OverrideSpeedHookPatch : BytecodePatch(
     private lateinit var objectClass: String
     override fun execute(context: BytecodeContext) {
 
-        PlaybackSpeedParentFingerprint.result?.let { parentResult ->
+        PlaybackSpeedParentFingerprint.resultOrThrow().let { parentResult ->
             val parentClassDef = parentResult.classDef
 
             PlaybackSpeedChangedFingerprint.also {
@@ -54,7 +54,7 @@ object OverrideSpeedHookPatch : BytecodePatch(
                     context,
                     parentClassDef
                 )
-            }.result?.let {
+            }.resultOrThrow().let {
                 it.mutableMethod.apply {
                     playbackSpeedChangedResult = it
                     val startIndex = it.scanResult.patternScanResult!!.startIndex
@@ -92,12 +92,9 @@ object OverrideSpeedHookPatch : BytecodePatch(
                         ).toMutable()
                     )
 
-                    with(
-                        context
-                            .toMethodWalker(this)
-                            .nextMethod(endIndex, true)
-                            .getMethod() as MutableMethod
-                    ) {
+                    val walkerMethod = getWalkerMethod(context, endIndex)
+
+                    walkerMethod.apply {
                         addInstruction(
                             this.implementation!!.instructions.size - 1,
                             "sput p1, $INTEGRATIONS_VIDEO_UTILS_CLASS_DESCRIPTOR->currentSpeed:F"
@@ -105,11 +102,11 @@ object OverrideSpeedHookPatch : BytecodePatch(
                     }
                 }
 
-            } ?: throw PlaybackSpeedChangedFingerprint.exception
-        } ?: throw PlaybackSpeedParentFingerprint.exception
+            }
+        }
 
 
-        SpeedClassFingerprint.result?.let {
+        SpeedClassFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val index = it.scanResult.patternScanResult!!.endIndex
                 val register = getInstruction<OneRegisterInstruction>(index).registerA
@@ -123,10 +120,9 @@ object OverrideSpeedHookPatch : BytecodePatch(
                     "return-object v$register"
                 )
             }
+        }
 
-        } ?: throw SpeedClassFingerprint.exception
-
-        PlaybackSpeedPatchFingerprint.result?.let {
+        PlaybackSpeedPatchFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 it.mutableClass.staticFields.add(
                     ImmutableField(
@@ -148,7 +144,7 @@ object OverrideSpeedHookPatch : BytecodePatch(
                 )
             }
 
-        } ?: throw PlaybackSpeedPatchFingerprint.exception
+        }
 
     }
 }

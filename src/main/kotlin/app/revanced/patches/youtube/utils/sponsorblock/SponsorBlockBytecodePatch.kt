@@ -20,12 +20,12 @@ import app.revanced.patches.youtube.utils.sponsorblock.fingerprints.RectangleFie
 import app.revanced.patches.youtube.utils.sponsorblock.fingerprints.SegmentPlaybackControllerFingerprint
 import app.revanced.patches.youtube.utils.videoid.general.VideoIdPatch
 import app.revanced.patches.youtube.utils.videoid.withoutshorts.VideoIdWithoutShortsPatch
-import app.revanced.util.exception
 import app.revanced.util.getTargetIndex
 import app.revanced.util.getTargetIndexWithFieldReferenceTypeReversed
 import app.revanced.util.getTargetIndexWithMethodReferenceName
 import app.revanced.util.getTargetIndexWithMethodReferenceNameReversed
 import app.revanced.util.getWideLiteralInstructionIndex
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
@@ -73,13 +73,12 @@ object SponsorBlockBytecodePatch : BytecodePatch(
             )
         }
 
-        val seekBarClass = SeekbarFingerprint.result?.mutableClass
-            ?: throw SeekbarFingerprint.exception
+        val seekBarClass = SeekbarFingerprint.resultOrThrow().mutableClass
         SeekbarOnDrawFingerprint.resolve(context, seekBarClass)
         RectangleFieldInvalidatorFingerprint.resolve(context, seekBarClass)
 
-        SeekbarOnDrawFingerprint.result?.mutableMethod?.apply {
-             // Get left and right of seekbar rectangle
+        SeekbarOnDrawFingerprint.resultOrThrow().mutableMethod.apply {
+            // Get left and right of seekbar rectangle
             val moveObjectIndex = getTargetIndex(Opcode.MOVE_OBJECT_FROM16)
 
             addInstruction(
@@ -106,7 +105,7 @@ object SponsorBlockBytecodePatch : BytecodePatch(
                 "invoke-static {v${drawCircleInstruction.registerC}, v${drawCircleInstruction.registerE}}, " +
                         "$INTEGRATIONS_SEGMENT_PLAYBACK_CONTROLLER_CLASS_DESCRIPTOR->drawSponsorTimeBars(Landroid/graphics/Canvas;F)V"
             )
-        } ?: throw SeekbarOnDrawFingerprint.exception
+        }
 
         // Voting & Shield button
         arrayOf("CreateSegmentButtonController;", "VotingButtonController;").forEach { className ->
@@ -115,7 +114,7 @@ object SponsorBlockBytecodePatch : BytecodePatch(
         }
 
         // Append timestamp
-        TotalTimeFingerprint.result?.let {
+        TotalTimeFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val targetIndex = getTargetIndexWithMethodReferenceName("getString") + 1
                 val targetRegister = getInstruction<OneRegisterInstruction>(targetIndex).registerA
@@ -127,10 +126,10 @@ object SponsorBlockBytecodePatch : BytecodePatch(
                         """
                 )
             }
-        } ?: throw TotalTimeFingerprint.exception
+        }
 
         // Initialize the SponsorBlock view
-        YouTubeControlsOverlayFingerprint.result?.let {
+        YouTubeControlsOverlayFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val targetIndex = getWideLiteralInstructionIndex(InsetOverlayViewLayout)
                 val checkCastIndex = getTargetIndex(targetIndex, Opcode.CHECK_CAST)
@@ -141,16 +140,16 @@ object SponsorBlockBytecodePatch : BytecodePatch(
                     "invoke-static {v$targetRegister}, $INTEGRATIONS_SPONSOR_BLOCK_UI_PATH/SponsorBlockViewController;->initialize(Landroid/view/ViewGroup;)V"
                 )
             }
-        } ?: throw YouTubeControlsOverlayFingerprint.exception
+        }
 
         // Replace strings
-        RectangleFieldInvalidatorFingerprint.result?.let { result ->
+        RectangleFieldInvalidatorFingerprint.resultOrThrow().let { result ->
             result.mutableMethod.apply {
                 val invalidateIndex = getTargetIndexWithMethodReferenceNameReversed("invalidate")
                 val rectangleIndex = getTargetIndexWithFieldReferenceTypeReversed(invalidateIndex + 1, "Landroid/graphics/Rect;")
                 val rectangleFieldName = (getInstruction<ReferenceInstruction>(rectangleIndex).reference as FieldReference).name
 
-                SegmentPlaybackControllerFingerprint.result?.let {
+                SegmentPlaybackControllerFingerprint.resultOrThrow().let {
                     it.mutableMethod.apply {
                         val replaceIndex = it.scanResult.patternScanResult!!.startIndex
                         val replaceRegister =
@@ -161,9 +160,9 @@ object SponsorBlockBytecodePatch : BytecodePatch(
                             "const-string v$replaceRegister, \"$rectangleFieldName\""
                         )
                     }
-                } ?: throw SegmentPlaybackControllerFingerprint.exception
+                }
             }
-        } ?: throw YouTubeControlsOverlayFingerprint.exception
+        }
 
         // Inject VideoIdPatch
         VideoIdWithoutShortsPatch.injectCall("$INTEGRATIONS_SEGMENT_PLAYBACK_CONTROLLER_CLASS_DESCRIPTOR->setCurrentVideoId(Ljava/lang/String;)V")

@@ -15,12 +15,12 @@ import app.revanced.patches.youtube.flyoutpanel.toggle.fingerprints.StableVolume
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.FLYOUT_PANEL_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.getStringInstructionIndex
 import app.revanced.util.getTargetIndex
 import app.revanced.util.getTargetIndexReversed
 import app.revanced.util.indexOfFirstInstruction
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
@@ -41,15 +41,11 @@ object ChangeTogglePatch : BaseBytecodePatch(
 ) {
     override fun execute(context: BytecodeContext) {
 
-        val additionalSettingsConfigResult = AdditionalSettingsConfigFingerprint.result
-            ?: throw AdditionalSettingsConfigFingerprint.exception
-
-        val additionalSettingsConfigMethod = additionalSettingsConfigResult.mutableMethod
+        val additionalSettingsConfigMethod = AdditionalSettingsConfigFingerprint.resultOrThrow().mutableMethod
         val methodToCall = additionalSettingsConfigMethod.definingClass + "->" + additionalSettingsConfigMethod.name + "()Z"
 
         // Resolves fingerprints
-        val playbackLoopOnClickListenerResult = PlaybackLoopOnClickListenerFingerprint.result
-            ?: throw PlaybackLoopOnClickListenerFingerprint.exception
+        val playbackLoopOnClickListenerResult = PlaybackLoopOnClickListenerFingerprint.resultOrThrow()
         PlaybackLoopInitFingerprint.resolve(context, playbackLoopOnClickListenerResult.classDef)
 
         arrayOf(
@@ -79,7 +75,7 @@ object ChangeTogglePatch : BaseBytecodePatch(
         fingerprint: MethodFingerprint,
         methodToCall: String
     ) {
-        fingerprint.result?.let {
+        fingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val referenceIndex = indexOfFirstInstruction {
                     opcode == Opcode.INVOKE_VIRTUAL
@@ -102,12 +98,11 @@ object ChangeTogglePatch : BaseBytecodePatch(
                         throw PatchException("Target reference'$methodToCall' was not found in ${this.javaClass.simpleName}.")
                 }
             }
-        } ?: throw fingerprint.exception
+        }
     }
 
     private fun injectCinematicLightingMethod() {
-        val stableVolumeMethod = StableVolumeFingerprint.result?.mutableMethod
-            ?: throw StableVolumeFingerprint.exception
+        val stableVolumeMethod = StableVolumeFingerprint.resultOrThrow().mutableMethod
 
         val stringReferenceIndex = stableVolumeMethod.indexOfFirstInstruction {
             opcode == Opcode.INVOKE_VIRTUAL
@@ -118,7 +113,7 @@ object ChangeTogglePatch : BaseBytecodePatch(
 
         val stringReference = stableVolumeMethod.getInstruction<ReferenceInstruction>(stringReferenceIndex).reference
 
-        CinematicLightingFingerprint.result?.let {
+        CinematicLightingFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val stringIndex = getStringInstructionIndex("menu_item_cinematic_lighting")
 
@@ -163,6 +158,6 @@ object ChangeTogglePatch : BaseBytecodePatch(
                         """, ExternalLabel("ignore", getInstruction(insertIndex))
                 )
             }
-        } ?: throw CinematicLightingFingerprint.exception
+        }
     }
 }

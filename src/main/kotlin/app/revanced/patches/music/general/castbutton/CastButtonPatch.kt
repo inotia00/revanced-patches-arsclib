@@ -13,9 +13,9 @@ import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch.PlayerOverlayChip
 import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.getWideLiteralInstructionIndex
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Suppress("unused")
@@ -37,7 +37,7 @@ object CastButtonPatch : BaseBytecodePatch(
         /**
          * Hide cast button
          */
-        MediaRouteButtonFingerprint.result?.let {
+        MediaRouteButtonFingerprint.resultOrThrow().let {
             val setVisibilityMethod =
                 it.mutableClass.methods.find { method -> method.name == "setVisibility" }
 
@@ -49,12 +49,12 @@ object CastButtonPatch : BaseBytecodePatch(
                         """
                 )
             } ?: throw PatchException("Failed to find setVisibility method")
-        } ?: throw MediaRouteButtonFingerprint.exception
+        }
 
         /**
          * Hide floating cast banner
          */
-        PlayerOverlayChipFingerprint.result?.let {
+        PlayerOverlayChipFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val targetIndex = getWideLiteralInstructionIndex(PlayerOverlayChip) + 2
                 val targetRegister = getInstruction<OneRegisterInstruction>(targetIndex).registerA
@@ -64,7 +64,7 @@ object CastButtonPatch : BaseBytecodePatch(
                     "invoke-static {v$targetRegister}, $GENERAL_CLASS_DESCRIPTOR->hideCastButton(Landroid/view/View;)V"
                 )
             }
-        } ?: throw PlayerOverlayChipFingerprint.exception
+        }
 
         SettingsPatch.addMusicPreference(
             CategoryType.GENERAL,

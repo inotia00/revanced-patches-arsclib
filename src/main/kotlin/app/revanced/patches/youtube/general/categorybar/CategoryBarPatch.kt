@@ -11,8 +11,8 @@ import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACK
 import app.revanced.patches.youtube.utils.integrations.Constants.GENERAL_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 
@@ -71,7 +71,7 @@ object CategoryBarPatch : BaseBytecodePatch(
         hookRegisterOffset: Int = 0,
         instructions: (Int) -> String
     ) =
-        result?.let {
+        resultOrThrow().let {
             it.mutableMethod.apply {
                 val endIndex = it.scanResult.patternScanResult!!.endIndex
 
@@ -81,5 +81,5 @@ object CategoryBarPatch : BaseBytecodePatch(
 
                 addInstructions(insertIndex, instructions(register))
             }
-        } ?: throw exception
+        }
 }

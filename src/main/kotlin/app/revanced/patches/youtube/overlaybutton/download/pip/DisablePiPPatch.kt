@@ -6,7 +6,7 @@ import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patches.youtube.overlaybutton.download.pip.fingerprints.PiPPlaybackFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.INTEGRATIONS_PATH
-import app.revanced.util.exception
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 /**
@@ -20,7 +20,7 @@ object DisablePiPPatch : BytecodePatch(
         "$INTEGRATIONS_PATH/utils/VideoUtils;"
 
     override fun execute(context: BytecodeContext) {
-        PiPPlaybackFingerprint.result?.let {
+        PiPPlaybackFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val insertIndex = it.scanResult.patternScanResult!!.endIndex
                 val insertRegister = getInstruction<OneRegisterInstruction>(insertIndex).registerA
@@ -32,7 +32,7 @@ object DisablePiPPatch : BytecodePatch(
                         """
                 )
             }
-        } ?: throw PiPPlaybackFingerprint.exception
+        }
 
     }
 }

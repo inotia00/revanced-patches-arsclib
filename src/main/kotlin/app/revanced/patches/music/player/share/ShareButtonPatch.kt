@@ -9,8 +9,8 @@ import app.revanced.patches.music.utils.integrations.Constants.PLAYER_CLASS_DESC
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 
 @Suppress("unused")
@@ -25,7 +25,7 @@ object ShareButtonPatch : BaseBytecodePatch(
     fingerprints = setOf(RemixGenericButtonFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
-        RemixGenericButtonFingerprint.result?.let {
+        RemixGenericButtonFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val targetIndex = it.scanResult.patternScanResult!!.endIndex
                 val targetRegister = getInstruction<TwoRegisterInstruction>(targetIndex).registerA
@@ -37,7 +37,7 @@ object ShareButtonPatch : BaseBytecodePatch(
                         """
                 )
             }
-        } ?: throw RemixGenericButtonFingerprint.exception
+        }
 
         SettingsPatch.addMusicPreference(
             CategoryType.PLAYER,

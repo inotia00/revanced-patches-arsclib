@@ -8,10 +8,10 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patches.shared.customspeed.fingerprints.SpeedArrayGeneratorFingerprint
 import app.revanced.patches.shared.customspeed.fingerprints.SpeedLimiterFallBackFingerprint
 import app.revanced.patches.shared.customspeed.fingerprints.SpeedLimiterFingerprint
-import app.revanced.util.exception
 import app.revanced.util.getTargetIndexWithFieldReferenceType
 import app.revanced.util.getTargetIndexWithMethodReferenceName
 import app.revanced.util.indexOfFirstInstruction
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.NarrowLiteralInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
@@ -25,9 +25,9 @@ abstract class BaseCustomPlaybackSpeedPatch(
     )
 ) {
     override fun execute(context: BytecodeContext) {
-        SpeedArrayGeneratorFingerprint.result?.let { result ->
-            result.mutableMethod.apply {
-                val targetIndex = result.scanResult.patternScanResult!!.startIndex
+        SpeedArrayGeneratorFingerprint.resultOrThrow().let {
+            it.mutableMethod.apply {
+                val targetIndex = it.scanResult.patternScanResult!!.startIndex
                 val targetRegister = getInstruction<OneRegisterInstruction>(targetIndex).registerA
 
                 addInstructions(
@@ -57,13 +57,11 @@ abstract class BaseCustomPlaybackSpeedPatch(
                         """
                 )
             }
-        } ?: throw SpeedArrayGeneratorFingerprint.exception
+        }
 
-        val speedLimiterParentResult = SpeedLimiterFallBackFingerprint.result
-            ?: throw SpeedLimiterFallBackFingerprint.exception
+        val speedLimiterParentResult = SpeedLimiterFallBackFingerprint.resultOrThrow()
         SpeedLimiterFingerprint.resolve(context, speedLimiterParentResult.classDef)
-        val speedLimiterResult = SpeedLimiterFingerprint.result
-            ?: throw SpeedLimiterFingerprint.exception
+        val speedLimiterResult = SpeedLimiterFingerprint.resultOrThrow()
 
         arrayOf(
             speedLimiterParentResult,

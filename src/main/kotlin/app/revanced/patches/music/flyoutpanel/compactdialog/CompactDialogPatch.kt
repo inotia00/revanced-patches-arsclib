@@ -8,9 +8,9 @@ import app.revanced.patches.music.utils.integrations.Constants.FLYOUT_CLASS_DESC
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.getWalkerMethod
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 
 @Suppress("unused")
 object CompactDialogPatch : BaseBytecodePatch(
@@ -24,7 +24,7 @@ object CompactDialogPatch : BaseBytecodePatch(
     fingerprints = setOf(DialogSolidFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
-        DialogSolidFingerprint.result?.let {
+        DialogSolidFingerprint.resultOrThrow().let {
             val walkerMethod = it.getWalkerMethod(context, it.scanResult.patternScanResult!!.endIndex)
             walkerMethod.addInstructions(
                 2, """
@@ -32,7 +32,7 @@ object CompactDialogPatch : BaseBytecodePatch(
                     move-result p0
                     """
             )
-        } ?: throw DialogSolidFingerprint.exception
+        }
 
         SettingsPatch.addMusicPreference(
             CategoryType.FLYOUT,

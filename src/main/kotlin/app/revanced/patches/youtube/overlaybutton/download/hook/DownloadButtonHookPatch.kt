@@ -7,7 +7,7 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.youtube.overlaybutton.download.hook.fingerprints.DownloadActionsFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.UTILS_PATH
-import app.revanced.util.exception
+import app.revanced.util.resultOrThrow
 
 object DownloadButtonHookPatch : BytecodePatch(
     setOf(DownloadActionsFingerprint)
@@ -15,7 +15,7 @@ object DownloadButtonHookPatch : BytecodePatch(
     private const val INTEGRATIONS_CLASS_DESCRIPTOR =
         "$UTILS_PATH/HookDownloadButtonPatch;"
     override fun execute(context: BytecodeContext) {
-        DownloadActionsFingerprint.result?.let {
+        DownloadActionsFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val targetIndex = it.scanResult.patternScanResult!!.startIndex
 
@@ -29,7 +29,7 @@ object DownloadButtonHookPatch : BytecodePatch(
                         """, ExternalLabel("default", getInstruction(targetIndex))
                 )
             }
-        } ?: throw DownloadActionsFingerprint.exception
+        }
 
     }
 }

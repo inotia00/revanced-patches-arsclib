@@ -1,5 +1,5 @@
 package app.revanced.patches.youtube.utils.fix.clientspoof
 
-import app.revanced.patches.shared.clientspoof.AbstractClientSpoofPatch
+import app.revanced.patches.shared.clientspoof.BaseClientSpoofPatch
 
-object ClientSpoofPatch : AbstractClientSpoofPatch("com.google.android.youtube")
+object ClientSpoofPatch : BaseClientSpoofPatch("com.google.android.youtube")

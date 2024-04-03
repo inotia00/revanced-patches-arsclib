@@ -5,14 +5,14 @@ import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.youtube.shorts.components.fingerprints.BottomNavigationBarFingerprint
 import app.revanced.patches.youtube.shorts.components.fingerprints.RenderBottomNavigationBarFingerprint
 import app.revanced.patches.youtube.shorts.components.fingerprints.SetPivotBarFingerprint
 import app.revanced.patches.youtube.utils.fingerprints.PivotBarCreateButtonViewFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.SHORTS_CLASS_DESCRIPTOR
-import app.revanced.util.exception
 import app.revanced.util.getTargetIndexWithMethodReferenceName
+import app.revanced.util.getWalkerMethod
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 object ShortsNavigationBarPatch : BytecodePatch(
@@ -24,8 +24,8 @@ object ShortsNavigationBarPatch : BytecodePatch(
 ) {
     override fun execute(context: BytecodeContext) {
 
-        PivotBarCreateButtonViewFingerprint.result?.let { parentResult ->
-            SetPivotBarFingerprint.also { it.resolve(context, parentResult.classDef) }.result?.let {
+        PivotBarCreateButtonViewFingerprint.resultOrThrow().let { parentResult ->
+            SetPivotBarFingerprint.also { it.resolve(context, parentResult.classDef) }.resultOrThrow().let {
                 it.mutableMethod.apply {
                     val startIndex = it.scanResult.patternScanResult!!.startIndex
                     val register = getInstruction<OneRegisterInstruction>(startIndex).registerA
@@ -35,22 +35,19 @@ object ShortsNavigationBarPatch : BytecodePatch(
                         "sput-object v$register, $SHORTS_CLASS_DESCRIPTOR->pivotBar:Ljava/lang/Object;"
                     )
                 }
-            } ?: throw SetPivotBarFingerprint.exception
-        } ?: throw PivotBarCreateButtonViewFingerprint.exception
+            }
+        }
 
-        RenderBottomNavigationBarFingerprint.result?.let {
-            val targetMethod = context
-                .toMethodWalker(it.method)
-                .nextMethod(it.scanResult.patternScanResult!!.startIndex + 1, true)
-                .getMethod() as MutableMethod
+        RenderBottomNavigationBarFingerprint.resultOrThrow().let {
+            val walkerMethod = it.getWalkerMethod(context, it.scanResult.patternScanResult!!.startIndex + 1)
 
-            targetMethod.addInstruction(
+            walkerMethod.addInstruction(
                 0,
                 "invoke-static {}, $SHORTS_CLASS_DESCRIPTOR->hideShortsPlayerNavigationBar()V"
             )
-        } ?: throw RenderBottomNavigationBarFingerprint.exception
+        }
 
-        BottomNavigationBarFingerprint.result?.let {
+        BottomNavigationBarFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val targetIndex = getTargetIndexWithMethodReferenceName("findViewById") + 1
                 val insertRegister = getInstruction<OneRegisterInstruction>(targetIndex).registerA
@@ -62,7 +59,7 @@ object ShortsNavigationBarPatch : BytecodePatch(
                         """
                 )
             }
-        } ?: throw BottomNavigationBarFingerprint.exception
+        }
 
     }
 }

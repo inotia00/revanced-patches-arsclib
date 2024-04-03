@@ -9,8 +9,8 @@ import app.revanced.patches.music.utils.integrations.Constants.COMPATIBLE_PACKAG
 import app.revanced.patches.music.utils.integrations.Constants.GENERAL_CLASS_DESCRIPTOR
 import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 
 @Suppress("unused")
 object TapToUpdateButtonPatch : BaseBytecodePatch(
@@ -22,7 +22,7 @@ object TapToUpdateButtonPatch : BaseBytecodePatch(
 ) {
     override fun execute(context: BytecodeContext) {
 
-        ContentPillInFingerprint.result?.let {
+        ContentPillInFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 addInstructionsWithLabels(
                     0,
@@ -34,7 +34,7 @@ object TapToUpdateButtonPatch : BaseBytecodePatch(
                         """, ExternalLabel("show", getInstruction(0))
                 )
             }
-        } ?: throw ContentPillInFingerprint.exception
+        }
 
         SettingsPatch.addMusicPreference(
             CategoryType.GENERAL,

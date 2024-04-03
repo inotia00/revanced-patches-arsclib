@@ -7,8 +7,8 @@ import app.revanced.patcher.fingerprint.MethodFingerprintResult
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patches.youtube.utils.recyclerview.fingerprints.BottomSheetRecyclerViewBuilderFingerprint
 import app.revanced.patches.youtube.utils.recyclerview.fingerprints.RecyclerViewTreeObserverFingerprint
-import app.revanced.util.exception
 import app.revanced.util.getWideLiteralInstructionIndex
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 object BottomSheetRecyclerViewPatch : BytecodePatch(
@@ -37,10 +37,9 @@ object BottomSheetRecyclerViewPatch : BytecodePatch(
                     "const/4 v$targetRegister, 0x1"
                 )
             }
-        } ?: throw BottomSheetRecyclerViewBuilderFingerprint.exception
+        }
 
-        recyclerViewTreeObserverResult = RecyclerViewTreeObserverFingerprint.result
-            ?: throw RecyclerViewTreeObserverFingerprint.exception
+        recyclerViewTreeObserverResult = RecyclerViewTreeObserverFingerprint.resultOrThrow()
 
     }
 

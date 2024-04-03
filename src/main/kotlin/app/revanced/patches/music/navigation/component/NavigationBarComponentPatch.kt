@@ -10,11 +10,11 @@ import app.revanced.patches.music.utils.integrations.Constants.NAVIGATION_CLASS_
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.getTargetIndex
 import app.revanced.util.getTargetIndexWithMethodReferenceName
 import app.revanced.util.getWideLiteralInstructionIndex
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
@@ -38,7 +38,7 @@ object NavigationBarComponentPatch : BaseBytecodePatch(
         /**
          * Hide navigation labels
          */
-        TabLayoutTextFingerprint.result?.let {
+        TabLayoutTextFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val constIndex = getWideLiteralInstructionIndex(SharedResourceIdPatch.Text1)
                 val targetIndex = getTargetIndex(constIndex, Opcode.CHECK_CAST)
@@ -53,7 +53,7 @@ object NavigationBarComponentPatch : BaseBytecodePatch(
                     "invoke-static {v$targetRegister}, $NAVIGATION_CLASS_DESCRIPTOR->hideNavigationLabel(Landroid/widget/TextView;)V"
                 )
             }
-        } ?: throw TabLayoutTextFingerprint.exception
+        }
 
         SettingsPatch.contexts.xmlEditor[RESOURCE_FILE_PATH].use { editor ->
             val document = editor.file
@@ -71,7 +71,7 @@ object NavigationBarComponentPatch : BaseBytecodePatch(
         /**
          * Hide navigation bar & buttons
          */
-        TabLayoutTextFingerprint.result?.let {
+        TabLayoutTextFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val enumIndex = it.scanResult.patternScanResult!!.startIndex + 3
                 val enumRegister = getInstruction<OneRegisterInstruction>(enumIndex).registerA
@@ -90,7 +90,7 @@ object NavigationBarComponentPatch : BaseBytecodePatch(
                     "sput-object v$enumRegister, $NAVIGATION_CLASS_DESCRIPTOR->lastPivotTab:Ljava/lang/Enum;"
                 )
             }
-        } ?: throw TabLayoutTextFingerprint.exception
+        }
 
         SettingsPatch.addMusicPreference(
             CategoryType.NAVIGATION,

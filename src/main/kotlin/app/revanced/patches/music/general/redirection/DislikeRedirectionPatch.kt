@@ -11,13 +11,13 @@ import app.revanced.patches.music.utils.integrations.Constants.COMPATIBLE_PACKAG
 import app.revanced.patches.music.utils.integrations.Constants.GENERAL_CLASS_DESCRIPTOR
 import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.getStringInstructionIndex
 import app.revanced.util.getTargetIndexReversed
 import app.revanced.util.getTargetIndexWithReference
 import app.revanced.util.getWalkerMethod
 import app.revanced.util.indexOfFirstInstruction
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
@@ -39,7 +39,7 @@ object DislikeRedirectionPatch : BaseBytecodePatch(
 
     override fun execute(context: BytecodeContext) {
 
-        PendingIntentReceiverFingerprint.result?.let {
+        PendingIntentReceiverFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val startIndex = getStringInstructionIndex("YTM Dislike")
                 val onClickRelayIndex = getTargetIndexReversed(startIndex, Opcode.INVOKE_VIRTUAL)
@@ -63,14 +63,14 @@ object DislikeRedirectionPatch : BaseBytecodePatch(
                     }
                 }
             }
-        } ?: throw PendingIntentReceiverFingerprint.exception
+        }
 
-        DislikeButtonOnClickListenerFingerprint.result?.let {
+        DislikeButtonOnClickListenerFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val onClickIndex = getTargetIndexWithReference(onClickReference.toString())
                 injectCall(onClickIndex)
             }
-        } ?: throw DislikeButtonOnClickListenerFingerprint.exception
+        }
 
         SettingsPatch.addMusicPreference(
             CategoryType.GENERAL,

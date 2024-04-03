@@ -9,10 +9,10 @@ import app.revanced.patches.music.misc.tastebuilder.fingerprints.TasteBuilderSyn
 import app.revanced.patches.music.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch.MusicTasteBuilderShelf
-import app.revanced.util.exception
 import app.revanced.util.getTargetIndex
 import app.revanced.util.getWideLiteralInstructionIndex
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
@@ -25,7 +25,7 @@ object TasteBuilderPatch : BaseBytecodePatch(
     fingerprints = setOf(TasteBuilderConstructorFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
-        TasteBuilderConstructorFingerprint.result?.let { parentResult ->
+        TasteBuilderConstructorFingerprint.resultOrThrow().let { parentResult ->
             TasteBuilderSyntheticFingerprint.resolve(context, parentResult.classDef)
 
             parentResult.mutableMethod.apply {
@@ -41,9 +41,9 @@ object TasteBuilderPatch : BaseBytecodePatch(
                         """
                 )
             }
-        } ?: throw TasteBuilderConstructorFingerprint.exception
+        }
 
-        TasteBuilderSyntheticFingerprint.result?.let {
+        TasteBuilderSyntheticFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val insertIndex = it.scanResult.patternScanResult!!.startIndex
                 val insertRegister = getInstruction<OneRegisterInstruction>(insertIndex).registerA
@@ -53,6 +53,6 @@ object TasteBuilderPatch : BaseBytecodePatch(
                     "const/4 v$insertRegister, 0x0"
                 )
             }
-        } ?: throw TasteBuilderSyntheticFingerprint.exception
+        }
     }
 }

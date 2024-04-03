@@ -7,8 +7,8 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.reddit.ad.comments.fingerprints.CommentAdsFingerprint
 import app.revanced.patches.reddit.utils.integrations.Constants.PATCHES_PATH
-import app.revanced.util.exception
 import app.revanced.util.getWalkerMethod
+import app.revanced.util.resultOrThrow
 
 object CommentAdsPatch : BytecodePatch(
     setOf(CommentAdsFingerprint)
@@ -17,7 +17,7 @@ object CommentAdsPatch : BytecodePatch(
         "$PATCHES_PATH/GeneralAdsPatch;->hideCommentAds()Z"
 
     override fun execute(context: BytecodeContext) {
-        CommentAdsFingerprint.result?.apply {
+        CommentAdsFingerprint.resultOrThrow().apply {
             val walkerMethod = getWalkerMethod(context, scanResult.patternScanResult!!.startIndex)
             walkerMethod.apply {
                 addInstructionsWithLabels(
@@ -31,7 +31,7 @@ object CommentAdsPatch : BytecodePatch(
                         """, ExternalLabel("show", getInstruction(0))
                 )
             }
-        } ?: throw CommentAdsFingerprint.exception
+        }
 
     }
 }

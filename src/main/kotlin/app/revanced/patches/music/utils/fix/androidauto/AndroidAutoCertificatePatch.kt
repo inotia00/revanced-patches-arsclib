@@ -4,8 +4,8 @@ import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patches.music.utils.fix.androidauto.fingerprints.CertificateCheckFingerprint
 import app.revanced.patches.music.utils.integrations.Constants.COMPATIBLE_PACKAGE
-import app.revanced.util.exception
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 
 @Suppress("unused")
 object AndroidAutoCertificatePatch : BaseBytecodePatch(
@@ -16,7 +16,7 @@ object AndroidAutoCertificatePatch : BaseBytecodePatch(
 ) {
     override fun execute(context: BytecodeContext) {
 
-        CertificateCheckFingerprint.result?.let {
+        CertificateCheckFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 addInstructions(
                     0, """
@@ -25,7 +25,7 @@ object AndroidAutoCertificatePatch : BaseBytecodePatch(
                         """
                 )
             }
-        } ?: throw CertificateCheckFingerprint.exception
+        }
 
     }
 }

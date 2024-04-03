@@ -1,7 +1,7 @@
 package app.revanced.patches.youtube.layout.theme
 
 import app.revanced.patcher.data.ResourceContext
-import app.revanced.patches.youtube.layout.theme.ThemeBytecodePatch.isMonetPatchIncluded
+import app.revanced.patches.youtube.layout.theme.BaseThemePatch.isMonetPatchIncluded
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.settings.ResourceUtils.updatePatchStatusTheme
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
@@ -15,8 +15,8 @@ object MaterialYouPatch : BaseResourcePatch(
     name = "MaterialYou",
     description = "Enables MaterialYou theme for Android 12+",
     dependencies = setOf(
+        BaseThemePatch::class,
         SettingsPatch::class,
-        ThemeBytecodePatch::class
     ),
     compatiblePackages = COMPATIBLE_PACKAGE,
     use = false

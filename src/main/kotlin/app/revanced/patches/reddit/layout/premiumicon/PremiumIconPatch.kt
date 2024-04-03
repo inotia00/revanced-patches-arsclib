@@ -4,8 +4,8 @@ import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patches.reddit.layout.premiumicon.fingerprints.PremiumIconFingerprint
 import app.revanced.patches.reddit.utils.integrations.Constants.COMPATIBLE_PACKAGE
-import app.revanced.util.exception
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 
 @Suppress("unused")
 object PremiumIconPatch : BaseBytecodePatch(
@@ -16,7 +16,7 @@ object PremiumIconPatch : BaseBytecodePatch(
 ) {
     override fun execute(context: BytecodeContext) {
 
-        PremiumIconFingerprint.result?.let {
+        PremiumIconFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 addInstructions(
                     0, """
@@ -25,7 +25,7 @@ object PremiumIconPatch : BaseBytecodePatch(
                         """
                 )
             }
-        } ?: throw PremiumIconFingerprint.exception
+        }
 
     }
 }

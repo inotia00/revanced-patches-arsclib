@@ -10,8 +10,8 @@ import app.revanced.patches.music.utils.integrations.Constants.GENERAL_CLASS_DES
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 
 @Suppress("unused")
@@ -34,7 +34,7 @@ object HistoryButtonPatch : BaseBytecodePatch(
             HistoryMenuItemFingerprint,
             HistoryMenuItemOfflineTabFingerprint
         ).forEach { fingerprint ->
-            fingerprint.result?.let {
+            fingerprint.resultOrThrow().let {
                 it.mutableMethod.apply {
                     val insertIndex = it.scanResult.patternScanResult!!.startIndex
                     val insertRegister = getInstruction<FiveRegisterInstruction>(insertIndex).registerD
@@ -46,7 +46,7 @@ object HistoryButtonPatch : BaseBytecodePatch(
                             """
                     )
                 }
-            } ?: throw fingerprint.exception
+            }
         }
 
         SettingsPatch.addMusicPreference(

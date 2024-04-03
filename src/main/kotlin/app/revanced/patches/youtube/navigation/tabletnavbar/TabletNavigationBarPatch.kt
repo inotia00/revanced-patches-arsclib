@@ -9,8 +9,8 @@ import app.revanced.patches.youtube.navigation.tabletnavbar.fingerprints.PivotBa
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.NAVIGATION_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Suppress("unused")
@@ -30,7 +30,7 @@ object TabletNavigationBarPatch : BaseBytecodePatch(
             PivotBarChangedFingerprint,
             PivotBarStyleFingerprint
         ).forEach {
-            it.result?.insertHook() ?: throw it.exception
+            it.resultOrThrow().insertHook()
         }
 
         /**

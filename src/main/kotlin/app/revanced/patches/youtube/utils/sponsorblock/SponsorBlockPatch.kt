@@ -1,12 +1,14 @@
 package app.revanced.patches.youtube.utils.sponsorblock
 
 import app.revanced.patcher.data.ResourceContext
+import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.options.PatchOption.PatchExtensions.booleanPatchOption
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.util.ResourceGroup
 import app.revanced.util.copyResources
 import app.revanced.util.copyXmlNode
+import app.revanced.util.inputStreamFromBundledResource
 import app.revanced.util.patch.BaseResourcePatch
 
 @Suppress("DEPRECATION", "unused")
@@ -91,37 +93,48 @@ object SponsorBlockPatch : BaseResourcePatch(
          */
         // copy nodes from host resources to their real xml files
         val hostingResourceStream =
-            this.javaClass.classLoader.getResourceAsStream("youtube/sponsorblock/shared/host/layout/youtube_controls_layout.xml")!!
+            inputStreamFromBundledResource(
+                "youtube/sponsorblock",
+                "shared/host/layout/youtube_controls_layout.xml",
+            )!!
 
-        val targetXmlEditor = context.xmlEditor["res/layout/youtube_controls_layout.xml"]
+        var modifiedControlsLayout = false
+        val editor = context.xmlEditor["res/layout/youtube_controls_layout.xml"]
 
         // voting button id from the voting button view from the youtube_controls_layout.xml host file
         val votingButtonId = "@+id/revanced_sb_voting_button"
 
         "RelativeLayout".copyXmlNode(
             context.xmlEditor[hostingResourceStream],
-            targetXmlEditor
+            editor
         ).also {
-            val children = targetXmlEditor.file.getElementsByTagName("RelativeLayout")
-                .item(0).childNodes
+            val document = editor.file
+            val children = document.getElementsByTagName("RelativeLayout").item(0).childNodes
 
             // Replace the startOf with the voting button view so that the button does not overlap
             for (i in 1 until children.length) {
                 val view = children.item(i)
 
                 // Replace the attribute for a specific node only
-                if (!view.hasAttributes())
+                if (!(
+                            view.hasAttributes() &&
+                                    view.attributes.getNamedItem(
+                                        "android:id",
+                                    ).nodeValue.endsWith("player_video_heading")
+                            )
+                ) {
                     continue
-                if (!view.attributes.getNamedItem("android:id").nodeValue.endsWith("player_video_heading"))
-                    continue
+                }
 
                 view.attributes.getNamedItem("android:layout_toStartOf").nodeValue =
                     votingButtonId
 
+                modifiedControlsLayout = true
                 break
             }
-        }.close() // close afterwards
+        }.close()
 
+        if (!modifiedControlsLayout) throw PatchException("Could not modify controls layout")
 
         /**
          * Add ReVanced Extended Settings

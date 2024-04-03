@@ -6,8 +6,8 @@ import app.revanced.patches.youtube.layout.tooltip.fingerprints.TooltipContentVi
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 
 @Suppress("unused")
 object TooltipContentViewPatch : BaseBytecodePatch(
@@ -22,10 +22,10 @@ object TooltipContentViewPatch : BaseBytecodePatch(
 ) {
     override fun execute(context: BytecodeContext) {
 
-        TooltipContentViewFingerprint.result?.mutableMethod?.addInstruction(
+        TooltipContentViewFingerprint.resultOrThrow().mutableMethod.addInstruction(
             0,
             "return-void"
-        ) ?: throw TooltipContentViewFingerprint.exception
+        )
 
         /**
          * Add settings

@@ -11,9 +11,9 @@ import app.revanced.patches.music.utils.integrations.Constants.COMPATIBLE_PACKAG
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.getTargetIndexWithMethodReferenceName
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
@@ -36,7 +36,7 @@ object HandlePatch : BaseBytecodePatch(
         /**
          * Hide handle in account menu
          */
-        AccountSwitcherAccessibilityLabelFingerprint.result?.let { result ->
+        AccountSwitcherAccessibilityLabelFingerprint.resultOrThrow().let { result ->
             result.mutableMethod.apply {
 
                 val textColorIndex = getTargetIndexWithMethodReferenceName("setTextColor")
@@ -48,12 +48,12 @@ object HandlePatch : BaseBytecodePatch(
                     "invoke-static {v${textViewInstruction.registerC}, v${textViewInstruction.registerD}}, $ACCOUNT_CLASS_DESCRIPTOR->hideHandle(Landroid/widget/TextView;I)V"
                 )
             }
-        } ?: throw AccountSwitcherAccessibilityLabelFingerprint.exception
+        }
 
         /**
          * Hide handle in account switcher
          */
-        NamesInactiveAccountThumbnailSizeFingerprint.result?.let {
+        NamesInactiveAccountThumbnailSizeFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val targetIndex = it.scanResult.patternScanResult!!.startIndex
                 val targetRegister = getInstruction<OneRegisterInstruction>(targetIndex).registerA
@@ -65,7 +65,7 @@ object HandlePatch : BaseBytecodePatch(
                         """
                 )
             }
-        } ?: throw NamesInactiveAccountThumbnailSizeFingerprint.exception
+        }
 
         SettingsPatch.addMusicPreference(
             CategoryType.ACCOUNT,

@@ -21,9 +21,9 @@ import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch.contexts
 import app.revanced.util.ResourceGroup
 import app.revanced.util.copyResources
-import app.revanced.util.exception
 import app.revanced.util.getWideLiteralInstructionIndex
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import app.revanced.util.transformMethods
 import app.revanced.util.traverseClassHierarchy
 import com.android.tools.smali.dexlib2.AccessFlags
@@ -52,8 +52,7 @@ object SwipeControlsPatch : BaseBytecodePatch(
         "$SWIPE_PATH/SwipeControlsPatch;"
 
     override fun execute(context: BytecodeContext) {
-        val wrapperClass = SwipeControlsHostActivityFingerprint.result?.mutableClass
-            ?: throw SwipeControlsHostActivityFingerprint.exception
+        val wrapperClass = SwipeControlsHostActivityFingerprint.resultOrThrow().mutableClass
         val targetClass = mainActivityMutableClass
 
         // inject the wrapper class from integrations into the class hierarchy of MainActivity (WatchWhileActivity)
@@ -77,7 +76,7 @@ object SwipeControlsPatch : BaseBytecodePatch(
             }
         }
 
-        FullScreenEngagementOverlayFingerprint.result?.let {
+        FullScreenEngagementOverlayFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val viewIndex = getWideLiteralInstructionIndex(FullScreenEngagementOverlay) + 3
                 val viewRegister = getInstruction<OneRegisterInstruction>(viewIndex).registerA
@@ -87,7 +86,7 @@ object SwipeControlsPatch : BaseBytecodePatch(
                     "sput-object v$viewRegister, $INTEGRATIONS_CLASS_DESCRIPTOR->engagementOverlay:Landroid/view/View;"
                 )
             }
-        } ?: throw FullScreenEngagementOverlayFingerprint.exception
+        }
 
         HDRBrightnessFingerprint.result?.let {
             it.mutableMethod.apply {

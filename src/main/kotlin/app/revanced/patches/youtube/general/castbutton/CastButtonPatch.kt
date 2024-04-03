@@ -6,8 +6,8 @@ import app.revanced.patches.youtube.general.castbutton.fingerprints.CastButtonFi
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.GENERAL_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 
 @Suppress("unused")
 object CastButtonPatch : BaseBytecodePatch(
@@ -18,7 +18,7 @@ object CastButtonPatch : BaseBytecodePatch(
     fingerprints = setOf(CastButtonFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
-        CastButtonFingerprint.result?.let {
+        CastButtonFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 addInstructions(
                     0, """
@@ -27,7 +27,7 @@ object CastButtonPatch : BaseBytecodePatch(
                         """
                 )
             }
-        } ?: throw CastButtonFingerprint.exception
+        }
 
         /**
          * Add settings

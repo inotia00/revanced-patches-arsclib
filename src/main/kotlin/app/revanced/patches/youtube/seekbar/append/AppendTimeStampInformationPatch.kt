@@ -10,9 +10,9 @@ import app.revanced.patches.youtube.utils.overridequality.OverrideQualityHookPat
 import app.revanced.patches.youtube.utils.overridespeed.OverrideSpeedHookPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.getTargetIndexWithMethodReferenceName
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
@@ -30,7 +30,7 @@ object AppendTimeStampInformationPatch : BaseBytecodePatch(
     fingerprints = setOf(TotalTimeFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
-        TotalTimeFingerprint.result?.let {
+        TotalTimeFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val charSequenceIndex = getTargetIndexWithMethodReferenceName("getString") + 1
                 val charSequenceRegister = getInstruction<OneRegisterInstruction>(charSequenceIndex).registerA
@@ -46,7 +46,7 @@ object AppendTimeStampInformationPatch : BaseBytecodePatch(
                         """
                 )
             }
-        } ?: throw TotalTimeFingerprint.exception
+        }
 
         /**
          * Add settings

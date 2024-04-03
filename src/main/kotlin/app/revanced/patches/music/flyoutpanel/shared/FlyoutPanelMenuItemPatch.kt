@@ -9,9 +9,9 @@ import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.music.flyoutpanel.shared.fingerprints.MenuItemFingerprint
 import app.revanced.patches.music.utils.integrations.Constants.FLYOUT_CLASS_DESCRIPTOR
-import app.revanced.util.exception
 import app.revanced.util.getTargetIndex
 import app.revanced.util.indexOfFirstInstruction
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
@@ -28,7 +28,7 @@ object FlyoutPanelMenuItemPatch : BytecodePatch(
     private var instructionAdded = false
 
     override fun execute(context: BytecodeContext) {
-        MenuItemFingerprint.result?.let {
+        MenuItemFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val freeIndex = getTargetIndex(Opcode.OR_INT_LIT16)
                 val textViewIndex = it.scanResult.patternScanResult!!.startIndex
@@ -43,7 +43,7 @@ object FlyoutPanelMenuItemPatch : BytecodePatch(
 
                 menuItemMethod = this
             }
-        } ?: throw MenuItemFingerprint.exception
+        }
     }
 
     private fun MutableMethod.getEnumIndex() = indexOfFirstInstruction {

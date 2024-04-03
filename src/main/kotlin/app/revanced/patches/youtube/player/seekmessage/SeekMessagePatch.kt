@@ -13,9 +13,9 @@ import app.revanced.patches.youtube.utils.integrations.Constants.PLAYER_CLASS_DE
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.SeekUndoEduOverlayStub
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.getTargetIndexWithMethodReferenceName
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.WideLiteralInstruction
@@ -37,7 +37,7 @@ object SeekMessagePatch : BaseBytecodePatch(
 ) {
     override fun execute(context: BytecodeContext) {
 
-        SeekEduContainerFingerprint.result?.let {
+        SeekEduContainerFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 addInstructionsWithLabels(
                     0, """
@@ -48,12 +48,12 @@ object SeekMessagePatch : BaseBytecodePatch(
                         """, ExternalLabel("default", getInstruction(0))
                 )
             }
-        } ?: throw SeekEduContainerFingerprint.exception
+        }
 
         /**
          * Added in YouTube v18.29.xx~
          */
-        SeekEduUndoOverlayFingerprint.result?.let { result ->
+        SeekEduUndoOverlayFingerprint.resultOrThrow().let { result ->
             result.mutableMethod.apply {
                 val seekUndoCalls = implementation!!.instructions.withIndex()
                     .filter { instruction ->
@@ -73,7 +73,7 @@ object SeekMessagePatch : BaseBytecodePatch(
                         """, ExternalLabel("default", getInstruction(onClickListenerIndex + 1))
                 )
             }
-        } ?: throw SeekEduUndoOverlayFingerprint.exception
+        }
 
         /**
          * Add settings

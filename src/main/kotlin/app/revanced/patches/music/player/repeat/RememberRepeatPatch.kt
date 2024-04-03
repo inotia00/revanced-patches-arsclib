@@ -8,8 +8,8 @@ import app.revanced.patches.music.utils.integrations.Constants.COMPATIBLE_PACKAG
 import app.revanced.patches.music.utils.integrations.Constants.PLAYER_CLASS_DESCRIPTOR
 import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Suppress("unused")
@@ -21,7 +21,7 @@ object RememberRepeatPatch : BaseBytecodePatch(
     fingerprints = setOf(RepeatTrackFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
-        RepeatTrackFingerprint.result?.let {
+        RepeatTrackFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val targetIndex = it.scanResult.patternScanResult!!.endIndex
                 val targetRegister = getInstruction<OneRegisterInstruction>(targetIndex).registerA
@@ -33,7 +33,7 @@ object RememberRepeatPatch : BaseBytecodePatch(
                         """
                 )
             }
-        } ?: throw RepeatTrackFingerprint.exception
+        }
 
         SettingsPatch.addMusicPreference(
             CategoryType.PLAYER,

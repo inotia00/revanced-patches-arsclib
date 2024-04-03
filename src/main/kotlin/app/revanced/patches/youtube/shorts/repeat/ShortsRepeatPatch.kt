@@ -13,11 +13,11 @@ import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch.contexts
 import app.revanced.util.containsReferenceInstructionIndex
 import app.revanced.util.copyXmlNode
-import app.revanced.util.exception
 import app.revanced.util.findMutableMethodOf
 import app.revanced.util.getStringInstructionIndex
 import app.revanced.util.getTargetIndex
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
@@ -32,7 +32,7 @@ object ShortsRepeatPatch : BaseBytecodePatch(
 ) {
     override fun execute(context: BytecodeContext) {
 
-        ReelEnumConstructorFingerprint.result?.let {
+        ReelEnumConstructorFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 ReelEnumStaticFingerprint.resolve(context, it.mutableClass)
 
@@ -48,14 +48,12 @@ object ShortsRepeatPatch : BaseBytecodePatch(
                 val endScreenReferenceIndex = getTargetIndex(endScreenStringIndex, Opcode.SPUT_OBJECT)
                 val endScreenReference = getInstruction<ReferenceInstruction>(endScreenReferenceIndex).reference.toString()
 
-                val enumMethodName = ReelEnumStaticFingerprint.result?.mutableMethod?.name
-                    ?: throw ReelEnumStaticFingerprint.exception
-
+                val enumMethodName = ReelEnumStaticFingerprint.resultOrThrow().mutableMethod.name
                 val enumMethodCall = "$definingClass->$enumMethodName(I)$definingClass"
 
                 context.injectHook(endScreenReference, enumMethodCall)
             }
-        } ?: throw ReelEnumConstructorFingerprint.exception
+        }
 
         /**
          * Copy arrays

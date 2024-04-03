@@ -9,8 +9,8 @@ import app.revanced.patches.music.utils.integrations.Constants.GENERAL_CLASS_DES
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Suppress("unused")
@@ -25,7 +25,7 @@ object LandScapeModePatch : BaseBytecodePatch(
     fingerprints = setOf(TabletIdentifierFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
-        TabletIdentifierFingerprint.result?.let {
+        TabletIdentifierFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val targetIndex = it.scanResult.patternScanResult!!.endIndex
                 val targetRegister = getInstruction<OneRegisterInstruction>(targetIndex).registerA
@@ -37,7 +37,7 @@ object LandScapeModePatch : BaseBytecodePatch(
                         """
                 )
             }
-        } ?: throw TabletIdentifierFingerprint.exception
+        }
 
         SettingsPatch.addMusicPreference(
             CategoryType.GENERAL,

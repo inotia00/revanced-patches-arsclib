@@ -5,8 +5,8 @@ import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patches.music.general.tooltip.fingerprints.TooltipContentViewFingerprint
 import app.revanced.patches.music.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch
-import app.revanced.util.exception
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 
 @Suppress("unused")
 object TooltipContentViewPatch : BaseBytecodePatch(
@@ -18,10 +18,10 @@ object TooltipContentViewPatch : BaseBytecodePatch(
 ) {
     override fun execute(context: BytecodeContext) {
 
-        TooltipContentViewFingerprint.result?.mutableMethod?.addInstruction(
+        TooltipContentViewFingerprint.resultOrThrow().mutableMethod.addInstruction(
             0,
             "return-void"
-        ) ?: throw TooltipContentViewFingerprint.exception
+        )
 
     }
 }

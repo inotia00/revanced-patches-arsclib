@@ -9,7 +9,7 @@ import app.revanced.patches.music.layout.overlayfilter.fingerprints.DesignBottom
 import app.revanced.patches.music.utils.integrations.Constants.GENERAL_CLASS_DESCRIPTOR
 import app.revanced.patches.music.utils.integrations.IntegrationsPatch
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch
-import app.revanced.util.exception
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch(
@@ -24,7 +24,7 @@ object OverlayFilterBytecodePatch : BytecodePatch(
 ) {
     override fun execute(context: BytecodeContext) {
 
-        DesignBottomSheetDialogFingerprint.result?.let {
+        DesignBottomSheetDialogFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val insertIndex = it.scanResult.patternScanResult!!.endIndex - 1
                 val freeRegister = getInstruction<OneRegisterInstruction>(insertIndex + 1).registerA
@@ -37,7 +37,7 @@ object OverlayFilterBytecodePatch : BytecodePatch(
                         """
                 )
             }
-        } ?: throw DesignBottomSheetDialogFingerprint.exception
+        }
 
     }
 }

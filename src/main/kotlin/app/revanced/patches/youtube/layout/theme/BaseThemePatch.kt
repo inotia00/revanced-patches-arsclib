@@ -9,7 +9,7 @@ import org.w3c.dom.Element
 
 @Patch(dependencies = [DrawableColorPatch::class])
 @Suppress("DEPRECATION")
-object ThemeBytecodePatch : ResourcePatch() {
+object BaseThemePatch : ResourcePatch() {
     override fun execute(context: ResourceContext) {
 
         DrawableColorPatch.injectCall("$UTILS_PATH/DrawableColorPatch;->getColor(I)I")

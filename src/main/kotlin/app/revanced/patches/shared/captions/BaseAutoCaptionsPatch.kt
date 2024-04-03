@@ -7,9 +7,9 @@ import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patches.shared.captions.fingerprints.StartVideoInformerFingerprint
 import app.revanced.patches.shared.captions.fingerprints.SubtitleTrackFingerprint
-import app.revanced.util.exception
 import app.revanced.util.getWalkerMethod
 import app.revanced.util.indexOfFirstInstruction
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
@@ -25,16 +25,16 @@ abstract class BaseAutoCaptionsPatch(
 ) {
     override fun execute(context: BytecodeContext) {
 
-        StartVideoInformerFingerprint.result?.let {
+        StartVideoInformerFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 addInstruction(
                     0,
                     "invoke-static {}, $classDescriptor->prefetchSubtitleTrack()V"
                 )
             }
-        } ?: throw StartVideoInformerFingerprint.exception
+        }
 
-        SubtitleTrackFingerprint.result?.let {
+        SubtitleTrackFingerprint.resultOrThrow().let {
             val targetMethod = it.getWalkerMethod(context, it.scanResult.patternScanResult!!.startIndex + 1)
 
             targetMethod.apply {
@@ -51,7 +51,7 @@ abstract class BaseAutoCaptionsPatch(
                         """
                 )
             }
-        } ?: throw SubtitleTrackFingerprint.exception
+        }
 
     }
 }

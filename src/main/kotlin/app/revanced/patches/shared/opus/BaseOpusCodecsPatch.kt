@@ -7,8 +7,8 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.shared.opus.fingerprints.CodecReferenceFingerprint
 import app.revanced.patches.shared.opus.fingerprints.CodecSelectorFingerprint
-import app.revanced.util.exception
 import app.revanced.util.getTargetIndexWithReference
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.reference.Reference
@@ -25,14 +25,14 @@ abstract class BaseOpusCodecsPatch(
 
     override fun execute(context: BytecodeContext) {
 
-        CodecReferenceFingerprint.result?.let {
+        CodecReferenceFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val targetIndex = getTargetIndexWithReference("Ljava/util/Set;")
                 targetReference = getInstruction<ReferenceInstruction>(targetIndex).reference
             }
-        } ?: throw CodecReferenceFingerprint.exception
+        }
 
-        CodecSelectorFingerprint.result?.let {
+        CodecSelectorFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val targetIndex = it.scanResult.patternScanResult!!.endIndex
                 val targetRegister = getInstruction<OneRegisterInstruction>(targetIndex).registerA
@@ -47,6 +47,6 @@ abstract class BaseOpusCodecsPatch(
                         """, ExternalLabel("mp4a", getInstruction(targetIndex + 1))
                 )
             }
-        } ?: throw CodecSelectorFingerprint.exception
+        }
     }
 }

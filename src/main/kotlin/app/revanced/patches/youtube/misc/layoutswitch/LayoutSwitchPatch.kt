@@ -12,11 +12,11 @@ import app.revanced.patches.youtube.utils.fingerprints.LayoutSwitchFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.MISC_PATH
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.getStringInstructionIndex
 import app.revanced.util.getTargetIndex
 import app.revanced.util.getTargetIndexReversed
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
@@ -36,7 +36,7 @@ object LayoutSwitchPatch : BaseBytecodePatch(
     override fun execute(context: BytecodeContext) {
 
         // tablet layout
-        GetFormFactorFingerprint.result?.let {
+        GetFormFactorFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val jumpIndex = getTargetIndexReversed(Opcode.SGET_OBJECT)
 
@@ -52,10 +52,10 @@ object LayoutSwitchPatch : BaseBytecodePatch(
                     )
                 )
             }
-        } ?: throw GetFormFactorFingerprint.exception
+        }
 
         // phone layout
-        LayoutSwitchFingerprint.result?.let {
+        LayoutSwitchFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 addInstructions(
                     4, """
@@ -64,7 +64,7 @@ object LayoutSwitchPatch : BaseBytecodePatch(
                         """
                 )
             }
-        } ?: throw LayoutSwitchFingerprint.exception
+        }
 
         /**
          * Add settings

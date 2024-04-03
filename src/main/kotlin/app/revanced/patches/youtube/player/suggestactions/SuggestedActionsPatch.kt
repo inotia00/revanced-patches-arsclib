@@ -10,8 +10,8 @@ import app.revanced.patches.youtube.utils.integrations.Constants.COMPONENTS_PATH
 import app.revanced.patches.youtube.utils.playertype.PlayerTypeHookPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Suppress("unused")
@@ -31,7 +31,7 @@ object SuggestedActionsPatch : BaseBytecodePatch(
         "$COMPONENTS_PATH/SuggestedActionFilter;"
 
     override fun execute(context: BytecodeContext) {
-        SuggestedActionsFingerprint.result?.let {
+        SuggestedActionsFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val targetIndex = it.scanResult.patternScanResult!!.endIndex
                 val targetRegister = getInstruction<OneRegisterInstruction>(targetIndex).registerA
@@ -42,7 +42,7 @@ object SuggestedActionsPatch : BaseBytecodePatch(
 
                 )
             }
-        } ?: throw SuggestedActionsFingerprint.exception
+        }
 
         LithoFilterPatch.addFilter(FILTER_CLASS_DESCRIPTOR)
 

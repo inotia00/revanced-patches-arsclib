@@ -8,8 +8,8 @@ import app.revanced.patches.youtube.general.autopopuppanels.fingerprints.Engagem
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.GENERAL_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 
 @Suppress("unused")
 object PlayerPopupPanelsPatch : BaseBytecodePatch(
@@ -21,7 +21,7 @@ object PlayerPopupPanelsPatch : BaseBytecodePatch(
 ) {
     override fun execute(context: BytecodeContext) {
 
-        EngagementPanelControllerFingerprint.result?.let {
+        EngagementPanelControllerFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 addInstructionsWithLabels(
                     0, """
@@ -35,7 +35,7 @@ object PlayerPopupPanelsPatch : BaseBytecodePatch(
                         """, ExternalLabel("shown", getInstruction(0))
                 )
             }
-        } ?: throw EngagementPanelControllerFingerprint.exception
+        }
 
         /**
          * Add settings

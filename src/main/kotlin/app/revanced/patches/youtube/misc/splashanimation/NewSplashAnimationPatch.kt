@@ -12,9 +12,9 @@ import app.revanced.patches.youtube.utils.mainactivity.MainActivityResolvePatch.
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.DarkSplashAnimation
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.getWideLiteralInstructionIndex
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
@@ -39,7 +39,7 @@ object NewSplashAnimationPatch : BaseBytecodePatch(
         /**
          * YouTube v18.28.xx~
          */
-        WatchWhileActivityWithOutFlagsFingerprint.result?.let {
+        WatchWhileActivityWithOutFlagsFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 var startIndex = getWideLiteralInstructionIndex(DarkSplashAnimation) - 1
                 val endIndex = startIndex - 30
@@ -67,7 +67,7 @@ object NewSplashAnimationPatch : BaseBytecodePatch(
                     break
                 }
             }
-        } ?: throw WatchWhileActivityWithOutFlagsFingerprint.exception
+        }
 
         /**
          * Add settings
@@ -96,9 +96,9 @@ object NewSplashAnimationPatch : BaseBytecodePatch(
 
         addInstructions(
             index, """
-                    invoke-static {v$register}, $INTEGRATIONS_CLASS_DESCRIPTOR->enableNewSplashAnimationBoolean(Z)Z
-                    move-result v$register
-                    """
+                invoke-static {v$register}, $INTEGRATIONS_CLASS_DESCRIPTOR->enableNewSplashAnimationBoolean(Z)Z
+                move-result v$register
+                """
         )
     }
 
@@ -107,9 +107,9 @@ object NewSplashAnimationPatch : BaseBytecodePatch(
 
         addInstructions(
             index, """
-                    invoke-static {v$register}, $INTEGRATIONS_CLASS_DESCRIPTOR->enableNewSplashAnimationInt(I)I
-                    move-result v$register
-                    """
+                invoke-static {v$register}, $INTEGRATIONS_CLASS_DESCRIPTOR->enableNewSplashAnimationInt(I)I
+                move-result v$register
+                """
         )
     }
 }

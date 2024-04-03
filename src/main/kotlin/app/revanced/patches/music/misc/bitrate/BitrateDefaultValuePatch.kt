@@ -10,6 +10,8 @@ object BitrateDefaultValuePatch : BaseResourcePatch(
     description = "Sets the audio quality to \"Always High\" when you first install the app.",
     compatiblePackages = COMPATIBLE_PACKAGE
 ) {
+    private const val RESOURCE_FILE_PATH = "res/xml/data_saving_settings.xml"
+
     override fun execute(context: ResourceContext) {
         context.xmlEditor[RESOURCE_FILE_PATH].use { editor ->
             editor.file.getElementsByTagName("com.google.android.apps.youtube.music.ui.preference.PreferenceCategoryCompat")
@@ -29,8 +31,5 @@ object BitrateDefaultValuePatch : BaseResourcePatch(
                     }
                 }
         }
-
     }
-
-    private const val RESOURCE_FILE_PATH = "res/xml/data_saving_settings.xml"
 }

@@ -16,8 +16,8 @@ import app.revanced.patches.youtube.utils.overridequality.fingerprints.VideoQual
 import app.revanced.patches.youtube.utils.overridequality.fingerprints.VideoQualityTextFingerprint
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.QualityAuto
-import app.revanced.util.exception
 import app.revanced.util.getWideLiteralInstructionIndex
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
@@ -44,7 +44,7 @@ object OverrideQualityHookPatch : BytecodePatch(
 
     override fun execute(context: BytecodeContext) {
 
-        VideoQualityListFingerprint.result?.let {
+        VideoQualityListFingerprint.resultOrThrow().let {
             val constructorMethod =
                 it.mutableClass.methods.first { method -> MethodUtil.isConstructor(method) }
             val overrideMethod =
@@ -79,9 +79,9 @@ object OverrideQualityHookPatch : BytecodePatch(
                     "sput-object v$qualityAutoRegister, $INTEGRATIONS_VIDEO_UTILS_CLASS_DESCRIPTOR->qualityAutoString:Ljava/lang/String;"
                 )
             }
-        } ?: throw VideoQualityListFingerprint.exception
+        }
 
-        VideoQualityPatchFingerprint.result?.let {
+        VideoQualityPatchFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 it.mutableClass.staticFields.add(
                     ImmutableField(
@@ -102,9 +102,9 @@ object OverrideQualityHookPatch : BytecodePatch(
                         """
                 )
             }
-        } ?: throw VideoQualityPatchFingerprint.exception
+        }
 
-        VideoQualityTextFingerprint.result?.let {
+        VideoQualityTextFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val textIndex = it.scanResult.patternScanResult!!.endIndex
                 val textRegister = getInstruction<TwoRegisterInstruction>(textIndex).registerA
@@ -114,6 +114,6 @@ object OverrideQualityHookPatch : BytecodePatch(
                     "sput-object v$textRegister, $INTEGRATIONS_VIDEO_UTILS_CLASS_DESCRIPTOR->currentQuality:Ljava/lang/String;"
                 )
             }
-        } ?: throw VideoQualityTextFingerprint.exception
+        }
     }
 }

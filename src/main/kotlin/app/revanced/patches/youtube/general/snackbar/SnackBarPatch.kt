@@ -8,8 +8,8 @@ import app.revanced.patches.youtube.general.snackbar.fingerprints.BottomUiContai
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.GENERAL_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 
 @Suppress("unused")
 object SnackBarPatch : BaseBytecodePatch(
@@ -21,7 +21,7 @@ object SnackBarPatch : BaseBytecodePatch(
 ) {
     override fun execute(context: BytecodeContext) {
 
-        BottomUiContainerFingerprint.result?.let {
+        BottomUiContainerFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 addInstructionsWithLabels(
                     0, """
@@ -32,7 +32,7 @@ object SnackBarPatch : BaseBytecodePatch(
                         """, ExternalLabel("show", getInstruction(0))
                 )
             }
-        } ?: throw BottomUiContainerFingerprint.exception
+        }
 
         /**
          * Add settings

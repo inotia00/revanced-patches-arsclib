@@ -13,11 +13,11 @@ import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACK
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPONENTS_PATH
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.getTargetIndex
 import app.revanced.util.getWalkerMethod
 import app.revanced.util.getWideLiteralInstructionIndex
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
@@ -41,7 +41,7 @@ object CommentComponentPatch : BaseBytecodePatch(
         "$COMPONENTS_PATH/CommentsFilter;"
     override fun execute(context: BytecodeContext) {
 
-        ShortsLiveStreamEmojiPickerOpacityFingerprint.result?.let {
+        ShortsLiveStreamEmojiPickerOpacityFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val insertIndex = implementation!!.instructions.size - 1
                 val insertRegister= getInstruction<OneRegisterInstruction>(insertIndex).registerA
@@ -51,9 +51,9 @@ object CommentComponentPatch : BaseBytecodePatch(
                     "invoke-static {v$insertRegister}, $BOTTOM_PLAYER_CLASS_DESCRIPTOR->changeEmojiPickerOpacity(Landroid/widget/ImageView;)V"
                 )
             }
-        } ?: throw ShortsLiveStreamEmojiPickerOpacityFingerprint.exception
+        }
 
-        ShortsLiveStreamEmojiPickerOnClickListenerFingerprint.result?.let { parentResult ->
+        ShortsLiveStreamEmojiPickerOnClickListenerFingerprint.resultOrThrow().let { parentResult ->
             parentResult.mutableMethod.apply {
                 val emojiPickerEndpointIndex = getWideLiteralInstructionIndex(126326492)
                 val emojiPickerOnClickListenerIndex = getTargetIndex(emojiPickerEndpointIndex, Opcode.INVOKE_DIRECT)
@@ -77,7 +77,7 @@ object CommentComponentPatch : BaseBytecodePatch(
                     context,
                     parentResult.classDef
                 )
-            }.result?.let {
+            }.resultOrThrow().let {
                 it.mutableMethod.apply {
                     val insertIndex = it.scanResult.patternScanResult!!.startIndex
                     val insertInstruction = getInstruction<FiveRegisterInstruction>(insertIndex)

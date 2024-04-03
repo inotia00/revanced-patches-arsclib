@@ -13,8 +13,8 @@ import app.revanced.patches.music.utils.returnyoutubedislike.fingerprints.LikeFi
 import app.revanced.patches.music.utils.returnyoutubedislike.fingerprints.RemoveLikeFingerprint
 import app.revanced.patches.music.utils.returnyoutubedislike.fingerprints.TextComponentFingerprint
 import app.revanced.patches.music.video.videoid.VideoIdPatch
-import app.revanced.util.exception
 import app.revanced.util.indexOfFirstInstruction
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
@@ -42,18 +42,16 @@ object ReturnYouTubeDislikeBytecodePatch : BytecodePatch(
             DislikeFingerprint.toPatch(Vote.DISLIKE),
             RemoveLikeFingerprint.toPatch(Vote.REMOVE_LIKE)
         ).forEach { (fingerprint, vote) ->
-            with(fingerprint.result ?: throw fingerprint.exception) {
-                mutableMethod.addInstructions(
-                    0,
-                    """
+            fingerprint.resultOrThrow().mutableMethod.addInstructions(
+                0,
+                """
                     const/4 v0, ${vote.value}
                     invoke-static {v0}, $INTEGRATIONS_RYD_CLASS_DESCRIPTOR->sendVote(I)V
                     """
-                )
-            }
+            )
         }
 
-        TextComponentFingerprint.result?.let {
+        TextComponentFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val insertIndex = indexOfFirstInstruction {
                     opcode == Opcode.INVOKE_STATIC
@@ -68,7 +66,7 @@ object ReturnYouTubeDislikeBytecodePatch : BytecodePatch(
                         """
                 )
             }
-        } ?: throw TextComponentFingerprint.exception
+        }
 
         VideoIdPatch.hookVideoId("$INTEGRATIONS_RYD_CLASS_DESCRIPTOR->newVideoLoaded(Ljava/lang/String;)V")
 

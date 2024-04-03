@@ -14,9 +14,9 @@ import app.revanced.patches.music.utils.sponsorblock.fingerprints.MusicPlaybackC
 import app.revanced.patches.music.utils.sponsorblock.fingerprints.SeekbarOnDrawFingerprint
 import app.revanced.patches.music.video.information.VideoInformationPatch
 import app.revanced.patches.music.video.videoid.VideoIdPatch
-import app.revanced.util.exception
 import app.revanced.util.getTargetIndexWithMethodReferenceName
 import app.revanced.util.getTargetIndexWithMethodReferenceNameReversed
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
@@ -55,11 +55,10 @@ object SponsorBlockBytecodePatch : BytecodePatch(
         /**
          * Responsible for seekbar in fullscreen
          */
-        val seekBarClass = SeekBarConstructorFingerprint.result?.mutableClass
-            ?: throw SeekBarConstructorFingerprint.exception
+        val seekBarClass = SeekBarConstructorFingerprint.resultOrThrow().mutableClass
         SeekbarOnDrawFingerprint.resolve(context, seekBarClass)
 
-        SeekbarOnDrawFingerprint.result?.let {
+        SeekbarOnDrawFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 // Initialize seekbar method
                 addInstructions(
@@ -88,22 +87,22 @@ object SponsorBlockBytecodePatch : BytecodePatch(
                             "$INTEGRATIONS_SEGMENT_PLAYBACK_CONTROLLER_CLASS_DESCRIPTOR->drawSponsorTimeBars(Landroid/graphics/Canvas;F)V"
                 )
             }
-        } ?: throw SeekbarOnDrawFingerprint.exception
+        }
 
 
         /**
          * Responsible for seekbar in player
          */
-        MusicPlaybackControlsTimeBarOnMeasureFingerprint.result?.let {
+        MusicPlaybackControlsTimeBarOnMeasureFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val rectangleIndex = it.scanResult.patternScanResult!!.startIndex
                 val rectangleReference =
                     getInstruction<ReferenceInstruction>(rectangleIndex).reference
                 rectangleFieldName = (rectangleReference as FieldReference).name
             }
-        } ?: throw MusicPlaybackControlsTimeBarOnMeasureFingerprint.exception
+        }
 
-        MusicPlaybackControlsTimeBarDrawFingerprint.result?.let {
+        MusicPlaybackControlsTimeBarDrawFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 // Initialize seekbar method
                 addInstructions(
@@ -123,7 +122,7 @@ object SponsorBlockBytecodePatch : BytecodePatch(
                             "$INTEGRATIONS_SEGMENT_PLAYBACK_CONTROLLER_CLASS_DESCRIPTOR->drawSponsorTimeBars(Landroid/graphics/Canvas;F)V"
                 )
             }
-        } ?: throw MusicPlaybackControlsTimeBarDrawFingerprint.exception
+        }
 
         /**
          * Set current video id

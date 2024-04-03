@@ -12,10 +12,10 @@ import app.revanced.patches.youtube.fullscreen.landscapemode.fingerprints.Orient
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.FULLSCREEN_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.getStringInstructionIndex
 import app.revanced.util.getTargetIndex
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
@@ -36,28 +36,28 @@ object LandScapeModePatch : BaseBytecodePatch(
         /**
          * Disable landscape mode
          */
-        OrientationParentFingerprint.result?.classDef?.let { classDef ->
+        OrientationParentFingerprint.resultOrThrow().classDef.let { classDef ->
             arrayOf(
                 OrientationPrimaryFingerprint,
                 OrientationSecondaryFingerprint
             ).forEach { fingerprint ->
                 fingerprint.resolve(context, classDef)
 
-                fingerprint.result?.let {
+                fingerprint.resultOrThrow().let {
                     it.mutableMethod.apply {
                         val index = it.scanResult.patternScanResult!!.endIndex
                         val register = getInstruction<OneRegisterInstruction>(index).registerA
 
                         addInstructions(
                             index + 1, """
-                                invoke-static {v$register}, $FULLSCREEN_CLASS_DESCRIPTOR->disableLandScapeMode(Z)Z
-                                move-result v$register
-                                """
+                                    invoke-static {v$register}, $FULLSCREEN_CLASS_DESCRIPTOR->disableLandScapeMode(Z)Z
+                                    move-result v$register
+                                    """
                         )
                     }
-                } ?: throw fingerprint.exception
+                }
             }
-        } ?: throw OrientationParentFingerprint.exception
+        }
 
         /**
          * Keep landscape mode
@@ -75,7 +75,7 @@ object LandScapeModePatch : BaseBytecodePatch(
                 )
             }
 
-            BroadcastReceiverFingerprint.result?.let { result ->
+            BroadcastReceiverFingerprint.resultOrThrow().let { result ->
                 result.mutableMethod.apply {
                     val stringIndex = getStringInstructionIndex("android.intent.action.SCREEN_ON")
                     val insertIndex = getTargetIndex(stringIndex, Opcode.IF_EQZ) + 1
@@ -85,7 +85,7 @@ object LandScapeModePatch : BaseBytecodePatch(
                         "invoke-static {}, $FULLSCREEN_CLASS_DESCRIPTOR->setScreenStatus()V"
                     )
                 }
-            } ?: throw BroadcastReceiverFingerprint.exception
+            }
 
             SettingsPatch.addPreference(
                 arrayOf(

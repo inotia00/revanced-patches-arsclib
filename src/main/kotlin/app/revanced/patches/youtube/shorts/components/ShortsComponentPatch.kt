@@ -31,11 +31,11 @@ import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.ReelR
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.ReelRightLikeIcon
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.RightComment
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.getTargetIndex
 import app.revanced.util.getTargetIndexReversed
 import app.revanced.util.getWideLiteralInstructionIndex
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
@@ -62,6 +62,11 @@ object ShortsComponentPatch : BaseBytecodePatch(
         ShortsPivotLegacyFingerprint
     )
 ) {
+    private const val BUTTON_FILTER_CLASS_DESCRIPTOR =
+        "$COMPONENTS_PATH/ShortsButtonFilter;"
+    private const val SHELF_FILTER_CLASS_DESCRIPTOR =
+        "$COMPONENTS_PATH/ShortsShelfFilter;"
+
     override fun execute(context: BytecodeContext) {
 
         /**
@@ -72,7 +77,7 @@ object ShortsComponentPatch : BaseBytecodePatch(
         /**
          * Dislike button
          */
-        ShortsButtonFingerprint.result?.let {
+        ShortsButtonFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val constIndex = getWideLiteralInstructionIndex(ReelRightDislikeIcon)
                 val constRegister = getInstruction<OneRegisterInstruction>(constIndex).registerA
@@ -88,7 +93,7 @@ object ShortsComponentPatch : BaseBytecodePatch(
                         """, ExternalLabel("hide", getInstruction(jumpIndex))
                 )
             }
-        } ?: throw ShortsButtonFingerprint.exception
+        }
 
         /**
          * Info panel
@@ -98,7 +103,7 @@ object ShortsComponentPatch : BaseBytecodePatch(
         /**
          * Like button
          */
-        ShortsButtonFingerprint.result?.let {
+        ShortsButtonFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val insertIndex = getWideLiteralInstructionIndex(ReelRightLikeIcon)
                 val insertRegister = getInstruction<OneRegisterInstruction>(insertIndex).registerA
@@ -113,7 +118,7 @@ object ShortsComponentPatch : BaseBytecodePatch(
                         """, ExternalLabel("hide", getInstruction(jumpIndex))
                 )
             }
-        } ?: throw ShortsButtonFingerprint.exception
+        }
 
         /**
          * Paid promotion
@@ -140,14 +145,14 @@ object ShortsComponentPatch : BaseBytecodePatch(
                         """, ExternalLabel("hide", getInstruction(jumpIndex))
                 )
             }
-        } ?: ShortsPivotFingerprint.result?.let {
+        } ?: ShortsPivotFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val targetIndex = getWideLiteralInstructionIndex(ReelPivotButton)
                 val insertIndex = getTargetIndexReversed(targetIndex, Opcode.INVOKE_STATIC) + 1
 
                 hideButtons(insertIndex, "hideShortsPlayerPivotButton(Ljava/lang/Object;)Ljava/lang/Object;")
             }
-        } ?: throw ShortsPivotFingerprint.exception
+        }
 
         /**
          * Remix button
@@ -159,8 +164,8 @@ object ShortsComponentPatch : BaseBytecodePatch(
          */
         ShortsButtonFingerprint.hideButton(ReelDynShare, "hideShortsPlayerShareButton", true)
 
-        LithoFilterPatch.addFilter("$COMPONENTS_PATH/ShortsButtonFilter;")
-        LithoFilterPatch.addFilter("$COMPONENTS_PATH/ShortsShelfFilter;")
+        LithoFilterPatch.addFilter(BUTTON_FILTER_CLASS_DESCRIPTOR)
+        LithoFilterPatch.addFilter(SHELF_FILTER_CLASS_DESCRIPTOR)
 
         /**
          * Add settings
@@ -183,7 +188,7 @@ object ShortsComponentPatch : BaseBytecodePatch(
         descriptor: String,
         reversed: Boolean
     ) {
-        result?.let {
+        resultOrThrow().let {
             it.mutableMethod.apply {
                 val constIndex = getWideLiteralInstructionIndex(id)
                 val insertIndex = if (reversed)
@@ -197,21 +202,21 @@ object ShortsComponentPatch : BaseBytecodePatch(
                     "invoke-static {v$insertRegister}, $SHORTS_CLASS_DESCRIPTOR->$descriptor(Landroid/view/View;)V"
                 )
             }
-        } ?: throw exception
+        }
     }
 
     private fun MethodFingerprint.hideButtons(
         id: Long,
         descriptor: String
     ) {
-        result?.let {
+        resultOrThrow().let {
             it.mutableMethod.apply {
                 val constIndex = getWideLiteralInstructionIndex(id)
                 val insertIndex = getTargetIndex(constIndex, Opcode.CHECK_CAST)
 
                 hideButtons(insertIndex, descriptor)
             }
-        } ?: throw exception
+        }
     }
 
     private fun MutableMethod.hideButtons(

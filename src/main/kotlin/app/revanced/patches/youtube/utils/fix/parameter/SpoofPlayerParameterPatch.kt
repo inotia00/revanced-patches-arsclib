@@ -23,8 +23,8 @@ import app.revanced.patches.youtube.utils.playerresponse.PlayerResponsePatch
 import app.revanced.patches.youtube.utils.playertype.PlayerTypeHookPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.patches.youtube.utils.videoid.general.VideoIdPatch
-import app.revanced.util.exception
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
@@ -65,13 +65,13 @@ object SpoofPlayerParameterPatch : BaseBytecodePatch(
         // Force the seekbar time and chapters to always show up.
         // This is used if the storyboard spec fetch fails, for viewing paid videos,
         // or if storyboard spoofing is turned off.
-        StoryboardThumbnailParentFingerprint.result?.classDef?.let { classDef ->
+        StoryboardThumbnailParentFingerprint.resultOrThrow().classDef.let { classDef ->
             StoryboardThumbnailFingerprint.also {
                 it.resolve(
                     context,
                     classDef
                 )
-            }.result?.let {
+            }.resultOrThrow().let {
                 it.mutableMethod.apply {
                     val targetIndex = it.scanResult.patternScanResult!!.endIndex
                     val targetRegister =
@@ -81,22 +81,22 @@ object SpoofPlayerParameterPatch : BaseBytecodePatch(
                     addInstructions(
                         targetIndex + 1,
                         """
-                            invoke-static {}, $INTEGRATIONS_CLASS_DESCRIPTOR->getSeekbarThumbnailOverrideValue()Z
-                            move-result v$targetRegister
-                            return v$targetRegister
-                            """
+                                invoke-static {}, $INTEGRATIONS_CLASS_DESCRIPTOR->getSeekbarThumbnailOverrideValue()Z
+                                move-result v$targetRegister
+                                return v$targetRegister
+                                """
                     )
                     removeInstruction(targetIndex)
                 }
-            } ?: throw StoryboardThumbnailFingerprint.exception
-        } ?: throw StoryboardThumbnailParentFingerprint.exception
+            }
+        }
 
         // Hook storyboard renderer url.
         arrayOf(
             PlayerResponseModelGeneralStoryboardRendererFingerprint,
             PlayerResponseModelLiveStreamStoryboardRendererFingerprint
         ).forEach { fingerprint ->
-            fingerprint.result?.let {
+            fingerprint.resultOrThrow().let {
                 it.mutableMethod.apply {
                     val getStoryboardIndex = it.scanResult.patternScanResult!!.endIndex
                     val getStoryboardRegister =
@@ -110,11 +110,11 @@ object SpoofPlayerParameterPatch : BaseBytecodePatch(
                             """
                     )
                 }
-            } ?: throw fingerprint.exception
+            }
         }
 
         // Hook recommended seekbar thumbnails quality level.
-        StoryboardRendererDecoderRecommendedLevelFingerprint.result?.let {
+        StoryboardRendererDecoderRecommendedLevelFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val moveOriginalRecommendedValueIndex = it.scanResult.patternScanResult!!.endIndex
                 val originalValueRegister =
@@ -127,10 +127,10 @@ object SpoofPlayerParameterPatch : BaseBytecodePatch(
                         """
                 )
             }
-        } ?: throw StoryboardRendererDecoderRecommendedLevelFingerprint.exception
+        }
 
         // Hook the recommended precise seeking thumbnails quality level.
-        PlayerResponseModelStoryboardRecommendedLevelFingerprint.result?.let {
+        PlayerResponseModelStoryboardRecommendedLevelFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val moveOriginalRecommendedValueIndex = it.scanResult.patternScanResult!!.endIndex
                 val originalValueRegister =
@@ -143,9 +143,9 @@ object SpoofPlayerParameterPatch : BaseBytecodePatch(
                         """
                 )
             }
-        } ?: throw PlayerResponseModelStoryboardRecommendedLevelFingerprint.exception
+        }
 
-        StoryboardRendererSpecFingerprint.result?.let {
+        StoryboardRendererSpecFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val storyBoardUrlParams = 0
 
@@ -157,10 +157,10 @@ object SpoofPlayerParameterPatch : BaseBytecodePatch(
                         """, ExternalLabel("ignore", getInstruction(0))
                 )
             }
-        } ?: throw StoryboardRendererSpecFingerprint.exception
+        }
 
         // Hook the seekbar thumbnail decoder and use a NULL spec for live streams.
-        StoryboardRendererDecoderSpecFingerprint.result?.let {
+        StoryboardRendererDecoderSpecFingerprint.resultOrThrow().let {
             val storyBoardUrlIndex = it.scanResult.patternScanResult!!.startIndex + 1
             val storyboardUrlRegister =
                 it.mutableMethod.getInstruction<OneRegisterInstruction>(storyBoardUrlIndex).registerA
@@ -171,16 +171,15 @@ object SpoofPlayerParameterPatch : BaseBytecodePatch(
                         move-result-object v$storyboardUrlRegister
                         """
             )
-        } ?: throw StoryboardRendererDecoderSpecFingerprint.exception
+        }
 
         // Fix stats not being tracked.
         // Due to signature spoofing "adformat" is present in query parameters made for /stats requests,
         // even though, for regular videos, it should not be.
         // This breaks stats tracking.
         // Replace the ad parameter with the video parameter in the query parameters.
-        StatsQueryParameterFingerprint.result?.let {
-            val putMethod = ParamsMapPutFingerprint.result?.method?.toString()
-                ?: throw ParamsMapPutFingerprint.exception
+        StatsQueryParameterFingerprint.resultOrThrow().let {
+            val putMethod = ParamsMapPutFingerprint.resultOrThrow().method.toString()
 
             it.mutableMethod.apply {
                 val adParamIndex = it.scanResult.stringsScanResult!!.matches.first().index
@@ -202,7 +201,7 @@ object SpoofPlayerParameterPatch : BaseBytecodePatch(
                         putMethod,
                 )
             }
-        } ?: throw StatsQueryParameterFingerprint.exception
+        }
 
         /**
          * Add settings

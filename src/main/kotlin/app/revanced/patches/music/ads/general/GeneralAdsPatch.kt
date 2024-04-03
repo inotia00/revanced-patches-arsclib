@@ -20,9 +20,9 @@ import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch.Interst
 import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
 import app.revanced.patches.shared.litho.LithoFilterPatch
-import app.revanced.util.exception
 import app.revanced.util.getWideLiteralInstructionIndex
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Suppress("unused")
@@ -62,7 +62,7 @@ object GeneralAdsPatch : BaseBytecodePatch(
          * Hides fullscreen ads
          * Non-litho view, used in some old clients.
          */
-        InterstitialsContainerFingerprint.result?.let {
+        InterstitialsContainerFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val targetIndex = getWideLiteralInstructionIndex(InterstitialsContainer) + 2
                 val targetRegister = getInstruction<OneRegisterInstruction>(targetIndex).registerA
@@ -72,13 +72,13 @@ object GeneralAdsPatch : BaseBytecodePatch(
                     "invoke-static {v$targetRegister}, $FULLSCREEN_ADS_CLASS_DESCRIPTOR->hideFullscreenAds(Landroid/view/View;)V"
                 )
             }
-        } ?: throw InterstitialsContainerFingerprint.exception
+        }
 
         /**
          * Hides fullscreen ads
          * Litho view, used in 'ShowDialogCommandOuterClass' in innertube
          */
-        ShowDialogCommandFingerprint.result?.let {
+        ShowDialogCommandFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 // In this method, custom dialog is created and shown.
                 // There were no issues despite adding “return-void” to the first index.
@@ -125,12 +125,12 @@ object GeneralAdsPatch : BaseBytecodePatch(
                 //         """
                 // )
             }
-        } ?: throw ShowDialogCommandFingerprint.exception
+        }
 
         /**
          * Hides premium promotion popup
          */
-        FloatingLayoutFingerprint.result?.let {
+        FloatingLayoutFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val targetIndex = getWideLiteralInstructionIndex(FloatingLayout) + 2
                 val targetRegister = getInstruction<OneRegisterInstruction>(targetIndex).registerA
@@ -140,12 +140,12 @@ object GeneralAdsPatch : BaseBytecodePatch(
                     "invoke-static {v$targetRegister}, $PREMIUM_PROMOTION_POP_UP_CLASS_DESCRIPTOR->hidePremiumPromotion(Landroid/view/View;)V"
                 )
             }
-        } ?: throw FloatingLayoutFingerprint.exception
+        }
 
         /**
          * Hides premium renewal banner
          */
-        NotifierShelfFingerprint.result?.let {
+        NotifierShelfFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val linearLayoutIndex = getWideLiteralInstructionIndex(ButtonContainer) + 3
                 val linearLayoutRegister =
@@ -156,7 +156,7 @@ object GeneralAdsPatch : BaseBytecodePatch(
                     "invoke-static {v$linearLayoutRegister}, $PREMIUM_PROMOTION_BANNER_CLASS_DESCRIPTOR->hidePremiumRenewal(Landroid/widget/LinearLayout;)V"
                 )
             }
-        } ?: throw NotifierShelfFingerprint.exception
+        }
 
         SettingsPatch.addMusicPreference(
             CategoryType.ADS,

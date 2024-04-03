@@ -12,11 +12,11 @@ import app.revanced.patches.youtube.utils.integrations.Constants.FULLSCREEN_CLAS
 import app.revanced.patches.youtube.utils.quickactions.QuickActionsHookPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.FullScreenEngagementPanel
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.getTargetIndex
 import app.revanced.util.getTargetIndexWithMethodReferenceName
 import app.revanced.util.getWideLiteralInstructionIndex
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
@@ -36,7 +36,7 @@ object FullscreenPanelsPatch : BaseBytecodePatch(
 ) {
     override fun execute(context: BytecodeContext) {
 
-        FullscreenEngagementPanelFingerprint.result?.let {
+        FullscreenEngagementPanelFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val literalIndex = getWideLiteralInstructionIndex(FullScreenEngagementPanel)
                 val targetIndex = getTargetIndex(literalIndex, Opcode.CHECK_CAST)
@@ -47,9 +47,9 @@ object FullscreenPanelsPatch : BaseBytecodePatch(
                     "invoke-static {v$targetRegister}, $FULLSCREEN_CLASS_DESCRIPTOR->hideFullscreenPanels(Landroidx/coordinatorlayout/widget/CoordinatorLayout;)V"
                 )
             }
-        } ?: throw FullscreenEngagementPanelFingerprint.exception
+        }
 
-        LayoutConstructorFingerprint.result?.let {
+        LayoutConstructorFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val dummyIndex = getWideLiteralInstructionIndex(159962)
                 val dummyRegister = getInstruction<OneRegisterInstruction>(dummyIndex).registerA
@@ -63,7 +63,7 @@ object FullscreenPanelsPatch : BaseBytecodePatch(
                         """, ExternalLabel("hidden", getInstruction(addViewIndex + 1))
                 )
             }
-        } ?: throw LayoutConstructorFingerprint.exception
+        }
 
         /**
          * Add settings

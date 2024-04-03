@@ -11,7 +11,7 @@ import app.revanced.patches.youtube.utils.integrations.Constants.UTILS_PATH
 import app.revanced.patches.youtube.utils.playertype.fingerprint.PlayerTypeFingerprint
 import app.revanced.patches.youtube.utils.playertype.fingerprint.VideoStateFingerprint
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
-import app.revanced.util.exception
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 
 @Patch(dependencies = [SharedResourceIdPatch::class])
@@ -21,24 +21,27 @@ object PlayerTypeHookPatch : BytecodePatch(
         YouTubeControlsOverlayFingerprint
     )
 ) {
+    private const val INTEGRATIONS_CLASS_DESCRIPTOR =
+        "$UTILS_PATH/PlayerTypeHookPatch;"
+
     override fun execute(context: BytecodeContext) {
 
-        PlayerTypeFingerprint.result?.let {
+        PlayerTypeFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 addInstruction(
                     0,
                     "invoke-static {p1}, $INTEGRATIONS_CLASS_DESCRIPTOR->setPlayerType(Ljava/lang/Enum;)V"
                 )
             }
-        } ?: throw PlayerTypeFingerprint.exception
+        }
 
-        YouTubeControlsOverlayFingerprint.result?.let { parentResult ->
+        YouTubeControlsOverlayFingerprint.resultOrThrow().let { parentResult ->
             VideoStateFingerprint.also {
                 it.resolve(
                     context,
                     parentResult.classDef
                 )
-            }.result?.let {
+            }.resultOrThrow().let {
                 it.mutableMethod.apply {
                     val endIndex = it.scanResult.patternScanResult!!.endIndex
                     val videoStateFieldName =
@@ -50,11 +53,8 @@ object PlayerTypeHookPatch : BytecodePatch(
                         """
                     )
                 }
-            } ?: throw VideoStateFingerprint.exception
-        } ?: throw YouTubeControlsOverlayFingerprint.exception
+            }
+        }
 
     }
-
-    private const val INTEGRATIONS_CLASS_DESCRIPTOR =
-        "$UTILS_PATH/PlayerTypeHookPatch;"
 }

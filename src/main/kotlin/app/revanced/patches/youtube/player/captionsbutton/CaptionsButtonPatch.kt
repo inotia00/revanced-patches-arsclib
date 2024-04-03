@@ -12,8 +12,8 @@ import app.revanced.patches.youtube.utils.integrations.Constants.COMPONENTS_PATH
 import app.revanced.patches.youtube.utils.integrations.Constants.PLAYER_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Suppress("unused")
@@ -56,7 +56,7 @@ object CaptionsButtonPatch : BaseBytecodePatch(
             }
         }
 
-        YouTubeControlsOverlaySubtitleButtonFingerprint.result?.let {
+        YouTubeControlsOverlaySubtitleButtonFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val insertIndex = implementation!!.instructions.size - 1
                 val insertRegister = getInstruction<OneRegisterInstruction>(insertIndex).registerA
@@ -66,7 +66,7 @@ object CaptionsButtonPatch : BaseBytecodePatch(
                     "invoke-static {v$insertRegister}, $PLAYER_CLASS_DESCRIPTOR->hideCaptionsButton(Landroid/view/View;)V"
                 )
             }
-        } ?: throw YouTubeControlsOverlaySubtitleButtonFingerprint.exception
+        }
 
         LithoFilterPatch.addFilter(FILTER_CLASS_DESCRIPTOR)
 

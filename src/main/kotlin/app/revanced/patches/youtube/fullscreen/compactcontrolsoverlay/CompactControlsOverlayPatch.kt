@@ -8,9 +8,9 @@ import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACK
 import app.revanced.patches.youtube.utils.integrations.Constants.FULLSCREEN_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.getWalkerMethod
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Suppress("unused")
@@ -26,7 +26,7 @@ object CompactControlsOverlayPatch : BaseBytecodePatch(
 ) {
     override fun execute(context: BytecodeContext) {
 
-        YouTubeControlsOverlayFingerprint.result?.let {
+        YouTubeControlsOverlayFingerprint.resultOrThrow().let {
             val walkerMethod = it.getWalkerMethod(context, it.scanResult.patternScanResult!!.startIndex)
             walkerMethod.apply {
                 val insertIndex = implementation!!.instructions.size - 1
@@ -40,7 +40,7 @@ object CompactControlsOverlayPatch : BaseBytecodePatch(
                     """
                 )
             }
-        } ?: throw YouTubeControlsOverlayFingerprint.exception
+        }
 
         /**
          * Add settings

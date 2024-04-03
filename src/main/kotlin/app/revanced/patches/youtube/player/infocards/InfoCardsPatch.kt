@@ -9,8 +9,8 @@ import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACK
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPONENTS_PATH
 import app.revanced.patches.youtube.utils.integrations.Constants.PLAYER_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 
 @Suppress("unused")
@@ -28,7 +28,7 @@ object InfoCardsPatch : BaseBytecodePatch(
         "$COMPONENTS_PATH/InfoCardsFilter;"
 
     override fun execute(context: BytecodeContext) {
-        InfoCardsIncognitoFingerprint.result?.let {
+        InfoCardsIncognitoFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val targetIndex = it.scanResult.patternScanResult!!.startIndex
                 val targetRegister =
@@ -41,7 +41,7 @@ object InfoCardsPatch : BaseBytecodePatch(
                         """
                 )
             }
-        } ?: throw InfoCardsIncognitoFingerprint.exception
+        }
 
         LithoFilterPatch.addFilter(FILTER_CLASS_DESCRIPTOR)
 

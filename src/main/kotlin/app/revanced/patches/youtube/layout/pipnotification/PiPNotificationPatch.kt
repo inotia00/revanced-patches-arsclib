@@ -7,8 +7,8 @@ import app.revanced.patches.youtube.layout.pipnotification.fingerprints.PiPNotif
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 
 @Suppress("unused")
@@ -24,7 +24,7 @@ object PiPNotificationPatch : BaseBytecodePatch(
 ) {
     override fun execute(context: BytecodeContext) {
 
-        PiPNotificationFingerprint.result?.let {
+        PiPNotificationFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val checkCastCalls = implementation!!.instructions.withIndex()
                     .filter { instruction ->
@@ -44,7 +44,7 @@ object PiPNotificationPatch : BaseBytecodePatch(
                     )
                 }
             }
-        } ?: throw PiPNotificationFingerprint.exception
+        }
 
         /**
          * Add settings

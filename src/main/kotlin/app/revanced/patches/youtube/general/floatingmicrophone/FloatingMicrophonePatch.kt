@@ -8,8 +8,8 @@ import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACK
 import app.revanced.patches.youtube.utils.integrations.Constants.GENERAL_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 
 @Suppress("unused")
@@ -25,7 +25,7 @@ object FloatingMicrophonePatch : BaseBytecodePatch(
 ) {
     override fun execute(context: BytecodeContext) {
 
-        FloatingMicrophoneFingerprint.result?.let {
+        FloatingMicrophoneFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val insertIndex = it.scanResult.patternScanResult!!.startIndex
                 val register = getInstruction<TwoRegisterInstruction>(insertIndex).registerA
@@ -37,7 +37,7 @@ object FloatingMicrophonePatch : BaseBytecodePatch(
                         """
                 )
             }
-        } ?: throw FloatingMicrophoneFingerprint.exception
+        }
 
         /**
          * Add settings

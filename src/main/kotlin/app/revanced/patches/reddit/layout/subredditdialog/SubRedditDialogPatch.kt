@@ -12,9 +12,9 @@ import app.revanced.patches.reddit.utils.resourceid.SharedResourceIdPatch.Cancel
 import app.revanced.patches.reddit.utils.resourceid.SharedResourceIdPatch.TextAppearanceRedditBaseOldButtonColored
 import app.revanced.patches.reddit.utils.settings.SettingsBytecodePatch.updateSettingsStatus
 import app.revanced.patches.reddit.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.getWideLiteralInstructionIndex
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
@@ -37,7 +37,7 @@ object SubRedditDialogPatch : BaseBytecodePatch(
 
     override fun execute(context: BytecodeContext) {
 
-        FrequentUpdatesSheetScreenFingerprint.result?.let {
+        FrequentUpdatesSheetScreenFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val cancelButtonViewIndex = getWideLiteralInstructionIndex(CancelButton) + 2
                 val cancelButtonViewRegister = getInstruction<OneRegisterInstruction>(cancelButtonViewIndex).registerA
@@ -47,9 +47,9 @@ object SubRedditDialogPatch : BaseBytecodePatch(
                     "invoke-static {v$cancelButtonViewRegister}, $INTEGRATIONS_CLASS_DESCRIPTOR->dismissDialog(Landroid/view/View;)V"
                 )
             }
-        } ?: throw FrequentUpdatesSheetScreenFingerprint.exception
+        }
 
-        RedditAlertDialogsFingerprint.result?.let {
+        RedditAlertDialogsFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val insertIndex = getWideLiteralInstructionIndex(TextAppearanceRedditBaseOldButtonColored) + 1
                 val insertRegister = getInstruction<FiveRegisterInstruction>(insertIndex).registerC
@@ -59,7 +59,7 @@ object SubRedditDialogPatch : BaseBytecodePatch(
                     "invoke-static {v$insertRegister}, $INTEGRATIONS_CLASS_DESCRIPTOR->confirmDialog(Landroid/widget/TextView;)V"
                 )
             }
-        } ?: throw RedditAlertDialogsFingerprint.exception
+        }
 
         updateSettingsStatus("enableSubRedditDialog")
 

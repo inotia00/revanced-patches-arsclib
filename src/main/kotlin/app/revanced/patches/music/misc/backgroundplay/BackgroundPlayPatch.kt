@@ -4,8 +4,8 @@ import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patches.music.misc.backgroundplay.fingerprints.BackgroundPlaybackFingerprint
 import app.revanced.patches.music.utils.integrations.Constants.COMPATIBLE_PACKAGE
-import app.revanced.util.exception
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 
 @Suppress("unused")
 object BackgroundPlayPatch : BaseBytecodePatch(
@@ -16,7 +16,7 @@ object BackgroundPlayPatch : BaseBytecodePatch(
 ) {
     override fun execute(context: BytecodeContext) {
 
-        BackgroundPlaybackFingerprint.result?.let {
+        BackgroundPlaybackFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 addInstructions(
                     0, """
@@ -25,7 +25,7 @@ object BackgroundPlayPatch : BaseBytecodePatch(
                         """
                 )
             }
-        } ?: throw BackgroundPlaybackFingerprint.exception
+        }
 
     }
 }

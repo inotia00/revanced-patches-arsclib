@@ -7,8 +7,8 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.youtube.utils.integrations.Constants.VIDEO_PATH
 import app.revanced.patches.youtube.utils.videoid.withoutshorts.fingerprint.VideoIdWithoutShortsFingerprint
-import app.revanced.util.exception
 import app.revanced.util.getTargetIndex
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
@@ -17,13 +17,13 @@ object VideoIdWithoutShortsPatch : BytecodePatch(
 ) {
     override fun execute(context: BytecodeContext) {
 
-        VideoIdWithoutShortsFingerprint.result?.let {
+        VideoIdWithoutShortsFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 insertMethod = this
                 insertIndex = getTargetIndex(Opcode.INVOKE_INTERFACE)
                 insertRegister = getInstruction<OneRegisterInstruction>(insertIndex + 1).registerA
             }
-        } ?: throw VideoIdWithoutShortsFingerprint.exception
+        }
 
         injectCall("$VIDEO_PATH/VideoInformation;->setVideoId(Ljava/lang/String;)V")
 

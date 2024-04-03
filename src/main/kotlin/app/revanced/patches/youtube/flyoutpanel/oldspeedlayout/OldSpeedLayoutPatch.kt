@@ -15,7 +15,7 @@ import app.revanced.patches.youtube.flyoutpanel.oldspeedlayout.fingerprints.Play
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPONENTS_PATH
 import app.revanced.patches.youtube.utils.integrations.Constants.VIDEO_PATH
 import app.revanced.patches.youtube.utils.recyclerview.BottomSheetRecyclerViewPatch
-import app.revanced.util.exception
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.immutable.ImmutableField
 
@@ -45,7 +45,7 @@ object OldSpeedLayoutPatch : BytecodePatch(
         /**
          * Input 'playbackRateBottomSheetClass' in FlyoutPanelPatch.
          */
-        PlaybackRateBottomSheetClassFingerprint.result?.let {
+        PlaybackRateBottomSheetClassFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 playbackRateBottomSheetClass = definingClass
                 playbackRateBottomSheetBuilderMethod =
@@ -58,13 +58,13 @@ object OldSpeedLayoutPatch : BytecodePatch(
                     "sput-object p0, $INTEGRATIONS_CLASS_DESCRIPTOR->playbackRateBottomSheetClass:$playbackRateBottomSheetClass"
                 )
             }
-        } ?: throw PlaybackRateBottomSheetClassFingerprint.exception
+        }
 
         /**
          * Create a static field in the patch
          * Add a call the Playback Speed Bottom Sheet Fragment method
          */
-        CustomPlaybackSpeedIntegrationsFingerprint.result?.let {
+        CustomPlaybackSpeedIntegrationsFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 // Create a static field 'playbackRateBottomSheetClass' in FlyoutPanelPatch.
                 it.mutableClass.staticFields.add(
@@ -92,7 +92,7 @@ object OldSpeedLayoutPatch : BytecodePatch(
                         """
                 )
             }
-        } ?: throw CustomPlaybackSpeedIntegrationsFingerprint.exception
+        }
 
         BottomSheetRecyclerViewPatch.injectCall("$INTEGRATIONS_CLASS_DESCRIPTOR->onFlyoutMenuCreate(Landroid/support/v7/widget/RecyclerView;)V")
 

@@ -8,8 +8,8 @@ import app.revanced.patches.reddit.utils.integrations.Constants.COMPATIBLE_PACKA
 import app.revanced.patches.reddit.utils.integrations.Constants.PATCHES_PATH
 import app.revanced.patches.reddit.utils.settings.SettingsBytecodePatch.updateSettingsStatus
 import app.revanced.patches.reddit.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 
 @Suppress("unused")
@@ -25,7 +25,7 @@ object NavigationButtonsPatch : BaseBytecodePatch(
 
     override fun execute(context: BytecodeContext) {
 
-        BottomNavScreenFingerprint.result?.let {
+        BottomNavScreenFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val startIndex = it.scanResult.patternScanResult!!.startIndex
                 val targetRegister =
@@ -36,7 +36,7 @@ object NavigationButtonsPatch : BaseBytecodePatch(
                     "invoke-static {v$targetRegister}, $INTEGRATIONS_METHOD_DESCRIPTOR"
                 )
             }
-        } ?: throw BottomNavScreenFingerprint.exception
+        }
 
         updateSettingsStatus("enableNavigationButtons")
 

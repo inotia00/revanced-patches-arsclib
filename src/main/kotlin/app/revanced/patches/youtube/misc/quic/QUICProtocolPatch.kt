@@ -7,8 +7,8 @@ import app.revanced.patches.youtube.misc.quic.fingerprints.ExperimentalCronetEng
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.MISC_PATH
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 
 @Suppress("unused")
 object QUICProtocolPatch : BaseBytecodePatch(
@@ -27,12 +27,12 @@ object QUICProtocolPatch : BaseBytecodePatch(
             CronetEngineBuilderFingerprint,
             ExperimentalCronetEngineBuilderFingerprint
         ).forEach {
-            it.result?.mutableMethod?.addInstructions(
+            it.resultOrThrow().mutableMethod.addInstructions(
                 0, """
                     invoke-static {p1}, $MISC_PATH/QUICProtocolPatch;->disableQUICProtocol(Z)Z
                     move-result p1
                     """
-            ) ?: throw it.exception
+            )
         }
 
         /**

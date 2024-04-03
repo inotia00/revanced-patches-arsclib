@@ -7,7 +7,7 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.youtube.ads.getpremium.fingerprints.CompactYpcOfferModuleViewFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPONENTS_PATH
-import app.revanced.util.exception
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 
 object GetPremiumPatch : BytecodePatch(
@@ -18,7 +18,7 @@ object GetPremiumPatch : BytecodePatch(
 
     override fun execute(context: BytecodeContext) {
 
-        CompactYpcOfferModuleViewFingerprint.result?.let {
+        CompactYpcOfferModuleViewFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val startIndex = it.scanResult.patternScanResult!!.startIndex
                 val measuredWidthRegister =
@@ -38,7 +38,7 @@ object GetPremiumPatch : BytecodePatch(
                         """, ExternalLabel("show", getInstruction(startIndex + 2))
                 )
             }
-        } ?: throw CompactYpcOfferModuleViewFingerprint.exception
+        }
 
     }
 }

@@ -7,8 +7,8 @@ import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.util.proxy.mutableTypes.MutableClass
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.youtube.utils.mainactivity.fingerprints.MainActivityFingerprint
-import app.revanced.util.exception
 import app.revanced.util.getTargetIndex
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.util.MethodUtil
 import kotlin.properties.Delegates
@@ -24,8 +24,7 @@ object MainActivityResolvePatch : BytecodePatch(
     private var onBackPressedMethodIndex by Delegates.notNull<Int>()
 
     override fun execute(context: BytecodeContext) {
-        val mainActivityResult = MainActivityFingerprint.result
-            ?: throw MainActivityFingerprint.exception
+        val mainActivityResult = MainActivityFingerprint.resultOrThrow()
         onCreateMethod = mainActivityResult.mutableMethod
         mainActivityMutableClass = mainActivityResult.mutableClass
 

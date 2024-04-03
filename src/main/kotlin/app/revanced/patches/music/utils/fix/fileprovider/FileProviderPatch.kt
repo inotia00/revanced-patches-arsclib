@@ -8,7 +8,7 @@ import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.music.utils.fix.fileprovider.fingerprints.FileProviderResolverFingerprint
 import app.revanced.patches.shared.packagename.PackageNamePatch
-import app.revanced.util.exception
+import app.revanced.util.resultOrThrow
 
 @Patch(dependencies = [PackageNamePatch::class])
 object FileProviderPatch : BytecodePatch(
@@ -28,7 +28,7 @@ object FileProviderPatch : BytecodePatch(
          *
          * To solve this issue, replace the package name of YouTube with YT Music's package name.
          */
-        FileProviderResolverFingerprint.result?.let {
+        FileProviderResolverFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 addInstructionsWithLabels(
                     0, """
@@ -40,7 +40,7 @@ object FileProviderPatch : BytecodePatch(
                         """, ExternalLabel("ignore", getInstruction(0))
                 )
             }
-        } ?: throw FileProviderResolverFingerprint.exception
+        }
 
     }
 }

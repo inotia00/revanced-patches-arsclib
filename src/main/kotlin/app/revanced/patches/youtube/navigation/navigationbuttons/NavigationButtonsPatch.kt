@@ -14,11 +14,11 @@ import app.revanced.patches.youtube.utils.integrations.Constants.NAVIGATION_CLAS
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.ImageOnlyTab
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.getStringInstructionIndex
 import app.revanced.util.getTargetIndex
 import app.revanced.util.getWideLiteralInstructionIndex
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.Opcode.MOVE_RESULT_OBJECT
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
@@ -39,7 +39,7 @@ object NavigationButtonsPatch : BaseBytecodePatch(
 ) {
     override fun execute(context: BytecodeContext) {
 
-        PivotBarCreateButtonViewFingerprint.result?.let { parentResult ->
+        PivotBarCreateButtonViewFingerprint.resultOrThrow().let { parentResult ->
 
             /**
              * Home, Shorts, Subscriptions Button
@@ -55,7 +55,7 @@ object NavigationButtonsPatch : BaseBytecodePatch(
                         parentResult.mutableClass
                     )
                 }.map {
-                    it.result?.scanResult?.patternScanResult ?: throw it.exception
+                    it.resultOrThrow().scanResult.patternScanResult!!
                 }
             ) {
                 val enumScanResult = this[0]
@@ -81,12 +81,12 @@ object NavigationButtonsPatch : BaseBytecodePatch(
                 injectHook(CREATE_BUTTON_HOOK, insertIndex)
             }
 
-        } ?: throw PivotBarCreateButtonViewFingerprint.exception
+        }
 
         /**
          * Switch create button with notifications button
          */
-        AutoMotiveFingerprint.result?.let {
+        AutoMotiveFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val insertIndex = getStringInstructionIndex("Android Automotive") - 1
                 val register = getInstruction<OneRegisterInstruction>(insertIndex).registerA
@@ -98,7 +98,7 @@ object NavigationButtonsPatch : BaseBytecodePatch(
                         """
                 )
             }
-        } ?: throw AutoMotiveFingerprint.exception
+        }
 
         /**
          * Add settings

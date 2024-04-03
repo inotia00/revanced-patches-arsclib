@@ -10,10 +10,10 @@ import app.revanced.patches.youtube.fullscreen.forcefullscreen.fingerprints.Vide
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.FULLSCREEN_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.getStringInstructionIndex
 import app.revanced.util.getTargetIndex
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
@@ -35,7 +35,7 @@ object ForceFullscreenPatch : BaseBytecodePatch(
         /**
          * Process that hooks Activity for using {Activity.setRequestedOrientation}.
          */
-        ClientSettingEndpointFingerprint.result?.let {
+        ClientSettingEndpointFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val getActivityIndex = getStringInstructionIndex("watch") + 2
                 val getActivityReference =
@@ -66,13 +66,13 @@ object ForceFullscreenPatch : BaseBytecodePatch(
                         """
                 )
             }
-        } ?: throw ClientSettingEndpointFingerprint.exception
+        }
 
         /**
          * Don't rotate the screen in vertical video.
          * Add an instruction to check the vertical video.
          */
-        VideoPortraitParentFingerprint.result?.let {
+        VideoPortraitParentFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val stringIndex =
                     getStringInstructionIndex("Acquiring NetLatencyActionLogger failed. taskId=")
@@ -90,7 +90,7 @@ object ForceFullscreenPatch : BaseBytecodePatch(
                         )
                     } ?: throw PatchException("Could not find targetMethod")
             }
-        } ?: throw VideoPortraitParentFingerprint.exception
+        }
 
         /**
          * Add settings

@@ -7,15 +7,21 @@ import app.revanced.patcher.extensions.InstructionExtensions.getInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.revanced.patcher.fingerprint.MethodFingerprint
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patches.shared.gms.fingerprints.*
-import app.revanced.patches.shared.gms.fingerprints.GmsCoreSupportFingerprint.GET_GMS_CORE_VENDOR_GROUP_ID_METHOD_NAME
 import app.revanced.patches.shared.gms.BaseGmsCoreSupportPatch.Constants.ACTIONS
 import app.revanced.patches.shared.gms.BaseGmsCoreSupportPatch.Constants.AUTHORITIES
 import app.revanced.patches.shared.gms.BaseGmsCoreSupportPatch.Constants.PERMISSIONS
+import app.revanced.patches.shared.gms.fingerprints.CastContextFetchFingerprint
+import app.revanced.patches.shared.gms.fingerprints.CastDynamiteModuleFingerprint
+import app.revanced.patches.shared.gms.fingerprints.CastDynamiteModuleV2Fingerprint
+import app.revanced.patches.shared.gms.fingerprints.GmsCoreSupportFingerprint
+import app.revanced.patches.shared.gms.fingerprints.GmsCoreSupportFingerprint.GET_GMS_CORE_VENDOR_GROUP_ID_METHOD_NAME
+import app.revanced.patches.shared.gms.fingerprints.GooglePlayUtilityFingerprint
+import app.revanced.patches.shared.gms.fingerprints.PrimeMethodFingerprint
+import app.revanced.patches.shared.gms.fingerprints.ServiceCheckFingerprint
 import app.revanced.patches.shared.integrations.Constants.INTEGRATIONS_PATH
 import app.revanced.patches.shared.packagename.PackageNamePatch
-import app.revanced.util.exception
 import app.revanced.util.getReference
+import app.revanced.util.resultOrThrow
 import app.revanced.util.returnEarly
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.builder.instruction.BuilderInstruction21c
@@ -98,17 +104,16 @@ abstract class BaseGmsCoreSupportPatch(
         ).returnEarly()
 
         // Verify GmsCore is installed and whitelisted for power optimizations and background usage.
-        mainActivityOnCreateFingerprint.result?.mutableMethod?.addInstructions(
+        mainActivityOnCreateFingerprint.resultOrThrow().mutableMethod.addInstructions(
             1, // Hack to not disturb other patches (such as the YTMusic integrations patch).
             "invoke-static/range { p0 .. p0 }, $INTEGRATIONS_PATH/patches/GmsCoreSupport;->" +
-                "checkGmsCore(Landroid/content/Context;)V",
-        ) ?: throw mainActivityOnCreateFingerprint.exception
+                    "checkGmsCore(Landroid/content/Context;)V",
+        )
 
         // Change the vendor of GmsCore in ReVanced Integrations.
-        GmsCoreSupportFingerprint.result?.mutableClass?.methods
-            ?.single { it.name == GET_GMS_CORE_VENDOR_GROUP_ID_METHOD_NAME }
-            ?.replaceInstruction(0, "const-string v0, \"$gmsCoreVendorGroupId\"")
-            ?: throw GmsCoreSupportFingerprint.exception
+        GmsCoreSupportFingerprint.resultOrThrow().mutableClass.methods
+            .single { it.name == GET_GMS_CORE_VENDOR_GROUP_ID_METHOD_NAME }
+            .replaceInstruction(0, "const-string v0, \"$gmsCoreVendorGroupId\"")
     }
 
     private fun BytecodeContext.transformStringReferences(transform: (str: String) -> String?) = classes.forEach {
@@ -193,7 +198,7 @@ abstract class BaseGmsCoreSupportPatch(
     }
 
     private fun transformPrimeMethod(packageName: String) {
-        PrimeMethodFingerprint.result?.mutableMethod?.apply {
+        PrimeMethodFingerprint.resultOrThrow().mutableMethod.apply {
             var register = 2
 
             val index = getInstructions().indexOfFirst {
@@ -204,7 +209,7 @@ abstract class BaseGmsCoreSupportPatch(
             }
 
             replaceInstruction(index, "const-string v$register, \"$packageName\"")
-        } ?: throw PrimeMethodFingerprint.exception
+        }
     }
 
     /**

@@ -20,8 +20,8 @@ import app.revanced.patches.youtube.utils.videoid.general.fingerprint.PlayerCont
 import app.revanced.patches.youtube.utils.videoid.general.fingerprint.VideoIdFingerprint
 import app.revanced.patches.youtube.utils.videoid.general.fingerprint.VideoIdParentFingerprint
 import app.revanced.patches.youtube.utils.videoid.general.fingerprint.VideoLengthFingerprint
-import app.revanced.util.exception
 import app.revanced.util.getWalkerMethod
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.builder.MutableMethodImplementation
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
@@ -46,7 +46,7 @@ object VideoIdPatch : BytecodePatch(
 ) {
     override fun execute(context: BytecodeContext) {
 
-        VideoEndFingerprint.result?.let {
+        VideoEndFingerprint.resultOrThrow().let {
             playerInitMethod =
                 it.mutableClass.methods.first { method -> MethodUtil.isConstructor(method) }
 
@@ -89,14 +89,14 @@ object VideoIdPatch : BytecodePatch(
                     )
                 }
             }
-        } ?: throw VideoEndFingerprint.exception
+        }
 
         /**
          * Set current video time
          */
-        PlayerControllerSetTimeReferenceFingerprint.result?.let {
+        PlayerControllerSetTimeReferenceFingerprint.resultOrThrow().let {
             timeMethod = it.getWalkerMethod(context, it.scanResult.patternScanResult!!.startIndex)
-        } ?: throw PlayerControllerSetTimeReferenceFingerprint.exception
+        }
 
         /**
          * Hook the methods which set the time
@@ -106,19 +106,19 @@ object VideoIdPatch : BytecodePatch(
         /**
          * Set current video is livestream
          */
-        OrganicPlaybackContextModelFingerprint.result?.let {
+        OrganicPlaybackContextModelFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 addInstruction(
                     2,
                     "sput-boolean p2, $INTEGRATIONS_CLASS_DESCRIPTOR->isLiveStream:Z"
                 )
             }
-        } ?: throw OrganicPlaybackContextModelFingerprint.exception
+        }
 
         /**
          * Set current video length
          */
-        VideoLengthFingerprint.result?.let {
+        VideoLengthFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val startIndex = it.scanResult.patternScanResult!!.startIndex
                 val primaryRegister = getInstruction<OneRegisterInstruction>(startIndex).registerA
@@ -129,23 +129,23 @@ object VideoIdPatch : BytecodePatch(
                     "invoke-static {v$primaryRegister, v$secondaryRegister}, $INTEGRATIONS_CLASS_DESCRIPTOR->setVideoLength(J)V"
                 )
             }
-        } ?: throw VideoLengthFingerprint.exception
+        }
 
-        VideoIdParentFingerprint.result?.let { parentResult ->
+        VideoIdParentFingerprint.resultOrThrow().let { parentResult ->
             VideoIdFingerprint.also {
                 it.resolve(
                     context,
                     parentResult.classDef
                 )
-            }.result?.let {
+            }.resultOrThrow().let {
                 it.mutableMethod.apply {
                     insertMethod = this
                     insertIndex = it.scanResult.patternScanResult!!.endIndex
                     videoIdRegister = getInstruction<OneRegisterInstruction>(insertIndex).registerA
                 }
                 offset++ // offset so setVideoId is called before any injected call
-            } ?: throw VideoIdFingerprint.exception
-        } ?: throw VideoIdParentFingerprint.exception
+            }
+        }
 
         injectCall("$INTEGRATIONS_CLASS_DESCRIPTOR->setVideoId(Ljava/lang/String;)V")
         injectPlayerResponseVideoId("$INTEGRATIONS_CLASS_DESCRIPTOR->setPlayerResponseVideoId(Ljava/lang/String;Z)V")

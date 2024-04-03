@@ -13,9 +13,9 @@ import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACK
 import app.revanced.patches.youtube.utils.integrations.Constants.PLAYER_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.getTargetIndexWithMethodReferenceName
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 
 @Suppress("unused")
@@ -34,7 +34,7 @@ object SuggestedVideoOverlayPatch : BaseBytecodePatch(
 ) {
     override fun execute(context: BytecodeContext) {
 
-        CoreContainerBuilderFingerprint.result?.let { parentResult ->
+        CoreContainerBuilderFingerprint.resultOrThrow().let { parentResult ->
             parentResult.mutableMethod.apply {
                 val addOnClickEventListenerIndex = parentResult.scanResult.patternScanResult!!.endIndex - 1
                 val viewRegister = getInstruction<FiveRegisterInstruction>(addOnClickEventListenerIndex).registerC
@@ -48,7 +48,7 @@ object SuggestedVideoOverlayPatch : BaseBytecodePatch(
             // Resolves fingerprints
             MiniPlayerPlayButtonFingerprint.resolve(context, parentResult.classDef)
 
-            MiniPlayerPlayButtonFingerprint.result?.let {
+            MiniPlayerPlayButtonFingerprint.resultOrThrow().let {
                 it.mutableMethod.apply {
                     addInstructionsWithLabels(
                         0, """
@@ -59,10 +59,10 @@ object SuggestedVideoOverlayPatch : BaseBytecodePatch(
                             """, ExternalLabel("show", getInstruction(0))
                     )
                 }
-            } ?: throw MiniPlayerPlayButtonFingerprint.exception
-        } ?: throw CoreContainerBuilderFingerprint.exception
+            }
+        }
 
-        TouchAreaOnClickListenerFingerprint.result?.let {
+        TouchAreaOnClickListenerFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val insertMethod = it.mutableClass.methods.find { method -> method.parameters == listOf("Landroid/view/View${'$'}OnClickListener;") }
 
@@ -76,7 +76,7 @@ object SuggestedVideoOverlayPatch : BaseBytecodePatch(
                     )
                 } ?: throw PatchException("Failed to find setOnClickListener method")
             }
-        } ?: throw TouchAreaOnClickListenerFingerprint.exception
+        }
 
         /**
          * Add settings

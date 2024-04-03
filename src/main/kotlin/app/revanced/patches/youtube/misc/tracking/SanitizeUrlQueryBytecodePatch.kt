@@ -9,7 +9,7 @@ import app.revanced.patches.youtube.misc.tracking.fingerprints.ShareLinkFormatte
 import app.revanced.patches.youtube.misc.tracking.fingerprints.SystemShareLinkFormatterFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.MISC_PATH
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.exception
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
@@ -32,7 +32,7 @@ object SanitizeUrlQueryBytecodePatch : BaseSanitizeUrlQueryPatch(
             ShareLinkFormatterFingerprint,
             SystemShareLinkFormatterFingerprint
         ).forEach { fingerprint ->
-            fingerprint.result?.let {
+            fingerprint.resultOrThrow().let {
                 it.mutableMethod.apply {
                     for ((index, instruction) in implementation!!.instructions.withIndex()) {
                         if (instruction.opcode != Opcode.INVOKE_VIRTUAL)
@@ -53,7 +53,7 @@ object SanitizeUrlQueryBytecodePatch : BaseSanitizeUrlQueryPatch(
                         )
                     }
                 }
-            } ?: throw fingerprint.exception
+            }
         }
 
 

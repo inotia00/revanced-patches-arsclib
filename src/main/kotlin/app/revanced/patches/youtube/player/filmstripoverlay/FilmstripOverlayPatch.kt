@@ -17,8 +17,8 @@ import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACK
 import app.revanced.patches.youtube.utils.integrations.Constants.PLAYER_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.exception
 import app.revanced.util.patch.BaseBytecodePatch
+import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
@@ -42,19 +42,18 @@ object FilmstripOverlayPatch : BaseBytecodePatch(
 ) {
     override fun execute(context: BytecodeContext) {
 
-        FilmStripOverlayParentFingerprint.result?.classDef?.let { classDef ->
+        FilmStripOverlayParentFingerprint.resultOrThrow().classDef.let { classDef ->
             arrayOf(
                 FilmStripOverlayConfigFingerprint,
                 FilmStripOverlayInteractionFingerprint,
                 FilmStripOverlayPreviewFingerprint
             ).forEach { fingerprint ->
                 fingerprint.resolve(context, classDef)
-                fingerprint.result?.mutableMethod?.injectHook()
-                    ?: throw fingerprint.exception
+                fingerprint.resultOrThrow().mutableMethod.injectHook()
             }
-        } ?: throw FilmStripOverlayParentFingerprint.exception
+        }
 
-        FineScrubbingOverlayFingerprint.result?.let {
+        FineScrubbingOverlayFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 var insertIndex = it.scanResult.patternScanResult!!.startIndex + 2
                 val jumpIndex = getTargetIndexUpTo(insertIndex, Opcode.GOTO, Opcode.GOTO_16)
@@ -79,7 +78,7 @@ object FilmstripOverlayPatch : BaseBytecodePatch(
                 )
                 removeInstruction(insertIndex)
             }
-        } ?: throw FineScrubbingOverlayFingerprint.exception
+        }
 
         /**
          * Add settings
@@ -151,12 +150,12 @@ object FilmstripOverlayPatch : BaseBytecodePatch(
     private fun MutableMethod.injectHook() {
         addInstructionsWithLabels(
             0, """
-                    invoke-static {}, $PLAYER_CLASS_DESCRIPTOR->hideFilmstripOverlay()Z
-                    move-result v0
-                    if-eqz v0, :shown
-                    const/4 v0, 0x0
-                    return v0
-                    """, ExternalLabel("shown", getInstruction(0))
+                invoke-static {}, $PLAYER_CLASS_DESCRIPTOR->hideFilmstripOverlay()Z
+                move-result v0
+                if-eqz v0, :shown
+                const/4 v0, 0x0
+                return v0
+                """, ExternalLabel("shown", getInstruction(0))
         )
     }
 }
