@@ -55,7 +55,6 @@ object SharedResourceIdPatch : ResourcePatch() {
     var InlineTimeBarPlayedNotHighlightedColor = -1L
     var InsetOverlayViewLayout = -1L
     var InterstitialsContainer = -1L
-    var LiveChatButton = -1L
     var MenuItemView = -1L
     var MusicAppDeeplinkButtonView = -1L
     var PosterArtWidthDefault = -1L
@@ -134,7 +133,6 @@ object SharedResourceIdPatch : ResourcePatch() {
             getId(COLOR, "inline_time_bar_played_not_highlighted_color")
         InsetOverlayViewLayout = getId(ID, "inset_overlay_view_layout")
         InterstitialsContainer = getId(ID, "interstitials_container")
-        LiveChatButton = getId(ID, "live_chat_overlay_button")
         MenuItemView = getId(ID, "menu_item_view")
         MusicAppDeeplinkButtonView = getId(ID, "music_app_deeplink_button_view")
         PosterArtWidthDefault = getId(DIMEN, "poster_art_width_default")

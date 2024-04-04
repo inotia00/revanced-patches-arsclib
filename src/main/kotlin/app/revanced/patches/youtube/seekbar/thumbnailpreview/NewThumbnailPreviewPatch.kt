@@ -1,7 +1,7 @@
 package app.revanced.patches.youtube.seekbar.thumbnailpreview
 
 import app.revanced.patcher.data.BytecodeContext
-import app.revanced.patches.youtube.utils.fingerprints.ThumbnailPreviewConfigFingerprint
+import app.revanced.patches.youtube.seekbar.thumbnailpreview.fingerprints.ThumbnailPreviewConfigFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.SEEKBAR_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.settings.SettingsPatch

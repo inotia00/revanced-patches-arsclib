@@ -5,8 +5,13 @@ import app.revanced.patcher.fingerprint.MethodFingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 
-internal object FullscreenEngagementSpeedEduVisibleFingerprint : MethodFingerprint(
+internal object PlayerButtonsVisibilityFingerprint : MethodFingerprint(
     returnType = "V",
-    accessFlags = AccessFlags.PUBLIC or AccessFlags.CONSTRUCTOR,
-    opcodes = listOf(Opcode.IPUT_BOOLEAN)
+    accessFlags = AccessFlags.PRIVATE or AccessFlags.FINAL,
+    opcodes = listOf(
+        Opcode.IGET_OBJECT,
+        Opcode.IGET_OBJECT,
+        Opcode.INVOKE_INTERFACE
+    ),
+    parameters = listOf("Z", "Z")
 )

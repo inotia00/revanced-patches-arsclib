@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.utils.fingerprints
+package app.revanced.patches.youtube.seekbar.thumbnailpreview.fingerprints
 
 import app.revanced.util.fingerprint.LiteralValueFingerprint
 

@@ -66,8 +66,7 @@ object OverlayButtonsPatch : BaseResourcePatch(
             "ExternalDownload;",
             "SpeedDialog;"
         ).forEach { className ->
-            PlayerControlsPatch.initializeControl("$OVERLAY_BUTTONS_PATH/$className")
-            PlayerControlsPatch.injectVisibility("$OVERLAY_BUTTONS_PATH/$className")
+            PlayerControlsPatch.hookOverlayButtons("$OVERLAY_BUTTONS_PATH/$className")
         }
 
         /**

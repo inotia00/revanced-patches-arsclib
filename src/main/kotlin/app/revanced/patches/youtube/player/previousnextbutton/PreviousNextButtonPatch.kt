@@ -3,7 +3,7 @@ package app.revanced.patches.youtube.player.previousnextbutton
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patches.youtube.utils.fingerprints.PlayerControlsVisibilityModelFingerprint
+import app.revanced.patches.youtube.player.previousnextbutton.fingerprints.PlayerControlsVisibilityModelFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.PLAYER_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.settings.SettingsPatch

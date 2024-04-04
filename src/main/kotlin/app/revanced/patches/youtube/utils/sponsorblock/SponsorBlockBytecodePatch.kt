@@ -109,8 +109,7 @@ object SponsorBlockBytecodePatch : BytecodePatch(
 
         // Voting & Shield button
         arrayOf("CreateSegmentButtonController;", "VotingButtonController;").forEach { className ->
-            PlayerControlsPatch.initializeSB("$INTEGRATIONS_SPONSOR_BLOCK_UI_PATH/$className")
-            PlayerControlsPatch.injectVisibility("$INTEGRATIONS_SPONSOR_BLOCK_UI_PATH/$className")
+            PlayerControlsPatch.hookSponsorBlockButtons("$INTEGRATIONS_SPONSOR_BLOCK_UI_PATH/$className")
         }
 
         // Append timestamp
