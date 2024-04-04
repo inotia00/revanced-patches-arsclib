@@ -32,7 +32,6 @@ object SharedResourceIdPatch : ResourcePatch() {
     var CompactLink = -1L
     var CompactListItem = -1L
     var ControlsLayoutStub = -1L
-    var CoreContainer = -1L
     var DarkSplashAnimation = -1L
     var DonationCompanion = -1L
     var EasySeekEduContainer = -1L
@@ -84,7 +83,6 @@ object SharedResourceIdPatch : ResourcePatch() {
     var TabsBarTextTabView = -1L
     var ToolTipContentView = -1L
     var TotalTime = -1L
-    var TouchArea = -1L
     var VideoQualityBottomSheet = -1L
     var VideoZoomIndicatorLayout = -1L
     var YoutubeControlsOverlay = -1L
@@ -108,7 +106,6 @@ object SharedResourceIdPatch : ResourcePatch() {
         CompactLink = getId(LAYOUT, "compact_link")
         CompactListItem = getId(LAYOUT, "compact_list_item")
         ControlsLayoutStub = getId(ID, "controls_layout_stub")
-        CoreContainer = getId(ID, "core_container")
         DarkSplashAnimation = getId(ID, "dark_splash_animation")
         DonationCompanion = getId(LAYOUT, "donation_companion")
         EasySeekEduContainer = getId(ID, "easy_seek_edu_container")
@@ -162,7 +159,6 @@ object SharedResourceIdPatch : ResourcePatch() {
         TabsBarTextTabView = getId(ID, "tabs_bar_text_tab_view")
         ToolTipContentView = getId(LAYOUT, "tooltip_content_view")
         TotalTime = getId(STRING, "total_time")
-        TouchArea = getId(ID, "touch_area")
         VideoQualityBottomSheet = getId(LAYOUT, "video_quality_bottom_sheet_list_fragment_title")
         VideoZoomIndicatorLayout = getId(ID, "video_zoom_indicator_layout")
         YoutubeControlsOverlay = getId(ID, "youtube_controls_overlay")

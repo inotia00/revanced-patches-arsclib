@@ -479,6 +479,7 @@
             <Preference android:title="Custom player overlay opacity" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="Disable haptic feedback" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="Disable speed overlay" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
+            <Preference android:title="Fix suggested video end screen" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="Hide autoplay button" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="Hide captions button" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="Hide channel watermark" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
@@ -491,7 +492,6 @@
             <Preference android:title="Hide previous next button" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="Hide seek message" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="Hide suggested actions" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
-            <Preference android:title="Hide suggested video overlay" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
 
             <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_seekbar" />
             <Preference android:title="Append time stamps information" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
@@ -626,9 +626,8 @@
         <!-- SETTINGS: HIDE_FILMSTRIP_OVERLAY
         <SwitchPreference android:title="@string/revanced_hide_filmstrip_overlay_title" android:key="revanced_hide_filmstrip_overlay" android:defaultValue="false" android:summaryOn="@string/revanced_hide_filmstrip_overlay_summary_on" android:summaryOff="@string/revanced_hide_filmstrip_overlay_summary_off" />SETTINGS: HIDE_FILMSTRIP_OVERLAY -->
 
-        <!-- SETTINGS: HIDE_SUGGESTED_VIDEO_OVERLAY
-        <SwitchPreference android:title="@string/revanced_hide_suggested_video_overlay_title" android:key="revanced_hide_suggested_video_overlay" android:defaultValue="false" android:summary="@string/revanced_hide_suggested_video_overlay_summary" />
-        <SwitchPreference android:title="@string/revanced_hide_suggested_video_overlay_auto_play_title" android:key="revanced_hide_suggested_video_overlay_auto_play" android:defaultValue="false" android:summary="@string/revanced_hide_suggested_video_overlay_auto_play_summary" android:dependency="revanced_hide_suggested_video_overlay" />SETTINGS: HIDE_SUGGESTED_VIDEO_OVERLAY -->
+        <!-- SETTINGS: HIDE_SUGGESTED_VIDEO_END_SCREEN
+        <Preference android:title="@string/revanced_hide_suggested_video_end_screen_title" android:key="revanced_hide_suggested_video_end_screen" android:defaultValue="false" android:selectable="false" android:summary="@string/revanced_hide_suggested_video_end_screen_summary" />SETTINGS: HIDE_SUGGESTED_VIDEO_END_SCREEN -->
 
         <!-- SETTINGS: DISABLE_HAPTIC_FEEDBACK
         <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_haptic_feedback_title" />
