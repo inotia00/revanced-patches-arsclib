@@ -5,13 +5,10 @@ import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.removeInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.revanced.patcher.util.smali.ExternalLabel
-import app.revanced.patches.youtube.utils.fix.parameter.fingerprints.ParamsMapPutFingerprint
 import app.revanced.patches.youtube.utils.fix.parameter.fingerprints.PlayerResponseModelGeneralStoryboardRendererFingerprint
 import app.revanced.patches.youtube.utils.fix.parameter.fingerprints.PlayerResponseModelLiveStreamStoryboardRendererFingerprint
 import app.revanced.patches.youtube.utils.fix.parameter.fingerprints.PlayerResponseModelStoryboardRecommendedLevelFingerprint
-import app.revanced.patches.youtube.utils.fix.parameter.fingerprints.StatsQueryParameterFingerprint
 import app.revanced.patches.youtube.utils.fix.parameter.fingerprints.StoryboardRendererDecoderRecommendedLevelFingerprint
 import app.revanced.patches.youtube.utils.fix.parameter.fingerprints.StoryboardRendererDecoderSpecFingerprint
 import app.revanced.patches.youtube.utils.fix.parameter.fingerprints.StoryboardRendererSpecFingerprint
@@ -25,7 +22,6 @@ import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.patches.youtube.utils.videoid.general.VideoIdPatch
 import app.revanced.util.patch.BaseBytecodePatch
 import app.revanced.util.resultOrThrow
-import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Suppress("unused")
@@ -40,11 +36,9 @@ object SpoofPlayerParameterPatch : BaseBytecodePatch(
     ),
     compatiblePackages = COMPATIBLE_PACKAGE,
     fingerprints = setOf(
-        ParamsMapPutFingerprint,
         PlayerResponseModelGeneralStoryboardRendererFingerprint,
         PlayerResponseModelLiveStreamStoryboardRendererFingerprint,
         PlayerResponseModelStoryboardRecommendedLevelFingerprint,
-        StatsQueryParameterFingerprint,
         StoryboardRendererDecoderRecommendedLevelFingerprint,
         StoryboardRendererDecoderSpecFingerprint,
         StoryboardRendererSpecFingerprint,
@@ -171,36 +165,6 @@ object SpoofPlayerParameterPatch : BaseBytecodePatch(
                         move-result-object v$storyboardUrlRegister
                         """
             )
-        }
-
-        // Fix stats not being tracked.
-        // Due to signature spoofing "adformat" is present in query parameters made for /stats requests,
-        // even though, for regular videos, it should not be.
-        // This breaks stats tracking.
-        // Replace the ad parameter with the video parameter in the query parameters.
-        StatsQueryParameterFingerprint.resultOrThrow().let {
-            val putMethod = ParamsMapPutFingerprint.resultOrThrow().method.toString()
-
-            it.mutableMethod.apply {
-                val adParamIndex = it.scanResult.stringsScanResult!!.matches.first().index
-                val videoParamIndex = adParamIndex + 3
-
-                // Replace the ad parameter with the video parameter.
-                replaceInstruction(adParamIndex, getInstruction(videoParamIndex))
-
-                // Call paramsMap.put instead of paramsMap.putIfNotExist
-                // because the key is already present in the map.
-                val putAdParamIndex = adParamIndex + 1
-                val putIfKeyNotExistsInstruction = getInstruction<FiveRegisterInstruction>(putAdParamIndex)
-                replaceInstruction(
-                    putAdParamIndex,
-                    "invoke-virtual { " +
-                        "v${putIfKeyNotExistsInstruction.registerC}, " +
-                        "v${putIfKeyNotExistsInstruction.registerD}, " +
-                        "v${putIfKeyNotExistsInstruction.registerE} }, " +
-                        putMethod,
-                )
-            }
         }
 
         /**
