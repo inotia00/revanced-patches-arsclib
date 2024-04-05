@@ -12,14 +12,13 @@ import app.revanced.patches.youtube.utils.fingerprints.SeekbarOnDrawFingerprint
 import app.revanced.patches.youtube.utils.fingerprints.TotalTimeFingerprint
 import app.revanced.patches.youtube.utils.fingerprints.YouTubeControlsOverlayFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.INTEGRATIONS_PATH
-import app.revanced.patches.youtube.utils.overridespeed.OverrideSpeedHookPatch
 import app.revanced.patches.youtube.utils.playercontrols.PlayerControlsPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.InsetOverlayViewLayout
 import app.revanced.patches.youtube.utils.sponsorblock.fingerprints.RectangleFieldInvalidatorFingerprint
 import app.revanced.patches.youtube.utils.sponsorblock.fingerprints.SegmentPlaybackControllerFingerprint
-import app.revanced.patches.youtube.utils.videoid.general.VideoIdPatch
-import app.revanced.patches.youtube.utils.videoid.withoutshorts.VideoIdWithoutShortsPatch
+import app.revanced.patches.youtube.video.information.VideoInformationPatch
+import app.revanced.patches.youtube.video.videoid.VideoIdPatch
 import app.revanced.util.getTargetIndex
 import app.revanced.util.getTargetIndexWithFieldReferenceTypeReversed
 import app.revanced.util.getTargetIndexWithMethodReferenceName
@@ -34,11 +33,10 @@ import com.android.tools.smali.dexlib2.iface.reference.FieldReference
 
 @Patch(
     dependencies = [
-        OverrideSpeedHookPatch::class,
         PlayerControlsPatch::class,
         SharedResourceIdPatch::class,
         VideoIdPatch::class,
-        VideoIdWithoutShortsPatch::class
+        VideoInformationPatch::class
     ]
 )
 object SponsorBlockBytecodePatch : BytecodePatch(
@@ -60,13 +58,13 @@ object SponsorBlockBytecodePatch : BytecodePatch(
 
     override fun execute(context: BytecodeContext) {
 
-        VideoIdPatch.apply {
+        VideoInformationPatch.apply {
             // Hook the video time method
             videoTimeHook(
                 INTEGRATIONS_SEGMENT_PLAYBACK_CONTROLLER_CLASS_DESCRIPTOR,
                 "setVideoTime"
             )
-            // Initialize SponsorBlock
+            // Initialize the player controller
             onCreateHook(
                 INTEGRATIONS_SEGMENT_PLAYBACK_CONTROLLER_CLASS_DESCRIPTOR,
                 "initialize"
@@ -163,7 +161,7 @@ object SponsorBlockBytecodePatch : BytecodePatch(
             }
         }
 
-        // Inject VideoIdPatch
-        VideoIdWithoutShortsPatch.injectCall("$INTEGRATIONS_SEGMENT_PLAYBACK_CONTROLLER_CLASS_DESCRIPTOR->setCurrentVideoId(Ljava/lang/String;)V")
+        // Set current video id
+        VideoIdPatch.hookBackgroundPlayVideoId("$INTEGRATIONS_SEGMENT_PLAYBACK_CONTROLLER_CLASS_DESCRIPTOR->setCurrentVideoId(Ljava/lang/String;)V")
     }
 }

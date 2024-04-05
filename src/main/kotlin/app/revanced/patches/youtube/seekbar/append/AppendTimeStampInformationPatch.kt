@@ -7,9 +7,9 @@ import app.revanced.patches.youtube.utils.fingerprints.TotalTimeFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.SEEKBAR_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.overridequality.OverrideQualityHookPatch
-import app.revanced.patches.youtube.utils.overridespeed.OverrideSpeedHookPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
+import app.revanced.patches.youtube.video.information.VideoInformationPatch
 import app.revanced.util.getTargetIndexWithMethodReferenceName
 import app.revanced.util.patch.BaseBytecodePatch
 import app.revanced.util.resultOrThrow
@@ -22,9 +22,9 @@ object AppendTimeStampInformationPatch : BaseBytecodePatch(
     description = "Adds an option to add the current video quality or playback speed in brackets next to the current time.",
     dependencies = setOf(
         OverrideQualityHookPatch::class,
-        OverrideSpeedHookPatch::class,
         SettingsPatch::class,
-        SharedResourceIdPatch::class
+        SharedResourceIdPatch::class,
+        VideoInformationPatch::class
     ),
     compatiblePackages = COMPATIBLE_PACKAGE,
     fingerprints = setOf(TotalTimeFingerprint)

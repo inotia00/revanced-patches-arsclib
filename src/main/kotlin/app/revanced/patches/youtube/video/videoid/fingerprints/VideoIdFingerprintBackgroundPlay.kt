@@ -1,11 +1,14 @@
-package app.revanced.patches.youtube.utils.videoid.withoutshorts.fingerprint
+package app.revanced.patches.youtube.video.videoid.fingerprints
 
 import app.revanced.patcher.extensions.or
 import app.revanced.patcher.fingerprint.MethodFingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 
-internal object VideoIdWithoutShortsFingerprint : MethodFingerprint(
+/**
+ * Renamed from VideoIdWithoutShortsFingerprint
+ */
+internal object VideoIdFingerprintBackgroundPlay : MethodFingerprint(
     returnType = "V",
     accessFlags = AccessFlags.PUBLIC or AccessFlags.FINAL or AccessFlags.DECLARED_SYNCHRONIZED,
     parameters = listOf("L"),

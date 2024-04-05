@@ -8,7 +8,6 @@ import app.revanced.patches.shared.litho.LithoFilterPatch
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPONENTS_PATH
 import app.revanced.patches.youtube.utils.integrations.Constants.UTILS_PATH
-import app.revanced.patches.youtube.utils.playerresponse.PlayerResponsePatch
 import app.revanced.patches.youtube.utils.returnyoutubedislike.general.fingerprints.DislikeFingerprint
 import app.revanced.patches.youtube.utils.returnyoutubedislike.general.fingerprints.LikeFingerprint
 import app.revanced.patches.youtube.utils.returnyoutubedislike.general.fingerprints.RemoveLikeFingerprint
@@ -17,7 +16,7 @@ import app.revanced.patches.youtube.utils.returnyoutubedislike.general.fingerpri
 import app.revanced.patches.youtube.utils.returnyoutubedislike.rollingnumber.ReturnYouTubeDislikeRollingNumberPatch
 import app.revanced.patches.youtube.utils.returnyoutubedislike.shorts.ReturnYouTubeDislikeShortsPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.patches.youtube.utils.videoid.general.VideoIdPatch
+import app.revanced.patches.youtube.video.videoid.VideoIdPatch
 import app.revanced.util.getTargetIndexWithFieldReferenceType
 import app.revanced.util.patch.BaseBytecodePatch
 import app.revanced.util.resultOrThrow
@@ -30,7 +29,6 @@ object ReturnYouTubeDislikePatch : BaseBytecodePatch(
     description = "Shows the dislike count of videos using the Return YouTube Dislike API.",
     dependencies = setOf(
         LithoFilterPatch::class,
-        PlayerResponsePatch::class,
         ReturnYouTubeDislikeRollingNumberPatch::class,
         ReturnYouTubeDislikeShortsPatch::class,
         SettingsPatch::class,
@@ -91,13 +89,21 @@ object ReturnYouTubeDislikePatch : BaseBytecodePatch(
             }
         }
 
-        VideoIdPatch.injectCall("$INTEGRATIONS_RYD_CLASS_DESCRIPTOR->newVideoLoaded(Ljava/lang/String;)V")
-        VideoIdPatch.injectPlayerResponseVideoId("$INTEGRATIONS_RYD_CLASS_DESCRIPTOR->preloadVideoId(Ljava/lang/String;Z)V")
+        // region Inject newVideoLoaded event handler to update dislikes when a new video is loaded.
+        VideoIdPatch.hookVideoId("$INTEGRATIONS_RYD_CLASS_DESCRIPTOR->newVideoLoaded(Ljava/lang/String;)V")
 
+        // Hook the player response video id, to start loading RYD sooner in the background.
+        VideoIdPatch.hookPlayerResponseVideoId("$INTEGRATIONS_RYD_CLASS_DESCRIPTOR->preloadVideoId(Ljava/lang/String;Z)V")
+
+        // endregion
+
+        // Player response video id is needed to search for the video ids in Shorts litho components.
         if (SettingsPatch.upward1834) {
             LithoFilterPatch.addFilter(FILTER_CLASS_DESCRIPTOR)
-            VideoIdPatch.injectPlayerResponseVideoId("$FILTER_CLASS_DESCRIPTOR->newPlayerResponseVideoId(Ljava/lang/String;Z)V")
+            VideoIdPatch.hookPlayerResponseVideoId("$FILTER_CLASS_DESCRIPTOR->newPlayerResponseVideoId(Ljava/lang/String;Z)V")
         }
+
+        // endregion
 
         /**
          * Add ReVanced Extended Settings

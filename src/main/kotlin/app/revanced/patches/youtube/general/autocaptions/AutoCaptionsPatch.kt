@@ -4,7 +4,7 @@ import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.GENERAL_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.patches.youtube.utils.videoid.general.VideoIdPatch
+import app.revanced.patches.youtube.video.videoid.VideoIdPatch
 import app.revanced.util.patch.BaseBytecodePatch
 
 @Suppress("unused")
@@ -20,7 +20,7 @@ object AutoCaptionsPatch : BaseBytecodePatch(
 ) {
     override fun execute(context: BytecodeContext) {
 
-        VideoIdPatch.injectCall("$GENERAL_CLASS_DESCRIPTOR->newVideoStarted(Ljava/lang/String;)V")
+        VideoIdPatch.hookBackgroundPlayVideoId("$GENERAL_CLASS_DESCRIPTOR->newVideoStarted(Ljava/lang/String;)V")
 
         /**
          * Add settings

@@ -4,34 +4,35 @@ import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patches.youtube.utils.fingerprints.NewVideoQualityChangedFingerprint
+import app.revanced.patches.youtube.utils.fingerprints.QualityChangedFromRecyclerViewFingerprint
 import app.revanced.patches.youtube.utils.fingerprints.VideoEndFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.UTILS_PATH
 import app.revanced.patches.youtube.utils.integrations.Constants.VIDEO_PATH
-import app.revanced.patches.youtube.utils.overridespeed.OverrideSpeedHookPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.patches.youtube.utils.videocpn.VideoCpnPatch
-import app.revanced.patches.youtube.video.speed.fingerprints.NewPlaybackSpeedChangedFingerprint
+import app.revanced.patches.youtube.video.information.VideoInformationPatch
+import app.revanced.patches.youtube.video.information.VideoInformationPatch.speedSelectionInsertMethod
+import app.revanced.patches.youtube.video.speed.fingerprints.PlaybackSpeedChangedFromRecyclerViewFingerprint
 import app.revanced.patches.youtube.video.speed.fingerprints.PlaybackSpeedInitializeFingerprint
+import app.revanced.util.getTargetIndex
 import app.revanced.util.patch.BaseBytecodePatch
 import app.revanced.util.resultOrThrow
 import app.revanced.util.updatePatchStatus
-import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
+import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
+import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 
 @Suppress("unused")
 object PlaybackSpeedPatch : BaseBytecodePatch(
     name = "Default playback speed",
     description = "Adds an option to set the default playback speed.",
     dependencies = setOf(
-        OverrideSpeedHookPatch::class,
         SettingsPatch::class,
-        VideoCpnPatch::class
+        VideoInformationPatch::class
     ),
     compatiblePackages = COMPATIBLE_PACKAGE,
     fingerprints = setOf(
-        NewVideoQualityChangedFingerprint,
+        QualityChangedFromRecyclerViewFingerprint,
         VideoEndFingerprint
     )
 ) {
@@ -40,24 +41,27 @@ object PlaybackSpeedPatch : BaseBytecodePatch(
 
     override fun execute(context: BytecodeContext) {
 
-        NewVideoQualityChangedFingerprint.resultOrThrow().let { parentResult ->
-            NewPlaybackSpeedChangedFingerprint.also {
-                it.resolve(
-                    context,
-                    parentResult.classDef
-                )
-            }.resultOrThrow().let { result ->
-                arrayOf(result, OverrideSpeedHookPatch.playbackSpeedChangedResult).forEach {
-                    it.mutableMethod.apply {
-                        val index = it.scanResult.patternScanResult!!.endIndex
-                        val register = getInstruction<FiveRegisterInstruction>(index).registerD
+        PlaybackSpeedChangedFromRecyclerViewFingerprint.resolve(
+            context,
+            QualityChangedFromRecyclerViewFingerprint.resultOrThrow().classDef
+        )
 
-                        addInstruction(
-                            index,
-                            "invoke-static {v$register}, $INTEGRATIONS_PLAYBACK_SPEED_CLASS_DESCRIPTOR->userChangedSpeed(F)V"
-                        )
-                    }
-                }
+        val newMethod = PlaybackSpeedChangedFromRecyclerViewFingerprint.resultOrThrow().mutableMethod
+
+        arrayOf(
+            newMethod,
+            speedSelectionInsertMethod
+        ).forEach {
+            it.apply {
+                val speedSelectionValueInstructionIndex = getTargetIndex(Opcode.IGET)
+                val speedSelectionValueRegister =
+                    getInstruction<TwoRegisterInstruction>(speedSelectionValueInstructionIndex).registerA
+
+                addInstruction(
+                    speedSelectionValueInstructionIndex + 1,
+                    "invoke-static {v$speedSelectionValueRegister}, " +
+                            "$INTEGRATIONS_PLAYBACK_SPEED_CLASS_DESCRIPTOR->userSelectedPlaybackSpeed(F)V"
+                )
             }
         }
 
@@ -82,7 +86,7 @@ object PlaybackSpeedPatch : BaseBytecodePatch(
             }
         }
 
-        VideoCpnPatch.injectCall("$INTEGRATIONS_PLAYBACK_SPEED_CLASS_DESCRIPTOR->newVideoStarted(Ljava/lang/String;)V")
+        VideoInformationPatch.cpnHook("$INTEGRATIONS_PLAYBACK_SPEED_CLASS_DESCRIPTOR->newVideoStarted(Ljava/lang/String;Z)V")
 
         /**
          * Add settings

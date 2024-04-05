@@ -4,18 +4,17 @@ import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.PatchException
-import app.revanced.patches.youtube.utils.fingerprints.NewVideoQualityChangedFingerprint
-import app.revanced.patches.youtube.utils.fingerprints.VideoQualitySetterFingerprint
+import app.revanced.patches.youtube.utils.fingerprints.QualityChangedFromRecyclerViewFingerprint
+import app.revanced.patches.youtube.utils.fingerprints.QualitySetterFingerprint
 import app.revanced.patches.youtube.utils.fix.shortsplayback.ShortsPlaybackPatch
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.VIDEO_PATH
 import app.revanced.patches.youtube.utils.overridequality.OverrideQualityHookPatch
-import app.revanced.patches.youtube.utils.overridespeed.OverrideSpeedHookPatch
 import app.revanced.patches.youtube.utils.playertype.PlayerTypeHookPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch.contexts
-import app.revanced.patches.youtube.utils.videoid.general.VideoIdPatch
-import app.revanced.patches.youtube.utils.videoid.withoutshorts.VideoIdWithoutShortsPatch
+import app.revanced.patches.youtube.video.information.VideoInformationPatch
+import app.revanced.patches.youtube.video.videoid.VideoIdPatch
 import app.revanced.util.copyXmlNode
 import app.revanced.util.patch.BaseBytecodePatch
 import app.revanced.util.resultOrThrow
@@ -27,22 +26,27 @@ object VideoQualityPatch : BaseBytecodePatch(
     description = "Adds an option to set the default video quality.",
     dependencies = setOf(
         OverrideQualityHookPatch::class,
-        OverrideSpeedHookPatch::class,
         PlayerTypeHookPatch::class,
         SettingsPatch::class,
         ShortsPlaybackPatch::class,
         VideoIdPatch::class,
-        VideoIdWithoutShortsPatch::class
+        VideoInformationPatch::class
     ),
     compatiblePackages = COMPATIBLE_PACKAGE,
     fingerprints = setOf(
-        NewVideoQualityChangedFingerprint,
-        VideoQualitySetterFingerprint
+        QualityChangedFromRecyclerViewFingerprint,
+        QualitySetterFingerprint
     )
 ) {
+    private const val INTEGRATIONS_VIDEO_QUALITY_CLASS_DESCRIPTOR =
+        "$VIDEO_PATH/VideoQualityPatch;"
+    private const val INTEGRATIONS_RELOAD_VIDEO_CLASS_DESCRIPTOR =
+        "$VIDEO_PATH/ReloadVideoPatch;"
+
     override fun execute(context: BytecodeContext) {
 
-        NewVideoQualityChangedFingerprint.resultOrThrow().let {
+        // Remember video quality from recyclerview (litho view).
+        QualityChangedFromRecyclerViewFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val index = it.scanResult.patternScanResult!!.startIndex
                 val qualityRegister = getInstruction<TwoRegisterInstruction>(index).registerA
@@ -55,7 +59,7 @@ object VideoQualityPatch : BaseBytecodePatch(
             }
         }
 
-        VideoQualitySetterFingerprint.resultOrThrow().let {
+        QualitySetterFingerprint.resultOrThrow().let {
             val onItemClickMethod =
                 it.mutableClass.methods.find { method -> method.name == "onItemClick" }
 
@@ -69,10 +73,8 @@ object VideoQualityPatch : BaseBytecodePatch(
             } ?: throw PatchException("Failed to find onItemClick method")
         }
 
-        VideoIdPatch.injectCall("$INTEGRATIONS_VIDEO_QUALITY_CLASS_DESCRIPTOR->newVideoStarted(Ljava/lang/String;)V")
-        VideoIdWithoutShortsPatch.injectCall("$INTEGRATIONS_VIDEO_QUALITY_CLASS_DESCRIPTOR->newVideoStarted(Ljava/lang/String;)V")
-
-        VideoIdWithoutShortsPatch.injectCall("$INTEGRATIONS_RELOAD_VIDEO_CLASS_DESCRIPTOR->setVideoId(Ljava/lang/String;)V")
+        VideoIdPatch.hookBackgroundPlayVideoId("$INTEGRATIONS_VIDEO_QUALITY_CLASS_DESCRIPTOR->newVideoStarted(Ljava/lang/String;)V")
+        VideoIdPatch.hookBackgroundPlayVideoId("$INTEGRATIONS_RELOAD_VIDEO_CLASS_DESCRIPTOR->setVideoId(Ljava/lang/String;)V")
 
         /**
          * Copy arrays
@@ -94,9 +96,4 @@ object VideoQualityPatch : BaseBytecodePatch(
         SettingsPatch.updatePatchStatus("Default video quality")
 
     }
-
-    private const val INTEGRATIONS_VIDEO_QUALITY_CLASS_DESCRIPTOR =
-        "$VIDEO_PATH/VideoQualityPatch;"
-    private const val INTEGRATIONS_RELOAD_VIDEO_CLASS_DESCRIPTOR =
-        "$VIDEO_PATH/ReloadVideoPatch;"
 }

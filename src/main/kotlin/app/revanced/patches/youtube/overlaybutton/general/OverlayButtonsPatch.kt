@@ -9,11 +9,9 @@ import app.revanced.patches.youtube.overlaybutton.fullscreen.FullscreenButtonPat
 import app.revanced.patches.youtube.utils.fix.fullscreen.FullscreenButtonViewStubPatch
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.OVERLAY_BUTTONS_PATH
-import app.revanced.patches.youtube.utils.overridespeed.OverrideSpeedHookPatch
 import app.revanced.patches.youtube.utils.playercontrols.PlayerControlsPatch
-import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.patches.youtube.utils.videoid.general.VideoIdPatch
+import app.revanced.patches.youtube.video.information.VideoInformationPatch
 import app.revanced.util.ResourceGroup
 import app.revanced.util.copyResources
 import app.revanced.util.copyXmlNode
@@ -31,11 +29,9 @@ object OverlayButtonsPatch : BaseResourcePatch(
         DownloadButtonHookPatch::class,
         FullscreenButtonPatch::class,
         FullscreenButtonViewStubPatch::class,
-        OverrideSpeedHookPatch::class,
         PlayerControlsPatch::class,
         SettingsPatch::class,
-        SharedResourceIdPatch::class,
-        VideoIdPatch::class
+        VideoInformationPatch::class
     ),
     compatiblePackages = COMPATIBLE_PACKAGE
 ) {

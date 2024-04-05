@@ -8,7 +8,7 @@ import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.shared.litho.LithoFilterPatch
 import app.revanced.patches.youtube.utils.fingerprints.QualityMenuViewInflateFingerprint
-import app.revanced.patches.youtube.utils.fingerprints.VideoQualitySetterFingerprint
+import app.revanced.patches.youtube.utils.fingerprints.QualitySetterFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPONENTS_PATH
 import app.revanced.patches.youtube.utils.integrations.Constants.FLYOUT_PANEL_CLASS_DESCRIPTOR
@@ -38,7 +38,7 @@ object OldQualityLayoutPatch : BaseBytecodePatch(
     compatiblePackages = COMPATIBLE_PACKAGE,
     fingerprints = setOf(
         QualityMenuViewInflateFingerprint,
-        VideoQualitySetterFingerprint
+        QualitySetterFingerprint
     )
 ) {
     private const val FILTER_CLASS_DESCRIPTOR =
@@ -49,7 +49,7 @@ object OldQualityLayoutPatch : BaseBytecodePatch(
         /**
          * Non-litho view, used in old clients and Shorts.
          */
-        val videoQualityClass = VideoQualitySetterFingerprint.resultOrThrow().mutableMethod.definingClass
+        val videoQualityClass = QualitySetterFingerprint.resultOrThrow().mutableMethod.definingClass
 
         QualityMenuViewInflateFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {

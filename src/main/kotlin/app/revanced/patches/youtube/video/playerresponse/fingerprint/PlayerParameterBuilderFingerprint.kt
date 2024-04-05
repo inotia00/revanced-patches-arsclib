@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.utils.playerresponse.fingerprints
+package app.revanced.patches.youtube.video.playerresponse.fingerprint
 
 import app.revanced.patcher.extensions.or
 import app.revanced.patcher.fingerprint.MethodFingerprint
@@ -11,7 +11,7 @@ internal object PlayerParameterBuilderFingerprint : MethodFingerprint(
         "Ljava/lang/String;", // VideoId.
         "[B",
         "Ljava/lang/String;", // Player parameters proto buffer.
-        "Ljava/lang/String;",
+        "Ljava/lang/String;", // PlaylistId.
         "I",
         "I",
         "Ljava/util/Set;",

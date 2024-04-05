@@ -16,10 +16,10 @@ import app.revanced.patches.youtube.utils.fix.parameter.fingerprints.StoryboardT
 import app.revanced.patches.youtube.utils.fix.parameter.fingerprints.StoryboardThumbnailParentFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.MISC_PATH
-import app.revanced.patches.youtube.utils.playerresponse.PlayerResponsePatch
 import app.revanced.patches.youtube.utils.playertype.PlayerTypeHookPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.patches.youtube.utils.videoid.general.VideoIdPatch
+import app.revanced.patches.youtube.video.information.VideoInformationPatch
+import app.revanced.patches.youtube.video.playerresponse.PlayerResponseMethodHookPatch
 import app.revanced.util.patch.BaseBytecodePatch
 import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
@@ -30,9 +30,9 @@ object SpoofPlayerParameterPatch : BaseBytecodePatch(
     description = "Adds options to spoof player parameters to prevent playback issues.",
     dependencies = setOf(
         PlayerTypeHookPatch::class,
-        PlayerResponsePatch::class,
-        VideoIdPatch::class,
-        SettingsPatch::class
+        PlayerResponseMethodHookPatch::class,
+        SettingsPatch::class,
+        VideoInformationPatch::class,
     ),
     compatiblePackages = COMPATIBLE_PACKAGE,
     fingerprints = setOf(
@@ -52,7 +52,7 @@ object SpoofPlayerParameterPatch : BaseBytecodePatch(
     override fun execute(context: BytecodeContext) {
 
         // Hook the player parameters.
-        PlayerResponsePatch += PlayerResponsePatch.Hook.PlayerParameter(
+        PlayerResponseMethodHookPatch += PlayerResponseMethodHookPatch.Hook.PlayerParameter(
             "$INTEGRATIONS_CLASS_DESCRIPTOR->spoofParameter(Ljava/lang/String;Ljava/lang/String;Z)Ljava/lang/String;"
         )
 

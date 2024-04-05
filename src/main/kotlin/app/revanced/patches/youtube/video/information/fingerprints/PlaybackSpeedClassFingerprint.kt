@@ -1,11 +1,11 @@
-package app.revanced.patches.youtube.utils.overridespeed.fingerprints
+package app.revanced.patches.youtube.video.information.fingerprints
 
 import app.revanced.patcher.extensions.or
 import app.revanced.patcher.fingerprint.MethodFingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 
-internal object SpeedClassFingerprint : MethodFingerprint(
+internal object PlaybackSpeedClassFingerprint : MethodFingerprint(
     returnType = "L",
     accessFlags = AccessFlags.PUBLIC or AccessFlags.STATIC,
     parameters = listOf("L"),

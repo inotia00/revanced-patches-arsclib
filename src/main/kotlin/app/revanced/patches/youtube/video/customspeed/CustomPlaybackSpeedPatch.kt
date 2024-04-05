@@ -3,8 +3,8 @@ package app.revanced.patches.youtube.video.customspeed
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patches.youtube.flyoutpanel.oldspeedlayout.OldSpeedLayoutPatch
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.youtube.utils.overridespeed.OverrideSpeedHookPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
+import app.revanced.patches.youtube.video.information.VideoInformationPatch
 import app.revanced.util.patch.BaseResourcePatch
 
 @Suppress("unused")
@@ -14,8 +14,8 @@ object CustomPlaybackSpeedPatch : BaseResourcePatch(
     dependencies = setOf(
         CustomPlaybackSpeedBytecodePatch::class,
         OldSpeedLayoutPatch::class,
-        OverrideSpeedHookPatch::class,
-        SettingsPatch::class
+        SettingsPatch::class,
+        VideoInformationPatch::class
     ),
     compatiblePackages = COMPATIBLE_PACKAGE
 ) {
