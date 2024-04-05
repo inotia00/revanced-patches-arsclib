@@ -10,7 +10,6 @@ import app.revanced.util.getTargetIndexReversed
 import app.revanced.util.getWalkerMethod
 import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
-import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 
 object AlwaysRepeatPatch : BytecodePatch(

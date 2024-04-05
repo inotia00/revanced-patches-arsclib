@@ -6,11 +6,11 @@ import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
+import app.revanced.patches.youtube.utils.fingerprints.PlayerButtonsResourcesFingerprint
 import app.revanced.patches.youtube.utils.fingerprints.YouTubeControlsOverlayFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.UTILS_PATH
 import app.revanced.patches.youtube.utils.playercontrols.fingerprints.BottomControlsInflateFingerprint
 import app.revanced.patches.youtube.utils.playercontrols.fingerprints.ControlsLayoutInflateFingerprint
-import app.revanced.patches.youtube.utils.fingerprints.PlayerButtonsResourcesFingerprint
 import app.revanced.patches.youtube.utils.playercontrols.fingerprints.PlayerButtonsVisibilityFingerprint
 import app.revanced.patches.youtube.utils.playercontrols.fingerprints.PlayerControlsPatchFingerprint
 import app.revanced.patches.youtube.utils.playercontrols.fingerprints.PlayerControlsVisibilityFingerprint

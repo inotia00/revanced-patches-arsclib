@@ -8,10 +8,10 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.youtube.utils.playertype.PlayerTypeHookPatch
-import app.revanced.patches.youtube.video.videoid.fingerprints.VideoIdFingerprint
-import app.revanced.patches.youtube.video.videoid.fingerprints.VideoIdParentFingerprint
 import app.revanced.patches.youtube.video.playerresponse.PlayerResponseMethodHookPatch
+import app.revanced.patches.youtube.video.videoid.fingerprints.VideoIdFingerprint
 import app.revanced.patches.youtube.video.videoid.fingerprints.VideoIdFingerprintBackgroundPlay
+import app.revanced.patches.youtube.video.videoid.fingerprints.VideoIdParentFingerprint
 import app.revanced.util.getTargetIndex
 import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode

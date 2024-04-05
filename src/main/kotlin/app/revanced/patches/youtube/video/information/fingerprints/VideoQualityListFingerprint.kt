@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.utils.overridequality.fingerprints
+package app.revanced.patches.youtube.video.information.fingerprints
 
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.QualityAuto
 import app.revanced.util.fingerprint.LiteralValueFingerprint

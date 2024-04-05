@@ -2,12 +2,12 @@ package app.revanced.patches.youtube.video.information
 
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.revanced.patcher.extensions.or
 import app.revanced.patcher.patch.BytecodePatch
+import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableField.Companion.toMutable
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
@@ -18,11 +18,13 @@ import app.revanced.patches.youtube.utils.fingerprints.OrganicPlaybackContextMod
 import app.revanced.patches.youtube.utils.fingerprints.VideoEndFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.VIDEO_PATH
 import app.revanced.patches.youtube.utils.playertype.PlayerTypeHookPatch
+import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.video.information.fingerprints.OnPlaybackSpeedItemClickFingerprint
 import app.revanced.patches.youtube.video.information.fingerprints.PlaybackSpeedClassFingerprint
 import app.revanced.patches.youtube.video.information.fingerprints.PlayerControllerSetTimeReferenceFingerprint
-import app.revanced.patches.youtube.video.information.fingerprints.VideoInformationPatchFingerprint
 import app.revanced.patches.youtube.video.information.fingerprints.VideoLengthFingerprint
+import app.revanced.patches.youtube.video.information.fingerprints.VideoQualityListFingerprint
+import app.revanced.patches.youtube.video.information.fingerprints.VideoQualityTextFingerprint
 import app.revanced.patches.youtube.video.playerresponse.PlayerResponseMethodHookPatch
 import app.revanced.patches.youtube.video.videoid.VideoIdPatch
 import app.revanced.util.getTargetIndex
@@ -31,8 +33,10 @@ import app.revanced.util.getWalkerMethod
 import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
+import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
+import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 import com.android.tools.smali.dexlib2.immutable.ImmutableField
 import com.android.tools.smali.dexlib2.immutable.ImmutableMethod
 import com.android.tools.smali.dexlib2.immutable.ImmutableMethodImplementation
@@ -44,6 +48,7 @@ import com.android.tools.smali.dexlib2.util.MethodUtil
     dependencies = [
         PlayerResponseMethodHookPatch::class,
         PlayerTypeHookPatch::class,
+        SharedResourceIdPatch::class,
         VideoIdPatch::class
     ]
 )
@@ -54,8 +59,9 @@ object VideoInformationPatch : BytecodePatch(
         PlaybackSpeedClassFingerprint,
         PlayerControllerSetTimeReferenceFingerprint,
         VideoEndFingerprint,
-        VideoInformationPatchFingerprint,
-        VideoLengthFingerprint
+        VideoLengthFingerprint,
+        VideoQualityListFingerprint,
+        VideoQualityTextFingerprint
     )
 ) {
     private const val INTEGRATIONS_CLASS_DESCRIPTOR =
@@ -169,8 +175,10 @@ object VideoInformationPatch : BytecodePatch(
         PlayerResponseMethodHookPatch += PlayerResponseMethodHookPatch.Hook.PlayerParameterBeforeVideoId(
             "$INTEGRATIONS_CLASS_DESCRIPTOR->newPlayerResponseParameter(Ljava/lang/String;Ljava/lang/String;Z)Ljava/lang/String;")
 
+        val videoInformationMutableClass = context.findClass(INTEGRATIONS_CLASS_DESCRIPTOR)!!.mutableClass
+
         /**
-         * Hook the user playback speed selection
+         * Hook current playback speed
          */
         OnPlaybackSpeedItemClickFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
@@ -186,6 +194,7 @@ object VideoInformationPatch : BytecodePatch(
                 val setPlaybackSpeedMethodReference =
                     getInstruction<ReferenceInstruction>(speedSelectionValueInstructionIndex + 2).reference.toString()
 
+                // add override playback speed method
                 it.mutableClass.methods.add(
                     ImmutableMethod(
                         definingClass,
@@ -217,8 +226,8 @@ object VideoInformationPatch : BytecodePatch(
                     ).toMutable()
                 )
 
+                // set current playback speed
                 val walkerMethod = getWalkerMethod(context, speedSelectionValueInstructionIndex + 2)
-
                 walkerMethod.apply {
                     addInstruction(
                         this.implementation!!.instructions.size - 1,
@@ -233,6 +242,8 @@ object VideoInformationPatch : BytecodePatch(
                 val index = result.scanResult.patternScanResult!!.endIndex
                 val register = getInstruction<OneRegisterInstruction>(index).registerA
                 val playbackSpeedClass = this.returnType
+
+                // set playback speed class
                 replaceInstruction(
                     index,
                     "sput-object v$register, $INTEGRATIONS_CLASS_DESCRIPTOR->playbackSpeedClass:$playbackSpeedClass"
@@ -242,29 +253,107 @@ object VideoInformationPatch : BytecodePatch(
                     "return-object v$register"
                 )
 
-                VideoInformationPatchFingerprint.resultOrThrow().let {
-                    it.mutableMethod.apply {
-                        it.mutableClass.staticFields.add(
-                            ImmutableField(
-                                definingClass,
-                                "playbackSpeedClass",
-                                playbackSpeedClass,
-                                AccessFlags.PUBLIC or AccessFlags.STATIC,
-                                null,
-                                annotations,
-                                null
-                            ).toMutable()
-                        )
+                videoInformationMutableClass.methods.single { method ->
+                    method.name == "overridePlaybackSpeed"
+                }.apply {
+                    // add playback speed class
+                    videoInformationMutableClass.staticFields.add(
+                        ImmutableField(
+                            definingClass,
+                            "playbackSpeedClass",
+                            playbackSpeedClass,
+                            AccessFlags.PUBLIC or AccessFlags.STATIC,
+                            null,
+                            annotations,
+                            null
+                        ).toMutable()
+                    )
 
-                        addInstructions(
-                            0, """
-                                sget-object v0, $INTEGRATIONS_CLASS_DESCRIPTOR->playbackSpeedClass:$playbackSpeedClass
-                                invoke-virtual {v0, p0}, $playbackSpeedClass->overridePlaybackSpeed(F)V
-                                return-void
-                                """
-                        )
-                    }
+                    // call override playback speed method
+                    addInstructionsWithLabels(
+                        0, """
+                            sget-object v0, $INTEGRATIONS_CLASS_DESCRIPTOR->playbackSpeedClass:$playbackSpeedClass
+                            if-eqz v0, :ignore
+                            invoke-virtual {v0, p0}, $playbackSpeedClass->overridePlaybackSpeed(F)V
+                            :ignore
+                            return-void
+                            """
+                    )
                 }
+            }
+        }
+
+        /**
+         * Hook current video quality
+         */
+        VideoQualityListFingerprint.resultOrThrow().let {
+            val constructorMethod =
+                it.mutableClass.methods.first { method -> MethodUtil.isConstructor(method) }
+            val overrideMethod =
+                it.mutableClass.methods.find { method -> method.parameterTypes.first() == "I" }
+
+            val videoQualityClass = it.method.definingClass
+            val videoQualityMethodName = overrideMethod?.name
+                ?: throw PatchException("Failed to find hook method")
+
+            // set video quality class
+            constructorMethod.apply {
+                addInstruction(
+                    2,
+                    "sput-object p0, $INTEGRATIONS_CLASS_DESCRIPTOR->videoQualityClass:$videoQualityClass"
+                )
+            }
+
+            // set video quality array
+            it.mutableMethod.apply {
+                val listIndex = it.scanResult.patternScanResult!!.startIndex
+                val listRegister = getInstruction<FiveRegisterInstruction>(listIndex).registerD
+
+                addInstruction(
+                    listIndex,
+                    "invoke-static {v$listRegister}, $INTEGRATIONS_CLASS_DESCRIPTOR->setVideoQualityList([Ljava/lang/Object;)V"
+                )
+            }
+
+            videoInformationMutableClass.methods.single { method ->
+                method.name == "overrideVideoQuality"
+            }.apply {
+                // add video quality class
+                videoInformationMutableClass.staticFields.add(
+                    ImmutableField(
+                        definingClass,
+                        "videoQualityClass",
+                        videoQualityClass,
+                        AccessFlags.PUBLIC or AccessFlags.STATIC,
+                        null,
+                        annotations,
+                        null
+                    ).toMutable()
+                )
+
+                // call override video quality method
+                addInstructionsWithLabels(
+                    0, """
+                        sget-object v0, $INTEGRATIONS_CLASS_DESCRIPTOR->videoQualityClass:$videoQualityClass
+                        if-eqz v0, :ignore
+                        invoke-virtual {v0, p0}, $videoQualityClass->$videoQualityMethodName(I)V
+                        :ignore
+                        return-void
+                        """
+                )
+            }
+        }
+
+        // set current video quality
+        VideoQualityTextFingerprint.resultOrThrow().let {
+            it.mutableMethod.apply {
+                val textIndex = it.scanResult.patternScanResult!!.endIndex
+                val textRegister = getInstruction<TwoRegisterInstruction>(textIndex).registerA
+
+                addInstruction(
+                    textIndex + 1,
+                    "invoke-static {v$textRegister}, $INTEGRATIONS_CLASS_DESCRIPTOR->setVideoQuality(Ljava/lang/String;)V"
+                )
             }
         }
     }
