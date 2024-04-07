@@ -97,7 +97,7 @@ object ColorMatchPlayerPatch : BaseBytecodePatch(
             }
         }
 
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.PLAYER,
             "revanced_enable_color_match_player",
             "true"

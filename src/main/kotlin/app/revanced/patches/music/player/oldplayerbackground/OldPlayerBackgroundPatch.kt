@@ -26,7 +26,7 @@ object OldPlayerBackgroundPatch : BaseBytecodePatch(
             "Please use YT Music 6.33.52 or earlier."
         )
 
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.PLAYER,
             "revanced_enable_old_player_background",
             "false"

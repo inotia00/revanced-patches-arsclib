@@ -18,7 +18,7 @@ object CustomPlaybackSpeedPatch : BaseResourcePatch(
 ) {
     override fun execute(context: ResourceContext) {
 
-        SettingsPatch.addMusicPreferenceWithIntent(
+        SettingsPatch.addPreferenceWithIntent(
             CategoryType.VIDEO,
             "revanced_custom_playback_speeds"
         )

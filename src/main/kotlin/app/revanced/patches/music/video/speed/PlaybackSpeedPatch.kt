@@ -50,7 +50,7 @@ object PlaybackSpeedPatch : BaseBytecodePatch(
             }
         }
 
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.VIDEO,
             "revanced_enable_save_playback_speed",
             "true"

@@ -19,7 +19,7 @@ object ForceOpusCodecPatch : BaseResourcePatch(
 ) {
     override fun execute(context: ResourceContext) {
 
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.MISC,
             "revanced_enable_opus_codec",
             "true"

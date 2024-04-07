@@ -25,12 +25,12 @@ object SpoofAppVersionPatch : BaseResourcePatch(
          */
         context.copyXmlNode("music/spoofappversion/host", "values/arrays.xml", "resources")
 
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.MISC,
             "revanced_spoof_app_version",
             "false"
         )
-        SettingsPatch.addMusicPreferenceWithIntent(
+        SettingsPatch.addPreferenceWithIntent(
             CategoryType.MISC,
             "revanced_spoof_app_version_target",
             "revanced_spoof_app_version"

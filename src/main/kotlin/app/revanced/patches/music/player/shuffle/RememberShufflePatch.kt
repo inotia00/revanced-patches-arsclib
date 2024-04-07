@@ -160,7 +160,7 @@ object RememberShufflePatch : BaseBytecodePatch(
             }
         }
 
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.PLAYER,
             "revanced_remember_shuffle_state",
             "true"

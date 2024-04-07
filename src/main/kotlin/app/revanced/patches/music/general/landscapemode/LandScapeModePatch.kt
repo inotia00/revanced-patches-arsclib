@@ -39,7 +39,7 @@ object LandScapeModePatch : BaseBytecodePatch(
             }
         }
 
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.GENERAL,
             "revanced_enable_landscape_mode",
             "true"

@@ -121,12 +121,12 @@ object MiniPlayerButtonPatch : BaseBytecodePatch(
 
         mppWatchWhileLayoutMutableMethod.setViewArray()
 
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.PLAYER,
             "revanced_enable_mini_player_next_button",
             "true"
         )
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.PLAYER,
             "revanced_enable_mini_player_previous_button",
             "false"

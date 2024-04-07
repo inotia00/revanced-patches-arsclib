@@ -19,7 +19,7 @@ object ViewerDiscretionDialogPatch : BaseResourcePatch(
 ) {
     override fun execute(context: ResourceContext) {
 
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.GENERAL,
             "revanced_remove_viewer_discretion_dialog",
             "false"

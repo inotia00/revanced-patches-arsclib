@@ -18,7 +18,7 @@ object SanitizeUrlQueryPatch : BaseResourcePatch(
 ) {
     override fun execute(context: ResourceContext) {
 
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.MISC,
             "revanced_sanitize_sharing_links",
             "true"

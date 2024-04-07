@@ -40,7 +40,7 @@ object BlackNavigationBarPatch : BaseBytecodePatch(
             }
         }
 
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.NAVIGATION,
             "revanced_enable_black_navigation_bar",
             "true"

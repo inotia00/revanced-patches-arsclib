@@ -36,7 +36,7 @@ object MinimizedPlayerPatch : BaseBytecodePatch(
             }
         }
 
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.PLAYER,
             "revanced_enable_force_minimized_player",
             "true"

@@ -37,7 +37,7 @@ object CategoryBarPatch : BaseBytecodePatch(
             }
         }
 
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.GENERAL,
             "revanced_hide_category_bar",
             "false"

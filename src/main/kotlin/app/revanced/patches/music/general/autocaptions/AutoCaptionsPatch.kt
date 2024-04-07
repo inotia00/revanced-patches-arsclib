@@ -23,7 +23,7 @@ object AutoCaptionsPatch : BaseResourcePatch(
 
         VideoIdPatch.hookBackgroundPlayVideoId("$GENERAL_CLASS_DESCRIPTOR->newVideoStarted(Ljava/lang/String;)V")
 
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.GENERAL,
             "revanced_disable_auto_captions",
             "false"

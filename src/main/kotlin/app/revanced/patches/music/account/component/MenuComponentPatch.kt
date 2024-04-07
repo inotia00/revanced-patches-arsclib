@@ -42,17 +42,17 @@ object MenuComponentPatch : BaseBytecodePatch(
             }
         }
 
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.ACCOUNT,
             "revanced_hide_account_menu",
             "false"
         )
-        SettingsPatch.addMusicPreferenceWithIntent(
+        SettingsPatch.addPreferenceWithIntent(
             CategoryType.ACCOUNT,
             "revanced_hide_account_menu_filter_strings",
             "revanced_hide_account_menu"
         )
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.ACCOUNT,
             "revanced_hide_account_menu_empty_component",
             "false",

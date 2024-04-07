@@ -49,7 +49,7 @@ object HistoryButtonPatch : BaseBytecodePatch(
             }
         }
 
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.GENERAL,
             "revanced_hide_history_button",
             "false"

@@ -75,147 +75,174 @@ object FlyoutPanelPatch : BaseBytecodePatch(
         if (SettingsPatch.upward0636) {
             LithoFilterPatch.addFilter(FILTER_CLASS_DESCRIPTOR)
 
-            SettingsPatch.addMusicPreference(
+            SettingsPatch.addSwitchPreference(
                 CategoryType.FLYOUT,
                 "revanced_hide_flyout_panel_3_column_component",
                 "false"
             )
         }
 
-        SettingsPatch.addMusicPreferenceWithoutSummary(
+        SettingsPatch.addSwitchPreference(
             CategoryType.FLYOUT,
             "revanced_hide_flyout_panel_add_to_queue",
-            "false"
+            "false",
+            false
         )
-        SettingsPatch.addMusicPreferenceWithoutSummary(
+        SettingsPatch.addSwitchPreference(
             CategoryType.FLYOUT,
             "revanced_hide_flyout_panel_captions",
-            "false"
+            "false",
+            false
         )
-        SettingsPatch.addMusicPreferenceWithoutSummary(
+        SettingsPatch.addSwitchPreference(
             CategoryType.FLYOUT,
             "revanced_hide_flyout_panel_delete_playlist",
-            "false"
+            "false",
+            false
         )
-        SettingsPatch.addMusicPreferenceWithoutSummary(
+        SettingsPatch.addSwitchPreference(
             CategoryType.FLYOUT,
             "revanced_hide_flyout_panel_dismiss_queue",
-            "false"
+            "false",
+            false
         )
-        SettingsPatch.addMusicPreferenceWithoutSummary(
+        SettingsPatch.addSwitchPreference(
             CategoryType.FLYOUT,
             "revanced_hide_flyout_panel_download",
-            "false"
+            "false",
+            false
         )
-        SettingsPatch.addMusicPreferenceWithoutSummary(
+        SettingsPatch.addSwitchPreference(
             CategoryType.FLYOUT,
             "revanced_hide_flyout_panel_edit_playlist",
-            "false"
+            "false",
+            false
         )
-        SettingsPatch.addMusicPreferenceWithoutSummary(
+        SettingsPatch.addSwitchPreference(
             CategoryType.FLYOUT,
             "revanced_hide_flyout_panel_go_to_album",
-            "false"
+            "false",
+            false
         )
-        SettingsPatch.addMusicPreferenceWithoutSummary(
+        SettingsPatch.addSwitchPreference(
             CategoryType.FLYOUT,
             "revanced_hide_flyout_panel_go_to_artist",
-            "false"
+            "false",
+            false
         )
-        SettingsPatch.addMusicPreferenceWithoutSummary(
+        SettingsPatch.addSwitchPreference(
             CategoryType.FLYOUT,
             "revanced_hide_flyout_panel_go_to_episode",
-            "false"
+            "false",
+            false
         )
-        SettingsPatch.addMusicPreferenceWithoutSummary(
+        SettingsPatch.addSwitchPreference(
             CategoryType.FLYOUT,
             "revanced_hide_flyout_panel_go_to_podcast",
-            "false"
+            "false",
+            false
         )
-        SettingsPatch.addMusicPreferenceWithoutSummary(
+        SettingsPatch.addSwitchPreference(
             CategoryType.FLYOUT,
             "revanced_hide_flyout_panel_help",
-            "false"
+            "false",
+            false
         )
-        SettingsPatch.addMusicPreferenceWithoutSummary(
+        SettingsPatch.addSwitchPreference(
             CategoryType.FLYOUT,
             "revanced_hide_flyout_panel_like_dislike",
-            "false"
+            "false",
+            false
         )
-        SettingsPatch.addMusicPreferenceWithoutSummary(
+        SettingsPatch.addSwitchPreference(
             CategoryType.FLYOUT,
             "revanced_hide_flyout_panel_play_next",
-            "false"
+            "false",
+            false
         )
-        SettingsPatch.addMusicPreferenceWithoutSummary(
+        SettingsPatch.addSwitchPreference(
             CategoryType.FLYOUT,
             "revanced_hide_flyout_panel_quality",
-            "false"
+            "false",
+            false
         )
-        SettingsPatch.addMusicPreferenceWithoutSummary(
+        SettingsPatch.addSwitchPreference(
             CategoryType.FLYOUT,
             "revanced_hide_flyout_panel_remove_from_library",
-            "false"
+            "false",
+            false
         )
-        SettingsPatch.addMusicPreferenceWithoutSummary(
+        SettingsPatch.addSwitchPreference(
             CategoryType.FLYOUT,
             "revanced_hide_flyout_panel_remove_from_playlist",
-            "false"
+            "false",
+            false
         )
-        SettingsPatch.addMusicPreferenceWithoutSummary(
+        SettingsPatch.addSwitchPreference(
             CategoryType.FLYOUT,
             "revanced_hide_flyout_panel_report",
-            "false"
+            "false",
+            false
         )
-        SettingsPatch.addMusicPreferenceWithoutSummary(
+        SettingsPatch.addSwitchPreference(
             CategoryType.FLYOUT,
             "revanced_hide_flyout_panel_save_episode_for_later",
-            "false"
+            "false",
+            false
         )
-        SettingsPatch.addMusicPreferenceWithoutSummary(
+        SettingsPatch.addSwitchPreference(
             CategoryType.FLYOUT,
             "revanced_hide_flyout_panel_save_to_library",
-            "false"
+            "false",
+            false
         )
-        SettingsPatch.addMusicPreferenceWithoutSummary(
+        SettingsPatch.addSwitchPreference(
             CategoryType.FLYOUT,
             "revanced_hide_flyout_panel_save_to_playlist",
-            "false"
+            "false",
+            false
         )
-        SettingsPatch.addMusicPreferenceWithoutSummary(
+        SettingsPatch.addSwitchPreference(
             CategoryType.FLYOUT,
             "revanced_hide_flyout_panel_share",
-            "false"
+            "false",
+            false
         )
-        SettingsPatch.addMusicPreferenceWithoutSummary(
+        SettingsPatch.addSwitchPreference(
             CategoryType.FLYOUT,
             "revanced_hide_flyout_panel_shuffle_play",
-            "false"
+            "false",
+            false
         )
-        SettingsPatch.addMusicPreferenceWithoutSummary(
+        SettingsPatch.addSwitchPreference(
             CategoryType.FLYOUT,
             "revanced_hide_flyout_panel_sleep_timer",
-            "false"
+            "false",
+            false
         )
-        SettingsPatch.addMusicPreferenceWithoutSummary(
+        SettingsPatch.addSwitchPreference(
             CategoryType.FLYOUT,
             "revanced_hide_flyout_panel_start_radio",
-            "false"
+            "false",
+            false
         )
-        SettingsPatch.addMusicPreferenceWithoutSummary(
+        SettingsPatch.addSwitchPreference(
             CategoryType.FLYOUT,
             "revanced_hide_flyout_panel_stats_for_nerds",
-            "false"
+            "false",
+            false
         )
-        SettingsPatch.addMusicPreferenceWithoutSummary(
+        SettingsPatch.addSwitchPreference(
             CategoryType.FLYOUT,
             "revanced_hide_flyout_panel_subscribe",
-            "false"
+            "false",
+            false
         )
-        SettingsPatch.addMusicPreferenceWithoutSummary(
+        SettingsPatch.addSwitchPreference(
             CategoryType.FLYOUT,
             "revanced_hide_flyout_panel_view_song_credit",
-            "false"
+            "false",
+            false
         )
     }
 }

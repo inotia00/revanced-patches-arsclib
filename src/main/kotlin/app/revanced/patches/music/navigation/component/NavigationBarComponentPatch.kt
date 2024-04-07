@@ -92,37 +92,37 @@ object NavigationBarComponentPatch : BaseBytecodePatch(
             }
         }
 
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.NAVIGATION,
             "revanced_hide_explore_button",
             "false"
         )
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.NAVIGATION,
             "revanced_hide_home_button",
             "false"
         )
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.NAVIGATION,
             "revanced_hide_library_button",
             "false"
         )
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.NAVIGATION,
             "revanced_hide_navigation_bar",
             "false"
         )
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.NAVIGATION,
             "revanced_hide_navigation_label",
             "false"
         )
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.NAVIGATION,
             "revanced_hide_samples_button",
             "false"
         )
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.NAVIGATION,
             "revanced_hide_upgrade_button",
             "true"

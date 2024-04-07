@@ -67,7 +67,7 @@ object HandlePatch : BaseBytecodePatch(
             }
         }
 
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.ACCOUNT,
             "revanced_hide_handle",
             "true"

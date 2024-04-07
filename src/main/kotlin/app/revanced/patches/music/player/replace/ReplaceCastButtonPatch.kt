@@ -99,7 +99,7 @@ object ReplaceCastButtonPatch : BaseBytecodePatch(
             contexts.copyResources("music/cast", resourceGroup)
         }
 
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.PLAYER,
             "revanced_replace_player_cast_button",
             "false"

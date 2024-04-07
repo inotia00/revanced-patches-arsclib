@@ -46,7 +46,7 @@ object ChangeStartPagePatch : BaseBytecodePatch(
          */
         contexts.copyXmlNode("music/startpage/host", "values/arrays.xml", "resources")
 
-        SettingsPatch.addMusicPreferenceWithIntent(
+        SettingsPatch.addPreferenceWithIntent(
             CategoryType.GENERAL,
             "revanced_change_start_page"
         )

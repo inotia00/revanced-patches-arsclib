@@ -24,7 +24,7 @@ object ChannelGuidelinesPatch : BaseResourcePatch(
     override fun execute(context: ResourceContext) {
         LithoFilterPatch.addFilter(FILTER_CLASS_DESCRIPTOR)
 
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.GENERAL,
             "revanced_hide_channel_guidelines",
             "true"

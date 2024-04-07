@@ -47,7 +47,7 @@ object FloatingButtonPatch : BaseBytecodePatch(
             }
         }
 
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.GENERAL,
             "revanced_hide_new_playlist_button",
             "false"

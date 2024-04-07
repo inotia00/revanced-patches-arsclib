@@ -58,7 +58,7 @@ object VideoQualityPatch : BaseBytecodePatch(
 
         VideoIdPatch.hookVideoId("$INTEGRATIONS_VIDEO_QUALITY_CLASS_DESCRIPTOR->newVideoStarted(Ljava/lang/String;)V")
 
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.VIDEO,
             "revanced_enable_save_video_quality",
             "true"

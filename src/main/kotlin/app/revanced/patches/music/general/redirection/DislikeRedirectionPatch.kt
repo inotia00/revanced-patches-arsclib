@@ -72,7 +72,7 @@ object DislikeRedirectionPatch : BaseBytecodePatch(
             }
         }
 
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.GENERAL,
             "revanced_disable_dislike_redirection",
             "false"

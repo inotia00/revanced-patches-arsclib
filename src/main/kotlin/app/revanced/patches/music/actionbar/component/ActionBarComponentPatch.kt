@@ -153,47 +153,47 @@ object ActionBarComponentPatch : BaseBytecodePatch(
             }
         }
 
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.ACTION_BAR,
             "revanced_hide_action_button_add_to_playlist",
             "false"
         )
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.ACTION_BAR,
             "revanced_hide_action_button_comment",
             "false"
         )
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.ACTION_BAR,
             "revanced_hide_action_button_download",
             "false"
         )
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.ACTION_BAR,
             "revanced_hide_action_button_label",
             "false"
         )
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.ACTION_BAR,
             "revanced_hide_action_button_like_dislike",
             "false"
         )
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.ACTION_BAR,
             "revanced_hide_action_button_radio",
             "false"
         )
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.ACTION_BAR,
             "revanced_hide_action_button_share",
             "false"
         )
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.ACTION_BAR,
             "revanced_hook_action_button_download",
             "false"
         )
-        SettingsPatch.addMusicPreferenceWithIntent(
+        SettingsPatch.addPreferenceWithIntent(
             CategoryType.ACTION_BAR,
             "revanced_external_downloader_package_name",
             "revanced_hook_action_button_download"

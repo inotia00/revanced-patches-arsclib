@@ -158,32 +158,32 @@ object GeneralAdsPatch : BaseBytecodePatch(
             }
         }
 
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.ADS,
             "revanced_hide_fullscreen_ads",
             "true"
         )
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.ADS,
             "revanced_hide_general_ads",
             "true"
         )
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.ADS,
             "revanced_hide_music_ads",
             "true"
         )
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.ADS,
             "revanced_hide_paid_promotion",
             "true"
         )
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.ADS,
             "revanced_hide_premium_promotion",
             "true"
         )
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.ADS,
             "revanced_hide_premium_renewal",
             "true"

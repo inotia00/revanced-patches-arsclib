@@ -39,7 +39,7 @@ object ShareButtonPatch : BaseBytecodePatch(
             }
         }
 
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.PLAYER,
             "revanced_hide_fullscreen_share_button",
             "false"

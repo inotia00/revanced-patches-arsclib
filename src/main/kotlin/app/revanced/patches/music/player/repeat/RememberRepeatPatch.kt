@@ -35,7 +35,7 @@ object RememberRepeatPatch : BaseBytecodePatch(
             }
         }
 
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.PLAYER,
             "revanced_remember_repeat_state",
             "true"

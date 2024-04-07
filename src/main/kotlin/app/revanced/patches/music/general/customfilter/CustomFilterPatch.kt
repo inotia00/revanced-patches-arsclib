@@ -24,12 +24,12 @@ object CustomFilterPatch : BaseResourcePatch(
     override fun execute(context: ResourceContext) {
         LithoFilterPatch.addFilter(FILTER_CLASS_DESCRIPTOR)
 
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.GENERAL,
             "revanced_custom_filter",
             "false"
         )
-        SettingsPatch.addMusicPreferenceWithIntent(
+        SettingsPatch.addPreferenceWithIntent(
             CategoryType.GENERAL,
             "revanced_custom_filter_strings",
             "revanced_custom_filter"

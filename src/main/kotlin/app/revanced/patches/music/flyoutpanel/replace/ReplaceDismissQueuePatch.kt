@@ -22,12 +22,12 @@ object ReplaceDismissQueuePatch : BaseBytecodePatch(
     override fun execute(context: BytecodeContext) {
         FlyoutPanelMenuItemPatch.replaceComponents()
 
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.FLYOUT,
             "revanced_replace_flyout_panel_dismiss_queue",
             "false"
         )
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.FLYOUT,
             "revanced_replace_flyout_panel_dismiss_queue_continue_watch",
             "true",

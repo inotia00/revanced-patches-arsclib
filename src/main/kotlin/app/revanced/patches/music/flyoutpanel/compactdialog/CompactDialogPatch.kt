@@ -34,7 +34,7 @@ object CompactDialogPatch : BaseBytecodePatch(
             )
         }
 
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.FLYOUT,
             "revanced_enable_compact_dialog",
             "true"

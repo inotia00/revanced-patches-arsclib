@@ -47,7 +47,7 @@ object TermsContainerPatch : BaseBytecodePatch(
             }
         }
 
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.ACCOUNT,
             "revanced_hide_terms_container",
             "false"

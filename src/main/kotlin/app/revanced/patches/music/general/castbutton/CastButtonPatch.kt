@@ -66,7 +66,7 @@ object CastButtonPatch : BaseBytecodePatch(
             }
         }
 
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.GENERAL,
             "revanced_hide_cast_button",
             "true"

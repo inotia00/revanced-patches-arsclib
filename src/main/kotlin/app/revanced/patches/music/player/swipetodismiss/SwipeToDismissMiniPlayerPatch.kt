@@ -199,7 +199,7 @@ object SwipeToDismissMiniPlayerPatch : BaseBytecodePatch(
 
         }
 
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.PLAYER,
             "revanced_enable_swipe_to_dismiss_mini_player",
             "true"

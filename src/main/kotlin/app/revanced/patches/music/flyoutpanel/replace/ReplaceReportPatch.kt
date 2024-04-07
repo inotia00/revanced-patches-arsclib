@@ -45,12 +45,12 @@ object ReplaceReportPatch : BaseBytecodePatch(
             }
         }
 
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.FLYOUT,
             "revanced_replace_flyout_panel_report",
             "true"
         )
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.FLYOUT,
             "revanced_replace_flyout_panel_report_only_player",
             "true",

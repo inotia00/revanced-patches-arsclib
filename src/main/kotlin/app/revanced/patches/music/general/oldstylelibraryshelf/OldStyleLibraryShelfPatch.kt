@@ -40,7 +40,7 @@ object OldStyleLibraryShelfPatch : BaseBytecodePatch(
             }
         }
 
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.GENERAL,
             "revanced_enable_old_style_library_shelf",
             "false"

@@ -36,7 +36,7 @@ object TapToUpdateButtonPatch : BaseBytecodePatch(
             }
         }
 
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.GENERAL,
             "revanced_hide_tap_to_update_button",
             "false"

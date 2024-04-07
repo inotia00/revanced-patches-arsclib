@@ -16,12 +16,12 @@ object DebuggingPatch : BaseResourcePatch(
 ) {
     override fun execute(context: ResourceContext) {
 
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.MISC,
             "revanced_enable_debug_logging",
             "false"
         )
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.MISC,
             "revanced_enable_debug_buffer_logging",
             "false",

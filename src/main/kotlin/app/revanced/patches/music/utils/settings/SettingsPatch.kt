@@ -3,13 +3,11 @@ package app.revanced.patches.music.utils.settings
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patches.music.utils.fix.accessibility.AccessibilityNodeInfoPatch
 import app.revanced.patches.music.utils.integrations.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.music.utils.settings.ResourceUtils.YOUTUBE_MUSIC_SETTINGS_KEY
-import app.revanced.patches.music.utils.settings.ResourceUtils.addMusicPreference
-import app.revanced.patches.music.utils.settings.ResourceUtils.addMusicPreferenceCategory
-import app.revanced.patches.music.utils.settings.ResourceUtils.addMusicPreferenceWithIntent
-import app.revanced.patches.music.utils.settings.ResourceUtils.addMusicPreferenceWithoutSummary
-import app.revanced.patches.music.utils.settings.ResourceUtils.addReVancedMusicPreference
-import app.revanced.patches.music.utils.settings.ResourceUtils.sortMusicPreferenceCategory
+import app.revanced.patches.music.utils.settings.ResourceUtils.addPreferenceCategory
+import app.revanced.patches.music.utils.settings.ResourceUtils.addPreferenceWithIntent
+import app.revanced.patches.music.utils.settings.ResourceUtils.addRVXSettingsPreference
+import app.revanced.patches.music.utils.settings.ResourceUtils.addSwitchPreference
+import app.revanced.patches.music.utils.settings.ResourceUtils.sortPreferenceCategory
 import app.revanced.util.ResourceGroup
 import app.revanced.util.copyResources
 import app.revanced.util.copyXmlNode
@@ -19,7 +17,7 @@ import java.io.Closeable
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
-@Suppress("DEPRECATION", "SpellCheckingInspection", "unused")
+@Suppress("DEPRECATION", "unused")
 object SettingsPatch : BaseResourcePatch(
     name = "Settings",
     description = "Adds ReVanced Extended settings to YouTube Music.",
@@ -129,53 +127,54 @@ object SettingsPatch : BaseResourcePatch(
             }
         }
 
-        context.addReVancedMusicPreference(YOUTUBE_MUSIC_SETTINGS_KEY)
+        context.addRVXSettingsPreference()
     }
 
-    internal fun addMusicPreference(
+    internal fun addSwitchPreference(
         category: CategoryType,
         key: String,
         defaultValue: String
-    ) {
-        addMusicPreference(category, key, defaultValue, "")
-    }
+    ) = addSwitchPreference(category, key, defaultValue, "")
 
-    internal fun addMusicPreference(
+    internal fun addSwitchPreference(
+        category: CategoryType,
+        key: String,
+        defaultValue: String,
+        setSummary: Boolean
+    ) = addSwitchPreference(category, key, defaultValue, "", setSummary)
+
+    internal fun addSwitchPreference(
         category: CategoryType,
         key: String,
         defaultValue: String,
         dependencyKey: String
-    ) {
-        val categoryValue = category.value
-        contexts.addMusicPreferenceCategory(categoryValue)
-        contexts.addMusicPreference(categoryValue, key, defaultValue, dependencyKey)
-    }
+    ) = addSwitchPreference(category, key, defaultValue, dependencyKey, true)
 
-    internal fun addMusicPreferenceWithoutSummary(
+    internal fun addSwitchPreference(
         category: CategoryType,
         key: String,
-        defaultValue: String
+        defaultValue: String,
+        dependencyKey: String,
+        setSummary: Boolean
     ) {
         val categoryValue = category.value
-        contexts.addMusicPreferenceCategory(categoryValue)
-        contexts.addMusicPreferenceWithoutSummary(categoryValue, key, defaultValue)
+        contexts.addPreferenceCategory(categoryValue)
+        contexts.addSwitchPreference(categoryValue, key, defaultValue, dependencyKey, setSummary)
     }
 
-    internal fun addMusicPreferenceWithIntent(
+    internal fun addPreferenceWithIntent(
         category: CategoryType,
         key: String
-    ) {
-        addMusicPreferenceWithIntent(category, key, "")
-    }
+    ) = addPreferenceWithIntent(category, key, "")
 
-    internal fun addMusicPreferenceWithIntent(
+    internal fun addPreferenceWithIntent(
         category: CategoryType,
         key: String,
         dependencyKey: String
     ) {
         val categoryValue = category.value
-        contexts.addMusicPreferenceCategory(categoryValue)
-        contexts.addMusicPreferenceWithIntent(categoryValue, key, dependencyKey)
+        contexts.addPreferenceCategory(categoryValue)
+        contexts.addPreferenceWithIntent(categoryValue, key, dependencyKey)
     }
 
     override fun close() {
@@ -184,14 +183,13 @@ object SettingsPatch : BaseResourcePatch(
          */
         contexts.copyXmlNode("music/settings/host", "values/arrays.xml", "resources")
 
-        addMusicPreferenceWithIntent(
+        addPreferenceWithIntent(
             CategoryType.MISC,
-            "revanced_extended_settings_import_export",
-            ""
+            "revanced_extended_settings_import_export"
         )
 
         CategoryType.entries.sorted().forEach {
-            contexts.sortMusicPreferenceCategory(it.value)
+            contexts.sortPreferenceCategory(it.value)
         }
     }
 }

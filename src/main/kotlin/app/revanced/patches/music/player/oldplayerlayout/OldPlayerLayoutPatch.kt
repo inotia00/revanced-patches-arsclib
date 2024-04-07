@@ -26,7 +26,7 @@ object OldPlayerLayoutPatch : BaseBytecodePatch(
             "Please use YT Music 6.29.58 or earlier."
         )
 
-        SettingsPatch.addMusicPreference(
+        SettingsPatch.addSwitchPreference(
             CategoryType.PLAYER,
             "revanced_enable_old_player_layout",
             "false"
