@@ -4,7 +4,7 @@
 
     <!-- PREFERENCE: ADS_SETTINGS
     <PreferenceScreen android:title="@string/revanced_ads" android:key="ads">
-        <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_ads" />PREFERENCE: ADS_SETTINGS -->
+        <PreferenceCategory android:layout="@layout/revanced_settings_preferences_category" android:title="@string/revanced_ads" />PREFERENCE: ADS_SETTINGS -->
 
         <!-- SETTINGS: HIDE_GENERAL_ADS
         <SwitchPreference android:title="@string/revanced_hide_fullscreen_ads_title" android:key="revanced_hide_fullscreen_ads" android:defaultValue="true" android:summaryOn="@string/revanced_hide_fullscreen_ads_summary_on" android:summaryOff="@string/revanced_hide_fullscreen_ads_summary_off" />
@@ -30,16 +30,16 @@
 
     <!-- PREFERENCE: ALTERNATIVE_THUMBNAILS_SETTINGS
     <PreferenceScreen android:title="@string/revanced_alt_thumbnails" android:key="alt_thumbnails">
-        <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_alt_thumbnails" />
+        <PreferenceCategory android:layout="@layout/revanced_settings_preferences_category" android:title="@string/revanced_alt_thumbnails" />
         <app.revanced.integrations.youtube.settings.preference.AlternativeThumbnailsStatusPreference android:title="@string/revanced_alt_thumbnail_about_title" />
 
-        <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_alt_thumbnail_dearrow" />
+        <PreferenceCategory android:layout="@layout/revanced_settings_preferences_category" android:title="@string/revanced_alt_thumbnail_dearrow" />
         <SwitchPreference android:title="@string/revanced_alt_thumbnail_dearrow_title" android:key="revanced_alt_thumbnail_dearrow" android:defaultValue="false" android:summaryOn="@string/revanced_alt_thumbnail_dearrow_summary_on" android:summaryOff="@string/revanced_alt_thumbnail_dearrow_summary_off" />
         <SwitchPreference android:title="@string/revanced_alt_thumbnail_dearrow_connection_toast_title" android:key="revanced_alt_thumbnail_dearrow_connection_toast" android:defaultValue="false" android:summaryOn="@string/revanced_alt_thumbnail_dearrow_connection_toast_summary_on" android:summaryOff="@string/revanced_alt_thumbnail_dearrow_connection_toast_summary_off" />
         <app.revanced.integrations.shared.settings.preference.ResettableEditTextPreference android:title="@string/revanced_alt_thumbnail_dearrow_api_url_title" android:key="revanced_alt_thumbnail_dearrow_api_url" android:defaultValue="https://dearrow-thumb.ajay.app/api/v1/getThumbnail" android:summary="@string/revanced_alt_thumbnail_dearrow_api_url_summary" android:inputType="text" />
         <app.revanced.integrations.youtube.settings.preference.AlternativeThumbnailsAboutDeArrowPreference android:title="@string/revanced_alt_thumbnail_dearrow_about_title" android:selectable="true" android:summary="@string/revanced_alt_thumbnail_dearrow_about_summary" />
 
-        <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_alt_thumbnail_stills" />
+        <PreferenceCategory android:layout="@layout/revanced_settings_preferences_category" android:title="@string/revanced_alt_thumbnail_stills" />
         <SwitchPreference android:title="@string/revanced_alt_thumbnail_stills_title" android:key="revanced_alt_thumbnail_stills" android:defaultValue="false" android:summaryOn="@string/revanced_alt_thumbnail_stills_summary_on" android:summaryOff="@string/revanced_alt_thumbnail_stills_summary_off" />
         <ListPreference android:entries="@array/revanced_alt_thumbnail_type_entries" android:title="@string/revanced_alt_thumbnail_stills_time_title" android:key="revanced_alt_thumbnail_stills_time" android:defaultValue="2" android:entryValues="@array/revanced_alt_thumbnail_stills_time_entry_values" />
         <SwitchPreference android:title="@string/revanced_alt_thumbnail_stills_fast_title" android:key="revanced_alt_thumbnail_stills_fast" android:defaultValue="false" android:summaryOn="@string/revanced_alt_thumbnail_stills_fast_summary_on" android:summaryOff="@string/revanced_alt_thumbnail_stills_fast_summary_off" />
@@ -51,16 +51,16 @@
     <PreferenceScreen android:title="@string/revanced_bottom_player" android:key="bottom_player">PREFERENCE: BOTTOM_PLAYER_SETTINGS -->
 
         <!-- SETTINGS: ENABLE_BOTTOM_PLAYER_GESTURES
-        <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_bottom_player" />
+        <PreferenceCategory android:layout="@layout/revanced_settings_preferences_category" android:title="@string/revanced_bottom_player" />
         <SwitchPreference android:title="@string/revanced_enable_bottom_player_gestures_title" android:key="revanced_enable_bottom_player_gestures" android:defaultValue="true" android:summaryOn="@string/revanced_enable_bottom_player_gestures_summary_on" android:summaryOff="@string/revanced_enable_bottom_player_gestures_summary_off" />SETTINGS: ENABLE_BOTTOM_PLAYER_GESTURES -->
 
         <!-- SETTINGS: HIDE_CHANNEL_BAR_BUTTON
-        <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_channel_bar_title" />
+        <PreferenceCategory android:layout="@layout/revanced_settings_preferences_category" android:title="@string/revanced_channel_bar_title" />
         <SwitchPreference android:title="@string/revanced_hide_join_button_title" android:key="revanced_hide_join_button" android:defaultValue="true" android:summaryOn="@string/revanced_hide_join_button_summary_on" android:summaryOff="@string/revanced_hide_join_button_summary_off" />
         <SwitchPreference android:title="@string/revanced_hide_start_trial_button_title" android:key="revanced_hide_start_trial_button" android:defaultValue="true" android:summaryOn="@string/revanced_hide_start_trial_button_summary_on" android:summaryOff="@string/revanced_hide_start_trial_button_summary_off" />SETTINGS: HIDE_CHANNEL_BAR_BUTTON -->
 
         <!-- SETTINGS: BUTTON_CONTAINER
-        <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_button_container_title" />
+        <PreferenceCategory android:layout="@layout/revanced_settings_preferences_category" android:title="@string/revanced_button_container_title" />
         <SwitchPreference android:title="@string/revanced_hide_button_create_clip_title" android:key="revanced_hide_button_create_clip" android:defaultValue="false" android:summaryOn="@string/revanced_hide_button_create_clip_summary_on" android:summaryOff="@string/revanced_hide_button_create_clip_summary_off" />
         <SwitchPreference android:title="@string/revanced_hide_button_download_title" android:key="revanced_hide_button_download" android:defaultValue="false" android:summaryOn="@string/revanced_hide_button_download_summary_on" android:summaryOff="@string/revanced_hide_button_download_summary_off" />
         <SwitchPreference android:title="@string/revanced_hide_button_like_dislike_title" android:key="revanced_hide_button_like_dislike" android:defaultValue="false" android:summaryOn="@string/revanced_hide_button_like_dislike_summary_on" android:summaryOff="@string/revanced_hide_button_like_dislike_summary_off" />
@@ -74,7 +74,7 @@
 
 
         <!-- SETTINGS: COMMENT_COMPONENTS
-        <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_comments_title" />
+        <PreferenceCategory android:layout="@layout/revanced_settings_preferences_category" android:title="@string/revanced_comments_title" />
         <SwitchPreference android:title="@string/revanced_hide_channel_guidelines_title" android:key="revanced_hide_channel_guidelines" android:defaultValue="true" android:summaryOn="@string/revanced_hide_channel_guidelines_summary_on" android:summaryOff="@string/revanced_hide_channel_guidelines_summary_off" />
         <SwitchPreference android:title="@string/revanced_hide_comments_by_members_title" android:key="revanced_hide_comments_by_members" android:defaultValue="false" android:summaryOn="@string/revanced_hide_comments_by_members_summary_on" android:summaryOff="@string/revanced_hide_comments_by_members_summary_off" />
         <SwitchPreference android:title="@string/revanced_hide_comments_section_title" android:key="revanced_hide_comments_section" android:defaultValue="false" android:summaryOn="@string/revanced_hide_comments_section_summary_on" android:summaryOff="@string/revanced_hide_comments_section_summary_off" />
@@ -92,12 +92,12 @@
     <PreferenceScreen android:title="@string/revanced_flyout_menu" android:key="flyout_menu">PREFERENCE: FLYOUT_PANEL_SETTINGS -->
 
         <!-- SETTINGS: HIDE_FEED_FLYOUT_PANEL
-        <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_feed_flyout_panel_title" />
+        <PreferenceCategory android:layout="@layout/revanced_settings_preferences_category" android:title="@string/revanced_feed_flyout_panel_title" />
         <SwitchPreference android:title="@string/revanced_hide_feed_flyout_panel_title" android:key="revanced_hide_feed_flyout_panel" android:defaultValue="false" android:summaryOn="@string/revanced_hide_feed_flyout_panel_summary_on" android:summaryOff="@string/revanced_hide_feed_flyout_panel_summary_off" />
         <app.revanced.integrations.shared.settings.preference.ResettableEditTextPreference android:title="@string/revanced_hide_feed_flyout_panel_filter_strings_title" android:key="revanced_hide_feed_flyout_panel_filter_strings" android:summary="@string/revanced_hide_feed_flyout_panel_filter_strings_summary" android:defaultValue="" android:inputType="textMultiLine" />SETTINGS: HIDE_FEED_FLYOUT_PANEL -->
 
         <!-- SETTINGS: PLAYER_FLYOUT_PANEL_HEADER
-        <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_player_flyout_panel_title" />SETTINGS: PLAYER_FLYOUT_PANEL_HEADER -->
+        <PreferenceCategory android:layout="@layout/revanced_settings_preferences_category" android:title="@string/revanced_player_flyout_panel_title" />SETTINGS: PLAYER_FLYOUT_PANEL_HEADER -->
 
         <!-- SETTINGS: ENABLE_OLD_QUALITY_LAYOUT
         <SwitchPreference android:title="@string/revanced_enable_old_quality_layout_title" android:key="revanced_enable_old_quality_layout" android:defaultValue="true" android:summaryOn="@string/revanced_enable_old_quality_layout_summary_on" android:summaryOff="@string/revanced_enable_old_quality_layout_summary_off" />SETTINGS: ENABLE_OLD_QUALITY_LAYOUT -->
@@ -113,7 +113,7 @@
         <SwitchPreference android:title="@string/revanced_hide_player_flyout_panel_report_title" android:key="revanced_hide_player_flyout_panel_report" android:defaultValue="true" android:summaryOn="@string/revanced_hide_player_flyout_panel_report_summary_on" android:summaryOff="@string/revanced_hide_player_flyout_panel_report_summary_off" />SETTINGS: HIDE_PLAYER_FLYOUT_PANEL -->
 
         <!-- SETTINGS: PLAYER_FLYOUT_PANEL_ADDITIONAL_SETTINGS_HEADER
-        <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_player_flyout_panel_additional_settings_title" />SETTINGS: PLAYER_FLYOUT_PANEL_ADDITIONAL_SETTINGS_HEADER -->
+        <PreferenceCategory android:layout="@layout/revanced_settings_preferences_category" android:title="@string/revanced_player_flyout_panel_additional_settings_title" />SETTINGS: PLAYER_FLYOUT_PANEL_ADDITIONAL_SETTINGS_HEADER -->
 
         <!-- SETTINGS: CHANGE_PLAYER_FLYOUT_PANEL_TOGGLE
         <SwitchPreference android:title="@string/revanced_change_player_flyout_panel_toggle_title" android:key="revanced_change_player_flyout_panel_toggle" android:defaultValue="true" android:summaryOn="@string/revanced_change_player_flyout_panel_toggle_summary_on" android:summaryOff="@string/revanced_change_player_flyout_panel_toggle_summary_off" />SETTINGS: CHANGE_PLAYER_FLYOUT_PANEL_TOGGLE -->
@@ -135,7 +135,7 @@
 
     <!-- PREFERENCE: FULLSCREEN_SETTINGS
     <PreferenceScreen android:title="@string/revanced_fullscreen" android:key="fullscreen">
-        <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_fullscreen" />PREFERENCE: FULLSCREEN_SETTINGS -->
+        <PreferenceCategory android:layout="@layout/revanced_settings_preferences_category" android:title="@string/revanced_fullscreen" />PREFERENCE: FULLSCREEN_SETTINGS -->
 
         <!-- SETTINGS: AMBIENT_MODE_SWITCH
         <SwitchPreference android:title="@string/revanced_disable_ambient_mode_in_fullscreen_title" android:key="revanced_disable_ambient_mode_in_fullscreen" android:defaultValue="false" android:summary="@string/revanced_disable_ambient_mode_in_fullscreen_summary" />SETTINGS: AMBIENT_MODE_SWITCH -->
@@ -151,7 +151,7 @@
         <SwitchPreference android:title="@string/revanced_show_fullscreen_title_title" android:key="revanced_show_fullscreen_title" android:defaultValue="true" android:summary="@string/revanced_show_fullscreen_title_summary" />SETTINGS: HIDE_FULLSCREEN_PANELS -->
 
         <!-- SETTINGS: QUICK_ACTIONS_COMPONENTS
-        <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_quick_actions_title" />
+        <PreferenceCategory android:layout="@layout/revanced_settings_preferences_category" android:title="@string/revanced_quick_actions_title" />
         <SwitchPreference android:title="@string/revanced_hide_quick_actions_title" android:key="revanced_hide_quick_actions" android:defaultValue="false" android:summaryOn="@string/revanced_hide_quick_actions_summary_on" android:summaryOff="@string/revanced_hide_quick_actions_summary_off" />
         <SwitchPreference android:title="@string/revanced_hide_quick_actions_comment_title" android:key="revanced_hide_quick_actions_comment" android:defaultValue="false" android:summaryOn="@string/revanced_hide_quick_actions_comment_summary_on" android:summaryOff="@string/revanced_hide_quick_actions_comment_summary_off" />
         <SwitchPreference android:title="@string/revanced_hide_quick_actions_dislike_title" android:key="revanced_hide_quick_actions_dislike" android:defaultValue="false" android:summaryOn="@string/revanced_hide_quick_actions_dislike_summary_on" android:summaryOff="@string/revanced_hide_quick_actions_dislike_summary_off" />
@@ -166,7 +166,7 @@
         <app.revanced.integrations.shared.settings.preference.ResettableEditTextPreference android:hint="12" android:defaultValue="12" android:title="@string/revanced_quick_actions_margin_top_title" android:key="revanced_quick_actions_margin_top" android:summary="@string/revanced_quick_actions_margin_top_summary" android:inputType="number" />SETTINGS: QUICK_ACTIONS_COMPONENTS -->
 
         <!-- SETTINGS: FULLSCREEN_EXPERIMENTAL_FLAGS
-        <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_experimental_flag" />SETTINGS: FULLSCREEN_EXPERIMENTAL_FLAGS -->
+        <PreferenceCategory android:layout="@layout/revanced_settings_preferences_category" android:title="@string/revanced_experimental_flag" />SETTINGS: FULLSCREEN_EXPERIMENTAL_FLAGS -->
 
         <!-- SETTINGS: DISABLE_LANDSCAPE_MODE
         <SwitchPreference android:title="@string/revanced_disable_landscape_mode_title" android:key="revanced_disable_landscape_mode" android:defaultValue="false" android:summaryOn="@string/revanced_disable_landscape_mode_summary_on" android:summaryOff="@string/revanced_disable_landscape_mode_summary_off" />SETTINGS: DISABLE_LANDSCAPE_MODE -->
@@ -187,7 +187,7 @@
 
     <!-- PREFERENCE: GENERAL_SETTINGS
     <PreferenceScreen android:title="@string/revanced_general" android:key="general">
-        <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_general" />PREFERENCE: GENERAL_SETTINGS -->
+        <PreferenceCategory android:layout="@layout/revanced_settings_preferences_category" android:title="@string/revanced_general" />PREFERENCE: GENERAL_SETTINGS -->
 
         <!-- SETTINGS: CHANGE_START_PAGE
         <ListPreference android:entries="@array/revanced_change_start_page_entry" android:title="@string/revanced_change_start_page_title" android:key="revanced_change_start_page" android:defaultValue="" android:entryValues="@array/revanced_change_start_page_entry_value" />SETTINGS: CHANGE_START_PAGE -->
@@ -263,7 +263,7 @@
         <SwitchPreference android:title="@string/revanced_remove_viewer_discretion_dialog_title" android:key="revanced_remove_viewer_discretion_dialog" android:defaultValue="false" android:summary="@string/revanced_remove_viewer_discretion_dialog_summary" />SETTINGS: REMOVE_VIEWER_DISCRETION_DIALOG -->
 
         <!-- SETTINGS: HIDE_LAYOUT_COMPONENTS
-        <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_layout_title" />
+        <PreferenceCategory android:layout="@layout/revanced_settings_preferences_category" android:title="@string/revanced_layout_title" />
         <SwitchPreference android:title="@string/revanced_custom_filter_title" android:key="revanced_custom_filter" android:defaultValue="false" android:summaryOn="@string/revanced_custom_filter_summary_on" android:summaryOff="@string/revanced_custom_filter_summary_off" />
         <app.revanced.integrations.shared.settings.preference.ResettableEditTextPreference android:title="@string/revanced_custom_filter_strings_title" android:key="revanced_custom_filter_strings" android:summary="@string/revanced_custom_filter_strings_summary" android:defaultValue="" android:inputType="textMultiLine" />
         <SwitchPreference android:title="@string/revanced_hide_album_card_title" android:key="revanced_hide_album_card" android:defaultValue="true" android:summaryOn="@string/revanced_hide_album_card_summary_on" android:summaryOff="@string/revanced_hide_album_card_summary_off" />
@@ -284,14 +284,14 @@
         <SwitchPreference android:title="@string/revanced_hide_timed_reactions_title" android:key="revanced_hide_timed_reactions" android:defaultValue="true" android:summaryOn="@string/revanced_hide_timed_reactions_summary_on" android:summaryOff="@string/revanced_hide_timed_reactions_summary_off" />SETTINGS: HIDE_LAYOUT_COMPONENTS -->
 
         <!-- SETTINGS: GENERAL_EXPERIMENTAL_FLAGS
-        <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_experimental_flag" />SETTINGS: GENERAL_EXPERIMENTAL_FLAGS -->
+        <PreferenceCategory android:layout="@layout/revanced_settings_preferences_category" android:title="@string/revanced_experimental_flag" />SETTINGS: GENERAL_EXPERIMENTAL_FLAGS -->
 
         <!-- SETTINGS: HIDE_LAYOUT_COMPONENTS
         <SwitchPreference android:title="@string/revanced_hide_video_with_gray_description_title" android:key="revanced_hide_video_with_gray_description" android:defaultValue="false" android:summary="@string/revanced_hide_video_with_gray_description_summary" />
         <SwitchPreference android:title="@string/revanced_hide_video_with_low_view_title" android:key="revanced_hide_video_with_low_view" android:defaultValue="false" android:summary="@string/revanced_hide_video_with_low_view_summary" />SETTINGS: HIDE_LAYOUT_COMPONENTS -->
 
         <!-- SETTINGS: HIDE_CHANNEL_PROFILE_COMPONENTS
-        <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_channel_profile_title" />
+        <PreferenceCategory android:layout="@layout/revanced_settings_preferences_category" android:title="@string/revanced_channel_profile_title" />
         <SwitchPreference android:title="@string/revanced_hide_browse_store_button_title" android:key="revanced_hide_browse_store_button" android:defaultValue="true" android:summaryOn="@string/revanced_hide_browse_store_button_summary_on" android:summaryOff="@string/revanced_hide_browse_store_button_summary_off" />
         <SwitchPreference android:title="@string/revanced_hide_channel_member_shelf_title" android:key="revanced_hide_channel_member_shelf" android:defaultValue="true" android:summaryOn="@string/revanced_hide_channel_member_shelf_summary_on" android:summaryOff="@string/revanced_hide_channel_member_shelf_summary_off" />
         <SwitchPreference android:title="@string/revanced_hide_channel_profile_links_title" android:key="revanced_hide_channel_profile_links" android:defaultValue="true" android:summaryOn="@string/revanced_hide_channel_profile_links_summary_on" android:summaryOff="@string/revanced_hide_channel_profile_links_summary_off" />
@@ -299,7 +299,7 @@
         <SwitchPreference android:title="@string/revanced_hide_store_tab_title" android:key="revanced_hide_store_tab" android:defaultValue="true" android:summaryOn="@string/revanced_hide_store_tab_summary_on" android:summaryOff="@string/revanced_hide_store_tab_summary_off" />SETTINGS: HIDE_CHANNEL_PROFILE_COMPONENTS -->
 
         <!-- SETTINGS: DESCRIPTION_COMPONENTS
-        <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_description_title" />SETTINGS: DESCRIPTION_COMPONENTS -->
+        <PreferenceCategory android:layout="@layout/revanced_settings_preferences_category" android:title="@string/revanced_description_title" />SETTINGS: DESCRIPTION_COMPONENTS -->
         <!-- SETTINGS: DESCRIPTION_PANEL_INTERACTION
         <SwitchPreference android:title="@string/revanced_always_expand_panel_title" android:key="revanced_always_expand_panel" android:defaultValue="false" android:summaryOn="@string/revanced_always_expand_panel_summary_on" android:summaryOff="@string/revanced_always_expand_panel_summary_off" />
         <SwitchPreference android:title="@string/revanced_disable_description_interaction_title" android:key="revanced_disable_description_interaction" android:defaultValue="false" android:summary="@string/revanced_disable_description_interaction_summary" />SETTINGS: DESCRIPTION_PANEL_INTERACTION -->
@@ -318,7 +318,7 @@
 
 
     <PreferenceScreen android:title="@string/revanced_misc" android:key="misc">
-        <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_misc" />
+        <PreferenceCategory android:layout="@layout/revanced_settings_preferences_category" android:title="@string/revanced_misc" />
 
         <!-- SETTINGS: AMBIENT_MODE_SWITCH
         <SwitchPreference android:title="@string/revanced_bypass_ambient_mode_restrictions_title" android:key="revanced_bypass_ambient_mode_restrictions" android:defaultValue="false" android:summaryOn="@string/revanced_bypass_ambient_mode_restrictions_summary_on" android:summaryOff="@string/revanced_bypass_ambient_mode_restrictions_summary_off" />
@@ -344,10 +344,10 @@
         <SwitchPreference android:title="@string/revanced_enable_open_links_directly_title" android:key="revanced_enable_open_links_directly" android:defaultValue="true" android:summaryOn="@string/revanced_enable_open_links_directly_summary_on" android:summaryOff="@string/revanced_enable_open_links_directly_summary_off" />SETTINGS: ENABLE_OPEN_LINKS_DIRECTLY -->
 
         <PreferenceScreen android:title="@string/revanced_extended_settings_import_export_title" android:key="backup" android:summary="@string/revanced_extended_settings_import_export_summary">
-            <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_extended_settings_import_export_as_file_title" />
+            <PreferenceCategory android:layout="@layout/revanced_settings_preferences_category" android:title="@string/revanced_extended_settings_import_export_as_file_title" />
             <Preference android:title="@string/revanced_extended_settings_export_title" android:key="revanced_extended_settings_export" android:summary="@string/revanced_extended_settings_export_summary" />
             <Preference android:title="@string/revanced_extended_settings_import_title" android:key="revanced_extended_settings_import" android:summary="@string/revanced_extended_settings_import_summary" />
-            <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_extended_settings_import_export_as_text_title" />
+            <PreferenceCategory android:layout="@layout/revanced_settings_preferences_category" android:title="@string/revanced_extended_settings_import_export_as_text_title" />
             <app.revanced.integrations.youtube.settings.preference.ImportExportPreference android:title="@string/revanced_extended_settings_import_export_title" android:summary="@string/revanced_extended_settings_import_export_as_text_summary" android:inputType="textMultiLine" />
         </PreferenceScreen>
 
@@ -362,7 +362,7 @@
         <SwitchPreference android:title="@string/revanced_sanitize_sharing_links_title" android:key="revanced_sanitize_sharing_links" android:defaultValue="true" android:summary="@string/revanced_sanitize_sharing_links_summary" />SETTINGS: SANITIZE_SHARING_LINKS -->
 
         <!-- SETTINGS: EXPERIMENTAL_FLAGS
-        <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_experimental_flag" />SETTINGS: EXPERIMENTAL_FLAGS -->
+        <PreferenceCategory android:layout="@layout/revanced_settings_preferences_category" android:title="@string/revanced_experimental_flag" />SETTINGS: EXPERIMENTAL_FLAGS -->
 
         <!-- SETTINGS: DISABLE_QUIC_PROTOCOL
         <SwitchPreference android:title="@string/revanced_disable_quic_protocol_title" android:key="revanced_disable_quic_protocol" android:defaultValue="false" android:summary="@string/revanced_disable_quic_protocol_summary" />SETTINGS: DISABLE_QUIC_PROTOCOL -->
@@ -390,31 +390,31 @@
         <SwitchPreference android:title="@string/revanced_spoof_player_parameter_title" android:key="revanced_spoof_player_parameter" android:defaultValue="true" android:summary="@string/revanced_spoof_player_parameter_summary" />
         <SwitchPreference android:title="@string/revanced_spoof_player_parameter_in_feed_title" android:key="revanced_spoof_player_parameter_in_feed" android:defaultValue="false" android:summaryOn="@string/revanced_spoof_player_parameter_in_feed_summary_on" android:summaryOff="@string/revanced_spoof_player_parameter_in_feed_summary_off" android:dependency="revanced_spoof_player_parameter" />SETTINGS: SPOOF_PLAYER_PARAMETER -->
 	
-        <Preference android:title=" " android:selectable="false" android:summary="@string/pref_about_category" />
-        <PreferenceScreen android:title="@string/revanced_patches_information"  android:summary="@string/revanced_patches_information_summary" >
-            <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_tool_used" />
+        <PreferenceCategory android:layout="@layout/revanced_settings_preferences_category" android:title="@string/pref_about_category" />
+        <PreferenceScreen android:title="@string/revanced_patches_information"  android:key="patches_information" android:summary="@string/revanced_patches_information_summary" >
+            <PreferenceCategory android:layout="@layout/revanced_settings_preferences_category" android:title="@string/revanced_tool_used" />
             <Preference android:title="ReVanced Patches" android:selectable="false" android:summary="" />
             <Preference android:title="ReVanced Integrations" android:selectable="false" android:summary="" />
 
-            <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_ads" />
+            <PreferenceCategory android:layout="@layout/revanced_settings_preferences_category" android:title="@string/revanced_ads" />
             <Preference android:title="Hide general ads" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="Hide video ads" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
 
-            <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_alt_thumbnails" />
+            <PreferenceCategory android:layout="@layout/revanced_settings_preferences_category" android:title="@string/revanced_alt_thumbnails" />
             <Preference android:title="Alternative thumbnails" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
 
-            <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_bottom_player" />
+            <PreferenceCategory android:layout="@layout/revanced_settings_preferences_category" android:title="@string/revanced_bottom_player" />
             <Preference android:title="Enable bottom player gestures" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="Hide button container" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="Hide comment component" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
 
-            <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_flyout_menu" />
+            <PreferenceCategory android:layout="@layout/revanced_settings_preferences_category" android:title="@string/revanced_flyout_menu" />
             <Preference android:title="Change player flyout panel toggles" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="Enable old quality layout" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="Hide feed flyout panel" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="Hide player flyout panel" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
 
-            <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_fullscreen" />
+            <PreferenceCategory android:layout="@layout/revanced_settings_preferences_category" android:title="@string/revanced_fullscreen" />
             <Preference android:title="Enable compact controls overlay" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="Force fullscreen" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="Hide autoplay preview" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
@@ -423,7 +423,7 @@
             <Preference android:title="Landscape mode" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="Quick actions components" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
 
-            <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_general" />
+            <PreferenceCategory android:layout="@layout/revanced_settings_preferences_category" android:title="@string/revanced_general" />
             <Preference android:title="Change start page" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="Description components" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="Disable auto captions" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
@@ -450,7 +450,7 @@
             <Preference android:title="Hide trending searches" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="Remove viewer discretion dialog" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
 
-            <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_misc" />
+            <PreferenceCategory android:layout="@layout/revanced_settings_preferences_category" android:title="@string/revanced_misc" />
             <Preference android:title="Ambient mode switch" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="Disable QUIC protocol" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="Disable update screen" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
@@ -467,15 +467,15 @@
             <Preference android:title="Spoof device dimensions" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="Spoof player parameters" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
 
-            <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_navigation" />
+            <PreferenceCategory android:layout="@layout/revanced_settings_preferences_category" android:title="@string/revanced_navigation" />
             <Preference android:title="Enable tablet navigation bar" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="Hide navigation buttons" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="Hide navigation label" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
 
-            <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_overlay_button" />
+            <PreferenceCategory android:layout="@layout/revanced_settings_preferences_category" android:title="@string/revanced_overlay_button" />
             <Preference android:title="Overlay buttons" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
 
-            <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_player" />
+            <PreferenceCategory android:layout="@layout/revanced_settings_preferences_category" android:title="@string/revanced_player" />
             <Preference android:title="Custom player overlay opacity" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="Disable haptic feedback" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="Disable speed overlay" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
@@ -493,7 +493,7 @@
             <Preference android:title="Hide seek message" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="Hide suggested actions" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
 
-            <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_seekbar" />
+            <PreferenceCategory android:layout="@layout/revanced_settings_preferences_category" android:title="@string/revanced_seekbar" />
             <Preference android:title="Append time stamps information" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="Custom seekbar color" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="Enable new thumbnail preview" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
@@ -501,22 +501,22 @@
             <Preference android:title="Hide seekbar" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="Hide time stamp" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
 
-            <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_shorts" />
+            <PreferenceCategory android:layout="@layout/revanced_settings_preferences_category" android:title="@string/revanced_shorts" />
             <Preference android:title="Change shorts repeat state" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="Disable resuming shorts on startup" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="Hide shorts components" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="Shorts outline button" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
 
-            <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_swipe_controls" />
+            <PreferenceCategory android:layout="@layout/revanced_settings_preferences_category" android:title="@string/revanced_swipe_controls" />
             <Preference android:title="Swipe controls" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
 
-            <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_video" />
+            <PreferenceCategory android:layout="@layout/revanced_settings_preferences_category" android:title="@string/revanced_video" />
             <Preference android:title="Custom playback speed" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="Default playback speed" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="Default video quality" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="Disable HDR video" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
 
-            <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_others" />
+            <PreferenceCategory android:layout="@layout/revanced_settings_preferences_category" android:title="@string/revanced_others" />
             <Preference android:title="Custom double tap length" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="Disable pip notification" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             <Preference android:title="Header" android:summary="@string/revanced_header_default" android:selectable="false"/>
@@ -537,7 +537,7 @@
 
     <!-- PREFERENCE: NAVIGATION_SETTINGS
     <PreferenceScreen android:title="@string/revanced_navigation" android:key="navigation">
-        <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_navigation" />PREFERENCE: NAVIGATION_SETTINGS -->
+        <PreferenceCategory android:layout="@layout/revanced_settings_preferences_category" android:title="@string/revanced_navigation" />PREFERENCE: NAVIGATION_SETTINGS -->
 
         <!-- SETTINGS: ENABLE_TABLET_NAVIGATION_BAR
         <SwitchPreference android:title="@string/revanced_enable_tablet_navigation_bar_title" android:key="revanced_enable_tablet_navigation_bar" android:defaultValue="false" android:summaryOn="@string/revanced_enable_tablet_navigation_bar_summary_on" android:summaryOff="@string/revanced_enable_tablet_navigation_bar_summary_off" />SETTINGS: ENABLE_TABLET_NAVIGATION_BAR -->
@@ -562,7 +562,7 @@
 
     <!-- PREFERENCE: OVERLAY_BUTTONS
     <PreferenceScreen android:title="@string/revanced_overlay_button" android:key="overlay_button">
-        <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_overlay_button" />
+        <PreferenceCategory android:layout="@layout/revanced_settings_preferences_category" android:title="@string/revanced_overlay_button" />
         <SwitchPreference android:title="@string/revanced_hide_fullscreen_button_title" android:key="revanced_hide_fullscreen_button" android:defaultValue="false" android:summaryOn="@string/revanced_hide_fullscreen_button_summary_on" android:summaryOff="@string/revanced_hide_fullscreen_button_summary_off" />
         <SwitchPreference android:title="@string/revanced_overlay_button_always_repeat_title" android:key="revanced_overlay_button_always_repeat" android:defaultValue="false" android:summary="@string/revanced_overlay_button_always_repeat_summary" />
         <SwitchPreference android:title="@string/revanced_overlay_button_copy_video_url_timestamp_title" android:key="revanced_overlay_button_copy_video_url_timestamp" android:defaultValue="false" android:summary="@string/revanced_overlay_button_copy_video_url_timestamp_summary" />
@@ -570,7 +570,7 @@
         <SwitchPreference android:title="@string/revanced_overlay_button_external_downloader_title" android:key="revanced_overlay_button_external_downloader" android:defaultValue="false" android:summary="@string/revanced_overlay_button_external_downloader_summary" />
         <SwitchPreference android:title="@string/revanced_overlay_button_speed_dialog_title" android:key="revanced_overlay_button_speed_dialog" android:defaultValue="false" android:summary="@string/revanced_overlay_button_speed_dialog_summary" />
         <PreferenceScreen android:title="@string/revanced_external_downloader_settings_title" android:key="external_downloader" android:summary="@string/revanced_external_downloader_settings_summary">
-            <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_external_downloader_settings_title" />
+            <PreferenceCategory android:layout="@layout/revanced_settings_preferences_category" android:title="@string/revanced_external_downloader_settings_title" />
             <app.revanced.integrations.shared.settings.preference.ResettableEditTextPreference android:hint="com.deniscerri.ytdl" android:defaultValue="com.deniscerri.ytdl" android:title="@string/revanced_external_downloader_package_name_title" android:key="revanced_external_downloader_package_name" android:summary="@string/revanced_external_downloader_package_name_summary" android:inputType="text" />
         </PreferenceScreen>
     </PreferenceScreen>PREFERENCE: OVERLAY_BUTTONS -->
@@ -578,7 +578,7 @@
 
     <!-- PREFERENCE: PLAYER_SETTINGS
     <PreferenceScreen android:title="@string/revanced_player" android:key="player">
-        <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_player" />PREFERENCE: PLAYER_SETTINGS -->
+        <PreferenceCategory android:layout="@layout/revanced_settings_preferences_category" android:title="@string/revanced_player" />PREFERENCE: PLAYER_SETTINGS -->
 
         <!-- SETTINGS: CUSTOM_PLAYER_OVERLAY_OPACITY
         <app.revanced.integrations.shared.settings.preference.ResettableEditTextPreference android:hint="100" android:defaultValue="100" android:title="@string/revanced_custom_player_overlay_opacity_title" android:key="revanced_custom_player_overlay_opacity" android:summary="@string/revanced_custom_player_overlay_opacity_summary" android:inputType="number" />SETTINGS: CUSTOM_PLAYER_OVERLAY_OPACITY -->
@@ -621,7 +621,7 @@
         <SwitchPreference android:title="@string/revanced_hide_youtube_music_button_title" android:key="revanced_hide_youtube_music_button" android:defaultValue="false" android:summaryOn="@string/revanced_hide_youtube_music_button_summary_on" android:summaryOff="@string/revanced_hide_youtube_music_button_summary_off" />SETTINGS: HIDE_YOUTUBE_MUSIC_BUTTON -->
 
         <!-- SETTINGS: PLAYER_EXPERIMENTAL_FLAGS
-        <Preference android:title=" " android:selectable="false" android:key="revanced_experimental_flag" android:summary="@string/revanced_experimental_flag" />SETTINGS: PLAYER_EXPERIMENTAL_FLAGS -->
+        <PreferenceCategory android:layout="@layout/revanced_settings_preferences_category" android:title="@string/revanced_experimental_flag" />SETTINGS: PLAYER_EXPERIMENTAL_FLAGS -->
 
         <!-- SETTINGS: HIDE_FILMSTRIP_OVERLAY
         <SwitchPreference android:title="@string/revanced_hide_filmstrip_overlay_title" android:key="revanced_hide_filmstrip_overlay" android:defaultValue="false" android:summaryOn="@string/revanced_hide_filmstrip_overlay_summary_on" android:summaryOff="@string/revanced_hide_filmstrip_overlay_summary_off" />SETTINGS: HIDE_FILMSTRIP_OVERLAY -->
@@ -630,7 +630,7 @@
         <Preference android:title="@string/revanced_hide_suggested_video_end_screen_title" android:key="revanced_hide_suggested_video_end_screen" android:defaultValue="false" android:selectable="false" android:summary="@string/revanced_hide_suggested_video_end_screen_summary" />SETTINGS: HIDE_SUGGESTED_VIDEO_END_SCREEN -->
 
         <!-- SETTINGS: DISABLE_HAPTIC_FEEDBACK
-        <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_haptic_feedback_title" />
+        <PreferenceCategory android:layout="@layout/revanced_settings_preferences_category" android:title="@string/revanced_haptic_feedback_title" />
         <SwitchPreference android:title="@string/revanced_disable_haptic_feedback_chapters_title" android:key="revanced_disable_haptic_feedback_chapters" android:defaultValue="false" android:summaryOn="@string/revanced_disable_haptic_feedback_summary_on" android:summaryOff="@string/revanced_disable_haptic_feedback_summary_off" />
         <SwitchPreference android:title="@string/revanced_disable_haptic_feedback_scrubbing_title" android:key="revanced_disable_haptic_feedback_scrubbing" android:defaultValue="false" android:summaryOn="@string/revanced_disable_haptic_feedback_summary_on" android:summaryOff="@string/revanced_disable_haptic_feedback_summary_off" />
         <SwitchPreference android:title="@string/revanced_disable_haptic_feedback_seek_title" android:key="revanced_disable_haptic_feedback_seek" android:defaultValue="false" android:summaryOn="@string/revanced_disable_haptic_feedback_summary_on" android:summaryOff="@string/revanced_disable_haptic_feedback_summary_off" />
@@ -641,9 +641,13 @@
     </PreferenceScreen>PREFERENCE: PLAYER_SETTINGS -->
 
 
+    <!-- PREFERENCE: RETURN_YOUTUBE_DISLIKE_SETTINGS
+    <Preference android:title="@string/revanced_ryd_settings_title" android:key="revanced_ryd_settings" />PREFERENCE: RETURN_YOUTUBE_DISLIKE_SETTINGS -->
+
+
     <!-- PREFERENCE: SEEKBAR_SETTINGS
     <PreferenceScreen android:title="@string/revanced_seekbar" android:key="seekbar">
-        <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_seekbar" />PREFERENCE: SEEKBAR_SETTINGS -->
+        <PreferenceCategory android:layout="@layout/revanced_settings_preferences_category" android:title="@string/revanced_seekbar" />PREFERENCE: SEEKBAR_SETTINGS -->
 
         <!-- SETTINGS: APPEND_TIME_STAMP_INFORMATION
         <SwitchPreference android:title="@string/revanced_append_time_stamp_information_title" android:key="revanced_append_time_stamp_information" android:defaultValue="true" android:summaryOn="@string/revanced_append_time_stamp_information_summary_on" android:summaryOff="@string/revanced_append_time_stamp_information_summary_off" />
@@ -674,12 +678,12 @@
     <PreferenceScreen android:title="@string/revanced_shorts" android:key="shorts">PREFERENCE: SHORTS_SETTINGS -->
 
         <!-- SETTINGS: HIDE_SHORTS_SHELF
-        <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_shorts" />
+        <PreferenceCategory android:layout="@layout/revanced_settings_preferences_category" android:title="@string/revanced_shorts" />
         <SwitchPreference android:title="@string/revanced_hide_shorts_shelf_title" android:key="revanced_hide_shorts_shelf" android:defaultValue="true" android:summary="@string/revanced_hide_shorts_shelf_summary" />
         <SwitchPreference android:title="@string/revanced_hide_shorts_shelf_exception_history_title" android:key="revanced_hide_shorts_shelf_exception_history" android:defaultValue="false" android:summaryOn="@string/revanced_hide_shorts_shelf_exception_history_summary_on" android:summaryOff="@string/revanced_hide_shorts_shelf_exception_history_summary_off" android:dependency="revanced_hide_shorts_shelf" />SETTINGS: HIDE_SHORTS_SHELF -->
 
         <!-- SETTINGS: SHORTS_PLAYER_PARENT
-        <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_shorts_player_title" />SETTINGS: SHORTS_PLAYER_PARENT -->
+        <PreferenceCategory android:layout="@layout/revanced_settings_preferences_category" android:title="@string/revanced_shorts_player_title" />SETTINGS: SHORTS_PLAYER_PARENT -->
 
         <!-- SETTINGS: CHANGE_SHORTS_REPEAT_STATE
         <ListPreference android:entries="@array/revanced_change_shorts_repeat_state_entry" android:title="@string/revanced_change_shorts_repeat_state_title" android:key="revanced_change_shorts_repeat_state" android:defaultValue="2" android:entryValues="@array/revanced_change_shorts_repeat_state_entry_value" />SETTINGS: CHANGE_SHORTS_REPEAT_STATE -->
@@ -699,22 +703,26 @@
         <SwitchPreference android:title="@string/revanced_hide_shorts_player_subscriptions_button_title" android:key="revanced_hide_shorts_player_subscriptions_button" android:defaultValue="true" android:summaryOn="@string/revanced_hide_shorts_player_subscriptions_button_summary_on" android:summaryOff="@string/revanced_hide_shorts_player_subscriptions_button_summary_off" />
         <SwitchPreference android:title="@string/revanced_hide_shorts_player_thanks_button_title" android:key="revanced_hide_shorts_player_thanks_button" android:defaultValue="true" android:summaryOn="@string/revanced_hide_shorts_player_thanks_button_summary_on" android:summaryOff="@string/revanced_hide_shorts_player_thanks_button_summary_off" />
         <SwitchPreference android:title="@string/revanced_hide_shorts_player_pivot_button_title" android:key="revanced_hide_shorts_player_pivot_button" android:defaultValue="true" android:summaryOn="@string/revanced_hide_shorts_player_pivot_button_summary_on" android:summaryOff="@string/revanced_hide_shorts_player_pivot_button_summary_off" />
-        <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_shorts_toolbar_title" />
+        <PreferenceCategory android:layout="@layout/revanced_settings_preferences_category" android:title="@string/revanced_shorts_toolbar_title" />
         <SwitchPreference android:title="@string/revanced_hide_shorts_toolbar_banner_title" android:key="revanced_hide_shorts_toolbar_banner" android:defaultValue="false" android:summaryOn="@string/revanced_hide_shorts_toolbar_banner_summary_on" android:summaryOff="@string/revanced_hide_shorts_toolbar_banner_summary_off" />
         <SwitchPreference android:title="@string/revanced_hide_shorts_toolbar_camera_button_title" android:key="revanced_hide_shorts_toolbar_camera_button" android:defaultValue="false" android:summaryOn="@string/revanced_hide_shorts_toolbar_camera_button_summary_on" android:summaryOff="@string/revanced_hide_shorts_toolbar_camera_button_summary_off" />
         <SwitchPreference android:title="@string/revanced_hide_shorts_toolbar_search_button_title" android:key="revanced_hide_shorts_toolbar_search_button" android:defaultValue="false" android:summaryOn="@string/revanced_hide_shorts_toolbar_search_button_summary_on" android:summaryOff="@string/revanced_hide_shorts_toolbar_search_button_summary_off" />
         <SwitchPreference android:title="@string/revanced_hide_shorts_toolbar_menu_button_title" android:key="revanced_hide_shorts_toolbar_menu_button" android:defaultValue="false" android:summaryOn="@string/revanced_hide_shorts_toolbar_menu_button_summary_on" android:summaryOff="@string/revanced_hide_shorts_toolbar_menu_button_summary_off" />
         <Preference android:title="@string/revanced_inform" android:selectable="false" android:summary="@string/revanced_shorts_toolbar_summary" />
-        <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_experimental_flag" />
+        <PreferenceCategory android:layout="@layout/revanced_settings_preferences_category" android:title="@string/revanced_experimental_flag" />
         <SwitchPreference android:title="@string/revanced_hide_shorts_player_navigation_bar_title" android:key="revanced_hide_shorts_player_navigation_bar" android:defaultValue="false" android:summaryOn="@string/revanced_hide_shorts_player_navigation_bar_summary_on" android:summaryOff="@string/revanced_hide_shorts_player_navigation_bar_summary_off" />SETTINGS: HIDE_SHORTS_COMPONENTS -->
 
     <!-- PREFERENCE: SHORTS_SETTINGS
     </PreferenceScreen>PREFERENCE: SHORTS_SETTINGS -->
 
 
+    <!-- PREFERENCE: SPONSOR_BLOCK_SETTINGS
+    <Preference android:title="@string/revanced_sb_settings_title" android:key="revanced_sb_settings" />PREFERENCE: SPONSOR_BLOCK_SETTINGS -->
+
+
     <!-- PREFERENCE: SWIPE_SETTINGS
     <PreferenceScreen android:title="@string/revanced_swipe_controls" android:key="swipe_controls">
-        <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_swipe_controls" />PREFERENCE: SWIPE_SETTINGS -->
+        <PreferenceCategory android:layout="@layout/revanced_settings_preferences_category" android:title="@string/revanced_swipe_controls" />PREFERENCE: SWIPE_SETTINGS -->
 
         <!-- SETTINGS: SWIPE_CONTROLS
         <SwitchPreference android:title="@string/revanced_enable_swipe_auto_brightness_title" android:key="revanced_enable_swipe_auto_brightness" android:defaultValue="false" android:summaryOn="@string/revanced_enable_swipe_auto_brightness_summary_on" android:summaryOff="@string/revanced_enable_swipe_auto_brightness_summary_off" />
@@ -728,7 +736,7 @@
         <app.revanced.integrations.shared.settings.preference.ResettableEditTextPreference android:title="@string/revanced_swipe_overlay_text_size_title" android:key="revanced_swipe_overlay_text_size" android:summary="@string/revanced_swipe_overlay_text_size_summary" android:defaultValue="27" android:inputType="number" />
         <app.revanced.integrations.shared.settings.preference.ResettableEditTextPreference android:title="@string/revanced_swipe_overlay_timeout_title" android:key="revanced_swipe_overlay_timeout" android:summary="@string/revanced_swipe_overlay_timeout_summary" android:defaultValue="500" android:inputType="number" />SETTINGS: SWIPE_CONTROLS -->
         <!-- SETTINGS: DISABLE_HDR_BRIGHTNESS
-        <Preference android:title=" " android:selectable="false" android:key="revanced_experimental_flag" android:summary="@string/revanced_experimental_flag" />
+        <PreferenceCategory android:layout="@layout/revanced_settings_preferences_category" android:title="@string/revanced_experimental_flag" />
         <SwitchPreference android:title="@string/revanced_disable_hdr_auto_brightness_title" android:key="revanced_disable_hdr_auto_brightness" android:defaultValue="true" android:summaryOn="@string/revanced_disable_hdr_auto_brightness_summary_on" android:summaryOff="@string/revanced_disable_hdr_auto_brightness_summary_off" />SETTINGS: DISABLE_HDR_BRIGHTNESS -->
 
     <!-- PREFERENCE: SWIPE_SETTINGS
@@ -737,7 +745,7 @@
 
     <!-- PREFERENCE: VIDEO_SETTINGS
     <PreferenceScreen android:title="@string/revanced_video" android:key="video">
-        <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_video" />PREFERENCE: VIDEO_SETTINGS -->
+        <PreferenceCategory android:layout="@layout/revanced_settings_preferences_category" android:title="@string/revanced_video" />PREFERENCE: VIDEO_SETTINGS -->
 
         <!-- SETTINGS: DEFAULT_PLAYBACK_SPEED
         <ListPreference android:title="@string/revanced_default_playback_speed_title" android:key="revanced_default_playback_speed" android:defaultValue="-2.0" />SETTINGS: DEFAULT_PLAYBACK_SPEED -->
@@ -764,7 +772,7 @@
         <SwitchPreference android:title="@string/revanced_enable_save_video_quality_title" android:key="revanced_enable_save_video_quality" android:defaultValue="true" android:summaryOn="@string/revanced_enable_save_video_quality_summary_on" android:summaryOff="@string/revanced_enable_save_video_quality_summary_off" />SETTINGS: DEFAULT_VIDEO_QUALITY -->
 
         <!-- SETTINGS: VIDEO_EXPERIMENTAL_FLAGS
-        <Preference android:title=" " android:selectable="false" android:summary="@string/revanced_experimental_flag" />SETTINGS: VIDEO_EXPERIMENTAL_FLAGS -->
+        <PreferenceCategory android:layout="@layout/revanced_settings_preferences_category" android:title="@string/revanced_experimental_flag" />SETTINGS: VIDEO_EXPERIMENTAL_FLAGS -->
 
         <!-- SETTINGS: DEFAULT_PLAYBACK_SPEED
         <SwitchPreference android:title="@string/revanced_enable_default_playback_speed_shorts_title" android:key="revanced_enable_default_playback_speed_shorts" android:defaultValue="false" android:summaryOn="@string/revanced_enable_default_playback_speed_shorts_summary_on" android:summaryOff="@string/revanced_enable_default_playback_speed_shorts_summary_off" />SETTINGS: DEFAULT_PLAYBACK_SPEED -->

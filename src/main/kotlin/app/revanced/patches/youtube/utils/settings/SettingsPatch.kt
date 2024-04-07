@@ -20,7 +20,7 @@ import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 import java.util.jar.Manifest
 
-@Suppress("DEPRECATION", "SpellCheckingInspection", "unused")
+@Suppress("DEPRECATION", "unused")
 object SettingsPatch : BaseResourcePatch(
     name = "Settings",
     description = "Applies mandatory patches to implement ReVanced Extended settings into the application.",
@@ -105,6 +105,7 @@ object SettingsPatch : BaseResourcePatch(
         arrayOf(
             ResourceGroup(
                 "layout",
+                "revanced_settings_preferences_category.xml",
                 "revanced_settings_with_toolbar.xml"
             ),
             ResourceGroup(
@@ -118,7 +119,7 @@ object SettingsPatch : BaseResourcePatch(
         /**
          * initialize ReVanced Extended Settings
          */
-        addPreferenceFragment("revanced_extended_settings")
+        context.addPreferenceFragment("revanced_extended_settings")
 
         /**
          * remove ReVanced Extended Settings divider
@@ -148,10 +149,6 @@ object SettingsPatch : BaseResourcePatch(
 
     internal fun addPreference(settingArray: Array<String>) {
         contexts.addPreference(settingArray)
-    }
-
-    internal fun addPreferenceFragment(key: String) {
-        contexts.addPreferenceFragment(key)
     }
 
     internal fun updatePatchStatus(patchTitle: String) {

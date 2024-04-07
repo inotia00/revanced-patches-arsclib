@@ -106,9 +106,13 @@ object ReturnYouTubeDislikePatch : BaseBytecodePatch(
         // endregion
 
         /**
-         * Add ReVanced Extended Settings
+         * Add settings
          */
-        SettingsPatch.addPreferenceFragment("revanced_ryd_settings")
+        SettingsPatch.addPreference(
+            arrayOf(
+                "PREFERENCE: RETURN_YOUTUBE_DISLIKE_SETTINGS"
+            )
+        )
 
         SettingsPatch.updatePatchStatus("Return YouTube Dislike")
 

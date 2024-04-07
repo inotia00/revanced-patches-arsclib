@@ -137,9 +137,13 @@ object SponsorBlockPatch : BaseResourcePatch(
         if (!modifiedControlsLayout) throw PatchException("Could not modify controls layout")
 
         /**
-         * Add ReVanced Extended Settings
+         * Add settings
          */
-        SettingsPatch.addPreferenceFragment("revanced_sb_settings")
+        SettingsPatch.addPreference(
+            arrayOf(
+                "PREFERENCE: SPONSOR_BLOCK_SETTINGS"
+            )
+        )
 
         SettingsPatch.updatePatchStatus("SponsorBlock")
 
