@@ -5,12 +5,13 @@ import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patches.music.flyoutpanel.replace.fingerprints.TouchOutsideFingerprint
 import app.revanced.patches.music.flyoutpanel.shared.FlyoutPanelMenuItemPatch
+import app.revanced.patches.music.utils.flyoutpanel.PlaybackSpeedFlyoutPanelHookPatch
 import app.revanced.patches.music.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.music.utils.integrations.Constants.FLYOUT_CLASS_DESCRIPTOR
-import app.revanced.patches.music.utils.overridespeed.OverrideSpeedHookPatch
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
+import app.revanced.patches.music.video.information.VideoInformationPatch
 import app.revanced.util.getTargetIndexWithMethodReferenceName
 import app.revanced.util.patch.BaseBytecodePatch
 import app.revanced.util.resultOrThrow
@@ -22,10 +23,11 @@ object ReplaceReportPatch : BaseBytecodePatch(
     description = "Adds an option to replace \"Report\" with \"Playback speed\" in the flyout menu.",
     dependencies = setOf(
         FlyoutPanelMenuItemPatch::class,
-        OverrideSpeedHookPatch::class,
+        PlaybackSpeedFlyoutPanelHookPatch::class,
         ReplaceReportResourcePatch::class,
         SettingsPatch::class,
-        SharedResourceIdPatch::class
+        SharedResourceIdPatch::class,
+        VideoInformationPatch::class
     ),
     compatiblePackages = COMPATIBLE_PACKAGE,
     fingerprints = setOf(TouchOutsideFingerprint)

@@ -1,4 +1,4 @@
-package app.revanced.patches.music.utils.overridequality.fingerprints
+package app.revanced.patches.music.video.information.fingerprints
 
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch.QualityAuto
 import app.revanced.util.fingerprint.LiteralValueFingerprint

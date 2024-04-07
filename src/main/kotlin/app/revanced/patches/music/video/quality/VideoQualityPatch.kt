@@ -6,9 +6,9 @@ import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.PatchException
 import app.revanced.patches.music.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.music.utils.integrations.Constants.VIDEO_PATH
-import app.revanced.patches.music.utils.overridequality.OverrideQualityHookPatch
 import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
+import app.revanced.patches.music.video.information.VideoInformationPatch
 import app.revanced.patches.music.video.quality.fingerprints.UserQualityChangeFingerprint
 import app.revanced.patches.music.video.videoid.VideoIdPatch
 import app.revanced.util.patch.BaseBytecodePatch
@@ -20,9 +20,9 @@ object VideoQualityPatch : BaseBytecodePatch(
     name = "Remember video quality",
     description = "Adds an option to remember the last video quality selected.",
     dependencies = setOf(
-        OverrideQualityHookPatch::class,
         SettingsPatch::class,
-        VideoIdPatch::class
+        VideoIdPatch::class,
+        VideoInformationPatch::class
     ),
     compatiblePackages = COMPATIBLE_PACKAGE,
     fingerprints = setOf(UserQualityChangeFingerprint)
@@ -45,14 +45,10 @@ object VideoQualityPatch : BaseBytecodePatch(
                 val onItemClickMethod =
                     qualityChangedClass.methods.find { method -> method.name == "onItemClick" }
 
-                onItemClickMethod?.apply {
-                    val listItemIndexParameter = 3
-
-                    addInstruction(
-                        0,
-                        "invoke-static {p$listItemIndexParameter}, $INTEGRATIONS_VIDEO_QUALITY_CLASS_DESCRIPTOR->userChangedQuality(I)V"
-                    )
-                } ?: throw PatchException("Failed to find onItemClick method")
+                onItemClickMethod?.addInstruction(
+                    0,
+                    "invoke-static {}, $INTEGRATIONS_VIDEO_QUALITY_CLASS_DESCRIPTOR->userSelectedVideoQuality()V"
+                ) ?: throw PatchException("Failed to find onItemClick method")
             }
         }
 
