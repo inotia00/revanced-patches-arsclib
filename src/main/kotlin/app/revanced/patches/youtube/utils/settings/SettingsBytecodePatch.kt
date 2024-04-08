@@ -7,6 +7,7 @@ import app.revanced.patcher.extensions.InstructionExtensions.removeInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
+import app.revanced.patches.shared.integrations.Constants.INTEGRATIONS_UTILS_CLASS_DESCRIPTOR
 import app.revanced.patches.shared.mapping.ResourceMappingPatch
 import app.revanced.patches.youtube.utils.integrations.Constants.INTEGRATIONS_PATH
 import app.revanced.patches.youtube.utils.integrations.Constants.UTILS_PATH
@@ -47,7 +48,7 @@ object SettingsBytecodePatch : BytecodePatch(
 
         MainActivityResolvePatch.injectOnCreateMethodCall(INTEGRATIONS_INITIALIZATION_CLASS_DESCRIPTOR, "setDeviceInformation")
         MainActivityResolvePatch.injectOnCreateMethodCall(INTEGRATIONS_INITIALIZATION_CLASS_DESCRIPTOR, "onCreate")
-        MainActivityResolvePatch.injectConstructorMethodCall(INTEGRATIONS_INITIALIZATION_CLASS_DESCRIPTOR, "setMainActivity")
+        MainActivityResolvePatch.injectConstructorMethodCall(INTEGRATIONS_UTILS_CLASS_DESCRIPTOR, "setActivity")
 
     }
     private fun MutableMethod.injectCall(index: Int) {

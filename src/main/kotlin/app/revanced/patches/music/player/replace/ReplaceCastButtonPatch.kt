@@ -9,7 +9,7 @@ import app.revanced.patches.music.utils.integrations.Constants.COMPATIBLE_PACKAG
 import app.revanced.patches.music.utils.integrations.Constants.PLAYER_CLASS_DESCRIPTOR
 import app.revanced.patches.music.utils.integrations.Constants.UTILS_PATH
 import app.revanced.patches.music.utils.mainactivity.MainActivityResolvePatch
-import app.revanced.patches.music.utils.mainactivity.MainActivityResolvePatch.mainActivityClassDef
+import app.revanced.patches.music.utils.mainactivity.MainActivityResolvePatch.mainActivityMutableClass
 import app.revanced.patches.music.utils.playerresponse.PlayerResponsePatch
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch.PlayerCastMediaRouteButton
@@ -44,7 +44,7 @@ object ReplaceCastButtonPatch : BaseBytecodePatch(
     use = false
 ) {
     override fun execute(context: BytecodeContext) {
-        CastButtonContainerFingerprint.resolve(context, mainActivityClassDef)
+        CastButtonContainerFingerprint.resolve(context, mainActivityMutableClass)
 
         CastButtonContainerFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {

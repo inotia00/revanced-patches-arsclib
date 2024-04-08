@@ -9,12 +9,13 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.music.utils.integrations.Constants.INTEGRATIONS_PATH
+import app.revanced.patches.music.utils.integrations.Constants.UTILS_PATH
 import app.revanced.patches.music.utils.integrations.IntegrationsPatch
 import app.revanced.patches.music.utils.mainactivity.MainActivityResolvePatch
-import app.revanced.patches.music.utils.mainactivity.MainActivityResolvePatch.injectInit
 import app.revanced.patches.music.utils.settings.fingerprints.GoogleApiActivityFingerprint
 import app.revanced.patches.music.utils.settings.fingerprints.PreferenceFingerprint
 import app.revanced.patches.music.utils.settings.fingerprints.SettingsHeadersFragmentFingerprint
+import app.revanced.patches.shared.integrations.Constants.INTEGRATIONS_UTILS_CLASS_DESCRIPTOR
 import app.revanced.patches.shared.settings.fingerprints.SharedSettingFingerprint
 import app.revanced.util.getTargetIndex
 import app.revanced.util.resultOrThrow
@@ -41,6 +42,8 @@ object SettingsBytecodePatch : BytecodePatch(
         "$INTEGRATIONS_PATH/settings/ActivityHook;"
     private const val INTEGRATIONS_FRAGMENT_CLASS_DESCRIPTOR =
         "$INTEGRATIONS_PATH/settings/preference/ReVancedPreferenceFragment;"
+    private const val INTEGRATIONS_INITIALIZATION_CLASS_DESCRIPTOR =
+        "$UTILS_PATH/InitializationPatch;"
 
     override fun execute(context: BytecodeContext) {
 
@@ -106,8 +109,9 @@ object SettingsBytecodePatch : BytecodePatch(
             }
         }
 
-        injectInit("InitializationPatch", "setDeviceInformation")
-        injectInit("InitializationPatch", "onCreate")
+        MainActivityResolvePatch.injectOnCreateMethodCall(INTEGRATIONS_INITIALIZATION_CLASS_DESCRIPTOR, "setDeviceInformation")
+        MainActivityResolvePatch.injectOnCreateMethodCall(INTEGRATIONS_INITIALIZATION_CLASS_DESCRIPTOR, "onCreate")
+        MainActivityResolvePatch.injectConstructorMethodCall(INTEGRATIONS_UTILS_CLASS_DESCRIPTOR, "setActivity")
 
     }
 }
