@@ -21,13 +21,16 @@ object LayoutComponentsPatch : BaseBytecodePatch(
         "$COMPONENTS_PATH/ChannelBarFilter;"
     private const val CUSTOM_FILTER_CLASS_DESCRIPTOR =
         "$COMPONENTS_PATH/CustomFilter;"
-    private const val FILTER_CLASS_DESCRIPTOR =
+    private const val LAYOUT_COMPONENTS_FILTER_CLASS_DESCRIPTOR =
         "$COMPONENTS_PATH/LayoutComponentsFilter;"
+    private const val KEYWORD_FILTER_CLASS_NAME =
+        "$COMPONENTS_PATH/KeywordContentFilter;"
 
     override fun execute(context: BytecodeContext) {
         LithoFilterPatch.addFilter(CHANNEL_BAR_FILTER_CLASS_DESCRIPTOR)
         LithoFilterPatch.addFilter(CUSTOM_FILTER_CLASS_DESCRIPTOR)
-        LithoFilterPatch.addFilter(FILTER_CLASS_DESCRIPTOR)
+        LithoFilterPatch.addFilter(LAYOUT_COMPONENTS_FILTER_CLASS_DESCRIPTOR)
+        LithoFilterPatch.addFilter(KEYWORD_FILTER_CLASS_NAME)
 
         /**
          * Add settings

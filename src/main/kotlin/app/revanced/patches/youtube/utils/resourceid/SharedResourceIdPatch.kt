@@ -18,6 +18,7 @@ import app.revanced.patches.shared.mapping.ResourceType.STYLE
 object SharedResourceIdPatch : ResourcePatch() {
     var AccountSwitcherAccessibility = -1L
     var ActionBarRingo = -1L
+    var ActionBarSearchResultsViewMic = -1L
     var AdAttribution = -1L
     var Appearance = -1L
     var AppRelatedEndScreenResults = -1L
@@ -92,6 +93,7 @@ object SharedResourceIdPatch : ResourcePatch() {
 
         AccountSwitcherAccessibility = getId(STRING, "account_switcher_accessibility_label")
         ActionBarRingo = getId(LAYOUT, "action_bar_ringo")
+        ActionBarSearchResultsViewMic = getId(LAYOUT, "action_bar_search_results_view_mic")
         AdAttribution = getId(ID, "ad_attribution")
         Appearance = getId(STRING, "app_theme_appearance_dark")
         AppRelatedEndScreenResults = getId(LAYOUT, "app_related_endscreen_results")

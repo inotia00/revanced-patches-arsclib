@@ -8,7 +8,7 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patches.youtube.shorts.components.fingerprints.BottomNavigationBarFingerprint
 import app.revanced.patches.youtube.shorts.components.fingerprints.RenderBottomNavigationBarFingerprint
 import app.revanced.patches.youtube.shorts.components.fingerprints.SetPivotBarFingerprint
-import app.revanced.patches.youtube.utils.fingerprints.PivotBarCreateButtonViewFingerprint
+import app.revanced.patches.youtube.utils.fingerprints.InitializeButtonsFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.SHORTS_CLASS_DESCRIPTOR
 import app.revanced.util.getTargetIndexWithMethodReferenceName
 import app.revanced.util.getWalkerMethod
@@ -18,13 +18,13 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 object ShortsNavigationBarPatch : BytecodePatch(
     setOf(
         BottomNavigationBarFingerprint,
-        PivotBarCreateButtonViewFingerprint,
+        InitializeButtonsFingerprint,
         RenderBottomNavigationBarFingerprint
     )
 ) {
     override fun execute(context: BytecodeContext) {
 
-        PivotBarCreateButtonViewFingerprint.resultOrThrow().let { parentResult ->
+        InitializeButtonsFingerprint.resultOrThrow().let { parentResult ->
             SetPivotBarFingerprint.also { it.resolve(context, parentResult.classDef) }.resultOrThrow().let {
                 it.mutableMethod.apply {
                     val startIndex = it.scanResult.patternScanResult!!.startIndex
