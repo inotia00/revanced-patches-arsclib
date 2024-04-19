@@ -10,15 +10,18 @@ import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.youtube.utils.fingerprints.InitializeButtonsFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.SHARED_PATH
+import app.revanced.patches.youtube.utils.mainactivity.MainActivityResolvePatch
 import app.revanced.patches.youtube.utils.navigation.fingerprints.NavigationEnumFingerprint
 import app.revanced.patches.youtube.utils.navigation.fingerprints.PivotBarButtonsCreateDrawableViewFingerprint
 import app.revanced.patches.youtube.utils.navigation.fingerprints.PivotBarButtonsCreateResourceViewFingerprint
+import app.revanced.patches.youtube.utils.navigation.fingerprints.PivotBarButtonsViewSetSelectedFingerprint
 import app.revanced.patches.youtube.utils.navigation.fingerprints.PivotBarConstructorFingerprint
 import app.revanced.patches.youtube.utils.playertype.PlayerTypeHookPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.util.getReference
 import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
+import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.Instruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
@@ -27,6 +30,7 @@ import com.android.tools.smali.dexlib2.util.MethodUtil
 @Patch(
     description = "Hooks the active navigation or search bar.",
     dependencies = [
+        MainActivityResolvePatch::class,
         PlayerTypeHookPatch::class,
         SharedResourceIdPatch::class
     ],
@@ -37,6 +41,7 @@ object NavigationBarHookPatch : BytecodePatch(
         NavigationEnumFingerprint,
         PivotBarButtonsCreateDrawableViewFingerprint,
         PivotBarButtonsCreateResourceViewFingerprint,
+        PivotBarButtonsViewSetSelectedFingerprint,
         PivotBarConstructorFingerprint
     ),
 ) {
@@ -91,6 +96,26 @@ object NavigationBarHookPatch : BytecodePatch(
                 )
             }
         }
+
+        PivotBarButtonsViewSetSelectedFingerprint.resultOrThrow().let {
+            it.mutableMethod.apply {
+                val index = it.scanResult.patternScanResult!!.startIndex + 1
+                val instruction = getInstruction<FiveRegisterInstruction>(index)
+                val viewRegister = instruction.registerC
+                val isSelectedRegister = instruction.registerD
+
+                addInstruction(
+                    index + 1,
+                    "invoke-static { v$viewRegister, v$isSelectedRegister }, " +
+                            "$INTEGRATIONS_CLASS_DESCRIPTOR->navigationTabSelected(Landroid/view/View;Z)V",
+                )
+            }
+        }
+
+        MainActivityResolvePatch.injectOnBackPressedMethodCall(
+            INTEGRATIONS_CLASS_DESCRIPTOR,
+            "onBackPressed"
+        )
 
         navigationTabCreatedCallback = context.findClass(INTEGRATIONS_CLASS_DESCRIPTOR)?.mutableClass?.methods?.first { method ->
             method.name == "navigationTabCreatedCallback"
