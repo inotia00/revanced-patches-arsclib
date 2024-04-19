@@ -10,7 +10,6 @@ import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.youtube.utils.fingerprints.InitializeButtonsFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.SHARED_PATH
-import app.revanced.patches.youtube.utils.navigation.fingerprints.ActionBarSearchResultsFingerprint
 import app.revanced.patches.youtube.utils.navigation.fingerprints.NavigationEnumFingerprint
 import app.revanced.patches.youtube.utils.navigation.fingerprints.PivotBarButtonsCreateDrawableViewFingerprint
 import app.revanced.patches.youtube.utils.navigation.fingerprints.PivotBarButtonsCreateResourceViewFingerprint
@@ -18,10 +17,8 @@ import app.revanced.patches.youtube.utils.navigation.fingerprints.PivotBarConstr
 import app.revanced.patches.youtube.utils.playertype.PlayerTypeHookPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.util.getReference
-import app.revanced.util.getTargetIndexWithMethodReferenceName
 import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
-import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.Instruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
@@ -37,7 +34,6 @@ import com.android.tools.smali.dexlib2.util.MethodUtil
 @Suppress("unused")
 object NavigationBarHookPatch : BytecodePatch(
     setOf(
-        ActionBarSearchResultsFingerprint,
         NavigationEnumFingerprint,
         PivotBarButtonsCreateDrawableViewFingerprint,
         PivotBarButtonsCreateResourceViewFingerprint,
@@ -94,22 +90,6 @@ object NavigationBarHookPatch : BytecodePatch(
                     imageResourceTabMethod,
                 )
             }
-        }
-
-        // Hook the search bar.
-
-        // Two different layouts are used at the hooked code.
-        // Insert before the first ViewGroup method call after inflating,
-        // so this works regardless which layout is used.
-        ActionBarSearchResultsFingerprint.resultOrThrow().mutableMethod.apply {
-            val instructionIndex = getTargetIndexWithMethodReferenceName("setLayoutDirection")
-            val viewRegister = getInstruction<FiveRegisterInstruction>(instructionIndex).registerC
-
-            addInstruction(
-                instructionIndex,
-                "invoke-static { v$viewRegister }, " +
-                        "$INTEGRATIONS_CLASS_DESCRIPTOR->searchBarResultsViewLoaded(Landroid/view/View;)V",
-            )
         }
 
         navigationTabCreatedCallback = context.findClass(INTEGRATIONS_CLASS_DESCRIPTOR)?.mutableClass?.methods?.first { method ->

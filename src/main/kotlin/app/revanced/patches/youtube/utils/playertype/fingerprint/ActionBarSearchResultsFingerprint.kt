@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.utils.navigation.fingerprints
+package app.revanced.patches.youtube.utils.playertype.fingerprint
 
 import app.revanced.patcher.extensions.or
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.ActionBarSearchResultsViewMic
