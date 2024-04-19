@@ -28,6 +28,6 @@ object AnimatedButtonBackgroundPatch : BaseResourcePatch(
             )
         )
 
-        SettingsPatch.updatePatchStatus("Hide animated button background")
+        SettingsPatch.updatePatchStatus(this)
     }
 }

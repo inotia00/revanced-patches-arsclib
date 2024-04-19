@@ -77,7 +77,6 @@ object SharedResourceIdPatch : ResourcePatch() {
     var ScrimOverlay = -1L
     var Scrubbing = -1L
     var SeekUndoEduOverlayStub = -1L
-    var SettingsBooleanTimeRangeDialog = -1L
     var SlidingDialogAnimation = -1L
     var SubtitleMenuSettingsFooterInfo = -1L
     var SuggestedAction = -1L
@@ -85,9 +84,7 @@ object SharedResourceIdPatch : ResourcePatch() {
     var ToolTipContentView = -1L
     var TotalTime = -1L
     var VideoQualityBottomSheet = -1L
-    var VideoZoomIndicatorLayout = -1L
-    var YoutubeControlsOverlay = -1L
-    var YoutubeControlsOverlaySubtitleButton = -1L
+    var YouTubeControlsOverlaySubtitleButton = -1L
 
     override fun execute(context: ResourceContext) {
 
@@ -154,7 +151,6 @@ object SharedResourceIdPatch : ResourcePatch() {
         ScrimOverlay = getId(ID, "scrim_overlay")
         Scrubbing = getId(DIMEN, "vertical_touch_offset_to_enter_fine_scrubbing")
         SeekUndoEduOverlayStub = getId(ID, "seek_undo_edu_overlay_stub")
-        SettingsBooleanTimeRangeDialog = getId(LAYOUT, "setting_boolean_time_range_dialog")
         SlidingDialogAnimation = getId(STYLE, "SlidingDialogAnimation")
         SubtitleMenuSettingsFooterInfo = getId(STRING, "subtitle_menu_settings_footer_info")
         SuggestedAction = getId(LAYOUT, "suggested_action")
@@ -162,9 +158,7 @@ object SharedResourceIdPatch : ResourcePatch() {
         ToolTipContentView = getId(LAYOUT, "tooltip_content_view")
         TotalTime = getId(STRING, "total_time")
         VideoQualityBottomSheet = getId(LAYOUT, "video_quality_bottom_sheet_list_fragment_title")
-        VideoZoomIndicatorLayout = getId(ID, "video_zoom_indicator_layout")
-        YoutubeControlsOverlay = getId(ID, "youtube_controls_overlay")
-        YoutubeControlsOverlaySubtitleButton = getId(LAYOUT, "youtube_controls_overlay_subtitle_button")
+        YouTubeControlsOverlaySubtitleButton = getId(LAYOUT, "youtube_controls_overlay_subtitle_button")
 
     }
 }

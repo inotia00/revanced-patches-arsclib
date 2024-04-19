@@ -10,8 +10,7 @@ object DebuggingPatch : BaseResourcePatch(
     name = "Enable debug logging",
     description = "Adds an option to enable debug logging.",
     dependencies = setOf(SettingsPatch::class),
-    compatiblePackages = COMPATIBLE_PACKAGE,
-    use = false
+    compatiblePackages = COMPATIBLE_PACKAGE
 ) {
     override fun execute(context: ResourceContext) {
 
@@ -24,8 +23,6 @@ object DebuggingPatch : BaseResourcePatch(
             )
         )
 
-        SettingsPatch.updatePatchStatus("Enable debug logging")
-
-
+        SettingsPatch.updatePatchStatus(this)
     }
 }

@@ -2,14 +2,12 @@ package app.revanced.patches.youtube.ads.general
 
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patches.shared.litho.LithoFilterPatch
-import app.revanced.patches.youtube.ads.fullscreen.FullscreenAdsPatch
-import app.revanced.patches.youtube.ads.getpremium.GetPremiumPatch
+import app.revanced.patches.youtube.ads.video.VideoAdsPatch
 import app.revanced.patches.youtube.utils.fix.doublebacktoclose.DoubleBackToClosePatch
 import app.revanced.patches.youtube.utils.fix.swiperefresh.SwipeRefreshPatch
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPONENTS_PATH
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.copyXmlNode
 import app.revanced.util.doRecursively
 import app.revanced.util.patch.BaseResourcePatch
 import app.revanced.util.startsWithAny
@@ -17,16 +15,15 @@ import org.w3c.dom.Element
 
 @Suppress("DEPRECATION", "unused")
 object GeneralAdsPatch : BaseResourcePatch(
-    name = "Hide general ads",
-    description = "Adds options to hide general ads.",
+    name = "Hide ads",
+    description = "Adds options to hide ads.",
     dependencies = setOf(
         DoubleBackToClosePatch::class,
-        FullscreenAdsPatch::class,
         GeneralAdsBytecodePatch::class,
-        GetPremiumPatch::class,
         LithoFilterPatch::class,
         SettingsPatch::class,
-        SwipeRefreshPatch::class
+        SwipeRefreshPatch::class,
+        VideoAdsPatch::class
     ),
     compatiblePackages = COMPATIBLE_PACKAGE
 ) {
@@ -88,23 +85,14 @@ object GeneralAdsPatch : BaseResourcePatch(
         }
 
         /**
-         * Copy arrays
-         */
-        context.copyXmlNode("youtube/doubleback/host", "values/arrays.xml", "resources")
-
-        /**
          * Add settings
          */
         SettingsPatch.addPreference(
             arrayOf(
-                "PREFERENCE: ADS_SETTINGS",
-                "SETTINGS: HIDE_GENERAL_ADS",
-
-                "SETTINGS: DOUBLE_BACK_TIMEOUT"
+                "PREFERENCE_SCREEN: ADS"
             )
         )
 
-        SettingsPatch.updatePatchStatus("Hide general ads")
-
+        SettingsPatch.updatePatchStatus(this)
     }
 }

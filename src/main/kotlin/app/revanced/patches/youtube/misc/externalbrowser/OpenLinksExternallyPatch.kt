@@ -26,6 +26,6 @@ object OpenLinksExternallyPatch : BaseBytecodePatch(
             )
         )
 
-        SettingsPatch.updatePatchStatus("Enable external browser")
+        SettingsPatch.updatePatchStatus(this)
     }
 }

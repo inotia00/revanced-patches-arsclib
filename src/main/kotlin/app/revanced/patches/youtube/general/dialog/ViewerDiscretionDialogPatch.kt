@@ -28,7 +28,6 @@ object ViewerDiscretionDialogPatch : BaseBytecodePatch(
             )
         )
 
-        SettingsPatch.updatePatchStatus("Remove viewer discretion dialog")
-
+        SettingsPatch.updatePatchStatus(this)
     }
 }

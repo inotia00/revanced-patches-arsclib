@@ -21,7 +21,6 @@ object DoubleTapOverlayBackgroundPatch : BaseResourcePatch(
             arrayOf("tap_bloom_view", "dark_background")
         )
 
-        SettingsPatch.updatePatchStatus("Hide double tap overlay filter")
-
+        SettingsPatch.updatePatchStatus(this)
     }
 }

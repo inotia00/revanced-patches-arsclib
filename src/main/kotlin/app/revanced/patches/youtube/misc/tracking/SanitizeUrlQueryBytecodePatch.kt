@@ -8,7 +8,6 @@ import app.revanced.patches.shared.tracking.fingerprints.CopyTextEndpointFingerp
 import app.revanced.patches.youtube.misc.tracking.fingerprints.ShareLinkFormatterFingerprint
 import app.revanced.patches.youtube.misc.tracking.fingerprints.SystemShareLinkFormatterFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.MISC_PATH
-import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
@@ -55,17 +54,5 @@ object SanitizeUrlQueryBytecodePatch : BaseSanitizeUrlQueryPatch(
                 }
             }
         }
-
-
-        /**
-         * Add settings
-         */
-        SettingsPatch.addPreference(
-            arrayOf(
-                "SETTINGS: SANITIZE_SHARING_LINKS"
-            )
-        )
-
-        SettingsPatch.updatePatchStatus("Sanitize sharing links")
     }
 }

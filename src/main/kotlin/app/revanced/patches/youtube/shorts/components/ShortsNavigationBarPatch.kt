@@ -32,7 +32,7 @@ object ShortsNavigationBarPatch : BytecodePatch(
 
                     addInstruction(
                         startIndex + 1,
-                        "sput-object v$register, $SHORTS_CLASS_DESCRIPTOR->pivotBar:Ljava/lang/Object;"
+                        "invoke-static {v$register}, $SHORTS_CLASS_DESCRIPTOR->setNavigationBar(Ljava/lang/Object;)V"
                     )
                 }
             }
@@ -43,7 +43,7 @@ object ShortsNavigationBarPatch : BytecodePatch(
 
             walkerMethod.addInstruction(
                 0,
-                "invoke-static {}, $SHORTS_CLASS_DESCRIPTOR->hideShortsPlayerNavigationBar()V"
+                "invoke-static {}, $SHORTS_CLASS_DESCRIPTOR->hideShortsNavigationBar()V"
             )
         }
 
@@ -54,7 +54,7 @@ object ShortsNavigationBarPatch : BytecodePatch(
 
                 addInstructions(
                     targetIndex + 1, """
-                        invoke-static {v$insertRegister}, $SHORTS_CLASS_DESCRIPTOR->hideShortsPlayerNavigationBar(Landroid/view/View;)Landroid/view/View;
+                        invoke-static {v$insertRegister}, $SHORTS_CLASS_DESCRIPTOR->hideShortsNavigationBar(Landroid/view/View;)Landroid/view/View;
                         move-result-object v$insertRegister
                         """
                 )

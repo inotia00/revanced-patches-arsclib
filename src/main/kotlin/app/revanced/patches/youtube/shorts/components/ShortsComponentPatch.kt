@@ -72,7 +72,7 @@ object ShortsComponentPatch : BaseBytecodePatch(
         /**
          * Comment button
          */
-        ShortsButtonFingerprint.hideButton(RightComment, "hideShortsPlayerCommentsButton", false)
+        ShortsButtonFingerprint.hideButton(RightComment, "hideShortsCommentsButton", false)
 
         /**
          * Dislike button
@@ -86,7 +86,7 @@ object ShortsComponentPatch : BaseBytecodePatch(
 
                 addInstructionsWithLabels(
                     constIndex + 1, """
-                        invoke-static {}, $SHORTS_CLASS_DESCRIPTOR->hideShortsPlayerDislikeButton()Z
+                        invoke-static {}, $SHORTS_CLASS_DESCRIPTOR->hideShortsDislikeButton()Z
                         move-result v$constRegister
                         if-nez v$constRegister, :hide
                         const v$constRegister, $ReelRightDislikeIcon
@@ -98,7 +98,7 @@ object ShortsComponentPatch : BaseBytecodePatch(
         /**
          * Info panel
          */
-        ShortsInfoPanelFingerprint.hideButtons(ReelPlayerInfoPanel, "hideShortsPlayerInfoPanel(Landroid/view/ViewGroup;)Landroid/view/ViewGroup;")
+        ShortsInfoPanelFingerprint.hideButtons(ReelPlayerInfoPanel, "hideShortsInfoPanel(Landroid/view/ViewGroup;)Landroid/view/ViewGroup;")
 
         /**
          * Like button
@@ -111,7 +111,7 @@ object ShortsComponentPatch : BaseBytecodePatch(
 
                 addInstructionsWithLabels(
                     insertIndex + 1, """
-                        invoke-static {}, $SHORTS_CLASS_DESCRIPTOR->hideShortsPlayerLikeButton()Z
+                        invoke-static {}, $SHORTS_CLASS_DESCRIPTOR->hideShortsLikeButton()Z
                         move-result v$insertRegister
                         if-nez v$insertRegister, :hide
                         const v$insertRegister, $ReelRightLikeIcon
@@ -123,11 +123,11 @@ object ShortsComponentPatch : BaseBytecodePatch(
         /**
          * Paid promotion
          */
-        ShortsPaidPromotionFingerprint.hideButtons(ReelPlayerBadge, "hideShortsPlayerPaidPromotionBanner(Landroid/view/ViewStub;)Landroid/view/ViewStub;")
-        ShortsPaidPromotionFingerprint.hideButtons(ReelPlayerBadge2, "hideShortsPlayerPaidPromotionBanner(Landroid/view/ViewStub;)Landroid/view/ViewStub;")
+        ShortsPaidPromotionFingerprint.hideButtons(ReelPlayerBadge, "hideShortsPaidPromotionBanner(Landroid/view/ViewStub;)Landroid/view/ViewStub;")
+        ShortsPaidPromotionFingerprint.hideButtons(ReelPlayerBadge2, "hideShortsPaidPromotionBanner(Landroid/view/ViewStub;)Landroid/view/ViewStub;")
 
         /**
-         * Pivot button
+         * Sound button
          */
         ShortsPivotLegacyFingerprint.result?.let {
             it.mutableMethod.apply {
@@ -139,7 +139,7 @@ object ShortsComponentPatch : BaseBytecodePatch(
 
                 addInstructionsWithLabels(
                     insertIndex, """
-                        invoke-static {}, $SHORTS_CLASS_DESCRIPTOR->hideShortsPlayerPivotButton()Z
+                        invoke-static {}, $SHORTS_CLASS_DESCRIPTOR->hideShortsSoundButton()Z
                         move-result v$targetRegister
                         if-nez v$targetRegister, :hide
                         """, ExternalLabel("hide", getInstruction(jumpIndex))
@@ -150,19 +150,19 @@ object ShortsComponentPatch : BaseBytecodePatch(
                 val targetIndex = getWideLiteralInstructionIndex(ReelPivotButton)
                 val insertIndex = getTargetIndexReversed(targetIndex, Opcode.INVOKE_STATIC) + 1
 
-                hideButtons(insertIndex, "hideShortsPlayerPivotButton(Ljava/lang/Object;)Ljava/lang/Object;")
+                hideButtons(insertIndex, "hideShortsSoundButton(Ljava/lang/Object;)Ljava/lang/Object;")
             }
         }
 
         /**
          * Remix button
          */
-        ShortsButtonFingerprint.hideButton(ReelDynRemix, "hideShortsPlayerRemixButton", true)
+        ShortsButtonFingerprint.hideButton(ReelDynRemix, "hideShortsRemixButton", true)
 
         /**
          * Share button
          */
-        ShortsButtonFingerprint.hideButton(ReelDynShare, "hideShortsPlayerShareButton", true)
+        ShortsButtonFingerprint.hideButton(ReelDynShare, "hideShortsShareButton", true)
 
         LithoFilterPatch.addFilter(BUTTON_FILTER_CLASS_DESCRIPTOR)
         LithoFilterPatch.addFilter(SHELF_FILTER_CLASS_DESCRIPTOR)
@@ -172,15 +172,12 @@ object ShortsComponentPatch : BaseBytecodePatch(
          */
         SettingsPatch.addPreference(
             arrayOf(
-                "PREFERENCE: SHORTS_SETTINGS",
-                "SETTINGS: HIDE_SHORTS_SHELF",
-                "SETTINGS: SHORTS_PLAYER_PARENT",
+                "PREFERENCE_SCREEN: SHORTS",
                 "SETTINGS: HIDE_SHORTS_COMPONENTS"
             )
         )
 
-        SettingsPatch.updatePatchStatus("Hide shorts components")
-
+        SettingsPatch.updatePatchStatus(this)
     }
 
     private fun MethodFingerprint.hideButton(

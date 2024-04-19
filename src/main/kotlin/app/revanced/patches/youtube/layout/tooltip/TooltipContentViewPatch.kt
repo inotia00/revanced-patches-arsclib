@@ -2,6 +2,7 @@ package app.revanced.patches.youtube.layout.tooltip
 
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
+import app.revanced.patches.youtube.layout.tooltip.fingerprints.TooltipContentFullscreenFingerprint
 import app.revanced.patches.youtube.layout.tooltip.fingerprints.TooltipContentViewFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
@@ -18,19 +19,23 @@ object TooltipContentViewPatch : BaseBytecodePatch(
         SharedResourceIdPatch::class
     ),
     compatiblePackages = COMPATIBLE_PACKAGE,
-    fingerprints = setOf(TooltipContentViewFingerprint)
+    fingerprints = setOf(
+        TooltipContentFullscreenFingerprint,
+        TooltipContentViewFingerprint
+    )
 ) {
     override fun execute(context: BytecodeContext) {
 
-        TooltipContentViewFingerprint.resultOrThrow().mutableMethod.addInstruction(
-            0,
-            "return-void"
-        )
+        arrayOf(
+            TooltipContentFullscreenFingerprint,
+            TooltipContentViewFingerprint
+        ).forEach { fingerprint ->
+            fingerprint.resultOrThrow().mutableMethod.addInstruction(
+                0,
+                "return-void"
+            )
+        }
 
-        /**
-         * Add settings
-         */
-        SettingsPatch.updatePatchStatus("Hide tooltip content")
-
+        SettingsPatch.updatePatchStatus(this)
     }
 }

@@ -141,11 +141,11 @@ object SponsorBlockPatch : BaseResourcePatch(
          */
         SettingsPatch.addPreference(
             arrayOf(
-                "PREFERENCE: SPONSOR_BLOCK_SETTINGS"
+                "PREFERENCE_SCREEN: SPONSOR_BLOCK"
             )
         )
 
-        SettingsPatch.updatePatchStatus("SponsorBlock")
+        SettingsPatch.updatePatchStatus(this)
 
     }
 }

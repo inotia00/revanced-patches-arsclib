@@ -31,6 +31,6 @@ object VoiceSearchButtonPatch : BaseResourcePatch(
             )
         )
 
-        SettingsPatch.updatePatchStatus("Hide voice search button")
+        SettingsPatch.updatePatchStatus(this)
     }
 }

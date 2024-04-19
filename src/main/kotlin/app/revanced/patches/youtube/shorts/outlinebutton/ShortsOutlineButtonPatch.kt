@@ -55,7 +55,7 @@ object ShortsOutlineButtonPatch : BaseResourcePatch(
             context.copyResources("youtube/shorts/outline", resourceGroup)
         }
 
-        SettingsPatch.updatePatchStatus("Shorts outline button")
+        SettingsPatch.updatePatchStatus(this)
 
     }
 }

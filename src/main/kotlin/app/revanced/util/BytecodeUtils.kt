@@ -5,14 +5,18 @@ package app.revanced.util
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
+import app.revanced.patcher.extensions.or
 import app.revanced.patcher.fingerprint.MethodFingerprint
 import app.revanced.patcher.fingerprint.MethodFingerprintResult
 import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.util.proxy.mutableTypes.MutableClass
 import app.revanced.patcher.util.proxy.mutableTypes.MutableField
+import app.revanced.patcher.util.proxy.mutableTypes.MutableField.Companion.toMutable
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
+import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.builder.instruction.BuilderInstruction21c
 import com.android.tools.smali.dexlib2.iface.Method
@@ -23,6 +27,7 @@ import com.android.tools.smali.dexlib2.iface.instruction.WideLiteralInstruction
 import com.android.tools.smali.dexlib2.iface.reference.FieldReference
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 import com.android.tools.smali.dexlib2.iface.reference.Reference
+import com.android.tools.smali.dexlib2.immutable.ImmutableField
 import com.android.tools.smali.dexlib2.util.MethodUtil
 
 fun MethodFingerprint.resultOrThrow() = result ?: throw exception
@@ -358,6 +363,57 @@ fun MutableMethod.getWalkerMethod(context: BytecodeContext, index: Int) =
     context.toMethodWalker(this)
         .nextMethod(index, true)
         .getMethod() as MutableMethod
+
+fun MutableClass.addFieldAndInstructions(
+    context: BytecodeContext,
+    methodName: String,
+    fieldName: String,
+    objectClass: String,
+    smaliInstructions: String,
+    shouldAddConstructor: Boolean
+) {
+    val objectCall = "$this->$fieldName:$objectClass"
+
+    methods.single { method -> method.name == methodName }.apply {
+        staticFields.add(
+            ImmutableField(
+                definingClass,
+                fieldName,
+                objectClass,
+                AccessFlags.PUBLIC or AccessFlags.STATIC,
+                null,
+                annotations,
+                null
+            ).toMutable()
+        )
+
+        addInstructionsWithLabels(
+            0,
+            """
+                sget-object v0, $objectCall
+                """ + smaliInstructions
+        )
+    }
+
+    if (shouldAddConstructor) {
+        context.findClass(objectClass)!!.mutableClass.methods
+            .filter { method -> MethodUtil.isConstructor(method) }
+            .forEach { mutableMethod ->
+                mutableMethod.apply {
+                    val initializeIndex = getTargetIndexWithMethodReferenceName("<init>")
+                    val insertIndex = if (initializeIndex == -1)
+                        1
+                    else
+                        initializeIndex + 1
+
+                    addInstruction(
+                        insertIndex,
+                        "sput-object p0, $objectCall"
+                    )
+                }
+            }
+    }
+}
 
 fun BytecodeContext.updatePatchStatus(
     className: String,

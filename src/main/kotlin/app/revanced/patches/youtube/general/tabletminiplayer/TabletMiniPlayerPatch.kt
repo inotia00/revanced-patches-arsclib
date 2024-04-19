@@ -75,8 +75,7 @@ object TabletMiniPlayerPatch : BaseBytecodePatch(
             )
         )
 
-        SettingsPatch.updatePatchStatus("Enable tablet mini player")
-
+        SettingsPatch.updatePatchStatus(this)
     }
 
     private fun MutableMethod.hook(index: Int) {

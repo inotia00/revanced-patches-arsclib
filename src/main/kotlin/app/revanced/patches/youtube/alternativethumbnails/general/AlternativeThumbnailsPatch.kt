@@ -16,8 +16,6 @@ import app.revanced.patches.youtube.alternativethumbnails.general.fingerprints.c
 import app.revanced.patches.youtube.utils.integrations.Constants.ALTERNATIVE_THUMBNAILS_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.patches.youtube.utils.settings.SettingsPatch.contexts
-import app.revanced.util.copyXmlNode
 import app.revanced.util.patch.BaseBytecodePatch
 import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.AccessFlags
@@ -150,19 +148,14 @@ object AlternativeThumbnailsPatch : BaseBytecodePatch(
         }
 
         /**
-         * Copy arrays
-         */
-        contexts.copyXmlNode("youtube/alternativethumbnails/host", "values/arrays.xml", "resources")
-
-        /**
          * Add settings
          */
         SettingsPatch.addPreference(
             arrayOf(
-                "PREFERENCE: ALTERNATIVE_THUMBNAILS_SETTINGS"
+                "PREFERENCE_SCREEN: ALTERNATIVE_THUMBNAILS"
             )
         )
 
-        SettingsPatch.updatePatchStatus("Alternative thumbnails")
+        SettingsPatch.updatePatchStatus(this)
     }
 }

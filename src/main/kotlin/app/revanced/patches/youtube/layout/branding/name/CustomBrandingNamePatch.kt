@@ -5,7 +5,6 @@ import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.options.PatchOption.PatchExtensions.stringPatchOption
 import app.revanced.patches.shared.elements.StringsElementsUtils.removeStringsElements
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.youtube.utils.integrations.Constants.LANGUAGE_LIST
 import app.revanced.patches.youtube.utils.settings.ResourceUtils.updatePatchStatusLabel
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.util.patch.BaseResourcePatch
@@ -32,9 +31,7 @@ object CustomBrandingNamePatch : BaseResourcePatch(
     )
 
     override fun execute(context: ResourceContext) {
-
         context.removeStringsElements(
-            LANGUAGE_LIST,
             arrayOf("application_name")
         )
 

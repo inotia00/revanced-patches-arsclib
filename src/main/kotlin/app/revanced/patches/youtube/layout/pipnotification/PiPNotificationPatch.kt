@@ -46,10 +46,6 @@ object PiPNotificationPatch : BaseBytecodePatch(
             }
         }
 
-        /**
-         * Add settings
-         */
-        SettingsPatch.updatePatchStatus("Disable pip notification")
-
+        SettingsPatch.updatePatchStatus(this)
     }
 }

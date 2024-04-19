@@ -9,7 +9,6 @@ import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.util.ResourceGroup
 import app.revanced.util.copyResources
 import app.revanced.util.patch.BaseResourcePatch
-import org.w3c.dom.Element
 import java.io.File
 import java.nio.file.Files
 
@@ -139,14 +138,6 @@ object CustomBrandingIconPatch : BaseResourcePatch(
                     )
                 ).forEach { resourceGroup ->
                     context.copyResources("$resourcePath/monochrome", resourceGroup)
-                }
-
-                // disable splash animation.
-                context.xmlEditor["res/values-v31/styles.xml"].use { editor ->
-                    val tags = editor.file.getElementsByTagName("item")
-                    List(tags.length) { tags.item(it) as Element }
-                        .filter { it.getAttribute("name").contains("android:windowSplashScreenAnimatedIcon") }
-                        .forEach { it.parentNode.removeChild(it) }
                 }
 
                 context.updatePatchStatusIcon(appIconValue)

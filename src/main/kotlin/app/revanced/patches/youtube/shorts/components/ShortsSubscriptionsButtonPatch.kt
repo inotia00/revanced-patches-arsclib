@@ -38,7 +38,7 @@ object ShortsSubscriptionsButtonPatch : BytecodePatch(
 
                 addInstruction(
                     insertIndex + 1,
-                    "invoke-static {v$insertRegister}, $SHORTS_CLASS_DESCRIPTOR->hideShortsPlayerSubscriptionsButton(Landroid/view/View;)V"
+                    "invoke-static {v$insertRegister}, $SHORTS_CLASS_DESCRIPTOR->hideShortsSubscriptionsButton(Landroid/view/View;)V"
                 )
             }
         }
@@ -71,7 +71,7 @@ object ShortsSubscriptionsButtonPatch : BytecodePatch(
 
                         addInstructions(
                             insertIndex, """
-                                invoke-static {v$register}, $SHORTS_CLASS_DESCRIPTOR->hideShortsPlayerSubscriptionsButton(I)I
+                                invoke-static {v$register}, $SHORTS_CLASS_DESCRIPTOR->hideShortsSubscriptionsButton(I)I
                                 move-result v$register
                                 """
                         )

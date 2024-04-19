@@ -86,8 +86,7 @@ object WideSearchBarPatch : BaseBytecodePatch(
             )
         )
 
-        SettingsPatch.updatePatchStatus("Enable wide search bar")
-
+        SettingsPatch.updatePatchStatus(this)
     }
 
     /**

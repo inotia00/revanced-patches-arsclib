@@ -9,7 +9,7 @@ import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.youtube.utils.fingerprints.InitializeButtonsFingerprint
-import app.revanced.patches.youtube.utils.integrations.Constants.INTEGRATIONS_PATH
+import app.revanced.patches.youtube.utils.integrations.Constants.SHARED_PATH
 import app.revanced.patches.youtube.utils.navigation.fingerprints.ActionBarSearchResultsFingerprint
 import app.revanced.patches.youtube.utils.navigation.fingerprints.NavigationEnumFingerprint
 import app.revanced.patches.youtube.utils.navigation.fingerprints.PivotBarButtonsCreateDrawableViewFingerprint
@@ -45,10 +45,10 @@ object NavigationBarHookPatch : BytecodePatch(
     ),
 ) {
     internal const val INTEGRATIONS_CLASS_DESCRIPTOR =
-        "$INTEGRATIONS_PATH/shared/NavigationBar;"
+        "$SHARED_PATH/NavigationBar;"
 
     private const val INTEGRATIONS_NAVIGATION_BUTTON_DESCRIPTOR =
-        "$INTEGRATIONS_PATH/shared/NavigationBar\$NavigationButton;"
+        "$SHARED_PATH/NavigationBar\$NavigationButton;"
 
     private lateinit var navigationTabCreatedCallback: MutableMethod
 

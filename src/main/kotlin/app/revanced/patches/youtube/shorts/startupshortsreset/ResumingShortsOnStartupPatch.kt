@@ -86,13 +86,11 @@ object ResumingShortsOnStartupPatch : BaseBytecodePatch(
          */
         SettingsPatch.addPreference(
             arrayOf(
-                "PREFERENCE: SHORTS_SETTINGS",
-                "SETTINGS: SHORTS_PLAYER_PARENT",
+                "PREFERENCE_SCREEN: SHORTS",
                 "SETTINGS: DISABLE_RESUMING_SHORTS_PLAYER"
             )
         )
 
-        SettingsPatch.updatePatchStatus("Disable resuming shorts on startup")
-
+        SettingsPatch.updatePatchStatus(this)
     }
 }

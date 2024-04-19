@@ -10,7 +10,7 @@ import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.litho.LithoFilterPatch
 import app.revanced.patches.shared.litho.fingerprints.PathBuilderFingerprint
 import app.revanced.patches.youtube.utils.browseid.fingerprints.BrowseIdClassFingerprint
-import app.revanced.patches.youtube.utils.integrations.Constants.UTILS_PATH
+import app.revanced.patches.youtube.utils.integrations.Constants.SHARED_PATH
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.util.getStringInstructionIndex
 import app.revanced.util.getTargetIndex
@@ -32,7 +32,7 @@ object BrowseIdHookPatch : BytecodePatch(
     )
 ) {
     private const val INTEGRATIONS_CLASS_DESCRIPTOR =
-        "$UTILS_PATH/BrowseIdPatch;"
+        "$SHARED_PATH/BrowseId;"
 
     override fun execute(context: BytecodeContext) {
 

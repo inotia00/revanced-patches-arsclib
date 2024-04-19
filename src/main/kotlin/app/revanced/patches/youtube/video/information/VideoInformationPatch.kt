@@ -9,14 +9,13 @@ import app.revanced.patcher.extensions.or
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.annotation.Patch
-import app.revanced.patcher.util.proxy.mutableTypes.MutableField.Companion.toMutable
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod.Companion.toMutable
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patcher.util.smali.toInstructions
 import app.revanced.patches.youtube.utils.fingerprints.OrganicPlaybackContextModelFingerprint
 import app.revanced.patches.youtube.utils.fingerprints.VideoEndFingerprint
-import app.revanced.patches.youtube.utils.integrations.Constants.VIDEO_PATH
+import app.revanced.patches.youtube.utils.integrations.Constants.SHARED_PATH
 import app.revanced.patches.youtube.utils.playertype.PlayerTypeHookPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.video.information.fingerprints.OnPlaybackSpeedItemClickFingerprint
@@ -27,6 +26,7 @@ import app.revanced.patches.youtube.video.information.fingerprints.VideoQualityL
 import app.revanced.patches.youtube.video.information.fingerprints.VideoQualityTextFingerprint
 import app.revanced.patches.youtube.video.playerresponse.PlayerResponseMethodHookPatch
 import app.revanced.patches.youtube.video.videoid.VideoIdPatch
+import app.revanced.util.addFieldAndInstructions
 import app.revanced.util.getTargetIndex
 import app.revanced.util.getTargetIndexReversed
 import app.revanced.util.getWalkerMethod
@@ -37,7 +37,6 @@ import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
-import com.android.tools.smali.dexlib2.immutable.ImmutableField
 import com.android.tools.smali.dexlib2.immutable.ImmutableMethod
 import com.android.tools.smali.dexlib2.immutable.ImmutableMethodImplementation
 import com.android.tools.smali.dexlib2.immutable.ImmutableMethodParameter
@@ -65,7 +64,7 @@ object VideoInformationPatch : BytecodePatch(
     )
 ) {
     private const val INTEGRATIONS_CLASS_DESCRIPTOR =
-        "$VIDEO_PATH/VideoInformation;"
+        "$SHARED_PATH/VideoInformation;"
 
     private lateinit var playerConstructorMethod: MutableMethod
     private var playerConstructorInsertIndex = 4
@@ -78,8 +77,11 @@ object VideoInformationPatch : BytecodePatch(
 
     // Used by other patches.
     internal lateinit var speedSelectionInsertMethod: MutableMethod
+    internal lateinit var videoEndMethod: MutableMethod
 
     override fun execute(context: BytecodeContext) {
+        val videoInformationMutableClass = context.findClass(INTEGRATIONS_CLASS_DESCRIPTOR)!!.mutableClass
+
         VideoEndFingerprint.resultOrThrow().let {
             playerConstructorMethod =
                 it.mutableClass.methods.first { method -> MethodUtil.isConstructor(method) }
@@ -112,7 +114,27 @@ object VideoInformationPatch : BytecodePatch(
                     ).toMutable()
                 )
 
-                val videoEndMethod = getWalkerMethod(context, it.scanResult.patternScanResult!!.startIndex + 1)
+                val smaliInstructions =
+                    """
+                        if-eqz v0, :ignore
+                        invoke-virtual {v0, p0, p1}, $definingClass->seekTo(J)Z
+                        move-result v0
+                        return v0
+                        :ignore
+                        const/4 v0, 0x0
+                        return v0
+                    """
+
+                videoInformationMutableClass.addFieldAndInstructions(
+                    context,
+                    "overrideVideoTime",
+                    "videoInformationClass",
+                    definingClass,
+                    smaliInstructions,
+                    true
+                )
+
+                videoEndMethod = getWalkerMethod(context, it.scanResult.patternScanResult!!.startIndex + 1)
 
                 videoEndMethod.apply {
                     addInstructionsWithLabels(
@@ -174,8 +196,6 @@ object VideoInformationPatch : BytecodePatch(
         // so they can use VideoInformation and check if the video id is for a Short.
         PlayerResponseMethodHookPatch += PlayerResponseMethodHookPatch.Hook.PlayerParameterBeforeVideoId(
             "$INTEGRATIONS_CLASS_DESCRIPTOR->newPlayerResponseParameter(Ljava/lang/String;Ljava/lang/String;Z)Ljava/lang/String;")
-
-        val videoInformationMutableClass = context.findClass(INTEGRATIONS_CLASS_DESCRIPTOR)!!.mutableClass
 
         /**
          * Hook current playback speed
@@ -253,33 +273,22 @@ object VideoInformationPatch : BytecodePatch(
                     "return-object v$register"
                 )
 
-                videoInformationMutableClass.methods.single { method ->
-                    method.name == "overridePlaybackSpeed"
-                }.apply {
-                    // add playback speed class
-                    videoInformationMutableClass.staticFields.add(
-                        ImmutableField(
-                            definingClass,
-                            "playbackSpeedClass",
-                            playbackSpeedClass,
-                            AccessFlags.PUBLIC or AccessFlags.STATIC,
-                            null,
-                            annotations,
-                            null
-                        ).toMutable()
-                    )
+                val smaliInstructions =
+                    """
+                        if-eqz v0, :ignore
+                        invoke-virtual {v0, p0}, $playbackSpeedClass->overridePlaybackSpeed(F)V
+                        :ignore
+                        return-void
+                    """
 
-                    // call override playback speed method
-                    addInstructionsWithLabels(
-                        0, """
-                            sget-object v0, $INTEGRATIONS_CLASS_DESCRIPTOR->playbackSpeedClass:$playbackSpeedClass
-                            if-eqz v0, :ignore
-                            invoke-virtual {v0, p0}, $playbackSpeedClass->overridePlaybackSpeed(F)V
-                            :ignore
-                            return-void
-                            """
-                    )
-                }
+                videoInformationMutableClass.addFieldAndInstructions(
+                    context,
+                    "overridePlaybackSpeed",
+                    "playbackSpeedClass",
+                    playbackSpeedClass,
+                    smaliInstructions,
+                    false
+                )
             }
         }
 
@@ -287,22 +296,12 @@ object VideoInformationPatch : BytecodePatch(
          * Hook current video quality
          */
         VideoQualityListFingerprint.resultOrThrow().let {
-            val constructorMethod =
-                it.mutableClass.methods.first { method -> MethodUtil.isConstructor(method) }
             val overrideMethod =
                 it.mutableClass.methods.find { method -> method.parameterTypes.first() == "I" }
 
             val videoQualityClass = it.method.definingClass
             val videoQualityMethodName = overrideMethod?.name
                 ?: throw PatchException("Failed to find hook method")
-
-            // set video quality class
-            constructorMethod.apply {
-                addInstruction(
-                    2,
-                    "sput-object p0, $INTEGRATIONS_CLASS_DESCRIPTOR->videoQualityClass:$videoQualityClass"
-                )
-            }
 
             // set video quality array
             it.mutableMethod.apply {
@@ -315,33 +314,22 @@ object VideoInformationPatch : BytecodePatch(
                 )
             }
 
-            videoInformationMutableClass.methods.single { method ->
-                method.name == "overrideVideoQuality"
-            }.apply {
-                // add video quality class
-                videoInformationMutableClass.staticFields.add(
-                    ImmutableField(
-                        definingClass,
-                        "videoQualityClass",
-                        videoQualityClass,
-                        AccessFlags.PUBLIC or AccessFlags.STATIC,
-                        null,
-                        annotations,
-                        null
-                    ).toMutable()
-                )
+            val smaliInstructions =
+                """
+                    if-eqz v0, :ignore
+                    invoke-virtual {v0, p0}, $videoQualityClass->$videoQualityMethodName(I)V
+                    :ignore
+                    return-void
+                """
 
-                // call override video quality method
-                addInstructionsWithLabels(
-                    0, """
-                        sget-object v0, $INTEGRATIONS_CLASS_DESCRIPTOR->videoQualityClass:$videoQualityClass
-                        if-eqz v0, :ignore
-                        invoke-virtual {v0, p0}, $videoQualityClass->$videoQualityMethodName(I)V
-                        :ignore
-                        return-void
-                        """
-                )
-            }
+            videoInformationMutableClass.addFieldAndInstructions(
+                context,
+                "overrideVideoQuality",
+                "videoQualityClass",
+                videoQualityClass,
+                smaliInstructions,
+                true
+            )
         }
 
         // set current video quality
@@ -374,10 +362,9 @@ object VideoInformationPatch : BytecodePatch(
      * @param targetMethodName The name of the static method to invoke when the player controller is created.
      */
     internal fun onCreateHook(targetMethodClass: String, targetMethodName: String) =
-        playerConstructorMethod.insert(
+        playerConstructorMethod.addInstruction(
             playerConstructorInsertIndex++,
-            "v0",
-            "$targetMethodClass->$targetMethodName(Ljava/lang/Object;)V"
+            "invoke-static {}, $targetMethodClass->$targetMethodName()V"
         )
 
     /**

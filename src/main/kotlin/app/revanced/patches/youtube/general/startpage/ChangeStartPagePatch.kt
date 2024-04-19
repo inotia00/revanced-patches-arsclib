@@ -6,8 +6,6 @@ import app.revanced.patches.youtube.general.startpage.fingerprints.StartActivity
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.GENERAL_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.patches.youtube.utils.settings.SettingsPatch.contexts
-import app.revanced.util.copyXmlNode
 import app.revanced.util.patch.BaseBytecodePatch
 import app.revanced.util.resultOrThrow
 
@@ -30,21 +28,15 @@ object ChangeStartPagePatch : BaseBytecodePatch(
         }
 
         /**
-         * Copy arrays
-         */
-        contexts.copyXmlNode("youtube/startpage/host", "values/arrays.xml", "resources")
-
-        /**
          * Add settings
          */
         SettingsPatch.addPreference(
             arrayOf(
-                "PREFERENCE: GENERAL_SETTINGS",
+                "PREFERENCE_SCREEN: GENERAL",
                 "SETTINGS: CHANGE_START_PAGE"
             )
         )
 
-        SettingsPatch.updatePatchStatus("Change start page")
-
+        SettingsPatch.updatePatchStatus(this)
     }
 }

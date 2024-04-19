@@ -172,12 +172,10 @@ object SpoofPlayerParameterPatch : BaseBytecodePatch(
          */
         SettingsPatch.addPreference(
             arrayOf(
-                "SETTINGS: EXPERIMENTAL_FLAGS",
                 "SETTINGS: SPOOF_PLAYER_PARAMETER"
             )
         )
 
-        SettingsPatch.updatePatchStatus("Spoof player parameters")
-
+        SettingsPatch.updatePatchStatus(this)
     }
 }

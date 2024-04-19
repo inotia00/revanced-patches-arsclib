@@ -50,13 +50,12 @@ object HapticFeedBackPatch : BaseBytecodePatch(
          */
         SettingsPatch.addPreference(
             arrayOf(
-                "PREFERENCE: PLAYER_SETTINGS",
+                "PREFERENCE_SCREEN: PLAYER",
                 "SETTINGS: DISABLE_HAPTIC_FEEDBACK"
             )
         )
 
-        SettingsPatch.updatePatchStatus("Disable haptic feedback")
-
+        SettingsPatch.updatePatchStatus(this)
     }
 
     private fun MethodFingerprint.injectHook(methodName: String) {

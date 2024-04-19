@@ -40,12 +40,10 @@ object QUICProtocolPatch : BaseBytecodePatch(
          */
         SettingsPatch.addPreference(
             arrayOf(
-                "SETTINGS: EXPERIMENTAL_FLAGS",
                 "SETTINGS: DISABLE_QUIC_PROTOCOL"
             )
         )
 
-        SettingsPatch.updatePatchStatus("Disable QUIC protocol")
-
+        SettingsPatch.updatePatchStatus(this)
     }
 }

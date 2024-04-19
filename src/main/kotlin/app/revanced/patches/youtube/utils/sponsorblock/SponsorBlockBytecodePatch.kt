@@ -56,6 +56,9 @@ object SponsorBlockBytecodePatch : BytecodePatch(
     private const val INTEGRATIONS_SEGMENT_PLAYBACK_CONTROLLER_CLASS_DESCRIPTOR =
         "$INTEGRATIONS_SPONSOR_BLOCK_PATH/SegmentPlaybackController;"
 
+    private const val INTEGRATIONS_SPONSOR_BLOCK_VIEW_CONTROLLER_CLASS_DESCRIPTOR =
+        "$INTEGRATIONS_SPONSOR_BLOCK_UI_PATH/SponsorBlockViewController;"
+
     override fun execute(context: BytecodeContext) {
 
         VideoInformationPatch.apply {
@@ -134,7 +137,7 @@ object SponsorBlockBytecodePatch : BytecodePatch(
 
                 addInstruction(
                     checkCastIndex + 1,
-                    "invoke-static {v$targetRegister}, $INTEGRATIONS_SPONSOR_BLOCK_UI_PATH/SponsorBlockViewController;->initialize(Landroid/view/ViewGroup;)V"
+                    "invoke-static {v$targetRegister}, $INTEGRATIONS_SPONSOR_BLOCK_VIEW_CONTROLLER_CLASS_DESCRIPTOR->initialize(Landroid/view/ViewGroup;)V"
                 )
             }
         }
@@ -160,6 +163,14 @@ object SponsorBlockBytecodePatch : BytecodePatch(
                 }
             }
         }
+
+        // The vote and create segment buttons automatically change their visibility when appropriate,
+        // but if buttons are showing when the end of the video is reached then they will not automatically hide.
+        // Add a hook to forcefully hide when the end of the video is reached.
+        VideoInformationPatch.videoEndMethod.addInstruction(
+            0,
+            "invoke-static {}, $INTEGRATIONS_SPONSOR_BLOCK_VIEW_CONTROLLER_CLASS_DESCRIPTOR->endOfVideoReached()V"
+        )
 
         // Set current video id
         VideoIdPatch.hookBackgroundPlayVideoId("$INTEGRATIONS_SEGMENT_PLAYBACK_CONTROLLER_CLASS_DESCRIPTOR->setCurrentVideoId(Ljava/lang/String;)V")

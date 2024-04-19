@@ -26,6 +26,6 @@ object SanitizeUrlQueryPatch : BaseResourcePatch(
             )
         )
 
-        SettingsPatch.updatePatchStatus("Sanitize sharing links")
+        SettingsPatch.updatePatchStatus(this)
     }
 }

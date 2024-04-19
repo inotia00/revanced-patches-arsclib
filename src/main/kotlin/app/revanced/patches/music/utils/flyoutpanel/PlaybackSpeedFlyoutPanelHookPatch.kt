@@ -64,7 +64,7 @@ object PlaybackSpeedFlyoutPanelHookPatch : BytecodePatch(
                     INTEGRATIONS_VIDEO_UTILS_CLASS_DESCRIPTOR
                 )!!.mutableClass
                 videoUtilsMutableClass.methods.single { method ->
-                    method.name == "showPlaybackSpeedFlyoutPanel"
+                    method.name == "showPlaybackSpeedFlyoutMenu"
                 }.apply {
                     // add playback rate bottom sheet class
                     videoUtilsMutableClass.staticFields.add(

@@ -7,23 +7,32 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.youtube.utils.fingerprints.PlayerButtonsResourcesFingerprint
+import app.revanced.patches.youtube.utils.fingerprints.PlayerButtonsVisibilityFingerprint
 import app.revanced.patches.youtube.utils.fingerprints.YouTubeControlsOverlayFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.UTILS_PATH
 import app.revanced.patches.youtube.utils.playercontrols.fingerprints.BottomControlsInflateFingerprint
 import app.revanced.patches.youtube.utils.playercontrols.fingerprints.ControlsLayoutInflateFingerprint
-import app.revanced.patches.youtube.utils.playercontrols.fingerprints.PlayerButtonsVisibilityFingerprint
-import app.revanced.patches.youtube.utils.playercontrols.fingerprints.PlayerControlsPatchFingerprint
+import app.revanced.patches.youtube.utils.playercontrols.fingerprints.MotionEventFingerprint
+import app.revanced.patches.youtube.utils.playercontrols.fingerprints.PlayerControlsVisibilityEntityModelFingerprint
 import app.revanced.patches.youtube.utils.playercontrols.fingerprints.PlayerControlsVisibilityFingerprint
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
+import app.revanced.util.getTargetIndex
+import app.revanced.util.getTargetIndexWithMethodReferenceName
 import app.revanced.util.resultOrThrow
+import com.android.tools.smali.dexlib2.Opcode
+import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
-import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 
-@Patch(dependencies = [SharedResourceIdPatch::class])
+@Patch(
+    dependencies = [
+        PlayerControlsVisibilityHookPatch::class,
+        SharedResourceIdPatch::class
+    ]
+)
 object PlayerControlsPatch : BytecodePatch(
     setOf(
         PlayerButtonsResourcesFingerprint,
-        PlayerControlsPatchFingerprint,
+        PlayerControlsVisibilityEntityModelFingerprint,
         BottomControlsInflateFingerprint,
         ControlsLayoutInflateFingerprint,
         YouTubeControlsOverlayFingerprint
@@ -33,20 +42,22 @@ object PlayerControlsPatch : BytecodePatch(
         "$UTILS_PATH/PlayerControlsPatch;"
 
     private lateinit var changeVisibilityMethod: MutableMethod
+    private lateinit var changeVisibilityNegatedImmediatelyMethod: MutableMethod
     private lateinit var initializeOverlayButtonsMethod: MutableMethod
     private lateinit var initializeSponsorBlockButtonsMethod: MutableMethod
 
     override fun execute(context: BytecodeContext) {
 
-        // new method
+        // region patch for hook visibility of play control buttons (e.g. pause, play button, etc)
+
         PlayerButtonsVisibilityFingerprint.resolve(
             context,
             PlayerButtonsResourcesFingerprint.resultOrThrow().mutableClass
         )
         PlayerButtonsVisibilityFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
-                val viewIndex = it.scanResult.patternScanResult!!.startIndex + 1
-                val viewRegister = getInstruction<TwoRegisterInstruction>(viewIndex).registerA
+                val viewIndex = getTargetIndex(Opcode.INVOKE_INTERFACE)
+                val viewRegister = getInstruction<FiveRegisterInstruction>(viewIndex).registerD
 
                 addInstruction(
                     viewIndex + 1,
@@ -55,7 +66,10 @@ object PlayerControlsPatch : BytecodePatch(
             }
         }
 
-        // legacy method
+        // endregion
+
+        // region patch for hook visibility of play controls layout
+
         PlayerControlsVisibilityFingerprint.resolve(
             context,
             YouTubeControlsOverlayFingerprint.resultOrThrow().mutableClass
@@ -64,6 +78,27 @@ object PlayerControlsPatch : BytecodePatch(
             0,
             "invoke-static {p1}, $INTEGRATIONS_CLASS_DESCRIPTOR->changeVisibility(Z)V"
         )
+
+        // endregion
+
+        // region patch for detecting motion events in play controls layout
+
+        MotionEventFingerprint.resolve(
+            context,
+            YouTubeControlsOverlayFingerprint.resultOrThrow().mutableClass
+        )
+        MotionEventFingerprint.resultOrThrow().mutableMethod.apply {
+            val insertIndex = getTargetIndexWithMethodReferenceName("setTranslationY") + 1
+
+            addInstruction(
+                insertIndex,
+                "invoke-static {}, $INTEGRATIONS_CLASS_DESCRIPTOR->changeVisibilityNegatedImmediate()V"
+            )
+        }
+
+        // endregion
+
+        // region patch initialize of overlay button or SponsorBlock button
 
         mapOf(
             BottomControlsInflateFingerprint to "initializeOverlayButtons",
@@ -82,15 +117,36 @@ object PlayerControlsPatch : BytecodePatch(
             }
         }
 
-        PlayerControlsPatchFingerprint.resultOrThrow().let {
-            changeVisibilityMethod = it.mutableMethod
+        // endregion
 
-            initializeOverlayButtonsMethod =
-                it.mutableClass.methods.find { method -> method.name == "initializeOverlayButtons" }!!
+        // region set methods to inject into integration
 
-            initializeSponsorBlockButtonsMethod =
-                it.mutableClass.methods.find { method -> method.name == "initializeSponsorBlockButtons" }!!
-        }
+        val playerControlsMutableClass =
+            context.findClass(INTEGRATIONS_CLASS_DESCRIPTOR)!!.mutableClass
+
+        changeVisibilityMethod =
+            playerControlsMutableClass.methods.single { method ->
+                method.name == "changeVisibility"
+                        && method.parameters == listOf("Z", "Z")
+            }
+
+        changeVisibilityNegatedImmediatelyMethod =
+            playerControlsMutableClass.methods.single { method ->
+                method.name == "changeVisibilityNegatedImmediately"
+            }
+
+        initializeOverlayButtonsMethod =
+            playerControlsMutableClass.methods.single { method ->
+                method.name == "initializeOverlayButtons"
+            }
+
+        initializeSponsorBlockButtonsMethod =
+            playerControlsMutableClass.methods.single { method ->
+                method.name == "initializeSponsorBlockButtons"
+            }
+
+        // endregion
+
     }
 
     private fun MutableMethod.initializeHook(classDescriptor: String) =
@@ -105,13 +161,21 @@ object PlayerControlsPatch : BytecodePatch(
             "invoke-static {p0, p1}, $classDescriptor->changeVisibility(ZZ)V"
         )
 
+    private fun changeVisibilityNegatedImmediateHook(classDescriptor: String) =
+        changeVisibilityNegatedImmediatelyMethod.addInstruction(
+            0,
+            "invoke-static {}, $classDescriptor->changeVisibilityNegatedImmediate()V"
+        )
+
     internal fun hookOverlayButtons(classDescriptor: String) {
         initializeOverlayButtonsMethod.initializeHook(classDescriptor)
         changeVisibilityHook(classDescriptor)
+        changeVisibilityNegatedImmediateHook(classDescriptor)
     }
 
     internal fun hookSponsorBlockButtons(classDescriptor: String) {
         initializeSponsorBlockButtonsMethod.initializeHook(classDescriptor)
         changeVisibilityHook(classDescriptor)
+        changeVisibilityNegatedImmediateHook(classDescriptor)
     }
 }

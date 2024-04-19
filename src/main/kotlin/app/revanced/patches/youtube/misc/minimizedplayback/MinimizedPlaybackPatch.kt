@@ -10,8 +10,8 @@ import app.revanced.patches.youtube.misc.minimizedplayback.fingerprints.Minimize
 import app.revanced.patches.youtube.misc.minimizedplayback.fingerprints.PiPControllerFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.MISC_PATH
-import app.revanced.patches.youtube.utils.integrations.IntegrationsPatch
 import app.revanced.patches.youtube.utils.playertype.PlayerTypeHookPatch
+import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.util.getWalkerMethod
 import app.revanced.util.patch.BaseBytecodePatch
 import app.revanced.util.resultOrThrow
@@ -24,8 +24,8 @@ object MinimizedPlaybackPatch : BaseBytecodePatch(
     name = "Enable minimized playback",
     description = "Enables minimized and background playback.",
     dependencies = setOf(
-        IntegrationsPatch::class,
-        PlayerTypeHookPatch::class
+        PlayerTypeHookPatch::class,
+        SettingsPatch::class
     ),
     compatiblePackages = COMPATIBLE_PACKAGE,
     fingerprints = setOf(
@@ -91,5 +91,7 @@ object MinimizedPlaybackPatch : BaseBytecodePatch(
                 )
             }
         }
+
+        SettingsPatch.updatePatchStatus(this)
     }
 }

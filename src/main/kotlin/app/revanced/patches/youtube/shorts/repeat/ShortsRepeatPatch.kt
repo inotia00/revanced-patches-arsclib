@@ -10,9 +10,7 @@ import app.revanced.patches.youtube.shorts.repeat.fingerprints.ReelEnumStaticFin
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.SHORTS_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.patches.youtube.utils.settings.SettingsPatch.contexts
 import app.revanced.util.containsReferenceInstructionIndex
-import app.revanced.util.copyXmlNode
 import app.revanced.util.findMutableMethodOf
 import app.revanced.util.getStringInstructionIndex
 import app.revanced.util.getTargetIndex
@@ -56,22 +54,16 @@ object ShortsRepeatPatch : BaseBytecodePatch(
         }
 
         /**
-         * Copy arrays
-         */
-        contexts.copyXmlNode("youtube/shorts/host", "values/arrays.xml", "resources")
-
-        /**
          * Add settings
          */
         SettingsPatch.addPreference(
             arrayOf(
-                "PREFERENCE: SHORTS_SETTINGS",
-                "SETTINGS: SHORTS_PLAYER_PARENT",
+                "PREFERENCE_SCREEN: SHORTS",
                 "SETTINGS: CHANGE_SHORTS_REPEAT_STATE"
             )
         )
 
-        SettingsPatch.updatePatchStatus("Change shorts repeat state")
+        SettingsPatch.updatePatchStatus(this)
     }
 
     private fun MutableMethod.injectEnum(

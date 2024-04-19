@@ -110,11 +110,11 @@ object ReturnYouTubeDislikePatch : BaseBytecodePatch(
          */
         SettingsPatch.addPreference(
             arrayOf(
-                "PREFERENCE: RETURN_YOUTUBE_DISLIKE_SETTINGS"
+                "PREFERENCE_SCREEN: RETURN_YOUTUBE_DISLIKE"
             )
         )
 
-        SettingsPatch.updatePatchStatus("Return YouTube Dislike")
+        SettingsPatch.updatePatchStatus(this)
 
     }
 

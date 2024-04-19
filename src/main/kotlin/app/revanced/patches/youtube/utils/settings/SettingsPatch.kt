@@ -13,6 +13,7 @@ import app.revanced.util.ResourceGroup
 import app.revanced.util.classLoader
 import app.revanced.util.copyResources
 import app.revanced.util.copyXmlNode
+import app.revanced.util.patch.BaseBytecodePatch
 import app.revanced.util.patch.BaseResourcePatch
 import org.w3c.dom.Element
 import java.io.Closeable
@@ -41,6 +42,7 @@ object SettingsPatch : BaseResourcePatch(
     internal var upward1831 = false
     internal var upward1834 = false
     internal var upward1839 = false
+    internal var upward1842 = false
     internal var upward1849 = false
     internal var upward1902 = false
     internal var upward1909 = false
@@ -74,6 +76,7 @@ object SettingsPatch : BaseResourcePatch(
                         upward1831 = 233200000 <= playServicesVersion
                         upward1834 = 233500000 <= playServicesVersion
                         upward1839 = 234000000 <= playServicesVersion
+                        upward1842 = 234302000 <= playServicesVersion
                         upward1849 = 235000000 <= playServicesVersion
                         upward1902 = 240204000 < playServicesVersion
                         upward1909 = 241002000 <= playServicesVersion
@@ -89,28 +92,24 @@ object SettingsPatch : BaseResourcePatch(
             .awaitTermination(Long.MAX_VALUE, TimeUnit.SECONDS)
 
         /**
-         * copy strings and preference
+         * copy arrays, strings and preference
          */
-        context.copyXmlNode("youtube/settings/host", "values/strings.xml", "resources")
-        context.copyResources(
-            "youtube/settings",
-            ResourceGroup("xml", "revanced_prefs.xml")
-        )
-
-        /**
-         * create directory for the untranslated language resources
-         */
-        context["res/values-v21"].mkdirs()
+        arrayOf(
+            "arrays.xml",
+            "strings.xml"
+        ).forEach { xmlFile ->
+            context.copyXmlNode("youtube/settings/host", "values/$xmlFile", "resources")
+        }
 
         arrayOf(
             ResourceGroup(
                 "layout",
                 "revanced_settings_preferences_category.xml",
-                "revanced_settings_with_toolbar.xml"
+                "revanced_settings_with_toolbar.xml",
             ),
             ResourceGroup(
-                "values-v21",
-                "strings.xml"
+                "xml",
+                "revanced_prefs.xml",
             )
         ).forEach { resourceGroup ->
             context.copyResources("youtube/settings", resourceGroup)
@@ -149,6 +148,14 @@ object SettingsPatch : BaseResourcePatch(
 
     internal fun addPreference(settingArray: Array<String>) {
         contexts.addPreference(settingArray)
+    }
+
+    internal fun updatePatchStatus(patch: BaseResourcePatch) {
+        updatePatchStatus(patch.name!!)
+    }
+
+    internal fun updatePatchStatus(patch: BaseBytecodePatch) {
+        updatePatchStatus(patch.name!!)
     }
 
     internal fun updatePatchStatus(patchTitle: String) {

@@ -29,7 +29,6 @@ object PlayerButtonBackgroundPatch : BaseResourcePatch(
             }
         }
 
-        SettingsPatch.updatePatchStatus("Hide player button background")
-
+        SettingsPatch.updatePatchStatus(this)
     }
 }

@@ -4,7 +4,6 @@ import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patches.youtube.misc.updatescreen.fingerprints.AppBlockingCheckResultToStringFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.youtube.utils.integrations.Constants.MISC_PATH
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.util.patch.BaseBytecodePatch
 import app.revanced.util.resultOrThrow
@@ -18,9 +17,6 @@ object UpdateScreenPatch : BaseBytecodePatch(
     compatiblePackages = COMPATIBLE_PACKAGE,
     fingerprints = setOf(AppBlockingCheckResultToStringFingerprint)
 ) {
-    private const val INTEGRATIONS_CLASS_DESCRIPTOR =
-        "$MISC_PATH/UpdateScreenPatch;"
-
     override fun execute(context: BytecodeContext) {
         AppBlockingCheckResultToStringFingerprint.resultOrThrow().mutableClass.methods.first { method ->
             MethodUtil.isConstructor(method)
@@ -30,6 +26,6 @@ object UpdateScreenPatch : BaseBytecodePatch(
             "const/4 p1, 0x0"
         )
 
-        SettingsPatch.updatePatchStatus("Disable update screen")
+        SettingsPatch.updatePatchStatus(this)
     }
 }
