@@ -19,7 +19,6 @@ import app.revanced.patches.youtube.feed.components.fingerprints.LatestVideosBut
 import app.revanced.patches.youtube.feed.components.fingerprints.RelatedChipCloudFingerprint
 import app.revanced.patches.youtube.feed.components.fingerprints.SearchResultsChipBarFingerprint
 import app.revanced.patches.youtube.feed.components.fingerprints.ShowMoreButtonFingerprint
-import app.revanced.patches.youtube.utils.browseid.BrowseIdHookPatch
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPONENTS_PATH
 import app.revanced.patches.youtube.utils.integrations.Constants.FEED_CLASS_DESCRIPTOR
@@ -43,7 +42,6 @@ object FeedComponentsPatch : BaseBytecodePatch(
     name = "Hide feed components",
     description = "Adds options to hide components related to feed.",
     dependencies = setOf(
-        BrowseIdHookPatch::class,
         LithoFilterPatch::class,
         NavigationBarHookPatch::class,
         SettingsPatch::class,

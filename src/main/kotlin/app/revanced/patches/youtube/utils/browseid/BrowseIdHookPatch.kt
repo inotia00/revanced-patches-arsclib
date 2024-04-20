@@ -10,7 +10,9 @@ import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.litho.LithoFilterPatch
 import app.revanced.patches.shared.litho.fingerprints.PathBuilderFingerprint
 import app.revanced.patches.youtube.utils.browseid.fingerprints.BrowseIdClassFingerprint
+import app.revanced.patches.youtube.utils.browseid.fingerprints.MobileTopBarDialogFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.SHARED_PATH
+import app.revanced.patches.youtube.utils.mainactivity.MainActivityResolvePatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.util.getStringInstructionIndex
 import app.revanced.util.getTargetIndex
@@ -22,17 +24,23 @@ import com.android.tools.smali.dexlib2.iface.reference.FieldReference
 @Patch(
     dependencies = [
         LithoFilterPatch::class,
+        MainActivityResolvePatch::class,
         SharedResourceIdPatch::class
     ]
 )
+@Deprecated("This patch will be removed in the future.")
 object BrowseIdHookPatch : BytecodePatch(
     setOf(
         BrowseIdClassFingerprint,
+        MobileTopBarDialogFingerprint,
         PathBuilderFingerprint
     )
 ) {
     private const val INTEGRATIONS_CLASS_DESCRIPTOR =
         "$SHARED_PATH/BrowseId;"
+
+    private const val SETTINGS_ACTIVITY_CLASS_DESCRIPTOR =
+        "Lcom/google/android/apps/youtube/app/settings/SettingsActivity;"
 
     override fun execute(context: BytecodeContext) {
 
@@ -62,16 +70,40 @@ object BrowseIdHookPatch : BytecodePatch(
             }
         }
 
+        val mobileTopBarDialogClass =
+            MobileTopBarDialogFingerprint.resultOrThrow().mutableClass
+
+        val mobileTopBarDialogOnBackPressedMethod =
+            mobileTopBarDialogClass.methods.single { method ->
+                method.name == "onBackPressed"
+            }
+
+        val mobileTopBarDialogOnStopMethod =
+            mobileTopBarDialogClass.methods.single { method ->
+                method.name == "onStop"
+            }
+
+        val pathBuilderMethod = PathBuilderFingerprint.resultOrThrow().mutableMethod
+
+        val settingsActivityOnBackPressedMethod =
+            context.findClass(SETTINGS_ACTIVITY_CLASS_DESCRIPTOR)!!.mutableClass.methods.single { method ->
+                method.name == "onBackPressed"
+            }
+
         /**
          * Set BrowseId to integrations.
          */
-        PathBuilderFingerprint.resultOrThrow().let {
-            it.mutableMethod.apply {
-                addInstruction(
-                    0,
-                    "invoke-static {}, $INTEGRATIONS_CLASS_DESCRIPTOR->setBrowseIdFromField()V"
-                )
-            }
+        listOf(
+            MainActivityResolvePatch.onBackPressedMethod,
+            mobileTopBarDialogOnBackPressedMethod,
+            mobileTopBarDialogOnStopMethod,
+            pathBuilderMethod,
+            settingsActivityOnBackPressedMethod
+        ).forEach { method ->
+            method.addInstruction(
+                0,
+                "invoke-static {}, $INTEGRATIONS_CLASS_DESCRIPTOR->setBrowseIdFromField()V"
+            )
         }
     }
 }

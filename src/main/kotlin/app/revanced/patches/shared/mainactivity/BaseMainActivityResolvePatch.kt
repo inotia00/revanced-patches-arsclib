@@ -19,8 +19,8 @@ abstract class BaseMainActivityResolvePatch(
     setOf(mainActivityOnCreateFingerprint)
 ) {
     lateinit var mainActivityMutableClass: MutableClass
+    lateinit var onBackPressedMethod: MutableMethod
     private lateinit var constructorMethod: MutableMethod
-    private lateinit var onBackPressedMethod: MutableMethod
     private lateinit var onCreateMethod: MutableMethod
     private var constructorMethodIndex by Delegates.notNull<Int>()
     private var onBackPressedMethodIndex by Delegates.notNull<Int>()
