@@ -15,6 +15,8 @@ import app.revanced.patches.youtube.alternativethumbnails.general.fingerprints.c
 import app.revanced.patches.youtube.alternativethumbnails.general.fingerprints.cronet.request.callback.OnSucceededFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.ALTERNATIVE_THUMBNAILS_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
+import app.revanced.patches.youtube.utils.navigation.NavigationBarHookPatch
+import app.revanced.patches.youtube.utils.playertype.PlayerTypeHookPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.util.patch.BaseBytecodePatch
 import app.revanced.util.resultOrThrow
@@ -29,7 +31,11 @@ import com.android.tools.smali.dexlib2.immutable.ImmutableMethod
 object AlternativeThumbnailsPatch : BaseBytecodePatch(
     name = "Alternative thumbnails",
     description = "Adds options to replace video thumbnails using the DeArrow API or image captures from the video.",
-    dependencies = setOf(SettingsPatch::class),
+    dependencies = setOf(
+        NavigationBarHookPatch::class,
+        PlayerTypeHookPatch::class,
+        SettingsPatch::class,
+    ),
     compatiblePackages = COMPATIBLE_PACKAGE,
     fingerprints = setOf(
         MessageDigestImageUrlParentFingerprint,

@@ -1,14 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="revanced_alt_thumbnail_type_entries">
+    <string-array name="revanced_alt_thumbnail_options_entries">
+        <item>@string/revanced_alt_thumbnail_options_entry_1</item>
+        <item>@string/revanced_alt_thumbnail_options_entry_2</item>
+        <item>@string/revanced_alt_thumbnail_options_entry_3</item>
+        <item>@string/revanced_alt_thumbnail_options_entry_4</item>
+    </string-array>
+    <string-array name="revanced_alt_thumbnail_options_entry_values">
+        <item>ORIGINAL</item>
+        <item>DEARROW</item>
+        <item>DEARROW_STILL_IMAGES</item>
+        <item>STILL_IMAGES</item>
+    </string-array>
+    <string-array name="revanced_alt_thumbnail_stills_time_entries">
         <item>@string/revanced_alt_thumbnail_stills_time_entry_1</item>
         <item>@string/revanced_alt_thumbnail_stills_time_entry_2</item>
         <item>@string/revanced_alt_thumbnail_stills_time_entry_3</item>
     </string-array>
     <string-array name="revanced_alt_thumbnail_stills_time_entry_values">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
+        <item>BEGINNING</item>
+        <item>MIDDLE</item>
+        <item>END</item>
     </string-array>
     <string-array name="revanced_change_start_page_entries">
         <item>@string/revanced_change_start_page_entry_default</item>

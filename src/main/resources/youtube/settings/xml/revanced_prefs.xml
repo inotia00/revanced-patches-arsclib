@@ -18,21 +18,17 @@
 
     <!-- PREFERENCE_SCREEN: ALTERNATIVE_THUMBNAILS
     <PreferenceScreen android:title="@string/revanced_preference_screen_alt_thumbnails_title" android:key="revanced_preference_screen_alt_thumbnails">
-        <app.revanced.integrations.youtube.settings.preference.AlternativeThumbnailsStatusPreference android:title="@string/revanced_alt_thumbnail_about_title" />
-
-        <PreferenceCategory android:title="@string/revanced_preference_category_alt_thumbnails_dearrow" android:layout="@layout/revanced_settings_preferences_category">
-            <SwitchPreference android:title="@string/revanced_alt_thumbnail_dearrow_title" android:key="revanced_alt_thumbnail_dearrow" android:defaultValue="false" android:summaryOn="@string/revanced_alt_thumbnail_dearrow_summary_on" android:summaryOff="@string/revanced_alt_thumbnail_dearrow_summary_off" />
-            <SwitchPreference android:title="@string/revanced_alt_thumbnail_dearrow_connection_toast_title" android:key="revanced_alt_thumbnail_dearrow_connection_toast" android:defaultValue="false" android:summaryOn="@string/revanced_alt_thumbnail_dearrow_connection_toast_summary_on" android:summaryOff="@string/revanced_alt_thumbnail_dearrow_connection_toast_summary_off" />
-            <app.revanced.integrations.shared.settings.preference.ResettableEditTextPreference android:title="@string/revanced_alt_thumbnail_dearrow_api_url_title" android:key="revanced_alt_thumbnail_dearrow_api_url" android:defaultValue="https://dearrow-thumb.ajay.app/api/v1/getThumbnail" android:summary="@string/revanced_alt_thumbnail_dearrow_api_url_summary" android:inputType="text" />
-            <app.revanced.integrations.youtube.settings.preference.AlternativeThumbnailsAboutDeArrowPreference android:title="@string/revanced_alt_thumbnail_dearrow_about_title" android:selectable="true" android:summary="@string/revanced_alt_thumbnail_dearrow_about_summary" />
-        </PreferenceCategory>
-
-        <PreferenceCategory android:title="@string/revanced_preference_category_alt_thumbnails_stills" android:layout="@layout/revanced_settings_preferences_category">
-            <SwitchPreference android:title="@string/revanced_alt_thumbnail_stills_title" android:key="revanced_alt_thumbnail_stills" android:defaultValue="false" android:summaryOn="@string/revanced_alt_thumbnail_stills_summary_on" android:summaryOff="@string/revanced_alt_thumbnail_stills_summary_off" />
-            <ListPreference android:entries="@array/revanced_alt_thumbnail_type_entries" android:title="@string/revanced_alt_thumbnail_stills_time_title" android:key="revanced_alt_thumbnail_stills_time" android:defaultValue="2" android:entryValues="@array/revanced_alt_thumbnail_stills_time_entry_values" />
-            <SwitchPreference android:title="@string/revanced_alt_thumbnail_stills_fast_title" android:key="revanced_alt_thumbnail_stills_fast" android:defaultValue="false" android:summaryOn="@string/revanced_alt_thumbnail_stills_fast_summary_on" android:summaryOff="@string/revanced_alt_thumbnail_stills_fast_summary_off" />
-            <Preference android:title="@string/revanced_alt_thumbnail_stills_about_title" android:selectable="true" android:summary="@string/revanced_alt_thumbnail_stills_about_summary" />
-        </PreferenceCategory>
+        <ListPreference android:entries="@array/revanced_alt_thumbnail_options_entries" android:title="@string/revanced_alt_thumbnail_home_title" android:key="revanced_alt_thumbnail_home" android:entryValues="@array/revanced_alt_thumbnail_options_entry_values" />
+        <ListPreference android:entries="@array/revanced_alt_thumbnail_options_entries" android:title="@string/revanced_alt_thumbnail_subscriptions_title" android:key="revanced_alt_thumbnail_subscriptions" android:entryValues="@array/revanced_alt_thumbnail_options_entry_values" />
+        <ListPreference android:entries="@array/revanced_alt_thumbnail_options_entries" android:title="@string/revanced_alt_thumbnail_library_title" android:key="revanced_alt_thumbnail_library" android:entryValues="@array/revanced_alt_thumbnail_options_entry_values" />
+        <ListPreference android:entries="@array/revanced_alt_thumbnail_options_entries" android:title="@string/revanced_alt_thumbnail_player_title" android:key="revanced_alt_thumbnail_player" android:entryValues="@array/revanced_alt_thumbnail_options_entry_values" />
+        <ListPreference android:entries="@array/revanced_alt_thumbnail_options_entries" android:title="@string/revanced_alt_thumbnail_search_title" android:key="revanced_alt_thumbnail_search" android:entryValues="@array/revanced_alt_thumbnail_options_entry_values" />
+        <app.revanced.integrations.youtube.settings.preference.AlternativeThumbnailsAboutDeArrowPreference android:title="@string/revanced_alt_thumbnail_dearrow_about_title" android:selectable="true" android:summary="@string/revanced_alt_thumbnail_dearrow_about_summary" />
+        <SwitchPreference android:title="@string/revanced_alt_thumbnail_dearrow_connection_toast_title" android:key="revanced_alt_thumbnail_dearrow_connection_toast" android:defaultValue="false" android:summaryOn="@string/revanced_alt_thumbnail_dearrow_connection_toast_summary_on" android:summaryOff="@string/revanced_alt_thumbnail_dearrow_connection_toast_summary_off" />
+        <app.revanced.integrations.shared.settings.preference.ResettableEditTextPreference android:title="@string/revanced_alt_thumbnail_dearrow_api_url_title" android:key="revanced_alt_thumbnail_dearrow_api_url" android:defaultValue="https://dearrow-thumb.ajay.app/api/v1/getThumbnail" android:summary="@string/revanced_alt_thumbnail_dearrow_api_url_summary" android:inputType="text" />
+        <Preference android:title="@string/revanced_alt_thumbnail_stills_about_title" android:selectable="false" android:summary="@string/revanced_alt_thumbnail_stills_about_summary" />
+        <SwitchPreference android:title="@string/revanced_alt_thumbnail_stills_fast_title" android:key="revanced_alt_thumbnail_stills_fast" android:defaultValue="false" android:summaryOn="@string/revanced_alt_thumbnail_stills_fast_summary_on" android:summaryOff="@string/revanced_alt_thumbnail_stills_fast_summary_off" />
+        <ListPreference android:entries="@array/revanced_alt_thumbnail_stills_time_entries" android:title="@string/revanced_alt_thumbnail_stills_time_title" android:key="revanced_alt_thumbnail_stills_time" android:entryValues="@array/revanced_alt_thumbnail_stills_time_entry_values" />
     </PreferenceScreen>PREFERENCE_SCREEN: ALTERNATIVE_THUMBNAILS -->
 
 
