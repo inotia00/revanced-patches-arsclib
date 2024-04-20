@@ -26,18 +26,18 @@
     <string name="revanced_change_start_page_title">Change start page</string>
     <string name="revanced_custom_filter_strings_summary">Configure which components to filter, separated by new lines.</string>
     <string name="revanced_custom_filter_strings_title">Edit custom filter</string>
-    <string name="revanced_custom_filter_toast_invalid_syntax" formatted="false">Invalid custom filter: %s.</string>
+    <string name="revanced_custom_filter_toast_invalid_syntax">Invalid custom filter: %s.</string>
     <string name="revanced_custom_filter_summary">Enables the custom filter to hide layout components.</string>
     <string name="revanced_custom_filter_title">Enable custom filter</string>
     <string name="revanced_custom_playback_speeds_invalid">Invalid custom playback speeds. Speeds reset to default.</string>
     <string name="revanced_custom_playback_speeds_summary">Configure the available playback speeds.</string>
     <string name="revanced_custom_playback_speeds_title">Edit custom playback speeds</string>
-    <string name="revanced_custom_playback_speeds_warning" formatted="false">Custom speeds can\'t be more than %sx.</string>
+    <string name="revanced_custom_playback_speeds_warning">Custom speeds can\'t be more than %sx.</string>
     <string name="revanced_disable_auto_captions_summary">Disables captions from being automatically enabled.</string>
     <string name="revanced_disable_auto_captions_title">Disable forced auto captions</string>
     <string name="revanced_disable_dislike_redirection_summary">Disables redirection to the next track when clicking dislike button.</string>
     <string name="revanced_disable_dislike_redirection_title">Disable dislike redirection</string>
-    <string name="revanced_downloader_not_installed" formatted="false">%s is not installed. Please install it.</string>
+    <string name="revanced_downloader_not_installed">%s is not installed. Please install it.</string>
     <string name="revanced_enable_black_navigation_bar_summary">Sets the navigation bar color to black.</string>
     <string name="revanced_enable_black_navigation_bar_title">Enable black navigation bar</string>
     <string name="revanced_enable_color_match_player_summary">Matches the color of the miniplayer to the fullscreen player.</string>
@@ -92,7 +92,7 @@ Some features may not work properly in the old player layout."</string>
     <string name="revanced_extended_settings_import_reset">Settings reset to default.</string>
     <string name="revanced_extended_settings_import_success">Imported %d settings.</string>
     <string name="revanced_extended_settings_reset">Reset</string>
-    <string name="revanced_external_downloader_not_installed_warning" formatted="false">%s is not installed. Please install it.</string>
+    <string name="revanced_external_downloader_not_installed_warning">%s is not installed. Please install it.</string>
     <string name="revanced_external_downloader_package_name_summary">Package name of your installed external downloader app, such as NewPipe or YTDLnis.</string>
     <string name="revanced_external_downloader_package_name_title">External downloader package name</string>
     <string name="revanced_flyout_panel_watch_on_youtube">Watch on YouTube</string>
@@ -229,7 +229,7 @@ Known issue: If one or more music that cannot be played in the playlist, it does
     <string name="revanced_ryd_dislike_percentage_title">Dislikes as percentage</string>
     <string name="revanced_ryd_enabled_summary">Shows the dislike count of videos.</string>
     <string name="revanced_ryd_failure_connection_timeout">Dislikes are temporarily unavailable (API timed out).</string>
-    <string name="revanced_ryd_failure_connection_status_code" formatted="false">Dislikes are unavailable (status %d).</string>
+    <string name="revanced_ryd_failure_connection_status_code">Dislikes are unavailable (status %d).</string>
     <string name="revanced_ryd_failure_client_rate_limit_requested">Dislikes are unavailable (client API limit reached).</string>
     <string name="revanced_ryd_failure_generic">Dislikes are unavailable (%s).</string>
     <string name="revanced_ryd_toast_on_connection_error_summary">Shows a toast if the Return YouTube Dislike API is unavailable.</string>
@@ -237,10 +237,10 @@ Known issue: If one or more music that cannot be played in the playlist, it does
     <string name="revanced_ryd_video_likes_hidden_by_video_owner">Hidden</string>
     <string name="revanced_sanitize_sharing_links_summary">Removes tracking query parameters from URLs when sharing links.</string>
     <string name="revanced_sanitize_sharing_links_title">Sanitize sharing links</string>
-    <string name="revanced_save_playback_speed" formatted="false">Changing default speed to %s.</string>
-    <string name="revanced_save_video_quality_mobile" formatted="false">Changing default mobile data quality to %s.</string>
+    <string name="revanced_save_playback_speed">Changing default speed to %s.</string>
+    <string name="revanced_save_video_quality_mobile">Changing default mobile data quality to %s.</string>
     <string name="revanced_save_video_quality_none">Failed to set quality.</string>
-    <string name="revanced_save_video_quality_wifi" formatted="false">Changing default Wi-Fi quality to %s.</string>
+    <string name="revanced_save_video_quality_wifi">Changing default Wi-Fi quality to %s.</string>
     <string name="revanced_share_copy_settings_success">Settings copied to clipboard.</string>
     <string name="revanced_spoof_app_version_summary">"Spoofs the client version to an older version.
 
@@ -303,7 +303,7 @@ Known issue: If one or more music that cannot be played in the playlist, it does
     <string name="revanced_sb_skip_ignore">Disable</string>
 
     <string name="revanced_sb_sponsorblock_connection_failure_generic">SponsorBlock is temporarily unavailable.</string>
-    <string name="revanced_sb_sponsorblock_connection_failure_status" formatted="false">SponsorBlock is temporarily unavailable (status %d).</string>
+    <string name="revanced_sb_sponsorblock_connection_failure_status">SponsorBlock is temporarily unavailable (status %d).</string>
     <string name="revanced_sb_sponsorblock_connection_failure_timeout">SponsorBlock is temporarily unavailable (API timed out).</string>
 
     <string name="revanced_sb_color_dot_label">Color:</string>

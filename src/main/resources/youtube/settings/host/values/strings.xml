@@ -335,13 +335,13 @@ Some components may not be hidden."</string>
     <string name="revanced_preference_screen_custom_filter_title">Custom filter</string>
     <string name="revanced_preference_screen_custom_filter_summary">Hide components using custom filters.</string>
 
-    <!-- 'Component path builder strings' is the technical name for identifying the Litho UI layout items to hide. This is an advanced feature and most users will never use this. -->
     <string name="revanced_custom_filter_title">Enable custom filter</string>
     <string name="revanced_custom_filter_summary_on">Custom filter is enabled.</string>
     <string name="revanced_custom_filter_summary_off">Custom filter is disabled.</string>
     <string name="revanced_custom_filter_strings_title">Custom filter</string>
+    <!-- 'Component path builder strings' is the technical name for identifying the Litho UI layout items to hide. This is an advanced feature and most users will never use this. -->
     <string name="revanced_custom_filter_strings_summary">List of component path builder strings to filter separated by new line.</string>
-    <string name="revanced_custom_filter_toast_invalid_syntax" formatted="false">Invalid custom filter: %s.</string>
+    <string name="revanced_custom_filter_toast_invalid_syntax">Invalid custom filter: %s.</string>
 
     <!-- PreferenceScreen: General, PreferenceCategory: General, PreferenceScreen: Navigation buttons -->
     <string name="revanced_preference_screen_navigation_buttons_title">Navigation buttons</string>
@@ -715,14 +715,14 @@ Tap and hold to set playback speed to 1.0x."</string>
     <string name="revanced_external_downloader_package_name_summary">Package name of your installed external downloader app, such as NewPipe or YTDLnis.</string>
     <string name="revanced_external_downloader_dialog_title">External downloader</string>
     <string name="revanced_external_downloader_not_installed_dialog_title">Warning</string>
-    <string name="revanced_external_downloader_not_installed_dialog_message" formatted="false">"%s is not installed.
-Please download %s from the website."</string>
-    <string name="revanced_external_downloader_not_installed_warning" formatted="false">%s is not installed. Please install it.</string>
+    <string name="revanced_external_downloader_not_installed_dialog_message">"%1$s is not installed.
+Please download %2$s from the website."</string>
+    <string name="revanced_external_downloader_not_installed_warning">%s is not installed. Please install it.</string>
     <string name="revanced_external_downloader_action_title">Override download action button</string>
     <string name="revanced_external_downloader_action_summary_on">Download button opens your external downloader</string>
     <string name="revanced_external_downloader_action_summary_off">Download button opens the native in-app downloader</string>
 
-    <string name="revanced_share_copy_timestamp_success" formatted="false">Time stamp copied to clipboard. (%s)</string>
+    <string name="revanced_share_copy_timestamp_success">Time stamp copied to clipboard. (%s)</string>
     <string name="revanced_share_copy_url_success">URL copied to clipboard.</string>
     <string name="revanced_share_copy_url_timestamp_success">URL with timestamp copied to clipboard.</string>
 
@@ -952,12 +952,12 @@ Limitation: Official headers in search results will be hidden."</string>
     <string name="revanced_skip_preloaded_buffer_toast_title">Show a toast when skipped</string>
     <string name="revanced_skip_preloaded_buffer_toast_summary_on">Toast is shown.</string>
     <string name="revanced_skip_preloaded_buffer_toast_summary_off">Toast is not shown.</string>
-    <string name="revanced_remember_playback_speed_toast" formatted="false">Changing default speed to %s.</string>
-    <string name="revanced_remember_video_quality_mobile" formatted="false">Changing default mobile data quality to %s.</string>
+    <string name="revanced_remember_playback_speed_toast">Changing default speed to %s.</string>
+    <string name="revanced_remember_video_quality_mobile">Changing default mobile data quality to %s.</string>
     <string name="revanced_remember_video_quality_none">Failed to set video quality.</string>
-    <string name="revanced_remember_video_quality_wifi" formatted="false">Changing default Wi-Fi quality to %s.</string>
+    <string name="revanced_remember_video_quality_wifi">Changing default Wi-Fi quality to %s.</string>
     <string name="revanced_custom_playback_speeds_invalid">Invalid custom playback speeds. Reset to default values.</string>
-    <string name="revanced_custom_playback_speeds_warning" formatted="false">Custom speeds can\'t be more than %sx. Reset to default values.</string>
+    <string name="revanced_custom_playback_speeds_warning">Custom speeds can\'t be more than %sx. Reset to default values.</string>
 
 
     <!-- PreferenceScreen: Return YouTube Dislike -->
@@ -976,6 +976,9 @@ Limitation: Official headers in search results will be hidden."</string>
     <string name="revanced_ryd_compact_layout_title">Compact like button</string>
     <string name="revanced_ryd_compact_layout_summary_on">Like button styled for minimum width.</string>
     <string name="revanced_ryd_compact_layout_summary_off">Like button styled for best appearance.</string>
+    <string name="revanced_ryd_toast_on_connection_error_title">Show a toast if API is not available</string>
+    <string name="revanced_ryd_toast_on_connection_error_summary_on">Toast is shown if Return YouTube Dislike is not available.</string>
+    <string name="revanced_ryd_toast_on_connection_error_summary_off">Toast is not shown if Return YouTube Dislike is not available.</string>
 
     <!-- PreferenceScreen: Return YouTube Dislike, PreferenceCategory: About -->
     <string name="revanced_ryd_about">About</string>
@@ -983,12 +986,10 @@ Limitation: Official headers in search results will be hidden."</string>
     <string name="revanced_ryd_attribution_summary">Dislike data is provided by the Return YouTube Dislike API. Tap here to learn more.</string>
 
     <string name="revanced_ryd_failure_connection_timeout">Dislikes temporarily not available (API timed out).</string>
-    <string name="revanced_ryd_failure_connection_status_code" formatted="false">Dislikes not available (status %d).</string>
+    <string name="revanced_ryd_failure_connection_status_code">Dislikes not available (status %d).</string>
     <string name="revanced_ryd_failure_client_rate_limit_requested">Dislikes not available (client API limit reached).</string>
     <string name="revanced_ryd_failure_generic">Dislikes not available (%s).</string>
-    <string name="revanced_ryd_toast_on_connection_error_title">Show a toast if API is not available</string>
-    <string name="revanced_ryd_toast_on_connection_error_summary_off">Toast is not shown if Return YouTube Dislike is not available.</string>
-    <string name="revanced_ryd_toast_on_connection_error_summary_on">Toast is shown if Return YouTube Dislike is not available.</string>
+    <string name="revanced_ryd_failure_ryd_enabled_while_playing_video_then_user_voted">Reload video to vote using Return YouTube Dislike</string>
     <string name="revanced_ryd_video_likes_hidden_by_video_owner">Hidden</string>
 
 
@@ -1128,20 +1129,20 @@ Limitation: Official headers in search results will be hidden."</string>
     <string name="revanced_sb_settings_revanced_export_user_id_warning_dismiss">Do not show again</string>
 
     <string name="revanced_sb_sponsorblock_connection_failure_generic">SponsorBlock temporarily not available.</string>
-    <string name="revanced_sb_sponsorblock_connection_failure_status" formatted="false">SponsorBlock temporarily not available (status %d).</string>
+    <string name="revanced_sb_sponsorblock_connection_failure_status">SponsorBlock temporarily not available (status %d).</string>
     <string name="revanced_sb_sponsorblock_connection_failure_timeout">SponsorBlock temporarily not available (API timed out).</string>
 
-    <string name="revanced_sb_submit_failed_invalid" formatted="false">Unable to submit segment: %s.</string>
+    <string name="revanced_sb_submit_failed_invalid">Unable to submit segment: %s.</string>
     <string name="revanced_sb_submit_failed_timeout">SponsorBlock is temporarily down.</string>
-    <string name="revanced_sb_submit_failed_unknown_error" formatted="false">Unable to submit segment (status: %d %s).</string>
+    <string name="revanced_sb_submit_failed_unknown_error">Unable to submit segment (status: %1$d %2$s).</string>
     <string name="revanced_sb_submit_failed_rate_limit">Unable to submit segment.\nRate Limited (too many from the same user or IP).</string>
-    <string name="revanced_sb_submit_failed_forbidden" formatted="false">Can\'t submit the segment: %s.</string>
+    <string name="revanced_sb_submit_failed_forbidden">Can\'t submit the segment: %s.</string>
     <string name="revanced_sb_submit_failed_duplicate">Can\'t submit the segment.\nAlready exists.</string>
     <string name="revanced_sb_submit_succeeded">Segment submitted successfully.</string>
 
     <string name="revanced_sb_vote_failed_timeout">Unable to vote for segment (API timed out).</string>
-    <string name="revanced_sb_vote_failed_unknown_error" formatted="false">Unable to vote for segment (status: %d %s).</string>
-    <string name="revanced_sb_vote_failed_forbidden" formatted="false">Unable to vote for segment: %s.</string>
+    <string name="revanced_sb_vote_failed_unknown_error">Unable to vote for segment (status: %1$d %2$s).</string>
+    <string name="revanced_sb_vote_failed_forbidden">Unable to vote for segment: %s.</string>
     <string name="revanced_sb_vote_upvote">Upvote</string>
     <string name="revanced_sb_vote_downvote">Downvote</string>
     <string name="revanced_sb_vote_category">Change category</string>
@@ -1150,14 +1151,14 @@ Limitation: Official headers in search results will be hidden."</string>
     <string name="revanced_sb_new_segment_choose_category">Choose the segment category</string>
     <string name="revanced_sb_new_segment_disabled_category">Category is disabled in settings. Enable category to submit.</string>
     <string name="revanced_sb_new_segment_title">New SponsorBlock segment</string>
-    <string name="revanced_sb_new_segment_mark_time_as_question" formatted="false">Set %02d:%02d:%03d as the start or end of a new segment?</string>
+    <string name="revanced_sb_new_segment_mark_time_as_question">Set %1$02d:%2$02d:%3$03d as the start or end of a new segment?</string>
     <string name="revanced_sb_new_segment_mark_start">start</string>
     <string name="revanced_sb_new_segment_mark_end">end</string>
     <string name="revanced_sb_new_segment_now">now</string>
     <string name="revanced_sb_new_segment_time_start">Time the segment begins at</string>
     <string name="revanced_sb_new_segment_time_end">Time the segment ends at</string>
     <string name="revanced_sb_new_segment_confirm_title">Are the times correct?</string>
-    <string name="revanced_sb_new_segment_confirm_content" formatted="false">The segment lasts from %02d:%02d to %02d:%02d (%d minutes %02d seconds)\nIs it ready to submit?</string>
+    <string name="revanced_sb_new_segment_confirm_content">The segment lasts from %1$02d:%2$02d to %3$02d:%4$02d (%5$d minutes %6$02d seconds)\nIs it ready to submit?</string>
     <string name="revanced_sb_new_segment_start_is_before_end">Start must be before the end.</string>
     <string name="revanced_sb_new_segment_mark_locations_first">Mark two locations on the time bar first.</string>
     <string name="revanced_sb_new_segment_preview_segment_first">Preview the segment, and ensure it skips smoothly.</string>
@@ -1170,22 +1171,22 @@ Limitation: Official headers in search results will be hidden."</string>
     <string name="revanced_sb_stats_connection_failure">Stats temporarily not available (API is down).</string>
     <string name="revanced_sb_stats_loading">Loading...</string>
     <string name="revanced_sb_stats_sb_disabled">SponsorBlock is disabled.</string>
-    <string name="revanced_sb_stats_username" formatted="false">Your username: &lt;b>%s&lt;/b></string>
+    <string name="revanced_sb_stats_username">Your username: &lt;b>%s&lt;/b></string>
     <string name="revanced_sb_stats_username_change">Tap here to change your username</string>
-    <string name="revanced_sb_stats_username_change_unknown_error" formatted="false">Unable to change username: Status: %d %s.</string>
+    <string name="revanced_sb_stats_username_change_unknown_error">Unable to change username: Status: %1$d %2$s.</string>
     <string name="revanced_sb_stats_username_changed">Username successfully changed.</string>
-    <string name="revanced_sb_stats_reputation" formatted="false">Your reputation is &lt;b>%.2f&lt;/b></string>
-    <string name="revanced_sb_stats_submissions" formatted="false">You\'ve created &lt;b>%s&lt;/b> segments</string>
+    <string name="revanced_sb_stats_reputation">Your reputation is &lt;b>%.2f&lt;/b></string>
+    <string name="revanced_sb_stats_submissions">You\'ve created &lt;b>%s&lt;/b> segments</string>
     <string name="revanced_sb_stats_saved_zero">SponsorBlock leaderboard</string>
-    <string name="revanced_sb_stats_saved" formatted="false">You\'ve saved people from &lt;b>%s&lt;/b> segments</string>
+    <string name="revanced_sb_stats_saved">You\'ve saved people from &lt;b>%s&lt;/b> segments</string>
     <string name="revanced_sb_stats_saved_sum_zero">Tap here to see the global stats and top contributors.</string>
-    <string name="revanced_sb_stats_saved_sum" formatted="false">That\'s &lt;b>%s&lt;/b> of their lives.&lt;br>Tap here to see the leaderboard.</string>
-    <string name="revanced_sb_stats_self_saved" formatted="false">You\'ve skipped &lt;b>%s&lt;/b> segments</string>
-    <string name="revanced_sb_stats_self_saved_sum" formatted="false">That\'s &lt;b>%s&lt;/b>.</string>
+    <string name="revanced_sb_stats_saved_sum">That\'s &lt;b>%s&lt;/b> of their lives.&lt;br>Tap here to see the leaderboard.</string>
+    <string name="revanced_sb_stats_self_saved">You\'ve skipped &lt;b>%s&lt;/b> segments</string>
+    <string name="revanced_sb_stats_self_saved_sum">That\'s &lt;b>%s&lt;/b>.</string>
     <string name="revanced_sb_stats_self_saved_reset_title">Reset skipped segments counter?</string>
-    <string name="revanced_sb_stats_saved_hour_format" formatted="false">%s hours %s minutes</string>
-    <string name="revanced_sb_stats_saved_minute_format" formatted="false">%s minutes %s seconds</string>
-    <string name="revanced_sb_stats_saved_second_format" formatted="false">%s seconds</string>
+    <string name="revanced_sb_stats_saved_hour_format">%1$s hours %2$s minutes</string>
+    <string name="revanced_sb_stats_saved_minute_format">%1$s minutes %2$s seconds</string>
+    <string name="revanced_sb_stats_saved_second_format">%s seconds</string>
 
     <!-- PreferenceScreen: SponsorBlock, PreferenceCategory: About -->
     <string name="revanced_sb_about">About</string>
