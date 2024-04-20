@@ -151,9 +151,9 @@ Tap here to learn more about DeArrow."</string>
     <string name="revanced_hide_category_bar_in_related_videos_title">Hide in related videos</string>
     <string name="revanced_hide_category_bar_in_related_videos_summary_on">Hidden in related videos.</string>
     <string name="revanced_hide_category_bar_in_related_videos_summary_off">Shown in related videos.</string>
-    <string name="revanced_hide_category_bar_in_search_title">Hide in search</string>
-    <string name="revanced_hide_category_bar_in_search_summary_on">Hidden in search.</string>
-    <string name="revanced_hide_category_bar_in_search_summary_off">Shown in search.</string>
+    <string name="revanced_hide_category_bar_in_search_title">Hide in search results</string>
+    <string name="revanced_hide_category_bar_in_search_summary_on">Hidden in search results.</string>
+    <string name="revanced_hide_category_bar_in_search_summary_off">Shown in search results.</string>
 
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Channel profile -->
     <string name="revanced_preference_screen_channel_profile_title">Channel profile</string>
@@ -598,7 +598,7 @@ Instead, use the 'Settings → Autoplay → Autoplay next video' setting."</stri
     <string name="revanced_show_video_title_section_title">Show video title section</string>
     <string name="revanced_show_video_title_section_summary">"Shows the video title section in full screen.
 
-Known issue: Video title disappears when clicked."</string>
+Limitation: Video title disappears when clicked."</string>
     <string name="revanced_hide_autoplay_preview_summary_on">Autoplay preview container is hidden.</string>
     <string name="revanced_hide_autoplay_preview_summary_off">Autoplay preview container is shown.</string>
     <string name="revanced_hide_autoplay_preview_title">Hide autoplay preview container</string>
@@ -865,10 +865,20 @@ Please download %s from the website."</string>
     <string name="revanced_hide_shorts_shelf_title">Hide shorts shelf</string>
     <string name="revanced_hide_shorts_shelf_summary">"Hides Shorts shelves.
 
-Known issue: Official headers in search results will be hidden."</string>
-    <string name="revanced_hide_shorts_shelf_exception_history_title">Show in watch history</string>
-    <string name="revanced_hide_shorts_shelf_exception_history_summary_on">Shorts shelves in watch history is shown.</string>
-    <string name="revanced_hide_shorts_shelf_exception_history_summary_off">Shorts shelves in watch history is hidden.</string>
+Limitation: Official headers in search results will be hidden."</string>
+
+    <string name="revanced_hide_shorts_shelf_home_related_videos_title">Hide in home feed and related videos</string>
+    <string name="revanced_hide_shorts_shelf_home_related_videos_summary_on">Hidden in home feed and related videos.</string>
+    <string name="revanced_hide_shorts_shelf_home_related_videos_summary_off">Shown in home feed and related videos.</string>
+    <string name="revanced_hide_shorts_shelf_subscriptions_title">Hide in subscriptions feed</string>
+    <string name="revanced_hide_shorts_shelf_subscriptions_summary_on">Hidden in subscriptions feed.</string>
+    <string name="revanced_hide_shorts_shelf_subscriptions_summary_off">Shown in subscriptions feed.</string>
+    <string name="revanced_hide_shorts_shelf_search_title">Hide in search results</string>
+    <string name="revanced_hide_shorts_shelf_search_summary_on">Hidden in search results.</string>
+    <string name="revanced_hide_shorts_shelf_search_summary_off">Shown in search results.</string>
+    <string name="revanced_hide_shorts_shelf_history_title">Hide in watch history</string>
+    <string name="revanced_hide_shorts_shelf_history_summary_on">Hidden in watch history.</string>
+    <string name="revanced_hide_shorts_shelf_history_summary_off">Shown in watch history.</string>
 
 
     <!-- PreferenceScreen: Swipe controls -->
@@ -1226,7 +1236,7 @@ Known issue: Official headers in search results will be hidden."</string>
     <string name="revanced_spoof_player_parameter_title">Spoof player parameter</string>
     <string name="revanced_spoof_player_parameter_summary">"Spoofs player parameters to prevent playback issues.
 
-Known issues:
+Limitations:
 • Enhanced bitrate is not available.
 • No seekbar thumbnails for paid videos.
 • Offline downloads may not work.
@@ -1234,10 +1244,10 @@ Known issues:
     <string name="revanced_spoof_player_parameter_in_feed_title">Spoof player parameter in feed</string>
     <string name="revanced_spoof_player_parameter_in_feed_summary_on">"Player parameter spoofed for feed videos.
 
-Known issue: Automatically played feed videos will show up in your watch history."</string>
+Limitation: Automatically played feed videos will show up in your watch history."</string>
     <string name="revanced_spoof_player_parameter_in_feed_summary_off">"Player parameter not spoofed for feed videos.
 
-Known issue: Feed videos will play for less than 1 minute before encountering playback issues."</string>
+Limitation: Feed videos will play for less than 1 minute before encountering playback issues."</string>
 
     <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Import / Export settings -->
     <string name="revanced_preference_screen_import_export_title">Import / Export settings</string>
