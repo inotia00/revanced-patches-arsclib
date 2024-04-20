@@ -78,6 +78,7 @@ object SharedResourceIdPatch : ResourcePatch() {
     var ScrimOverlay = -1L
     var Scrubbing = -1L
     var SeekUndoEduOverlayStub = -1L
+    var SizeAdjustableYouTubeControlsOverlay = -1L
     var SlidingDialogAnimation = -1L
     var SubtitleMenuSettingsFooterInfo = -1L
     var SuggestedAction = -1L
@@ -153,6 +154,7 @@ object SharedResourceIdPatch : ResourcePatch() {
         ScrimOverlay = getId(ID, "scrim_overlay")
         Scrubbing = getId(DIMEN, "vertical_touch_offset_to_enter_fine_scrubbing")
         SeekUndoEduOverlayStub = getId(ID, "seek_undo_edu_overlay_stub")
+        SizeAdjustableYouTubeControlsOverlay = getId(LAYOUT, "size_adjustable_youtube_controls_overlay")
         SlidingDialogAnimation = getId(STYLE, "SlidingDialogAnimation")
         SubtitleMenuSettingsFooterInfo = getId(STRING, "subtitle_menu_settings_footer_info")
         SuggestedAction = getId(LAYOUT, "suggested_action")

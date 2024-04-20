@@ -6,7 +6,9 @@ import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.Patch
+import app.revanced.patches.shared.litho.LithoFilterPatch
 import app.revanced.patches.youtube.utils.fingerprints.YouTubeControlsOverlayFingerprint
+import app.revanced.patches.youtube.utils.integrations.Constants.COMPONENTS_PATH
 import app.revanced.patches.youtube.utils.integrations.Constants.SHARED_PATH
 import app.revanced.patches.youtube.utils.integrations.Constants.UTILS_PATH
 import app.revanced.patches.youtube.utils.playertype.fingerprint.ActionBarSearchResultsFingerprint
@@ -15,6 +17,7 @@ import app.revanced.patches.youtube.utils.playertype.fingerprint.ReelWatchPagerF
 import app.revanced.patches.youtube.utils.playertype.fingerprint.VideoStateFingerprint
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.ReelWatchPlayer
+import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.SizeAdjustableYouTubeControlsOverlay
 import app.revanced.util.getTargetIndex
 import app.revanced.util.getTargetIndexWithMethodReferenceName
 import app.revanced.util.getWideLiteralInstructionIndex
@@ -24,7 +27,12 @@ import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 
-@Patch(dependencies = [SharedResourceIdPatch::class])
+@Patch(
+    dependencies = [
+        LithoFilterPatch::class,
+        SharedResourceIdPatch::class
+    ]
+)
 object PlayerTypeHookPatch : BytecodePatch(
     setOf(
         ActionBarSearchResultsFingerprint,
@@ -38,6 +46,9 @@ object PlayerTypeHookPatch : BytecodePatch(
 
     private const val INTEGRATIONS_ROOT_VIEW_HOOK_CLASS_DESCRIPTOR =
         "$SHARED_PATH/RootView;"
+
+    private const val FILTER_CLASS_DESCRIPTOR =
+        "$COMPONENTS_PATH/InvalidateStateFilter;"
 
     override fun execute(context: BytecodeContext) {
 
@@ -66,6 +77,18 @@ object PlayerTypeHookPatch : BytecodePatch(
                             """
                     )
                 }
+            }
+
+            parentResult.mutableMethod.apply {
+                val constIndex = getWideLiteralInstructionIndex(SizeAdjustableYouTubeControlsOverlay)
+                val targetIndex = getTargetIndex(constIndex, Opcode.MOVE_RESULT_OBJECT)
+                val targetRegister = getInstruction<OneRegisterInstruction>(targetIndex).registerA
+
+                addInstruction(
+                    targetIndex + 1,
+                    "invoke-static {v$targetRegister}, " +
+                            "$INTEGRATIONS_ROOT_VIEW_HOOK_CLASS_DESCRIPTOR->onPlayerCreate(Landroid/view/View;)V"
+                )
             }
         }
 
@@ -98,5 +121,8 @@ object PlayerTypeHookPatch : BytecodePatch(
                         "$INTEGRATIONS_ROOT_VIEW_HOOK_CLASS_DESCRIPTOR->searchBarResultsViewLoaded(Landroid/view/View;)V",
             )
         }
+
+        LithoFilterPatch.addFilter(FILTER_CLASS_DESCRIPTOR)
+
     }
 }

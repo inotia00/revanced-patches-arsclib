@@ -3,10 +3,12 @@ package app.revanced.patches.youtube.utils.fingerprints
 import app.revanced.patcher.extensions.or
 import app.revanced.patcher.fingerprint.MethodFingerprint
 import app.revanced.patches.youtube.player.components.PlayerComponentsPatch
+import app.revanced.patches.youtube.utils.playertype.PlayerTypeHookPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.FadeDurationFast
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.InsetOverlayViewLayout
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.ScrimOverlay
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.SeekUndoEduOverlayStub
+import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.SizeAdjustableYouTubeControlsOverlay
 import app.revanced.patches.youtube.utils.sponsorblock.SponsorBlockBytecodePatch
 import app.revanced.util.containsWideLiteralInstructionIndex
 import com.android.tools.smali.dexlib2.AccessFlags
@@ -19,6 +21,7 @@ import com.android.tools.smali.dexlib2.Opcode
  *
  * The patches and resourceIds that use this fingerprint are as follows:
  * - [PlayerComponentsPatch] uses [FadeDurationFast], [ScrimOverlay] and [SeekUndoEduOverlayStub].
+ * - [PlayerTypeHookPatch] uses [SizeAdjustableYouTubeControlsOverlay].
  * - [SponsorBlockBytecodePatch] uses [InsetOverlayViewLayout].
  */
 internal object YouTubeControlsOverlayFingerprint : MethodFingerprint(
@@ -30,5 +33,6 @@ internal object YouTubeControlsOverlayFingerprint : MethodFingerprint(
                 && methodDef.containsWideLiteralInstructionIndex(InsetOverlayViewLayout)
                 && methodDef.containsWideLiteralInstructionIndex(ScrimOverlay)
                 && methodDef.containsWideLiteralInstructionIndex(SeekUndoEduOverlayStub)
+                && methodDef.containsWideLiteralInstructionIndex(SizeAdjustableYouTubeControlsOverlay)
     }
 )
