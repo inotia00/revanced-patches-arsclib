@@ -66,6 +66,8 @@ object FeedComponentsPatch : BaseBytecodePatch(
         "$COMPONENTS_PATH/FeedComponentsFilter;"
     private const val FEED_VIDEO_FILTER_CLASS_DESCRIPTOR =
         "$COMPONENTS_PATH/FeedVideoFilter;"
+    private const val FEED_VIDEO_VIEWS_FILTER_CLASS_DESCRIPTOR =
+        "$COMPONENTS_PATH/FeedVideoViewsFilter;"
     private const val KEYWORD_FILTER_CLASS_DESCRIPTOR =
         "$COMPONENTS_PATH/KeywordContentFilter;"
 
@@ -195,6 +197,7 @@ object FeedComponentsPatch : BaseBytecodePatch(
 
         LithoFilterPatch.addFilter(FEED_COMPONENTS_FILTER_CLASS_DESCRIPTOR)
         LithoFilterPatch.addFilter(FEED_VIDEO_FILTER_CLASS_DESCRIPTOR)
+        LithoFilterPatch.addFilter(FEED_VIDEO_VIEWS_FILTER_CLASS_DESCRIPTOR)
         LithoFilterPatch.addFilter(KEYWORD_FILTER_CLASS_DESCRIPTOR)
 
         /**
