@@ -107,7 +107,7 @@ abstract class BaseGmsCoreSupportPatch(
         mainActivityOnCreateFingerprint.resultOrThrow().mutableMethod.addInstructions(
             1, // Hack to not disturb other patches (such as the YTMusic integrations patch).
             "invoke-static/range { p0 .. p0 }, $INTEGRATIONS_PATH/patches/GmsCoreSupport;->" +
-                    "checkGmsCore(Landroid/content/Context;)V",
+                    "checkGmsCore(Landroid/app/Activity;)V",
         )
 
         // Change the vendor of GmsCore in ReVanced Integrations.

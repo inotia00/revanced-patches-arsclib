@@ -1214,12 +1214,18 @@ Limitation: Official headers in search results will be hidden."</string>
 
     <string name="gms_core_settings_title">Open GmsCore</string>
     <string name="gms_core_settings_summary">Enable cloud messaging to receive notifications.</string>
-    <string name="gms_core_dialog_not_whitelisted_not_allowed_in_background_message">GmsCore does not have permission to run in the background.</string>
-    <string name="gms_core_dialog_not_whitelisted_using_battery_optimizations_message">GmsCore is not whitelisted from battery optimization.</string>
-    <string name="gms_core_dialog_title">Action needed</string>
-    <string name="gms_core_dialog_ok_button_text">Open website</string>
     <string name="gms_core_toast_not_installed_message">GmsCore is not installed. Install it.</string>
-    <string name="gms_core_toast_not_whitelisted_message">"Follow the 'Don't kill my app' guide for GmsCore."</string>
+    <string name="gms_core_dialog_title">Action needed</string>
+    <string name="gms_core_dialog_not_whitelisted_not_allowed_in_background_message">"GmsCore does not have permission to run in the background.
+
+Follow the 'Don't kill my app' guide for your phone, and apply the instructions to your MicroG installation.
+
+This is required for the app to work."</string>
+    <string name="gms_core_dialog_open_website_text">Open website</string>
+    <string name="gms_core_dialog_not_whitelisted_using_battery_optimizations_message">"GmsCore battery optimizations must be disabled to prevent issues.
+
+Tap on the continue button and disable battery optimizations."</string>
+    <string name="gms_core_dialog_continue_text">Continue</string>
 
     <string name="revanced_sanitize_sharing_links_title">Sanitize sharing links</string>
     <string name="revanced_sanitize_sharing_links_summary">Removes tracking query parameters from the URLs when sharing links.</string>
