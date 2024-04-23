@@ -397,7 +397,7 @@ fun MutableClass.addFieldAndInstructions(
 
     if (shouldAddConstructor) {
         context.findClass(objectClass)!!.mutableClass.methods
-            .filter { method -> MethodUtil.isConstructor(method) }
+            .filter { method -> method.name == "<init>" }
             .forEach { mutableMethod ->
                 mutableMethod.apply {
                     val initializeIndex = getTargetIndexWithMethodReferenceName("<init>")

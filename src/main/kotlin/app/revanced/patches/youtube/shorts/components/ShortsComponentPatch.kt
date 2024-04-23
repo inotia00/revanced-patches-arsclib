@@ -17,7 +17,6 @@ import app.revanced.patches.youtube.shorts.components.fingerprints.ShortsPivotLe
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPONENTS_PATH
 import app.revanced.patches.youtube.utils.integrations.Constants.SHORTS_CLASS_DESCRIPTOR
-import app.revanced.patches.youtube.utils.navigation.NavigationBarHookPatch
 import app.revanced.patches.youtube.utils.playertype.PlayerTypeHookPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.ReelDynRemix
@@ -45,7 +44,6 @@ object ShortsComponentPatch : BaseBytecodePatch(
     description = "Adds options to hide components related to YouTube Shorts.",
     dependencies = setOf(
         LithoFilterPatch::class,
-        NavigationBarHookPatch::class,
         PlayerTypeHookPatch::class,
         SettingsPatch::class,
         SharedResourceIdPatch::class,

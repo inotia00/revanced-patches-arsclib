@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.utils.browseid.fingerprints
+package app.revanced.patches.youtube.utils.playertype.fingerprint
 
 import app.revanced.patcher.extensions.or
 import app.revanced.patcher.fingerprint.MethodFingerprint
