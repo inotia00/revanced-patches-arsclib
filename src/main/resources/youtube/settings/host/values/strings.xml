@@ -1085,6 +1085,7 @@ Limitation: Dislikes may not appear in incognito mode."</string>
     <string name="revanced_sb_color_invalid">Invalid color code.</string>
     <string name="revanced_sb_reset">Reset</string>
     <string name="revanced_sb_reset_color">Reset color</string>
+    <string name="revanced_sb_share_copy_settings_success">Settings copied to clipboard.</string>
 
     <!-- PreferenceScreen: SponsorBlock, PreferenceCategory: Creating new segments -->
     <string name="revanced_sb_create_segment_category">Creating new segments</string>

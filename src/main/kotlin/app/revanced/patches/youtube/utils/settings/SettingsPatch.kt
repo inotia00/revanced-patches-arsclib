@@ -96,7 +96,9 @@ object SettingsPatch : BaseResourcePatch(
          */
         arrayOf(
             "arrays.xml",
-            "strings.xml"
+            "dimens.xml",
+            "strings.xml",
+            "styles.xml"
         ).forEach { xmlFile ->
             context.copyXmlNode("youtube/settings/host", "values/$xmlFile", "resources")
         }
