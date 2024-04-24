@@ -58,6 +58,7 @@ object SharedResourceIdPatch : ResourcePatch() {
     var InterstitialsContainer = -1L
     var MenuItemView = -1L
     var MusicAppDeeplinkButtonView = -1L
+    var PanelSubHeader = -1L
     var PosterArtWidthDefault = -1L
     var QualityAuto = -1L
     var QuickActionsElementContainer = -1L
@@ -133,6 +134,7 @@ object SharedResourceIdPatch : ResourcePatch() {
         InterstitialsContainer = getId(ID, "interstitials_container")
         MenuItemView = getId(ID, "menu_item_view")
         MusicAppDeeplinkButtonView = getId(ID, "music_app_deeplink_button_view")
+        PanelSubHeader = getId(ID, "panel_subheader")
         PosterArtWidthDefault = getId(DIMEN, "poster_art_width_default")
         QualityAuto = getId(STRING, "quality_auto")
         QuickActionsElementContainer = getId(ID, "quick_actions_element_container")
