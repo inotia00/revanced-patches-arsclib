@@ -11,6 +11,8 @@ import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.shared.litho.LithoFilterPatch
 import app.revanced.patches.youtube.feed.components.fingerprints.BreakingNewsFingerprint
 import app.revanced.patches.youtube.feed.components.fingerprints.ChannelListSubMenuFingerprint
+import app.revanced.patches.youtube.feed.components.fingerprints.ChannelListSubMenuTabletFingerprint
+import app.revanced.patches.youtube.feed.components.fingerprints.ChannelListSubMenuTabletSyntheticFingerprint
 import app.revanced.patches.youtube.feed.components.fingerprints.DefaultsTabsBarFingerprint
 import app.revanced.patches.youtube.feed.components.fingerprints.ElementParserFingerprint
 import app.revanced.patches.youtube.feed.components.fingerprints.ElementParserParentFingerprint
@@ -51,6 +53,8 @@ object FeedComponentsPatch : BaseBytecodePatch(
     fingerprints = setOf(
         BreakingNewsFingerprint,
         ChannelListSubMenuFingerprint,
+        ChannelListSubMenuTabletFingerprint,
+        ChannelListSubMenuTabletSyntheticFingerprint,
         DefaultsTabsBarFingerprint,
         ElementParserParentFingerprint,
         FilterBarHeightFingerprint,
@@ -88,6 +92,26 @@ object FeedComponentsPatch : BaseBytecodePatch(
                         "invoke-static {v$targetRegister}, $FEED_CLASS_DESCRIPTOR->$methodName(Landroid/view/View;)V"
                     )
                 }
+            }
+        }
+
+        // endregion
+
+        // region patch for hide subscriptions channel section for tablet
+
+        arrayOf(
+            ChannelListSubMenuTabletFingerprint,
+            ChannelListSubMenuTabletSyntheticFingerprint
+        ).forEach { fingerprint ->
+            fingerprint.resultOrThrow().mutableMethod.apply {
+                addInstructionsWithLabels(
+                    0, """
+                        invoke-static {}, $FEED_CLASS_DESCRIPTOR->hideSubscriptionsChannelSection()Z
+                        move-result v0
+                        if-eqz v0, :show
+                        return-void
+                        """, ExternalLabel("show", getInstruction(0))
+                )
             }
         }
 
