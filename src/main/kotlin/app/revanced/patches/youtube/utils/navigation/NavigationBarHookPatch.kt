@@ -17,15 +17,12 @@ import app.revanced.patches.youtube.utils.navigation.fingerprints.PivotBarButton
 import app.revanced.patches.youtube.utils.navigation.fingerprints.PivotBarConstructorFingerprint
 import app.revanced.patches.youtube.utils.playertype.PlayerTypeHookPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
-import app.revanced.util.addFieldAndInstructions
 import app.revanced.util.getReference
-import app.revanced.util.getTargetIndex
 import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.Instruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
-import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 import com.android.tools.smali.dexlib2.util.MethodUtil
 
