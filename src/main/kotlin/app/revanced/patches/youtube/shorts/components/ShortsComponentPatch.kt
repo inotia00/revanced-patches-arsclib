@@ -5,15 +5,18 @@ import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
+import app.revanced.patcher.extensions.InstructionExtensions.removeInstruction
 import app.revanced.patcher.fingerprint.MethodFingerprint
+import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.shared.litho.LithoFilterPatch
 import app.revanced.patches.youtube.shorts.components.fingerprints.ShortsButtonFingerprint
-import app.revanced.patches.youtube.shorts.components.fingerprints.ShortsInfoPanelFingerprint
 import app.revanced.patches.youtube.shorts.components.fingerprints.ShortsPaidPromotionFingerprint
 import app.revanced.patches.youtube.shorts.components.fingerprints.ShortsPivotFingerprint
 import app.revanced.patches.youtube.shorts.components.fingerprints.ShortsPivotLegacyFingerprint
+import app.revanced.patches.youtube.shorts.components.fingerprints.ShortsSubscriptionsTabletFingerprint
+import app.revanced.patches.youtube.shorts.components.fingerprints.ShortsSubscriptionsTabletParentFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPONENTS_PATH
 import app.revanced.patches.youtube.utils.integrations.Constants.SHORTS_CLASS_DESCRIPTOR
@@ -23,9 +26,6 @@ import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.ReelD
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.ReelDynShare
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.ReelForcedMuteButton
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.ReelPivotButton
-import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.ReelPlayerBadge
-import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.ReelPlayerBadge2
-import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.ReelPlayerInfoPanel
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.ReelRightDislikeIcon
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.ReelRightLikeIcon
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.RightComment
@@ -37,6 +37,9 @@ import app.revanced.util.patch.BaseBytecodePatch
 import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
+import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
+import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
+import com.android.tools.smali.dexlib2.iface.reference.FieldReference
 
 @Suppress("unused")
 object ShortsComponentPatch : BaseBytecodePatch(
@@ -48,16 +51,15 @@ object ShortsComponentPatch : BaseBytecodePatch(
         SettingsPatch::class,
         SharedResourceIdPatch::class,
         ShortsNavigationBarPatch::class,
-        ShortsSubscriptionsButtonPatch::class,
         ShortsToolBarPatch::class
     ),
     compatiblePackages = COMPATIBLE_PACKAGE,
     fingerprints = setOf(
         ShortsButtonFingerprint,
-        ShortsInfoPanelFingerprint,
         ShortsPaidPromotionFingerprint,
         ShortsPivotFingerprint,
-        ShortsPivotLegacyFingerprint
+        ShortsPivotLegacyFingerprint,
+        ShortsSubscriptionsTabletParentFingerprint
     )
 ) {
     private const val BUTTON_FILTER_CLASS_DESCRIPTOR =
@@ -67,14 +69,14 @@ object ShortsComponentPatch : BaseBytecodePatch(
 
     override fun execute(context: BytecodeContext) {
 
-        /**
-         * Comment button
-         */
+        // region patch for hide comments button (non-litho)
+
         ShortsButtonFingerprint.hideButton(RightComment, "hideShortsCommentsButton", false)
 
-        /**
-         * Dislike button
-         */
+        // endregion
+
+        // region patch for hide dislike button (non-litho)
+
         ShortsButtonFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val constIndex = getWideLiteralInstructionIndex(ReelRightDislikeIcon)
@@ -93,14 +95,10 @@ object ShortsComponentPatch : BaseBytecodePatch(
             }
         }
 
-        /**
-         * Info panel
-         */
-        ShortsInfoPanelFingerprint.hideButtons(ReelPlayerInfoPanel, "hideShortsInfoPanel(Landroid/view/ViewGroup;)Landroid/view/ViewGroup;")
+        // endregion
 
-        /**
-         * Like button
-         */
+        // region patch for hide like button (non-litho)
+
         ShortsButtonFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val insertIndex = getWideLiteralInstructionIndex(ReelRightLikeIcon)
@@ -118,15 +116,10 @@ object ShortsComponentPatch : BaseBytecodePatch(
             }
         }
 
-        /**
-         * Paid promotion
-         */
-        ShortsPaidPromotionFingerprint.hideButtons(ReelPlayerBadge, "hideShortsPaidPromotionBanner(Landroid/view/ViewStub;)Landroid/view/ViewStub;")
-        ShortsPaidPromotionFingerprint.hideButtons(ReelPlayerBadge2, "hideShortsPaidPromotionBanner(Landroid/view/ViewStub;)Landroid/view/ViewStub;")
+        // endregion
 
-        /**
-         * Sound button
-         */
+        // region patch for hide sound button
+
         ShortsPivotLegacyFingerprint.result?.let {
             it.mutableMethod.apply {
                 val targetIndex = getWideLiteralInstructionIndex(ReelForcedMuteButton)
@@ -152,15 +145,96 @@ object ShortsComponentPatch : BaseBytecodePatch(
             }
         }
 
-        /**
-         * Remix button
-         */
+        // endregion
+
+        // region patch for hide remix button (non-litho)
+
         ShortsButtonFingerprint.hideButton(ReelDynRemix, "hideShortsRemixButton", true)
 
-        /**
-         * Share button
-         */
+        // endregion
+
+        // region patch for hide share button (non-litho)
+
         ShortsButtonFingerprint.hideButton(ReelDynShare, "hideShortsShareButton", true)
+
+        // endregion
+
+        // region patch for hide paid promotion label (non-litho)
+
+        ShortsPaidPromotionFingerprint.resultOrThrow().let {
+            it.mutableMethod.apply {
+                when (returnType) {
+                    "Landroid/widget/TextView;" -> {
+                        val insertIndex = implementation!!.instructions.size - 1
+                        val insertRegister = getInstruction<OneRegisterInstruction>(insertIndex).registerA
+
+                        addInstructions(
+                            insertIndex + 1, """
+                                invoke-static {v$insertRegister}, $SHORTS_CLASS_DESCRIPTOR->hideShortsPaidPromotionLabel(Landroid/widget/TextView;)V
+                                return-object v$insertRegister
+                                """
+                        )
+                        removeInstruction(insertIndex)
+                    }
+                    "V" -> {
+                        addInstructionsWithLabels(
+                            0, """
+                                invoke-static {}, $SHORTS_CLASS_DESCRIPTOR->hideShortsPaidPromotionLabel()Z
+                                move-result v0
+                                if-eqz v0, :show
+                                return-void
+                                """, ExternalLabel("show", getInstruction(0))
+                        )
+                    }
+                    else -> {
+                        throw PatchException("Unknown returnType: $returnType")
+                    }
+                }
+            }
+        }
+
+        // endregion
+
+        // region patch for hide subscribe button (non-litho)
+
+        // This method is deprecated since YouTube v18.31.xx.
+        if (!SettingsPatch.upward1831) {
+            ShortsSubscriptionsTabletParentFingerprint.resultOrThrow().let { parentResult ->
+                lateinit var subscriptionFieldReference: FieldReference
+
+                parentResult.mutableMethod.apply {
+                    val targetIndex = getWideLiteralInstructionIndex(SharedResourceIdPatch.ReelPlayerFooter) - 1
+                    subscriptionFieldReference =
+                        (getInstruction<ReferenceInstruction>(targetIndex)).reference as FieldReference
+                }
+
+                ShortsSubscriptionsTabletFingerprint.also {
+                    it.resolve(
+                        context,
+                        parentResult.classDef
+                    )
+                }.resultOrThrow().mutableMethod.apply {
+                    implementation!!.instructions.filter { instruction ->
+                        val fieldReference =
+                            (instruction as? ReferenceInstruction)?.reference as? FieldReference
+                        instruction.opcode == Opcode.IGET
+                                && fieldReference == subscriptionFieldReference
+                    }.forEach { instruction ->
+                        val insertIndex = implementation!!.instructions.indexOf(instruction) + 1
+                        val register = (instruction as TwoRegisterInstruction).registerA
+
+                        addInstructions(
+                            insertIndex, """
+                                invoke-static {v$register}, $SHORTS_CLASS_DESCRIPTOR->hideShortsSubscribeButton(I)I
+                                move-result v$register
+                                """
+                        )
+                    }
+                }
+            }
+        }
+
+        // endregion
 
         LithoFilterPatch.addFilter(BUTTON_FILTER_CLASS_DESCRIPTOR)
         LithoFilterPatch.addFilter(SHELF_FILTER_CLASS_DESCRIPTOR)

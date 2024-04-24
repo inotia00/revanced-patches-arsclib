@@ -1,17 +1,13 @@
 package app.revanced.patches.youtube.shorts.components.fingerprints
 
-import app.revanced.patcher.extensions.or
-import app.revanced.patcher.fingerprint.MethodFingerprint
-import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.ReelPlayerBadge
-import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.ReelPlayerBadge2
-import app.revanced.util.containsWideLiteralInstructionIndex
-import com.android.tools.smali.dexlib2.AccessFlags
+import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.BadgeLabel
+import app.revanced.util.fingerprint.LiteralValueFingerprint
 
-internal object ShortsPaidPromotionFingerprint : MethodFingerprint(
-    returnType = "V",
-    accessFlags = AccessFlags.PUBLIC or AccessFlags.FINAL,
-    customFingerprint = { methodDef, _ ->
-        methodDef.containsWideLiteralInstructionIndex(ReelPlayerBadge)
-                && methodDef.containsWideLiteralInstructionIndex(ReelPlayerBadge2)
-    },
+/**
+ * The method by which patches are applied is different between the minimum supported version and the maximum supported version.
+ * There are two classes where R.id.badge_label[BadgeLabel] is used,
+ * but due to the structure of ReVanced Patcher, the patch is applied to the method found first.
+ */
+internal object ShortsPaidPromotionFingerprint : LiteralValueFingerprint(
+    literalSupplier = { BadgeLabel }
 )

@@ -808,55 +808,14 @@ Please download %2$s from the website."</string>
     <string name="revanced_disable_resuming_shorts_player_title">Disable resuming Shorts player</string>
     <string name="revanced_disable_resuming_shorts_player_summary_on">Shorts player will not resume on app startup</string>
     <string name="revanced_disable_resuming_shorts_player_summary_off">Shorts player will resume on app startup</string>
-    <string name="revanced_hide_shorts_comments_button_title">Hide comments button</string>
-    <string name="revanced_hide_shorts_comments_button_summary_on">Comments button is hidden.</string>
-    <string name="revanced_hide_shorts_comments_button_summary_off">Comments button is shown.</string>
-    <string name="revanced_hide_shorts_dislike_button_title">Hide dislike button</string>
-    <string name="revanced_hide_shorts_dislike_button_summary_on">Dislike button is hidden.</string>
-    <string name="revanced_hide_shorts_dislike_button_summary_off">Dislike button is shown.</string>
-    <string name="revanced_hide_shorts_info_panel_title">Hide info panels</string>
-    <string name="revanced_hide_shorts_info_panel_summary_on">Info panels are hidden.</string>
-    <string name="revanced_hide_shorts_info_panel_summary_off">Info panels are shown.</string>
-    <string name="revanced_hide_shorts_join_button_title">Hide join button</string>
-    <string name="revanced_hide_shorts_join_button_summary_on">Join button is hidden.</string>
-    <string name="revanced_hide_shorts_join_button_summary_off">Join button is shown.</string>
-    <string name="revanced_hide_shorts_like_button_title">Hide like button</string>
-    <string name="revanced_hide_shorts_like_button_summary_on">Like button is hidden.</string>
-    <string name="revanced_hide_shorts_like_button_summary_off">Like button is shown.</string>
-    <string name="revanced_hide_shorts_paid_promotion_banner_title">Hide paid promotion banner</string>
-    <string name="revanced_hide_shorts_paid_promotion_banner_summary_on">Paid promotion banner is hidden.</string>
-    <string name="revanced_hide_shorts_paid_promotion_banner_summary_off">Paid promotion banner is shown.</string>
-    <string name="revanced_hide_shorts_remix_button_title">Hide remix button</string>
-    <string name="revanced_hide_shorts_remix_button_summary_on">Remix button is hidden.</string>
-    <string name="revanced_hide_shorts_remix_button_summary_off">Remix button is shown.</string>
-    <string name="revanced_hide_shorts_share_button_title">Hide share button</string>
-    <string name="revanced_hide_shorts_share_button_summary_on">Share button is hidden.</string>
-    <string name="revanced_hide_shorts_share_button_summary_off">Share button is shown.</string>
-    <string name="revanced_hide_shorts_sound_button_title">Hide sound button</string>
-    <string name="revanced_hide_shorts_sound_button_summary_on">Sound button is hidden.</string>
-    <string name="revanced_hide_shorts_sound_button_summary_off">Sound button is shown.</string>
-    <string name="revanced_hide_shorts_subscriptions_button_title">Hide subscriptions button</string>
-    <string name="revanced_hide_shorts_subscriptions_button_summary_on">Subscriptions button is hidden.</string>
-    <string name="revanced_hide_shorts_subscriptions_button_summary_off">Subscriptions button is shown.</string>
-    <string name="revanced_hide_shorts_thanks_button_title">Hide thanks button</string>
-    <string name="revanced_hide_shorts_thanks_button_summary_on">Thanks button is hidden.</string>
-    <string name="revanced_hide_shorts_thanks_button_summary_off">Thanks button is shown.</string>
-    <string name="revanced_hide_shorts_toolbar_title">Hide toolbar</string>
-    <string name="revanced_hide_shorts_toolbar_summary_on">Toolbar is hidden.</string>
-    <string name="revanced_hide_shorts_toolbar_summary_off">Toolbar is shown.</string>
-    <string name="revanced_hide_shorts_navigation_bar_title">Hide navigation bar</string>
-    <string name="revanced_hide_shorts_navigation_bar_summary_on">Navigation bar is hidden.</string>
-    <string name="revanced_hide_shorts_navigation_bar_summary_off">Navigation bar is shown.</string>
 
-    <!-- PreferenceScreen: Shorts, PreferenceCategory: Shorts, PreferenceScreen: Shorts shelf -->
-    <string name="revanced_preference_screen_shorts_shelf_title">Shorts shelf</string>
-    <string name="revanced_preference_screen_shorts_shelf_summary">Hide or show shorts shelf in the feed, search, etc.</string>
+    <!-- PreferenceScreen: Shorts, PreferenceCategory: Shorts shelf -->
+    <string name="revanced_preference_category_shorts_shelf">Shorts shelf</string>
 
     <string name="revanced_hide_shorts_shelf_title">Hide shorts shelf</string>
     <string name="revanced_hide_shorts_shelf_summary">"Hides Shorts shelves.
 
 Limitation: Official headers in search results will be hidden."</string>
-
     <string name="revanced_hide_shorts_shelf_home_related_videos_title">Hide in home feed and related videos</string>
     <string name="revanced_hide_shorts_shelf_home_related_videos_summary_on">Hidden in home feed and related videos.</string>
     <string name="revanced_hide_shorts_shelf_home_related_videos_summary_off">Shown in home feed and related videos.</string>
@@ -869,6 +828,82 @@ Limitation: Official headers in search results will be hidden."</string>
     <string name="revanced_hide_shorts_shelf_history_title">Hide in watch history</string>
     <string name="revanced_hide_shorts_shelf_history_summary_on">Hidden in watch history.</string>
     <string name="revanced_hide_shorts_shelf_history_summary_off">Shown in watch history.</string>
+
+    <!-- PreferenceScreen: Shorts, PreferenceCategory: Shorts, PreferenceScreen: Shorts player -->
+    <string name="revanced_preference_screen_shorts_player_title">Shorts player</string>
+    <string name="revanced_preference_screen_shorts_player_summary">Hide or show components in the shorts player.</string>
+
+    <string name="revanced_hide_shorts_join_button_title">Hide join button</string>
+    <string name="revanced_hide_shorts_join_button_summary_on">Join button is hidden.</string>
+    <string name="revanced_hide_shorts_join_button_summary_off">Join button is shown.</string>
+    <string name="revanced_hide_shorts_subscribe_button_title">Hide subscribe button</string>
+    <string name="revanced_hide_shorts_subscribe_button_summary_on">Subscribe button is hidden.</string>
+    <string name="revanced_hide_shorts_subscribe_button_summary_off">Subscribe button is shown.</string>
+    <string name="revanced_hide_shorts_paused_overlay_buttons_title">Hide paused overlay buttons</string>
+    <string name="revanced_hide_shorts_paused_overlay_buttons_summary_on">Paused overlay buttons are hidden.</string>
+    <string name="revanced_hide_shorts_paused_overlay_buttons_summary_off">Paused overlay buttons are shown.</string>
+    <string name="revanced_hide_shorts_paid_promotion_label_title">Hide paid promotion label</string>
+    <string name="revanced_hide_shorts_paid_promotion_label_summary_on">Paid promotion label is hidden.</string>
+    <string name="revanced_hide_shorts_paid_promotion_label_summary_off">Paid promotion label is shown.</string>
+    <string name="revanced_hide_shorts_shop_button_title">Hide shop button</string>
+    <string name="revanced_hide_shorts_shop_button_summary_on">Shop button is hidden.</string>
+    <string name="revanced_hide_shorts_shop_button_summary_off">Shop button is shown.</string>
+    <string name="revanced_hide_shorts_tagged_products_title">Hide tagged products</string>
+    <string name="revanced_hide_shorts_tagged_products_summary_on">Tagged products are hidden.</string>
+    <string name="revanced_hide_shorts_tagged_products_summary_off">Tagged products are shown.</string>
+    <string name="revanced_hide_shorts_location_label_title">Hide location label</string>
+    <string name="revanced_hide_shorts_location_label_summary_on">Location label is hidden.</string>
+    <string name="revanced_hide_shorts_location_label_summary_off">Location label is shown.</string>
+    <string name="revanced_hide_shorts_save_sound_button_title">Hide save sound to playlist button</string>
+    <string name="revanced_hide_shorts_save_sound_button_summary_on">Save sound to playlist is hidden.</string>
+    <string name="revanced_hide_shorts_save_sound_button_summary_off">Save sound to playlist is shown.</string>
+    <string name="revanced_hide_shorts_search_suggestions_title">Hide search suggestions</string>
+    <string name="revanced_hide_shorts_search_suggestions_summary_on">Search suggestions are hidden.</string>
+    <string name="revanced_hide_shorts_search_suggestions_summary_off">Search suggestions are shown.</string>
+    <string name="revanced_hide_shorts_info_panel_title">Hide info panels</string>
+    <string name="revanced_hide_shorts_info_panel_summary_on">Info panels are hidden.</string>
+    <string name="revanced_hide_shorts_info_panel_summary_off">Info panels are shown.</string>
+    <string name="revanced_hide_shorts_channel_bar_title">Hide channel bar</string>
+    <string name="revanced_hide_shorts_channel_bar_summary_on">Channel bar is hidden.</string>
+    <string name="revanced_hide_shorts_channel_bar_summary_off">Channel bar is shown.</string>
+    <string name="revanced_hide_shorts_video_title_title">Hide video title</string>
+    <string name="revanced_hide_shorts_video_title_summary_on">Title is hidden.</string>
+    <string name="revanced_hide_shorts_video_title_summary_off">Title is shown.</string>
+    <string name="revanced_hide_shorts_sound_metadata_label_title">Hide sound metadata label</string>
+    <string name="revanced_hide_shorts_sound_metadata_label_summary_on">Metadata label is hidden.</string>
+    <string name="revanced_hide_shorts_sound_metadata_label_summary_off">Metadata label is shown.</string>
+    <string name="revanced_hide_shorts_full_video_link_label_title">Hide full video link label</string>
+    <string name="revanced_hide_shorts_full_video_link_label_summary_on">Video link label is hidden.</string>
+    <string name="revanced_hide_shorts_full_video_link_label_summary_off">Video link label is shown.</string>
+
+    <!-- PreferenceScreen: Shorts, PreferenceCategory: Shorts, PreferenceScreen: Shorts player, PreferenceCategory: Action buttons -->
+    <string name="revanced_preference_category_action_buttons">Action buttons</string>
+    <string name="revanced_hide_shorts_like_button_title">Hide like button</string>
+    <string name="revanced_hide_shorts_like_button_summary_on">Like button is hidden.</string>
+    <string name="revanced_hide_shorts_like_button_summary_off">Like button is shown.</string>
+    <string name="revanced_hide_shorts_dislike_button_title">Hide dislike button</string>
+    <string name="revanced_hide_shorts_dislike_button_summary_on">Dislike button is hidden.</string>
+    <string name="revanced_hide_shorts_dislike_button_summary_off">Dislike button is shown.</string>
+    <string name="revanced_hide_shorts_comments_button_title">Hide comments button</string>
+    <string name="revanced_hide_shorts_comments_button_summary_on">Comments button is hidden.</string>
+    <string name="revanced_hide_shorts_comments_button_summary_off">Comments button is shown.</string>
+    <string name="revanced_hide_shorts_remix_button_title">Hide remix button</string>
+    <string name="revanced_hide_shorts_remix_button_summary_on">Remix button is hidden.</string>
+    <string name="revanced_hide_shorts_remix_button_summary_off">Remix button is shown.</string>
+    <string name="revanced_hide_shorts_share_button_title">Hide share button</string>
+    <string name="revanced_hide_shorts_share_button_summary_on">Share button is hidden.</string>
+    <string name="revanced_hide_shorts_share_button_summary_off">Share button is shown.</string>
+    <string name="revanced_hide_shorts_sound_button_title">Hide sound button</string>
+    <string name="revanced_hide_shorts_sound_button_summary_on">Sound button is hidden.</string>
+    <string name="revanced_hide_shorts_sound_button_summary_off">Sound button is shown.</string>
+
+    <!-- PreferenceScreen: Shorts, PreferenceCategory: Shorts, PreferenceScreen: Shorts player, PreferenceCategory: Experimental Flags -->
+    <string name="revanced_hide_shorts_toolbar_title">Hide toolbar</string>
+    <string name="revanced_hide_shorts_toolbar_summary_on">Toolbar is hidden.</string>
+    <string name="revanced_hide_shorts_toolbar_summary_off">Toolbar is shown.</string>
+    <string name="revanced_hide_shorts_navigation_bar_title">Hide navigation bar</string>
+    <string name="revanced_hide_shorts_navigation_bar_summary_on">Navigation bar is hidden.</string>
+    <string name="revanced_hide_shorts_navigation_bar_summary_off">Navigation bar is shown.</string>
 
 
     <!-- PreferenceScreen: Swipe controls -->

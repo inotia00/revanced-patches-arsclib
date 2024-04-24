@@ -25,6 +25,7 @@ object SharedResourceIdPatch : ResourcePatch() {
     var AutoNavPreviewStub = -1L
     var AutoNavToggle = -1L
     var BackgroundCategory = -1L
+    var BadgeLabel = -1L
     var Bar = -1L
     var BarContainerHeight = -1L
     var BottomSheetFooterText = -1L
@@ -66,11 +67,7 @@ object SharedResourceIdPatch : ResourcePatch() {
     var ReelDynShare = -1L
     var ReelForcedMuteButton = -1L
     var ReelPivotButton = -1L
-    var ReelPlayerBadge = -1L
-    var ReelPlayerBadge2 = -1L
     var ReelPlayerFooter = -1L
-    var ReelPlayerInfoPanel = -1L
-    var ReelPlayerPausedStateButton = -1L
     var ReelRightDislikeIcon = -1L
     var ReelRightLikeIcon = -1L
     var ReelTimeBarPlayedColor = -1L
@@ -99,6 +96,7 @@ object SharedResourceIdPatch : ResourcePatch() {
         AutoNavPreviewStub = getId(ID, "autonav_preview_stub")
         AutoNavToggle = getId(ID, "autonav_toggle")
         BackgroundCategory = getId(STRING, "pref_background_and_offline_category")
+        BadgeLabel = getId(ID, "badge_label")
         Bar = getId(LAYOUT, "bar")
         BarContainerHeight = getId(DIMEN, "bar_container_height")
         BottomSheetFooterText = getId(ID, "bottom_sheet_footer_text")
@@ -142,11 +140,7 @@ object SharedResourceIdPatch : ResourcePatch() {
         ReelDynShare = getId(ID, "reel_dyn_share")
         ReelForcedMuteButton = getId(ID, "reel_player_forced_mute_button")
         ReelPivotButton = getId(ID, "reel_pivot_button")
-        ReelPlayerBadge = getId(ID, "reel_player_badge")
-        ReelPlayerBadge2 = getId(ID, "reel_player_badge2")
         ReelPlayerFooter = getId(LAYOUT, "reel_player_dyn_footer_vert_stories3")
-        ReelPlayerInfoPanel = getId(ID, "reel_player_info_panel")
-        ReelPlayerPausedStateButton = getId(ID, "reel_player_paused_state_buttons")
         ReelRightDislikeIcon = getId(DRAWABLE, "reel_right_dislike_icon")
         ReelRightLikeIcon = getId(DRAWABLE, "reel_right_like_icon")
         ReelTimeBarPlayedColor = getId(COLOR, "reel_time_bar_played_color")
