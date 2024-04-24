@@ -7,7 +7,6 @@ import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWith
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.revanced.patcher.util.smali.ExternalLabel
-import app.revanced.patches.shared.litho.LithoFilterPatch
 import app.revanced.patches.youtube.player.buttons.fingerprints.FullScreenButtonFingerprint
 import app.revanced.patches.youtube.player.buttons.fingerprints.LithoSubtitleButtonConfigFingerprint
 import app.revanced.patches.youtube.player.buttons.fingerprints.MusicAppDeeplinkButtonFingerprint
@@ -38,7 +37,6 @@ object PlayerButtonsPatch : BaseBytecodePatch(
     name = "Hide player buttons",
     description = "Adds an option to hide buttons in the video player.",
     dependencies = setOf(
-        LithoFilterPatch::class,
         SettingsPatch::class,
         SharedResourceIdPatch::class
     ),
@@ -55,9 +53,6 @@ object PlayerButtonsPatch : BaseBytecodePatch(
 ) {
     private const val HAS_NEXT = 5
     private const val HAS_PREVIOUS = 6
-
-    private const val FILTER_CLASS_DESCRIPTOR =
-        "$COMPONENTS_PATH/CaptionsFilter;"
 
     override fun execute(context: BytecodeContext) {
 
@@ -114,8 +109,6 @@ object PlayerButtonsPatch : BaseBytecodePatch(
                 )
             }
         }
-
-        LithoFilterPatch.addFilter(FILTER_CLASS_DESCRIPTOR)
 
         // endregion
 
