@@ -23,7 +23,7 @@ object ViewerDiscretionDialogPatch : BaseBytecodePatch(
          */
         SettingsPatch.addPreference(
             arrayOf(
-                "PREFERENCE: GENERAL_SETTINGS",
+                "PREFERENCE_SCREEN: GENERAL",
                 "SETTINGS: REMOVE_VIEWER_DISCRETION_DIALOG"
             )
         )

@@ -27,7 +27,7 @@ object AutoCaptionsPatch : BaseBytecodePatch(
          */
         SettingsPatch.addPreference(
             arrayOf(
-                "PREFERENCE: GENERAL_SETTINGS",
+                "PREFERENCE_SCREEN: GENERAL",
                 "SETTINGS: DISABLE_AUTO_CAPTIONS"
             )
         )

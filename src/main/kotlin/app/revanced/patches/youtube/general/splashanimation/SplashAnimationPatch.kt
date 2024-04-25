@@ -49,7 +49,7 @@ object SplashAnimationPatch : BaseBytecodePatch(
          */
         SettingsPatch.addPreference(
             arrayOf(
-                "PREFERENCE: GENERAL_SETTINGS",
+                "PREFERENCE_SCREEN: GENERAL",
                 "SETTINGS: DISABLE_SPLASH_ANIMATION"
             )
         )

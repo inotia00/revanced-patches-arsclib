@@ -81,7 +81,7 @@ object WideSearchBarPatch : BaseBytecodePatch(
          */
         SettingsPatch.addPreference(
             arrayOf(
-                "PREFERENCE: GENERAL_SETTINGS",
+                "PREFERENCE_SCREEN: GENERAL",
                 "SETTINGS: ENABLE_WIDE_SEARCH_BAR"
             )
         )

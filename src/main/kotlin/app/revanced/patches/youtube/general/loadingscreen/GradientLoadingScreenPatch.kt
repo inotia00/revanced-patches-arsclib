@@ -37,7 +37,7 @@ object GradientLoadingScreenPatch : BaseBytecodePatch(
          */
         SettingsPatch.addPreference(
             arrayOf(
-                "PREFERENCE: GENERAL_SETTINGS",
+                "PREFERENCE_SCREEN: GENERAL",
                 "SETTINGS: ENABLE_GRADIENT_LOADING_SCREEN"
             )
         )
