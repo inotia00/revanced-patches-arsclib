@@ -6,9 +6,12 @@ import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.removeInstruction
+import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.revanced.patcher.patch.PatchException
+import app.revanced.patcher.patch.options.PatchOption.PatchExtensions.booleanPatchOption
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.shared.litho.LithoFilterPatch
+import app.revanced.patches.shared.voicesearch.VoiceSearchUtils.patchXml
 import app.revanced.patches.youtube.general.components.fingerprints.AccountListFingerprint
 import app.revanced.patches.youtube.general.components.fingerprints.AccountListParentFingerprint
 import app.revanced.patches.youtube.general.components.fingerprints.AccountMenuFingerprint
@@ -17,12 +20,16 @@ import app.revanced.patches.youtube.general.components.fingerprints.BottomUiCont
 import app.revanced.patches.youtube.general.components.fingerprints.CreateSearchSuggestionsFingerprint
 import app.revanced.patches.youtube.general.components.fingerprints.FloatingMicrophoneFingerprint
 import app.revanced.patches.youtube.general.components.fingerprints.TrendingSearchConfigFingerprint
+import app.revanced.patches.youtube.general.components.fingerprints.SearchBarFingerprint
+import app.revanced.patches.youtube.general.components.fingerprints.SearchBarParentFingerprint
+import app.revanced.patches.youtube.general.components.fingerprints.SearchResultFingerprint
 import app.revanced.patches.youtube.utils.fingerprints.AccountMenuParentFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPONENTS_PATH
 import app.revanced.patches.youtube.utils.integrations.Constants.GENERAL_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.AccountSwitcherAccessibility
+import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.VoiceSearch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.patches.youtube.utils.toolbar.ToolBarHookPatch
 import app.revanced.patches.youtube.utils.viewgroup.ViewGroupMarginLayoutParamsHookPatch
@@ -58,6 +65,8 @@ object LayoutComponentsPatch : BaseBytecodePatch(
         BottomUiContainerFingerprint,
         CreateSearchSuggestionsFingerprint,
         FloatingMicrophoneFingerprint,
+        SearchBarParentFingerprint,
+        SearchResultFingerprint,
         TrendingSearchConfigFingerprint
     )
 ) {
@@ -65,6 +74,13 @@ object LayoutComponentsPatch : BaseBytecodePatch(
         "$COMPONENTS_PATH/CustomFilter;"
     private const val LAYOUT_COMPONENTS_FILTER_CLASS_DESCRIPTOR =
         "$COMPONENTS_PATH/LayoutComponentsFilter;"
+
+    private val ForceHideVoiceSearchButton by booleanPatchOption(
+        key = "ForceHideVoiceSearchButton",
+        default = false,
+        title = "Force hide voice search button",
+        description = "Hide voice search button with legacy method, button will always be hidden"
+    )
 
     override fun execute(context: BytecodeContext) {
 
@@ -227,6 +243,64 @@ object LayoutComponentsPatch : BaseBytecodePatch(
 
         // endregion
 
+        // region patch for hide voice search button
+
+        if (ForceHideVoiceSearchButton == true) {
+            SettingsPatch.contexts.patchXml(
+                arrayOf(
+                    "action_bar_search_results_view_mic.xml",
+                    "action_bar_search_view.xml",
+                    "action_bar_search_view_grey.xml",
+                    "action_bar_search_view_mic_out.xml"
+                ),
+                arrayOf(
+                    "height",
+                    "marginEnd",
+                    "marginStart",
+                    "width"
+                )
+            )
+        } else {
+            SearchBarFingerprint.resolve(context, SearchBarParentFingerprint.resultOrThrow().classDef)
+
+            SearchBarFingerprint.resultOrThrow().let {
+                it.mutableMethod.apply {
+                    val startIndex = it.scanResult.patternScanResult!!.startIndex
+                    val setVisibilityIndex = getTargetIndexWithMethodReferenceName(startIndex, "setVisibility")
+                    val setVisibilityInstruction = getInstruction<FiveRegisterInstruction>(setVisibilityIndex)
+
+                    replaceInstruction(
+                        setVisibilityIndex,
+                        "invoke-static {v${setVisibilityInstruction.registerC}, v${setVisibilityInstruction.registerD}}, " +
+                                "$GENERAL_CLASS_DESCRIPTOR->hideVoiceSearchButton(Landroid/view/View;I)V"
+                    )
+                }
+            }
+
+            SearchResultFingerprint.resultOrThrow().let {
+                it.mutableMethod.apply {
+                    val startIndex = getWideLiteralInstructionIndex(VoiceSearch)
+                    val setOnClickListenerIndex = getTargetIndexWithMethodReferenceName(startIndex, "setOnClickListener")
+                    val viewRegister = getInstruction<FiveRegisterInstruction>(setOnClickListenerIndex).registerC
+
+                    addInstruction(
+                        setOnClickListenerIndex + 1,
+                        "invoke-static {v$viewRegister}, $GENERAL_CLASS_DESCRIPTOR->hideVoiceSearchButton(Landroid/view/View;)V"
+                    )
+                }
+            }
+
+            /**
+             * Add settings
+             */
+            SettingsPatch.addPreference(
+                arrayOf(
+                    "SETTINGS: HIDE_VOICE_SEARCH_BUTTON"
+                )
+            )
+        }
+
+        // endregion
 
         LithoFilterPatch.addFilter(CUSTOM_FILTER_CLASS_DESCRIPTOR)
         LithoFilterPatch.addFilter(LAYOUT_COMPONENTS_FILTER_CLASS_DESCRIPTOR)

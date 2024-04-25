@@ -153,6 +153,9 @@
         <SwitchPreference android:title="@string/revanced_hide_toolbar_create_notification_button_title" android:key="revanced_hide_toolbar_create_notification_button" android:defaultValue="false" android:summaryOn="@string/revanced_hide_toolbar_create_notification_button_summary_on" android:summaryOff="@string/revanced_hide_toolbar_create_notification_button_summary_off" />
         <SwitchPreference android:title="@string/revanced_hide_trending_searches_title" android:key="revanced_hide_trending_searches" android:defaultValue="true" android:summaryOn="@string/revanced_hide_trending_searches_summary_on" android:summaryOff="@string/revanced_hide_trending_searches_summary_off" />SETTINGS: HIDE_LAYOUT_COMPONENTS -->
 
+        <!-- SETTINGS: HIDE_VOICE_SEARCH_BUTTON
+        <SwitchPreference android:title="@string/revanced_hide_voice_search_button_title" android:key="revanced_hide_voice_search_button" android:defaultValue="false" android:summaryOn="@string/revanced_hide_voice_search_button_summary_on" android:summaryOff="@string/revanced_hide_voice_search_button_summary_off" />SETTINGS: HIDE_VOICE_SEARCH_BUTTON -->
+
         <!-- SETTINGS: REMOVE_VIEWER_DISCRETION_DIALOG
         <SwitchPreference android:title="@string/revanced_remove_viewer_discretion_dialog_title" android:key="revanced_remove_viewer_discretion_dialog" android:defaultValue="false" android:summary="@string/revanced_remove_viewer_discretion_dialog_summary" />SETTINGS: REMOVE_VIEWER_DISCRETION_DIALOG -->
 
