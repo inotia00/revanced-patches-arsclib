@@ -985,8 +985,6 @@ Limitation: Official headers in search results will be hidden."</string>
     <string name="revanced_enable_default_playback_speed_shorts_title">Enable shorts default playback speed</string>
     <string name="revanced_enable_default_playback_speed_shorts_summary_on">Default playback speed applies to Shorts.</string>
     <string name="revanced_enable_default_playback_speed_shorts_summary_off">Default playback speed does not apply to Shorts.</string>
-    <string name="revanced_spoof_device_dimensions_title">Spoof device dimensions</string>
-    <string name="revanced_spoof_device_dimensions_summary">Spoofs the device dimensions in order to unlock higher video qualities that may not be available on your device.</string>
     <string name="revanced_skipped_preloaded_buffer">Skipped preloaded buffer.</string>
     <string name="revanced_skip_preloaded_buffer_title">Skip preloaded buffer</string>
     <string name="revanced_skip_preloaded_buffer_summary">"Skip preloaded buffer at video start to bypass default video quality enforcement delay.
@@ -996,6 +994,14 @@ Limitation: Official headers in search results will be hidden."</string>
     <string name="revanced_skip_preloaded_buffer_toast_title">Show a toast when skipped</string>
     <string name="revanced_skip_preloaded_buffer_toast_summary_on">Toast is shown.</string>
     <string name="revanced_skip_preloaded_buffer_toast_summary_off">Toast is not shown.</string>
+    <string name="revanced_spoof_device_dimensions_title">Spoof device dimensions</string>
+    <string name="revanced_spoof_device_dimensions_summary">Spoofs the device dimensions in order to unlock higher video qualities that may not be available on your device.</string>
+    <string name="revanced_replace_av1_codec_title">Replace software AV1 codec</string>
+    <string name="revanced_replace_av1_codec_summary">Replace software AV1 codec with VP9 codec.</string>
+    <string name="revanced_reject_av1_codec_title">Reject software AV1 codec response</string>
+    <string name="revanced_reject_av1_codec_summary">"Forcefully rejects the software AV1 codec response.
+After about 20 seconds of buffering, switches to different codec."</string>
+    <string name="revanced_reject_av1_codec_toast">Fallback process causes about 20 seconds of buffering.</string>
     <string name="revanced_remember_playback_speed_toast">Changing default speed to %s.</string>
     <string name="revanced_remember_video_quality_mobile">Changing default mobile data quality to %s.</string>
     <string name="revanced_remember_video_quality_none">Failed to set video quality.</string>

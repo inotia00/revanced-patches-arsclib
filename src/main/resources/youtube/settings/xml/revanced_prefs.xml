@@ -467,9 +467,13 @@
         <SwitchPreference android:title="@string/revanced_restore_old_video_quality_menu_title" android:key="revanced_restore_old_video_quality_menu" android:defaultValue="true" android:summaryOn="@string/revanced_restore_old_video_quality_menu_summary_on" android:summaryOff="@string/revanced_restore_old_video_quality_menu_summary_off" />
         <PreferenceCategory android:title="@string/revanced_preference_category_experimental_flag" android:layout="@layout/revanced_settings_preferences_category"/>
         <SwitchPreference android:title="@string/revanced_enable_default_playback_speed_shorts_title" android:key="revanced_enable_default_playback_speed_shorts" android:defaultValue="false" android:summaryOn="@string/revanced_enable_default_playback_speed_shorts_summary_on" android:summaryOff="@string/revanced_enable_default_playback_speed_shorts_summary_off" />
-        <SwitchPreference android:title="@string/revanced_spoof_device_dimensions_title" android:key="revanced_spoof_device_dimensions" android:defaultValue="false" android:summary="@string/revanced_spoof_device_dimensions_summary" />
         <SwitchPreference android:title="@string/revanced_skip_preloaded_buffer_title" android:key="revanced_skip_preloaded_buffer" android:defaultValue="false" android:summary="@string/revanced_skip_preloaded_buffer_summary" />
         <SwitchPreference android:title="@string/revanced_skip_preloaded_buffer_toast_title" android:key="revanced_skip_preloaded_buffer_toast" android:defaultValue="true" android:summaryOn="@string/revanced_skip_preloaded_buffer_toast_summary_on" android:summaryOff="@string/revanced_skip_preloaded_buffer_toast_summary_off" android:dependency="revanced_skip_preloaded_buffer" />
+        <SwitchPreference android:title="@string/revanced_spoof_device_dimensions_title" android:key="revanced_spoof_device_dimensions" android:defaultValue="false" android:summary="@string/revanced_spoof_device_dimensions_summary" />PREFERENCE_SCREEN: VIDEO -->
+        <!-- SETTINGS: REPLACE_AV1_CODEC
+        <SwitchPreference android:title="@string/revanced_replace_av1_codec_title" android:key="revanced_replace_av1_codec" android:defaultValue="false" android:summary="@string/revanced_replace_av1_codec_summary" />SETTINGS: REPLACE_AV1_CODEC -->
+        <!-- PREFERENCE_SCREEN: VIDEO
+        <SwitchPreference android:title="@string/revanced_reject_av1_codec_title" android:key="revanced_reject_av1_codec" android:defaultValue="false" android:summary="@string/revanced_reject_av1_codec_summary" />
     </PreferenceScreen>PREFERENCE_SCREEN: VIDEO -->
 
 

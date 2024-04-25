@@ -21,6 +21,9 @@ import app.revanced.patches.youtube.utils.recyclerview.BottomSheetRecyclerViewPa
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.patches.youtube.video.information.VideoInformationPatch
 import app.revanced.patches.youtube.video.information.VideoInformationPatch.speedSelectionInsertMethod
+import app.revanced.patches.youtube.video.playback.fingerprints.AV1CodecFingerprint
+import app.revanced.patches.youtube.video.playback.fingerprints.ByteBufferArrayFingerprint
+import app.revanced.patches.youtube.video.playback.fingerprints.ByteBufferArrayParentFingerprint
 import app.revanced.patches.youtube.video.playback.fingerprints.DeviceDimensionsModelToStringFingerprint
 import app.revanced.patches.youtube.video.playback.fingerprints.HDRCapabilityFingerprint
 import app.revanced.patches.youtube.video.playback.fingerprints.PlaybackSpeedChangedFromRecyclerViewFingerprint
@@ -29,6 +32,7 @@ import app.revanced.patches.youtube.video.playback.fingerprints.QualityChangedFr
 import app.revanced.patches.youtube.video.playback.fingerprints.QualitySetterFingerprint
 import app.revanced.patches.youtube.video.videoid.VideoIdPatch
 import app.revanced.util.getReference
+import app.revanced.util.getStringInstructionIndex
 import app.revanced.util.getTargetIndex
 import app.revanced.util.indexOfFirstInstruction
 import app.revanced.util.patch.BaseBytecodePatch
@@ -58,6 +62,8 @@ object VideoPlaybackPatch : BaseBytecodePatch(
     ),
     compatiblePackages = COMPATIBLE_PACKAGE,
     fingerprints = setOf(
+        AV1CodecFingerprint,
+        ByteBufferArrayParentFingerprint,
         DeviceDimensionsModelToStringFingerprint,
         HDRCapabilityFingerprint,
         PlaybackSpeedChangedFromRecyclerViewFingerprint,
@@ -72,6 +78,8 @@ object VideoPlaybackPatch : BaseBytecodePatch(
         "$COMPONENTS_PATH/PlaybackSpeedMenuFilter;"
     private const val VIDEO_QUALITY_MENU_FILTER_CLASS_DESCRIPTOR =
         "$COMPONENTS_PATH/VideoQualityMenuFilter;"
+    private const val INTEGRATIONS_AV1_CODEC_CLASS_DESCRIPTOR =
+        "$VIDEO_PATH/AV1CodecPatch;"
     private const val INTEGRATIONS_CUSTOM_PLAYBACK_SPEED_CLASS_DESCRIPTOR =
         "$VIDEO_PATH/CustomPlaybackSpeedPatch;"
     private const val INTEGRATIONS_HDR_VIDEO_CLASS_DESCRIPTOR =
@@ -252,6 +260,50 @@ object VideoPlaybackPatch : BaseBytecodePatch(
                             """
                     }.joinToString("\n") { it }
                 )
+        }
+
+        // endregion
+
+        // region patch for disable AV1 codec
+
+        // replace av1 codec
+
+        AV1CodecFingerprint.result?.let {
+            it.mutableMethod.apply {
+                val insertIndex = getStringInstructionIndex("video/av01")
+                val insertRegister = getInstruction<OneRegisterInstruction>(insertIndex).registerA
+
+                addInstructions(
+                    insertIndex + 1, """
+                        invoke-static {v$insertRegister}, $INTEGRATIONS_AV1_CODEC_CLASS_DESCRIPTOR->replaceCodec(Ljava/lang/String;)Ljava/lang/String;
+                        move-result-object v$insertRegister
+                        """
+                )
+            }
+
+            SettingsPatch.addPreference(
+                arrayOf(
+                    "SETTINGS: REPLACE_AV1_CODEC"
+                )
+            )
+        } // for compatibility with old versions, no exceptions are raised.
+
+        // reject av1 codec response
+
+        ByteBufferArrayParentFingerprint.resultOrThrow().classDef.let { classDef ->
+            ByteBufferArrayFingerprint.also { it.resolve(context, classDef) }.resultOrThrow().let {
+                it.mutableMethod.apply {
+                    val insertIndex = it.scanResult.patternScanResult!!.endIndex
+                    val insertRegister = getInstruction<OneRegisterInstruction>(insertIndex).registerA
+
+                    addInstructions(
+                        insertIndex, """
+                            invoke-static {v$insertRegister}, $INTEGRATIONS_AV1_CODEC_CLASS_DESCRIPTOR->rejectResponse(I)I
+                            move-result v$insertRegister
+                            """
+                    )
+                }
+            }
         }
 
         // endregion
