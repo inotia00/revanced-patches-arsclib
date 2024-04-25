@@ -565,6 +565,9 @@ Instead, use the 'Settings → Autoplay → Autoplay next video' setting."</stri
     <string name="revanced_hide_player_flyout_menu_loop_video_title">Hide loop video menu</string>
     <string name="revanced_hide_player_flyout_menu_loop_video_summary_on">Loop video menu is hidden.</string>
     <string name="revanced_hide_player_flyout_menu_loop_video_summary_off">Loop video menu is shown.</string>
+    <string name="revanced_hide_player_flyout_menu_pip_title">Hide picture-in-picture menu</string>
+    <string name="revanced_hide_player_flyout_menu_pip_summary_on">Picture-in-picture menu is hidden.</string>
+    <string name="revanced_hide_player_flyout_menu_pip_summary_off">Picture-in-picture menu is shown.</string>
     <string name="revanced_hide_player_flyout_menu_premium_controls_title">Hide premium controls menu</string>
     <string name="revanced_hide_player_flyout_menu_premium_controls_summary_on">Premium controls menu is hidden.</string>
     <string name="revanced_hide_player_flyout_menu_premium_controls_summary_off">Premium controls menu is shown.</string>
