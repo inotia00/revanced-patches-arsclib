@@ -13,6 +13,8 @@ import app.revanced.patches.youtube.feed.components.fingerprints.BreakingNewsFin
 import app.revanced.patches.youtube.feed.components.fingerprints.ChannelListSubMenuFingerprint
 import app.revanced.patches.youtube.feed.components.fingerprints.ChannelListSubMenuTabletFingerprint
 import app.revanced.patches.youtube.feed.components.fingerprints.ChannelListSubMenuTabletSyntheticFingerprint
+import app.revanced.patches.youtube.feed.components.fingerprints.ChannelTabBuilderFingerprint
+import app.revanced.patches.youtube.feed.components.fingerprints.ChannelTabRendererFingerprint
 import app.revanced.patches.youtube.feed.components.fingerprints.ElementParserFingerprint
 import app.revanced.patches.youtube.feed.components.fingerprints.ElementParserParentFingerprint
 import app.revanced.patches.youtube.feed.components.fingerprints.FilterBarHeightFingerprint
@@ -20,6 +22,7 @@ import app.revanced.patches.youtube.feed.components.fingerprints.LatestVideosBut
 import app.revanced.patches.youtube.feed.components.fingerprints.RelatedChipCloudFingerprint
 import app.revanced.patches.youtube.feed.components.fingerprints.SearchResultsChipBarFingerprint
 import app.revanced.patches.youtube.feed.components.fingerprints.ShowMoreButtonFingerprint
+import app.revanced.patches.youtube.utils.fingerprints.ScrollTopParentFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPONENTS_PATH
 import app.revanced.patches.youtube.utils.integrations.Constants.FEED_CLASS_DESCRIPTOR
@@ -27,10 +30,13 @@ import app.revanced.patches.youtube.utils.navigation.NavigationBarHookPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.util.getTargetIndex
+import app.revanced.util.getTargetIndexReversed
+import app.revanced.util.getTargetIndexWithMethodReferenceName
 import app.revanced.util.indexOfFirstInstruction
 import app.revanced.util.patch.BaseBytecodePatch
 import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
+import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
@@ -52,10 +58,12 @@ object FeedComponentsPatch : BaseBytecodePatch(
         ChannelListSubMenuFingerprint,
         ChannelListSubMenuTabletFingerprint,
         ChannelListSubMenuTabletSyntheticFingerprint,
+        ChannelTabRendererFingerprint,
         ElementParserParentFingerprint,
         FilterBarHeightFingerprint,
         LatestVideosButtonFingerprint,
         RelatedChipCloudFingerprint,
+        ScrollTopParentFingerprint,
         SearchResultsChipBarFingerprint,
         ShowMoreButtonFingerprint
     )
@@ -193,6 +201,48 @@ object FeedComponentsPatch : BaseBytecodePatch(
                     "invoke-static {v$targetRegister}, $FEED_CLASS_DESCRIPTOR->hideShowMoreButton(Landroid/view/View;)V"
                 )
             } ?: throw PatchException("Failed to find getView method")
+        }
+
+        // endregion
+
+        // region patch for hide channel tab
+
+        ChannelTabBuilderFingerprint.resolve(
+            context,
+            ScrollTopParentFingerprint.resultOrThrow().classDef
+        )
+
+        val channelTabBuilderMethod = ChannelTabBuilderFingerprint.resultOrThrow().mutableMethod
+
+        ChannelTabRendererFingerprint.resultOrThrow().let {
+            it.mutableMethod.apply {
+                val iteratorIndex = getTargetIndexWithMethodReferenceName("hasNext")
+                val iteratorRegister = getInstruction<FiveRegisterInstruction>(iteratorIndex).registerC
+
+                val targetIndex = indexOfFirstInstruction {
+                    val reference = ((this as? ReferenceInstruction)?.reference as? MethodReference)
+
+                    opcode == Opcode.INVOKE_INTERFACE
+                            && reference?.returnType == channelTabBuilderMethod.returnType
+                            && reference.parameterTypes == channelTabBuilderMethod.parameterTypes
+                }
+
+                val objectIndex = getTargetIndexReversed(targetIndex, Opcode.IGET_OBJECT)
+                val objectInstruction = getInstruction<TwoRegisterInstruction>(objectIndex)
+                val objectReference = getInstruction<ReferenceInstruction>(objectIndex).reference
+
+                addInstructionsWithLabels(
+                    objectIndex + 1, """
+                        invoke-static {v${objectInstruction.registerA}}, $FEED_CLASS_DESCRIPTOR->hideChannelTab(Ljava/lang/String;)Z
+                        move-result v${objectInstruction.registerA}
+                        if-eqz v${objectInstruction.registerA}, :ignore
+                        invoke-interface {v$iteratorRegister}, Ljava/util/Iterator;->remove()V
+                        goto :next_iterator
+                        :ignore
+                        iget-object v${objectInstruction.registerA}, v${objectInstruction.registerB}, $objectReference
+                        """, ExternalLabel("next_iterator", getInstruction(iteratorIndex))
+                )
+            }
         }
 
         // endregion

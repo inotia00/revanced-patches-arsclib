@@ -5,9 +5,9 @@ import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
+import app.revanced.patches.youtube.utils.fingerprints.ScrollTopParentFingerprint
 import app.revanced.patches.youtube.utils.fix.doublebacktoclose.fingerprint.ScrollPositionFingerprint
 import app.revanced.patches.youtube.utils.fix.doublebacktoclose.fingerprint.ScrollTopFingerprint
-import app.revanced.patches.youtube.utils.fix.doublebacktoclose.fingerprint.ScrollTopParentFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.UTILS_PATH
 import app.revanced.patches.youtube.utils.mainactivity.MainActivityResolvePatch
 import app.revanced.util.getWalkerMethod
