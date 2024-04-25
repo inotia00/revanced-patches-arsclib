@@ -80,7 +80,6 @@ object SharedResourceIdPatch : ResourcePatch() {
     var SlidingDialogAnimation = -1L
     var SubtitleMenuSettingsFooterInfo = -1L
     var SuggestedAction = -1L
-    var TabsBarTextTabView = -1L
     var TitleAnchor = -1L
     var ToolTipContentView = -1L
     var TotalTime = -1L
@@ -156,7 +155,6 @@ object SharedResourceIdPatch : ResourcePatch() {
         SlidingDialogAnimation = getId(STYLE, "SlidingDialogAnimation")
         SubtitleMenuSettingsFooterInfo = getId(STRING, "subtitle_menu_settings_footer_info")
         SuggestedAction = getId(LAYOUT, "suggested_action")
-        TabsBarTextTabView = getId(ID, "tabs_bar_text_tab_view")
         TitleAnchor = getId(ID, "title_anchor")
         ToolTipContentView = getId(LAYOUT, "tooltip_content_view")
         TotalTime = getId(STRING, "total_time")

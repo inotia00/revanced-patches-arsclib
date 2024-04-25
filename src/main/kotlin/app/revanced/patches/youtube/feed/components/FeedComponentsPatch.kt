@@ -13,7 +13,6 @@ import app.revanced.patches.youtube.feed.components.fingerprints.BreakingNewsFin
 import app.revanced.patches.youtube.feed.components.fingerprints.ChannelListSubMenuFingerprint
 import app.revanced.patches.youtube.feed.components.fingerprints.ChannelListSubMenuTabletFingerprint
 import app.revanced.patches.youtube.feed.components.fingerprints.ChannelListSubMenuTabletSyntheticFingerprint
-import app.revanced.patches.youtube.feed.components.fingerprints.DefaultsTabsBarFingerprint
 import app.revanced.patches.youtube.feed.components.fingerprints.ElementParserFingerprint
 import app.revanced.patches.youtube.feed.components.fingerprints.ElementParserParentFingerprint
 import app.revanced.patches.youtube.feed.components.fingerprints.FilterBarHeightFingerprint
@@ -26,10 +25,8 @@ import app.revanced.patches.youtube.utils.integrations.Constants.COMPONENTS_PATH
 import app.revanced.patches.youtube.utils.integrations.Constants.FEED_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.navigation.NavigationBarHookPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
-import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.TabsBarTextTabView
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.util.getTargetIndex
-import app.revanced.util.getWideLiteralInstructionIndex
 import app.revanced.util.indexOfFirstInstruction
 import app.revanced.util.patch.BaseBytecodePatch
 import app.revanced.util.resultOrThrow
@@ -55,7 +52,6 @@ object FeedComponentsPatch : BaseBytecodePatch(
         ChannelListSubMenuFingerprint,
         ChannelListSubMenuTabletFingerprint,
         ChannelListSubMenuTabletSyntheticFingerprint,
-        DefaultsTabsBarFingerprint,
         ElementParserParentFingerprint,
         FilterBarHeightFingerprint,
         LatestVideosButtonFingerprint,
@@ -136,22 +132,6 @@ object FeedComponentsPatch : BaseBytecodePatch(
                 invoke-static { v$register }, $FEED_CLASS_DESCRIPTOR->hideCategoryBarInSearch(I)I
                 move-result v$register
             """
-        }
-
-        // endregion
-
-        // region patch for hide channel profile
-
-        DefaultsTabsBarFingerprint.resultOrThrow().let {
-            it.mutableMethod.apply {
-                val viewIndex = getWideLiteralInstructionIndex(TabsBarTextTabView) + 2
-                val viewRegister = getInstruction<OneRegisterInstruction>(viewIndex).registerA
-
-                addInstruction(
-                    viewIndex + 1,
-                    "invoke-static {v$viewRegister}, $FEED_CLASS_DESCRIPTOR->setChannelTabView(Landroid/view/View;)V"
-                )
-            }
         }
 
         // endregion
