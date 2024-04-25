@@ -7,7 +7,6 @@ import com.android.tools.smali.dexlib2.AccessFlags
 /**
  * For embedded playback.  Likely covers Google Play store and other Google products.
  */
-@Suppress("DEPRECATION")
 internal object RemoteEmbedFragmentFingerprint : IntegrationsFingerprint(
     accessFlags = AccessFlags.PUBLIC or AccessFlags.CONSTRUCTOR,
     returnType = "V",
@@ -15,6 +14,5 @@ internal object RemoteEmbedFragmentFingerprint : IntegrationsFingerprint(
     customFingerprint = { methodDef, _ ->
         methodDef.definingClass == "Lcom/google/android/apps/youtube/embeddedplayer/service/jar/client/RemoteEmbedFragment;"
     },
-    // Integrations context is the first method parameter.
-    contextRegisterResolver = { it.implementation!!.registerCount - it.parameters.size }
+    contextRegisterResolver = { "p1" }
 )

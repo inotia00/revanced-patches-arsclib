@@ -10,7 +10,6 @@ import com.android.tools.smali.dexlib2.AccessFlags
  * Note: this fingerprint may no longer be needed, as it appears
  * [RemoteEmbedFragmentFingerprint] may be set before this hook is called.
  */
-@Suppress("DEPRECATION")
 internal object EmbeddedPlayerControlsOverlayFingerprint : IntegrationsFingerprint(
     accessFlags = AccessFlags.PRIVATE or AccessFlags.CONSTRUCTOR,
     returnType = "V",
@@ -18,6 +17,5 @@ internal object EmbeddedPlayerControlsOverlayFingerprint : IntegrationsFingerpri
     customFingerprint = { methodDef, _ ->
         methodDef.definingClass.startsWith("Lcom/google/android/apps/youtube/embeddedplayer/service/ui/overlays/controlsoverlay/remoteloaded/")
     },
-    // Integrations context is the first method parameter.
-    contextRegisterResolver = { it.implementation!!.registerCount - it.parameters.size }
+    contextRegisterResolver = { "p1" }
 )

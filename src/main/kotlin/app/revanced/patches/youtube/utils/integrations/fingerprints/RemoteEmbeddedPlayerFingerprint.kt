@@ -7,7 +7,6 @@ import com.android.tools.smali.dexlib2.AccessFlags
 /**
  * For embedded playback inside 3rd party android app (such as 3rd party Reddit apps).
  */
-@Suppress("DEPRECATION")
 internal object RemoteEmbeddedPlayerFingerprint : IntegrationsFingerprint(
     accessFlags = AccessFlags.PRIVATE or AccessFlags.CONSTRUCTOR,
     returnType = "V",
@@ -15,6 +14,5 @@ internal object RemoteEmbeddedPlayerFingerprint : IntegrationsFingerprint(
     customFingerprint = { methodDef, _ ->
         methodDef.definingClass == "Lcom/google/android/youtube/api/jar/client/RemoteEmbeddedPlayer;"
     },
-    // Integrations context is the first method parameter.
-    contextRegisterResolver = { it.implementation!!.registerCount - it.parameters.size }
+    contextRegisterResolver = { "p1" }
 )
