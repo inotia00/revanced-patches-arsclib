@@ -5,21 +5,21 @@ import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.youtube.player.buttons.fingerprints.FullScreenButtonFingerprint
 import app.revanced.patches.youtube.player.buttons.fingerprints.LithoSubtitleButtonConfigFingerprint
 import app.revanced.patches.youtube.player.buttons.fingerprints.MusicAppDeeplinkButtonFingerprint
 import app.revanced.patches.youtube.player.buttons.fingerprints.MusicAppDeeplinkButtonParentFingerprint
 import app.revanced.patches.youtube.player.buttons.fingerprints.PlayerControlsVisibilityModelFingerprint
+import app.revanced.patches.youtube.player.buttons.fingerprints.TitleAnchorFingerprint
 import app.revanced.patches.youtube.player.buttons.fingerprints.YouTubeControlsOverlaySubtitleButtonFingerprint
 import app.revanced.patches.youtube.utils.fingerprints.LayoutConstructorFingerprint
-import app.revanced.patches.youtube.utils.fingerprints.PlayerButtonsResourcesFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.youtube.utils.integrations.Constants.COMPONENTS_PATH
 import app.revanced.patches.youtube.utils.integrations.Constants.PLAYER_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.AutoNavToggle
+import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.PlayerCollapseButton
+import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.TitleAnchor
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.util.getTargetIndex
 import app.revanced.util.getTargetIndexWithReference
@@ -27,7 +27,6 @@ import app.revanced.util.getWideLiteralInstructionIndex
 import app.revanced.util.patch.BaseBytecodePatch
 import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
-import com.android.tools.smali.dexlib2.builder.instruction.BuilderInstruction35c
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction3rc
@@ -46,9 +45,9 @@ object PlayerButtonsPatch : BaseBytecodePatch(
         LayoutConstructorFingerprint,
         LithoSubtitleButtonConfigFingerprint,
         MusicAppDeeplinkButtonParentFingerprint,
-        YouTubeControlsOverlaySubtitleButtonFingerprint,
-        PlayerButtonsResourcesFingerprint,
         PlayerControlsVisibilityModelFingerprint,
+        TitleAnchorFingerprint,
+        YouTubeControlsOverlaySubtitleButtonFingerprint,
     )
 ) {
     private const val HAS_NEXT = 5
@@ -114,28 +113,24 @@ object PlayerButtonsPatch : BaseBytecodePatch(
 
         // region patch for hide collapse button
 
-        PlayerButtonsResourcesFingerprint.resultOrThrow().mutableClass.methods.forEach { method ->
-            method.apply {
-                var jumpInstruction = true
+        TitleAnchorFingerprint.resultOrThrow().mutableMethod.apply {
+            val titleAnchorConstIndex = getWideLiteralInstructionIndex(TitleAnchor)
+            val titleAnchorIndex = getTargetIndex(titleAnchorConstIndex, Opcode.MOVE_RESULT_OBJECT)
+            val titleAnchorRegister = getInstruction<OneRegisterInstruction>(titleAnchorIndex).registerA
 
-                implementation!!.instructions.forEachIndexed { index, instructions ->
-                    val definedInstruction = instructions as? BuilderInstruction35c
+            addInstruction(
+                titleAnchorIndex + 1,
+                "invoke-static {v$titleAnchorRegister}, $PLAYER_CLASS_DESCRIPTOR->setTitleAnchorStartMargin(Landroid/view/View;)V"
+            )
 
-                    if (instructions.opcode == Opcode.INVOKE_VIRTUAL
-                        && definedInstruction?.reference.toString().contains("setVisibility")) {
-                        val viewRegister = definedInstruction?.registerC
-                        val visibilityRegister = definedInstruction?.registerD
+            val playerCollapseButtonConstIndex = getWideLiteralInstructionIndex(PlayerCollapseButton)
+            val playerCollapseButtonIndex = getTargetIndex(playerCollapseButtonConstIndex, Opcode.CHECK_CAST)
+            val playerCollapseButtonRegister = getInstruction<OneRegisterInstruction>(playerCollapseButtonIndex).registerA
 
-                        jumpInstruction = !jumpInstruction
-                        if (jumpInstruction) return@forEachIndexed
-
-                        replaceInstruction(
-                            index,
-                            "invoke-static {v$viewRegister, v$visibilityRegister}, $PLAYER_CLASS_DESCRIPTOR->hideCollapseButton(Landroid/view/View;I)V"
-                        )
-                    }
-                }
-            }
+            addInstruction(
+                playerCollapseButtonIndex + 1,
+                "invoke-static {v$playerCollapseButtonRegister}, $PLAYER_CLASS_DESCRIPTOR->hideCollapseButton(Landroid/widget/ImageView;)V"
+            )
         }
 
         // endregion

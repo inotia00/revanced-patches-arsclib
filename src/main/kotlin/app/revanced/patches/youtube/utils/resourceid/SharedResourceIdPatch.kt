@@ -60,6 +60,7 @@ object SharedResourceIdPatch : ResourcePatch() {
     var MenuItemView = -1L
     var MusicAppDeeplinkButtonView = -1L
     var PanelSubHeader = -1L
+    var PlayerCollapseButton = -1L
     var PosterArtWidthDefault = -1L
     var QualityAuto = -1L
     var QuickActionsElementContainer = -1L
@@ -80,6 +81,7 @@ object SharedResourceIdPatch : ResourcePatch() {
     var SubtitleMenuSettingsFooterInfo = -1L
     var SuggestedAction = -1L
     var TabsBarTextTabView = -1L
+    var TitleAnchor = -1L
     var ToolTipContentView = -1L
     var TotalTime = -1L
     var VideoQualityBottomSheet = -1L
@@ -133,6 +135,7 @@ object SharedResourceIdPatch : ResourcePatch() {
         MenuItemView = getId(ID, "menu_item_view")
         MusicAppDeeplinkButtonView = getId(ID, "music_app_deeplink_button_view")
         PanelSubHeader = getId(ID, "panel_subheader")
+        PlayerCollapseButton = getId(ID, "player_collapse_button")
         PosterArtWidthDefault = getId(DIMEN, "poster_art_width_default")
         QualityAuto = getId(STRING, "quality_auto")
         QuickActionsElementContainer = getId(ID, "quick_actions_element_container")
@@ -153,6 +156,7 @@ object SharedResourceIdPatch : ResourcePatch() {
         SubtitleMenuSettingsFooterInfo = getId(STRING, "subtitle_menu_settings_footer_info")
         SuggestedAction = getId(LAYOUT, "suggested_action")
         TabsBarTextTabView = getId(ID, "tabs_bar_text_tab_view")
+        TitleAnchor = getId(ID, "title_anchor")
         ToolTipContentView = getId(LAYOUT, "tooltip_content_view")
         TotalTime = getId(STRING, "total_time")
         VideoQualityBottomSheet = getId(LAYOUT, "video_quality_bottom_sheet_list_fragment_title")
