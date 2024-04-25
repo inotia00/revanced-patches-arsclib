@@ -16,8 +16,9 @@ import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Suppress("unused")
+@Deprecated("This patch is deprecated until Reddit adds a button like r/place or Reddit recap button to the toolbar.")
 object ToolBarButtonPatch : BaseBytecodePatch(
-    name = "Hide toolbar button",
+    // name = "Hide toolbar button",
     description = "Adds an option to hide the r/place or Reddit recap button in the toolbar.",
     dependencies = setOf(
         SettingsPatch::class,
