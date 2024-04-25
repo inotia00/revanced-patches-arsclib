@@ -33,9 +33,9 @@ internal class ReadMeFileGenerator : PatchesFileGenerator {
 
         // add a list of supported versions to a temp file
         mapOf(
-            app.revanced.patches.music.utils.integrations.Constants.COMPATIBLE_PACKAGE to "COMPATIBLE_PACKAGE_MUSIC",
-            app.revanced.patches.reddit.utils.integrations.Constants.COMPATIBLE_PACKAGE to "COMPATIBLE_PACKAGE_REDDIT",
-            app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE to "COMPATIBLE_PACKAGE_YOUTUBE"
+            app.revanced.patches.music.utils.integrations.Constants.COMPATIBLE_PACKAGE to "\"COMPATIBLE_PACKAGE_MUSIC\"",
+            app.revanced.patches.reddit.utils.integrations.Constants.COMPATIBLE_PACKAGE to "\"COMPATIBLE_PACKAGE_REDDIT\"",
+            app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE to "\"COMPATIBLE_PACKAGE_YOUTUBE\""
         ).forEach { (compatiblePackage, replaceString) ->
             compatiblePackage.map { CompatiblePackage(it.name, it.versions?.toSet()?.ifEmpty { null }) }
                 .forEach { compatiblePackages ->
@@ -48,7 +48,7 @@ internal class ReadMeFileGenerator : PatchesFileGenerator {
                             ?.replace("[", "[\n          \"")
                             ?.replace("]", "\"\n        ]")
                             ?.replace(", ", "\",\n          \"")
-                            ?: "all"
+                            ?: "\"ALL\""
                     }
 
                     StringBuilder(readMeTemplateTempFile.readText())
@@ -88,7 +88,7 @@ internal class ReadMeFileGenerator : PatchesFileGenerator {
                             } else if (exception.containsKey(pkg))
                                 exception[pkg] + "+"
                             else
-                                "all"
+                                "ALL"
 
                         appendLine(
                             "| `${patch.name}` " +

@@ -15,12 +15,12 @@ Example:
 ```json
 [
   {
-    "name": "Default video quality",
-    "description": "Adds an option to set the default video quality.",
+    "name": "Alternative thumbnails",
+    "description": "Adds options to replace video thumbnails using the DeArrow API or image captures from the video.",
     "compatiblePackages":[
       {
-        "name":"com.google.android.youtube",
-        "versions": COMPATIBLE_PACKAGE_YOUTUBE
+        "name": "com.google.android.youtube",
+        "versions": "COMPATIBLE_PACKAGE_YOUTUBE"
       }
     ],
     "use":true,
@@ -33,7 +33,7 @@ Example:
     "compatiblePackages": [
       {
         "name": "com.google.android.apps.youtube.music",
-        "versions": COMPATIBLE_PACKAGE_MUSIC
+        "versions": "COMPATIBLE_PACKAGE_MUSIC"
       }
     ],
     "use":true,
@@ -46,7 +46,7 @@ Example:
     "compatiblePackages": [
       {
         "name": "com.reddit.frontpage",
-        "versions": COMPATIBLE_PACKAGE_REDDIT
+        "versions": "COMPATIBLE_PACKAGE_REDDIT"
       }
     ],
     "use":true,
