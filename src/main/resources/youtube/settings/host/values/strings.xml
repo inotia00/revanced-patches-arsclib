@@ -376,6 +376,9 @@ Some components may not be hidden."</string>
     <string name="revanced_enable_wide_search_bar_title">Enable wide search bar</string>
     <string name="revanced_enable_wide_search_bar_summary_on">Wide search bar is enabled.</string>
     <string name="revanced_enable_wide_search_bar_summary_off">Wide search bar is disabled.</string>
+    <string name="revanced_enable_wide_search_bar_with_header_title">Enable wide search bar with header</string>
+    <string name="revanced_enable_wide_search_bar_with_header_summary_on">Wide search bar includes YouTube header.</string>
+    <string name="revanced_enable_wide_search_bar_with_header_summary_off">Wide search bar does not include YouTube header.</string>
     <string name="revanced_enable_wide_search_bar_in_you_tab_title">Enable wide search bar in You tab</string>
     <string name="revanced_enable_wide_search_bar_in_you_tab_summary">"Enabling this setting will disable the settings button in the You tab.
 
