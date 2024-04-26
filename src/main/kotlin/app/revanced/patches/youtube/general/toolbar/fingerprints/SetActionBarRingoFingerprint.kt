@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.general.widesearchbar.fingerprints
+package app.revanced.patches.youtube.general.toolbar.fingerprints
 
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.ActionBarRingo
 import app.revanced.util.fingerprint.LiteralValueFingerprint

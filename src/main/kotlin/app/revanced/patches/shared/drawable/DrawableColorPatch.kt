@@ -15,7 +15,7 @@ object DrawableColorPatch : BytecodePatch(
 ) {
     override fun execute(context: BytecodeContext) {
 
-        DrawableFingerprint.resultOrThrow().mutableMethod?.apply {
+        DrawableFingerprint.resultOrThrow().mutableMethod.apply {
             insertMethod = this
             insertIndex = getTargetIndexWithMethodReferenceNameReversed("setColor")
             insertRegister = getInstruction<FiveRegisterInstruction>(insertIndex).registerD

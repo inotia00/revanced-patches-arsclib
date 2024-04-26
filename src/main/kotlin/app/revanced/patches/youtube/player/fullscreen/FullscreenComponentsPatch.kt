@@ -23,8 +23,8 @@ import app.revanced.patches.youtube.utils.fingerprints.LayoutConstructorFingerpr
 import app.revanced.patches.youtube.utils.fingerprints.YouTubeControlsOverlayFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPONENTS_PATH
+import app.revanced.patches.youtube.utils.integrations.Constants.PATCH_STATUS_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.integrations.Constants.PLAYER_CLASS_DESCRIPTOR
-import app.revanced.patches.youtube.utils.integrations.Constants.UTILS_PATH
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.AutoNavPreviewStub
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.FullScreenEngagementPanel
@@ -168,7 +168,7 @@ object FullscreenComponentsPatch : BaseBytecodePatch(
             }
         }
 
-        context.updatePatchStatus("$UTILS_PATH/PatchStatus;", "QuickActions")
+        context.updatePatchStatus(PATCH_STATUS_CLASS_DESCRIPTOR, "QuickActions")
 
         // endregion
 

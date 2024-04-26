@@ -274,38 +274,15 @@ Limitations:
     <string name="revanced_enable_tablet_mini_player_title">Enable tablet mini player</string>
     <string name="revanced_enable_tablet_mini_player_summary_on">Tablet mini player is enabled.</string>
     <string name="revanced_enable_tablet_mini_player_summary_off">Tablet mini player is disabled.</string>
-    <string name="revanced_enable_wide_search_bar_title">Enable wide search bar</string>
-    <string name="revanced_enable_wide_search_bar_summary_on">Wide search bar is enabled.</string>
-    <string name="revanced_enable_wide_search_bar_summary_off">Wide search bar is disabled.</string>
-    <string name="revanced_enable_wide_search_bar_in_you_tab_title">Enable wide search bar in You tab</string>
-    <string name="revanced_enable_wide_search_bar_in_you_tab_summary">"Enabling this setting will disable the settings button in the You tab.
-
-In this case, please use the following path:
-You tab > View channel > Menu > Settings."</string>
-    <string name="revanced_hide_cast_button_title">Hide cast button</string>
-    <string name="revanced_hide_cast_button_summary_on">Cast button is hidden.</string>
-    <string name="revanced_hide_cast_button_summary_off">Cast button is shown.</string>
     <string name="revanced_hide_floating_microphone_title">Hide floating microphone button</string>
     <string name="revanced_hide_floating_microphone_summary_on">Floating microphone button is hidden.</string>
     <string name="revanced_hide_floating_microphone_summary_off">Floating microphone button is shown.</string>
     <string name="revanced_hide_gray_separator_title">Hide gray separator</string>
     <string name="revanced_hide_gray_separator_summary_on">Gray separators are hidden.</string>
     <string name="revanced_hide_gray_separator_summary_off">Gray separators are shown.</string>
-    <string name="revanced_hide_search_term_thumbnail_title">Hide search term thumbnail</string>
-    <string name="revanced_hide_search_term_thumbnail_summary_on">Thumbnails in the search term history are hidden.</string>
-    <string name="revanced_hide_search_term_thumbnail_summary_off">Thumbnails in the search term history are shown.</string>
     <string name="revanced_hide_snack_bar_title">Hide snack bar</string>
     <string name="revanced_hide_snack_bar_summary_on">Snack bar is hidden.</string>
     <string name="revanced_hide_snack_bar_summary_off">Snack bar is shown.</string>
-    <string name="revanced_hide_toolbar_create_notification_button_title">Hide buttons in toolbar</string>
-    <string name="revanced_hide_toolbar_create_notification_button_summary_on">Create and Notification buttons are hidden.</string>
-    <string name="revanced_hide_toolbar_create_notification_button_summary_off">Create and Notification buttons are shown.</string>
-    <string name="revanced_hide_trending_searches_title">Hide trending searches</string>
-    <string name="revanced_hide_trending_searches_summary_on">Trending searches are hidden.</string>
-    <string name="revanced_hide_trending_searches_summary_off">Trending searches are shown.</string>
-    <string name="revanced_hide_voice_search_button_title">Hide voice search button</string>
-    <string name="revanced_hide_voice_search_button_summary_on">Voice search button is hidden in search bar.</string>
-    <string name="revanced_hide_voice_search_button_summary_off">Voice search button is shown in search bar.</string>
     <string name="revanced_remove_viewer_discretion_dialog_title">Remove viewer discretion dialog</string>
     <string name="revanced_remove_viewer_discretion_dialog_summary">"Remove viewer discretion dialog.
 This does not bypass the age restriction. It just accepts it automatically."</string>
@@ -361,33 +338,65 @@ Some components may not be hidden."</string>
     <string name="revanced_enable_narrow_navigation_buttons_title">Enable narrow navigation buttons</string>
     <string name="revanced_enable_narrow_navigation_buttons_summary_on">Spacing between navigation buttons becomes narrower.</string>
     <string name="revanced_enable_narrow_navigation_buttons_summary_off">Spacing between navigation buttons does not become narrower.</string>
-    <string name="revanced_hide_create_button_title">Hide create button</string>
-    <string name="revanced_hide_create_button_summary_on">Create button is hidden.</string>
-    <string name="revanced_hide_create_button_summary_off">Create button is shown.</string>
-    <string name="revanced_hide_home_button_title">Hide home button</string>
-    <string name="revanced_hide_home_button_summary_off">Home button is shown.</string>
-    <string name="revanced_hide_home_button_summary_on">Home button is hidden.</string>
-    <string name="revanced_hide_library_button_title">Hide library button</string>
-    <string name="revanced_hide_library_button_summary_on">Library button is hidden.</string>
-    <string name="revanced_hide_library_button_summary_off">Library button is shown.</string>
+    <string name="revanced_hide_navigation_create_button_title">Hide create button</string>
+    <string name="revanced_hide_navigation_create_button_summary_on">Create button is hidden.</string>
+    <string name="revanced_hide_navigation_create_button_summary_off">Create button is shown.</string>
+    <string name="revanced_hide_navigation_home_button_title">Hide home button</string>
+    <string name="revanced_hide_navigation_home_button_summary_off">Home button is shown.</string>
+    <string name="revanced_hide_navigation_home_button_summary_on">Home button is hidden.</string>
+    <string name="revanced_hide_navigation_library_button_title">Hide library button</string>
+    <string name="revanced_hide_navigation_library_button_summary_on">Library button is hidden.</string>
+    <string name="revanced_hide_navigation_library_button_summary_off">Library button is shown.</string>
+    <string name="revanced_hide_navigation_notifications_button_title">Hide notifications button</string>
+    <string name="revanced_hide_navigation_notifications_button_summary_on">Notifications button is hidden.</string>
+    <string name="revanced_hide_navigation_notifications_button_summary_off">Notifications button is shown.</string>
+    <string name="revanced_hide_navigation_shorts_button_title">Hide shorts button</string>
+    <string name="revanced_hide_navigation_shorts_button_summary_on">Shorts button is hidden.</string>
+    <string name="revanced_hide_navigation_shorts_button_summary_off">Shorts button is shown.</string>
+    <string name="revanced_hide_navigation_subscriptions_button_title">Hide subscriptions button</string>
+    <string name="revanced_hide_navigation_subscriptions_button_summary_on">Subscriptions button is hidden.</string>
+    <string name="revanced_hide_navigation_subscriptions_button_summary_off">Subscriptions button is shown.</string>
     <string name="revanced_hide_navigation_label_title">Hide navigation label</string>
     <string name="revanced_hide_navigation_label_summary_on">Navigation label is hidden.</string>
     <string name="revanced_hide_navigation_label_summary_off">Navigation label is shown.</string>
-    <string name="revanced_hide_notifications_button_title">Hide notifications button</string>
-    <string name="revanced_hide_notifications_button_summary_on">Notifications button is hidden.</string>
-    <string name="revanced_hide_notifications_button_summary_off">Notifications button is shown.</string>
-    <string name="revanced_hide_shorts_button_title">Hide shorts button</string>
-    <string name="revanced_hide_shorts_button_summary_on">Shorts button is hidden.</string>
-    <string name="revanced_hide_shorts_button_summary_off">Shorts button is shown.</string>
-    <string name="revanced_hide_subscriptions_button_title">Hide subscriptions button</string>
-    <string name="revanced_hide_subscriptions_button_summary_on">Subscriptions button is hidden.</string>
-    <string name="revanced_hide_subscriptions_button_summary_off">Subscriptions button is shown.</string>
     <string name="revanced_switch_create_with_notifications_button_title">Switch create with notifications</string>
     <string name="revanced_switch_create_with_notifications_button_summary">"Switch the positions of the create button and notification button by spoofing device information.
 
 • Even if you change this setting, it may not take effect until you reboot the device.
 • Disabling this setting loads more ads from the server side.
 • You should disable this setting to make video ads visible."</string>
+
+    <!-- PreferenceScreen: General, PreferenceCategory: General, PreferenceScreen: Toolbar -->
+    <string name="revanced_preference_screen_toolbar_title">Toolbar</string>
+    <string name="revanced_preference_screen_toolbar_summary">Hide or change components located on the toolbar such as toolbar buttons, search bar, header.</string>
+
+    <string name="revanced_enable_wide_search_bar_title">Enable wide search bar</string>
+    <string name="revanced_enable_wide_search_bar_summary_on">Wide search bar is enabled.</string>
+    <string name="revanced_enable_wide_search_bar_summary_off">Wide search bar is disabled.</string>
+    <string name="revanced_enable_wide_search_bar_in_you_tab_title">Enable wide search bar in You tab</string>
+    <string name="revanced_enable_wide_search_bar_in_you_tab_summary">"Enabling this setting will disable the settings button in the You tab.
+
+In this case, please use the following path:
+You tab > View channel > Menu > Settings."</string>
+    <string name="revanced_hide_toolbar_cast_button_title">Hide cast button</string>
+    <string name="revanced_hide_toolbar_cast_button_summary_on">Cast button is hidden.</string>
+    <string name="revanced_hide_toolbar_cast_button_summary_off">Cast button is shown.</string>
+    <string name="revanced_hide_toolbar_create_button_title">Hide create button</string>
+    <string name="revanced_hide_toolbar_create_button_summary_on">Create button is hidden.</string>
+    <string name="revanced_hide_toolbar_create_button_summary_off">Create button is shown.</string>
+    <string name="revanced_hide_toolbar_notification_button_title">Hide notification button</string>
+    <string name="revanced_hide_toolbar_notification_button_summary_on">Notification button is hidden.</string>
+    <string name="revanced_hide_toolbar_notification_button_summary_off">Notification button is shown.</string>
+    <string name="revanced_hide_search_term_thumbnail_title">Hide search term thumbnail</string>
+    <string name="revanced_hide_search_term_thumbnail_summary_on">Thumbnails in the search term history are hidden.</string>
+    <string name="revanced_hide_search_term_thumbnail_summary_off">Thumbnails in the search term history are shown.</string>
+    <string name="revanced_hide_trending_searches_title">Hide trending searches</string>
+    <string name="revanced_hide_trending_searches_summary_on">Trending searches are hidden.</string>
+    <string name="revanced_hide_trending_searches_summary_off">Trending searches are shown.</string>
+    <string name="revanced_hide_voice_search_button_title">Hide voice search button</string>
+    <string name="revanced_hide_voice_search_button_summary_on">Voice search button is hidden in search bar.</string>
+    <string name="revanced_hide_voice_search_button_summary_off">Voice search button is shown in search bar.</string>
+
 
     <!-- PreferenceScreen: Player -->
     <string name="revanced_preference_screen_player_title">Player</string>
@@ -690,24 +699,27 @@ Limitation: Video title disappears when clicked."</string>
     <string name="revanced_preference_screen_player_buttons_title">Player buttons</string>
     <string name="revanced_preference_screen_player_buttons_summary">Hide or show buttons in videos.</string>
 
-    <string name="revanced_hide_autoplay_button_title">Hide autoplay button</string>
-    <string name="revanced_hide_autoplay_button_summary_on">Autoplay button is hidden.</string>
-    <string name="revanced_hide_autoplay_button_summary_off">Autoplay button is shown.</string>
-    <string name="revanced_hide_captions_button_title">Hide captions button</string>
-    <string name="revanced_hide_captions_button_summary_on">Captions button is hidden.</string>
-    <string name="revanced_hide_captions_button_summary_off">Captions button is shown.</string>
-    <string name="revanced_hide_collapse_button_title">Hide collapse button</string>
-    <string name="revanced_hide_collapse_button_summary_on">Collapse button is hidden.</string>
-    <string name="revanced_hide_collapse_button_summary_off">Collapse button is shown.</string>
-    <string name="revanced_hide_fullscreen_button_title">Hide fullscreen button</string>
-    <string name="revanced_hide_fullscreen_button_summary_on">Fullscreen button is hidden.</string>
-    <string name="revanced_hide_fullscreen_button_summary_off">Fullscreen button is shown.</string>
-    <string name="revanced_hide_previous_next_button_title">Hide previous &amp; next button</string>
-    <string name="revanced_hide_previous_next_button_summary_on">Buttons are hidden.</string>
-    <string name="revanced_hide_previous_next_button_summary_off">Buttons are shown.</string>
-    <string name="revanced_hide_youtube_music_button_title">Hide YouTube Music button</string>
-    <string name="revanced_hide_youtube_music_button_summary_on">YouTube Music button is hidden.</string>
-    <string name="revanced_hide_youtube_music_button_summary_off">YouTube Music button is shown.</string>
+    <string name="revanced_hide_player_autoplay_button_title">Hide autoplay button</string>
+    <string name="revanced_hide_player_autoplay_button_summary_on">Autoplay button is hidden.</string>
+    <string name="revanced_hide_player_autoplay_button_summary_off">Autoplay button is shown.</string>
+    <string name="revanced_hide_player_captions_button_title">Hide captions button</string>
+    <string name="revanced_hide_player_captions_button_summary_on">Captions button is hidden.</string>
+    <string name="revanced_hide_player_captions_button_summary_off">Captions button is shown.</string>
+    <string name="revanced_hide_player_cast_button_title">Hide cast button</string>
+    <string name="revanced_hide_player_cast_button_summary_on">Cast button is hidden.</string>
+    <string name="revanced_hide_player_cast_button_summary_off">Cast button is shown.</string>
+    <string name="revanced_hide_player_collapse_button_title">Hide collapse button</string>
+    <string name="revanced_hide_player_collapse_button_summary_on">Collapse button is hidden.</string>
+    <string name="revanced_hide_player_collapse_button_summary_off">Collapse button is shown.</string>
+    <string name="revanced_hide_player_fullscreen_button_title">Hide fullscreen button</string>
+    <string name="revanced_hide_player_fullscreen_button_summary_on">Fullscreen button is hidden.</string>
+    <string name="revanced_hide_player_fullscreen_button_summary_off">Fullscreen button is shown.</string>
+    <string name="revanced_hide_player_previous_next_button_title">Hide previous &amp; next button</string>
+    <string name="revanced_hide_player_previous_next_button_summary_on">Buttons are hidden.</string>
+    <string name="revanced_hide_player_previous_next_button_summary_off">Buttons are shown.</string>
+    <string name="revanced_hide_player_youtube_music_button_title">Hide YouTube Music button</string>
+    <string name="revanced_hide_player_youtube_music_button_summary_on">YouTube Music button is hidden.</string>
+    <string name="revanced_hide_player_youtube_music_button_summary_off">YouTube Music button is shown.</string>
 
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Player buttons, PreferenceCategory: Overlay buttons -->
     <string name="revanced_preference_category_overlay_buttons">Overlay buttons</string>

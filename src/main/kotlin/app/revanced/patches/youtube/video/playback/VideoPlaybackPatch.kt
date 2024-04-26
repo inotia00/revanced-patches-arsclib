@@ -14,7 +14,7 @@ import app.revanced.patches.youtube.utils.fix.shortsplayback.ShortsPlaybackPatch
 import app.revanced.patches.youtube.utils.flyoutpanel.PlaybackSpeedFlyoutPanelHookPatch
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPONENTS_PATH
-import app.revanced.patches.youtube.utils.integrations.Constants.UTILS_PATH
+import app.revanced.patches.youtube.utils.integrations.Constants.PATCH_STATUS_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.integrations.Constants.VIDEO_PATH
 import app.revanced.patches.youtube.utils.playertype.PlayerTypeHookPatch
 import app.revanced.patches.youtube.utils.recyclerview.BottomSheetRecyclerViewPatch
@@ -165,7 +165,7 @@ object VideoPlaybackPatch : BaseBytecodePatch(
 
         VideoInformationPatch.cpnHook("$INTEGRATIONS_PLAYBACK_SPEED_CLASS_DESCRIPTOR->newVideoStarted(Ljava/lang/String;Z)V")
 
-        context.updatePatchStatus("$UTILS_PATH/PatchStatus;", "RememberPlaybackSpeed")
+        context.updatePatchStatus(PATCH_STATUS_CLASS_DESCRIPTOR, "RememberPlaybackSpeed")
 
         // endregion
 

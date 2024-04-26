@@ -28,6 +28,8 @@ object Constants {
     const val PLAYER_CLASS_DESCRIPTOR = "$PLAYER_PATH/PlayerPatch;"
     const val SHORTS_CLASS_DESCRIPTOR = "$SHORTS_PATH/ShortsPatch;"
 
+    const val PATCH_STATUS_CLASS_DESCRIPTOR = "$UTILS_PATH/PatchStatus;"
+
     val COMPATIBLE_PACKAGE = setOf(
         Patch.CompatiblePackage(
             "com.google.android.youtube",

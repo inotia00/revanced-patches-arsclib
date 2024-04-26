@@ -23,6 +23,11 @@ object ToolBarHookPatch : BytecodePatch(
         ToolBarPatchFingerprint
     )
 ) {
+    private const val INTEGRATIONS_CLASS_DESCRIPTOR =
+        "$UTILS_PATH/ToolBarPatch;"
+
+    private lateinit var toolbarMethod: MutableMethod
+
     override fun execute(context: BytecodeContext) {
 
         ToolBarButtonFingerprint.resultOrThrow().let {
@@ -51,18 +56,13 @@ object ToolBarHookPatch : BytecodePatch(
             }
         }
 
-        insertMethod = ToolBarPatchFingerprint.resultOrThrow().mutableMethod
+        toolbarMethod = ToolBarPatchFingerprint.resultOrThrow().mutableMethod
     }
 
-    private const val INTEGRATIONS_CLASS_DESCRIPTOR =
-        "$UTILS_PATH/ToolBarPatch;"
-
-    private lateinit var insertMethod: MutableMethod
-
-    internal fun injectCall(
+    internal fun hook(
         descriptor: String
     ) {
-        insertMethod.addInstructions(
+        toolbarMethod.addInstructions(
             0,
             "invoke-static {p0, p1}, $descriptor(Ljava/lang/String;Landroid/view/View;)V"
         )

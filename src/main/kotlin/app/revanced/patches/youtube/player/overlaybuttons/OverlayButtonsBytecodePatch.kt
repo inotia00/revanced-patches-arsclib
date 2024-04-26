@@ -10,7 +10,7 @@ import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.youtube.player.overlaybuttons.fingerprints.OfflineVideoEndpointFingerprint
 import app.revanced.patches.youtube.player.overlaybuttons.fingerprints.PiPPlaybackFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.INTEGRATIONS_PATH
-import app.revanced.patches.youtube.utils.integrations.Constants.UTILS_PATH
+import app.revanced.patches.youtube.utils.integrations.Constants.PATCH_STATUS_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.mainactivity.MainActivityResolvePatch
 import app.revanced.util.resultOrThrow
 import app.revanced.util.updatePatchStatus
@@ -52,7 +52,7 @@ object OverlayButtonsBytecodePatch : BytecodePatch(
             }
         }
 
-        context.updatePatchStatus("$UTILS_PATH/PatchStatus;", "OverlayButtons")
+        context.updatePatchStatus(PATCH_STATUS_CLASS_DESCRIPTOR, "OverlayButtons")
 
     }
 }

@@ -13,6 +13,7 @@ import app.revanced.patches.youtube.player.buttons.fingerprints.MusicAppDeeplink
 import app.revanced.patches.youtube.player.buttons.fingerprints.PlayerControlsVisibilityModelFingerprint
 import app.revanced.patches.youtube.player.buttons.fingerprints.TitleAnchorFingerprint
 import app.revanced.patches.youtube.player.buttons.fingerprints.YouTubeControlsOverlaySubtitleButtonFingerprint
+import app.revanced.patches.youtube.utils.castbutton.CastButtonPatch
 import app.revanced.patches.youtube.utils.fingerprints.LayoutConstructorFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.PLAYER_CLASS_DESCRIPTOR
@@ -36,6 +37,7 @@ object PlayerButtonsPatch : BaseBytecodePatch(
     name = "Hide player buttons",
     description = "Adds an option to hide buttons in the video player.",
     dependencies = setOf(
+        CastButtonPatch::class,
         SettingsPatch::class,
         SharedResourceIdPatch::class
     ),
@@ -108,6 +110,12 @@ object PlayerButtonsPatch : BaseBytecodePatch(
                 )
             }
         }
+
+        // endregion
+
+        // region patch for hide cast button
+
+        CastButtonPatch.hookPlayerButton(context)
 
         // endregion
 
