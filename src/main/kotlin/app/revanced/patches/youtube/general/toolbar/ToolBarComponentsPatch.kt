@@ -11,7 +11,10 @@ import app.revanced.patcher.patch.options.PatchOption.PatchExtensions.booleanPat
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.shared.voicesearch.VoiceSearchUtils.patchXml
+import app.revanced.patches.youtube.general.toolbar.fingerprints.AttributeResolverFingerprint
 import app.revanced.patches.youtube.general.toolbar.fingerprints.CreateSearchSuggestionsFingerprint
+import app.revanced.patches.youtube.general.toolbar.fingerprints.DrawerContentViewConstructorFingerprint
+import app.revanced.patches.youtube.general.toolbar.fingerprints.DrawerContentViewFingerprint
 import app.revanced.patches.youtube.general.toolbar.fingerprints.SearchBarFingerprint
 import app.revanced.patches.youtube.general.toolbar.fingerprints.SearchBarParentFingerprint
 import app.revanced.patches.youtube.general.toolbar.fingerprints.SearchResultFingerprint
@@ -24,9 +27,13 @@ import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACK
 import app.revanced.patches.youtube.utils.integrations.Constants.GENERAL_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.VoiceSearch
+import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.YtPremiumWordMarkHeader
+import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.YtWordMarkHeader
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch.contexts
 import app.revanced.patches.youtube.utils.toolbar.ToolBarHookPatch
+import app.revanced.util.findMutableMethodOf
+import app.revanced.util.getTargetIndex
 import app.revanced.util.getTargetIndexWithMethodReferenceName
 import app.revanced.util.getTargetIndexWithReference
 import app.revanced.util.getTargetIndexWithReferenceReversed
@@ -35,10 +42,13 @@ import app.revanced.util.getWideLiteralInstructionIndex
 import app.revanced.util.literalInstructionBooleanHook
 import app.revanced.util.patch.BaseBytecodePatch
 import app.revanced.util.resultOrThrow
+import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
+import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction31i
+import com.android.tools.smali.dexlib2.util.MethodUtil
 
 @Suppress("DEPRECATION", "unused")
 object ToolBarComponentsPatch : BaseBytecodePatch(
@@ -52,7 +62,9 @@ object ToolBarComponentsPatch : BaseBytecodePatch(
     ),
     compatiblePackages = COMPATIBLE_PACKAGE,
     fingerprints = setOf(
+        AttributeResolverFingerprint,
         CreateSearchSuggestionsFingerprint,
+        DrawerContentViewConstructorFingerprint,
         SearchBarParentFingerprint,
         SearchResultFingerprint,
         SetActionBarRingoFingerprint,
@@ -72,10 +84,67 @@ object ToolBarComponentsPatch : BaseBytecodePatch(
 
     override fun execute(context: BytecodeContext) {
 
+        // region patch for change header
+
+        // Invoke YouTube's header attribute into integrations.
+        replaceHeaderAttributeId(context)
+
+        // YouTube's headers have the form of AttributeSet, which is decoded from YouTube's built-in classes.
+        val attributeResolverMethod = AttributeResolverFingerprint.resultOrThrow().mutableMethod
+        val attributeResolverMethodCall = attributeResolverMethod.definingClass + "->" + attributeResolverMethod.name + "(Landroid/content/Context;I)Landroid/graphics/drawable/Drawable;"
+
+        context.findClass(GENERAL_CLASS_DESCRIPTOR)!!.mutableClass.methods.single { method ->
+            method.name == "getHeaderDrawable"
+        }.addInstructions(
+            0, """
+                invoke-static {p0, p1}, $attributeResolverMethodCall
+                move-result-object p0
+                return-object p0
+                """
+        )
+
+        // The sidebar's header is lithoView. Add a listener to change it.
+        DrawerContentViewFingerprint.resolve(
+            context,
+            DrawerContentViewConstructorFingerprint.resultOrThrow().classDef
+        )
+        DrawerContentViewFingerprint.resultOrThrow().let {
+            it.mutableMethod.apply {
+                val insertIndex = getTargetIndexWithMethodReferenceName("addView")
+                val insertRegister = getInstruction<FiveRegisterInstruction>(insertIndex).registerD
+
+                addInstruction(
+                    insertIndex,
+                    "invoke-static {v$insertRegister}, $GENERAL_CLASS_DESCRIPTOR->setDrawerNavigationHeader(Landroid/view/View;)V"
+                )
+            }
+        }
+
+        // Override the header in the search bar.
+        val setActionBarRingoMutableClass = SetActionBarRingoFingerprint.resultOrThrow().mutableClass
+        setActionBarRingoMutableClass.methods.first {
+                method -> MethodUtil.isConstructor(method)
+        }.apply {
+            val insertIndex = getTargetIndex(Opcode.IPUT_BOOLEAN)
+            val insertRegister = getInstruction<TwoRegisterInstruction>(insertIndex).registerA
+
+            addInstruction(
+                insertIndex + 1,
+                "const/4 v$insertRegister, 0x0"
+            )
+            addInstructions(
+                insertIndex, """
+                    invoke-static {}, $GENERAL_CLASS_DESCRIPTOR->overridePremiumHeader()Z
+                    move-result v$insertRegister
+                    """
+            )
+        }
+
+        // endregion
+
         // region patch for enable wide search bar
 
-        val parentClassDef = SetActionBarRingoFingerprint.resultOrThrow().classDef
-        YouActionBarFingerprint.resolve(context, parentClassDef)
+        YouActionBarFingerprint.resolve(context, setActionBarRingoMutableClass)
 
         SetWordMarkHeaderFingerprint.resultOrThrow().let {
             val walkerMethod = it.getWalkerMethod(context, it.scanResult.patternScanResult!!.startIndex + 1)
@@ -241,6 +310,36 @@ object ToolBarComponentsPatch : BaseBytecodePatch(
         )
 
         SettingsPatch.updatePatchStatus(this)
+    }
+
+    private fun replaceHeaderAttributeId(context: BytecodeContext) {
+        val headerAttributeIdArray = arrayOf(YtPremiumWordMarkHeader, YtWordMarkHeader)
+
+        context.classes.forEach { classDef ->
+            classDef.methods.forEach { method ->
+                method.implementation.apply {
+                    this?.instructions?.forEachIndexed { index, instruction ->
+                        if (instruction.opcode != Opcode.CONST)
+                            return@forEachIndexed
+                        if (headerAttributeIdArray.indexOf((instruction as Instruction31i).wideLiteral) < 0)
+                            return@forEachIndexed
+
+                        (instructions.elementAt(index)).apply {
+                            val register = (this as OneRegisterInstruction).registerA
+                            context.proxy(classDef)
+                                .mutableClass
+                                .findMutableMethodOf(method)
+                                .addInstructions(
+                                    index + 1, """
+                                        invoke-static {}, $GENERAL_CLASS_DESCRIPTOR->getHeaderAttributeId()I
+                                        move-result v$register
+                                        """
+                                )
+                        }
+                    }
+                }
+            }
+        }
     }
 
     private fun MutableMethod.injectSearchBarHook(

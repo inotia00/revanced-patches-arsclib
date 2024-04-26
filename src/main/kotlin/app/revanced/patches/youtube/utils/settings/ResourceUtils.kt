@@ -71,10 +71,6 @@ object ResourceUtils {
         updatePatchStatusSettings(patchTitle, "@string/revanced_patches_included")
     }
 
-    fun ResourceContext.updatePatchStatusHeader(headerName: String) {
-        updatePatchStatusSettings("Header", headerName)
-    }
-
     fun ResourceContext.updatePatchStatusIcon(iconName: String) {
         updatePatchStatusSettings("Icon", "@string/revanced_icon_$iconName")
     }

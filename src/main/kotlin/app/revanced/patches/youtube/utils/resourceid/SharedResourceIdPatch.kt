@@ -5,6 +5,7 @@ import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.mapping.ResourceMappingPatch
 import app.revanced.patches.shared.mapping.ResourceMappingPatch.getId
+import app.revanced.patches.shared.mapping.ResourceType.ATTR
 import app.revanced.patches.shared.mapping.ResourceType.COLOR
 import app.revanced.patches.shared.mapping.ResourceType.DIMEN
 import app.revanced.patches.shared.mapping.ResourceType.DRAWABLE
@@ -37,6 +38,7 @@ object SharedResourceIdPatch : ResourcePatch() {
     var ControlsLayoutStub = -1L
     var DarkSplashAnimation = -1L
     var DonationCompanion = -1L
+    var DrawerContentView = -1L
     var DrawerResults = -1L
     var EasySeekEduContainer = -1L
     var EditSettingsAction = -1L
@@ -87,6 +89,8 @@ object SharedResourceIdPatch : ResourcePatch() {
     var VideoQualityBottomSheet = -1L
     var VoiceSearch = -1L
     var YouTubeControlsOverlaySubtitleButton = -1L
+    var YtPremiumWordMarkHeader = -1L
+    var YtWordMarkHeader = -1L
 
     override fun execute(context: ResourceContext) {
 
@@ -111,6 +115,7 @@ object SharedResourceIdPatch : ResourcePatch() {
         ControlsLayoutStub = getId(ID, "controls_layout_stub")
         DarkSplashAnimation = getId(ID, "dark_splash_animation")
         DonationCompanion = getId(LAYOUT, "donation_companion")
+        DrawerContentView = getId(ID, "drawer_content_view")
         DrawerResults = getId(ID, "drawer_results")
         EasySeekEduContainer = getId(ID, "easy_seek_edu_container")
         EditSettingsAction = getId(STRING, "edit_settings_action")
@@ -163,6 +168,8 @@ object SharedResourceIdPatch : ResourcePatch() {
         VideoQualityBottomSheet = getId(LAYOUT, "video_quality_bottom_sheet_list_fragment_title")
         VoiceSearch = getId(ID, "voice_search")
         YouTubeControlsOverlaySubtitleButton = getId(LAYOUT, "youtube_controls_overlay_subtitle_button")
+        YtPremiumWordMarkHeader = getId(ATTR, "ytPremiumWordmarkHeader")
+        YtWordMarkHeader = getId(ATTR, "ytWordmarkHeader")
 
     }
 }

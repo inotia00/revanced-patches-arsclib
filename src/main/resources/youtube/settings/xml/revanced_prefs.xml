@@ -128,6 +128,7 @@
 
         <!-- SETTINGS: TOOLBAR_COMPONENTS
         <PreferenceScreen android:title="@string/revanced_preference_screen_toolbar_title" android:key="revanced_preference_screen_toolbar" android:summary="@string/revanced_preference_screen_toolbar_summary">
+            <SwitchPreference android:title="@string/revanced_change_youtube_header_title" android:key="revanced_change_youtube_header" android:defaultValue="true" android:summaryOn="@string/revanced_change_youtube_header_summary_on" android:summaryOff="@string/revanced_change_youtube_header_summary_off" />
             <SwitchPreference android:title="@string/revanced_enable_wide_search_bar_title" android:key="revanced_enable_wide_search_bar" android:defaultValue="false" android:summaryOn="@string/revanced_enable_wide_search_bar_summary_on" android:summaryOff="@string/revanced_enable_wide_search_bar_summary_off" />
             <SwitchPreference android:title="@string/revanced_enable_wide_search_bar_in_you_tab_title" android:key="revanced_enable_wide_search_bar_in_you_tab" android:defaultValue="false" android:summary="@string/revanced_enable_wide_search_bar_in_you_tab_summary" android:dependency="revanced_enable_wide_search_bar" />
             <SwitchPreference android:title="@string/revanced_hide_toolbar_cast_button_title" android:key="revanced_hide_toolbar_cast_button" android:defaultValue="true" android:summaryOn="@string/revanced_hide_toolbar_cast_button_summary_on" android:summaryOff="@string/revanced_hide_toolbar_cast_button_summary_off" />
@@ -606,7 +607,6 @@
             <PreferenceCategory android:title="@string/revanced_preference_category_others" android:layout="@layout/revanced_settings_preferences_category">
                 <Preference android:title="Custom double tap length" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
                 <Preference android:title="Disable pip notification" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
-                <Preference android:title="Header" android:summary="@string/revanced_header_default" android:selectable="false"/>
                 <Preference android:title="Hide animated button background" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
                 <Preference android:title="Hide double tap overlay filter" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
                 <Preference android:title="Hide tooltip content" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
