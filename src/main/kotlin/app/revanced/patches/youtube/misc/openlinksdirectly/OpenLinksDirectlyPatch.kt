@@ -8,11 +8,10 @@ import app.revanced.patches.youtube.misc.openlinksdirectly.fingerprints.OpenLink
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.MISC_PATH
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
+import app.revanced.util.getTargetIndexWithMethodReferenceName
 import app.revanced.util.patch.BaseBytecodePatch
 import app.revanced.util.resultOrThrow
-import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
-import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction35c
-import com.android.tools.smali.dexlib2.iface.reference.MethodReference
+import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 
 @Suppress("unused")
 object OpenLinksDirectlyPatch : BaseBytecodePatch(
@@ -33,11 +32,8 @@ object OpenLinksDirectlyPatch : BaseBytecodePatch(
         ).forEach { fingerprint ->
             fingerprint.resultOrThrow().let {
                 it.mutableMethod.apply {
-                    val insertIndex = implementation!!.instructions
-                        .indexOfFirst { instruction ->
-                            ((instruction as? ReferenceInstruction)?.reference as? MethodReference)?.name == "parse"
-                        }
-                    val insertRegister = getInstruction<Instruction35c>(insertIndex).registerC
+                    val insertIndex = getTargetIndexWithMethodReferenceName("parse")
+                    val insertRegister = getInstruction<FiveRegisterInstruction>(insertIndex).registerC
 
                     replaceInstruction(
                         insertIndex,

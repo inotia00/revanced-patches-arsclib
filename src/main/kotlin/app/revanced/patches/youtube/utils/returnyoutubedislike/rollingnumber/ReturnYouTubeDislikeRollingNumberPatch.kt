@@ -21,7 +21,6 @@ import app.revanced.util.getTargetIndex
 import app.revanced.util.getTargetIndexWithMethodReferenceName
 import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
-import com.android.tools.smali.dexlib2.builder.instruction.BuilderInstruction21c
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
@@ -54,7 +53,7 @@ object ReturnYouTubeDislikeRollingNumberPatch : BytecodePatch(
                 it.mutableMethod.apply {
                     val rollingNumberClassIndex = it.scanResult.patternScanResult!!.startIndex
                     val rollingNumberClassReference =
-                        getInstruction<BuilderInstruction21c>(rollingNumberClassIndex).reference
+                        getInstruction<ReferenceInstruction>(rollingNumberClassIndex).reference
                     val rollingNumberClass =
                         context.findClass(rollingNumberClassReference.toString())!!.mutableClass
 

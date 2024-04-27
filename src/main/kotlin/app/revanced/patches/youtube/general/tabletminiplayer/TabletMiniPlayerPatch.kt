@@ -8,6 +8,7 @@ import app.revanced.patches.youtube.general.tabletminiplayer.fingerprints.MiniPl
 import app.revanced.patches.youtube.general.tabletminiplayer.fingerprints.MiniPlayerOverrideFingerprint
 import app.revanced.patches.youtube.general.tabletminiplayer.fingerprints.MiniPlayerOverrideNoContextFingerprint
 import app.revanced.patches.youtube.general.tabletminiplayer.fingerprints.MiniPlayerResponseModelSizeCheckFingerprint
+import app.revanced.patches.youtube.general.tabletminiplayer.fingerprints.ModernMiniPlayerConfigFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.GENERAL_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
@@ -33,35 +34,45 @@ object TabletMiniPlayerPatch : BaseBytecodePatch(
     fingerprints = setOf(
         MiniPlayerDimensionsCalculatorFingerprint,
         MiniPlayerResponseModelSizeCheckFingerprint,
-        MiniPlayerOverrideFingerprint
+        MiniPlayerOverrideFingerprint,
+        ModernMiniPlayerConfigFingerprint
     )
 ) {
     override fun execute(context: BytecodeContext) {
 
-        MiniPlayerDimensionsCalculatorFingerprint.resultOrThrow().let { parentResult ->
-            MiniPlayerOverrideNoContextFingerprint.resolve(context, parentResult.classDef)
-            MiniPlayerOverrideNoContextFingerprint.resultOrThrow().let {
+        MiniPlayerOverrideNoContextFingerprint.resolve(
+            context,
+            MiniPlayerDimensionsCalculatorFingerprint.resultOrThrow().classDef
+        )
+        MiniPlayerOverrideNoContextFingerprint.resultOrThrow().let {
+            it.mutableMethod.apply {
+                hook(getTargetIndex(Opcode.RETURN))
+                hook(getTargetIndexReversed(Opcode.RETURN))
+            }
+        }
+
+        if (SettingsPatch.upward1912) {
+            ModernMiniPlayerConfigFingerprint.resultOrThrow().let {
                 it.mutableMethod.apply {
-                    hook(getTargetIndex(Opcode.RETURN))
-                    hook(getTargetIndexReversed(Opcode.RETURN))
+                    hook(it.scanResult.patternScanResult!!.endIndex)
                 }
             }
-        }
+        } else {
+            MiniPlayerOverrideFingerprint.resultOrThrow().let {
+                it.mutableMethod.apply {
+                    val walkerMethod = getWalkerMethod(context, getStringInstructionIndex("appName") + 2)
 
-        MiniPlayerOverrideFingerprint.resultOrThrow().let {
-            it.mutableMethod.apply {
-                val walkerMethod = getWalkerMethod(context, getStringInstructionIndex("appName") + 2)
-
-                walkerMethod.apply {
-                    hook(getTargetIndex(Opcode.RETURN))
-                    hook(getTargetIndexReversed(Opcode.RETURN))
+                    walkerMethod.apply {
+                        hook(getTargetIndex(Opcode.RETURN))
+                        hook(getTargetIndexReversed(Opcode.RETURN))
+                    }
                 }
             }
-        }
 
-        MiniPlayerResponseModelSizeCheckFingerprint.resultOrThrow().let {
-            it.mutableMethod.apply {
-                hook(it.scanResult.patternScanResult!!.endIndex)
+            MiniPlayerResponseModelSizeCheckFingerprint.resultOrThrow().let {
+                it.mutableMethod.apply {
+                    hook(it.scanResult.patternScanResult!!.endIndex)
+                }
             }
         }
 

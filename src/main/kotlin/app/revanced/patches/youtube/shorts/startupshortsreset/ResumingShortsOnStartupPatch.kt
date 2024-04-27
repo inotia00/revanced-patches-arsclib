@@ -11,15 +11,17 @@ import app.revanced.patches.youtube.shorts.startupshortsreset.fingerprints.UserW
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.SHORTS_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.getStringInstructionIndex
+import app.revanced.util.getReference
 import app.revanced.util.getTargetIndex
-import app.revanced.util.getTargetIndexReversed
 import app.revanced.util.getWalkerMethod
+import app.revanced.util.indexOfFirstInstruction
 import app.revanced.util.patch.BaseBytecodePatch
 import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
-import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
+import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
+import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
+import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 
 @Suppress("unused")
 object ResumingShortsOnStartupPatch : BaseBytecodePatch(
@@ -57,27 +59,27 @@ object ResumingShortsOnStartupPatch : BaseBytecodePatch(
 
         UserWasInShortsFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
-                val startIndex = getStringInstructionIndex("Failed to read user_was_in_shorts proto after successful warmup")
-                val exceptionIndex = getTargetIndexReversed(startIndex, Opcode.RETURN_VOID) - 1
-                val targetIndex = getTargetIndexReversed(exceptionIndex, Opcode.RETURN_VOID) + 1
-                if (getInstruction(targetIndex).opcode != Opcode.IGET_OBJECT)
-                    throw PatchException("Failed to find insert index")
-
-                val replaceReference = getInstruction<ReferenceInstruction>(targetIndex).reference
-                val replaceInstruction = getInstruction<TwoRegisterInstruction>(targetIndex)
+                val listenableInstructionIndex = indexOfFirstInstruction {
+                    opcode == Opcode.INVOKE_INTERFACE &&
+                            getReference<MethodReference>()?.definingClass == "Lcom/google/common/util/concurrent/ListenableFuture;" &&
+                            getReference<MethodReference>()?.name == "isDone"
+                }
+                if (listenableInstructionIndex < 0) throw PatchException("Could not find instruction index")
+                val originalInstructionRegister = getInstruction<FiveRegisterInstruction>(listenableInstructionIndex).registerC
+                val freeRegister = getInstruction<OneRegisterInstruction>(listenableInstructionIndex + 1).registerA
 
                 addInstructionsWithLabels(
-                    targetIndex + 1,
+                    listenableInstructionIndex + 1,
                     """
                         invoke-static {}, $SHORTS_CLASS_DESCRIPTOR->disableResumingStartupShortsPlayer()Z
-                        move-result v${replaceInstruction.registerA}
-                        if-eqz v${replaceInstruction.registerA}, :show
+                        move-result v$freeRegister
+                        if-eqz v$freeRegister, :show
                         return-void
                         :show
-                        iget-object v${replaceInstruction.registerA}, v${replaceInstruction.registerB}, $replaceReference
+                        invoke-interface {v$originalInstructionRegister}, Lcom/google/common/util/concurrent/ListenableFuture;->isDone()Z
                         """
                 )
-                removeInstruction(targetIndex)
+                removeInstruction(listenableInstructionIndex)
             }
         }
 

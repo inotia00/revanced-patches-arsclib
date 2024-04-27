@@ -22,5 +22,6 @@ internal object RollingNumberTextViewFingerprint : MethodFingerprint(
     ),
     customFingerprint = custom@{ _, classDef ->
         classDef.superclass == "Landroid/support/v7/widget/AppCompatTextView;"
+                || classDef.superclass == "Lcom/google/android/libraries/youtube/rendering/ui/spec/typography/YouTubeAppCompatTextView;"
     }
 )
