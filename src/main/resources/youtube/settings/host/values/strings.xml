@@ -402,6 +402,13 @@ You tab > View channel > Menu > Settings."</string>
     <string name="revanced_hide_voice_search_button_title">Hide voice search button</string>
     <string name="revanced_hide_voice_search_button_summary_on">Voice search button is hidden in search bar.</string>
     <string name="revanced_hide_voice_search_button_summary_off">Voice search button is shown in search bar.</string>
+    <string name="revanced_replace_toolbar_create_button_title">Replace create button</string>
+    <string name="revanced_replace_toolbar_create_button_summary">Replaces create button with settings button.</string>
+    <string name="revanced_replace_toolbar_create_button_type_title">Action type to assign to button</string>
+    <string name="revanced_replace_toolbar_create_button_type_summary_on">"Tap to open RVX Settings.
+Tap and hold to open YouTube Settings."</string>
+    <string name="revanced_replace_toolbar_create_button_type_summary_off">"Tap to open YouTube Settings.
+Tap and hold to open RVX Settings."</string>
 
 
     <!-- PreferenceScreen: Player -->

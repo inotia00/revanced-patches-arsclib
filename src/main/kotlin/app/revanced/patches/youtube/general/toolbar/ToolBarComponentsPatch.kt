@@ -15,6 +15,7 @@ import app.revanced.patches.shared.voicesearch.VoiceSearchUtils.patchXml
 import app.revanced.patches.youtube.general.toolbar.fingerprints.ActionBarRingoBackgroundFingerprint
 import app.revanced.patches.youtube.general.toolbar.fingerprints.ActionBarRingoTextFingerprint
 import app.revanced.patches.youtube.general.toolbar.fingerprints.AttributeResolverFingerprint
+import app.revanced.patches.youtube.general.toolbar.fingerprints.CreateButtonDrawableFingerprint
 import app.revanced.patches.youtube.general.toolbar.fingerprints.CreateSearchSuggestionsFingerprint
 import app.revanced.patches.youtube.general.toolbar.fingerprints.DrawerContentViewConstructorFingerprint
 import app.revanced.patches.youtube.general.toolbar.fingerprints.DrawerContentViewFingerprint
@@ -31,6 +32,7 @@ import app.revanced.patches.youtube.utils.integrations.Constants.GENERAL_CLASS_D
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.ActionBarRingoBackground
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.VoiceSearch
+import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.YtOutlineVideoCamera
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.YtPremiumWordMarkHeader
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.YtWordMarkHeader
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
@@ -71,6 +73,7 @@ object ToolBarComponentsPatch : BaseBytecodePatch(
     fingerprints = setOf(
         ActionBarRingoBackgroundFingerprint,
         AttributeResolverFingerprint,
+        CreateButtonDrawableFingerprint,
         CreateSearchSuggestionsFingerprint,
         DrawerContentViewConstructorFingerprint,
         SearchBarParentFingerprint,
@@ -357,6 +360,34 @@ object ToolBarComponentsPatch : BaseBytecodePatch(
                 )
             )
         }
+
+        // endregion
+
+        // region patch for replace create button
+
+        CreateButtonDrawableFingerprint.resultOrThrow().mutableMethod.apply {
+            val index = getWideLiteralInstructionIndex(YtOutlineVideoCamera)
+            val register = getInstruction<OneRegisterInstruction>(index).registerA
+
+            addInstructions(
+                index + 1, """
+                    invoke-static {v$register}, $GENERAL_CLASS_DESCRIPTOR->getCreateButtonDrawableId(I)I
+                    move-result v$register
+                    """
+            )
+        }
+
+        ToolBarHookPatch.hook("$GENERAL_CLASS_DESCRIPTOR->replaceCreateButton")
+
+        val settingsClass = context.findClass("Shell_SettingsActivity")
+            ?: throw PatchException("Shell_SettingsActivity class not found.")
+
+        settingsClass.mutableClass.methods.find { it.name == "onCreate" }?.apply {
+            addInstruction(
+                0,
+                "invoke-static {p0}, $GENERAL_CLASS_DESCRIPTOR->setShellActivityTheme(Landroid/app/Activity;)V"
+            )
+        } ?: throw PatchException("onCreate method not found.")
 
         // endregion
 
