@@ -5,7 +5,6 @@ import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.shared.litho.LithoFilterPatch
 import app.revanced.patches.youtube.general.components.fingerprints.AccountListFingerprint
@@ -14,6 +13,7 @@ import app.revanced.patches.youtube.general.components.fingerprints.AccountMenuF
 import app.revanced.patches.youtube.general.components.fingerprints.AccountSwitcherAccessibilityLabelFingerprint
 import app.revanced.patches.youtube.general.components.fingerprints.BottomUiContainerFingerprint
 import app.revanced.patches.youtube.general.components.fingerprints.FloatingMicrophoneFingerprint
+import app.revanced.patches.youtube.general.components.fingerprints.SettingsMenuFingerprint
 import app.revanced.patches.youtube.utils.fingerprints.AccountMenuParentFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPONENTS_PATH
@@ -23,6 +23,7 @@ import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.Accou
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.patches.youtube.utils.viewgroup.ViewGroupMarginLayoutParamsHookPatch
 import app.revanced.util.getTargetIndex
+import app.revanced.util.getTargetIndexWithFieldReferenceType
 import app.revanced.util.getTargetIndexWithMethodReferenceName
 import app.revanced.util.getWideLiteralInstructionIndex
 import app.revanced.util.patch.BaseBytecodePatch
@@ -47,7 +48,8 @@ object LayoutComponentsPatch : BaseBytecodePatch(
         AccountMenuParentFingerprint,
         AccountSwitcherAccessibilityLabelFingerprint,
         BottomUiContainerFingerprint,
-        FloatingMicrophoneFingerprint
+        FloatingMicrophoneFingerprint,
+        SettingsMenuFingerprint
     )
 ) {
     private const val CUSTOM_FILTER_CLASS_DESCRIPTOR =
@@ -129,6 +131,23 @@ object LayoutComponentsPatch : BaseBytecodePatch(
                         invoke-static {v$visibilityRegister}, $GENERAL_CLASS_DESCRIPTOR->hideHandle(I)I
                         move-result v$visibilityRegister
                         """
+                )
+            }
+        }
+
+        // endregion
+
+        // region patch for hide settings menu
+
+        SettingsMenuFingerprint.resultOrThrow().let {
+            it.mutableMethod.apply {
+                val insertIndex = getTargetIndexWithFieldReferenceType("Landroid/support/v7/widget/RecyclerView;")
+                val insertRegister = getInstruction<TwoRegisterInstruction>(insertIndex).registerA
+
+                addInstruction(
+                    insertIndex,
+                    "invoke-static {v$insertRegister}, " +
+                            "$GENERAL_CLASS_DESCRIPTOR->hideSettingsMenu(Landroid/support/v7/widget/RecyclerView;)V"
                 )
             }
         }

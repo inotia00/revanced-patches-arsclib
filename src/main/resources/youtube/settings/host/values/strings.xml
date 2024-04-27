@@ -366,6 +366,18 @@ Some components may not be hidden."</string>
 • Disabling this setting loads more ads from the server side.
 • You should disable this setting to make video ads visible."</string>
 
+    <!-- PreferenceScreen: General, PreferenceCategory: General, PreferenceScreen: Settings menu -->
+    <string name="revanced_preference_screen_settings_munu_title">Settings menu</string>
+    <string name="revanced_preference_screen_settings_munu_summary">Hide elements in YouTube settings menu.</string>
+
+    <string name="revanced_hide_settings_menu_title">Hide YouTube settings menu</string>
+    <string name="revanced_hide_settings_menu_summary">Hide elements in YouTube settings menu.</string>
+    <string name="revanced_hide_settings_menu_filter_strings_title">YouTube settings menu filter</string>
+    <string name="revanced_hide_settings_menu_filter_strings_summary">List of YouTube settings menu names to filter separated by a new line.</string>
+    <string name="revanced_hide_settings_menu_filter_strings_hint">"Account
+Data saving
+Captions"</string>
+
     <!-- PreferenceScreen: General, PreferenceCategory: General, PreferenceScreen: Toolbar -->
     <string name="revanced_preference_screen_toolbar_title">Toolbar</string>
     <string name="revanced_preference_screen_toolbar_summary">Hide or change components located on the toolbar such as toolbar buttons, search bar, header.</string>
