@@ -91,7 +91,9 @@ object SharedResourceIdPatch : ResourcePatch() {
     var VideoQualityBottomSheet = -1L
     var VoiceSearch = -1L
     var YouTubeControlsOverlaySubtitleButton = -1L
+    var YtOutlinePiPWhite = -1L
     var YtOutlineVideoCamera = -1L
+    var YtOutlineXWhite = -1L
     var YtPremiumWordMarkHeader = -1L
     var YtWordMarkHeader = -1L
 
@@ -173,7 +175,9 @@ object SharedResourceIdPatch : ResourcePatch() {
         VideoQualityBottomSheet = getId(LAYOUT, "video_quality_bottom_sheet_list_fragment_title")
         VoiceSearch = getId(ID, "voice_search")
         YouTubeControlsOverlaySubtitleButton = getId(LAYOUT, "youtube_controls_overlay_subtitle_button")
+        YtOutlinePiPWhite = getId(DRAWABLE, "yt_outline_picture_in_picture_white_24")
         YtOutlineVideoCamera = getId(DRAWABLE, "yt_outline_video_camera_black_24")
+        YtOutlineXWhite = getId(DRAWABLE, "yt_outline_x_white_24")
         YtPremiumWordMarkHeader = getId(ATTR, "ytPremiumWordmarkHeader")
         YtWordMarkHeader = getId(ATTR, "ytWordmarkHeader")
 

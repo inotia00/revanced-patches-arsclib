@@ -38,8 +38,8 @@ import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.YtWor
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch.contexts
 import app.revanced.patches.youtube.utils.toolbar.ToolBarHookPatch
+import app.revanced.util.REGISTER_TEMPLATE_REPLACEMENT
 import app.revanced.util.doRecursively
-import app.revanced.util.findMutableMethodOf
 import app.revanced.util.getTargetIndex
 import app.revanced.util.getTargetIndexWithMethodReferenceName
 import app.revanced.util.getTargetIndexWithReference
@@ -47,6 +47,7 @@ import app.revanced.util.getTargetIndexWithReferenceReversed
 import app.revanced.util.getWalkerMethod
 import app.revanced.util.getWideLiteralInstructionIndex
 import app.revanced.util.literalInstructionBooleanHook
+import app.revanced.util.literalInstructionHook
 import app.revanced.util.patch.BaseBytecodePatch
 import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
@@ -54,7 +55,6 @@ import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
-import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction31i
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 import com.android.tools.smali.dexlib2.util.MethodUtil
 import org.w3c.dom.Element
@@ -97,7 +97,17 @@ object ToolBarComponentsPatch : BaseBytecodePatch(
         // region patch for change YouTube header
 
         // Invoke YouTube's header attribute into integrations.
-        replaceHeaderAttributeId(context)
+        val smaliInstruction = """
+            invoke-static {}, $GENERAL_CLASS_DESCRIPTOR->getHeaderAttributeId()I
+            move-result v$REGISTER_TEMPLATE_REPLACEMENT
+            """
+
+        arrayOf(
+            YtPremiumWordMarkHeader,
+            YtWordMarkHeader
+        ).forEach { literal ->
+            context.literalInstructionHook(literal, smaliInstruction)
+        }
 
         // YouTube's headers have the form of AttributeSet, which is decoded from YouTube's built-in classes.
         val attributeResolverMethod = AttributeResolverFingerprint.resultOrThrow().mutableMethod
@@ -402,36 +412,6 @@ object ToolBarComponentsPatch : BaseBytecodePatch(
         )
 
         SettingsPatch.updatePatchStatus(this)
-    }
-
-    private fun replaceHeaderAttributeId(context: BytecodeContext) {
-        val headerAttributeIdArray = arrayOf(YtPremiumWordMarkHeader, YtWordMarkHeader)
-
-        context.classes.forEach { classDef ->
-            classDef.methods.forEach { method ->
-                method.implementation.apply {
-                    this?.instructions?.forEachIndexed { index, instruction ->
-                        if (instruction.opcode != Opcode.CONST)
-                            return@forEachIndexed
-                        if (headerAttributeIdArray.indexOf((instruction as Instruction31i).wideLiteral) < 0)
-                            return@forEachIndexed
-
-                        (instructions.elementAt(index)).apply {
-                            val register = (this as OneRegisterInstruction).registerA
-                            context.proxy(classDef)
-                                .mutableClass
-                                .findMutableMethodOf(method)
-                                .addInstructions(
-                                    index + 1, """
-                                        invoke-static {}, $GENERAL_CLASS_DESCRIPTOR->getHeaderAttributeId()I
-                                        move-result v$register
-                                        """
-                                )
-                        }
-                    }
-                }
-            }
-        }
     }
 
     private fun MutableMethod.injectSearchBarHook(

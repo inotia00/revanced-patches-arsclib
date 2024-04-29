@@ -277,6 +277,10 @@ Limitations:
     <string name="revanced_enable_tablet_mini_player_title">Enable tablet mini player</string>
     <string name="revanced_enable_tablet_mini_player_summary_on">Tablet mini player is enabled.</string>
     <string name="revanced_enable_tablet_mini_player_summary_off">Tablet mini player is disabled.</string>
+    <string name="revanced_enable_modern_mini_player_title">Enable modern mini player</string>
+    <string name="revanced_enable_modern_mini_player_summary_on">Modern mini player is enabled.</string>
+    <string name="revanced_enable_modern_mini_player_summary_off">Modern mini player is disabled.</string>
+
     <string name="revanced_hide_floating_microphone_title">Hide floating microphone button</string>
     <string name="revanced_hide_floating_microphone_summary_on">Floating microphone button is hidden.</string>
     <string name="revanced_hide_floating_microphone_summary_off">Floating microphone button is shown.</string>

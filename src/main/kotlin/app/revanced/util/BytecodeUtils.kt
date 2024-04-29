@@ -24,11 +24,14 @@ import com.android.tools.smali.dexlib2.iface.instruction.Instruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.WideLiteralInstruction
+import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction31i
 import com.android.tools.smali.dexlib2.iface.reference.FieldReference
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 import com.android.tools.smali.dexlib2.iface.reference.Reference
 import com.android.tools.smali.dexlib2.immutable.ImmutableField
 import com.android.tools.smali.dexlib2.util.MethodUtil
+
+const val REGISTER_TEMPLATE_REPLACEMENT: String = "REGISTER_INDEX"
 
 fun MethodFingerprint.resultOrThrow() = result ?: throw exception
 
@@ -136,7 +139,7 @@ fun MethodFingerprint.literalInstructionBooleanHook(
     }
 }
 
-fun MethodFingerprint.literalInstructionViewHook(
+fun MethodFingerprint.literalInstructionHook(
     literal: Long,
     descriptor: String
 ) {
@@ -149,6 +152,37 @@ fun MethodFingerprint.literalInstructionViewHook(
             targetIndex + 1,
             "invoke-static {v$targetRegister}, $descriptor"
         )
+    }
+}
+
+fun BytecodeContext.literalInstructionHook(
+    literal: Long,
+    smaliInstruction: String
+) {
+    val context = this
+    context.classes.forEach { classDef ->
+        classDef.methods.forEach { method ->
+            method.implementation.apply {
+                this?.instructions?.forEachIndexed { _, instruction ->
+                    if (instruction.opcode != Opcode.CONST)
+                        return@forEachIndexed
+                    if ((instruction as Instruction31i).wideLiteral != literal)
+                        return@forEachIndexed
+
+                    context.proxy(classDef)
+                        .mutableClass
+                        .findMutableMethodOf(method).apply {
+                            val index = getWideLiteralInstructionIndex(literal)
+                            val register = (instruction as OneRegisterInstruction).registerA.toString()
+
+                            addInstructions(
+                                index + 1,
+                                smaliInstruction.replace(REGISTER_TEMPLATE_REPLACEMENT, register)
+                            )
+                        }
+                }
+            }
+        }
     }
 }
 
