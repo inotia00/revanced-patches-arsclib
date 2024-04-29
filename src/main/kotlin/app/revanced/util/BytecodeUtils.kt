@@ -139,19 +139,46 @@ fun MethodFingerprint.literalInstructionBooleanHook(
     }
 }
 
-fun MethodFingerprint.literalInstructionHook(
+fun MethodFingerprint.literalInstructionViewHook(
     literal: Long,
-    descriptor: String
-) {
-    resultOrThrow().mutableMethod.apply {
-        val literalIndex = getWideLiteralInstructionIndex(literal)
-        val targetIndex = getTargetIndex(literalIndex, Opcode.MOVE_RESULT_OBJECT)
-        val targetRegister = getInstruction<OneRegisterInstruction>(targetIndex).registerA
+    smaliInstruction: String
+) = resultOrThrow().mutableMethod.literalInstructionViewHook(literal, smaliInstruction)
 
-        addInstruction(
-            targetIndex + 1,
-            "invoke-static {v$targetRegister}, $descriptor"
-        )
+fun MutableMethod.literalInstructionViewHook(
+    literal: Long,
+    smaliInstruction: String
+) {
+    val literalIndex = getWideLiteralInstructionIndex(literal)
+    val targetIndex = getTargetIndex(literalIndex, Opcode.MOVE_RESULT_OBJECT)
+    val targetRegister = getInstruction<OneRegisterInstruction>(targetIndex).registerA.toString()
+
+    addInstructions(
+        targetIndex + 1,
+        smaliInstruction.replace(REGISTER_TEMPLATE_REPLACEMENT, targetRegister)
+    )
+}
+
+fun BytecodeContext.literalInstructionViewHook(
+    literal: Long,
+    smaliInstruction: String
+) {
+    val context = this
+    context.classes.forEach { classDef ->
+        classDef.methods.forEach { method ->
+            method.implementation.apply {
+                this?.instructions?.forEachIndexed { _, instruction ->
+                    if (instruction.opcode != Opcode.CONST)
+                        return@forEachIndexed
+                    if ((instruction as Instruction31i).wideLiteral != literal)
+                        return@forEachIndexed
+
+                    context.proxy(classDef)
+                        .mutableClass
+                        .findMutableMethodOf(method)
+                        .literalInstructionViewHook(literal, smaliInstruction)
+                }
+            }
+        }
     }
 }
 

@@ -14,6 +14,8 @@ import app.revanced.patches.youtube.general.tabletminiplayer.fingerprints.Modern
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.GENERAL_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
+import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.ModernMiniPlayerForwardButton
+import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.ModernMiniPlayerRewindButton
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.YtOutlinePiPWhite
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.YtOutlineXWhite
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
@@ -25,6 +27,7 @@ import app.revanced.util.getTargetIndexReversed
 import app.revanced.util.getWalkerMethod
 import app.revanced.util.indexOfFirstInstruction
 import app.revanced.util.literalInstructionHook
+import app.revanced.util.literalInstructionViewHook
 import app.revanced.util.patch.BaseBytecodePatch
 import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
@@ -91,6 +94,17 @@ object TabletMiniPlayerPatch : BaseBytecodePatch(
                     """
 
                 context.literalInstructionHook(literal, smaliInstruction)
+            }
+
+            arrayOf(
+                ModernMiniPlayerForwardButton,
+                ModernMiniPlayerRewindButton
+            ).forEach { literal ->
+                val smaliInstruction = """
+                    invoke-static {v$REGISTER_TEMPLATE_REPLACEMENT}, $GENERAL_CLASS_DESCRIPTOR->hideRewindAndForwardButton(Landroid/view/View;)V
+                    """
+
+                context.literalInstructionViewHook(literal, smaliInstruction)
             }
 
             SettingsPatch.addPreference(

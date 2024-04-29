@@ -280,6 +280,9 @@ Limitations:
     <string name="revanced_enable_modern_mini_player_title">Enable modern mini player</string>
     <string name="revanced_enable_modern_mini_player_summary_on">Modern mini player is enabled.</string>
     <string name="revanced_enable_modern_mini_player_summary_off">Modern mini player is disabled.</string>
+    <string name="revanced_hide_mini_player_rewind_forward_button_title">Hide rewind &amp; forward button</string>
+    <string name="revanced_hide_mini_player_rewind_forward_button_summary_on">Buttons are hidden in mini player.</string>
+    <string name="revanced_hide_mini_player_rewind_forward_button_summary_off">Buttons are shown in mini player.</string>
 
     <string name="revanced_hide_floating_microphone_title">Hide floating microphone button</string>
     <string name="revanced_hide_floating_microphone_summary_on">Floating microphone button is hidden.</string>

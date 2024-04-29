@@ -63,6 +63,8 @@ object SharedResourceIdPatch : ResourcePatch() {
     var InsetOverlayViewLayout = -1L
     var InterstitialsContainer = -1L
     var MenuItemView = -1L
+    var ModernMiniPlayerForwardButton = -1L
+    var ModernMiniPlayerRewindButton = -1L
     var MusicAppDeeplinkButtonView = -1L
     var PanelSubHeader = -1L
     var PlayerCollapseButton = -1L
@@ -147,6 +149,8 @@ object SharedResourceIdPatch : ResourcePatch() {
         InsetOverlayViewLayout = getId(ID, "inset_overlay_view_layout")
         InterstitialsContainer = getId(ID, "interstitials_container")
         MenuItemView = getId(ID, "menu_item_view")
+        ModernMiniPlayerForwardButton = getId(ID, "modern_miniplayer_forward_button")
+        ModernMiniPlayerRewindButton = getId(ID, "modern_miniplayer_rewind_button")
         MusicAppDeeplinkButtonView = getId(ID, "music_app_deeplink_button_view")
         PanelSubHeader = getId(ID, "panel_subheader")
         PlayerCollapseButton = getId(ID, "player_collapse_button")
