@@ -219,7 +219,11 @@ object PlayerComponentsPatch : BaseBytecodePatch(
                 val constIndex = getWideLiteralInstructionIndex(FadeDurationFast)
                 val constRegister = getInstruction<OneRegisterInstruction>(constIndex).registerA
                 val insertIndex = getTargetIndexReversed(constIndex, Opcode.INVOKE_VIRTUAL) + 1
-                val jumpIndex = getTargetIndex(insertIndex, Opcode.GOTO).coerceAtMost(getTargetIndex(insertIndex, Opcode.GOTO_16))
+                val jumpIndex = implementation!!.instructions.let { instruction ->
+                    insertIndex + instruction.subList(insertIndex, instruction.size - 1).indexOfFirst { instructions ->
+                        instructions.opcode == Opcode.GOTO || instructions.opcode == Opcode.GOTO_16
+                    }
+                }
 
                 val replaceInstruction = getInstruction<TwoRegisterInstruction>(insertIndex)
                 val replaceReference =
@@ -284,8 +288,14 @@ object PlayerComponentsPatch : BaseBytecodePatch(
                 val onClickListenerIndex = getTargetIndexWithMethodReferenceName(insertIndex, "setOnClickListener")
                 val constComponent = getConstComponent(insertIndex, onClickListenerIndex - 1)
 
+                if (constComponent.isNotEmpty()) {
+                    addInstruction(
+                        onClickListenerIndex + 2,
+                        constComponent
+                    )
+                }
                 addInstructionsWithLabels(
-                    insertIndex, constComponent + """
+                    insertIndex, """
                         invoke-static {}, $PLAYER_CLASS_DESCRIPTOR->hideSeekUndoMessage()Z
                         move-result v$insertRegister
                         if-nez v$insertRegister, :default
@@ -387,7 +397,7 @@ object PlayerComponentsPatch : BaseBytecodePatch(
 
         for (index in endIndex downTo startIndex) {
             val instruction = getInstruction(index)
-            if (instruction !is WideLiteralInstruction)
+            if (instruction.opcode != Opcode.CONST_16 && instruction.opcode != Opcode.CONST_4)
                 continue
 
             if ((instruction as OneRegisterInstruction).registerA != constRegister)

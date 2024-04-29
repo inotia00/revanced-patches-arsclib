@@ -14,7 +14,7 @@ import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.BottomSheetFooterText
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.util.literalInstructionBooleanHook
-import app.revanced.util.literalInstructionViewHook
+import app.revanced.util.literalInstructionHook
 import app.revanced.util.patch.BaseBytecodePatch
 
 @Suppress("unused")
@@ -45,7 +45,7 @@ object PlayerFlyoutMenuPatch : BaseBytecodePatch(
             CaptionsBottomSheetFingerprint to "hideFooterCaptions",
             QualityMenuViewInflateFingerprint to "hideFooterQuality"
         ).map { (fingerprint, name) ->
-            fingerprint.literalInstructionViewHook(BottomSheetFooterText, "$PLAYER_CLASS_DESCRIPTOR->$name(Landroid/view/View;)V")
+            fingerprint.literalInstructionHook(BottomSheetFooterText, "$PLAYER_CLASS_DESCRIPTOR->$name(Landroid/view/View;)V")
         }
 
         LithoFilterPatch.addFilter(PANELS_FILTER_CLASS_DESCRIPTOR)
