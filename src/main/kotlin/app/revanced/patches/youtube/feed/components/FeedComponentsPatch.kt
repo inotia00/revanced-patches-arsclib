@@ -10,6 +10,8 @@ import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.shared.litho.LithoFilterPatch
 import app.revanced.patches.youtube.feed.components.fingerprints.BreakingNewsFingerprint
+import app.revanced.patches.youtube.feed.components.fingerprints.CaptionsButtonFingerprint
+import app.revanced.patches.youtube.feed.components.fingerprints.CaptionsButtonSyntheticFingerprint
 import app.revanced.patches.youtube.feed.components.fingerprints.ChannelListSubMenuFingerprint
 import app.revanced.patches.youtube.feed.components.fingerprints.ChannelListSubMenuTabletFingerprint
 import app.revanced.patches.youtube.feed.components.fingerprints.ChannelListSubMenuTabletSyntheticFingerprint
@@ -28,10 +30,12 @@ import app.revanced.patches.youtube.utils.integrations.Constants.COMPONENTS_PATH
 import app.revanced.patches.youtube.utils.integrations.Constants.FEED_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.navigation.NavigationBarHookPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
+import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.CaptionToggleContainer
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.util.getTargetIndex
 import app.revanced.util.getTargetIndexReversed
 import app.revanced.util.getTargetIndexWithMethodReferenceName
+import app.revanced.util.getWideLiteralInstructionIndex
 import app.revanced.util.indexOfFirstInstruction
 import app.revanced.util.patch.BaseBytecodePatch
 import app.revanced.util.resultOrThrow
@@ -55,6 +59,8 @@ object FeedComponentsPatch : BaseBytecodePatch(
     compatiblePackages = COMPATIBLE_PACKAGE,
     fingerprints = setOf(
         BreakingNewsFingerprint,
+        CaptionsButtonFingerprint,
+        CaptionsButtonSyntheticFingerprint,
         ChannelListSubMenuFingerprint,
         ChannelListSubMenuTabletFingerprint,
         ChannelListSubMenuTabletSyntheticFingerprint,
@@ -97,6 +103,34 @@ object FeedComponentsPatch : BaseBytecodePatch(
                     )
                 }
             }
+        }
+
+        // endregion
+
+        // region patch for hide caption button
+
+        CaptionsButtonFingerprint.resultOrThrow().mutableMethod.apply {
+            val constIndex = getWideLiteralInstructionIndex(CaptionToggleContainer)
+            val insertIndex = getTargetIndexReversed(constIndex, Opcode.IF_EQZ)
+            val insertRegister = getInstruction<OneRegisterInstruction>(insertIndex).registerA
+
+            addInstructions(
+                insertIndex, """
+                    invoke-static {v$insertRegister}, $FEED_CLASS_DESCRIPTOR->hideCaptionsButton(Landroid/view/View;)Landroid/view/View;
+                    move-result-object v$insertRegister
+                    """
+            )
+        }
+
+        CaptionsButtonSyntheticFingerprint.resultOrThrow().mutableMethod.apply {
+            val constIndex = getWideLiteralInstructionIndex(CaptionToggleContainer)
+            val targetIndex = getTargetIndex(constIndex, Opcode.MOVE_RESULT_OBJECT)
+            val targetRegister = getInstruction<OneRegisterInstruction>(targetIndex).registerA
+
+            addInstruction(
+                targetIndex + 1,
+                    "invoke-static {v$targetRegister}, $FEED_CLASS_DESCRIPTOR->hideCaptionsButtonContainer(Landroid/view/View;)V"
+            )
         }
 
         // endregion
