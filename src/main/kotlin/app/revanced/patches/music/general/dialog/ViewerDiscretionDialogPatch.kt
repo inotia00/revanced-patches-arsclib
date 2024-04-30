@@ -1,7 +1,7 @@
 package app.revanced.patches.music.general.dialog
 
 import app.revanced.patcher.data.ResourceContext
-import app.revanced.patches.music.utils.integrations.Constants.COMPATIBLE_PACKAGE
+import app.revanced.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
 import app.revanced.util.patch.BaseResourcePatch

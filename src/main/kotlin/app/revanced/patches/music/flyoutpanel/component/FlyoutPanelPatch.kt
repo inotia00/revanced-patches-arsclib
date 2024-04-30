@@ -6,7 +6,7 @@ import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patches.music.flyoutpanel.component.fingerprints.EndButtonsContainerFingerprint
 import app.revanced.patches.music.flyoutpanel.component.fingerprints.SleepTimerFingerprint
 import app.revanced.patches.music.flyoutpanel.shared.FlyoutPanelMenuItemPatch
-import app.revanced.patches.music.utils.integrations.Constants.COMPATIBLE_PACKAGE
+import app.revanced.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.music.utils.integrations.Constants.COMPONENTS_PATH
 import app.revanced.patches.music.utils.integrations.Constants.FLYOUT_CLASS_DESCRIPTOR
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch

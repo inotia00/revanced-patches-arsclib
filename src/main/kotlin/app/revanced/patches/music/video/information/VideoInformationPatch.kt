@@ -15,14 +15,14 @@ import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod.Companion.toMu
 import app.revanced.patcher.util.smali.toInstructions
 import app.revanced.patches.music.utils.fingerprints.SeekBarConstructorFingerprint
 import app.revanced.patches.music.utils.integrations.Constants.VIDEO_PATH
-import app.revanced.patches.music.video.information.fingerprints.VideoQualityListFingerprint
-import app.revanced.patches.music.video.information.fingerprints.VideoQualityTextFingerprint
+import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.music.video.information.fingerprints.PlaybackSpeedFingerprint
 import app.revanced.patches.music.video.information.fingerprints.PlaybackSpeedParentFingerprint
-import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.music.video.information.fingerprints.PlayerControllerSetTimeReferenceFingerprint
 import app.revanced.patches.music.video.information.fingerprints.VideoEndFingerprint
 import app.revanced.patches.music.video.information.fingerprints.VideoLengthFingerprint
+import app.revanced.patches.music.video.information.fingerprints.VideoQualityListFingerprint
+import app.revanced.patches.music.video.information.fingerprints.VideoQualityTextFingerprint
 import app.revanced.patches.music.video.videoid.VideoIdPatch
 import app.revanced.util.getTargetIndexWithFieldReferenceTypeReversed
 import app.revanced.util.getTargetIndexWithMethodReferenceNameReversed

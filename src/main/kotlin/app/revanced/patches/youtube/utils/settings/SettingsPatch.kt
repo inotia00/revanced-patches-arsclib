@@ -2,7 +2,7 @@ package app.revanced.patches.youtube.utils.settings
 
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patches.shared.mapping.ResourceMappingPatch
-import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
+import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.IntegrationsPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.settings.ResourceUtils.addPreference

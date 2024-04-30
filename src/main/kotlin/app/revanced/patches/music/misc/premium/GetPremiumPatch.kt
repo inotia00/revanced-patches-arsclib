@@ -9,7 +9,7 @@ import app.revanced.patches.music.misc.premium.fingerprints.HideGetPremiumFinger
 import app.revanced.patches.music.misc.premium.fingerprints.MembershipSettingsFingerprint
 import app.revanced.patches.music.misc.premium.fingerprints.MembershipSettingsParentFingerprint
 import app.revanced.patches.music.navigation.component.NavigationBarComponentPatch
-import app.revanced.patches.music.utils.integrations.Constants.COMPATIBLE_PACKAGE
+import app.revanced.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch.PrivacyTosFooter
 import app.revanced.util.getTargetIndex

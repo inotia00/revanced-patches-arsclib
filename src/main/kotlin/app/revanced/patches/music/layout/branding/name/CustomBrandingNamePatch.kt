@@ -3,7 +3,7 @@ package app.revanced.patches.music.layout.branding.name
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.options.PatchOption.PatchExtensions.stringPatchOption
-import app.revanced.patches.music.utils.integrations.Constants.COMPATIBLE_PACKAGE
+import app.revanced.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.music.utils.integrations.Constants.LANGUAGE_LIST
 import app.revanced.patches.shared.elements.StringsElementsUtils.removeStringsElements
 import app.revanced.util.patch.BaseResourcePatch

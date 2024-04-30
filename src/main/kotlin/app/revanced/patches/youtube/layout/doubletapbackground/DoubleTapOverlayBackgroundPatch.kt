@@ -2,7 +2,7 @@ package app.revanced.patches.youtube.layout.doubletapbackground
 
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patches.shared.overlaybackground.OverlayBackgroundUtils.removeOverlayBackground
-import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
+import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.util.patch.BaseResourcePatch
 

@@ -2,7 +2,7 @@ package app.revanced.patches.music.flyoutpanel.replace
 
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patches.music.flyoutpanel.shared.FlyoutPanelMenuItemPatch
-import app.revanced.patches.music.utils.integrations.Constants.COMPATIBLE_PACKAGE
+import app.revanced.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
 import app.revanced.patches.music.video.information.VideoInformationPatch

@@ -10,8 +10,8 @@ import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.music.actionbar.component.fingerprints.ActionBarComponentFingerprint
 import app.revanced.patches.music.actionbar.component.fingerprints.LikeDislikeContainerFingerprint
 import app.revanced.patches.music.actionbar.component.fingerprints.LikeDislikeContainerVisibilityFingerprint
+import app.revanced.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.music.utils.integrations.Constants.ACTIONBAR_CLASS_DESCRIPTOR
-import app.revanced.patches.music.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch.LikeDislikeContainer
 import app.revanced.patches.music.utils.settings.CategoryType

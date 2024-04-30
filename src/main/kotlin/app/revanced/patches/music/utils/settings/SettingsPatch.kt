@@ -1,8 +1,8 @@
 package app.revanced.patches.music.utils.settings
 
 import app.revanced.patcher.data.ResourceContext
+import app.revanced.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.music.utils.fix.accessibility.AccessibilityNodeInfoPatch
-import app.revanced.patches.music.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.music.utils.settings.ResourceUtils.addPreferenceCategory
 import app.revanced.patches.music.utils.settings.ResourceUtils.addPreferenceWithIntent
 import app.revanced.patches.music.utils.settings.ResourceUtils.addRVXSettingsPreference

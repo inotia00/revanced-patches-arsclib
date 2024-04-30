@@ -24,8 +24,8 @@ import app.revanced.patches.youtube.feed.components.fingerprints.LatestVideosBut
 import app.revanced.patches.youtube.feed.components.fingerprints.RelatedChipCloudFingerprint
 import app.revanced.patches.youtube.feed.components.fingerprints.SearchResultsChipBarFingerprint
 import app.revanced.patches.youtube.feed.components.fingerprints.ShowMoreButtonFingerprint
+import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.fingerprints.ScrollTopParentFingerprint
-import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPONENTS_PATH
 import app.revanced.patches.youtube.utils.integrations.Constants.FEED_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.navigation.NavigationBarHookPatch

@@ -8,7 +8,7 @@ import app.revanced.patches.youtube.general.navigation.fingerprints.AutoMotiveFi
 import app.revanced.patches.youtube.general.navigation.fingerprints.PivotBarChangedFingerprint
 import app.revanced.patches.youtube.general.navigation.fingerprints.PivotBarSetTextFingerprint
 import app.revanced.patches.youtube.general.navigation.fingerprints.PivotBarStyleFingerprint
-import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
+import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.GENERAL_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.navigation.NavigationBarHookPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch

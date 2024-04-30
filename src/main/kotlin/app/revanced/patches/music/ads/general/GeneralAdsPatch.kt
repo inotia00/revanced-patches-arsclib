@@ -10,8 +10,8 @@ import app.revanced.patches.music.ads.general.fingerprints.InterstitialsContaine
 import app.revanced.patches.music.ads.general.fingerprints.NotifierShelfFingerprint
 import app.revanced.patches.music.ads.general.fingerprints.ShowDialogCommandFingerprint
 import app.revanced.patches.music.ads.music.MusicAdsPatch
+import app.revanced.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.music.utils.integrations.Constants.ADS_PATH
-import app.revanced.patches.music.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.music.utils.integrations.Constants.COMPONENTS_PATH
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch.ButtonContainer

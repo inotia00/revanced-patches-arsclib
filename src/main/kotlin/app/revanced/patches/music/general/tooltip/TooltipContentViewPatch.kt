@@ -3,7 +3,7 @@ package app.revanced.patches.music.general.tooltip
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patches.music.general.tooltip.fingerprints.TooltipContentViewFingerprint
-import app.revanced.patches.music.utils.integrations.Constants.COMPATIBLE_PACKAGE
+import app.revanced.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch
 import app.revanced.util.patch.BaseBytecodePatch
 import app.revanced.util.resultOrThrow

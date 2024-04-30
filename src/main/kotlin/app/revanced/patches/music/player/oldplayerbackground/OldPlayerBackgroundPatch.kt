@@ -2,7 +2,7 @@ package app.revanced.patches.music.player.oldplayerbackground
 
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patches.music.player.oldplayerbackground.fingerprints.OldPlayerBackgroundFingerprint
-import app.revanced.patches.music.utils.integrations.Constants.COMPATIBLE_PACKAGE
+import app.revanced.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.music.utils.integrations.Constants.PLAYER_CLASS_DESCRIPTOR
 import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch

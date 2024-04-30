@@ -1,7 +1,5 @@
 package app.revanced.patches.youtube.utils.integrations
 
-import app.revanced.patcher.patch.Patch
-
 @Suppress("MemberVisibilityCanBePrivate")
 object Constants {
     const val INTEGRATIONS_PATH = "Lapp/revanced/integrations/youtube"
@@ -29,18 +27,4 @@ object Constants {
     const val SHORTS_CLASS_DESCRIPTOR = "$SHORTS_PATH/ShortsPatch;"
 
     const val PATCH_STATUS_CLASS_DESCRIPTOR = "$UTILS_PATH/PatchStatus;"
-
-    val COMPATIBLE_PACKAGE = setOf(
-        Patch.CompatiblePackage(
-            "com.google.android.youtube",
-            setOf(
-                "18.29.38",
-                "18.33.40",
-                "18.38.44",
-                "18.48.39",
-                "19.05.36",
-                "19.16.39"
-            )
-        )
-    )
 }

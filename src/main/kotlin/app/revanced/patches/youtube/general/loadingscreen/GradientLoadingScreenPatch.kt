@@ -3,7 +3,7 @@ package app.revanced.patches.youtube.general.loadingscreen
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patches.youtube.general.loadingscreen.fingerprints.GradientLoadingScreenPrimaryFingerprint
 import app.revanced.patches.youtube.general.loadingscreen.fingerprints.GradientLoadingScreenSecondaryFingerprint
-import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
+import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.GENERAL_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.util.literalInstructionBooleanHook

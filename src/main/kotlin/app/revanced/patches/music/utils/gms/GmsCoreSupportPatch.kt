@@ -1,8 +1,8 @@
 package app.revanced.patches.music.utils.gms
 
+import app.revanced.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.music.utils.fix.clientspoof.ClientSpoofPatch
 import app.revanced.patches.music.utils.fix.fileprovider.FileProviderPatch
-import app.revanced.patches.music.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.music.utils.integrations.IntegrationsPatch
 import app.revanced.patches.music.utils.mainactivity.fingerprints.MainActivityFingerprint
 import app.revanced.patches.shared.gms.BaseGmsCoreSupportPatch

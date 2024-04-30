@@ -3,7 +3,7 @@ package app.revanced.patches.reddit.layout.premiumicon
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patches.reddit.layout.premiumicon.fingerprints.PremiumIconFingerprint
-import app.revanced.patches.reddit.utils.integrations.Constants.COMPATIBLE_PACKAGE
+import app.revanced.patches.reddit.utils.compatibility.Constants.COMPATIBLE_PACKAGE
 import app.revanced.util.patch.BaseBytecodePatch
 import app.revanced.util.resultOrThrow
 

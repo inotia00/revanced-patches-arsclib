@@ -8,7 +8,7 @@ import app.revanced.patcher.patch.PatchException
 import app.revanced.patches.youtube.feed.flyoutmenu.fingerprints.BottomSheetMenuItemBuilderFingerprint
 import app.revanced.patches.youtube.feed.flyoutmenu.fingerprints.BottomSheetMenuItemBuilderLegacyFingerprint
 import app.revanced.patches.youtube.feed.flyoutmenu.fingerprints.ContextualMenuItemBuilderFingerprint
-import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
+import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.FEED_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch

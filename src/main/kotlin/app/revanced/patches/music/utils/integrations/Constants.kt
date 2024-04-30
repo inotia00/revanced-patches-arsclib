@@ -1,7 +1,5 @@
 package app.revanced.patches.music.utils.integrations
 
-import app.revanced.patcher.patch.Patch
-
 @Suppress("MemberVisibilityCanBePrivate")
 object Constants {
     const val INTEGRATIONS_PATH = "Lapp/revanced/integrations/music"
@@ -25,24 +23,6 @@ object Constants {
     const val GENERAL_CLASS_DESCRIPTOR = "$GENERAL_PATH/GeneralPatch;"
     const val NAVIGATION_CLASS_DESCRIPTOR = "$NAVIGATION_PATH/NavigationPatch;"
     const val PLAYER_CLASS_DESCRIPTOR = "$PLAYER_PATH/PlayerPatch;"
-
-    val COMPATIBLE_PACKAGE = setOf(
-        Patch.CompatiblePackage(
-            "com.google.android.apps.youtube.music",
-            setOf(
-                "6.21.52",
-                "6.22.52",
-                "6.23.56",
-                "6.25.53",
-                "6.26.51",
-                "6.27.54",
-                "6.28.53",
-                "6.29.58",
-                "6.31.55",
-                "6.33.52"
-            )
-        )
-    )
 
     val LANGUAGE_LIST = arrayOf(
         "values",

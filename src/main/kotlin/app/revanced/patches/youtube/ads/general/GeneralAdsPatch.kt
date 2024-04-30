@@ -3,9 +3,9 @@ package app.revanced.patches.youtube.ads.general
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patches.shared.litho.LithoFilterPatch
 import app.revanced.patches.youtube.ads.video.VideoAdsPatch
+import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.fix.doublebacktoclose.DoubleBackToClosePatch
 import app.revanced.patches.youtube.utils.fix.swiperefresh.SwipeRefreshPatch
-import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPONENTS_PATH
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.util.doRecursively

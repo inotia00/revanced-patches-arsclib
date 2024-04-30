@@ -11,7 +11,7 @@ import app.revanced.patches.youtube.general.tabletminiplayer.fingerprints.MiniPl
 import app.revanced.patches.youtube.general.tabletminiplayer.fingerprints.MiniPlayerResponseModelSizeCheckFingerprint
 import app.revanced.patches.youtube.general.tabletminiplayer.fingerprints.ModernMiniPlayerConfigFingerprint
 import app.revanced.patches.youtube.general.tabletminiplayer.fingerprints.ModernMiniPlayerConstructorFingerprint
-import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
+import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.GENERAL_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.ModernMiniPlayerForwardButton

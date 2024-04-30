@@ -19,9 +19,9 @@ import app.revanced.patches.youtube.player.fullscreen.fingerprints.OrientationSe
 import app.revanced.patches.youtube.player.fullscreen.fingerprints.QuickActionsElementFingerprint
 import app.revanced.patches.youtube.player.fullscreen.fingerprints.RelatedEndScreenResultsFingerprint
 import app.revanced.patches.youtube.player.fullscreen.fingerprints.VideoPortraitParentFingerprint
+import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.fingerprints.LayoutConstructorFingerprint
 import app.revanced.patches.youtube.utils.fingerprints.YouTubeControlsOverlayFingerprint
-import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPONENTS_PATH
 import app.revanced.patches.youtube.utils.integrations.Constants.PATCH_STATUS_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.integrations.Constants.PLAYER_CLASS_DESCRIPTOR

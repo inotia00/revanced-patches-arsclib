@@ -27,7 +27,7 @@ import app.revanced.patches.youtube.general.toolbar.fingerprints.SetWordMarkHead
 import app.revanced.patches.youtube.general.toolbar.fingerprints.TrendingSearchConfigFingerprint
 import app.revanced.patches.youtube.general.toolbar.fingerprints.YouActionBarFingerprint
 import app.revanced.patches.youtube.utils.castbutton.CastButtonPatch
-import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
+import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.GENERAL_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.ActionBarRingoBackground

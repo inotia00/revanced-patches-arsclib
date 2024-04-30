@@ -3,7 +3,7 @@ package app.revanced.patches.music.layout.branding.icon
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.options.PatchOption.PatchExtensions.stringPatchOption
-import app.revanced.patches.music.utils.integrations.Constants.COMPATIBLE_PACKAGE
+import app.revanced.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
 import app.revanced.util.ResourceGroup
 import app.revanced.util.copyResources
 import app.revanced.util.patch.BaseResourcePatch

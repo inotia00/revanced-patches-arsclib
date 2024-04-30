@@ -2,7 +2,7 @@ package app.revanced.patches.reddit.utils.settings
 
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.PatchException
-import app.revanced.patches.reddit.utils.integrations.Constants.COMPATIBLE_PACKAGE
+import app.revanced.patches.reddit.utils.compatibility.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.reddit.utils.integrations.IntegrationsPatch
 import app.revanced.util.patch.BaseResourcePatch
 import kotlin.io.path.exists

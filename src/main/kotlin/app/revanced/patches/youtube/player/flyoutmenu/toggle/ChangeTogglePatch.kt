@@ -13,7 +13,7 @@ import app.revanced.patches.youtube.player.flyoutmenu.toggle.fingerprints.PiPFin
 import app.revanced.patches.youtube.player.flyoutmenu.toggle.fingerprints.PlaybackLoopInitFingerprint
 import app.revanced.patches.youtube.player.flyoutmenu.toggle.fingerprints.PlaybackLoopOnClickListenerFingerprint
 import app.revanced.patches.youtube.player.flyoutmenu.toggle.fingerprints.StableVolumeFingerprint
-import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
+import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.PLAYER_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.util.getStringInstructionIndex

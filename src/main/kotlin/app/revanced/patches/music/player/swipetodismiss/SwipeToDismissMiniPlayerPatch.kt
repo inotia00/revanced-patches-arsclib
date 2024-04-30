@@ -14,7 +14,7 @@ import app.revanced.patches.music.player.swipetodismiss.fingerprints.MiniPlayerD
 import app.revanced.patches.music.player.swipetodismiss.fingerprints.MiniPlayerDefaultViewVisibilityFingerprint
 import app.revanced.patches.music.player.swipetodismiss.fingerprints.MusicActivityWidgetFingerprint
 import app.revanced.patches.music.player.swipetodismiss.fingerprints.SwipeToCloseFingerprint
-import app.revanced.patches.music.utils.integrations.Constants.COMPATIBLE_PACKAGE
+import app.revanced.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.music.utils.integrations.Constants.PLAYER_CLASS_DESCRIPTOR
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.music.utils.settings.CategoryType

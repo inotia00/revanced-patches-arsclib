@@ -13,9 +13,9 @@ import app.revanced.patches.music.player.nextprevious.fingerprints.MiniPlayerPar
 import app.revanced.patches.music.player.nextprevious.fingerprints.MppWatchWhileLayoutFingerprint
 import app.revanced.patches.music.player.nextprevious.fingerprints.NextButtonVisibilityFingerprint
 import app.revanced.patches.music.player.nextprevious.fingerprints.PlayerPatchConstructorFingerprint
+import app.revanced.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.music.utils.fingerprints.MiniPlayerConstructorFingerprint
 import app.revanced.patches.music.utils.fingerprints.PendingIntentReceiverFingerprint
-import app.revanced.patches.music.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.music.utils.integrations.Constants.PLAYER_CLASS_DESCRIPTOR
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch.MiniPlayerPlayPauseReplayButton

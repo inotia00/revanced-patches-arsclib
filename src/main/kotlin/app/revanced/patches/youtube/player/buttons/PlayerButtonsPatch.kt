@@ -14,8 +14,8 @@ import app.revanced.patches.youtube.player.buttons.fingerprints.PlayerControlsVi
 import app.revanced.patches.youtube.player.buttons.fingerprints.TitleAnchorFingerprint
 import app.revanced.patches.youtube.player.buttons.fingerprints.YouTubeControlsOverlaySubtitleButtonFingerprint
 import app.revanced.patches.youtube.utils.castbutton.CastButtonPatch
+import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.fingerprints.LayoutConstructorFingerprint
-import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.PLAYER_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.AutoNavToggle

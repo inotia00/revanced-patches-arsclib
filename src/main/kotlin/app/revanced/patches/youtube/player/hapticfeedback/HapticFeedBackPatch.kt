@@ -10,7 +10,7 @@ import app.revanced.patches.youtube.player.hapticfeedback.fingerprints.Scrubbing
 import app.revanced.patches.youtube.player.hapticfeedback.fingerprints.SeekHapticsFingerprint
 import app.revanced.patches.youtube.player.hapticfeedback.fingerprints.SeekUndoHapticsFingerprint
 import app.revanced.patches.youtube.player.hapticfeedback.fingerprints.ZoomHapticsFingerprint
-import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
+import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.PLAYER_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.util.getTargetIndex

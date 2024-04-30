@@ -3,7 +3,7 @@ package app.revanced.patches.music.misc.backgroundplay
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patches.music.misc.backgroundplay.fingerprints.BackgroundPlaybackFingerprint
-import app.revanced.patches.music.utils.integrations.Constants.COMPATIBLE_PACKAGE
+import app.revanced.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
 import app.revanced.util.patch.BaseBytecodePatch
 import app.revanced.util.resultOrThrow
 

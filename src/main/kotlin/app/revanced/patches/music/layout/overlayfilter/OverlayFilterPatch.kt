@@ -1,7 +1,7 @@
 package app.revanced.patches.music.layout.overlayfilter
 
 import app.revanced.patcher.data.ResourceContext
-import app.revanced.patches.music.utils.integrations.Constants.COMPATIBLE_PACKAGE
+import app.revanced.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
 import app.revanced.util.patch.BaseResourcePatch
 
 @Suppress("DEPRECATION", "unused")

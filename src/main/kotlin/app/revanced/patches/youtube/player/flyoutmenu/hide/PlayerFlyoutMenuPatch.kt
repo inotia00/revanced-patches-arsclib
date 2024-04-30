@@ -5,8 +5,8 @@ import app.revanced.patches.shared.litho.LithoFilterPatch
 import app.revanced.patches.youtube.player.flyoutmenu.hide.fingerprints.AdvancedQualityBottomSheetFingerprint
 import app.revanced.patches.youtube.player.flyoutmenu.hide.fingerprints.CaptionsBottomSheetFingerprint
 import app.revanced.patches.youtube.player.flyoutmenu.hide.fingerprints.PiPModeConfigFingerprint
+import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.fingerprints.QualityMenuViewInflateFingerprint
-import app.revanced.patches.youtube.utils.integrations.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPONENTS_PATH
 import app.revanced.patches.youtube.utils.integrations.Constants.PLAYER_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.playertype.PlayerTypeHookPatch

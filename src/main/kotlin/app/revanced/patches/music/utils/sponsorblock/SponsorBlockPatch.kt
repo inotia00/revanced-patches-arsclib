@@ -1,7 +1,7 @@
 package app.revanced.patches.music.utils.sponsorblock
 
 import app.revanced.patcher.data.ResourceContext
-import app.revanced.patches.music.utils.integrations.Constants.COMPATIBLE_PACKAGE
+import app.revanced.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.ResourceUtils
 import app.revanced.patches.music.utils.settings.ResourceUtils.ACTIVITY_HOOK_TARGET_CLASS
