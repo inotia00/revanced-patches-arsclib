@@ -5,6 +5,7 @@ import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
+import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.shared.litho.LithoFilterPatch
 import app.revanced.patches.youtube.general.components.fingerprints.AccountListFingerprint
@@ -13,7 +14,10 @@ import app.revanced.patches.youtube.general.components.fingerprints.AccountMenuF
 import app.revanced.patches.youtube.general.components.fingerprints.AccountSwitcherAccessibilityLabelFingerprint
 import app.revanced.patches.youtube.general.components.fingerprints.BottomUiContainerFingerprint
 import app.revanced.patches.youtube.general.components.fingerprints.FloatingMicrophoneFingerprint
+import app.revanced.patches.youtube.general.components.fingerprints.PiPNotificationFingerprint
 import app.revanced.patches.youtube.general.components.fingerprints.SettingsMenuFingerprint
+import app.revanced.patches.youtube.general.components.fingerprints.TooltipContentFullscreenFingerprint
+import app.revanced.patches.youtube.general.components.fingerprints.TooltipContentViewFingerprint
 import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.fingerprints.AccountMenuParentFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPONENTS_PATH
@@ -30,6 +34,7 @@ import app.revanced.util.patch.BaseBytecodePatch
 import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
+import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 
 @Suppress("unused")
@@ -49,7 +54,10 @@ object LayoutComponentsPatch : BaseBytecodePatch(
         AccountSwitcherAccessibilityLabelFingerprint,
         BottomUiContainerFingerprint,
         FloatingMicrophoneFingerprint,
-        SettingsMenuFingerprint
+        PiPNotificationFingerprint,
+        SettingsMenuFingerprint,
+        TooltipContentFullscreenFingerprint,
+        TooltipContentViewFingerprint
     )
 ) {
     private const val CUSTOM_FILTER_CLASS_DESCRIPTOR =
@@ -58,6 +66,33 @@ object LayoutComponentsPatch : BaseBytecodePatch(
         "$COMPONENTS_PATH/LayoutComponentsFilter;"
 
     override fun execute(context: BytecodeContext) {
+
+        // region patch for disable pip notification
+
+        PiPNotificationFingerprint.resultOrThrow().let {
+            it.mutableMethod.apply {
+                val checkCastCalls = implementation!!.instructions.withIndex()
+                    .filter { instruction ->
+                        (instruction.value as? ReferenceInstruction)?.reference.toString() == "Lcom/google/apps/tiktok/account/AccountId;"
+                    }
+
+                val checkCastCallSize = checkCastCalls.size
+                if (checkCastCallSize != 3)
+                    throw PatchException("Couldn't find target index, size: $checkCastCallSize")
+
+                arrayOf(
+                    checkCastCalls.elementAt(1).index,
+                    checkCastCalls.elementAt(0).index
+                ).forEach { index ->
+                    addInstruction(
+                        index + 1,
+                        "return-void"
+                    )
+                }
+            }
+        }
+
+        // endregion
 
         // region patch for hide account menu
 
@@ -167,6 +202,20 @@ object LayoutComponentsPatch : BaseBytecodePatch(
                         """, ExternalLabel("show", getInstruction(0))
                 )
             }
+        }
+
+        // endregion
+
+        // region patch for hide tooltip content
+
+        arrayOf(
+            TooltipContentFullscreenFingerprint,
+            TooltipContentViewFingerprint
+        ).forEach { fingerprint ->
+            fingerprint.resultOrThrow().mutableMethod.addInstruction(
+                0,
+                "return-void"
+            )
         }
 
         // endregion

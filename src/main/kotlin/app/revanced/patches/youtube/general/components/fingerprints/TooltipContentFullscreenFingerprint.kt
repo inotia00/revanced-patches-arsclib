@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.layout.tooltip.fingerprints
+package app.revanced.patches.youtube.general.components.fingerprints
 
 import app.revanced.util.fingerprint.LiteralValueFingerprint
 

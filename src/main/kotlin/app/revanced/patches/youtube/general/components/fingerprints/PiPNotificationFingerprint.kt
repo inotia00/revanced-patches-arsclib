@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.layout.pipnotification.fingerprints
+package app.revanced.patches.youtube.general.components.fingerprints
 
 import app.revanced.patcher.extensions.or
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.EditSettingsAction
