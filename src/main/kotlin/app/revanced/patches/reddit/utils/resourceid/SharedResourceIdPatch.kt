@@ -22,7 +22,8 @@ object SharedResourceIdPatch : ResourcePatch() {
         CancelButton = getId(ID, "cancel_button")
         LabelAcknowledgements = getId(STRING, "label_acknowledgements")
         ScreenShotShareBanner = getId(STRING, "screenshot_share_banner_title")
-        TextAppearanceRedditBaseOldButtonColored = getId(STYLE, "TextAppearance.RedditBase.OldButton.Colored")
+        TextAppearanceRedditBaseOldButtonColored =
+            getId(STYLE, "TextAppearance.RedditBase.OldButton.Colored")
         ToolBarNavSearchCtaContainer = getId(ID, "toolbar_nav_search_cta_container")
 
     }

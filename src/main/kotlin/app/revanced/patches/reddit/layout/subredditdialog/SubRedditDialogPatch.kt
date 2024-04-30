@@ -40,7 +40,8 @@ object SubRedditDialogPatch : BaseBytecodePatch(
         FrequentUpdatesSheetScreenFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val cancelButtonViewIndex = getWideLiteralInstructionIndex(CancelButton) + 2
-                val cancelButtonViewRegister = getInstruction<OneRegisterInstruction>(cancelButtonViewIndex).registerA
+                val cancelButtonViewRegister =
+                    getInstruction<OneRegisterInstruction>(cancelButtonViewIndex).registerA
 
                 addInstruction(
                     cancelButtonViewIndex + 1,
@@ -51,7 +52,8 @@ object SubRedditDialogPatch : BaseBytecodePatch(
 
         RedditAlertDialogsFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
-                val insertIndex = getWideLiteralInstructionIndex(TextAppearanceRedditBaseOldButtonColored) + 1
+                val insertIndex =
+                    getWideLiteralInstructionIndex(TextAppearanceRedditBaseOldButtonColored) + 1
                 val insertRegister = getInstruction<FiveRegisterInstruction>(insertIndex).registerC
 
                 addInstruction(

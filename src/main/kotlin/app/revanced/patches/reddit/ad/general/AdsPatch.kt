@@ -2,9 +2,8 @@ package app.revanced.patches.reddit.ad.general
 
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.util.smali.ExternalLabel
+import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.revanced.patches.reddit.ad.banner.BannerAdsPatch
 import app.revanced.patches.reddit.ad.comments.CommentAdsPatch
 import app.revanced.patches.reddit.ad.general.fingerprints.AdPostFingerprint
@@ -61,15 +60,12 @@ object AdsPatch : BaseBytecodePatch(
         NewAdPostFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val targetIndex = getTargetIndexWithMethodReferenceName("add")
-                val targetRegister =
-                    getInstruction<FiveRegisterInstruction>(targetIndex).registerD + 1
+                val targetInstruction = getInstruction<FiveRegisterInstruction>(targetIndex)
 
-                addInstructionsWithLabels(
-                    targetIndex, """
-                        invoke-static {}, $INTEGRATIONS_CLASS_DESCRIPTOR->hideNewPostAds()Z
-                        move-result v$targetRegister
-                        if-nez v$targetRegister, :show
-                        """, ExternalLabel("show", getInstruction(targetIndex + 1))
+                replaceInstruction(
+                    targetIndex,
+                    "invoke-static {v${targetInstruction.registerC}, v${targetInstruction.registerD}}, " +
+                            "$INTEGRATIONS_CLASS_DESCRIPTOR->hideNewPostAds(Ljava/util/ArrayList;Ljava/lang/Object;)V"
                 )
             }
         }

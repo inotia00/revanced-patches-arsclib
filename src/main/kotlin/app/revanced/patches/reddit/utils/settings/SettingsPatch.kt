@@ -13,13 +13,12 @@ object SettingsPatch : BaseResourcePatch(
     description = "Adds ReVanced Extended settings to Reddit.",
     dependencies = setOf(
         IntegrationsPatch::class,
-        SettingsBytecodePatch::class
+        SettingsBytecodePatch::class,
     ),
     compatiblePackages = COMPATIBLE_PACKAGE,
     requiresIntegrations = true
 ) {
     override fun execute(context: ResourceContext) {
-
         /**
          * Replace settings icon and label
          */
@@ -40,6 +39,5 @@ object SettingsPatch : BaseResourcePatch(
                     )
             )
         }
-
     }
 }

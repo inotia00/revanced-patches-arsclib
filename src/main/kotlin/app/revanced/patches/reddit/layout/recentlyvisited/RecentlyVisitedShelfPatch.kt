@@ -40,14 +40,17 @@ object RecentlyVisitedShelfPatch : BaseBytecodePatch(
 
             it.mutableClass.methods.find { method -> method.name == "<init>" }
                 ?.apply {
-                    val recentlyVisitedFieldIndex = getTargetIndexWithFieldReferenceName("RECENTLY_VISITED")
-                    val recentlyVisitedObjectIndex = getTargetIndex(recentlyVisitedFieldIndex, Opcode.IPUT_OBJECT)
+                    val recentlyVisitedFieldIndex =
+                        getTargetIndexWithFieldReferenceName("RECENTLY_VISITED")
+                    val recentlyVisitedObjectIndex =
+                        getTargetIndex(recentlyVisitedFieldIndex, Opcode.IPUT_OBJECT)
                     recentlyVisitedReference =
                         getInstruction<ReferenceInstruction>(recentlyVisitedObjectIndex).reference
                 } ?: throw PatchException("Constructor method not found!")
 
             it.mutableMethod.apply {
-                val recentlyVisitedObjectIndex = getTargetIndexWithReference(recentlyVisitedReference.toString())
+                val recentlyVisitedObjectIndex =
+                    getTargetIndexWithReference(recentlyVisitedReference.toString())
                 arrayOf(
                     getTargetIndex(recentlyVisitedObjectIndex, Opcode.INVOKE_STATIC),
                     getTargetIndexReversed(recentlyVisitedObjectIndex, Opcode.INVOKE_STATIC)
