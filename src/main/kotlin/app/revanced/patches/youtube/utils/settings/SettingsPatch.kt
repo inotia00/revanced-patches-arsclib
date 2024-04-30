@@ -167,7 +167,9 @@ object SettingsPatch : BaseResourcePatch(
     }
 
     override fun close() {
-        // Set ReVanced Patches Version
+
+        // region set ReVanced Patches Version
+
         val jarManifest = classLoader.getResources("META-INF/MANIFEST.MF")
         while (jarManifest.hasMoreElements())
             contexts.updatePatchStatusSettings(
@@ -177,34 +179,20 @@ object SettingsPatch : BaseResourcePatch(
                     .getValue("Version") + ""
             )
 
-        // Endregion
+        // endregion
 
-        // Set ReVanced Integrations Version
-        SettingsBytecodePatch.contexts.classes.forEach { classDef ->
-            if (classDef.sourceFile != "BuildConfig.java")
-                return@forEach
+        // region set ReVanced Integrations Version
 
-            classDef.fields.forEach { field ->
-                if (field.name == "VERSION_NAME") {
-                    contexts.updatePatchStatusSettings(
-                        "ReVanced Integrations",
-                        field.initialValue.toString().trim()
-                    )
-                }
-            }
-        }
+        val buildConfigMutableClass = SettingsBytecodePatch.contexts.findClass { it.sourceFile == "BuildConfig.java" }!!.mutableClass
+        val versionNameField = buildConfigMutableClass.fields.single { it.name == "VERSION_NAME" }
+        val versionName = versionNameField.initialValue.toString().trim().replace("\"","").replace("&quot;", "")
 
-        contexts["res/xml/revanced_prefs.xml"].apply {
-            writeText(
-                readText()
-                    .replace(
-                        "&quot;",
-                        ""
-                    )
-            )
-        }
+        contexts.updatePatchStatusSettings(
+            "ReVanced Integrations",
+            versionName
+        )
 
-        // Endregion
+        // endregion
 
     }
 }
