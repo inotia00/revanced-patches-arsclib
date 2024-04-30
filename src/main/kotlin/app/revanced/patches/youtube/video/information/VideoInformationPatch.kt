@@ -93,6 +93,7 @@ object VideoInformationPatch : BytecodePatch(
     private const val REGISTER_VIDEO_ID = 2
     private const val REGISTER_VIDEO_TITLE = 3
     private const val REGISTER_VIDEO_LENGTH = 4
+    @Suppress("unused")
     private const val REGISTER_VIDEO_LENGTH_DUMMY = 5
     private const val REGISTER_VIDEO_IS_LIVE = 6
 

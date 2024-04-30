@@ -18,6 +18,7 @@ import app.revanced.patches.youtube.shorts.components.fingerprints.ShortsPivotLe
 import app.revanced.patches.youtube.shorts.components.fingerprints.ShortsSubscriptionsTabletFingerprint
 import app.revanced.patches.youtube.shorts.components.fingerprints.ShortsSubscriptionsTabletParentFingerprint
 import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.revanced.patches.youtube.utils.fingerprints.TextComponentSpecFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPONENTS_PATH
 import app.revanced.patches.youtube.utils.integrations.Constants.SHORTS_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.playertype.PlayerTypeHookPatch
@@ -30,12 +31,15 @@ import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.ReelR
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.ReelRightLikeIcon
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.RightComment
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
+import app.revanced.patches.youtube.video.information.VideoInformationPatch
 import app.revanced.util.getTargetIndex
 import app.revanced.util.getTargetIndexReversed
+import app.revanced.util.getTargetIndexWithReference
 import app.revanced.util.getWideLiteralInstructionIndex
 import app.revanced.util.patch.BaseBytecodePatch
 import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
+import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
@@ -43,15 +47,16 @@ import com.android.tools.smali.dexlib2.iface.reference.FieldReference
 
 @Suppress("unused")
 object ShortsComponentPatch : BaseBytecodePatch(
-    name = "Hide shorts components",
-    description = "Adds options to hide components related to YouTube Shorts.",
+    name = "Shorts components",
+    description = "Adds options to hide or change components related to YouTube Shorts.",
     dependencies = setOf(
         LithoFilterPatch::class,
         PlayerTypeHookPatch::class,
         SettingsPatch::class,
         SharedResourceIdPatch::class,
         ShortsNavigationBarPatch::class,
-        ShortsToolBarPatch::class
+        ShortsToolBarPatch::class,
+        VideoInformationPatch::class
     ),
     compatiblePackages = COMPATIBLE_PACKAGE,
     fingerprints = setOf(
@@ -59,7 +64,8 @@ object ShortsComponentPatch : BaseBytecodePatch(
         ShortsPaidPromotionFingerprint,
         ShortsPivotFingerprint,
         ShortsPivotLegacyFingerprint,
-        ShortsSubscriptionsTabletParentFingerprint
+        ShortsSubscriptionsTabletParentFingerprint,
+        TextComponentSpecFingerprint
     )
 ) {
     private const val BUTTON_FILTER_CLASS_DESCRIPTOR =
@@ -236,6 +242,35 @@ object ShortsComponentPatch : BaseBytecodePatch(
 
         // endregion
 
+        // region patch for return shorts channel name
+
+        TextComponentSpecFingerprint.resultOrThrow().let {
+            it.mutableMethod.apply {
+                val insertIndex = getTargetIndexWithReference("Landroid/text/SpannableString;->valueOf(Ljava/lang/CharSequence;)Landroid/text/SpannableString;")
+
+                val charSequenceRegister =
+                    getInstruction<FiveRegisterInstruction>(insertIndex).registerC
+                val conversionContextRegister =
+                    getInstruction<TwoRegisterInstruction>(0).registerA
+
+                val replaceReference =
+                    getInstruction<ReferenceInstruction>(insertIndex).reference
+
+                addInstructions(
+                    insertIndex + 1, """
+                        invoke-static {v$conversionContextRegister, v$charSequenceRegister}, $SHORTS_CLASS_DESCRIPTOR->onCharSequenceLoaded(Ljava/lang/Object;Ljava/lang/CharSequence;)Ljava/lang/CharSequence;
+                        move-result-object v$charSequenceRegister
+                        invoke-static {v$charSequenceRegister}, $replaceReference
+                        """
+                )
+                removeInstruction(insertIndex)
+            }
+        }
+
+        VideoInformationPatch.hookShorts("$SHORTS_CLASS_DESCRIPTOR->newShortsVideoStarted(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JZ)V")
+
+        // endregion
+
         LithoFilterPatch.addFilter(BUTTON_FILTER_CLASS_DESCRIPTOR)
         LithoFilterPatch.addFilter(SHELF_FILTER_CLASS_DESCRIPTOR)
 
@@ -245,7 +280,7 @@ object ShortsComponentPatch : BaseBytecodePatch(
         SettingsPatch.addPreference(
             arrayOf(
                 "PREFERENCE_SCREEN: SHORTS",
-                "SETTINGS: HIDE_SHORTS_COMPONENTS"
+                "SETTINGS: SHORTS_COMPONENTS"
             )
         )
 

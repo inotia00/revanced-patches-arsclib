@@ -8,9 +8,9 @@ import app.revanced.patcher.extensions.InstructionExtensions.removeInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.smali.ExternalLabel
+import app.revanced.patches.youtube.utils.fingerprints.TextComponentSpecFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.UTILS_PATH
 import app.revanced.patches.youtube.utils.returnyoutubedislike.shorts.fingerprints.ShortsTextViewFingerprint
-import app.revanced.patches.youtube.utils.returnyoutubedislike.shorts.fingerprints.TextComponentSpecFingerprint
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.util.getTargetIndex
 import app.revanced.util.getTargetIndexReversed
