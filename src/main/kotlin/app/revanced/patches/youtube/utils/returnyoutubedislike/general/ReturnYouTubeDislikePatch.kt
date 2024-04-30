@@ -16,6 +16,7 @@ import app.revanced.patches.youtube.utils.returnyoutubedislike.general.fingerpri
 import app.revanced.patches.youtube.utils.returnyoutubedislike.rollingnumber.ReturnYouTubeDislikeRollingNumberPatch
 import app.revanced.patches.youtube.utils.returnyoutubedislike.shorts.ReturnYouTubeDislikeShortsPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
+import app.revanced.patches.youtube.video.information.VideoInformationPatch
 import app.revanced.patches.youtube.video.videoid.VideoIdPatch
 import app.revanced.util.getTargetIndexWithFieldReferenceType
 import app.revanced.util.patch.BaseBytecodePatch
@@ -32,7 +33,7 @@ object ReturnYouTubeDislikePatch : BaseBytecodePatch(
         ReturnYouTubeDislikeRollingNumberPatch::class,
         ReturnYouTubeDislikeShortsPatch::class,
         SettingsPatch::class,
-        VideoIdPatch::class
+        VideoInformationPatch::class
     ),
     compatiblePackages = COMPATIBLE_PACKAGE,
     fingerprints = setOf(
@@ -101,6 +102,7 @@ object ReturnYouTubeDislikePatch : BaseBytecodePatch(
         if (SettingsPatch.upward1834) {
             LithoFilterPatch.addFilter(FILTER_CLASS_DESCRIPTOR)
             VideoIdPatch.hookPlayerResponseVideoId("$FILTER_CLASS_DESCRIPTOR->newPlayerResponseVideoId(Ljava/lang/String;Z)V")
+            VideoInformationPatch.hookShorts("$FILTER_CLASS_DESCRIPTOR->newShortsVideoStarted(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JZ)V")
         }
 
         // endregion
