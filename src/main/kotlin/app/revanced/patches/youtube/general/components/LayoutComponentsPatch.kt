@@ -12,6 +12,7 @@ import app.revanced.patches.youtube.general.components.fingerprints.AccountListF
 import app.revanced.patches.youtube.general.components.fingerprints.AccountListParentFingerprint
 import app.revanced.patches.youtube.general.components.fingerprints.AccountMenuFingerprint
 import app.revanced.patches.youtube.general.components.fingerprints.AccountSwitcherAccessibilityLabelFingerprint
+import app.revanced.patches.youtube.general.components.fingerprints.AppBlockingCheckResultToStringFingerprint
 import app.revanced.patches.youtube.general.components.fingerprints.BottomUiContainerFingerprint
 import app.revanced.patches.youtube.general.components.fingerprints.FloatingMicrophoneFingerprint
 import app.revanced.patches.youtube.general.components.fingerprints.PiPNotificationFingerprint
@@ -36,6 +37,7 @@ import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
+import com.android.tools.smali.dexlib2.util.MethodUtil
 
 @Suppress("unused")
 object LayoutComponentsPatch : BaseBytecodePatch(
@@ -52,6 +54,7 @@ object LayoutComponentsPatch : BaseBytecodePatch(
         AccountListParentFingerprint,
         AccountMenuParentFingerprint,
         AccountSwitcherAccessibilityLabelFingerprint,
+        AppBlockingCheckResultToStringFingerprint,
         BottomUiContainerFingerprint,
         FloatingMicrophoneFingerprint,
         PiPNotificationFingerprint,
@@ -92,6 +95,18 @@ object LayoutComponentsPatch : BaseBytecodePatch(
             }
         }
 
+        // endregion
+
+        // region patch for disable update screen
+
+        AppBlockingCheckResultToStringFingerprint.resultOrThrow().mutableClass.methods.first { method ->
+            MethodUtil.isConstructor(method)
+                    && method.parameters == listOf("Landroid/content/Intent;", "Z")
+        }.addInstructions(
+            1,
+            "const/4 p1, 0x0"
+        )
+        
         // endregion
 
         // region patch for hide account menu

@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.misc.updatescreen.fingerprints
+package app.revanced.patches.youtube.general.components.fingerprints
 
 import app.revanced.patcher.fingerprint.MethodFingerprint
 
