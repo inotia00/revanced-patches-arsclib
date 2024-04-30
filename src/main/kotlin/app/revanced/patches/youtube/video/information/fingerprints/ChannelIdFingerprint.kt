@@ -4,8 +4,9 @@ import app.revanced.patcher.extensions.or
 import app.revanced.patcher.fingerprint.MethodFingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 
-internal object VideoLengthFingerprint : MethodFingerprint(
+internal object ChannelIdFingerprint : MethodFingerprint(
     returnType = "V",
     accessFlags = AccessFlags.PUBLIC or AccessFlags.FINAL,
-    strings = listOf("Gaplessly transitioning away from an Ad before it ends.")
+    parameters = listOf("Ljava/lang/Object;"),
+    strings = listOf("com.google.android.apps.youtube.mdx.watch.LAST_MEALBAR_PROMOTED_LIVE_FEED_CHANNELS")
 )

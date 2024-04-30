@@ -66,6 +66,7 @@ object SharedResourceIdPatch : ResourcePatch() {
     var ModernMiniPlayerForwardButton = -1L
     var ModernMiniPlayerRewindButton = -1L
     var MusicAppDeeplinkButtonView = -1L
+    var NotificationBigPictureIconWidth = -1L
     var PanelSubHeader = -1L
     var PlayerCollapseButton = -1L
     var PosterArtWidthDefault = -1L
@@ -152,6 +153,7 @@ object SharedResourceIdPatch : ResourcePatch() {
         ModernMiniPlayerForwardButton = getId(ID, "modern_miniplayer_forward_button")
         ModernMiniPlayerRewindButton = getId(ID, "modern_miniplayer_rewind_button")
         MusicAppDeeplinkButtonView = getId(ID, "music_app_deeplink_button_view")
+        NotificationBigPictureIconWidth = getId(DIMEN, "notification_big_picture_icon_width")
         PanelSubHeader = getId(ID, "panel_subheader")
         PlayerCollapseButton = getId(ID, "player_collapse_button")
         PosterArtWidthDefault = getId(DIMEN, "poster_art_width_default")

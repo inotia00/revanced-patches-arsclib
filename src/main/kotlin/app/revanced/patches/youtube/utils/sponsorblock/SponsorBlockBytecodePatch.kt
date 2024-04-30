@@ -18,7 +18,6 @@ import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.Inset
 import app.revanced.patches.youtube.utils.sponsorblock.fingerprints.RectangleFieldInvalidatorFingerprint
 import app.revanced.patches.youtube.utils.sponsorblock.fingerprints.SegmentPlaybackControllerFingerprint
 import app.revanced.patches.youtube.video.information.VideoInformationPatch
-import app.revanced.patches.youtube.video.videoid.VideoIdPatch
 import app.revanced.util.getTargetIndex
 import app.revanced.util.getTargetIndexWithFieldReferenceTypeReversed
 import app.revanced.util.getTargetIndexWithMethodReferenceName
@@ -35,7 +34,6 @@ import com.android.tools.smali.dexlib2.iface.reference.FieldReference
     dependencies = [
         PlayerControlsPatch::class,
         SharedResourceIdPatch::class,
-        VideoIdPatch::class,
         VideoInformationPatch::class
     ]
 )
@@ -173,6 +171,6 @@ object SponsorBlockBytecodePatch : BytecodePatch(
         )
 
         // Set current video id
-        VideoIdPatch.hookBackgroundPlayVideoId("$INTEGRATIONS_SEGMENT_PLAYBACK_CONTROLLER_CLASS_DESCRIPTOR->setCurrentVideoId(Ljava/lang/String;)V")
+        VideoInformationPatch.hook("$INTEGRATIONS_SEGMENT_PLAYBACK_CONTROLLER_CLASS_DESCRIPTOR->newVideoStarted(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JZ)V")
     }
 }

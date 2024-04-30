@@ -57,12 +57,12 @@ object PlayerResponseMethodHookPatch :
             val instruction =
                 if (shouldApplyNewMethod)
                     """
-                        invoke-static {v$PARAMETER_VIDEO_ID, v$PARAMETER_PLAYER_PARAMETER, v$PARAMETER_IS_SHORT_AND_OPENING_OR_PLAYING}, $hook
+                        invoke-static {v$PARAMETER_VIDEO_ID, v$PARAMETER_PLAYER_PARAMETER, v$PARAMETER_PLAYLIST_ID, v$PARAMETER_IS_SHORT_AND_OPENING_OR_PLAYING}, $hook
                         move-result-object p3
                         """
                 else
                     """
-                        invoke-static {p$PARAMETER_VIDEO_ID, p$PARAMETER_PLAYER_PARAMETER, p$PARAMETER_IS_SHORT_AND_OPENING_OR_PLAYING}, $hook
+                        invoke-static {p$PARAMETER_VIDEO_ID, p$PARAMETER_PLAYER_PARAMETER, p$PARAMETER_PLAYLIST_ID, p$PARAMETER_IS_SHORT_AND_OPENING_OR_PLAYING}, $hook
                         move-result-object p$PARAMETER_PLAYER_PARAMETER
                         """
 

@@ -6,6 +6,7 @@ import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWith
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.revanced.patcher.extensions.or
+import app.revanced.patcher.fingerprint.MethodFingerprint
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.annotation.Patch
@@ -18,18 +19,27 @@ import app.revanced.patches.youtube.utils.fingerprints.VideoEndFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.SHARED_PATH
 import app.revanced.patches.youtube.utils.playertype.PlayerTypeHookPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
+import app.revanced.patches.youtube.video.information.fingerprints.ChannelIdFingerprint
+import app.revanced.patches.youtube.video.information.fingerprints.ChannelNameFingerprint
 import app.revanced.patches.youtube.video.information.fingerprints.OnPlaybackSpeedItemClickFingerprint
+import app.revanced.patches.youtube.video.information.fingerprints.PlaybackInitializationFingerprint
 import app.revanced.patches.youtube.video.information.fingerprints.PlaybackSpeedClassFingerprint
-import app.revanced.patches.youtube.video.information.fingerprints.PlayerControllerSetTimeReferenceFingerprint
+import app.revanced.patches.youtube.video.information.fingerprints.VideoIdFingerprint
+import app.revanced.patches.youtube.video.information.fingerprints.VideoIdFingerprintBackgroundPlay
+import app.revanced.patches.youtube.video.information.fingerprints.VideoIdFingerprintShorts
 import app.revanced.patches.youtube.video.information.fingerprints.VideoLengthFingerprint
 import app.revanced.patches.youtube.video.information.fingerprints.VideoQualityListFingerprint
 import app.revanced.patches.youtube.video.information.fingerprints.VideoQualityTextFingerprint
+import app.revanced.patches.youtube.video.information.fingerprints.VideoTimeFingerprint
+import app.revanced.patches.youtube.video.information.fingerprints.VideoTitleFingerprint
 import app.revanced.patches.youtube.video.playerresponse.PlayerResponseMethodHookPatch
 import app.revanced.patches.youtube.video.videoid.VideoIdPatch
 import app.revanced.util.addFieldAndInstructions
+import app.revanced.util.getReference
 import app.revanced.util.getTargetIndex
 import app.revanced.util.getTargetIndexReversed
 import app.revanced.util.getWalkerMethod
+import app.revanced.util.indexOfFirstInstruction
 import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
@@ -37,6 +47,7 @@ import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
+import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 import com.android.tools.smali.dexlib2.immutable.ImmutableMethod
 import com.android.tools.smali.dexlib2.immutable.ImmutableMethodImplementation
 import com.android.tools.smali.dexlib2.immutable.ImmutableMethodParameter
@@ -53,27 +64,54 @@ import com.android.tools.smali.dexlib2.util.MethodUtil
 )
 object VideoInformationPatch : BytecodePatch(
     setOf(
+        ChannelIdFingerprint,
+        ChannelNameFingerprint,
         OnPlaybackSpeedItemClickFingerprint,
         OrganicPlaybackContextModelFingerprint,
+        PlaybackInitializationFingerprint,
         PlaybackSpeedClassFingerprint,
-        PlayerControllerSetTimeReferenceFingerprint,
         VideoEndFingerprint,
+        VideoIdFingerprint,
+        VideoIdFingerprintBackgroundPlay,
+        VideoIdFingerprintShorts,
         VideoLengthFingerprint,
         VideoQualityListFingerprint,
-        VideoQualityTextFingerprint
+        VideoQualityTextFingerprint,
+        VideoTitleFingerprint,
     )
 ) {
     private const val INTEGRATIONS_CLASS_DESCRIPTOR =
         "$SHARED_PATH/VideoInformation;"
 
+    private const val PLAYER_RESPONSE_MODEL_CLASS_DESCRIPTOR =
+        "Lcom/google/android/libraries/youtube/innertube/model/player/PlayerResponseModel;"
+
+    private const val REGISTER_PLAYER_RESPONSE_MODEL = 8
+
+    private const val REGISTER_CHANNEL_ID = 0
+    private const val REGISTER_CHANNEL_NAME = 1
+    private const val REGISTER_VIDEO_ID = 2
+    private const val REGISTER_VIDEO_TITLE = 3
+    private const val REGISTER_VIDEO_LENGTH = 4
+    private const val REGISTER_VIDEO_LENGTH_DUMMY = 5
+    private const val REGISTER_VIDEO_IS_LIVE = 6
+
+    private lateinit var channelIdMethodCall: String
+    private lateinit var channelNameMethodCall: String
+    private lateinit var videoIdMethodCall: String
+    private lateinit var videoTitleMethodCall: String
+    private lateinit var videoLengthMethodCall: String
+    private lateinit var videoIsLiveMethodCall: String
+
+    private lateinit var videoInformationMethod: MutableMethod
+    private lateinit var backgroundVideoInformationMethod: MutableMethod
+    private lateinit var shortsVideoInformationMethod: MutableMethod
+
     private lateinit var playerConstructorMethod: MutableMethod
     private var playerConstructorInsertIndex = 4
 
-    private lateinit var videoTimeConstructorMethod: MutableMethod
-    private var videoTimeConstructorInsertIndex = 2
-
-    private lateinit var videoCpnConstructorMethod: MutableMethod
-    private var videoCpnConstructorInsertIndex = 2
+    private lateinit var videoTimeMethod: MutableMethod
+    private var videoTimeIndex = 1
 
     // Used by other patches.
     internal lateinit var speedSelectionInsertMethod: MutableMethod
@@ -83,6 +121,10 @@ object VideoInformationPatch : BytecodePatch(
         val videoInformationMutableClass = context.findClass(INTEGRATIONS_CLASS_DESCRIPTOR)!!.mutableClass
 
         VideoEndFingerprint.resultOrThrow().let {
+
+            // resolve video time fingerprint
+            VideoTimeFingerprint.resolve(context, it.classDef)
+
             playerConstructorMethod =
                 it.mutableClass.methods.first { method -> MethodUtil.isConstructor(method) }
 
@@ -150,11 +192,83 @@ object VideoInformationPatch : BytecodePatch(
         }
 
         /**
+         * Set current video information
+         */
+        channelIdMethodCall = ChannelIdFingerprint.getMethodName("Ljava/lang/String;")
+        channelNameMethodCall = ChannelNameFingerprint.getMethodName("Ljava/lang/String;")
+        videoIdMethodCall = VideoIdFingerprint.getMethodName("Ljava/lang/String;")
+        videoTitleMethodCall = VideoTitleFingerprint.getMethodName("Ljava/lang/String;")
+        videoLengthMethodCall = VideoLengthFingerprint.getMethodName("J")
+        videoIsLiveMethodCall = ChannelIdFingerprint.getMethodName("Z")
+
+        PlaybackInitializationFingerprint.resultOrThrow().let {
+            it.mutableMethod.apply {
+                val targetIndex = indexOfFirstInstruction {
+                    opcode == Opcode.INVOKE_DIRECT
+                            && getReference<MethodReference>()?.returnType == PLAYER_RESPONSE_MODEL_CLASS_DESCRIPTOR
+                } + 1
+                if (targetIndex == 0) throw PatchException("Could not find instruction index.")
+                val targetRegister = getInstruction<OneRegisterInstruction>(targetIndex).registerA
+
+                addInstruction(
+                    targetIndex + 1,
+                    "invoke-direct {p0, v$targetRegister}, $definingClass->setVideoInformation($PLAYER_RESPONSE_MODEL_CLASS_DESCRIPTOR)V"
+                )
+
+                videoInformationMethod = getVideoInformationMethod()
+                it.mutableClass.methods.add(videoInformationMethod)
+
+                hook("$INTEGRATIONS_CLASS_DESCRIPTOR->setVideoInformation(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JZ)V")
+            }
+        }
+
+        VideoIdFingerprintBackgroundPlay.resultOrThrow().let {
+            it.mutableMethod.apply {
+                val targetIndex = indexOfFirstInstruction {
+                    opcode == Opcode.INVOKE_INTERFACE
+                            && getReference<MethodReference>()?.definingClass == PLAYER_RESPONSE_MODEL_CLASS_DESCRIPTOR
+                }
+                if (targetIndex < 0) throw PatchException("Could not find instruction index.")
+                val targetRegister = getInstruction<FiveRegisterInstruction>(targetIndex).registerC
+
+                addInstruction(
+                    targetIndex,
+                    "invoke-direct {p0, v$targetRegister}, $definingClass->setVideoInformation($PLAYER_RESPONSE_MODEL_CLASS_DESCRIPTOR)V"
+                )
+
+                backgroundVideoInformationMethod = getVideoInformationMethod()
+                it.mutableClass.methods.add(backgroundVideoInformationMethod)
+            }
+        }
+
+        VideoIdFingerprintShorts.resultOrThrow().let {
+            it.mutableMethod.apply {
+                val targetIndex = indexOfFirstInstruction {
+                    opcode == Opcode.INVOKE_INTERFACE
+                            && getReference<MethodReference>()?.definingClass == PLAYER_RESPONSE_MODEL_CLASS_DESCRIPTOR
+                }
+                if (targetIndex < 0) throw PatchException("Could not find instruction index.")
+                val targetRegister = getInstruction<FiveRegisterInstruction>(targetIndex).registerC
+
+                addInstruction(
+                    targetIndex,
+                    "invoke-direct {p0, v$targetRegister}, $definingClass->setVideoInformation($PLAYER_RESPONSE_MODEL_CLASS_DESCRIPTOR)V"
+                )
+
+                shortsVideoInformationMethod = getVideoInformationMethod()
+                it.mutableClass.methods.add(shortsVideoInformationMethod)
+            }
+        }
+
+        /**
          * Set current video time method
          */
-        PlayerControllerSetTimeReferenceFingerprint.resultOrThrow().let {
-            videoTimeConstructorMethod =
-                it.getWalkerMethod(context, it.scanResult.patternScanResult!!.startIndex)
+        VideoTimeFingerprint.resultOrThrow().mutableMethod.apply {
+            videoTimeMethod = this
+            addInstruction(
+                0,
+                "move-wide/from16 v0, p5"
+            )
         }
 
         /**
@@ -163,39 +277,14 @@ object VideoInformationPatch : BytecodePatch(
         videoTimeHook(INTEGRATIONS_CLASS_DESCRIPTOR, "setVideoTime")
 
         /**
-         * Set current video length
-         */
-        VideoLengthFingerprint.resultOrThrow().let {
-            it.mutableMethod.apply {
-                val startIndex = it.scanResult.patternScanResult!!.startIndex
-                val primaryRegister = getInstruction<OneRegisterInstruction>(startIndex).registerA
-                val secondaryRegister = primaryRegister + 1
-
-                addInstruction(
-                    startIndex + 2,
-                    "invoke-static {v$primaryRegister, v$secondaryRegister}, $INTEGRATIONS_CLASS_DESCRIPTOR->setVideoLength(J)V"
-                )
-            }
-        }
-
-        /**
-         * Set current video is livestream
-         */
-        videoCpnConstructorMethod = OrganicPlaybackContextModelFingerprint.resultOrThrow().mutableMethod
-        cpnHook("$INTEGRATIONS_CLASS_DESCRIPTOR->setLiveStreamState(Ljava/lang/String;Z)V")
-
-        /**
          * Set current video id
          */
-        val videoIdMethodDescriptor = "$INTEGRATIONS_CLASS_DESCRIPTOR->setVideoId(Ljava/lang/String;)V"
-        VideoIdPatch.hookVideoId(videoIdMethodDescriptor)
-        VideoIdPatch.hookBackgroundPlayVideoId(videoIdMethodDescriptor)
         VideoIdPatch.hookPlayerResponseVideoId(
             "$INTEGRATIONS_CLASS_DESCRIPTOR->setPlayerResponseVideoId(Ljava/lang/String;Z)V")
         // Call before any other video id hooks,
         // so they can use VideoInformation and check if the video id is for a Short.
         PlayerResponseMethodHookPatch += PlayerResponseMethodHookPatch.Hook.PlayerParameterBeforeVideoId(
-            "$INTEGRATIONS_CLASS_DESCRIPTOR->newPlayerResponseParameter(Ljava/lang/String;Ljava/lang/String;Z)Ljava/lang/String;")
+            "$INTEGRATIONS_CLASS_DESCRIPTOR->newPlayerResponseParameter(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Z)Ljava/lang/String;")
 
         /**
          * Hook current playback speed
@@ -346,12 +435,6 @@ object VideoInformationPatch : BytecodePatch(
         }
     }
 
-    private fun MutableMethod.insert(insertIndex: Int, register: String, descriptor: String) =
-        addInstruction(insertIndex, "invoke-static { $register }, $descriptor")
-
-    private fun MutableMethod.insertTimeHook(insertIndex: Int, descriptor: String) =
-        insert(insertIndex, "p1, p2", descriptor)
-
     /**
      * Hook the player controller.  Called when a video is opened or the current video is changed.
      *
@@ -375,15 +458,97 @@ object VideoInformationPatch : BytecodePatch(
      * @param targetMethodName The name of the static method to invoke when the player controller is created.
      */
     internal fun videoTimeHook(targetMethodClass: String, targetMethodName: String) =
-        videoTimeConstructorMethod.insertTimeHook(
-            videoTimeConstructorInsertIndex++,
-            "$targetMethodClass->$targetMethodName(J)V"
+        videoTimeMethod.addInstruction(
+            videoTimeIndex++,
+            "invoke-static { v0, v1 }, $targetMethodClass->$targetMethodName(J)V"
         )
 
-    internal fun cpnHook(descriptor: String) =
-        videoCpnConstructorMethod.insert(
-            videoCpnConstructorInsertIndex++,
-            "p1, p2",
-            descriptor
-        )
+    private fun MethodFingerprint.getMethodName(returnType : String) :String {
+        resultOrThrow().mutableMethod.apply {
+            val targetIndex = indexOfFirstInstruction {
+                opcode == Opcode.INVOKE_INTERFACE
+                        && getReference<MethodReference>()?.definingClass == PLAYER_RESPONSE_MODEL_CLASS_DESCRIPTOR
+                        && getReference<MethodReference>()?.returnType == returnType
+            }
+            if (targetIndex < 0) throw PatchException("Could not find instruction index.")
+            val targetReference = getInstruction<ReferenceInstruction>(targetIndex).reference
+
+            return "invoke-interface {v${REGISTER_PLAYER_RESPONSE_MODEL}}, $targetReference"
+        }
+    }
+
+    private fun MutableMethod.getVideoInformationMethod(): MutableMethod =
+        ImmutableMethod(
+            definingClass,
+            "setVideoInformation",
+            listOf(ImmutableMethodParameter(PLAYER_RESPONSE_MODEL_CLASS_DESCRIPTOR, annotations, null)),
+            "V",
+            AccessFlags.PRIVATE or AccessFlags.FINAL,
+            annotations,
+            null,
+            ImmutableMethodImplementation(
+                9, """
+                    $channelIdMethodCall
+                    move-result-object v$REGISTER_CHANNEL_ID
+                    $channelNameMethodCall
+                    move-result-object v$REGISTER_CHANNEL_NAME
+                    $videoIdMethodCall
+                    move-result-object v$REGISTER_VIDEO_ID
+                    $videoTitleMethodCall
+                    move-result-object v$REGISTER_VIDEO_TITLE
+                    $videoLengthMethodCall
+                    move-result-wide v$REGISTER_VIDEO_LENGTH
+                    $videoIsLiveMethodCall
+                    move-result v$REGISTER_VIDEO_IS_LIVE
+                    return-void
+                    """.toInstructions(),
+                null,
+                null
+            )
+        ).toMutable()
+
+    private fun MutableMethod.insert(insertIndex: Int, register: String, descriptor: String) =
+        addInstruction(insertIndex, "invoke-static/range { $register }, $descriptor")
+
+    /**
+     * This method is invoked on both regular videos and Shorts.
+     */
+    internal fun hook(descriptor: String) =
+        videoInformationMethod.apply {
+            val index = implementation!!.instructions.size - 1
+
+            insert(
+                index,
+                "v${REGISTER_CHANNEL_ID} .. v${REGISTER_VIDEO_IS_LIVE}",
+                descriptor
+            )
+        }
+
+    /**
+     * This method is invoked only in regular videos.
+     */
+    internal fun hookBackgroundPlay(descriptor: String) =
+        backgroundVideoInformationMethod.apply {
+            val index = implementation!!.instructions.size - 1
+
+            insert(
+                index,
+                "v${REGISTER_CHANNEL_ID} .. v${REGISTER_VIDEO_IS_LIVE}",
+                descriptor
+            )
+        }
+
+    /**
+     * This method is invoked only in shorts videos.
+     */
+    internal fun hookShorts(descriptor: String) =
+        shortsVideoInformationMethod.apply {
+            val index = implementation!!.instructions.size - 1
+
+            insert(
+                index,
+                "v${REGISTER_CHANNEL_ID} .. v${REGISTER_VIDEO_IS_LIVE}",
+                descriptor
+            )
+        }
 }

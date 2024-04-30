@@ -10,11 +10,8 @@ import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.youtube.utils.playertype.PlayerTypeHookPatch
 import app.revanced.patches.youtube.video.playerresponse.PlayerResponseMethodHookPatch
 import app.revanced.patches.youtube.video.videoid.fingerprints.VideoIdFingerprint
-import app.revanced.patches.youtube.video.videoid.fingerprints.VideoIdFingerprintBackgroundPlay
 import app.revanced.patches.youtube.video.videoid.fingerprints.VideoIdParentFingerprint
-import app.revanced.util.getTargetIndex
 import app.revanced.util.resultOrThrow
-import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch(
@@ -22,18 +19,11 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
     dependencies = [PlayerResponseMethodHookPatch::class],
 )
 object VideoIdPatch : BytecodePatch(
-    setOf(
-        VideoIdParentFingerprint,
-        VideoIdFingerprintBackgroundPlay
-    )
+    setOf(VideoIdParentFingerprint)
 ) {
     private var videoIdRegister = 0
     private var videoIdInsertIndex = 0
     private lateinit var videoIdMethod: MutableMethod
-
-    private var backgroundPlaybackVideoIdRegister = 0
-    private var backgroundPlaybackInsertIndex = 0
-    private lateinit var backgroundPlaybackMethod: MutableMethod
 
     override fun execute(context: BytecodeContext) {
 
@@ -59,14 +49,6 @@ object VideoIdPatch : BytecodePatch(
             videoIdInsertIndex = index
             videoIdRegister = register
         }
-
-        VideoIdFingerprintBackgroundPlay.resultOrThrow().let {
-            it.mutableMethod.apply {
-                backgroundPlaybackMethod = this
-                backgroundPlaybackInsertIndex = getTargetIndex(Opcode.INVOKE_INTERFACE) + 2
-                backgroundPlaybackVideoIdRegister = getInstruction<OneRegisterInstruction>(backgroundPlaybackInsertIndex - 1).registerA
-            }
-        }
     }
 
     /**
@@ -88,23 +70,6 @@ object VideoIdPatch : BytecodePatch(
     )
 
     /**
-     * Alternate hook that supports only regular videos, but hook supports changing to new video
-     * during background play when no video is visible.
-     *
-     * _Does not support Shorts_.
-     *
-     * Be aware, the hook can be called multiple times for the same video id.
-     *
-     * @param methodDescriptor which method to call. Params have to be `Ljava/lang/String;`
-     */
-    fun hookBackgroundPlayVideoId(
-        methodDescriptor: String
-    ) = backgroundPlaybackMethod.addInstruction(
-        backgroundPlaybackInsertIndex++, // move-result-object offset
-        "invoke-static {v$backgroundPlaybackVideoIdRegister}, $methodDescriptor"
-    )
-
-    /**
      * Hooks the video id of every video when loaded.
      * Supports all videos and functions in all situations.
      *
@@ -120,8 +85,7 @@ object VideoIdPatch : BytecodePatch(
      * It's common for multiple Shorts to load at once in preparation
      * for the user swiping to the next Short.
      *
-     * For most use cases, you probably want to use
-     * [hookVideoId] or [hookBackgroundPlayVideoId] instead.
+     * For most use cases, you probably want to use [hookVideoId] instead.
      *
      * Be aware, this can be called multiple times for the same video id.
      *

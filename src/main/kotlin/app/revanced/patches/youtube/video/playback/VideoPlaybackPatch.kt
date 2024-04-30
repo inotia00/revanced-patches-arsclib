@@ -67,7 +67,6 @@ object VideoPlaybackPatch : BaseBytecodePatch(
         DeviceDimensionsModelToStringFingerprint,
         HDRCapabilityFingerprint,
         PlaybackSpeedChangedFromRecyclerViewFingerprint,
-        PlaybackSpeedInitializeFingerprint,
         QualityChangedFromRecyclerViewFingerprint,
         QualityMenuViewInflateFingerprint,
         QualitySetterFingerprint,
@@ -163,7 +162,7 @@ object VideoPlaybackPatch : BaseBytecodePatch(
             }
         }
 
-        VideoInformationPatch.cpnHook("$INTEGRATIONS_PLAYBACK_SPEED_CLASS_DESCRIPTOR->newVideoStarted(Ljava/lang/String;Z)V")
+        VideoInformationPatch.hookBackgroundPlay("$INTEGRATIONS_PLAYBACK_SPEED_CLASS_DESCRIPTOR->newVideoStarted(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JZ)V")
 
         context.updatePatchStatus(PATCH_STATUS_CLASS_DESCRIPTOR, "RememberPlaybackSpeed")
 
@@ -195,8 +194,8 @@ object VideoPlaybackPatch : BaseBytecodePatch(
             } ?: throw PatchException("Failed to find onItemClick method")
         }
 
-        VideoIdPatch.hookBackgroundPlayVideoId("$INTEGRATIONS_VIDEO_QUALITY_CLASS_DESCRIPTOR->newVideoStarted(Ljava/lang/String;)V")
-        VideoIdPatch.hookBackgroundPlayVideoId("$INTEGRATIONS_RELOAD_VIDEO_CLASS_DESCRIPTOR->setVideoId(Ljava/lang/String;)V")
+        VideoInformationPatch.hook("$INTEGRATIONS_VIDEO_QUALITY_CLASS_DESCRIPTOR->newVideoStarted(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JZ)V")
+        VideoInformationPatch.hookBackgroundPlay("$INTEGRATIONS_RELOAD_VIDEO_CLASS_DESCRIPTOR->newVideoStarted(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JZ)V")
 
         // endregion
 
@@ -212,7 +211,7 @@ object VideoPlaybackPatch : BaseBytecodePatch(
                 addInstruction(
                     insertIndex + 1,
                     "invoke-static { v$insertRegister }, " +
-                            "$INTEGRATIONS_RESTORE_OLD_VIDEO_QUALITY_MENU_CLASS_DESCRIPTOR->showOldVideoQualityMenu(Landroid/widget/ListView;)V"
+                            "$INTEGRATIONS_RESTORE_OLD_VIDEO_QUALITY_MENU_CLASS_DESCRIPTOR->restoreOldVideoQualityMenu(Landroid/widget/ListView;)V"
                 )
             }
             val onItemClickMethod =
@@ -229,7 +228,7 @@ object VideoPlaybackPatch : BaseBytecodePatch(
 
                 addInstructionsWithLabels(
                     insertIndex, """
-                        invoke-static {}, $INTEGRATIONS_RESTORE_OLD_VIDEO_QUALITY_MENU_CLASS_DESCRIPTOR->showOldVideoQualityMenu()Z
+                        invoke-static {}, $INTEGRATIONS_RESTORE_OLD_VIDEO_QUALITY_MENU_CLASS_DESCRIPTOR->restoreOldVideoQualityMenu()Z
                         move-result v$insertRegister
                         if-nez v$insertRegister, :show
                         """, ExternalLabel("show", getInstruction(jumpIndex))

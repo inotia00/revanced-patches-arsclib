@@ -4,8 +4,12 @@ import app.revanced.patcher.extensions.or
 import app.revanced.patcher.fingerprint.MethodFingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 
-internal object VideoLengthFingerprint : MethodFingerprint(
+internal object ChannelNameFingerprint : MethodFingerprint(
     returnType = "V",
     accessFlags = AccessFlags.PUBLIC or AccessFlags.FINAL,
-    strings = listOf("Gaplessly transitioning away from an Ad before it ends.")
+    parameters = listOf("L"),
+    strings = listOf(
+        "setMetadata may only be called once",
+        "Person",
+    )
 )
