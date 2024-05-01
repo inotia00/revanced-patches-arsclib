@@ -93,6 +93,7 @@ object SharedResourceIdPatch : ResourcePatch() {
     var TotalTime = -1L
     var TouchArea = -1L
     var VideoQualityBottomSheet = -1L
+    var VideoQualityUnavailableAnnouncement = -1L
     var VoiceSearch = -1L
     var YouTubeControlsOverlaySubtitleButton = -1L
     var YtOutlinePiPWhite = -1L
@@ -181,6 +182,7 @@ object SharedResourceIdPatch : ResourcePatch() {
         TotalTime = getId(STRING, "total_time")
         TouchArea = getId(ID, "touch_area")
         VideoQualityBottomSheet = getId(LAYOUT, "video_quality_bottom_sheet_list_fragment_title")
+        VideoQualityUnavailableAnnouncement = getId(STRING, "video_quality_unavailable_announcement")
         VoiceSearch = getId(ID, "voice_search")
         YouTubeControlsOverlaySubtitleButton = getId(LAYOUT, "youtube_controls_overlay_subtitle_button")
         YtOutlinePiPWhite = getId(DRAWABLE, "yt_outline_picture_in_picture_white_24")

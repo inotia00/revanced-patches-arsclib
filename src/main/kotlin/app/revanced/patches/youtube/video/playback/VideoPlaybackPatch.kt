@@ -12,7 +12,7 @@ import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PAC
 import app.revanced.patches.youtube.utils.fingerprints.QualityMenuViewInflateFingerprint
 import app.revanced.patches.youtube.utils.fingerprints.VideoEndFingerprint
 import app.revanced.patches.youtube.utils.fix.shortsplayback.ShortsPlaybackPatch
-import app.revanced.patches.youtube.utils.flyoutpanel.PlaybackSpeedFlyoutPanelHookPatch
+import app.revanced.patches.youtube.utils.flyoutmenu.FlyoutMenuHookPatch
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPONENTS_PATH
 import app.revanced.patches.youtube.utils.integrations.Constants.PATCH_STATUS_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.integrations.Constants.VIDEO_PATH
@@ -52,8 +52,8 @@ object VideoPlaybackPatch : BaseBytecodePatch(
     dependencies = setOf(
         BottomSheetRecyclerViewPatch::class,
         CustomPlaybackSpeedPatch::class,
+        FlyoutMenuHookPatch::class,
         LithoFilterPatch::class,
-        PlaybackSpeedFlyoutPanelHookPatch::class,
         PlayerTypeHookPatch::class,
         SettingsPatch::class,
         ShortsPlaybackPatch::class,

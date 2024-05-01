@@ -816,6 +816,9 @@ Please download %2$s from the website."</string>
     <string name="revanced_append_time_stamp_information_type_title">Append information type</string>
     <string name="revanced_append_time_stamp_information_type_summary_on">Append video quality.</string>
     <string name="revanced_append_time_stamp_information_type_summary_off">Append playback speed.</string>
+    <string name="revanced_replace_time_stamp_action_title">Replace time stamp action</string>
+    <string name="revanced_replace_time_stamp_action_summary_on">Tap to open playback speed or video quality flyout menu.</string>
+    <string name="revanced_replace_time_stamp_action_summary_off">Tap to show the remaining time.</string>
     <string name="revanced_enable_custom_seekbar_color_title">Enable custom seekbar color</string>
     <string name="revanced_enable_custom_seekbar_color_summary_on">Custom seekbar color is enabled.</string>
     <string name="revanced_enable_custom_seekbar_color_summary_off">Custom seekbar color is disabled.</string>

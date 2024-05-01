@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.utils.flyoutpanel.fingerprints
+package app.revanced.patches.youtube.utils.flyoutmenu.fingerprints
 
 import app.revanced.patcher.extensions.or
 import app.revanced.patcher.fingerprint.MethodFingerprint

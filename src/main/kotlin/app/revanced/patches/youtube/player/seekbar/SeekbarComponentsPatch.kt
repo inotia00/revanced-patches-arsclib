@@ -20,6 +20,7 @@ import app.revanced.patches.youtube.utils.fingerprints.PlayerSeekbarColorFingerp
 import app.revanced.patches.youtube.utils.fingerprints.SeekbarFingerprint
 import app.revanced.patches.youtube.utils.fingerprints.SeekbarOnDrawFingerprint
 import app.revanced.patches.youtube.utils.fingerprints.TotalTimeFingerprint
+import app.revanced.patches.youtube.utils.flyoutmenu.FlyoutMenuHookPatch
 import app.revanced.patches.youtube.utils.integrations.Constants.PLAYER_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.InlineTimeBarColorizedBarPlayedColorDark
@@ -50,6 +51,7 @@ object SeekbarComponentsPatch : BaseBytecodePatch(
     description = "Adds options to hide or change components related to player.",
     dependencies = setOf(
         DrawableColorPatch::class,
+        FlyoutMenuHookPatch::class,
         SettingsPatch::class,
         SharedResourceIdPatch::class,
         VideoInformationPatch::class
