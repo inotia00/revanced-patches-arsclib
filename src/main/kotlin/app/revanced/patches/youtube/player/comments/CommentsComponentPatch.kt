@@ -7,7 +7,6 @@ import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patches.shared.litho.LithoFilterPatch
 import app.revanced.patches.youtube.player.comments.fingerprints.ShortsLiveStreamEmojiPickerOnClickListenerFingerprint
 import app.revanced.patches.youtube.player.comments.fingerprints.ShortsLiveStreamEmojiPickerOpacityFingerprint
-import app.revanced.patches.youtube.player.comments.fingerprints.ShortsLiveStreamThanksFingerprint
 import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPONENTS_PATH
 import app.revanced.patches.youtube.utils.integrations.Constants.PLAYER_CLASS_DESCRIPTOR
@@ -19,7 +18,6 @@ import app.revanced.util.getWideLiteralInstructionIndex
 import app.revanced.util.patch.BaseBytecodePatch
 import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
-import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Suppress("unused")
@@ -55,10 +53,7 @@ object CommentsComponentPatch : BaseBytecodePatch(
             }
         }
 
-        val shortsLiveStreamEmojiPickerOnClickListenerResult =
-            ShortsLiveStreamEmojiPickerOnClickListenerFingerprint.resultOrThrow()
-
-        shortsLiveStreamEmojiPickerOnClickListenerResult.let {
+        ShortsLiveStreamEmojiPickerOnClickListenerFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val emojiPickerEndpointIndex = getWideLiteralInstructionIndex(126326492)
                 val emojiPickerOnClickListenerIndex = getTargetIndex(emojiPickerEndpointIndex, Opcode.INVOKE_DIRECT)
@@ -75,25 +70,6 @@ object CommentsComponentPatch : BaseBytecodePatch(
                             """
                     )
                 }
-            }
-        }
-
-        // endregion
-
-        // region patch for thanks button in shorts
-
-        ShortsLiveStreamThanksFingerprint.resolve(context, shortsLiveStreamEmojiPickerOnClickListenerResult.classDef)
-        ShortsLiveStreamThanksFingerprint.resultOrThrow().let {
-            it.mutableMethod.apply {
-                val insertIndex = it.scanResult.patternScanResult!!.startIndex
-                val insertInstruction = getInstruction<FiveRegisterInstruction>(insertIndex)
-
-                addInstructions(
-                    insertIndex,"""
-                        invoke-static { v${insertInstruction.registerC}, v${insertInstruction.registerD} }, $PLAYER_CLASS_DESCRIPTOR->hideThanksButton(Landroid/view/View;I)I
-                        move-result v${insertInstruction.registerD}
-                        """
-                )
             }
         }
 
