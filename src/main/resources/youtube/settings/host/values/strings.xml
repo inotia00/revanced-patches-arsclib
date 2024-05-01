@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Translations for YouTube -->
+    <string name="accessibility_settings_edu_opt_in_text">Turn on accessibility controls for the video player?</string>
+    <string name="accessibility_settings_edu_opt_out_text">Your controls are modified because an accessibility service is on.</string>
+
     <!-- Shared PreferenceScreen -->
     <string name="revanced_extended_settings_title">ReVanced Extended</string>
 

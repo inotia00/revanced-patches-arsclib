@@ -1,6 +1,7 @@
 package app.revanced.patches.youtube.utils.settings
 
 import app.revanced.patcher.data.ResourceContext
+import app.revanced.patches.shared.elements.StringsElementsUtils.removeStringsElements
 import app.revanced.patches.shared.mapping.ResourceMappingPatch
 import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.integrations.IntegrationsPatch
@@ -92,6 +93,21 @@ object SettingsPatch : BaseResourcePatch(
         threadPoolExecutor
             .also { it.shutdown() }
             .awaitTermination(Long.MAX_VALUE, TimeUnit.SECONDS)
+
+        /**
+         * remove strings duplicated with RVX resources
+         *
+         * YouTube does not provide translations for these strings.
+         * That's why it's been added to RVX resources.
+         * This string also exists in RVX resources, so it must be removed to avoid being duplicated.
+         */
+        context.removeStringsElements(
+            arrayOf("values"),
+            arrayOf(
+                "accessibility_settings_edu_opt_in_text",
+                "accessibility_settings_edu_opt_out_text"
+            )
+        )
 
         /**
          * copy arrays, strings and preference
