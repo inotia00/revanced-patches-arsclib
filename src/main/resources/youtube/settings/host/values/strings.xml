@@ -449,7 +449,12 @@ Tap and hold to open RVX Settings."</string>
     <string name="revanced_disable_speed_overlay_title">Disable speed overlay</string>
     <string name="revanced_disable_speed_overlay_summary">"Disable 'Playing at 2x speed' while holding down.
 
-Note: Disabling the speed overlay restores the 'Slide to seek' behavior of the old layout."</string>
+Note:
+• Disabling the speed overlay restores the 'Slide to seek' behavior of the old layout.
+• This setting does not force the speed overlay to be enabled."</string>
+    <string name="revanced_speed_overlay_value_title">Speed overlay value</string>
+    <string name="revanced_speed_overlay_value_summary">Speed overlay value between 0-8.0.</string>
+    <string name="revanced_speed_overlay_value_warning">Speed overlay value must be between 0-8.0. Reset to default values.</string>
     <string name="revanced_hide_channel_watermark_title">Hide channel watermark</string>
     <string name="revanced_hide_channel_watermark_summary_on">Channel watermark is hidden.</string>
     <string name="revanced_hide_channel_watermark_summary_off">Channel watermark is shown.</string>

@@ -23,6 +23,7 @@ import app.revanced.patches.youtube.player.components.fingerprints.LayoutVideoFi
 import app.revanced.patches.youtube.player.components.fingerprints.RestoreSlideToSeekBehaviorFingerprint
 import app.revanced.patches.youtube.player.components.fingerprints.SeekEduContainerFingerprint
 import app.revanced.patches.youtube.player.components.fingerprints.SpeedOverlayFingerprint
+import app.revanced.patches.youtube.player.components.fingerprints.SpeedOverlayValueFingerprint
 import app.revanced.patches.youtube.player.components.fingerprints.SuggestedActionsFingerprint
 import app.revanced.patches.youtube.player.components.fingerprints.TouchAreaOnClickListenerFingerprint
 import app.revanced.patches.youtube.player.components.fingerprints.WatermarkFingerprint
@@ -77,6 +78,7 @@ object PlayerComponentsPatch : BaseBytecodePatch(
         RestoreSlideToSeekBehaviorFingerprint,
         SeekEduContainerFingerprint,
         SpeedOverlayFingerprint,
+        SpeedOverlayValueFingerprint,
         SuggestedActionsFingerprint,
         TouchAreaOnClickListenerFingerprint,
         WatermarkParentFingerprint,
@@ -129,7 +131,7 @@ object PlayerComponentsPatch : BaseBytecodePatch(
 
         // endregion
 
-        // region patch for disable speed overlay
+        // region patch for disable speed overlay and speed overlay value
 
         mapOf(
             RestoreSlideToSeekBehaviorFingerprint to 45411329,
@@ -139,6 +141,20 @@ object PlayerComponentsPatch : BaseBytecodePatch(
                 literal,
                 "$PLAYER_CLASS_DESCRIPTOR->disableSpeedOverlay(Z)Z"
             )
+        }
+
+        SpeedOverlayValueFingerprint.resultOrThrow().let {
+            it.mutableMethod.apply {
+                val index = it.scanResult.patternScanResult!!.startIndex
+                val register = getInstruction<TwoRegisterInstruction>(index).registerA
+
+                addInstructions(
+                    index + 1, """
+                        invoke-static {v$register}, $PLAYER_CLASS_DESCRIPTOR->speedOverlayValue(F)F
+                        move-result v$register
+                        """
+                )
+            }
         }
 
         // endregion
