@@ -8,9 +8,7 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
-import app.revanced.patches.shared.litho.LithoFilterPatch
 import app.revanced.patches.youtube.utils.fingerprints.InitializeButtonsFingerprint
-import app.revanced.patches.youtube.utils.integrations.Constants.COMPONENTS_PATH
 import app.revanced.patches.youtube.utils.integrations.Constants.SHARED_PATH
 import app.revanced.patches.youtube.utils.navigation.fingerprints.NavigationEnumFingerprint
 import app.revanced.patches.youtube.utils.navigation.fingerprints.PivotBarButtonsCreateDrawableViewFingerprint
@@ -31,7 +29,6 @@ import com.android.tools.smali.dexlib2.util.MethodUtil
 @Patch(
     description = "Hooks the active navigation or search bar.",
     dependencies = [
-        LithoFilterPatch::class,
         PlayerTypeHookPatch::class,
         SharedResourceIdPatch::class
     ],
@@ -50,8 +47,6 @@ object NavigationBarHookPatch : BytecodePatch(
         "$SHARED_PATH/NavigationBar;"
     private const val INTEGRATIONS_NAVIGATION_BUTTON_DESCRIPTOR =
         "$SHARED_PATH/NavigationBar\$NavigationButton;"
-    private const val FILTER_CLASS_DESCRIPTOR =
-        "$COMPONENTS_PATH/NavigationButtonIndexFilter;"
 
     private lateinit var navigationTabCreatedCallback: MutableMethod
 
@@ -105,16 +100,11 @@ object NavigationBarHookPatch : BytecodePatch(
                 val instruction = getInstruction<FiveRegisterInstruction>(index)
                 val viewRegister = instruction.registerC
                 val isSelectedRegister = instruction.registerD
-                val freeRegister = implementation!!.registerCount - parameters.size - 2
 
                 addInstruction(
                     index + 1,
-                    "invoke-static { v$viewRegister, v$freeRegister, v$isSelectedRegister }, " +
-                            "$INTEGRATIONS_CLASS_DESCRIPTOR->navigationTabSelected(Landroid/view/View;IZ)V",
-                )
-                addInstruction(
-                    0,
-                    "move/16 v$freeRegister, p1"
+                    "invoke-static { v$viewRegister, v$isSelectedRegister }, " +
+                            "$INTEGRATIONS_CLASS_DESCRIPTOR->navigationTabSelected(Landroid/view/View;Z)V",
                 )
             }
         }
@@ -122,8 +112,6 @@ object NavigationBarHookPatch : BytecodePatch(
         navigationTabCreatedCallback = context.findClass(INTEGRATIONS_CLASS_DESCRIPTOR)?.mutableClass?.methods?.first { method ->
             method.name == "navigationTabCreatedCallback"
         } ?: throw PatchException("Could not find navigationTabCreatedCallback method")
-
-        LithoFilterPatch.addFilter(FILTER_CLASS_DESCRIPTOR)
     }
 
     val hookNavigationButtonCreated: (String) -> Unit by lazy {
