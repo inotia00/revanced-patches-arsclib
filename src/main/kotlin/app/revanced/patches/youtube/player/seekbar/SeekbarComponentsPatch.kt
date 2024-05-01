@@ -14,6 +14,8 @@ import app.revanced.patches.youtube.player.seekbar.fingerprints.ShortsSeekbarCol
 import app.revanced.patches.youtube.player.seekbar.fingerprints.ThumbnailPreviewConfigFingerprint
 import app.revanced.patches.youtube.player.seekbar.fingerprints.TimeCounterFingerprint
 import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.revanced.patches.youtube.utils.fingerprints.PlayerButtonsResourcesFingerprint
+import app.revanced.patches.youtube.utils.fingerprints.PlayerButtonsVisibilityFingerprint
 import app.revanced.patches.youtube.utils.fingerprints.PlayerSeekbarColorFingerprint
 import app.revanced.patches.youtube.utils.fingerprints.SeekbarFingerprint
 import app.revanced.patches.youtube.utils.fingerprints.SeekbarOnDrawFingerprint
@@ -26,6 +28,7 @@ import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.ReelT
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch.contexts
 import app.revanced.patches.youtube.video.information.VideoInformationPatch
+import app.revanced.util.getTargetIndex
 import app.revanced.util.getTargetIndexWithMethodReferenceName
 import app.revanced.util.getWalkerMethod
 import app.revanced.util.getWideLiteralInstructionIndex
@@ -54,6 +57,7 @@ object SeekbarComponentsPatch : BaseBytecodePatch(
     compatiblePackages = COMPATIBLE_PACKAGE,
     fingerprints = setOf(
         ControlsOverlayStyleFingerprint,
+        PlayerButtonsResourcesFingerprint,
         PlayerSeekbarColorFingerprint,
         PlayerSeekbarColorFingerprint,
         SeekbarFingerprint,
@@ -183,6 +187,31 @@ object SeekbarComponentsPatch : BaseBytecodePatch(
                 "app.revanced.integrations.youtube.patches.utils.ProgressBarDrawable"
             )
             scaleNode.replaceChild(replacementNode, shapeNode)
+        }
+
+        // endregion
+
+        // region patch for hide chapter
+
+        PlayerButtonsVisibilityFingerprint.resolve(
+            context,
+            PlayerButtonsResourcesFingerprint.resultOrThrow().mutableClass
+        )
+        PlayerButtonsVisibilityFingerprint.resultOrThrow().let {
+            it.mutableMethod.apply {
+                val freeRegister = implementation!!.registerCount - parameters.size - 2
+                val viewIndex = getTargetIndex(Opcode.INVOKE_INTERFACE)
+                val viewRegister = getInstruction<FiveRegisterInstruction>(viewIndex).registerD
+
+                addInstructionsWithLabels(
+                    viewIndex, """
+                        invoke-static {v$viewRegister}, $PLAYER_CLASS_DESCRIPTOR->hideSeekbarChapters(Landroid/view/View;)Z
+                        move-result v$freeRegister
+                        if-eqz v$freeRegister, :ignore
+                        return-void
+                        """, ExternalLabel("ignore", getInstruction(viewIndex))
+                )
+            }
         }
 
         // endregion

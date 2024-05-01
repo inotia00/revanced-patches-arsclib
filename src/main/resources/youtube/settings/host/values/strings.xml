@@ -821,6 +821,9 @@ Please download %2$s from the website."</string>
     <string name="revanced_hide_seekbar_thumbnail_title">Hide seekbar in video thumbnails</string>
     <string name="revanced_hide_seekbar_thumbnail_summary_on">Thumbnail seekbar is hidden.</string>
     <string name="revanced_hide_seekbar_thumbnail_summary_off">Thumbnail seekbar is shown.</string>
+    <string name="revanced_hide_seekbar_chapters_title">Hide seekbar chapters</string>
+    <string name="revanced_hide_seekbar_chapters_summary_on">Chapters are hidden in seekbar.</string>
+    <string name="revanced_hide_seekbar_chapters_summary_off">Chapters are shown in seekbar.</string>
     <string name="revanced_hide_time_stamp_title">Hide time stamp</string>
     <string name="revanced_hide_time_stamp_summary_on">Time stamp is hidden.</string>
     <string name="revanced_hide_time_stamp_summary_off">Time stamp is shown.</string>
