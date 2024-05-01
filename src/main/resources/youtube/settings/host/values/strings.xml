@@ -9,6 +9,7 @@
     <string name="revanced_extended_restart_message">Refresh and restart</string>
     <string name="revanced_playback_speed_normal">Normal</string>
 
+
     <!-- PreferenceScreen: Ads -->
     <string name="revanced_preference_screen_ads_title">Ads</string>
 
@@ -762,7 +763,8 @@ Limitation: Video title disappears when clicked."</string>
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Player buttons, PreferenceCategory: Overlay buttons -->
     <string name="revanced_preference_category_overlay_buttons">Overlay buttons</string>
     <string name="revanced_overlay_button_always_repeat_title">Show always repeat button</string>
-    <string name="revanced_overlay_button_always_repeat_summary">Tap to toggle always repeat states.</string>
+    <string name="revanced_overlay_button_always_repeat_summary">"Tap to toggle always repeat states.
+Tap and hold to toggle pause after repeat states."</string>
     <string name="revanced_overlay_button_copy_video_url_title">Show copy video URL button</string>
     <string name="revanced_overlay_button_copy_video_url_summary">"Tap to copy video URL.
 Tap and hold to copy video URL with timestamp."</string>
@@ -775,6 +777,8 @@ Tap and hold to copy video timestamp."</string>
     <string name="revanced_overlay_button_speed_dialog_summary">"Tap to open speed dialog.
 Tap and hold to set playback speed to 1.0x."</string>
     <string name="revanced_overlay_button_speed_dialog_reset">Playback speed reseted (1.0x).</string>
+    <string name="revanced_overlay_button_not_allowed_warning">Tap and hold to change button state.</string>
+
     <string name="revanced_external_downloader_package_name_title">External downloader package name</string>
     <string name="revanced_external_downloader_package_name_summary">Package name of your installed external downloader app, such as NewPipe or YTDLnis.</string>
     <string name="revanced_external_downloader_dialog_title">External downloader</string>

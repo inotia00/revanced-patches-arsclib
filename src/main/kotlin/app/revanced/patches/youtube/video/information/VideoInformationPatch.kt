@@ -2,7 +2,6 @@ package app.revanced.patches.youtube.video.information
 
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.revanced.patcher.extensions.or
@@ -12,7 +11,6 @@ import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod.Companion.toMutable
-import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patcher.util.smali.toInstructions
 import app.revanced.patches.youtube.utils.fingerprints.OrganicPlaybackContextModelFingerprint
 import app.revanced.patches.youtube.utils.fingerprints.VideoEndFingerprint
@@ -178,17 +176,6 @@ object VideoInformationPatch : BytecodePatch(
                 )
 
                 videoEndMethod = getWalkerMethod(context, it.scanResult.patternScanResult!!.startIndex + 1)
-
-                videoEndMethod.apply {
-                    addInstructionsWithLabels(
-                        0, """
-                            invoke-static {}, $INTEGRATIONS_CLASS_DESCRIPTOR->videoEnded()Z
-                            move-result v0
-                            if-eqz v0, :end
-                            return-void
-                            """, ExternalLabel("end", getInstruction(0))
-                    )
-                }
             }
         }
 
