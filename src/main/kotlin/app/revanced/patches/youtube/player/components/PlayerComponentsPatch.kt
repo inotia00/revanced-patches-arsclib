@@ -24,6 +24,7 @@ import app.revanced.patches.youtube.player.components.fingerprints.RestoreSlideT
 import app.revanced.patches.youtube.player.components.fingerprints.SeekEduContainerFingerprint
 import app.revanced.patches.youtube.player.components.fingerprints.SpeedOverlayFingerprint
 import app.revanced.patches.youtube.player.components.fingerprints.SuggestedActionsFingerprint
+import app.revanced.patches.youtube.player.components.fingerprints.TouchAreaOnClickListenerFingerprint
 import app.revanced.patches.youtube.player.components.fingerprints.WatermarkFingerprint
 import app.revanced.patches.youtube.player.components.fingerprints.WatermarkParentFingerprint
 import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
@@ -77,6 +78,7 @@ object PlayerComponentsPatch : BaseBytecodePatch(
         SeekEduContainerFingerprint,
         SpeedOverlayFingerprint,
         SuggestedActionsFingerprint,
+        TouchAreaOnClickListenerFingerprint,
         WatermarkParentFingerprint,
         YouTubeControlsOverlayFingerprint,
     )
@@ -319,6 +321,25 @@ object PlayerComponentsPatch : BaseBytecodePatch(
 
                 )
             }
+        }
+
+        // endregion
+
+        // region patch for skip autoplay countdown
+
+        // This patch works fine when the [SuggestedVideoEndScreenPatch] patch is included.
+        TouchAreaOnClickListenerFingerprint.resultOrThrow().let {
+            it.mutableClass.methods.find { method ->
+                method.parameters == listOf("Landroid/view/View${'$'}OnClickListener;")
+            }?.apply {
+                val setOnClickListenerIndex = getTargetIndexWithMethodReferenceName("setOnClickListener")
+                val setOnClickListenerRegister = getInstruction<FiveRegisterInstruction>(setOnClickListenerIndex).registerC
+
+                addInstruction(
+                    setOnClickListenerIndex + 1,
+                    "invoke-static {v$setOnClickListenerRegister}, $PLAYER_CLASS_DESCRIPTOR->skipAutoPlayCountdown(Landroid/view/View;)V"
+                )
+            } ?: throw PatchException("Failed to find setOnClickListener method")
         }
 
         // endregion

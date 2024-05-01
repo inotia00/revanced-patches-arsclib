@@ -91,6 +91,7 @@ object SharedResourceIdPatch : ResourcePatch() {
     var TitleAnchor = -1L
     var ToolTipContentView = -1L
     var TotalTime = -1L
+    var TouchArea = -1L
     var VideoQualityBottomSheet = -1L
     var VoiceSearch = -1L
     var YouTubeControlsOverlaySubtitleButton = -1L
@@ -178,6 +179,7 @@ object SharedResourceIdPatch : ResourcePatch() {
         TitleAnchor = getId(ID, "title_anchor")
         ToolTipContentView = getId(LAYOUT, "tooltip_content_view")
         TotalTime = getId(STRING, "total_time")
+        TouchArea = getId(ID, "touch_area")
         VideoQualityBottomSheet = getId(LAYOUT, "video_quality_bottom_sheet_list_fragment_title")
         VoiceSearch = getId(ID, "voice_search")
         YouTubeControlsOverlaySubtitleButton = getId(LAYOUT, "youtube_controls_overlay_subtitle_button")
