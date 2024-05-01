@@ -8,34 +8,24 @@ import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
-import app.revanced.patches.reddit.utils.fix.BrokenResourcePatch
 import app.revanced.patches.reddit.utils.integrations.Constants.INTEGRATIONS_PATH
 import app.revanced.patches.reddit.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.reddit.utils.resourceid.SharedResourceIdPatch.LabelAcknowledgements
 import app.revanced.patches.reddit.utils.settings.fingerprints.AcknowledgementsLabelBuilderFingerprint
 import app.revanced.patches.reddit.utils.settings.fingerprints.OssLicensesMenuActivityOnCreateFingerprint
-import app.revanced.patches.reddit.utils.settings.fingerprints.ResourceProviderFingerprint
 import app.revanced.patches.reddit.utils.settings.fingerprints.SettingsStatusLoadFingerprint
 import app.revanced.patches.shared.settings.fingerprints.SharedSettingFingerprint
 import app.revanced.util.getTargetIndex
 import app.revanced.util.getWideLiteralInstructionIndex
-import app.revanced.util.indexOfFirstInstruction
 import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
-import com.android.tools.smali.dexlib2.builder.instruction.BuilderInstruction21c
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
-@Patch(
-    dependencies = [
-        BrokenResourcePatch::class,
-        SharedResourceIdPatch::class
-    ]
-)
+@Patch(dependencies = [SharedResourceIdPatch::class])
 object SettingsBytecodePatch : BytecodePatch(
     setOf(
         AcknowledgementsLabelBuilderFingerprint,
         OssLicensesMenuActivityOnCreateFingerprint,
-        ResourceProviderFingerprint,
         SharedSettingFingerprint,
         SettingsStatusLoadFingerprint
     )
@@ -103,24 +93,5 @@ object SettingsBytecodePatch : BytecodePatch(
         }
 
         settingsStatusLoadMethod = SettingsStatusLoadFingerprint.resultOrThrow().mutableMethod
-
-        /**
-         * Check version
-         */
-        ResourceProviderFingerprint.result?.mutableMethod?.apply {
-            val versionIndex = indexOfFirstInstruction {
-                opcode == Opcode.CONST_STRING
-                        && (this as? BuilderInstruction21c)?.reference.toString().startsWith("202")
-            }
-            if (versionIndex > -1) {
-                val versionNumber = getInstruction<BuilderInstruction21c>(versionIndex).reference.toString().replace(".", "").toInt()
-                val upward2024180 = versionNumber >= 2024180
-
-                if (upward2024180) {
-                    BrokenResourcePatch.fixBrokenResource()
-                }
-            }
-        }
-
     }
 }
