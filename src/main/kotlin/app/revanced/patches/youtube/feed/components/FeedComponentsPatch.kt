@@ -29,6 +29,7 @@ import app.revanced.patches.youtube.utils.fingerprints.ScrollTopParentFingerprin
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPONENTS_PATH
 import app.revanced.patches.youtube.utils.integrations.Constants.FEED_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.navigation.NavigationBarHookPatch
+import app.revanced.patches.youtube.utils.playertype.PlayerTypeHookPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.CaptionToggleContainer
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
@@ -53,6 +54,7 @@ object FeedComponentsPatch : BaseBytecodePatch(
     dependencies = setOf(
         LithoFilterPatch::class,
         NavigationBarHookPatch::class,
+        PlayerTypeHookPatch::class,
         SettingsPatch::class,
         SharedResourceIdPatch::class
     ),
