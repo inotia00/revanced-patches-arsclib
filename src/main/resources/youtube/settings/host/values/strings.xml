@@ -124,6 +124,9 @@ Tap here to learn more about DeArrow."</string>
     <string name="revanced_hide_notify_me_button_title">"Hide 'Notify me' button"</string>
     <string name="revanced_hide_notify_me_button_summary_on">"'Notify me' button is hidden."</string>
     <string name="revanced_hide_notify_me_button_summary_off">"'Notify me' button is shown."</string>
+    <string name="revanced_hide_playables_title">Hide Playables</string>
+    <string name="revanced_hide_playables_summary_on">Playables are hidden.</string>
+    <string name="revanced_hide_playables_summary_off">Playables are shown.</string>
     <string name="revanced_hide_show_more_button_title">"Hide 'Show more' button"</string>
     <string name="revanced_hide_show_more_button_summary_on">"'Show more' button is hidden."</string>
     <string name="revanced_hide_show_more_button_summary_off">"'Show more' button is shown."</string>
