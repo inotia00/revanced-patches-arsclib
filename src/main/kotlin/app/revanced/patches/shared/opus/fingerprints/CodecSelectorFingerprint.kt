@@ -14,5 +14,5 @@ internal object CodecSelectorFingerprint : MethodFingerprint(
         Opcode.INVOKE_STATIC,
         Opcode.MOVE_RESULT_OBJECT
     ),
-    strings = listOf("eac3_supported")
+    strings = listOf("Audio track id %s not in audio streams")
 )

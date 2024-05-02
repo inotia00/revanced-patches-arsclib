@@ -2,14 +2,12 @@ package app.revanced.patches.music.actionbar.component
 
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.removeInstruction
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.music.actionbar.component.fingerprints.ActionBarComponentFingerprint
 import app.revanced.patches.music.actionbar.component.fingerprints.LikeDislikeContainerFingerprint
-import app.revanced.patches.music.actionbar.component.fingerprints.LikeDislikeContainerVisibilityFingerprint
 import app.revanced.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.music.utils.integrations.Constants.ACTIONBAR_CLASS_DESCRIPTOR
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch
@@ -120,29 +118,8 @@ object ActionBarComponentPatch : BaseBytecodePatch(
             }
         }
 
-        LikeDislikeContainerFingerprint.resultOrThrow().let { parentResult ->
-            // Resolves fingerprints
-            LikeDislikeContainerVisibilityFingerprint.resolve(context, parentResult.classDef)
-
-            /**
-             * Added in YouTube Music v6.35.xx~
-             */
-            LikeDislikeContainerVisibilityFingerprint.result?.let {
-                it.mutableMethod.apply {
-                    val targetIndex = it.scanResult.patternScanResult!!.startIndex + 1
-                    val targetRegister =
-                        getInstruction<OneRegisterInstruction>(targetIndex).registerA
-
-                    addInstructions(
-                        targetIndex + 1, """
-                            invoke-static {v$targetRegister}, $ACTIONBAR_CLASS_DESCRIPTOR->hideLikeDislikeButton(Z)Z
-                            move-result v$targetRegister
-                            """
-                    )
-                }
-            } // Don't throw exception
-
-            parentResult.mutableMethod.apply {
+        LikeDislikeContainerFingerprint.resultOrThrow().let {
+            it.mutableMethod.apply {
                 val insertIndex = getWideLiteralInstructionIndex(LikeDislikeContainer) + 2
                 val insertRegister = getInstruction<OneRegisterInstruction>(insertIndex).registerA
 
