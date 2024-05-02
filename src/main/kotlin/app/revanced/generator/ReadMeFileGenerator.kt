@@ -10,7 +10,7 @@ internal class ReadMeFileGenerator : PatchesFileGenerator {
     // For this exception to apply to [README.md],
     // Supported version of [app.revanced.patches.music.utils.integrations.Constants.COMPATIBLE_PACKAGE] should be empty.
     private val exception = mapOf(
-        "com.google.android.apps.youtube.music" to "6.21.52"
+        "com.google.android.apps.youtube.music" to "6.29.58"
     )
 
     private val readMeFile = File("README.md")
