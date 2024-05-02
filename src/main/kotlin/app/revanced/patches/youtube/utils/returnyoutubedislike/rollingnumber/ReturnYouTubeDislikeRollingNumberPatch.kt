@@ -9,13 +9,13 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.smali.ExternalLabel
+import app.revanced.patches.youtube.utils.fingerprints.RollingNumberTextViewAnimationUpdateFingerprint
+import app.revanced.patches.youtube.utils.fingerprints.RollingNumberTextViewFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.UTILS_PATH
 import app.revanced.patches.youtube.utils.returnyoutubedislike.rollingnumber.fingerprints.RollingNumberMeasureAnimatedTextFingerprint
 import app.revanced.patches.youtube.utils.returnyoutubedislike.rollingnumber.fingerprints.RollingNumberMeasureStaticLabelFingerprint
 import app.revanced.patches.youtube.utils.returnyoutubedislike.rollingnumber.fingerprints.RollingNumberMeasureTextParentFingerprint
 import app.revanced.patches.youtube.utils.returnyoutubedislike.rollingnumber.fingerprints.RollingNumberSetterFingerprint
-import app.revanced.patches.youtube.utils.returnyoutubedislike.rollingnumber.fingerprints.RollingNumberTextViewAnimationUpdateFingerprint
-import app.revanced.patches.youtube.utils.returnyoutubedislike.rollingnumber.fingerprints.RollingNumberTextViewFingerprint
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.util.getTargetIndex
 import app.revanced.util.getTargetIndexWithMethodReferenceName
@@ -33,8 +33,7 @@ object ReturnYouTubeDislikeRollingNumberPatch : BytecodePatch(
         RollingNumberSetterFingerprint,
         RollingNumberMeasureTextParentFingerprint,
         RollingNumberTextViewFingerprint,
-        RollingNumberMeasureAnimatedTextFingerprint,
-        RollingNumberTextViewAnimationUpdateFingerprint
+        RollingNumberMeasureAnimatedTextFingerprint
     )
 ) {
     private const val INTEGRATIONS_RYD_CLASS_DESCRIPTOR =
@@ -138,15 +137,16 @@ object ReturnYouTubeDislikeRollingNumberPatch : BytecodePatch(
 
             // The rolling number Span is missing styling since it's initially set as a String.
             // Modify the UI text view and use the styled like/dislike Span.
-            RollingNumberTextViewFingerprint.resultOrThrow().let {
+            RollingNumberTextViewFingerprint.resultOrThrow().let { parentResult ->
                 // Initial TextView is set in this method.
-                val initiallyCreatedTextViewMethod = it.mutableMethod
+                val initiallyCreatedTextViewMethod = parentResult.mutableMethod
 
                 // Video less than 24 hours after uploaded, like counts will be updated in real time.
                 // Whenever like counts are updated, TextView is set in this method.
-                val realTimeUpdateTextViewMethod = it.mutableClass.methods.find { method ->
-                    method.parameterTypes.first() == "Landroid/graphics/Bitmap;"
-                } ?: throw PatchException("Failed to find realTimeUpdateTextViewMethod")
+                val realTimeUpdateTextViewMethod =
+                    RollingNumberTextViewAnimationUpdateFingerprint.also {
+                        it.resolve(context, parentResult.classDef)
+                    }.resultOrThrow().mutableMethod
 
                 arrayOf(
                     initiallyCreatedTextViewMethod,

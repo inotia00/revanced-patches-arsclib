@@ -847,6 +847,9 @@ Please download %2$s from the website."</string>
     <string name="revanced_preference_screen_video_description_title">Video description</string>
     <string name="revanced_preference_screen_video_description_summary">Hide or show video description components.</string>
 
+    <string name="revanced_disable_rolling_number_animations_title">Disable rolling number animations</string>
+    <string name="revanced_disable_rolling_number_animations_summary_on">Rolling numbers are not animated.</string>
+    <string name="revanced_disable_rolling_number_animations_summary_off">Rolling numbers are animated.</string>
     <string name="revanced_hide_chapters_section_title">Hide chapters sections</string>
     <string name="revanced_hide_chapters_section_summary_on">Chapters sections are hidden.</string>
     <string name="revanced_hide_chapters_section_summary_off">Chapters sections are shown.</string>

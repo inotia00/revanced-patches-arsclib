@@ -2,12 +2,16 @@ package app.revanced.patches.youtube.player.descriptions
 
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
+import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.shared.litho.LithoFilterPatch
 import app.revanced.patches.youtube.player.descriptions.fingerprints.EngagementPanelSubHeaderFingerprint
 import app.revanced.patches.youtube.player.descriptions.fingerprints.TextViewComponentFingerprint
 import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.revanced.patches.youtube.utils.fingerprints.RollingNumberTextViewAnimationUpdateFingerprint
+import app.revanced.patches.youtube.utils.fingerprints.RollingNumberTextViewFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPONENTS_PATH
 import app.revanced.patches.youtube.utils.integrations.Constants.PLAYER_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.playertype.PlayerTypeHookPatch
@@ -36,6 +40,7 @@ object DescriptionComponentsPatch : BaseBytecodePatch(
     compatiblePackages = COMPATIBLE_PACKAGE,
     fingerprints = setOf(
         EngagementPanelSubHeaderFingerprint,
+        RollingNumberTextViewFingerprint,
         TextViewComponentFingerprint
     )
 ) {
@@ -44,7 +49,49 @@ object DescriptionComponentsPatch : BaseBytecodePatch(
 
     override fun execute(context: BytecodeContext) {
 
-        // patch for disable video description interaction and expand video description.
+        // region patch for disable rolling number animation
+
+        // RollingNumber is applied to YouTube v18.49.37+.
+        // In order to maintain compatibility with YouTube v18.48.39 or previous versions,
+        // This patch is applied only to the version after YouTube v18.49.37.
+        if (SettingsPatch.upward1849) {
+            RollingNumberTextViewAnimationUpdateFingerprint.resolve(
+                context,
+                RollingNumberTextViewFingerprint.resultOrThrow().classDef
+            )
+            RollingNumberTextViewAnimationUpdateFingerprint.resultOrThrow().let {
+                it.mutableMethod.apply {
+                    val freeRegister = implementation!!.registerCount - parameters.size - 2
+                    val imageSpanIndex = it.scanResult.patternScanResult!!.startIndex
+                    val setTextIndex = getTargetIndexWithMethodReferenceName("setText")
+
+                    addInstruction(setTextIndex, "nop")
+                    addInstructionsWithLabels(
+                        imageSpanIndex, """
+                        invoke-static {}, $PLAYER_CLASS_DESCRIPTOR->disableRollingNumberAnimations()Z
+                        move-result v$freeRegister
+                        if-nez v$freeRegister, :disable_animations
+                        """, ExternalLabel("disable_animations", getInstruction(setTextIndex))
+                    )
+                }
+            }
+
+            /**
+             * Add settings
+             */
+            SettingsPatch.addPreference(
+                arrayOf(
+                    "PREFERENCE_SCREEN: PLAYER",
+                    "SETTINGS: DESCRIPTION_COMPONENTS",
+                    "SETTINGS: DISABLE_ROLLING_NUMBER_ANIMATIONS"
+                )
+            )
+        }
+
+        // endregion
+
+        // region patch for disable video description interaction and expand video description
+
         // since these patches are still A/B tested, they are classified as 'Experimental flags'.
         if (SettingsPatch.upward1902) {
             TextViewComponentFingerprint.resultOrThrow().let {
@@ -84,6 +131,8 @@ object DescriptionComponentsPatch : BaseBytecodePatch(
                 )
             )
         }
+
+        // endregion
 
         LithoFilterPatch.addFilter(FILTER_CLASS_DESCRIPTOR)
 

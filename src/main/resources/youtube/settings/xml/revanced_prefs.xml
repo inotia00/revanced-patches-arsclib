@@ -360,7 +360,10 @@
         </PreferenceScreen>SETTINGS: SEEKBAR_COMPONENTS -->
 
         <!-- SETTINGS: DESCRIPTION_COMPONENTS
-        <PreferenceScreen android:title="@string/revanced_preference_screen_video_description_title" android:key="revanced_preference_screen_video_description" android:summary="@string/revanced_preference_screen_video_description_summary">
+        <PreferenceScreen android:title="@string/revanced_preference_screen_video_description_title" android:key="revanced_preference_screen_video_description" android:summary="@string/revanced_preference_screen_video_description_summary">SETTINGS: DESCRIPTION_COMPONENTS -->
+            <!-- SETTINGS: DISABLE_ROLLING_NUMBER_ANIMATIONS
+            <SwitchPreference android:title="@string/revanced_disable_rolling_number_animations_title" android:key="revanced_disable_rolling_number_animations" android:defaultValue="false" android:summaryOn="@string/revanced_disable_rolling_number_animations_summary_on" android:summaryOff="@string/revanced_disable_rolling_number_animations_summary_off" />SETTINGS: DISABLE_ROLLING_NUMBER_ANIMATIONS -->
+            <!-- SETTINGS: DESCRIPTION_COMPONENTS
             <SwitchPreference android:title="@string/revanced_hide_chapters_section_title" android:key="revanced_hide_chapters_section" android:defaultValue="false" android:summaryOn="@string/revanced_hide_chapters_section_summary_on" android:summaryOff="@string/revanced_hide_chapters_section_summary_off" />
             <SwitchPreference android:title="@string/revanced_hide_info_cards_section_title" android:key="revanced_hide_info_cards_section" android:defaultValue="false" android:summaryOn="@string/revanced_hide_info_cards_section_summary_on" android:summaryOff="@string/revanced_hide_info_cards_section_summary_off" />
             <SwitchPreference android:title="@string/revanced_hide_podcast_section_title" android:key="revanced_hide_podcast_section" android:defaultValue="false" android:summaryOn="@string/revanced_hide_podcast_section_summary_on" android:summaryOff="@string/revanced_hide_podcast_section_summary_off" />
