@@ -21,6 +21,7 @@ import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PAC
 import app.revanced.patches.youtube.utils.fingerprints.TextComponentSpecFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPONENTS_PATH
 import app.revanced.patches.youtube.utils.integrations.Constants.SHORTS_CLASS_DESCRIPTOR
+import app.revanced.patches.youtube.utils.integrations.Constants.UTILS_PATH
 import app.revanced.patches.youtube.utils.playertype.PlayerTypeHookPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.ReelDynRemix
@@ -68,10 +69,15 @@ object ShortsComponentPatch : BaseBytecodePatch(
         TextComponentSpecFingerprint
     )
 ) {
+    private const val INTEGRATION_CLASS_DESCRIPTOR =
+        "$UTILS_PATH/ReturnYouTubeChannelNamePatch;"
+
     private const val BUTTON_FILTER_CLASS_DESCRIPTOR =
         "$COMPONENTS_PATH/ShortsButtonFilter;"
     private const val SHELF_FILTER_CLASS_DESCRIPTOR =
         "$COMPONENTS_PATH/ShortsShelfFilter;"
+    private const val RETURN_YOUTUBE_CHANNEL_NAME_FILTER_CLASS_DESCRIPTOR =
+        "$COMPONENTS_PATH/ReturnYouTubeChannelNameFilterPatch;"
 
     override fun execute(context: BytecodeContext) {
 
@@ -258,7 +264,7 @@ object ShortsComponentPatch : BaseBytecodePatch(
 
                 addInstructions(
                     insertIndex + 1, """
-                        invoke-static {v$conversionContextRegister, v$charSequenceRegister}, $SHORTS_CLASS_DESCRIPTOR->onCharSequenceLoaded(Ljava/lang/Object;Ljava/lang/CharSequence;)Ljava/lang/CharSequence;
+                        invoke-static {v$conversionContextRegister, v$charSequenceRegister}, $INTEGRATION_CLASS_DESCRIPTOR->onCharSequenceLoaded(Ljava/lang/Object;Ljava/lang/CharSequence;)Ljava/lang/CharSequence;
                         move-result-object v$charSequenceRegister
                         invoke-static {v$charSequenceRegister}, $replaceReference
                         """
@@ -267,12 +273,13 @@ object ShortsComponentPatch : BaseBytecodePatch(
             }
         }
 
-        VideoInformationPatch.hookShorts("$SHORTS_CLASS_DESCRIPTOR->newShortsVideoStarted(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JZ)V")
+        VideoInformationPatch.hookShorts("$INTEGRATION_CLASS_DESCRIPTOR->newShortsVideoStarted(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JZ)V")
 
         // endregion
 
         LithoFilterPatch.addFilter(BUTTON_FILTER_CLASS_DESCRIPTOR)
         LithoFilterPatch.addFilter(SHELF_FILTER_CLASS_DESCRIPTOR)
+        LithoFilterPatch.addFilter(RETURN_YOUTUBE_CHANNEL_NAME_FILTER_CLASS_DESCRIPTOR)
 
         /**
          * Add settings
