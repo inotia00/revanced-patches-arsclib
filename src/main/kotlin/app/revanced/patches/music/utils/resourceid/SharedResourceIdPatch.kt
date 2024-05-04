@@ -47,8 +47,11 @@ object SharedResourceIdPatch : ResourcePatch() {
     var ToolTipContentView = -1L
     var TopEnd = -1L
     var TopStart = -1L
+    var TopBarMenuItemImageView = -1L
     var TosFooter = -1L
     var TouchOutside = -1L
+    var TrimSilenceSwitch: Long = -1
+    var VarispeedUnavailableTitle = -1L
 
     override fun execute(context: ResourceContext) {
 
@@ -84,8 +87,11 @@ object SharedResourceIdPatch : ResourcePatch() {
         ToolTipContentView = getId(LAYOUT, "tooltip_content_view")
         TopEnd = getId(ID, "TOP_END")
         TopStart = getId(ID, "TOP_START")
+        TopBarMenuItemImageView = getId(ID, "top_bar_menu_item_image_view")
         TosFooter = getId(ID, "tos_footer")
         TouchOutside = getId(ID, "touch_outside")
+        TrimSilenceSwitch = getId(ID, "trim_silence_switch")
+        VarispeedUnavailableTitle = getId(STRING, "varispeed_unavailable_title")
 
     }
 }

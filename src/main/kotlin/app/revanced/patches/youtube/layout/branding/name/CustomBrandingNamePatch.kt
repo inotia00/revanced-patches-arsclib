@@ -16,14 +16,14 @@ object CustomBrandingNamePatch : BaseResourcePatch(
     dependencies = setOf(SettingsPatch::class),
     compatiblePackages = COMPATIBLE_PACKAGE
 ) {
-    private const val APP_NAME = "ReVanced Extended"
+    private const val APP_NAME = "RVX"
 
     private val AppName by stringPatchOption(
         key = "AppName",
         default = APP_NAME,
         values = mapOf(
-            "Full name" to APP_NAME,
-            "Short name" to "RVX"
+            "Full name" to "ReVanced Extended",
+            "Short name" to APP_NAME
         ),
         title = "App name",
         description = "The name of the app.",

@@ -21,7 +21,7 @@ object AutoCaptionsPatch : BaseResourcePatch(
 ) {
     override fun execute(context: ResourceContext) {
 
-        VideoIdPatch.hookBackgroundPlayVideoId("$GENERAL_CLASS_DESCRIPTOR->newVideoStarted(Ljava/lang/String;)V")
+        VideoIdPatch.hookVideoId("$GENERAL_CLASS_DESCRIPTOR->newVideoStarted(Ljava/lang/String;)V")
 
         SettingsPatch.addSwitchPreference(
             CategoryType.GENERAL,

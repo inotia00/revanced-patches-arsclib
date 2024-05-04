@@ -9,8 +9,6 @@ import app.revanced.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKA
 import app.revanced.patches.music.utils.integrations.Constants.GENERAL_CLASS_DESCRIPTOR
 import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
-import app.revanced.patches.music.utils.settings.SettingsPatch.contexts
-import app.revanced.util.copyXmlNode
 import app.revanced.util.patch.BaseBytecodePatch
 import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
@@ -40,11 +38,6 @@ object ChangeStartPagePatch : BaseBytecodePatch(
                 removeInstruction(targetIndex)
             }
         }
-
-        /**
-         * Copy arrays
-         */
-        contexts.copyXmlNode("music/startpage/host", "values/arrays.xml", "resources")
 
         SettingsPatch.addPreferenceWithIntent(
             CategoryType.GENERAL,

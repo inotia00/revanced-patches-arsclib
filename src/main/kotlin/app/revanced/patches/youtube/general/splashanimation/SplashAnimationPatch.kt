@@ -9,11 +9,10 @@ import app.revanced.patches.youtube.utils.integrations.Constants.GENERAL_CLASS_D
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch.DarkSplashAnimation
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.getTargetIndexReversed
+import app.revanced.util.getTargetIndexWithReferenceReversed
 import app.revanced.util.getWideLiteralInstructionIndex
 import app.revanced.util.patch.BaseBytecodePatch
 import app.revanced.util.resultOrThrow
-import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Suppress("unused")
@@ -32,7 +31,7 @@ object SplashAnimationPatch : BaseBytecodePatch(
         SplashAnimationFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val constIndex = getWideLiteralInstructionIndex(DarkSplashAnimation)
-                val targetIndex = getTargetIndexReversed(constIndex, Opcode.INVOKE_STATIC) + 2
+                val targetIndex = getTargetIndexWithReferenceReversed(constIndex, "(I)Z") + 2
                 val targetRegister = getInstruction<OneRegisterInstruction>(targetIndex - 1).registerA
 
                 addInstructions(

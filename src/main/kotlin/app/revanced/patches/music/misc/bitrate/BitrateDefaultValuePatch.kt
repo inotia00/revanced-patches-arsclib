@@ -7,7 +7,7 @@ import app.revanced.util.patch.BaseResourcePatch
 @Suppress("DEPRECATION", "unused")
 object BitrateDefaultValuePatch : BaseResourcePatch(
     name = "Bitrate default value",
-    description = "Sets the audio quality to \"Always High\" when you first install the app.",
+    description = "Sets the audio quality to 'Always High' when you first install the app.",
     compatiblePackages = COMPATIBLE_PACKAGE
 ) {
     private const val RESOURCE_FILE_PATH = "res/xml/data_saving_settings.xml"

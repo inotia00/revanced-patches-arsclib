@@ -65,8 +65,8 @@ object ResourceUtils {
                 .forEach {
                     if (!isIncludedCategory(category)) {
                         it.adoptChild(PREFERENCE_SCREEN_TAG_NAME) {
-                            setAttribute("android:title", "@string/revanced_category_$category")
-                            setAttribute("android:key", "revanced_settings_$category")
+                            setAttribute("android:title", "@string/revanced_preference_screen_$category" + "_title")
+                            setAttribute("android:key", "revanced_preference_screen_$category")
                         }
                         setPreferenceCategory(category)
                     }
@@ -99,7 +99,7 @@ object ResourceUtils {
                 if (it !is Element) return@loop
 
                 it.getAttributeNode("android:key")?.let { attribute ->
-                    if (attribute.textContent == "revanced_settings_$category") {
+                    if (attribute.textContent == "revanced_preference_screen_$category") {
                         it.cloneNodes(it.parentNode)
                     }
                 }
@@ -117,7 +117,7 @@ object ResourceUtils {
         this.xmlEditor[SETTINGS_HEADER_PATH].use { editor ->
             val tags = editor.file.getElementsByTagName(PREFERENCE_SCREEN_TAG_NAME)
             List(tags.length) { tags.item(it) as Element }
-                .filter { it.getAttribute("android:key").contains("revanced_settings_$category") }
+                .filter { it.getAttribute("android:key").contains("revanced_preference_screen_$category") }
                 .forEach {
                     it.adoptChild("Preference") {
                         setAttribute("android:title", "@string/$key" + "_title")
@@ -145,7 +145,7 @@ object ResourceUtils {
         this.xmlEditor[SETTINGS_HEADER_PATH].use { editor ->
             val tags = editor.file.getElementsByTagName(PREFERENCE_SCREEN_TAG_NAME)
             List(tags.length) { tags.item(it) as Element }
-                .filter { it.getAttribute("android:key").contains("revanced_settings_$category") }
+                .filter { it.getAttribute("android:key").contains("revanced_preference_screen_$category") }
                 .forEach {
                     it.adoptChild(SWITCH_PREFERENCE_TAG_NAME) {
                         setAttribute("android:title", "@string/$key" + "_title")
@@ -170,7 +170,7 @@ object ResourceUtils {
         this.xmlEditor[SETTINGS_HEADER_PATH].use { editor ->
             val tags = editor.file.getElementsByTagName(PREFERENCE_SCREEN_TAG_NAME)
             List(tags.length) { tags.item(it) as Element }
-                .filter { it.getAttribute("android:key").contains("revanced_settings_$category") }
+                .filter { it.getAttribute("android:key").contains("revanced_preference_screen_$category") }
                 .forEach {
                     it.adoptChild("Preference") {
                         setAttribute("android:title", "@string/$key" + "_title")

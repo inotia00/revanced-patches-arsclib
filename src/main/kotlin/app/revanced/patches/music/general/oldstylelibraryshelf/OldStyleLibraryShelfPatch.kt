@@ -17,7 +17,7 @@ import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 
 @Suppress("unused")
 object OldStyleLibraryShelfPatch : BaseBytecodePatch(
-    name = "Enable old style library shelf",
+    name = "Restore old style library shelf",
     description = "Adds an option to return the library tab to the old style.",
     dependencies = setOf(SettingsPatch::class),
     compatiblePackages = COMPATIBLE_PACKAGE,
@@ -33,7 +33,7 @@ object OldStyleLibraryShelfPatch : BaseBytecodePatch(
 
                 addInstructions(
                     targetIndex + 1, """
-                        invoke-static {v$targetRegister}, $GENERAL_CLASS_DESCRIPTOR->enableOldStyleLibraryShelf(Ljava/lang/String;)Ljava/lang/String;
+                        invoke-static {v$targetRegister}, $GENERAL_CLASS_DESCRIPTOR->restoreOldStyleLibraryShelf(Ljava/lang/String;)Ljava/lang/String;
                         move-result-object v$targetRegister
                         """
                 )
@@ -42,7 +42,7 @@ object OldStyleLibraryShelfPatch : BaseBytecodePatch(
 
         SettingsPatch.addSwitchPreference(
             CategoryType.GENERAL,
-            "revanced_enable_old_style_library_shelf",
+            "revanced_restore_old_style_library_shelf",
             "false"
         )
 

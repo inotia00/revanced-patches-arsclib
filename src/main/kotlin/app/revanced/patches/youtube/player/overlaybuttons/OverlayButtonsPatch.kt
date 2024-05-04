@@ -61,11 +61,6 @@ object OverlayButtonsPatch : BaseResourcePatch(
         }
 
         /**
-         * Copy arrays
-         */
-        context.copyXmlNode("youtube/overlaybuttons/shared/host", "values/arrays.xml", "resources")
-
-        /**
          * Copy resources
          */
         arrayOf(

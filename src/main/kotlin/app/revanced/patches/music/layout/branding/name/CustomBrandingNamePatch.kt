@@ -4,7 +4,6 @@ import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.options.PatchOption.PatchExtensions.stringPatchOption
 import app.revanced.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.music.utils.integrations.Constants.LANGUAGE_LIST
 import app.revanced.patches.shared.elements.StringsElementsUtils.removeStringsElements
 import app.revanced.util.patch.BaseResourcePatch
 
@@ -19,7 +18,7 @@ object CustomBrandingNamePatch : BaseResourcePatch(
 
     private val AppNameNotification by stringPatchOption(
         key = "AppNameNotification",
-        default = APP_NAME_NOTIFICATION,
+        default = APP_NAME_LAUNCHER,
         values = mapOf(
             "Full name" to APP_NAME_NOTIFICATION,
             "Short name" to APP_NAME_LAUNCHER
@@ -44,7 +43,6 @@ object CustomBrandingNamePatch : BaseResourcePatch(
     override fun execute(context: ResourceContext) {
 
         context.removeStringsElements(
-            LANGUAGE_LIST,
             arrayOf("app_launcher_name", "app_name")
         )
 

@@ -579,8 +579,8 @@
                 <Preference android:title="Enable gradient loading screen" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
                 <Preference android:title="Enable tablet mini player" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
                 <Preference android:title="Hide layout components" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
-                <Preference android:title="Hide navigation bar components" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
                 <Preference android:title="Layout switch" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
+                <Preference android:title="Navigation bar components" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
                 <Preference android:title="Remove viewer discretion dialog" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
                 <Preference android:title="Spoof app version" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
                 <Preference android:title="Toolbar components" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>

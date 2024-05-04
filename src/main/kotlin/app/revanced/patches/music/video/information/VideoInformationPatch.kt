@@ -2,19 +2,17 @@ package app.revanced.patches.music.video.information
 
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.or
 import app.revanced.patcher.fingerprint.MethodFingerprintResult
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.annotation.Patch
-import app.revanced.patcher.util.proxy.mutableTypes.MutableField.Companion.toMutable
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod.Companion.toMutable
 import app.revanced.patcher.util.smali.toInstructions
 import app.revanced.patches.music.utils.fingerprints.SeekBarConstructorFingerprint
-import app.revanced.patches.music.utils.integrations.Constants.VIDEO_PATH
+import app.revanced.patches.music.utils.integrations.Constants.SHARED_PATH
 import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.music.video.information.fingerprints.PlaybackSpeedFingerprint
 import app.revanced.patches.music.video.information.fingerprints.PlaybackSpeedParentFingerprint
@@ -24,6 +22,7 @@ import app.revanced.patches.music.video.information.fingerprints.VideoLengthFing
 import app.revanced.patches.music.video.information.fingerprints.VideoQualityListFingerprint
 import app.revanced.patches.music.video.information.fingerprints.VideoQualityTextFingerprint
 import app.revanced.patches.music.video.videoid.VideoIdPatch
+import app.revanced.util.addFieldAndInstructions
 import app.revanced.util.getTargetIndexWithFieldReferenceTypeReversed
 import app.revanced.util.getTargetIndexWithMethodReferenceNameReversed
 import app.revanced.util.getWalkerMethod
@@ -34,11 +33,9 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.reference.FieldReference
-import com.android.tools.smali.dexlib2.immutable.ImmutableField
 import com.android.tools.smali.dexlib2.immutable.ImmutableMethod
 import com.android.tools.smali.dexlib2.immutable.ImmutableMethodImplementation
 import com.android.tools.smali.dexlib2.immutable.ImmutableMethodParameter
-import com.android.tools.smali.dexlib2.util.MethodUtil
 
 @Patch(
     dependencies = [
@@ -58,10 +55,7 @@ object VideoInformationPatch : BytecodePatch(
     )
 ) {
     private const val INTEGRATIONS_CLASS_DESCRIPTOR =
-        "$VIDEO_PATH/VideoInformation;"
-
-    private lateinit var playerConstructorMethod: MutableMethod
-    private var playerConstructorInsertIndex = 4
+        "$SHARED_PATH/VideoInformation;"
 
     private lateinit var videoTimeConstructorMethod: MutableMethod
     private var videoTimeConstructorInsertIndex = 2
@@ -71,13 +65,9 @@ object VideoInformationPatch : BytecodePatch(
     internal lateinit var playbackSpeedResult: MethodFingerprintResult
 
     override fun execute(context: BytecodeContext) {
+        val videoInformationMutableClass = context.findClass(INTEGRATIONS_CLASS_DESCRIPTOR)!!.mutableClass
+
         VideoEndFingerprint.resultOrThrow().let {
-            playerConstructorMethod =
-                it.mutableClass.methods.first { method -> MethodUtil.isConstructor(method) }
-
-            // hook the player controller for use through integrations
-            onCreateHook(INTEGRATIONS_CLASS_DESCRIPTOR, "initialize")
-
             it.mutableMethod.apply {
                 val seekSourceEnumType = parameterTypes[1].toString()
 
@@ -101,6 +91,26 @@ object VideoInformationPatch : BytecodePatch(
                             null
                         )
                     ).toMutable()
+                )
+
+                val smaliInstructions =
+                    """
+                        if-eqz v0, :ignore
+                        invoke-virtual {v0, p0, p1}, $definingClass->seekTo(J)Z
+                        move-result v0
+                        return v0
+                        :ignore
+                        const/4 v0, 0x0
+                        return v0
+                    """
+
+                videoInformationMutableClass.addFieldAndInstructions(
+                    context,
+                    "overrideVideoTime",
+                    "videoInformationClass",
+                    definingClass,
+                    smaliInstructions,
+                    true
                 )
             }
         }
@@ -146,11 +156,7 @@ object VideoInformationPatch : BytecodePatch(
         /**
          * Set current video id
          */
-        val videoIdMethodDescriptor = "$INTEGRATIONS_CLASS_DESCRIPTOR->setVideoId(Ljava/lang/String;)V"
-        VideoIdPatch.hookVideoId(videoIdMethodDescriptor)
-        VideoIdPatch.hookBackgroundPlayVideoId(videoIdMethodDescriptor)
-
-        val videoInformationMutableClass = context.findClass(INTEGRATIONS_CLASS_DESCRIPTOR)!!.mutableClass
+        VideoIdPatch.hookVideoId("$INTEGRATIONS_CLASS_DESCRIPTOR->setVideoId(Ljava/lang/String;)V")
 
         /**
          * Hook current playback speed
@@ -177,22 +183,12 @@ object VideoInformationPatch : BytecodePatch(
          * Hook current video quality
          */
         VideoQualityListFingerprint.resultOrThrow().let {
-            val constructorMethod =
-                it.mutableClass.methods.first { method -> MethodUtil.isConstructor(method) }
             val overrideMethod =
                 it.mutableClass.methods.find { method -> method.parameterTypes.first() == "I" }
 
             val videoQualityClass = it.method.definingClass
             val videoQualityMethodName = overrideMethod?.name
                 ?: throw PatchException("Failed to find hook method")
-
-            // set video quality class
-            constructorMethod.apply {
-                addInstruction(
-                    2,
-                    "sput-object p0, $INTEGRATIONS_CLASS_DESCRIPTOR->videoQualityClass:$videoQualityClass"
-                )
-            }
 
             // set video quality array
             it.mutableMethod.apply {
@@ -205,32 +201,22 @@ object VideoInformationPatch : BytecodePatch(
                 )
             }
 
-            videoInformationMutableClass.methods.single { method ->
-                method.name == "overrideVideoQuality"
-            }.apply {
-                videoInformationMutableClass.staticFields.add(
-                    ImmutableField(
-                        definingClass,
-                        "videoQualityClass",
-                        videoQualityClass,
-                        AccessFlags.PUBLIC or AccessFlags.STATIC,
-                        null,
-                        annotations,
-                        null
-                    ).toMutable()
-                )
+            val smaliInstructions =
+                """
+                    if-eqz v0, :ignore
+                    invoke-virtual {v0, p0}, $videoQualityClass->$videoQualityMethodName(I)V
+                    :ignore
+                    return-void
+                """
 
-                // call override video quality method
-                addInstructionsWithLabels(
-                    0, """
-                        sget-object v0, $INTEGRATIONS_CLASS_DESCRIPTOR->videoQualityClass:$videoQualityClass
-                        if-eqz v0, :ignore
-                        invoke-virtual {v0, p0}, $videoQualityClass->$videoQualityMethodName(I)V
-                        :ignore
-                        return-void
-                        """
-                )
-            }
+            videoInformationMutableClass.addFieldAndInstructions(
+                context,
+                "overrideVideoQuality",
+                "videoQualityClass",
+                videoQualityClass,
+                smaliInstructions,
+                true
+            )
         }
 
         // set current video quality
@@ -252,22 +238,6 @@ object VideoInformationPatch : BytecodePatch(
 
     private fun MutableMethod.insertTimeHook(insertIndex: Int, descriptor: String) =
         insert(insertIndex, "p1, p2", descriptor)
-
-    /**
-     * Hook the player controller.  Called when a video is opened or the current video is changed.
-     *
-     * Note: This hook is called very early and is called before the video id, video time, video length,
-     * and many other data fields are set.
-     *
-     * @param targetMethodClass The descriptor for the class to invoke when the player controller is created.
-     * @param targetMethodName The name of the static method to invoke when the player controller is created.
-     */
-    internal fun onCreateHook(targetMethodClass: String, targetMethodName: String) =
-        playerConstructorMethod.insert(
-            playerConstructorInsertIndex++,
-            "v0",
-            "$targetMethodClass->$targetMethodName(Ljava/lang/Object;)V"
-        )
 
     /**
      * Hook the video time.

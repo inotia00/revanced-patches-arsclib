@@ -127,7 +127,6 @@ object SponsorBlockBytecodePatch : BytecodePatch(
         /**
          * Set current video id
          */
-        VideoIdPatch.hookBackgroundPlayVideoId("$INTEGRATIONS_SEGMENT_PLAYBACK_CONTROLLER_CLASS_DESCRIPTOR->setVideoId(Ljava/lang/String;)V")
         VideoIdPatch.hookVideoId("$INTEGRATIONS_SEGMENT_PLAYBACK_CONTROLLER_CLASS_DESCRIPTOR->setVideoId(Ljava/lang/String;)V")
     }
 }

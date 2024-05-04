@@ -8,8 +8,6 @@ import app.revanced.patches.music.utils.settings.ResourceUtils.addPreferenceWith
 import app.revanced.patches.music.utils.settings.ResourceUtils.addRVXSettingsPreference
 import app.revanced.patches.music.utils.settings.ResourceUtils.addSwitchPreference
 import app.revanced.patches.music.utils.settings.ResourceUtils.sortPreferenceCategory
-import app.revanced.util.ResourceGroup
-import app.revanced.util.copyResources
 import app.revanced.util.copyXmlNode
 import app.revanced.util.patch.BaseResourcePatch
 import org.w3c.dom.Element
@@ -78,20 +76,6 @@ object SettingsPatch : BaseResourcePatch(
          * copy strings
          */
         context.copyXmlNode("music/settings/host", "values/strings.xml", "resources")
-
-        /**
-         * create directory for the untranslated language resources
-         */
-        context["res/values-v21"].mkdirs()
-
-        arrayOf(
-            ResourceGroup(
-                "values-v21",
-                "strings.xml"
-            )
-        ).forEach { resourceGroup ->
-            context.copyResources("music/settings", resourceGroup)
-        }
 
         /**
          * hide divider

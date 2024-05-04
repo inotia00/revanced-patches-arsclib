@@ -99,28 +99,10 @@ fun MethodFingerprint.literalInstructionBooleanHook(
 ) = literalInstructionBooleanHook(literal.toLong(), descriptor)
 
 fun MethodFingerprint.literalInstructionBooleanHook(
-    literal: Int,
-    descriptor: String,
-    message: String
-) = literalInstructionBooleanHook(literal.toLong(), descriptor, message)
-
-fun MethodFingerprint.literalInstructionBooleanHook(
     literal: Long,
     descriptor: String
-) = literalInstructionBooleanHook(literal, descriptor, "")
-
-fun MethodFingerprint.literalInstructionBooleanHook(
-    literal: Long,
-    descriptor: String,
-    message: String
 ) {
-    val method = result?.mutableMethod
-        ?: if (message.isEmpty())
-            throw exception
-        else
-            throw PatchException("This version is not supported. $message")
-
-    method.apply {
+    resultOrThrow().mutableMethod.apply {
         val literalIndex = getWideLiteralInstructionIndex(literal)
         val targetIndex = getTargetIndex(literalIndex, Opcode.MOVE_RESULT)
         val targetRegister = getInstruction<OneRegisterInstruction>(targetIndex).registerA
@@ -224,13 +206,15 @@ fun Method.getWideLiteralInstructionIndex(literal: Long) = implementation?.let {
     }
 } ?: -1
 
-fun MutableMethod.getEmptyStringInstructionIndex()
+fun Method.getEmptyStringInstructionIndex()
 = getStringInstructionIndex("")
 
-fun MutableMethod.getStringInstructionIndex(value: String) = indexOfFirstInstruction {
-    opcode == Opcode.CONST_STRING
-            && (this as? BuilderInstruction21c)?.reference.toString() == value
-}
+fun Method.getStringInstructionIndex(value: String) = implementation?.let {
+    it.instructions.indexOfFirst { instruction ->
+        instruction.opcode == Opcode.CONST_STRING
+                && (instruction as? BuilderInstruction21c)?.reference.toString() == value
+    }
+} ?: -1
 
 /**
  * Check if the method contains a literal with the given value.
@@ -245,7 +229,6 @@ fun Method.containsMethodReferenceNameInstructionIndex(methodName: String) =
 
 fun Method.containsReferenceInstructionIndex(reference: String) =
     getTargetIndexWithReference(reference) >= 0
-
 
 /**
  * Traverse the class hierarchy starting from the given root class.
