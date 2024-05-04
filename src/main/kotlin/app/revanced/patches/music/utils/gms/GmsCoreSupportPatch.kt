@@ -18,3 +18,4 @@ object GmsCoreSupportPatch : BaseGmsCoreSupportPatch(
     gmsCoreSupportResourcePatch = GmsCoreSupportResourcePatch,
     compatiblePackages = COMPATIBLE_PACKAGE
 )
+

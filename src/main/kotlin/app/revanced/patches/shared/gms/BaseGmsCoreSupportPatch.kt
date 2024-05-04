@@ -233,6 +233,7 @@ abstract class BaseGmsCoreSupportPatch(
             "com.google.android.c2dm.permission.RECEIVE",
             "com.google.android.c2dm.permission.SEND",
             "com.google.android.gtalkservice.permission.GTALK_SERVICE",
+            "com.google.android.providers.gsf.permission.READ_GSERVICES",
 
             // GAuth
             "com.google.android.googleapps.permission.GOOGLE_AUTH",
@@ -240,6 +241,10 @@ abstract class BaseGmsCoreSupportPatch(
             "com.google.android.googleapps.permission.GOOGLE_AUTH.local",
             "com.google.android.googleapps.permission.GOOGLE_AUTH.mail",
             "com.google.android.googleapps.permission.GOOGLE_AUTH.writely",
+
+            // Ad
+            "com.google.android.gms.permission.AD_ID_NOTIFICATION",
+            "com.google.android.gms.permission.AD_ID",
         )
 
         /**
@@ -252,6 +257,7 @@ abstract class BaseGmsCoreSupportPatch(
             "com.google.android.gms.location.places.PlacesApi",
             "com.google.android.gms.location.places.PlaceDetectionApi",
             "com.google.android.gms.wearable.MESSAGE_RECEIVED",
+            "com.google.android.gms.checkin.BIND_TO_SERVICE",
 
             // C2DM / GCM
             "com.google.android.c2dm.intent.REGISTER",
@@ -280,6 +286,12 @@ abstract class BaseGmsCoreSupportPatch(
             "com.google.android.gms.auth.service.START",
             "com.google.firebase.auth.api.gms.service.START",
             "com.google.android.gms.auth.be.appcert.AppCertService",
+            "com.google.android.gms.credential.manager.service.firstparty.START",
+            "com.google.android.gms.auth.GOOGLE_SIGN_IN",
+            "com.google.android.gms.signin.service.START",
+            "com.google.android.gms.auth.api.signin.service.START",
+            "com.google.android.gms.auth.api.identity.service.signin.START",
+            "com.google.android.gms.accountsettings.action.VIEW_SETTINGS",
 
             // fido
             "com.google.android.gms.fido.fido2.privileged.START",
@@ -290,6 +302,12 @@ abstract class BaseGmsCoreSupportPatch(
             // games
             "com.google.android.gms.games.service.START",
             "com.google.android.gms.games.PLAY_GAMES_UPGRADE",
+            "com.google.android.gms.games.internal.connect.service.START",
+
+            // help
+            "com.google.android.gms.googlehelp.service.GoogleHelpService.START",
+            "com.google.android.gms.googlehelp.HELP",
+            "com.google.android.gms.feedback.internal.IFeedbackService",
 
             // chimera
             "com.google.android.gms.chimera",
@@ -311,11 +329,14 @@ abstract class BaseGmsCoreSupportPatch(
             "com.google.android.gms.languageprofile.service.START",
             "com.google.android.gms.clearcut.service.START",
             "com.google.android.gms.icing.LIGHTWEIGHT_INDEX_SERVICE",
+            "com.google.android.gms.icing.INDEX_SERVICE",
+            "com.google.android.gms.mdm.services.START",
+            "com.google.android.gms.clearcut.service.START",
 
             // potoken
             "com.google.android.gms.potokens.service.START",
 
-            // droidguard/ safetynet
+            // droidguard, safetynet
             "com.google.android.gms.droidguard.service.START",
             "com.google.android.gms.safetynet.service.START",
         )
