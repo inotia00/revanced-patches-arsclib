@@ -25,8 +25,9 @@ import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Suppress("unused")
+@Deprecated("This patch will be removed in the future.")
 object SpoofPlayerParameterPatch : BaseBytecodePatch(
-    name = "Spoof player parameters",
+    // name = "Spoof player parameters",
     description = "Adds options to spoof player parameters to prevent playback issues.",
     dependencies = setOf(
         PlayerTypeHookPatch::class,
@@ -172,6 +173,7 @@ object SpoofPlayerParameterPatch : BaseBytecodePatch(
          */
         SettingsPatch.addPreference(
             arrayOf(
+                "PREFERENCE_CATEGORY: MISC_EXPERIMENTAL_FLAGS",
                 "SETTINGS: SPOOF_PLAYER_PARAMETER"
             )
         )
