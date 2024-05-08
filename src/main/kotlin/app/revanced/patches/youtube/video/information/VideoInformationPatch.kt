@@ -22,13 +22,13 @@ import app.revanced.patches.youtube.video.information.fingerprints.ChannelNameFi
 import app.revanced.patches.youtube.video.information.fingerprints.OnPlaybackSpeedItemClickFingerprint
 import app.revanced.patches.youtube.video.information.fingerprints.PlaybackInitializationFingerprint
 import app.revanced.patches.youtube.video.information.fingerprints.PlaybackSpeedClassFingerprint
+import app.revanced.patches.youtube.video.information.fingerprints.PlayerControllerSetTimeReferenceFingerprint
 import app.revanced.patches.youtube.video.information.fingerprints.VideoIdFingerprint
 import app.revanced.patches.youtube.video.information.fingerprints.VideoIdFingerprintBackgroundPlay
 import app.revanced.patches.youtube.video.information.fingerprints.VideoIdFingerprintShorts
 import app.revanced.patches.youtube.video.information.fingerprints.VideoLengthFingerprint
 import app.revanced.patches.youtube.video.information.fingerprints.VideoQualityListFingerprint
 import app.revanced.patches.youtube.video.information.fingerprints.VideoQualityTextFingerprint
-import app.revanced.patches.youtube.video.information.fingerprints.VideoTimeFingerprint
 import app.revanced.patches.youtube.video.information.fingerprints.VideoTitleFingerprint
 import app.revanced.patches.youtube.video.playerresponse.PlayerResponseMethodHookPatch
 import app.revanced.patches.youtube.video.videoid.VideoIdPatch
@@ -68,6 +68,7 @@ object VideoInformationPatch : BytecodePatch(
         OrganicPlaybackContextModelFingerprint,
         PlaybackInitializationFingerprint,
         PlaybackSpeedClassFingerprint,
+        PlayerControllerSetTimeReferenceFingerprint,
         VideoEndFingerprint,
         VideoIdFingerprint,
         VideoIdFingerprintBackgroundPlay,
@@ -109,6 +110,9 @@ object VideoInformationPatch : BytecodePatch(
     private lateinit var playerConstructorMethod: MutableMethod
     private var playerConstructorInsertIndex = 4
 
+    private lateinit var videoTimeConstructorMethod: MutableMethod
+    private var videoTimeConstructorInsertIndex = 2
+
     private lateinit var videoTimeMethod: MutableMethod
     private var videoTimeIndex = 1
 
@@ -120,9 +124,6 @@ object VideoInformationPatch : BytecodePatch(
         val videoInformationMutableClass = context.findClass(INTEGRATIONS_CLASS_DESCRIPTOR)!!.mutableClass
 
         VideoEndFingerprint.resultOrThrow().let {
-
-            // resolve video time fingerprint
-            VideoTimeFingerprint.resolve(context, it.classDef)
 
             playerConstructorMethod =
                 it.mutableClass.methods.first { method -> MethodUtil.isConstructor(method) }
@@ -251,12 +252,9 @@ object VideoInformationPatch : BytecodePatch(
         /**
          * Set current video time method
          */
-        VideoTimeFingerprint.resultOrThrow().mutableMethod.apply {
-            videoTimeMethod = this
-            addInstruction(
-                0,
-                "move-wide/from16 v0, p5"
-            )
+        PlayerControllerSetTimeReferenceFingerprint.resultOrThrow().let {
+            videoTimeConstructorMethod =
+                it.getWalkerMethod(context, it.scanResult.patternScanResult!!.startIndex)
         }
 
         /**
@@ -446,9 +444,9 @@ object VideoInformationPatch : BytecodePatch(
      * @param targetMethodName The name of the static method to invoke when the player controller is created.
      */
     internal fun videoTimeHook(targetMethodClass: String, targetMethodName: String) =
-        videoTimeMethod.addInstruction(
-            videoTimeIndex++,
-            "invoke-static { v0, v1 }, $targetMethodClass->$targetMethodName(J)V"
+        videoTimeConstructorMethod.addInstruction(
+            videoTimeConstructorInsertIndex++,
+            "invoke-static { p1, p2 }, $targetMethodClass->$targetMethodName(J)V"
         )
 
     private fun MethodFingerprint.getMethodName(returnType : String) :String {
