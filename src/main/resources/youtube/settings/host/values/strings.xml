@@ -879,6 +879,11 @@ Please download %2$s from the website."</string>
     <string name="revanced_expand_video_description_title">Expand video description</string>
     <string name="revanced_expand_video_description_summary_on">Video description is expanded automatically.</string>
     <string name="revanced_expand_video_description_summary_off">Video description is expanded manually.</string>
+    <string name="revanced_expand_video_description_strings_title">Title in video description panel</string>
+    <string name="revanced_expand_video_description_strings_summary">"Enter a title in the video description panel.
+These characters vary depending on your language.
+'Expand video description' may not work if you save an incorrect string."</string>
+    <string name="revanced_expand_video_description_strings_default_value">Description</string>
 
 
     <!-- PreferenceScreen: Shorts -->

@@ -7,7 +7,8 @@ import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.shared.litho.LithoFilterPatch
-import app.revanced.patches.youtube.player.descriptions.fingerprints.EngagementPanelSubHeaderFingerprint
+import app.revanced.patches.youtube.player.descriptions.fingerprints.EngagementPanelTitleFingerprint
+import app.revanced.patches.youtube.player.descriptions.fingerprints.EngagementPanelTitleParentFingerprint
 import app.revanced.patches.youtube.player.descriptions.fingerprints.TextViewComponentFingerprint
 import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.fingerprints.RollingNumberTextViewAnimationUpdateFingerprint
@@ -18,13 +19,10 @@ import app.revanced.patches.youtube.utils.playertype.PlayerTypeHookPatch
 import app.revanced.patches.youtube.utils.recyclerview.BottomSheetRecyclerViewPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
-import app.revanced.util.getTargetIndexReversed
 import app.revanced.util.getTargetIndexWithMethodReferenceName
 import app.revanced.util.patch.BaseBytecodePatch
 import app.revanced.util.resultOrThrow
-import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
-import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Suppress("unused")
 object DescriptionComponentsPatch : BaseBytecodePatch(
@@ -39,7 +37,7 @@ object DescriptionComponentsPatch : BaseBytecodePatch(
     ),
     compatiblePackages = COMPATIBLE_PACKAGE,
     fingerprints = setOf(
-        EngagementPanelSubHeaderFingerprint,
+        EngagementPanelTitleParentFingerprint,
         RollingNumberTextViewFingerprint,
         TextViewComponentFingerprint
     )
@@ -107,14 +105,18 @@ object DescriptionComponentsPatch : BaseBytecodePatch(
                 }
             }
 
-            EngagementPanelSubHeaderFingerprint.resultOrThrow().mutableMethod.apply {
-                val instructionIndex = getTargetIndexReversed(Opcode.INVOKE_INTERFACE) + 1
-                val viewRegister = getInstruction<OneRegisterInstruction>(instructionIndex).registerA
+            EngagementPanelTitleFingerprint.resolve(
+                context,
+                EngagementPanelTitleParentFingerprint.resultOrThrow().classDef
+            )
+            EngagementPanelTitleFingerprint.resultOrThrow().mutableMethod.apply {
+                val contentDescriptionIndex = getTargetIndexWithMethodReferenceName("setContentDescription")
+                val contentDescriptionRegister = getInstruction<FiveRegisterInstruction>(contentDescriptionIndex).registerD
 
                 addInstruction(
-                    instructionIndex + 1,
-                    "invoke-static { v$viewRegister }, " +
-                            "$PLAYER_CLASS_DESCRIPTOR->engagementPanelSubHeaderViewLoaded(Landroid/view/View;)V"
+                    contentDescriptionIndex,
+                    "invoke-static {v$contentDescriptionRegister}," +
+                            "$PLAYER_CLASS_DESCRIPTOR->setContentDescription(Ljava/lang/String;)V"
                 )
             }
 
