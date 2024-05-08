@@ -28,8 +28,8 @@ Example:
     "options": []
   },
   {
-    "name": "Remember video quality",
-    "description": "Adds an option to remember the last video quality selected.",
+    "name": "Bitrate default value",
+    "description": "Sets the audio quality to 'Always High' when you first install the app.",
     "compatiblePackages": [
       {
         "name": "com.google.android.apps.youtube.music",

@@ -71,40 +71,40 @@ ReVanced Extended Patches.
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
-| `Amoled` | Applies a pure black theme to some components. | 6.29.58 ~ 6.50.51 |
-| `Bitrate default value` | Sets the audio quality to 'Always High' when you first install the app. | 6.29.58 ~ 6.50.51 |
-| `Certificate spoof` | Enables YouTube Music to work with Android Auto by spoofing the YouTube Music certificate. | 6.29.58 ~ 6.50.51 |
-| `Change start page` | Adds an option to set which page the app opens in instead of the homepage. | 6.29.58 ~ 6.50.51 |
-| `Custom branding icon YouTube Music` | Changes the YouTube Music app icon to the icon specified in options.json. | 6.29.58 ~ 6.50.51 |
-| `Custom branding name YouTube Music` | Renames the YouTube Music app to the name specified in options.json. | 6.29.58 ~ 6.50.51 |
+| `Amoled` | Applies a pure black theme to some components. | 6.29.58 ~ 6.51.52 |
+| `Bitrate default value` | Sets the audio quality to 'Always High' when you first install the app. | 6.29.58 ~ 6.51.52 |
+| `Certificate spoof` | Enables YouTube Music to work with Android Auto by spoofing the YouTube Music certificate. | 6.29.58 ~ 6.51.52 |
+| `Change start page` | Adds an option to set which page the app opens in instead of the homepage. | 6.29.58 ~ 6.51.52 |
+| `Custom branding icon YouTube Music` | Changes the YouTube Music app icon to the icon specified in options.json. | 6.29.58 ~ 6.51.52 |
+| `Custom branding name YouTube Music` | Renames the YouTube Music app to the name specified in options.json. | 6.29.58 ~ 6.51.52 |
 | `Custom package name` | Changes the package name for the non-root build of YouTube and YouTube Music to the name specified in options.json. | 6.29.58+ |
-| `Disable auto captions` | Adds an option to disable captions from being automatically enabled. | 6.29.58 ~ 6.50.51 |
-| `Disable dislike redirection` | Adds an option to disable redirection to the next track when clicking dislike button. | 6.29.58 ~ 6.50.51 |
-| `Enable debug logging` | Adds an option to enable debug logging. | 6.29.58 ~ 6.50.51 |
-| `Enable landscape mode` | Adds an option to enable landscape mode when rotating the screen on phones. | 6.29.58 ~ 6.50.51 |
-| `Enable minimized playback` | Enables minimized and background playback. | 6.29.58 ~ 6.50.51 |
-| `Enable opus codec` | Adds an option use the opus audio codec instead of the mp4a audio codec. | 6.29.58 ~ 6.50.51 |
-| `Flyout menu components` | Adds options to hide or change flyout menu components. | 6.29.58 ~ 6.50.51 |
-| `GmsCore support` | Allows patched Google apps to run without root and under a different package name by using GmsCore instead of Google Play Services. | 6.29.58 ~ 6.50.51 |
-| `Hide account components` | Adds the options to hide components related to account menu. | 6.29.58 ~ 6.50.51 |
-| `Hide action bar components` | Adds options to hide action bar components and replace the offline download button with an external download button. | 6.29.58 ~ 6.50.51 |
-| `Hide ads` | Adds options to hide ads. | 6.29.58 ~ 6.50.51 |
-| `Hide double tap overlay filter` | Hides the dark overlay when double-tapping to seek. | 6.29.58 ~ 6.50.51 |
-| `Hide layout components` | Adds options to hide general layout components. | 6.29.58 ~ 6.50.51 |
-| `Hide overlay filter` | Hides the dark overlay when comment, share, save to playlist, and flyout panels are open. | 6.29.58 ~ 6.50.51 |
-| `Hide player overlay filter` | Hides the dark overlay when single-tapping player. | 6.29.58 ~ 6.50.51 |
-| `Navigation bar components` | Adds options to hide or change components related to navigation bar. | 6.29.58 ~ 6.50.51 |
-| `Player components` | Adds options to hide or change components related to player. | 6.29.58 ~ 6.50.51 |
-| `Remove viewer discretion dialog` | Adds an option to remove the dialog that appears when opening a video that has been age-restricted by accepting it automatically. This does not bypass the age restriction. | 6.29.58 ~ 6.50.51 |
-| `Replace cast button` | Adds an option to replace the cast button in the player with the "Open music" button. | 6.29.58 ~ 6.50.51 |
-| `Restore old style library shelf` | Adds an option to return the library tab to the old style. | 6.29.58 ~ 6.50.51 |
-| `Return YouTube Dislike` | Adds an option to show the dislike count of songs using the Return YouTube Dislike API. | 6.29.58 ~ 6.50.51 |
-| `Sanitize sharing links` | Adds an option to remove tracking query parameters from URLs when sharing links. | 6.29.58 ~ 6.50.51 |
-| `Settings` | Adds ReVanced Extended settings to YouTube Music. | 6.29.58 ~ 6.50.51 |
-| `SponsorBlock` | Adds options to enable and configure SponsorBlock, which can skip undesired video segments such as non-music sections. | 6.29.58 ~ 6.50.51 |
-| `Spoof app version` | Adds options to spoof the YouTube Music client version. This can remove the radio mode restriction in Canadian regions or disable real-time lyrics. | 6.29.58 ~ 6.50.51 |
-| `Translations` | Adds Crowdin translations for YouTube Music. | 6.29.58 ~ 6.50.51 |
-| `Video playback` | Adds options to customize settings related to video playback,such as default video quality and playback speed. | 6.29.58 ~ 6.50.51 |
+| `Disable auto captions` | Adds an option to disable captions from being automatically enabled. | 6.29.58 ~ 6.51.52 |
+| `Disable dislike redirection` | Adds an option to disable redirection to the next track when clicking dislike button. | 6.29.58 ~ 6.51.52 |
+| `Enable debug logging` | Adds an option to enable debug logging. | 6.29.58 ~ 6.51.52 |
+| `Enable landscape mode` | Adds an option to enable landscape mode when rotating the screen on phones. | 6.29.58 ~ 6.51.52 |
+| `Enable minimized playback` | Enables minimized and background playback. | 6.29.58 ~ 6.51.52 |
+| `Enable opus codec` | Adds an option use the opus audio codec instead of the mp4a audio codec. | 6.29.58 ~ 6.51.52 |
+| `Flyout menu components` | Adds options to hide or change flyout menu components. | 6.29.58 ~ 6.51.52 |
+| `GmsCore support` | Allows patched Google apps to run without root and under a different package name by using GmsCore instead of Google Play Services. | 6.29.58 ~ 6.51.52 |
+| `Hide account components` | Adds the options to hide components related to account menu. | 6.29.58 ~ 6.51.52 |
+| `Hide action bar components` | Adds options to hide action bar components and replace the offline download button with an external download button. | 6.29.58 ~ 6.51.52 |
+| `Hide ads` | Adds options to hide ads. | 6.29.58 ~ 6.51.52 |
+| `Hide double tap overlay filter` | Hides the dark overlay when double-tapping to seek. | 6.29.58 ~ 6.51.52 |
+| `Hide layout components` | Adds options to hide general layout components. | 6.29.58 ~ 6.51.52 |
+| `Hide overlay filter` | Hides the dark overlay when comment, share, save to playlist, and flyout panels are open. | 6.29.58 ~ 6.51.52 |
+| `Hide player overlay filter` | Hides the dark overlay when single-tapping player. | 6.29.58 ~ 6.51.52 |
+| `Navigation bar components` | Adds options to hide or change components related to navigation bar. | 6.29.58 ~ 6.51.52 |
+| `Player components` | Adds options to hide or change components related to player. | 6.29.58 ~ 6.51.52 |
+| `Remove viewer discretion dialog` | Adds an option to remove the dialog that appears when opening a video that has been age-restricted by accepting it automatically. This does not bypass the age restriction. | 6.29.58 ~ 6.51.52 |
+| `Replace cast button` | Adds an option to replace the cast button in the player with the "Open music" button. | 6.29.58 ~ 6.51.52 |
+| `Restore old style library shelf` | Adds an option to return the library tab to the old style. | 6.29.58 ~ 6.51.52 |
+| `Return YouTube Dislike` | Adds an option to show the dislike count of songs using the Return YouTube Dislike API. | 6.29.58 ~ 6.51.52 |
+| `Sanitize sharing links` | Adds an option to remove tracking query parameters from URLs when sharing links. | 6.29.58 ~ 6.51.52 |
+| `Settings` | Adds ReVanced Extended settings to YouTube Music. | 6.29.58 ~ 6.51.52 |
+| `SponsorBlock` | Adds options to enable and configure SponsorBlock, which can skip undesired video segments such as non-music sections. | 6.29.58 ~ 6.51.52 |
+| `Spoof app version` | Adds options to spoof the YouTube Music client version. This can remove the radio mode restriction in Canadian regions or disable real-time lyrics. | 6.29.58 ~ 6.51.52 |
+| `Translations` | Adds Crowdin translations for YouTube Music. | 6.29.58 ~ 6.51.52 |
+| `Video playback` | Adds options to customize settings related to video playback,such as default video quality and playback speed. | 6.29.58 ~ 6.51.52 |
 </details>
 
 ### [📦 `com.reddit.frontpage`](https://play.google.com/store/apps/details?id=com.reddit.frontpage)
@@ -166,7 +166,8 @@ Example:
           "6.29.58",
           "6.31.55",
           "6.33.52",
-          "6.50.51"
+          "6.50.53",
+          "6.51.52"
         ]
       }
     ],
