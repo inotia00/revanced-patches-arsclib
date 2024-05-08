@@ -9,7 +9,7 @@ object Constants {
                 "com.reddit.frontpage",
                 setOf(
                     "2023.12.0",
-                    "2024.16.0"
+                    "2024.17.0"
                 )
             )
         )
