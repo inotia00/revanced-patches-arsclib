@@ -258,10 +258,23 @@ object SeekbarComponentsPatch : BaseBytecodePatch(
 
         // region patch for restore old seekbar thumbnails
 
-        ThumbnailPreviewConfigFingerprint.literalInstructionBooleanHook(
-            45398577,
-            "$PLAYER_CLASS_DESCRIPTOR->restoreOldSeekbarThumbnails()Z"
-        )
+        ThumbnailPreviewConfigFingerprint.result?.let {
+            ThumbnailPreviewConfigFingerprint.literalInstructionBooleanHook(
+                45398577,
+                "$PLAYER_CLASS_DESCRIPTOR->restoreOldSeekbarThumbnails()Z"
+            )
+
+            /**
+             * Add settings
+             */
+            SettingsPatch.addPreference(
+                arrayOf(
+                    "PREFERENCE_SCREEN: PLAYER",
+                    "SETTINGS: SEEKBAR_COMPONENTS",
+                    "SETTINGS: RESTORE_OLD_SEEKBAR_THUMBNAILS"
+                )
+            )
+        } ?: println("WARNING: Restore old seekbar thumbnails setting is not supported in this version. Use YouTube 19.16.39 or earlier.")
 
         // endregion
 
