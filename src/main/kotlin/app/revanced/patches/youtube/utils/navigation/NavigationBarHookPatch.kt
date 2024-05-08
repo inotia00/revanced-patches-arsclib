@@ -10,6 +10,7 @@ import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.youtube.utils.fingerprints.InitializeButtonsFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.SHARED_PATH
+import app.revanced.patches.youtube.utils.mainactivity.MainActivityResolvePatch
 import app.revanced.patches.youtube.utils.navigation.fingerprints.NavigationEnumFingerprint
 import app.revanced.patches.youtube.utils.navigation.fingerprints.PivotBarButtonsCreateDrawableViewFingerprint
 import app.revanced.patches.youtube.utils.navigation.fingerprints.PivotBarButtonsCreateResourceViewFingerprint
@@ -29,6 +30,7 @@ import com.android.tools.smali.dexlib2.util.MethodUtil
 @Patch(
     description = "Hooks the active navigation or search bar.",
     dependencies = [
+        MainActivityResolvePatch::class,
         PlayerTypeHookPatch::class,
         SharedResourceIdPatch::class
     ],
@@ -112,6 +114,8 @@ object NavigationBarHookPatch : BytecodePatch(
         navigationTabCreatedCallback = context.findClass(INTEGRATIONS_CLASS_DESCRIPTOR)?.mutableClass?.methods?.first { method ->
             method.name == "navigationTabCreatedCallback"
         } ?: throw PatchException("Could not find navigationTabCreatedCallback method")
+
+        MainActivityResolvePatch.injectOnBackPressedMethodCall(INTEGRATIONS_CLASS_DESCRIPTOR, "onBackPressed")
     }
 
     val hookNavigationButtonCreated: (String) -> Unit by lazy {
