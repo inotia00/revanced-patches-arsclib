@@ -1425,6 +1425,9 @@ Limitation: Feed videos will play for less than 1 minute before encountering pla
     <string name="revanced_extended_settings_reset">Reset</string>
     <string name="revanced_share_copy_settings_success">Settings copied to clipboard.</string>
 
+    <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceCategory: Patch information -->
+    <string name="revanced_preference_category_patch_information">Patch information</string>
+
     <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Patch information -->
     <string name="revanced_preference_screen_patch_information_title">Patch information</string>
     <string name="revanced_preference_screen_patch_information_summary">Information about applied patches.</string>
