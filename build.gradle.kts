@@ -1,5 +1,7 @@
+import org.gradle.kotlin.dsl.support.listFilesOrdered
+
 plugins {
-    kotlin("jvm") version "1.8.10"
+    kotlin("jvm") version "1.9.23"
 }
 
 group = "app.revanced"
@@ -11,19 +13,31 @@ repositories {
     mavenCentral()
     mavenLocal()
     maven {
-        url = uri("https://maven.pkg.github.com/revanced/revanced-patcher")
+        url = uri("https://maven.pkg.github.com/revanced/multidexlib2")
         credentials {
             username = githubUsername
             password = githubPassword
         }
     }
+    maven {
+        url = uri("https://repo.sleeping.town")
+        content {
+            includeGroup("com.unascribed")
+        }
+    }
 }
 
 dependencies {
-    implementation("app.revanced:revanced-patcher:7.0.0")
+    implementation("app.revanced:revanced-patcher:8.0.0-arsclib")
     implementation("app.revanced:multidexlib2:2.5.3-a3836654")
     // Required for meta
     implementation("com.google.code.gson:gson:2.10.1")
+    // Required for FlexVer-Java
+    implementation("com.unascribed:flexver-java:1.1.1")
+}
+
+kotlin {
+    jvmToolchain(17)
 }
 
 tasks {
@@ -32,19 +46,20 @@ tasks {
         dependsOn(build)
 
         doLast {
-            val androidHome = System.getenv("ANDROID_HOME") ?: throw GradleException("ANDROID_HOME not found")
-            val d8 = "${androidHome}/build-tools/33.0.1/d8"
-            val input = configurations.archives.get().allArtifacts.files.files.first().absolutePath
-            val work = File("${buildDir}/libs")
+            val d8 = File(System.getenv("ANDROID_HOME")).resolve("build-tools")
+                .listFilesOrdered().last().resolve("d8").absolutePath
+
+            val patchesJar = configurations.archives.get().allArtifacts.files.files.first().absolutePath
+            val workingDirectory = layout.buildDirectory.dir("libs").get().asFile
 
             exec {
-                workingDir = work
-                commandLine = listOf(d8, input)
+                workingDir = workingDirectory
+                commandLine = listOf(d8, "--release", patchesJar)
             }
 
             exec {
-                workingDir = work
-                commandLine = listOf("zip", "-u", input, "classes.dex")
+                workingDir = workingDirectory
+                commandLine = listOf("zip", "-u", patchesJar, "classes.dex")
             }
         }
     }
