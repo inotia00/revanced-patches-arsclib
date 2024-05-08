@@ -194,8 +194,8 @@ object VideoPlaybackPatch : BaseBytecodePatch(
             } ?: throw PatchException("Failed to find onItemClick method")
         }
 
-        VideoInformationPatch.hook("$INTEGRATIONS_VIDEO_QUALITY_CLASS_DESCRIPTOR->newVideoStarted(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JZ)V")
         VideoInformationPatch.hookBackgroundPlay("$INTEGRATIONS_RELOAD_VIDEO_CLASS_DESCRIPTOR->newVideoStarted(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JZ)V")
+        VideoInformationPatch.hook("$INTEGRATIONS_VIDEO_QUALITY_CLASS_DESCRIPTOR->newVideoStarted(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JZ)V")
 
         // endregion
 

@@ -12,8 +12,7 @@ object ShortsOutlineButtonPatch : BaseResourcePatch(
     name = "Shorts outline button",
     description = "Apply the outline icon to the action button of the Shorts player.",
     dependencies = setOf(SettingsPatch::class),
-    compatiblePackages = COMPATIBLE_PACKAGE,
-    use = false
+    compatiblePackages = COMPATIBLE_PACKAGE
 ) {
     override fun execute(context: ResourceContext) {
 
