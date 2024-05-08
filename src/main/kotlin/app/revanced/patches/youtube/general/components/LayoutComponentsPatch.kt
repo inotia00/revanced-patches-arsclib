@@ -35,6 +35,7 @@ import app.revanced.util.patch.BaseBytecodePatch
 import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
+import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 import com.android.tools.smali.dexlib2.util.MethodUtil
@@ -223,15 +224,21 @@ object LayoutComponentsPatch : BaseBytecodePatch(
 
         // region patch for hide tooltip content
 
-        arrayOf(
-            TooltipContentFullscreenFingerprint,
-            TooltipContentViewFingerprint
-        ).forEach { fingerprint ->
-            fingerprint.resultOrThrow().mutableMethod.addInstruction(
-                0,
-                "return-void"
+        TooltipContentFullscreenFingerprint.resultOrThrow().mutableMethod.apply {
+            val literalIndex = getWideLiteralInstructionIndex(45384061)
+            val targetIndex = getTargetIndex(literalIndex, Opcode.MOVE_RESULT)
+            val targetRegister = getInstruction<OneRegisterInstruction>(targetIndex).registerA
+
+            addInstruction(
+                targetIndex + 1,
+                "const/4 v$targetRegister, 0x0"
             )
         }
+
+        TooltipContentViewFingerprint.resultOrThrow().mutableMethod.addInstruction(
+            0,
+            "return-void"
+        )
 
         // endregion
 
