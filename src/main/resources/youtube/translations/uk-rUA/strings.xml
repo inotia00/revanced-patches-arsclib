@@ -917,10 +917,6 @@
     <string name="revanced_return_shorts_channel_name_title">Повернути назву каналу коротких</string>
     <string name="revanced_return_shorts_channel_name_summary_on">Використовується назву каналу.</string>
     <string name="revanced_return_shorts_channel_name_summary_off">Використовується ідентифікатор каналу.</string>
-    <string name="revanced_return_shorts_channel_name_fetch_title">Отримувати зі стрічки rss</string>
-    <string name="revanced_return_shorts_channel_name_fetch_summary_on">"Використовується назву каналу взяту зі стрічки RSS.
-Отримання назви каналу може зайняти більше часу."</string>
-    <string name="revanced_return_shorts_channel_name_fetch_summary_off">"Використовується вбудовану назву каналу YouTube."</string>
     <!-- PreferenceScreen: Swipe controls -->
     <string name="revanced_preference_screen_swipe_controls_title">Керування жестами</string>
     <string name="revanced_enable_swipe_lowest_value_auto_brightness_title">Увімкнути автояскравість жестом</string>

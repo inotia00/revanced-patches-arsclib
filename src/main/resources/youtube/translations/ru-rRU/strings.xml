@@ -1,64 +1,1319 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Translations for YouTube -->
+    <string name="accessibility_settings_edu_opt_in_text">Включить, доступные, элементы управления для видео плеера?</string>
+    <string name="accessibility_settings_edu_opt_out_text">Ваши элементы управления изменены так, как служба доступности включена.</string>
     <!-- Shared PreferenceScreen -->
+    <string name="revanced_extended_settings_title">Настройки ReVanced Extended</string>
     <!-- Shared Category -->
+    <string name="revanced_preference_category_experimental_flag">Экспериментально</string>
+    <string name="revanced_extended_restart_first_run">Перезапустите после первого запуска</string>
+    <string name="revanced_extended_restart_message">Обновите и перезапустите</string>
+    <string name="revanced_playback_speed_normal">Норма</string>
     <!-- PreferenceScreen: Ads -->
+    <string name="revanced_preference_screen_ads_title">Реклама</string>
+    <string name="revanced_hide_fullscreen_ads_title">Скрыть рекламу в полном экране</string>
+    <string name="revanced_hide_fullscreen_ads_summary_on">Полноэкранная реклама скрыта.</string>
+    <string name="revanced_hide_fullscreen_ads_summary_off">Полноэкранная реклама отображена.</string>
+    <string name="revanced_hide_general_ads_title">Скрыть основную рекламу</string>
+    <string name="revanced_hide_general_ads_summary_on">Основная реклама скрыта.</string>
+    <string name="revanced_hide_general_ads_summary_off">Основная реклама отображена.</string>
+    <string name="revanced_hide_merchandise_shelf_title">Секции торговли</string>
+    <string name="revanced_hide_merchandise_shelf_summary_on">Секции торговли скрыты.</string>
+    <string name="revanced_hide_merchandise_shelf_summary_off">Секции торговли отображены.</string>
+    <string name="revanced_hide_paid_promotion_label_title">Метка платной акции</string>
+    <string name="revanced_hide_paid_promotion_label_summary_on">Метка платной акции скрыта.</string>
+    <string name="revanced_hide_paid_promotion_label_summary_off">Метка платной акции отображена.</string>
+    <string name="revanced_hide_self_sponsor_cards_title">Заставки саморекламы</string>
+    <string name="revanced_hide_self_sponsor_cards_summary_on">Заставки саморекламы скрыты.</string>
+    <string name="revanced_hide_self_sponsor_cards_summary_off">Заставки саморекламы отображены.</string>
+    <string name="revanced_hide_video_ads_title">Реклама в видео</string>
+    <string name="revanced_hide_video_ads_summary_on">Реклама в видео скрыта.</string>
+    <string name="revanced_hide_video_ads_summary_off">Реклама в видео отображена.</string>
+    <string name="revanced_hide_view_products_title">Вид баннера товаров</string>
+    <string name="revanced_hide_view_products_summary_on">Вид баннера товаров скрыт.</string>
+    <string name="revanced_hide_view_products_summary_off">Вид баннера товаров отображён.</string>
+    <string name="revanced_hide_web_search_results_title">Результаты веб-поиска</string>
+    <string name="revanced_hide_web_search_results_summary_on">Результаты веб-поиска скрыты.</string>
+    <string name="revanced_hide_web_search_results_summary_off">Результаты веб-поиска отображены.</string>
+    <string name="revanced_hide_get_premium_title">Продвижение YouTube Премиум</string>
+    <string name="revanced_hide_get_premium_summary_on">Получить YouTube Премиум скрыто.</string>
+    <string name="revanced_hide_get_premium_summary_off">Получить YouTube Премиум отображено.</string>
     <!-- PreferenceScreen: Alternative thumbnails -->
+    <string name="revanced_preference_screen_alt_thumbnails_title">Альтернативные превью видео</string>
+    <string name="revanced_alt_thumbnail_home_title">Главная</string>
+    <string name="revanced_alt_thumbnail_subscriptions_title">Подписки</string>
+    <string name="revanced_alt_thumbnail_library_title">Ваше</string>
+    <string name="revanced_alt_thumbnail_player_title">Плейлисты плеера, рекомендации</string>
+    <string name="revanced_alt_thumbnail_search_title">Результаты поиска</string>
+    <string name="revanced_alt_thumbnail_options_entry_1">Оригинальные миниатюры</string>
+    <string name="revanced_alt_thumbnail_options_entry_2">DeArrow (без стрелки) &amp; оригинальные миниатюры</string>
+    <string name="revanced_alt_thumbnail_options_entry_3">DeArrow &amp; захват кадра</string>
+    <string name="revanced_alt_thumbnail_options_entry_4">Захват кадра</string>
+    <string name="revanced_alt_thumbnail_dearrow_about_title">DeArrow (без стрелки)</string>
+    <string name="revanced_alt_thumbnail_dearrow_about_summary">"DeArrow предоставляет краудсорсинговые миниатюры для видео YouTube. Эти миниатюры часто более актуальны относительно предоставляемых YouTube.\n\nПри активации URL-адреса видео будут отправлены на сервер API, при этом никакие другие данные отправлены не будут. Если видео не содержит миниатюр DeArrow, то будут отображены оригинальные миниатюры или миниатюры захвата кадра.\n\nНажмите для получения дополнительной информации о DeArrow."</string>
+    <string name="revanced_alt_thumbnail_dearrow_connection_toast_title">Уведомлять, когда API недоступен</string>
+    <string name="revanced_alt_thumbnail_dearrow_connection_toast_summary_on">Уведомить, когда DeArrow недоступен.</string>
+    <string name="revanced_alt_thumbnail_dearrow_connection_toast_summary_off">Уведомления о недоступности DeArrow отключены.</string>
+    <string name="revanced_alt_thumbnail_dearrow_api_url_title">Конечная точка API DeArrow</string>
+    <string name="revanced_alt_thumbnail_dearrow_api_url_summary">Адрес конечной точки кэша миниатюр DeArrow.</string>
+    <string name="revanced_alt_thumbnail_stills_about_title">Захват кадра из видео</string>
+    <string name="revanced_alt_thumbnail_stills_about_summary">Кадры взяты из начала / середины / конца каждого видео. Эти изображения уже есть в YouTube и внешний API не используется.</string>
+    <string name="revanced_alt_thumbnail_stills_fast_title">Ускоренный захват кадра</string>
+    <string name="revanced_alt_thumbnail_stills_fast_summary_on">Использовать среднее качество кадра. Значки будут грузиться быстрее, но возможна их потеря у трансляций, премьер или очень старых видео.</string>
+    <string name="revanced_alt_thumbnail_stills_fast_summary_off">Использовать высокое качество кадра.</string>
+    <string name="revanced_alt_thumbnail_stills_time_title">Время видео из которого берется кадр</string>
+    <string name="revanced_alt_thumbnail_stills_time_entry_1">Начало видео</string>
+    <string name="revanced_alt_thumbnail_stills_time_entry_2">Середина видео</string>
+    <string name="revanced_alt_thumbnail_stills_time_entry_3">Конец видео</string>
+    <string name="revanced_alt_thumbnail_dearrow_error">DeArrow временно недоступен. (код состояния: %s)</string>
+    <string name="revanced_alt_thumbnail_dearrow_error_generic">DeArrow временно недоступен.</string>
     <!-- PreferenceScreen: Feed -->
+    <string name="revanced_preference_screen_feed_title">Лента</string>
+    <string name="revanced_hide_album_card_title">Заставки альбома</string>
+    <string name="revanced_hide_album_card_summary_on">Заставки альбома скрыты.</string>
+    <string name="revanced_hide_album_card_summary_off">Заставки альбома отображены.</string>
+    <string name="revanced_hide_carousel_shelf_summary">"Скрывает следующие секции:
+• Срочные новости
+• Продолжить просмотр
+• Больше каналов
+• Смотреть ещё раз
+• Покупки
+• Слушать ещё раз"</string>
+    <string name="revanced_hide_carousel_shelf_title">Калейдоскоп треков</string>
+    <string name="revanced_hide_chips_shelf_title">Секция тегов видео</string>
+    <string name="revanced_hide_chips_shelf_on">Секция тегов скрыта.</string>
+    <string name="revanced_hide_chips_shelf_off">Секция тегов отображена.</string>
+    <string name="revanced_hide_expandable_chip_title">Расширенные фрагменты под видео</string>
+    <string name="revanced_hide_expandable_chip_summary_on">Расширенные фрагменты скрыты.</string>
+    <string name="revanced_hide_expandable_chip_summary_off">Расширенные фрагменты отображены.</string>
+    <string name="revanced_hide_feed_captions_button_title">Кнопка Субтитры ленты</string>
+    <string name="revanced_hide_feed_captions_button_on">Кнопка Субтитры скрыта.</string>
+    <string name="revanced_hide_feed_captions_button_off">Кнопка Субтитры отображена.</string>
+    <string name="revanced_hide_feed_search_bar_title">Панель поиска ленты</string>
+    <string name="revanced_hide_feed_search_bar_summary_on">Панель поиска ленты скрыта.</string>
+    <string name="revanced_hide_feed_search_bar_summary_off">Панель поиска ленты отображена.</string>
+    <string name="revanced_hide_feed_survey_title">Опросы в ленте</string>
+    <string name="revanced_hide_feed_survey_summary_on">Опросы в ленте скрыты.</string>
+    <string name="revanced_hide_feed_survey_summary_off">Опросы в ленте отображены.</string>
+    <string name="revanced_hide_image_shelf_title">Секция изображения</string>
+    <string name="revanced_hide_image_shelf_summary_on">Секции изображения скрыты.</string>
+    <string name="revanced_hide_image_shelf_summary_off">Секции изображения отображены.</string>
+    <string name="revanced_hide_latest_posts_title">Последние публикации</string>
+    <string name="revanced_hide_latest_posts_summary_on">Последние публикации скрыты.</string>
+    <string name="revanced_hide_latest_posts_summary_off">Последние публикации отображены.</string>
+    <string name="revanced_hide_latest_videos_button_title">"Кнопка \"Последние видео\""</string>
+    <string name="revanced_hide_latest_videos_button_summary_on">"Кнопка \"Последние видео\" скрыта."</string>
+    <string name="revanced_hide_latest_videos_button_summary_off">"Кнопка \"Последние видео\" отображена."</string>
+    <string name="revanced_hide_mix_playlists_title">Плейлист \"Джем\"</string>
+    <string name="revanced_hide_mix_playlists_summary_on">Плейлист \"Джем\" скрыт.</string>
+    <string name="revanced_hide_mix_playlists_summary_off">Плейлист \"Джем\" отображён.</string>
+    <string name="revanced_hide_movie_shelf_title">Секции фильмов</string>
+    <string name="revanced_hide_movie_shelf_summary_on">Секции фильмов скрыты.</string>
+    <string name="revanced_hide_movie_shelf_summary_off">Секции фильмов отображены.</string>
+    <string name="revanced_hide_notify_me_button_title">"Кнопка \"Прислать уведомление\""</string>
+    <string name="revanced_hide_notify_me_button_summary_on">"Кнопка 'Уведомлять меня' скрыта."</string>
+    <string name="revanced_hide_notify_me_button_summary_off">"Кнопка 'Уведомлять меня' отображена."</string>
+    <string name="revanced_hide_playables_title">Воспроизводимое</string>
+    <string name="revanced_hide_playables_summary_on">Воспроизводимое скрыто.</string>
+    <string name="revanced_hide_playables_summary_off">Воспроизводимое отображено.</string>
+    <string name="revanced_hide_show_more_button_title">"Кнопка «Показать еще»"</string>
+    <string name="revanced_hide_show_more_button_summary_on">"Кнопка «Показать еще» скрыта."</string>
+    <string name="revanced_hide_show_more_button_summary_off">"Кнопка «Показать еще» отображена."</string>
+    <string name="revanced_hide_subscriptions_channel_section_title">Скрыть раздел канала подписок</string>
+    <string name="revanced_hide_subscriptions_channel_section_summary_on">Раздел канала подписок скрыт.</string>
+    <string name="revanced_hide_subscriptions_channel_section_summary_off">Раздел канала подписок отображен.</string>
+    <string name="revanced_hide_ticket_shelf_title">Заявки</string>
+    <string name="revanced_hide_ticket_shelf_summary_on">Заявки скрыты.</string>
+    <string name="revanced_hide_ticket_shelf_summary_off">Заявки отображены.</string>
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Category bar -->
+    <string name="revanced_preference_screen_category_bar_title">Категории</string>
+    <string name="revanced_preference_screen_category_bar_summary">Категории скрытие и отображение, суммарно.</string>
+    <string name="revanced_hide_category_bar_in_feed_title">Лента</string>
+    <string name="revanced_hide_category_bar_in_feed_summary_on">Скрыто в ленте.</string>
+    <string name="revanced_hide_category_bar_in_feed_summary_off">Отображено в ленте.</string>
+    <string name="revanced_hide_category_bar_in_related_videos_title">Связанные видео</string>
+    <string name="revanced_hide_category_bar_in_related_videos_summary_on">Скрыто в связанных видео.</string>
+    <string name="revanced_hide_category_bar_in_related_videos_summary_off">Отображено в связанных видео.</string>
+    <string name="revanced_hide_category_bar_in_search_title">Результаты поиска</string>
+    <string name="revanced_hide_category_bar_in_search_summary_on">Скрыто в результатах поиска.</string>
+    <string name="revanced_hide_category_bar_in_search_summary_off">Отображено в результатах поиска.</string>
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Channel profile -->
+    <string name="revanced_preference_screen_channel_profile_title">Профиль</string>
+    <string name="revanced_preference_screen_channel_profile_summary">Профиль канала отображение и скрытие.</string>
+    <string name="revanced_hide_channel_tab_title">Фильтр вкладок канала</string>
+    <string name="revanced_hide_channel_tab_summary_on">Фильтр вкладки канала включен.</string>
+    <string name="revanced_hide_channel_tab_summary_off">Фильтр вкладок канала отключен.</string>
+    <string name="revanced_hide_channel_tab_filter_strings_title">Фильтр вкладки канала</string>
+    <string name="revanced_hide_channel_tab_filter_strings_summary">Список вкладок каналов для фильтрации разделенных новой строкой.</string>
+    <string name="revanced_hide_channel_tab_filter_strings_hint">"Шорты
+Плейлисты
+Магазин"</string>
+    <string name="revanced_hide_browse_store_button_title">Кнопка \"Перейти в магазин\"</string>
+    <string name="revanced_hide_browse_store_button_summary_on">Кнопка \"Перейти в магазин\" скрыта.</string>
+    <string name="revanced_hide_browse_store_button_summary_off">Кнопка \"Перейти в магазин\" отображена.</string>
+    <string name="revanced_hide_channel_member_shelf_title">Секция участников канала</string>
+    <string name="revanced_hide_channel_member_shelf_summary_on">Секция участников канала скрыта.</string>
+    <string name="revanced_hide_channel_member_shelf_summary_off">Секция участников канала отображена.</string>
+    <string name="revanced_hide_channel_profile_links_title">Ссылки профиля канала</string>
+    <string name="revanced_hide_channel_profile_links_summary_on">Ссылки в верхней части профиля канала скрыты.</string>
+    <string name="revanced_hide_channel_profile_links_summary_off">Ссылки в верхней части профиля канала отображены.</string>
+    <string name="revanced_hide_for_you_shelf_title">"Секция \"Для вас\""</string>
+    <string name="revanced_hide_for_you_shelf_summary_on">"Секции \"Для вас\" скрыты."</string>
+    <string name="revanced_hide_for_you_shelf_summary_off">"Секции \"Для вас\" отображены."</string>
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Community posts -->
+    <string name="revanced_preference_screen_community_posts_title">Посты сообщества</string>
+    <string name="revanced_preference_screen_community_posts_summary">Скрыть или показать сообщения сообщества в ленте новостей и канале.</string>
+    <string name="revanced_hide_community_posts_channel_title">Скрыть в канале</string>
+    <string name="revanced_hide_community_posts_channel_summary_on">Скрыто в канале.</string>
+    <string name="revanced_hide_community_posts_channel_summary_off">Отображено в канале.</string>
+    <string name="revanced_hide_community_posts_home_related_videos_title">Домашняя лента новостей и связанные видео</string>
+    <string name="revanced_hide_community_posts_home_related_videos_summary_on">Скрыто в домашней ленте новостей и связанных видео.</string>
+    <string name="revanced_hide_community_posts_home_related_videos_summary_off">Отображено в домашней ленте новостей и связанных видео.</string>
+    <string name="revanced_hide_community_posts_subscriptions_title">Лента подписок</string>
+    <string name="revanced_hide_community_posts_subscriptions_summary_on">Скрыто в ленте подписок.</string>
+    <string name="revanced_hide_community_posts_subscriptions_summary_off">Отображено в ленте подписок.</string>
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Flyout menu -->
+    <string name="revanced_preference_screen_feed_flyout_menu_title">Выдвижное меню плеера</string>
+    <string name="revanced_preference_screen_feed_flyout_menu_summary">Скрыть или показать меню в ленте.</string>
+    <string name="revanced_hide_feed_flyout_menu_title">Фильтр выдвижного меню ленты</string>
+    <string name="revanced_hide_feed_flyout_menu_summary_on">Фильтр выдвижного меню ленты включён.</string>
+    <string name="revanced_hide_feed_flyout_menu_summary_off">Фильтр выдвижного меню ленты отключён.</string>
+    <string name="revanced_hide_feed_flyout_menu_filter_strings_title">Фильтр выдвижного меню ленты</string>
+    <string name="revanced_hide_feed_flyout_menu_filter_strings_summary">Список имен, выдвижного меню ленты, для фильтра, разделяемые новой строкой.</string>
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Video filter -->
+    <string name="revanced_preference_screen_video_filter_title">Фильтр видео</string>
+    <string name="revanced_preference_screen_video_filter_summary">Скрыть видео по ключевым словам или представлениям.</string>
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Video filter, PreferenceCategory: Keyword filter -->
+    <string name="revanced_preference_category_keyword_filter">Фильтр ключевых слов</string>
+    <string name="revanced_hide_keyword_content_home_title">Домашние видео по ключевым словам</string>
+    <string name="revanced_hide_keyword_content_home_summary_on">Видео в домашней ленте отфильтрованы.</string>
+    <string name="revanced_hide_keyword_content_home_summary_off">Видео в домашней ленте не отфильтрованы.</string>
+    <string name="revanced_hide_keyword_content_search_title">Результаты поиска по ключевым словам</string>
+    <string name="revanced_hide_keyword_content_search_summary_on">Результаты поиска отфильтрованы.</string>
+    <string name="revanced_hide_keyword_content_search_summary_off">Результаты поиска не отфильтрованы.</string>
+    <string name="revanced_hide_keyword_content_subscriptions_title">Подписки видео по ключевым словам</string>
+    <string name="revanced_hide_keyword_content_subscriptions_summary_on">Видео в ленте подписок отфильтрованы.</string>
+    <string name="revanced_hide_keyword_content_subscriptions_summary_off">Видео в ленте подписок не отфильтрованы.</string>
+    <string name="revanced_hide_keyword_content_comments_title">Комментарии и ключевые слова</string>
+    <string name="revanced_hide_keyword_content_comments_summary_on">Комментарии отфильтрованы.</string>
+    <string name="revanced_hide_keyword_content_comments_summary_off">Комментарии не отфильтрованы.</string>
+    <string name="revanced_hide_keyword_content_phrases_title">Скрываемые ключевые слова</string>
+    <string name="revanced_hide_keyword_content_phrases_summary">"Скрываемые ключевые слова и фразы, разделены новыми строками.
+Слова с заглавными буквами посередине должны содержать регистр (пример: iPhone, TikTok, LeBlanc)"</string>
+    <string name="revanced_hide_keyword_content_about_title">О фильтрации по ключевым словам</string>
+    <string name="revanced_hide_keyword_content_about_summary">"\"Главная\", \"Подписки\" и результаты поиска фильтруются, чтобы скрыть контент, соответствующий ключевым фразам.
+
+Ограничения:
+• Некоторые Shorts могут быть не скрыты.
+• Некоторые компоненты пользовательского интерфейса могут быть не скрыты.
+• Поиск по ключевому слову может не дать результатов."</string>
+    <string name="revanced_hide_keyword_toast_invalid_common">Недопустимо. Не подходит: \'%s\' в качестве фильтра</string>
+    <string name="revanced_hide_keyword_toast_invalid_length">Недопустимо. \'%1$s\' содержит менее %2$d символов</string>
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Video filter, PreferenceCategory: Recommended video -->
+    <string name="revanced_preference_category_recommended_video">Рекомендованное видео</string>
+    <string name="revanced_hide_recommended_video_title">Рекомендованное видео</string>
+    <string name="revanced_hide_recommended_video_summary">"Скрывает следующие рекомендованные видео:
+
+• Видео с тегом 'Только для членства'
+• Видео с такими фразами, как 'Люди также смотрели' внизу видео
+• Видео из каналов, не подписанных на которые имеют менее 1000 просмотров"</string>
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Video filter, PreferenceCategory: View count filter -->
+    <string name="revanced_preference_category_view_counts_filter">Счетчик фильтров</string>
+    <string name="revanced_hide_video_by_view_counts_title">Рекомендованные видео по просмотрам</string>
+    <string name="revanced_hide_video_by_view_counts_summary">Скрыть рекомендованные видео с меньшим количеством просмотров.</string>
+    <string name="revanced_hide_video_view_counts_title">Кол-во просмотров</string>
+    <string name="revanced_hide_video_view_counts_summary">Рекомендованные видео с просмотром меньше, будет скрыто.</string>
+    <string name="revanced_hide_video_view_counts_multiplier_title">Множитель количества просмотров</string>
+    <string name="revanced_hide_video_view_counts_multiplier_summary">Укажите языковой шаблон для количества просмотров, отображаемых в каждом видео в пользовательском интерфейсе. Каждый ключ (буквы/слово на вашем языке) -&gt; значение (значение ключа) должно быть на новой строке. Кнопки идут перед знаком \"-&gt;\". Если вы переключите язык приложения или системы, вам необходимо сбросить этот параметр.\n\nПримеры:\nАнглийский: 10K views = K -&gt; 1000, views -&gt; views\nИспанский: 10 K vistas = K -&gt; 1000, vistas -&gt; views</string>
+    <string name="revanced_hide_video_view_counts_multiplier_default_value">K -&gt; 1 000\nM -&gt; 1 000 000\nB -&gt; 1 000 000 000\nпросмотров -&gt; просмотров</string>
     <!-- PreferenceScreen: General -->
+    <string name="revanced_preference_screen_general_title">Общее</string>
+    <string name="revanced_change_start_page_title">Начальная страница</string>
+    <string name="revanced_change_start_page_entry_default">По-умолчанию</string>
+    <string name="revanced_change_start_page_entry_explore">Обзор</string>
+    <string name="revanced_change_start_page_entry_history">История</string>
+    <string name="revanced_change_start_page_entry_library">Библиотека</string>
+    <string name="revanced_change_start_page_entry_liked_videos">Понравившиеся</string>
+    <string name="revanced_change_start_page_entry_search">Найти</string>
+    <string name="revanced_change_start_page_entry_shorts">Короткие видео - \"Шорты\"</string>
+    <string name="revanced_change_start_page_entry_subscriptions">Подписки</string>
+    <string name="revanced_change_start_page_entry_trending">Популярные</string>
+    <string name="revanced_change_start_page_warning">Недопустимая начальная страница, сброс к данным по умолчанию.</string>
+    <string name="revanced_disable_auto_audio_tracks_title">Принудительные звуковые дорожки</string>
+    <string name="revanced_disable_auto_audio_tracks_summary_on">Авто-звуковые дорожки отключены.</string>
+    <string name="revanced_disable_auto_audio_tracks_summary_off">Авто-звуковые дорожки включены.</string>
+    <string name="revanced_disable_auto_captions_title">Принудительные авто субтитры</string>
+    <string name="revanced_disable_auto_captions_summary_on">Автоматические субтитры отключены.</string>
+    <string name="revanced_disable_auto_captions_summary_off">Автоматические субтитры включены.</string>
+    <string name="revanced_disable_splash_animation_title">Всплывающая анимация</string>
+    <string name="revanced_disable_splash_animation_summary_on">Всплывающая анимация отключена.</string>
+    <string name="revanced_disable_splash_animation_summary_off">Всплывающая анимация включена.</string>
+    <string name="revanced_enable_gradient_loading_screen_title">Переливающийся экран загрузки</string>
+    <string name="revanced_enable_gradient_loading_screen_summary_on">Переливающийся экран загрузки включён.</string>
+    <string name="revanced_enable_gradient_loading_screen_summary_off">Переливающийся экран загрузки отключён.</string>
+    <string name="revanced_enable_tablet_mini_player_title">Планшетный мини-проигрыватель</string>
+    <string name="revanced_enable_tablet_mini_player_summary_on">Планшетный мини-проигрыватель включён.</string>
+    <string name="revanced_enable_tablet_mini_player_summary_off">Планшетный мини-проигрыватель отключён.</string>
+    <string name="revanced_enable_modern_mini_player_title">Современный мини-проигрыватель</string>
+    <string name="revanced_enable_modern_mini_player_summary_on">Современный мини-плеер включен.</string>
+    <string name="revanced_enable_modern_mini_player_summary_off">Современный мини-плеер отключен.</string>
+    <string name="revanced_hide_mini_player_rewind_forward_button_title">Кнопка перемотки &amp; вперед</string>
+    <string name="revanced_hide_mini_player_rewind_forward_button_summary_on">Кнопки скрыты в мини-плеере.</string>
+    <string name="revanced_hide_mini_player_rewind_forward_button_summary_off">Кнопки отображены в мини-плеере.</string>
+    <string name="revanced_hide_floating_microphone_title">Плавающая кнопка микрофона</string>
+    <string name="revanced_hide_floating_microphone_summary_on">Плавающая кнопка микрофона скрыта.</string>
+    <string name="revanced_hide_floating_microphone_summary_off">Плавающая кнопка микрофона отображена.</string>
+    <string name="revanced_hide_gray_separator_title">Серый разделитель</string>
+    <string name="revanced_hide_gray_separator_summary_on">Серые разделители скрыты.</string>
+    <string name="revanced_hide_gray_separator_summary_off">Серые разделители отображены.</string>
+    <string name="revanced_hide_snack_bar_title">Всплывающий виджет</string>
+    <string name="revanced_hide_snack_bar_summary_on">Всплывающий виджет скрыт.</string>
+    <string name="revanced_hide_snack_bar_summary_off">Всплывающий виджет отображён.</string>
+    <string name="revanced_remove_viewer_discretion_dialog_title">Нежелательный контент</string>
+    <string name="revanced_remove_viewer_discretion_dialog_summary">"Убрать окно о нежелательном контенте.
+Не обходит возрастное ограничение, просто принимает его автоматически."</string>
+    <string name="revanced_enable_phone_layout_title">Телефонный макет</string>
+    <string name="revanced_enable_phone_layout_summary">Подмена DPI для телефонного макета.</string>
+    <string name="revanced_enable_tablet_layout_title">Планшетный макет</string>
+    <string name="revanced_enable_tablet_layout_summary">Подмена DPI для планшетного макета.</string>
+    <string name="revanced_spoof_app_version_title">Подмена версии приложения</string>
+    <string name="revanced_spoof_app_version_summary">"Подменяет версию клиента на старую.
+
+• Это изменит внешний вид приложения, но могут возникнуть неизвестные проблемы.
+• Если отключить данную опцию после её активации, старый интерфейс может оставаться до тех пор, пока данные приложения не будут очищены."</string>
+    <string name="revanced_spoof_app_version_target_title">Версия подмены приложения</string>
+    <string name="revanced_spoof_app_version_target_summary">Введите целевую версию приложения для подмены.</string>
+    <string name="revanced_spoof_app_version_target_entry_title">Целевая версия приложения при подмене</string>
+    <string name="revanced_spoof_app_version_target_entry_17_33_42">17.33.42 - Восстановить старый интерфейс</string>
+    <string name="revanced_spoof_app_version_target_entry_17_41_37">17.41.37 - Восстановить старую секцию плейлистов</string>
+    <string name="revanced_spoof_app_version_target_entry_18_05_40">18.05.40 - Восстановление старого поля ввода комментария</string>
+    <string name="revanced_spoof_app_version_target_entry_18_17_43">18.17.43 - Вернуть старую выдвижную панель плеера</string>
+    <string name="revanced_spoof_app_version_target_entry_18_33_40">18.33.40 - Восстановить старую панель действий в Shorts</string>
+    <string name="revanced_spoof_app_version_target_entry_18_38_45">18.38.45 - Восстановить старое поведение качества видео по умолчанию</string>
+    <string name="revanced_spoof_app_version_target_entry_18_48_39">"18.48.39 - Отключает обновления в реальном времени для 'просмотры' и 'лайки'"</string>
     <!-- PreferenceScreen: General, PreferenceCategory: General, PreferenceScreen: Account menu -->
+    <string name="revanced_preference_screen_account_munu_title">Меню аккаунта</string>
+    <string name="revanced_preference_screen_account_munu_summary">Элементы в меню учетной записи и вкладке Ваше.</string>
+    <string name="revanced_hide_account_menu_title">Скрыть меню аккаунта</string>
+    <string name="revanced_hide_account_menu_summary">"Скрыть элементы меню аккаунта и вкладки \"Ваше\".
+Некоторые компоненты не могут быть скрыты."</string>
+    <string name="revanced_hide_account_menu_filter_strings_title">Фильтр меню аккаунта</string>
+    <string name="revanced_hide_account_menu_filter_strings_summary">Список имен меню учетной записи для фильтрации, разделяемых новой строкой.</string>
+    <string name="revanced_hide_handle_title">Дескриптор</string>
+    <string name="revanced_hide_handle_summary_on">Дескриптор скрыт.</string>
+    <string name="revanced_hide_handle_summary_off">Дескриптор отображен.</string>
     <!-- PreferenceScreen: General, PreferenceCategory: General, PreferenceScreen: Custom filter -->
+    <string name="revanced_preference_screen_custom_filter_title">Пользовательский фильтр</string>
+    <string name="revanced_preference_screen_custom_filter_summary">Скрыть компоненты пользовательскими фильтрами.</string>
+    <string name="revanced_custom_filter_title">Пользовательский фильтр</string>
+    <string name="revanced_custom_filter_summary_on">Пользовательский фильтр включён.</string>
+    <string name="revanced_custom_filter_summary_off">Пользовательский фильтр отключён.</string>
+    <string name="revanced_custom_filter_strings_title">Пользовательский фильтр</string>
     <!-- 'Component path builder strings' is the technical name for identifying the Litho UI layout items to hide. This is an advanced feature and most users will never use this. -->
+    <string name="revanced_custom_filter_strings_summary">Список строк компонентов для фильтрации, конструктором путей, разделяемых новой строкой.</string>
+    <string name="revanced_custom_filter_toast_invalid_syntax">Недопустимый фильтр: %s.</string>
     <!-- PreferenceScreen: General, PreferenceCategory: General, PreferenceScreen: Navigation buttons -->
+    <string name="revanced_preference_screen_navigation_buttons_title">Кнопки навигации</string>
+    <string name="revanced_preference_screen_navigation_buttons_summary">Скрыть или показать компоненты панели навигации.</string>
+    <string name="revanced_enable_narrow_navigation_buttons_title">Узкие кнопки навигации</string>
+    <string name="revanced_enable_narrow_navigation_buttons_summary_on">Уменьшение расстояния между кнопками.</string>
+    <string name="revanced_enable_narrow_navigation_buttons_summary_off">Обычное расстояние между кнопками.</string>
+    <string name="revanced_hide_navigation_create_button_title">Кнопка \"Создать\"</string>
+    <string name="revanced_hide_navigation_create_button_summary_on">Кнопка \"Создать\" скрыта.</string>
+    <string name="revanced_hide_navigation_create_button_summary_off">Кнопка \"Создать\" отображена.</string>
+    <string name="revanced_hide_navigation_home_button_title">Кнопка \"Главная\"</string>
+    <string name="revanced_hide_navigation_home_button_summary_off">Кнопка \"Главная\" отображена.</string>
+    <string name="revanced_hide_navigation_home_button_summary_on">Кнопка \"Главная\" скрыта.</string>
+    <string name="revanced_hide_navigation_library_button_title">Кнопка \"Библиотека\"</string>
+    <string name="revanced_hide_navigation_library_button_summary_on">Кнопка \"Библиотека\" скрыта.</string>
+    <string name="revanced_hide_navigation_library_button_summary_off">Кнопка \"Библиотека\" отображена.</string>
+    <string name="revanced_hide_navigation_notifications_button_title">Кнопка \"Уведомления\"</string>
+    <string name="revanced_hide_navigation_notifications_button_summary_on">Кнопка \"Уведомления\" скрыта.</string>
+    <string name="revanced_hide_navigation_notifications_button_summary_off">Кнопка \"Уведомления\" отображена.</string>
+    <string name="revanced_hide_navigation_shorts_button_title">Кнопка \"Shorts\"</string>
+    <string name="revanced_hide_navigation_shorts_button_summary_on">Кнопка \"Shorts\" скрыта.</string>
+    <string name="revanced_hide_navigation_shorts_button_summary_off">Кнопка \"Shorts\" отображена.</string>
+    <string name="revanced_hide_navigation_subscriptions_button_title">Кнопка \"Подписки\"</string>
+    <string name="revanced_hide_navigation_subscriptions_button_summary_on">Кнопка \"Подписки\" скрыта.</string>
+    <string name="revanced_hide_navigation_subscriptions_button_summary_off">Кнопка \"Подписки\" отображена.</string>
+    <string name="revanced_hide_navigation_label_title">Метки навигации</string>
+    <string name="revanced_hide_navigation_label_summary_on">Метки навигации скрыты.</string>
+    <string name="revanced_hide_navigation_label_summary_off">Метки навигации отображены.</string>
+    <string name="revanced_switch_create_with_notifications_button_title">Поменять местами \"Создать\" с \"Уведомления\"</string>
+    <string name="revanced_switch_create_with_notifications_button_summary">"Поменять местами \"Создать\" и \"Уведомления\", подменой габаритов устройства.
+
+• Рекомендована перезагрузка устройства.
+• Отключая этот параметр, получите больше рекламы.
+• Отключите параметр поменять местами, чтобы сделать рекламу видимой."</string>
     <!-- PreferenceScreen: General, PreferenceCategory: General, PreferenceScreen: Settings menu -->
+    <string name="revanced_preference_screen_settings_munu_title">Меню настроек</string>
+    <string name="revanced_preference_screen_settings_munu_summary">Элементы в меню настроек YouTube.</string>
+    <string name="revanced_hide_settings_menu_title">Меню настроек YouTube</string>
+    <string name="revanced_hide_settings_menu_summary">Элементы в меню настроек YouTube.</string>
+    <string name="revanced_hide_settings_menu_filter_strings_title">Фильтр меню настроек YouTube</string>
+    <string name="revanced_hide_settings_menu_filter_strings_summary">Список, меню настроек, YouTube для фильтрации, разделяемых новой строкой.</string>
+    <string name="revanced_hide_settings_menu_filter_strings_hint">"Аккаунт
+Сохранение данных
+Заглавия"</string>
     <!-- PreferenceScreen: General, PreferenceCategory: General, PreferenceScreen: Toolbar -->
+    <string name="revanced_preference_screen_toolbar_title">Панель инструментов</string>
+    <string name="revanced_preference_screen_toolbar_summary">Скрывать или изменять компоненты, расположенные на панели инструментов, такие как кнопки панели инструментов, панель поиска, заголовок.</string>
+    <string name="revanced_change_youtube_header_title">Заголовок YouTube</string>
+    <string name="revanced_change_youtube_header_summary_on">Премиум заголовок включен.</string>
+    <string name="revanced_change_youtube_header_summary_off">Общие заголовки включёны.</string>
+    <string name="revanced_enable_wide_search_bar_title">Широкая панель поиска</string>
+    <string name="revanced_enable_wide_search_bar_summary_on">Широкая панель поиска включена.</string>
+    <string name="revanced_enable_wide_search_bar_summary_off">Широкая панель поиска отключена.</string>
+    <string name="revanced_enable_wide_search_bar_with_header_title">Широкая панель поиска с заголовком</string>
+    <string name="revanced_enable_wide_search_bar_with_header_summary_on">Широкая панель поиска содержит заголовок YouTube.</string>
+    <string name="revanced_enable_wide_search_bar_with_header_summary_off">Широкая панель поиска не содержит заголовок YouTube.</string>
+    <string name="revanced_enable_wide_search_bar_in_you_tab_title">Широкая панель поиска во вкладке \"Ваше\"</string>
+    <string name="revanced_enable_wide_search_bar_in_you_tab_summary">"Эта опция отключит кнопку \"Настройки\" во вкладке \"Ваше\".
+
+Используйте такую последовательность: Вкладка \"Ваше\" &gt; На страницу канала &gt; Меню &gt; Настройки."</string>
+    <string name="revanced_hide_toolbar_cast_button_title">Кнопка \"Трансляция\"</string>
+    <string name="revanced_hide_toolbar_cast_button_summary_on">Кнопка \"Трансляция\" скрыта.</string>
+    <string name="revanced_hide_toolbar_cast_button_summary_off">Кнопка \"Трансляция\" отображена.</string>
+    <string name="revanced_hide_toolbar_create_button_title">Кнопка \"Создать\"</string>
+    <string name="revanced_hide_toolbar_create_button_summary_on">Кнопка \"Создать\" скрыта.</string>
+    <string name="revanced_hide_toolbar_create_button_summary_off">Кнопка \"Создать\" отображена.</string>
+    <string name="revanced_hide_toolbar_notification_button_title">Кнопка \"Уведомления\"</string>
+    <string name="revanced_hide_toolbar_notification_button_summary_on">Кнопка \"Уведомления\" скрыта.</string>
+    <string name="revanced_hide_toolbar_notification_button_summary_off">Кнопка \"Уведомления\" отображена.</string>
+    <string name="revanced_hide_search_term_thumbnail_title">Миниатюра поискового запроса</string>
+    <string name="revanced_hide_search_term_thumbnail_summary_on">Миниатюра поискового запроса скрыта.</string>
+    <string name="revanced_hide_search_term_thumbnail_summary_off">Миниатюра поискового запроса отображена.</string>
+    <string name="revanced_hide_trending_searches_title">Популярные поисковые запросы</string>
+    <string name="revanced_hide_trending_searches_summary_on">Популярные поисковые запросы скрыты.</string>
+    <string name="revanced_hide_trending_searches_summary_off">Популярные поисковые запросы отображены.</string>
+    <string name="revanced_hide_voice_search_button_title">Кнопка \"Голосового поиска\"</string>
+    <string name="revanced_hide_voice_search_button_summary_on">Кнопка \"Голосовой поиск\" скрыта.</string>
+    <string name="revanced_hide_voice_search_button_summary_off">Кнопка \"Голосовой поиск\" отображена.</string>
+    <string name="revanced_replace_toolbar_create_button_title">Заменить кнопку \"Создать\"</string>
+    <string name="revanced_replace_toolbar_create_button_summary">Заменить \"Создать\" кнопкой настройки.</string>
+    <string name="revanced_replace_toolbar_create_button_type_title">Тип действия для назначения кнопке</string>
+    <string name="revanced_replace_toolbar_create_button_type_summary_on">"Замена кнопки \"Создать\" включена."</string>
+    <string name="revanced_replace_toolbar_create_button_type_summary_off">"Замена кнопки \"Создать\" выключена."</string>
     <!-- PreferenceScreen: Player -->
+    <string name="revanced_preference_screen_player_title">Плеер</string>
+    <string name="revanced_custom_player_overlay_opacity_title">Непрозрачность наложения плеера</string>
+    <string name="revanced_custom_player_overlay_opacity_summary">Непрозрачность от 0 до 100, где 0 это прозрачный.</string>
+    <string name="revanced_custom_player_overlay_opacity_warning">Непрозрачность должна быть от 0 до 100. Сброс к значениям по умолчанию.</string>
+    <string name="revanced_disable_auto_player_popup_panels_title">Всплывающие панели плеера</string>
+    <string name="revanced_disable_auto_player_popup_panels_summary_on">Всплывающие панели плеера включены.</string>
+    <string name="revanced_disable_auto_player_popup_panels_summary_off">Всплывающие панели плеера отключены.</string>
+    <string name="revanced_disable_speed_overlay_title">Наложение скорости</string>
+    <string name="revanced_disable_speed_overlay_summary">"Отключить «Играть с ускорением x2» удерживая вниз.
+
+Примечание:
+• Отключение наложения скорости восстанавливает \"Слайд для поиска\" старого макета.
+• Этот параметр не требует включения оверлея скорости."</string>
+    <string name="revanced_speed_overlay_value_title">Скорость наложения</string>
+    <string name="revanced_speed_overlay_value_summary">Значение от 0 до 8.0.</string>
+    <string name="revanced_speed_overlay_value_warning">Значение должно быть от 0 до 8.0. Установить по умолчанию.</string>
+    <string name="revanced_hide_channel_watermark_title">Водяной знак канала</string>
+    <string name="revanced_hide_channel_watermark_summary_on">Водяной знак канала скрыт.</string>
+    <string name="revanced_hide_channel_watermark_summary_off">Водяной знак канала отображён.</string>
+    <string name="revanced_hide_crowdfunding_box_title">Ящик \"Коллективный сбор\"</string>
+    <string name="revanced_hide_crowdfunding_box_summary_on">Ящик \"Коллективный сбор\" скрыт.</string>
+    <string name="revanced_hide_crowdfunding_box_summary_off">Ящик \"Коллективный сбор\" отображен.</string>
+    <string name="revanced_hide_end_screen_cards_title">Конечные заставки</string>
+    <string name="revanced_hide_end_screen_cards_summary_on">Заставки следующих видео в конце роликов скрыты.</string>
+    <string name="revanced_hide_end_screen_cards_summary_off">Заставки следующих видео в конце роликов отображены.</string>
+    <string name="revanced_hide_filmstrip_overlay_title">Покадровая лента при перемотке</string>
+    <string name="revanced_hide_filmstrip_overlay_summary_on">Покадровая лента при перемотке скрыта.</string>
+    <string name="revanced_hide_filmstrip_overlay_summary_off">Покадровая лента при перемотке отображена.</string>
+    <string name="revanced_hide_info_cards_title">Подсказки</string>
+    <string name="revanced_hide_info_cards_summary_on">Подсказки скрыты.</string>
+    <string name="revanced_hide_info_cards_summary_off">Подсказки отображены.</string>
+    <string name="revanced_hide_info_panel_title">Информационные панели</string>
+    <string name="revanced_hide_info_panel_summary_on">Информационные панели скрыты.</string>
+    <string name="revanced_hide_info_panel_summary_off">Информационные панели отображены.</string>
+    <string name="revanced_hide_medical_panel_title">Медицинские панели</string>
+    <string name="revanced_hide_medical_panel_summary_on">Медицинские панели скрыты.</string>
+    <string name="revanced_hide_medical_panel_summary_off">Медицинские панели отображены.</string>
+    <string name="revanced_hide_seek_message_title">Сообщение перемотки</string>
+    <string name="revanced_hide_seek_message_summary_on">Сообщение перемотки скрыто.</string>
+    <string name="revanced_hide_seek_message_summary_off">Сообщение перемотки отображено.</string>
+    <string name="revanced_hide_seek_undo_message_title">Сообщение отмотки</string>
+    <string name="revanced_hide_seek_undo_message_summary_on">Сообщение отмотки скрыто.</string>
+    <string name="revanced_hide_seek_undo_message_summary_off">Сообщение отмотки отображено.</string>
+    <string name="revanced_hide_suggested_actions_title">Предложенные действия</string>
+    <string name="revanced_hide_suggested_actions_summary_on">Предложенные действия скрыты.</string>
+    <string name="revanced_hide_suggested_actions_summary_off">Предложенные действия отображены.</string>
+    <string name="revanced_hide_suggested_video_end_screen_title">Предложенное видео в конце</string>
+    <string name="revanced_hide_suggested_video_end_screen_summary">"Этот параметр устарел.
+
+Вместо этого используйте настройку «Настройки → Автозапуск → Автовоспроизведение следующего видео»."</string>
+    <string name="revanced_hide_timed_reactions_title">Реакции по времени</string>
+    <string name="revanced_hide_timed_reactions_summary_on">Реакции по времени скрыты.</string>
+    <string name="revanced_hide_timed_reactions_summary_off">Реакции по времени отображены.</string>
+    <string name="revanced_skip_autoplay_countdown_title">Обратный отсчёт авто воспроизведения</string>
+    <string name="revanced_skip_autoplay_countdown_summary_on">Пропуск задержки, авто воспроизведения следующего видео.</string>
+    <string name="revanced_skip_autoplay_countdown_summary_off">Задержка, авто воспроизведения следующего видео.</string>
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Action buttons -->
+    <string name="revanced_preference_screen_action_buttons_title">Кнопки действий</string>
+    <string name="revanced_preference_screen_action_buttons_summary">Скрыть или показать кнопки действий под видео.</string>
+    <string name="revanced_hide_clip_button_title">Кнопка \"Клип\"</string>
+    <string name="revanced_hide_clip_button_summary_on">Кнопка \"Клип\" скрыта.</string>
+    <string name="revanced_hide_clip_button_summary_off">Кнопка \"Клип\" отображена.</string>
+    <string name="revanced_hide_download_button_title">Кнопка \"Скачать\"</string>
+    <string name="revanced_hide_download_button_summary_on">Кнопка \"Скачать\" скрыта.</string>
+    <string name="revanced_hide_download_button_summary_off">Кнопка \"Скачать\" отображена.</string>
+    <string name="revanced_hide_like_dislike_button_title">Кнопки \"Нравится\" и \"Не нравится\"</string>
+    <string name="revanced_hide_like_dislike_button_summary_on">Кнопки \"Нравится\" и \"Не нравится\" скрыты.</string>
+    <string name="revanced_hide_like_dislike_button_summary_off">Кнопки \"Нравится\" и \"Не нравится\" отображены.</string>
+    <string name="revanced_hide_remix_button_title">Кнопка \"Ремикс\"</string>
+    <string name="revanced_hide_remix_button_summary_on">Кнопка \"Ремикс\" скрыта.</string>
+    <string name="revanced_hide_remix_button_summary_off">Кнопка \"Ремикс\" отображена.</string>
+    <string name="revanced_hide_report_button_title">Кнопка \"Пожаловаться\"</string>
+    <string name="revanced_hide_report_button_summary_on">Кнопка \"Пожаловаться\" скрыта.</string>
+    <string name="revanced_hide_report_button_summary_off">Кнопка \"Пожаловаться\" отображена.</string>
+    <string name="revanced_hide_rewards_button_title">Кнопка \"Бонусы\"</string>
+    <string name="revanced_hide_rewards_button_summary_on">Кнопка \"Бонусы\" скрыта.</string>
+    <string name="revanced_hide_rewards_button_summary_off">Кнопка \"Бонусы\" отображена.</string>
+    <string name="revanced_hide_playlist_button_title">Кнопка \"Сохранить в плейлист\"</string>
+    <string name="revanced_hide_playlist_button_summary_on">Кнопка \"Сохранить в плейлист\" скрыта.</string>
+    <string name="revanced_hide_playlist_button_summary_off">Кнопка \"Сохранить в плейлист\" отображена.</string>
+    <string name="revanced_hide_share_button_title">Кнопка \"Поделиться\"</string>
+    <string name="revanced_hide_share_button_summary_on">Кнопка \"Поделиться\" скрыта.</string>
+    <string name="revanced_hide_share_button_summary_off">Кнопка \"Поделиться\" отображена.</string>
+    <string name="revanced_hide_shop_button_title">Кнопка \"Магазин\"</string>
+    <string name="revanced_hide_shop_button_summary_on">Кнопка \"Магазин\" скрыта.</string>
+    <string name="revanced_hide_shop_button_summary_off">Кнопка \"Магазин\" отображена.</string>
+    <string name="revanced_hide_thanks_button_title">Кнопка \"Спасибо\"</string>
+    <string name="revanced_hide_thanks_button_summary_on">Кнопка \"Спасибо\" скрыта.</string>
+    <string name="revanced_hide_thanks_button_summary_off">Кнопка \"Спасибо\" отображена.</string>
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Ambient mode -->
+    <string name="revanced_preference_screen_ambient_mode_title">Фоновая подсветка</string>
+    <string name="revanced_preference_screen_ambient_mode_summary">Обойти ограничения фоновой подсветки или отключить.</string>
+    <string name="revanced_bypass_ambient_mode_restrictions_title">Ограничения фоновой подсветки</string>
+    <string name="revanced_bypass_ambient_mode_restrictions_summary_on">Фоновая подсветка в режиме экономии.</string>
+    <string name="revanced_bypass_ambient_mode_restrictions_summary_off">Фоновая подсветка в обычном режиме.</string>
+    <string name="revanced_disable_ambient_mode_title">Фоновая подсветка</string>
+    <string name="revanced_disable_ambient_mode_summary">Фоновая подсветка отключена.</string>
+    <string name="revanced_disable_ambient_mode_in_fullscreen_title">Фоновая подсветка в полном экране</string>
+    <string name="revanced_disable_ambient_mode_in_fullscreen_summary">Фоновая подсветка в полном экране отключена.</string>
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Channel bar -->
+    <string name="revanced_preference_screen_channel_bar_title">Панель канала</string>
+    <string name="revanced_preference_screen_channel_bar_summary">Скрыть или показать компоненты на канале под видео.</string>
+    <string name="revanced_hide_join_button_title">Кнопка \"Стать спонсором\"</string>
+    <string name="revanced_hide_join_button_summary_on">Кнопка \"Стать Спонсором\" скрыта.</string>
+    <string name="revanced_hide_join_button_summary_off">Кнопка \"Стать спонсором\" отображена.</string>
+    <string name="revanced_hide_start_trial_button_title">Кнопка \"Попробовать\", пробную версию</string>
+    <string name="revanced_hide_start_trial_button_summary_on">Кнопка \"Попробовать\" скрыта.</string>
+    <string name="revanced_hide_start_trial_button_summary_off">Кнопка \"Попробовать\" отображена.</string>
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Comments -->
+    <string name="revanced_preference_screen_comments_title">Комментарии</string>
+    <string name="revanced_preference_screen_comments_summary">Скрыть или показать компоненты секции комментариев.</string>
+    <string name="revanced_hide_channel_guidelines_title">Правила канала</string>
+    <string name="revanced_hide_channel_guidelines_summary_on">Правила канала скрыты.</string>
+    <string name="revanced_hide_channel_guidelines_summary_off">Правила канала отображены.</string>
+    <string name="revanced_hide_comments_by_members_title">Баннер \"Комментарии спонсоров\"</string>
+    <string name="revanced_hide_comments_by_members_summary_on">Баннер \"Комментарии спонсоров\" скрыт.</string>
+    <string name="revanced_hide_comments_by_members_summary_off">Баннер \"Комментарии спонсоров\" отображён.</string>
+    <string name="revanced_hide_comments_section_title">Раздел \"Комментарии\"</string>
+    <string name="revanced_hide_comments_section_summary_on">Раздел комментариев скрыт.</string>
+    <string name="revanced_hide_comments_section_summary_off">Раздел комментариев отображён.</string>
+    <string name="revanced_hide_comments_section_in_home_feed_title">Раздел комментариев в домашней ленте новостей</string>
+    <string name="revanced_hide_comments_section_in_home_feed_summary_on">Раздел комментариев, в домашнем канале, скрыт.</string>
+    <string name="revanced_hide_comments_section_in_home_feed_summary_off">Раздел комментариев, в домашнем канале, отображен.</string>
+    <string name="revanced_hide_preview_comment_title">Предпросмотр комментария</string>
+    <string name="revanced_hide_preview_comment_on">Предпросмотр комментария скрыт.</string>
+    <string name="revanced_hide_preview_comment_off">Предпросмотр комментария отображён.</string>
+    <string name="revanced_hide_preview_comment_type_title">Тип предпросмотра комментария</string>
+    <string name="revanced_hide_preview_comment_type_on">Не изменяет размер раздела комментариев, поэтому можно открыть повтор чата онлайн.</string>
+    <string name="revanced_hide_preview_comment_type_off">Изменяет размер раздела комментариев, невозможно открыть запись чата.</string>
+    <string name="revanced_hide_comment_create_shorts_button_title">Кнопка \"Создать Shorts\"</string>
+    <string name="revanced_hide_comment_create_shorts_button_summary_on">Кнопка \"Создать Shorts\" скрыта.</string>
+    <string name="revanced_hide_comment_create_shorts_button_summary_off">Кнопка \"Создать Shorts\" отображена.</string>
+    <string name="revanced_hide_comment_thanks_button_title">Кнопка \"Спасибо\"</string>
+    <string name="revanced_hide_comment_thanks_button_summary_on">Кнопка \"Спасибо\" скрыта.</string>
+    <string name="revanced_hide_comment_thanks_button_summary_off">Кнопка \"Спасибо\" отображена.</string>
+    <string name="revanced_hide_comment_timestamp_and_emoji_buttons_title">Метка времени и кнопки эмодзи</string>
+    <string name="revanced_hide_comment_timestamp_and_emoji_buttons_summary_on">Кнопки метки времени и эмодзи скрыты.</string>
+    <string name="revanced_hide_comment_timestamp_and_emoji_buttons_summary_off">Кнопки метки времени и эмодзи отображены.</string>
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Flyout menu -->
+    <string name="revanced_preference_screen_player_flyout_menu_title">Выдвижное меню плеера</string>
+    <string name="revanced_preference_screen_player_flyout_menu_summary">Скрыть или изменить \"Выдвижное меню плеера\" в проигрывателе видео.</string>
+    <string name="revanced_change_player_flyout_menu_toggle_title">Изменить тип переключателя</string>
+    <string name="revanced_change_player_flyout_menu_toggle_summary_on">Задействованы текстовые переключатели.</string>
+    <string name="revanced_change_player_flyout_menu_toggle_summary_off">Задействованы вариативные переключатели.</string>
+    <string name="revanced_hide_player_flyout_menu_audio_track_title">Меню \"Звуковая дорожка\"</string>
+    <string name="revanced_hide_player_flyout_menu_audio_track_summary_on">Меню \"Звуковая дорожка\" скрыто.</string>
+    <string name="revanced_hide_player_flyout_menu_audio_track_summary_off">Меню \"Звуковая дорожка\" отображено.</string>
+    <string name="revanced_hide_player_flyout_menu_captions_title">Меню \"Субтитры\"</string>
+    <string name="revanced_hide_player_flyout_menu_captions_summary_on">Меню \"Субтитры\" скрыто.</string>
+    <string name="revanced_hide_player_flyout_menu_captions_summary_off">Меню \"Субтитры\" отображено.</string>
+    <string name="revanced_hide_player_flyout_menu_captions_footer_title">Подсказка в меню выбора субтитров</string>
+    <string name="revanced_hide_player_flyout_menu_captions_footer_summary_on">Подсказка в меню выбора субтитров скрыта.</string>
+    <string name="revanced_hide_player_flyout_menu_captions_footer_summary_off">Подсказка в меню выбора субтитров отображена.</string>
+    <string name="revanced_hide_player_flyout_menu_lock_screen_title">Меню \"Блокировка экрана\"</string>
+    <string name="revanced_hide_player_flyout_menu_lock_screen_summary_on">Меню \"Блокировка экрана\" скрыто.</string>
+    <string name="revanced_hide_player_flyout_menu_lock_screen_summary_off">Меню \"Блокировка экрана\" отображено.</string>
+    <string name="revanced_hide_player_flyout_menu_more_info_title">Меню \"Дополнительная информация\"</string>
+    <string name="revanced_hide_player_flyout_menu_more_info_summary_on">Меню \"Дополнительная информация\" скрыто.</string>
+    <string name="revanced_hide_player_flyout_menu_more_info_summary_off">Меню \"Дополнительная информация\" отображено.</string>
+    <string name="revanced_hide_player_flyout_menu_playback_speed_title">Меню \"Скорость воспроизведения\"</string>
+    <string name="revanced_hide_player_flyout_menu_playback_speed_summary_on">Меню \"Скорость воспроизведения\" скрыто.</string>
+    <string name="revanced_hide_player_flyout_menu_playback_speed_summary_off">Меню \"Скорость воспроизведения\" отображено.</string>
+    <string name="revanced_hide_player_flyout_menu_quality_footer_title">Подсказка в меню качества</string>
+    <string name="revanced_hide_player_flyout_menu_quality_footer_summary_on">Подсказка в меню качества скрыта.</string>
+    <string name="revanced_hide_player_flyout_menu_quality_footer_summary_off">Подсказка в меню качества отображена.</string>
+    <string name="revanced_hide_player_flyout_menu_report_title">Меню \"Пожаловаться\"</string>
+    <string name="revanced_hide_player_flyout_menu_report_summary_on">Меню \"Пожаловаться\" скрыто.</string>
+    <string name="revanced_hide_player_flyout_menu_report_summary_off">Меню \"Пожаловаться\" отображено.</string>
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Flyout menu, PreferenceCategory: Additional settings -->
+    <string name="revanced_preference_category_additional_settings">Дополнительные настройки</string>
+    <string name="revanced_hide_player_flyout_menu_ambient_mode_title">Меню \"Фоновая подсветка\"</string>
+    <string name="revanced_hide_player_flyout_menu_ambient_mode_summary_on">Меню \"Фоновая подсветка\" скрыто.</string>
+    <string name="revanced_hide_player_flyout_menu_ambient_mode_summary_off">Меню \"Фоновая подсветка\" отображено.</string>
+    <string name="revanced_hide_player_flyout_menu_help_title">Меню \"Справка &amp; Отзывы\"</string>
+    <string name="revanced_hide_player_flyout_menu_help_summary_on">Меню \"Справка &amp; Отзывы\" скрыто.</string>
+    <string name="revanced_hide_player_flyout_menu_help_summary_off">Меню \"Справка &amp; Отзывы\" отображено.</string>
+    <string name="revanced_hide_player_flyout_menu_listen_with_youtube_music_title">Меню \"Открыть в YouTube Music\"</string>
+    <string name="revanced_hide_player_flyout_menu_listen_with_youtube_music_summary_on">Меню \"Открыть в YouTube Music\" скрыто.</string>
+    <string name="revanced_hide_player_flyout_menu_listen_with_youtube_music_summary_off">Меню \"Открыть в YouTube Music\" отображено.</string>
+    <string name="revanced_hide_player_flyout_menu_loop_video_title">Меню \"Зацикливания видео\"</string>
+    <string name="revanced_hide_player_flyout_menu_loop_video_summary_on">Меню \"Зацикливания видео\" скрыто.</string>
+    <string name="revanced_hide_player_flyout_menu_loop_video_summary_off">Меню \"Зацикливания видео\" отображено.</string>
+    <string name="revanced_hide_player_flyout_menu_pip_title">Меню \"Картинка в картинке\"</string>
+    <string name="revanced_hide_player_flyout_menu_pip_summary_on">Меню \"Картинка в картинке\" скрыто.</string>
+    <string name="revanced_hide_player_flyout_menu_pip_summary_off">Меню \"Картинка в картинке\" отображено.</string>
+    <string name="revanced_hide_player_flyout_menu_premium_controls_title">Меню \"Настройки Premium\"</string>
+    <string name="revanced_hide_player_flyout_menu_premium_controls_summary_on">Меню \"Настройки Premium\" скрыто.</string>
+    <string name="revanced_hide_player_flyout_menu_premium_controls_summary_off">Premium controls menu is shown.</string>
+    <string name="revanced_hide_player_flyout_menu_stable_volume_summary_off">Stable volume menu is shown.</string>
+    <string name="revanced_hide_player_flyout_menu_stable_volume_summary_on">Stable volume menu is hidden.</string>
+    <string name="revanced_hide_player_flyout_menu_stable_volume_title">Hide stable volume menu</string>
+    <string name="revanced_hide_player_flyout_menu_stats_for_nerds_title">Hide stats for nerds menu</string>
+    <string name="revanced_hide_player_flyout_menu_stats_for_nerds_summary_on">Stats for nerds menu is hidden.</string>
+    <string name="revanced_hide_player_flyout_menu_stats_for_nerds_summary_off">Stats for nerds menu is shown.</string>
+    <string name="revanced_hide_player_flyout_menu_watch_in_vr_title">Hide watch in VR menu</string>
+    <string name="revanced_hide_player_flyout_menu_watch_in_vr_summary_on">Watch in VR menu is hidden.</string>
+    <string name="revanced_hide_player_flyout_menu_watch_in_vr_summary_off">Watch in VR menu is shown.</string>
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Fullscreen -->
+    <string name="revanced_preference_screen_fullscreen_title">Fullscreen</string>
+    <string name="revanced_preference_screen_fullscreen_summary">Hide or change components related to fullscreen.</string>
+    <string name="revanced_disable_engagement_panel_title">Disable engagement panel</string>
+    <string name="revanced_disable_engagement_panel_summary_on">Engagement panel is disabled.</string>
+    <string name="revanced_disable_engagement_panel_summary_off">Engagement panel is enabled.</string>
+    <string name="revanced_show_video_title_section_title">Show video title section</string>
+    <string name="revanced_show_video_title_section_summary">"Shows the video title section in full screen.
+
+Limitation: Video title disappears when clicked."</string>
+    <string name="revanced_hide_autoplay_preview_summary_on">Autoplay preview container is hidden.</string>
+    <string name="revanced_hide_autoplay_preview_summary_off">Autoplay preview container is shown.</string>
+    <string name="revanced_hide_autoplay_preview_title">Hide autoplay preview container</string>
+    <string name="revanced_hide_related_video_overlay_summary_on">Related video overlay is hidden.</string>
+    <string name="revanced_hide_related_video_overlay_summary_off">Related video overlay is shown.</string>
+    <string name="revanced_hide_related_video_overlay_title">Hide related video overlay</string>
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Fullscreen, PreferenceCategory: Quick actions -->
+    <string name="revanced_preference_category_quick_actions">Quick actions</string>
+    <string name="revanced_hide_quick_actions_title">Hide quick actions container</string>
+    <string name="revanced_hide_quick_actions_summary_on">Quick actions container is hidden.</string>
+    <string name="revanced_hide_quick_actions_summary_off">Quick actions container is shown.</string>
+    <string name="revanced_hide_quick_actions_comment_button_title">Hide comment button</string>
+    <string name="revanced_hide_quick_actions_comment_button_summary_on">Comment button is hidden.</string>
+    <string name="revanced_hide_quick_actions_comment_button_summary_off">Comment button is shown.</string>
+    <string name="revanced_hide_quick_actions_dislike_button_title">Hide dislike button</string>
+    <string name="revanced_hide_quick_actions_dislike_button_summary_on">Dislike button is hidden.</string>
+    <string name="revanced_hide_quick_actions_dislike_button_summary_off">Dislike button is shown.</string>
+    <string name="revanced_hide_quick_actions_like_button_title">Hide like button</string>
+    <string name="revanced_hide_quick_actions_like_button_summary_on">Like button is hidden.</string>
+    <string name="revanced_hide_quick_actions_like_button_summary_off">Like button is shown.</string>
+    <string name="revanced_hide_quick_actions_live_chat_button_title">Hide live chat button</string>
+    <string name="revanced_hide_quick_actions_live_chat_button_summary_on">Live chat button is hidden.</string>
+    <string name="revanced_hide_quick_actions_live_chat_button_summary_off">Live chat button is shown.</string>
+    <string name="revanced_hide_quick_actions_more_button_title">Hide more button</string>
+    <string name="revanced_hide_quick_actions_more_button_summary_on">More button is hidden.</string>
+    <string name="revanced_hide_quick_actions_more_button_summary_off">More button is shown.</string>
+    <string name="revanced_hide_quick_actions_open_mix_playlist_button_title">Hide open mix playlist button</string>
+    <string name="revanced_hide_quick_actions_open_mix_playlist_button_summary_on">Open mix playlist button is hidden.</string>
+    <string name="revanced_hide_quick_actions_open_mix_playlist_button_summary_off">Open mix playlist button is shown.</string>
+    <string name="revanced_hide_quick_actions_open_playlist_button_title">Hide open playlist button</string>
+    <string name="revanced_hide_quick_actions_open_playlist_button_summary_on">Open playlist button is hidden.</string>
+    <string name="revanced_hide_quick_actions_open_playlist_button_summary_off">Open playlist button is shown.</string>
+    <string name="revanced_hide_quick_actions_related_videos_title">Hide related videos in quick actions</string>
+    <string name="revanced_hide_quick_actions_related_videos_summary_on">Related videos are hidden.</string>
+    <string name="revanced_hide_quick_actions_related_videos_summary_off">Связанные видео отображены.</string>
+    <string name="revanced_hide_quick_actions_save_to_playlist_button_title">Кнопка \"Сохранить в плейлист\"</string>
+    <string name="revanced_hide_quick_actions_save_to_playlist_button_summary_on">Кнопка \"Сохранить в плейлист\" скрыта.</string>
+    <string name="revanced_hide_quick_actions_save_to_playlist_button_summary_off">Кнопка \"Сохранить в плейлист\" отображена.</string>
+    <string name="revanced_hide_quick_actions_share_button_title">Кнопка \"Поделиться\"</string>
+    <string name="revanced_hide_quick_actions_share_button_summary_on">Кнопка \"Поделиться\" скрыта.</string>
+    <string name="revanced_hide_quick_actions_share_button_summary_off">Кнопка \"Поделиться\" отображена.</string>
+    <string name="revanced_quick_actions_top_margin_title">Быстрые действия вверху</string>
+    <string name="revanced_quick_actions_top_margin_summary">Интервал между панелью поиска и контейнером быстрых действий, диапазон от 0 - 32.</string>
+    <string name="revanced_quick_actions_top_margin_warning">Диапазон должен быть от 0 до 32. Сбросить значения по умолчанию.</string>
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Fullscreen, PreferenceCategory: Experimental Flags -->
+    <string name="revanced_disable_landscape_mode_title">Ландшафтный режим</string>
+    <string name="revanced_disable_landscape_mode_summary_on">Портретная ориентация в полноэкранном режиме включена.</string>
+    <string name="revanced_disable_landscape_mode_summary_off">Ориентация в полноэкранном режиме выключена. Настройки устройства.</string>
+    <string name="revanced_enable_compact_controls_overlay_title">Компактные элементы управления</string>
+    <string name="revanced_enable_compact_controls_overlay_summary_on">Наложение элементов управления не полноэкранное.</string>
+    <string name="revanced_enable_compact_controls_overlay_summary_off">Наложение элементов управления полноэкранное.</string>
+    <string name="revanced_force_fullscreen_title">Принудительный полный экран</string>
+    <string name="revanced_force_fullscreen_summary">"Видео будут переведены в полноэкранный режим в следующих ситуациях:
+
+• Нажатие на временную метку в комментариях.
+• Запуск видео."</string>
+    <string name="revanced_keep_landscape_mode_title">Удерживать альбомный режим</string>
+    <string name="revanced_keep_landscape_mode_summary">Удерживает альбомный режим, в полноэкранном режиме.</string>
+    <string name="revanced_keep_landscape_mode_timeout_title">Длительность удержания альбомного режима</string>
+    <string name="revanced_keep_landscape_mode_timeout_summary">Альбомный режим обязателен. Миллисекунды.</string>
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Haptic feedback -->
+    <string name="revanced_preference_screen_haptic_feedback_title">Виброотклик</string>
+    <string name="revanced_preference_screen_haptic_feedback_summary">Отключить или включить Виброотклик.</string>
+    <string name="revanced_disable_haptic_feedback_chapters_title">Виброотклик при смене главы</string>
+    <string name="revanced_disable_haptic_feedback_chapters_summary_on">Виброотклик отключён.</string>
+    <string name="revanced_disable_haptic_feedback_chapters_summary_off">Виброотклик включён.</string>
+    <string name="revanced_disable_haptic_feedback_scrubbing_title">Виброотклик при перемотке жестом</string>
+    <string name="revanced_disable_haptic_feedback_scrubbing_summary_on">Виброотклик отключён.</string>
+    <string name="revanced_disable_haptic_feedback_scrubbing_summary_off">Виброотклик включён.</string>
+    <string name="revanced_disable_haptic_feedback_seek_title">Виброотклик при перемотке нажатием</string>
+    <string name="revanced_disable_haptic_feedback_seek_summary_on">Виброотклик отключён.</string>
+    <string name="revanced_disable_haptic_feedback_seek_summary_off">Виброотклик включён.</string>
+    <string name="revanced_disable_haptic_feedback_seek_undo_title">Виброотклик при отмотке нажатием</string>
+    <string name="revanced_disable_haptic_feedback_seek_undo_summary_on">Виброотклик отключён.</string>
+    <string name="revanced_disable_haptic_feedback_seek_undo_summary_off">Виброотклик включён.</string>
+    <string name="revanced_disable_haptic_feedback_zoom_title">Виброотклик при жесте увеличения экрана</string>
+    <string name="revanced_disable_haptic_feedback_zoom_summary_on">Виброотклик отключён.</string>
+    <string name="revanced_disable_haptic_feedback_zoom_summary_off">Виброотклик включён.</string>
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Player buttons -->
+    <string name="revanced_preference_screen_player_buttons_title">Кнопки плеера</string>
+    <string name="revanced_preference_screen_player_buttons_summary">Скрыть или показать кнопки в видео.</string>
+    <string name="revanced_hide_player_autoplay_button_title">Кнопка \"Автовоспроизведение\"</string>
+    <string name="revanced_hide_player_autoplay_button_summary_on">Кнопка \"Автовоспроизведение\" скрыта.</string>
+    <string name="revanced_hide_player_autoplay_button_summary_off">Кнопка \"Автовоспроизведение\" отображена.</string>
+    <string name="revanced_hide_player_captions_button_title">Кнопка \"Субтитры\"</string>
+    <string name="revanced_hide_player_captions_button_summary_on">Кнопка Субтитры скрыта.</string>
+    <string name="revanced_hide_player_captions_button_summary_off">Кнопка Субтитры отображена.</string>
+    <string name="revanced_hide_player_cast_button_title">Кнопка \"Трансляция\"</string>
+    <string name="revanced_hide_player_cast_button_summary_on">Кнопка \"Трансляция\" скрыта.</string>
+    <string name="revanced_hide_player_cast_button_summary_off">Кнопка \"Трансляция\" отображена.</string>
+    <string name="revanced_hide_player_collapse_button_title">Кнопка \"Свернуть\"</string>
+    <string name="revanced_hide_player_collapse_button_summary_on">Кнопка \"Свернуть\" скрыта.</string>
+    <string name="revanced_hide_player_collapse_button_summary_off">Кнопка \"Свернуть\" отображена.</string>
+    <string name="revanced_hide_player_fullscreen_button_title">Кнопка полноэкранного режима</string>
+    <string name="revanced_hide_player_fullscreen_button_summary_on">Кнопка полноэкранного режима скрыта.</string>
+    <string name="revanced_hide_player_fullscreen_button_summary_off">Кнопка полноэкранного режима отображена.</string>
+    <string name="revanced_hide_player_previous_next_button_title">Кнопки Пред. &amp; След.</string>
+    <string name="revanced_hide_player_previous_next_button_summary_on">Кнопки предыдущего и следующего видео скрыты.</string>
+    <string name="revanced_hide_player_previous_next_button_summary_off">Кнопки предыдущего и следующего видео отображены.</string>
+    <string name="revanced_hide_player_youtube_music_button_title">Кнопка YouTube Music</string>
+    <string name="revanced_hide_player_youtube_music_button_summary_on">Кнопка \"YouTube Music\" скрыта.</string>
+    <string name="revanced_hide_player_youtube_music_button_summary_off">Кнопка \"YouTube Music\" отображена.</string>
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Player buttons, PreferenceCategory: Overlay buttons -->
+    <string name="revanced_preference_category_overlay_buttons">Наложение кнопок</string>
+    <string name="revanced_overlay_button_always_repeat_title">Кнопка Постоянный повтор</string>
+    <string name="revanced_overlay_button_always_repeat_summary">"Нажмите, чтобы переключить в состояние повтора.
+Нажмите и удержите, чтобы переключить паузу после состояния повтора."</string>
+    <string name="revanced_overlay_button_copy_video_url_title">Кнопка копировать URL видео</string>
+    <string name="revanced_overlay_button_copy_video_url_summary">"Нажмите, чтобы скопировать URL видео.
+Нажмите и удержите, чтобы скопировать URL видео с временной меткой."</string>
+    <string name="revanced_overlay_button_copy_video_url_timestamp_title">Кнопка копирования URL с меткой времени</string>
+    <string name="revanced_overlay_button_copy_video_url_timestamp_summary">"Нажмите, чтобы скопировать URL видео с временной меткой.
+Нажмите и удержите, чтобы скопировать временную метку видео."</string>
+    <string name="revanced_overlay_button_external_downloader_title">Кнопка внешний загрузчик</string>
+    <string name="revanced_overlay_button_external_downloader_summary">Запустить внешний загрузчик.</string>
+    <string name="revanced_overlay_button_speed_dialog_title">Кнопка скорости воспроизведения</string>
+    <string name="revanced_overlay_button_speed_dialog_summary">"Нажмите для открытия окна скорости.
+Нажмите и удержите для установки скорости воспроизведения в 1.0x."</string>
+    <string name="revanced_overlay_button_speed_dialog_reset">Скорость сброшена (1.0x).</string>
+    <string name="revanced_overlay_button_not_allowed_warning">Нажмите и удерживайте, чтобы изменить состояние кнопки.</string>
+    <string name="revanced_external_downloader_package_name_title">Имя пакета внешнего загрузчика</string>
+    <string name="revanced_external_downloader_package_name_summary">Имя пакета вашего установленного внешнего загрузчика. Например, NewPipe или YTDLnis.</string>
+    <string name="revanced_external_downloader_dialog_title">Внешний загрузчик</string>
+    <string name="revanced_external_downloader_not_installed_dialog_title">Предупреждение</string>
+    <string name="revanced_external_downloader_not_installed_dialog_message">"%1$s не установлен.
+Пожалуйста, скачайте %2$s с сайта."</string>
+    <string name="revanced_external_downloader_not_installed_warning">%s не установлен. Пожалуйста, установите его.</string>
+    <string name="revanced_external_downloader_action_title">Кнопка Загрузка, переопределить действие</string>
+    <string name="revanced_external_downloader_action_summary_on">Кнопка \"Скачать\" запускает внешний загрузчик</string>
+    <string name="revanced_external_downloader_action_summary_off">Кнопка \"Скачать\" запускает собственный загрузчик</string>
+    <string name="revanced_share_copy_timestamp_success">Метка скопирована в буфер. (%s)</string>
+    <string name="revanced_share_copy_url_success">Ссылка скопирована в буфер обмена.</string>
+    <string name="revanced_share_copy_url_timestamp_success">Ссылка с меткой скопирована в буфер.</string>
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Seekbar -->
+    <string name="revanced_preference_screen_seekbar_title">Прогресс</string>
+    <string name="revanced_preference_screen_seekbar_summary">Настроить компоненты панели прогресса.</string>
+    <string name="revanced_append_time_stamp_information_title">Информация о временной отметке</string>
+    <string name="revanced_append_time_stamp_information_summary_on">Информация о временной отметке включена.</string>
+    <string name="revanced_append_time_stamp_information_summary_off">Информация о временной отметке отключена.</string>
+    <string name="revanced_append_time_stamp_information_type_title">Добавить тип информации</string>
+    <string name="revanced_append_time_stamp_information_type_summary_on">Добавить качество видео.</string>
+    <string name="revanced_append_time_stamp_information_type_summary_off">Показывать скорость воспроизведения.</string>
+    <string name="revanced_replace_time_stamp_action_title">Заменить штамп времени действия</string>
+    <string name="revanced_replace_time_stamp_action_summary_on">Нажмите, чтобы открыть меню скорости воспроизведения или качества видео.</string>
+    <string name="revanced_replace_time_stamp_action_summary_off">Нажмите, чтобы показать оставшееся время.</string>
+    <string name="revanced_enable_custom_seekbar_color_title">Пользовательский цвет</string>
+    <string name="revanced_enable_custom_seekbar_color_summary_on">Custom seekbar color is enabled.</string>
+    <string name="revanced_enable_custom_seekbar_color_summary_off">Пользовательский цвет прогресса воспроизведения отключён.</string>
+    <string name="revanced_custom_seekbar_color_value_title">Пользовательское значение цвета</string>
+    <string name="revanced_custom_seekbar_color_value_summary">HEX код цвета прогресса воспроизведения.</string>
+    <string name="revanced_enable_seekbar_tapping_title">Перемотка нажатием</string>
+    <string name="revanced_enable_seekbar_tapping_summary_on">Перемотка нажатием на прогресс воспроизведения включена.</string>
+    <string name="revanced_enable_seekbar_tapping_summary_off">Перемотка нажатием на прогресс воспроизведения отключена.</string>
+    <string name="revanced_hide_seekbar_title">Панель прогресса в плеере</string>
+    <string name="revanced_hide_seekbar_summary_on">Панель прогресса в плеере скрыта.</string>
+    <string name="revanced_hide_seekbar_summary_off">Панель прогресса в плеере отображена.</string>
+    <string name="revanced_hide_seekbar_thumbnail_title">Миниатюры прогресса</string>
+    <string name="revanced_hide_seekbar_thumbnail_summary_on">Миниатюры прогресса скрыты.</string>
+    <string name="revanced_hide_seekbar_thumbnail_summary_off">Миниатюры прогресса отображены.</string>
+    <string name="revanced_hide_seekbar_chapters_title">Главы панели прогресса</string>
+    <string name="revanced_hide_seekbar_chapters_summary_on">Главы панели прогресса скрыты.</string>
+    <string name="revanced_hide_seekbar_chapters_summary_off">Главы панели прогресса отображены.</string>
+    <string name="revanced_hide_time_stamp_title">Временная метка</string>
+    <string name="revanced_hide_time_stamp_summary_on">Временная метка скрыта.</string>
+    <string name="revanced_hide_time_stamp_summary_off">Временная метка отображена.</string>
+    <string name="revanced_restore_old_seekbar_thumbnails_title">Старые миниатюры панели прогресса</string>
+    <string name="revanced_restore_old_seekbar_thumbnails_summary_on">Миниатюры отображаются над панелью прогресса.</string>
+    <string name="revanced_restore_old_seekbar_thumbnails_summary_off">Миниатюры отображаются в полноэкранном режиме.</string>
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Video description -->
+    <string name="revanced_preference_screen_video_description_title">Описание видео</string>
+    <string name="revanced_preference_screen_video_description_summary">Скрыть или отобразить компоненты описания видео.</string>
+    <string name="revanced_disable_rolling_number_animations_title">Анимированные счетчики</string>
+    <string name="revanced_disable_rolling_number_animations_summary_on">Анимированные счетчики отключены.</string>
+    <string name="revanced_disable_rolling_number_animations_summary_off">Анимированные счетчики включены.</string>
+    <string name="revanced_hide_chapters_section_title">Разделы глав</string>
+    <string name="revanced_hide_chapters_section_summary_on">Разделы глав скрыты.</string>
+    <string name="revanced_hide_chapters_section_summary_off">Разделы глав отображены.</string>
+    <string name="revanced_hide_info_cards_section_title">Разделы подсказок</string>
+    <string name="revanced_hide_info_cards_section_summary_on">Разделы подсказок скрыты.</string>
+    <string name="revanced_hide_info_cards_section_summary_off">Разделы подсказок отображены.</string>
+    <string name="revanced_hide_podcast_section_title">Разделы подкастов</string>
+    <string name="revanced_hide_podcast_section_summary_on">Разделы подкастов скрыты.</string>
+    <string name="revanced_hide_podcast_section_summary_off">Разделы подкастов отображены.</string>
+    <string name="revanced_hide_shopping_links_title">Ссылки на товары</string>
+    <string name="revanced_hide_shopping_links_summary_on">Ссылки на товары скрыты.</string>
+    <string name="revanced_hide_shopping_links_summary_off">Ссылки на товары отображены.</string>
+    <string name="revanced_hide_suggestions_section_title">Разделы предложений</string>
+    <string name="revanced_hide_suggestions_section_summary_on">Разделы игр, музыкальные секции и разделы мест скрыты.</string>
+    <string name="revanced_hide_suggestions_section_summary_off">Разделы игр, музыкальные секции и разделы мест отображены.</string>
+    <string name="revanced_hide_transcript_section_title">Разделы расшифровки</string>
+    <string name="revanced_hide_transcript_section_summary_on">Разделы расшифровки скрыты.</string>
+    <string name="revanced_hide_transcript_section_summary_off">Разделы расшифровки отображены.</string>
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Video description, PreferenceCategory: Experimental Flags -->
+    <string name="revanced_disable_video_description_interaction_title">Взаимодействие с описанием видео</string>
+    <string name="revanced_disable_video_description_interaction_summary">"Отключает следующее взаимодействие при расширении описания видео:
+
+• Нажмите для прокрутки.
+• Нажмите и удерживайте для выбора текста."</string>
+    <string name="revanced_expand_video_description_title">Развернуть описание видео</string>
+    <string name="revanced_expand_video_description_summary_on">Описание видео автоматически развернуто.</string>
+    <string name="revanced_expand_video_description_summary_off">Описание видео расширяется вручную.</string>
+    <string name="revanced_expand_video_description_strings_title">Название в панели описания видео</string>
+    <string name="revanced_expand_video_description_strings_summary">"Enter a title in the video description panel.
+These characters vary depending on your language.
+'Expand video description' may not work if you save an incorrect string."</string>
+    <string name="revanced_expand_video_description_strings_default_value">Description</string>
     <!-- PreferenceScreen: Shorts -->
+    <string name="revanced_preference_screen_shorts_title">Shorts</string>
+    <string name="revanced_change_shorts_repeat_state_title">Change shorts repeat state</string>
+    <string name="revanced_change_shorts_repeat_state_entry_auto_play">Autoplay</string>
+    <string name="revanced_change_shorts_repeat_state_entry_default">Default</string>
+    <string name="revanced_change_shorts_repeat_state_entry_pause">Pause</string>
+    <string name="revanced_change_shorts_repeat_state_entry_repeat">Repeat</string>
+    <string name="revanced_disable_resuming_shorts_player_title">Disable resuming Shorts player</string>
+    <string name="revanced_disable_resuming_shorts_player_summary_on">Shorts player will not resume on app startup</string>
+    <string name="revanced_disable_resuming_shorts_player_summary_off">Shorts player will resume on app startup</string>
     <!-- PreferenceScreen: Shorts, PreferenceCategory: Shorts shelf -->
+    <string name="revanced_preference_category_shorts_shelf">Shorts shelf</string>
+    <string name="revanced_hide_shorts_shelf_title">Hide shorts shelf</string>
+    <string name="revanced_hide_shorts_shelf_summary">"Hides Shorts shelves.
+
+Limitation: Official headers in search results will be hidden."</string>
+    <string name="revanced_hide_shorts_shelf_home_related_videos_title">Hide in home feed and related videos</string>
+    <string name="revanced_hide_shorts_shelf_home_related_videos_summary_on">Hidden in home feed and related videos.</string>
+    <string name="revanced_hide_shorts_shelf_home_related_videos_summary_off">Shown in home feed and related videos.</string>
+    <string name="revanced_hide_shorts_shelf_subscriptions_title">Hide in subscriptions feed</string>
+    <string name="revanced_hide_shorts_shelf_subscriptions_summary_on">Hidden in subscriptions feed.</string>
+    <string name="revanced_hide_shorts_shelf_subscriptions_summary_off">Shown in subscriptions feed.</string>
+    <string name="revanced_hide_shorts_shelf_search_title">Hide in search results</string>
+    <string name="revanced_hide_shorts_shelf_search_summary_on">Hidden in search results.</string>
+    <string name="revanced_hide_shorts_shelf_search_summary_off">Shown in search results.</string>
+    <string name="revanced_hide_shorts_shelf_history_title">Hide in watch history</string>
+    <string name="revanced_hide_shorts_shelf_history_summary_on">Hidden in watch history.</string>
+    <string name="revanced_hide_shorts_shelf_history_summary_off">Shown in watch history.</string>
     <!-- PreferenceScreen: Shorts, PreferenceCategory: Shorts, PreferenceScreen: Shorts player -->
+    <string name="revanced_preference_screen_shorts_player_title">Shorts player</string>
+    <string name="revanced_preference_screen_shorts_player_summary">Hide or show components in the shorts player.</string>
+    <string name="revanced_hide_shorts_join_button_title">Hide join button</string>
+    <string name="revanced_hide_shorts_join_button_summary_on">Join button is hidden.</string>
+    <string name="revanced_hide_shorts_join_button_summary_off">Join button is shown.</string>
+    <string name="revanced_hide_shorts_subscribe_button_title">Hide subscribe button</string>
+    <string name="revanced_hide_shorts_subscribe_button_summary_on">Subscribe button is hidden.</string>
+    <string name="revanced_hide_shorts_subscribe_button_summary_off">Subscribe button is shown.</string>
+    <string name="revanced_hide_shorts_paused_overlay_buttons_title">Hide paused overlay buttons</string>
+    <string name="revanced_hide_shorts_paused_overlay_buttons_summary_on">Paused overlay buttons are hidden.</string>
+    <string name="revanced_hide_shorts_paused_overlay_buttons_summary_off">Paused overlay buttons are shown.</string>
+    <string name="revanced_hide_shorts_paid_promotion_label_title">Hide paid promotion label</string>
+    <string name="revanced_hide_shorts_paid_promotion_label_summary_on">Paid promotion label is hidden.</string>
+    <string name="revanced_hide_shorts_paid_promotion_label_summary_off">Paid promotion label is shown.</string>
+    <string name="revanced_hide_shorts_shop_button_title">Hide shop button</string>
+    <string name="revanced_hide_shorts_shop_button_summary_on">Shop button is hidden.</string>
+    <string name="revanced_hide_shorts_shop_button_summary_off">Shop button is shown.</string>
+    <string name="revanced_hide_shorts_tagged_products_title">Hide tagged products</string>
+    <string name="revanced_hide_shorts_tagged_products_summary_on">Tagged products are hidden.</string>
+    <string name="revanced_hide_shorts_tagged_products_summary_off">Tagged products are shown.</string>
+    <string name="revanced_hide_shorts_location_label_title">Hide location label</string>
+    <string name="revanced_hide_shorts_location_label_summary_on">Location label is hidden.</string>
+    <string name="revanced_hide_shorts_location_label_summary_off">Location label is shown.</string>
+    <string name="revanced_hide_shorts_save_sound_button_title">Hide save sound to playlist button</string>
+    <string name="revanced_hide_shorts_save_sound_button_summary_on">Кнопка \"Сохранить звук в плейлист\" скрыта.</string>
+    <string name="revanced_hide_shorts_save_sound_button_summary_off">Кнопка \"Сохранить звук в плейлист\" отображена.</string>
+    <string name="revanced_hide_shorts_search_suggestions_title">Подсказки поиска</string>
+    <string name="revanced_hide_shorts_search_suggestions_summary_on">Подсказки поиска скрыты.</string>
+    <string name="revanced_hide_shorts_search_suggestions_summary_off">Подсказки поиска отображены.</string>
+    <string name="revanced_hide_shorts_info_panel_title">Информационные панели</string>
+    <string name="revanced_hide_shorts_info_panel_summary_on">Информационные панели скрыты.</string>
+    <string name="revanced_hide_shorts_info_panel_summary_off">Информационные панели отображены.</string>
+    <string name="revanced_hide_shorts_channel_bar_title">Панель канала</string>
+    <string name="revanced_hide_shorts_channel_bar_summary_on">Панель канала скрыта.</string>
+    <string name="revanced_hide_shorts_channel_bar_summary_off">Панель канала отображена.</string>
+    <string name="revanced_hide_shorts_video_title_title">Заголовок видео</string>
+    <string name="revanced_hide_shorts_video_title_summary_on">Заголовок скрыт.</string>
+    <string name="revanced_hide_shorts_video_title_summary_off">Заголовок отображен.</string>
+    <string name="revanced_hide_shorts_sound_metadata_label_title">Метка звуковых метаданных</string>
+    <string name="revanced_hide_shorts_sound_metadata_label_summary_on">Метка метаданных скрыта.</string>
+    <string name="revanced_hide_shorts_sound_metadata_label_summary_off">Метка метаданных отображена.</string>
+    <string name="revanced_hide_shorts_full_video_link_label_title">Метка полной ссылки на видео</string>
+    <string name="revanced_hide_shorts_full_video_link_label_summary_on">Метка видео ссылки скрыта.</string>
+    <string name="revanced_hide_shorts_full_video_link_label_summary_off">Метка видео ссылки отображена.</string>
     <!-- PreferenceScreen: Shorts, PreferenceCategory: Shorts, PreferenceScreen: Shorts player, PreferenceCategory: Action buttons -->
+    <string name="revanced_preference_category_action_buttons">Action buttons</string>
+    <string name="revanced_hide_shorts_like_button_title">Hide like button</string>
+    <string name="revanced_hide_shorts_like_button_summary_on">Like button is hidden.</string>
+    <string name="revanced_hide_shorts_like_button_summary_off">Like button is shown.</string>
+    <string name="revanced_hide_shorts_dislike_button_title">Hide dislike button</string>
+    <string name="revanced_hide_shorts_dislike_button_summary_on">Dislike button is hidden.</string>
+    <string name="revanced_hide_shorts_dislike_button_summary_off">Dislike button is shown.</string>
+    <string name="revanced_hide_shorts_comments_button_title">Hide comments button</string>
+    <string name="revanced_hide_shorts_comments_button_summary_on">Comments button is hidden.</string>
+    <string name="revanced_hide_shorts_comments_button_summary_off">Comments button is shown.</string>
+    <string name="revanced_hide_shorts_remix_button_title">Hide remix button</string>
+    <string name="revanced_hide_shorts_remix_button_summary_on">Remix button is hidden.</string>
+    <string name="revanced_hide_shorts_remix_button_summary_off">Remix button is shown.</string>
+    <string name="revanced_hide_shorts_share_button_title">Hide share button</string>
+    <string name="revanced_hide_shorts_share_button_summary_on">Share button is hidden.</string>
+    <string name="revanced_hide_shorts_share_button_summary_off">Share button is shown.</string>
+    <string name="revanced_hide_shorts_sound_button_title">Hide sound button</string>
+    <string name="revanced_hide_shorts_sound_button_summary_on">Sound button is hidden.</string>
+    <string name="revanced_hide_shorts_sound_button_summary_off">Sound button is shown.</string>
     <!-- PreferenceScreen: Shorts, PreferenceCategory: Shorts, PreferenceScreen: Shorts player, PreferenceCategory: Experimental Flags -->
+    <string name="revanced_hide_shorts_toolbar_title">Hide toolbar</string>
+    <string name="revanced_hide_shorts_toolbar_summary_on">Toolbar is hidden.</string>
+    <string name="revanced_hide_shorts_toolbar_summary_off">Toolbar is shown.</string>
+    <string name="revanced_hide_shorts_navigation_bar_title">Hide navigation bar</string>
+    <string name="revanced_hide_shorts_navigation_bar_summary_on">Navigation bar is hidden.</string>
+    <string name="revanced_hide_shorts_navigation_bar_summary_off">Navigation bar is shown.</string>
+    <string name="revanced_return_shorts_channel_name_title">Return shorts channel name</string>
+    <string name="revanced_return_shorts_channel_name_summary_on">Channel name is used.</string>
+    <string name="revanced_return_shorts_channel_name_summary_off">Channel handle is used.</string>
     <!-- PreferenceScreen: Swipe controls -->
+    <string name="revanced_preference_screen_swipe_controls_title">Swipe controls</string>
+    <string name="revanced_enable_swipe_lowest_value_auto_brightness_title">Enable auto-brightness gesture</string>
+    <string name="revanced_enable_swipe_lowest_value_auto_brightness_summary_on">Lowest value of the brightness gesture activates auto-brightness.</string>
+    <string name="revanced_enable_swipe_lowest_value_auto_brightness_summary_off">Lowest value of the brightness gesture does not activate auto-brightness.</string>
+    <string name="revanced_enable_swipe_brightness_title">Enable brightness gesture</string>
+    <string name="revanced_enable_swipe_brightness_summary_on">Brightness swipe is enabled.</string>
+    <string name="revanced_enable_swipe_brightness_summary_off">Brightness swipe is disabled.</string>
+    <string name="revanced_enable_swipe_volume_title">Enable volume gesture</string>
+    <string name="revanced_enable_swipe_volume_summary_on">Volume swipe is enabled.</string>
+    <string name="revanced_enable_swipe_volume_summary_off">Volume swipe is disabled.</string>
+    <string name="revanced_enable_swipe_press_to_engage_title">Enable press-to-swipe gesture</string>
+    <string name="revanced_enable_swipe_press_to_engage_summary_on">Touch and hold to activate swipe gesture.</string>
+    <string name="revanced_enable_swipe_press_to_engage_summary_off">Touch to activate swipe gesture.</string>
+    <string name="revanced_enable_swipe_haptic_feedback_title">Enable haptic feedback</string>
+    <string name="revanced_enable_swipe_haptic_feedback_summary_on">Haptic feedback is enabled.</string>
+    <string name="revanced_enable_swipe_haptic_feedback_summary_off">Haptic feedback is disabled.</string>
+    <string name="revanced_swipe_gestures_lock_mode_title">"Swipe gestures in 'Lock screen' mode"</string>
+    <string name="revanced_swipe_gestures_lock_mode_summary_on">"Swipe gestures are enabled in 'Lock screen' mode."</string>
+    <string name="revanced_swipe_gestures_lock_mode_summary_off">"Swipe gestures are disabled in 'Lock screen' mode."</string>
+    <string name="revanced_swipe_overlay_background_alpha_title">Swipe background visibility</string>
+    <string name="revanced_swipe_overlay_background_alpha_summary">The visibility of swipe overlay background.</string>
+    <string name="revanced_swipe_magnitude_threshold_title">Swipe magnitude threshold</string>
+    <string name="revanced_swipe_magnitude_threshold_summary">The amount of threshold for swipe to occur.</string>
+    <string name="revanced_swipe_overlay_text_size_title">Swipe overlay text size</string>
+    <string name="revanced_swipe_overlay_text_size_summary">The text size for swipe overlay.</string>
+    <string name="revanced_swipe_overlay_timeout_title">Swipe overlay timeout</string>
+    <string name="revanced_swipe_overlay_timeout_summary">The amount of milliseconds the overlay is visible.</string>
+    <string name="revanced_disable_hdr_auto_brightness_title">Disable auto HDR brightness</string>
+    <string name="revanced_disable_hdr_auto_brightness_summary_on">Auto HDR brightness is disabled.</string>
+    <string name="revanced_disable_hdr_auto_brightness_summary_off">Auto HDR brightness is enabled.</string>
+    <string name="revanced_enable_watch_panel_gestures_title">Enable watch panel gestures</string>
+    <string name="revanced_enable_watch_panel_gestures_summary_on">Entering fullscreen when swiping down below the video player is enabled.</string>
+    <string name="revanced_enable_watch_panel_gestures_summary_off">Entering fullscreen when swiping down below the video player is disabled.</string>
+    <string name="revanced_swipe_lowest_value_auto_brightness_overlay_text">Auto</string>
     <!-- PreferenceScreen: Video -->
+    <string name="revanced_preference_screen_video_title">Video</string>
+    <string name="revanced_default_playback_speed_title">Default playback speed</string>
+    <string name="revanced_default_video_quality_mobile_title">Default video quality on Mobile network</string>
+    <string name="revanced_default_video_quality_wifi_title">Default video quality on Wi-Fi network</string>
+    <string name="revanced_disable_hdr_video_title">Disable HDR video</string>
+    <string name="revanced_disable_hdr_video_summary_on">HDR video is disabled.</string>
+    <string name="revanced_disable_hdr_video_summary_off">HDR video is enabled.</string>
+    <string name="revanced_disable_default_playback_speed_live_title">Disable playback speed in live stream</string>
+    <string name="revanced_disable_default_playback_speed_live_summary_on">Default playback speed is disabled in live stream.</string>
+    <string name="revanced_disable_default_playback_speed_live_summary_off">Default playback speed is enabled in live stream.</string>
+    <string name="revanced_enable_custom_playback_speed_title">Enable custom playback speed</string>
+    <string name="revanced_enable_custom_playback_speed_summary_on">Custom playback speed is enabled.</string>
+    <string name="revanced_enable_custom_playback_speed_summary_off">Custom playback speed is disabled.</string>
+    <string name="revanced_custom_playback_speed_menu_type_title">Custom playback speed menu type</string>
+    <string name="revanced_custom_playback_speed_menu_type_summary_on">Custom dialog is used.</string>
+    <string name="revanced_custom_playback_speed_menu_type_summary_off">Old style flyout menu is used.</string>
+    <string name="revanced_custom_playback_speeds_title">Edit custom playback speeds</string>
+    <string name="revanced_custom_playback_speeds_summary">Add or change available playback speeds.</string>
+    <string name="revanced_remember_playback_speed_last_selected_title">Remember playback speed changes</string>
+    <string name="revanced_remember_playback_speed_last_selected_summary_on">Playback speed changes apply to all videos.</string>
+    <string name="revanced_remember_playback_speed_last_selected_summary_off">Playback speed changes only apply to the current video.</string>
+    <string name="revanced_remember_video_quality_last_selected_title">Remember video quality changes</string>
+    <string name="revanced_remember_video_quality_last_selected_summary_on">Quality changes apply to all videos.</string>
+    <string name="revanced_remember_video_quality_last_selected_summary_off">Quality changes only apply to the current video.</string>
+    <string name="revanced_restore_old_video_quality_menu_title">Restore old video quality menu</string>
+    <string name="revanced_restore_old_video_quality_menu_summary_on">Old video quality menu is shown.</string>
+    <string name="revanced_restore_old_video_quality_menu_summary_off">Old video quality menu is not shown.</string>
+    <string name="revanced_enable_default_playback_speed_shorts_title">Enable shorts default playback speed</string>
+    <string name="revanced_enable_default_playback_speed_shorts_summary_on">Default playback speed applies to Shorts.</string>
+    <string name="revanced_enable_default_playback_speed_shorts_summary_off">Default playback speed does not apply to Shorts.</string>
+    <string name="revanced_skipped_preloaded_buffer">Skipped preloaded buffer.</string>
+    <string name="revanced_skip_preloaded_buffer_title">Skip preloaded buffer</string>
+    <string name="revanced_skip_preloaded_buffer_summary">"Skip preloaded buffer at video start to bypass default video quality enforcement delay.
+
+• When the video starts, there is a delay of approximately 0.3 seconds, but the default video quality is applied immediately.
+• Does not apply to HDR videos, live stream videos, videos shorter than 15 seconds."</string>
+    <string name="revanced_skip_preloaded_buffer_toast_title">Show a toast when skipped</string>
+    <string name="revanced_skip_preloaded_buffer_toast_summary_on">Toast is shown.</string>
+    <string name="revanced_skip_preloaded_buffer_toast_summary_off">Toast is not shown.</string>
+    <string name="revanced_spoof_device_dimensions_title">Spoof device dimensions</string>
+    <string name="revanced_spoof_device_dimensions_summary">Spoofs the device dimensions in order to unlock higher video qualities that may not be available on your device.</string>
+    <string name="revanced_replace_av1_codec_title">Replace software AV1 codec</string>
+    <string name="revanced_replace_av1_codec_summary">Replace software AV1 codec with VP9 codec.</string>
+    <string name="revanced_reject_av1_codec_title">Reject software AV1 codec response</string>
+    <string name="revanced_reject_av1_codec_summary">"Forcefully rejects the software AV1 codec response.
+After about 20 seconds of buffering, switches to different codec."</string>
+    <string name="revanced_reject_av1_codec_toast">Fallback process causes about 20 seconds of buffering.</string>
+    <string name="revanced_remember_playback_speed_toast">Changing default speed to %s.</string>
+    <string name="revanced_remember_video_quality_mobile">Changing default mobile data quality to %s.</string>
+    <string name="revanced_remember_video_quality_none">Failed to set video quality.</string>
+    <string name="revanced_remember_video_quality_wifi">Changing default Wi-Fi quality to %s.</string>
+    <string name="revanced_custom_playback_speeds_invalid">Custom speeds must be less than %sx. Using default values.</string>
+    <string name="revanced_custom_playback_speeds_parse_exception">Invalid custom playback speeds. Using default values.</string>
     <!-- PreferenceScreen: Return YouTube Dislike -->
+    <string name="revanced_preference_screen_ryd_title">Return YouTube Dislike</string>
+    <string name="revanced_ryd_enable_title">Enable Return YouTube Dislike</string>
+    <string name="revanced_ryd_enable_summary_on">Dislikes are shown.</string>
+    <string name="revanced_ryd_enable_summary_off">Dislikes are not shown.</string>
+    <string name="revanced_ryd_shorts_title">Show dislikes on Shorts</string>
+    <string name="revanced_ryd_shorts_summary_on">Dislikes shown on Shorts.</string>
+    <string name="revanced_ryd_shorts_summary_on_disclaimer">"Dislikes shown on Shorts.
+
+Limitation: Dislikes may not appear in incognito mode."</string>
+    <string name="revanced_ryd_shorts_summary_off">Dislikes hidden on Shorts.</string>
+    <string name="revanced_ryd_dislike_percentage_title">Dislikes as percentage</string>
+    <string name="revanced_ryd_dislike_percentage_summary_on">Dislikes shown as percentage.</string>
+    <string name="revanced_ryd_dislike_percentage_summary_off">Dislikes shown as number.</string>
+    <string name="revanced_ryd_compact_layout_title">Compact like button</string>
+    <string name="revanced_ryd_compact_layout_summary_on">Like button styled for minimum width.</string>
+    <string name="revanced_ryd_compact_layout_summary_off">Like button styled for best appearance.</string>
+    <string name="revanced_ryd_toast_on_connection_error_title">Show a toast if API is not available</string>
+    <string name="revanced_ryd_toast_on_connection_error_summary_on">Toast is shown if Return YouTube Dislike is not available.</string>
+    <string name="revanced_ryd_toast_on_connection_error_summary_off">Toast is not shown if Return YouTube Dislike is not available.</string>
     <!-- PreferenceScreen: Return YouTube Dislike, PreferenceCategory: About -->
+    <string name="revanced_ryd_about">About</string>
+    <string name="revanced_ryd_attribution_title">ReturnYouTubeDislike.com</string>
+    <string name="revanced_ryd_attribution_summary">Dislike data is provided by the Return YouTube Dislike API. Tap here to learn more.</string>
+    <string name="revanced_ryd_failure_connection_timeout">Dislikes temporarily not available (API timed out).</string>
+    <string name="revanced_ryd_failure_connection_status_code">Dislikes not available (status %d).</string>
+    <string name="revanced_ryd_failure_client_rate_limit_requested">Dislikes not available (client API limit reached).</string>
+    <string name="revanced_ryd_failure_generic">Dislikes not available (%s).</string>
+    <string name="revanced_ryd_failure_ryd_enabled_while_playing_video_then_user_voted">Reload video to vote using Return YouTube Dislike</string>
+    <string name="revanced_ryd_video_likes_hidden_by_video_owner">Hidden</string>
     <!-- PreferenceScreen: SponsorBlock -->
+    <string name="revanced_preference_screen_sb_title">SponsorBlock</string>
+    <string name="revanced_sb_enable_sb">Enable SponsorBlock</string>
+    <string name="revanced_sb_enable_sb_sum">SponsorBlock is a crowd-sourced system for skipping annoying parts of YouTube videos.</string>
     <!-- PreferenceScreen: SponsorBlock, PreferenceCategory: Appearance -->
+    <string name="revanced_sb_appearance_category">Appearance</string>
+    <string name="revanced_sb_enable_voting">Show voting button</string>
+    <string name="revanced_sb_enable_voting_sum_on">Segment voting button is shown.</string>
+    <string name="revanced_sb_enable_voting_sum_off">Segment voting button is not shown.</string>
+    <string name="revanced_sb_enable_compact_skip_button">Use compact skip button</string>
+    <string name="revanced_sb_enable_compact_skip_button_sum_on">Skip button styled for minimum width.</string>
+    <string name="revanced_sb_enable_compact_skip_button_sum_off">Skip button styled for best appearance.</string>
+    <string name="revanced_sb_enable_auto_hide_skip_segment_button">Automatically hide skip button</string>
+    <string name="revanced_sb_enable_auto_hide_skip_segment_button_sum_on">Skip button hides after a few seconds.</string>
+    <string name="revanced_sb_enable_auto_hide_skip_segment_button_sum_off">Skip button displayed for entire segment.</string>
+    <string name="revanced_sb_general_skiptoast">Show a toast when skipping automatically</string>
+    <string name="revanced_sb_general_skiptoast_sum_on">Toast is shown when a segment is automatically skipped. Tap here to see an example.</string>
+    <string name="revanced_sb_general_skiptoast_sum_off">Toast is not shown. Tap here to see an example.</string>
+    <string name="revanced_sb_general_time_without">Show video length without segments</string>
+    <string name="revanced_sb_general_time_without_sum_on">Video length minus all segments, shown in parentheses next to the full video length.</string>
+    <string name="revanced_sb_general_time_without_sum_off">Full video length shown.</string>
     <!-- PreferenceScreen: SponsorBlock, PreferenceCategory: Change segment behavior -->
+    <string name="revanced_sb_diff_segments">Change segment behavior</string>
+    <string name="revanced_sb_segments_sponsor">Sponsor</string>
+    <string name="revanced_sb_segments_sponsor_sum">Paid promotion, paid referrals and direct advertisements. Not for self-promotion or free shout-outs to causes / creators / websites / products they like.</string>
+    <string name="revanced_sb_segments_selfpromo">Unpaid / Self Promotion</string>
+    <string name="revanced_sb_segments_selfpromo_sum">Similar to \'Sponsor\' except for unpaid or self promotion. Includes sections about merchandise, donations, or information about who they collaborated with.</string>
+    <string name="revanced_sb_segments_interaction">Interaction Reminder (Subscribe)</string>
+    <string name="revanced_sb_segments_interaction_sum">A short reminder to like, subscribe or follow them in the middle of content. If it is long or about something specific, it should instead be under self promotion.</string>
+    <string name="revanced_sb_segments_highlight">Highlight</string>
+    <string name="revanced_sb_segments_highlight_sum">The part of the video that most people are looking for.</string>
+    <string name="revanced_sb_segments_intro">Intermission / Intro Animation</string>
+    <string name="revanced_sb_segments_intro_sum">An interval without actual content. Could be a pause, static frame, or repeating animation. Does not include transitions containing information.</string>
+    <string name="revanced_sb_segments_outro">Endcards / Credits</string>
+    <string name="revanced_sb_segments_outro_sum">Credits or when the YouTube endcards appear. Not for conclusions with information.</string>
+    <string name="revanced_sb_segments_preview">Preview / Recap / Hook</string>
+    <string name="revanced_sb_segments_preview_sum">Collection of clips that show what is coming up or what happened in the video or in other videos of a series, where all information is repeated elsewhere.</string>
+    <string name="revanced_sb_segments_filler">Filler Tangent / Jokes</string>
+    <string name="revanced_sb_segments_filler_sum">Tangential scenes added only for filler or humor that are not required to understand the main content of the video. Does not include segments providing context or background details.</string>
+    <string name="revanced_sb_segments_nomusic">Music: Non-Music Section</string>
+    <string name="revanced_sb_segments_nomusic_sum">Only for use in music videos. Sections of music videos without music, that aren\'t already covered by another category.</string>
+    <string name="revanced_sb_skip_button_compact">Skip</string>
+    <string name="revanced_sb_skip_button_compact_highlight">Highlight</string>
+    <string name="revanced_sb_skip_button_sponsor">Skip sponsor</string>
+    <string name="revanced_sb_skip_button_selfpromo">Skip promo</string>
+    <string name="revanced_sb_skip_button_interaction">Skip interact</string>
+    <string name="revanced_sb_skip_button_highlight">Skip to highlight</string>
+    <string name="revanced_sb_skip_button_intro_beginning">Skip intro</string>
+    <string name="revanced_sb_skip_button_intro_middle">Skip intermission</string>
+    <string name="revanced_sb_skip_button_intro_end">Skip intermission</string>
+    <string name="revanced_sb_skip_button_outro">Skip outro</string>
+    <string name="revanced_sb_skip_button_preview_beginning">Skip preview</string>
+    <string name="revanced_sb_skip_button_preview_middle">Skip preview</string>
+    <string name="revanced_sb_skip_button_preview_end">Skip recap</string>
+    <string name="revanced_sb_skip_button_filler">Skip filler</string>
+    <string name="revanced_sb_skip_button_nomusic">Skip non-music</string>
+    <string name="revanced_sb_skip_button_unsubmitted">Skip segment</string>
+    <string name="revanced_sb_skipped_sponsor">Skipped sponsor.</string>
+    <string name="revanced_sb_skipped_selfpromo">Skipped self promotion.</string>
+    <string name="revanced_sb_skipped_interaction">Skipped annoying reminder.</string>
+    <string name="revanced_sb_skipped_highlight">Skipped to highlight.</string>
+    <string name="revanced_sb_skipped_intro_beginning">Skipped intro.</string>
+    <string name="revanced_sb_skipped_intro_middle">Skipped intermission.</string>
+    <string name="revanced_sb_skipped_intro_end">Skipped intermission.</string>
+    <string name="revanced_sb_skipped_outro">Skipped outro.</string>
+    <string name="revanced_sb_skipped_preview_beginning">Skipped preview.</string>
+    <string name="revanced_sb_skipped_preview_middle">Skipped preview.</string>
+    <string name="revanced_sb_skipped_preview_end">Skipped recap.</string>
+    <string name="revanced_sb_skipped_filler">Skipped filler.</string>
+    <string name="revanced_sb_skipped_nomusic">Skipped a non-music section.</string>
+    <string name="revanced_sb_skipped_unsubmitted">Skipped unsubmitted segment.</string>
+    <string name="revanced_sb_skipped_multiple_segments">Skipped multiple segments.</string>
+    <string name="revanced_sb_skip_automatically">Skip automatically</string>
+    <string name="revanced_sb_skip_automatically_once">Skip automatically once</string>
+    <string name="revanced_sb_skip_showbutton">Show a skip button</string>
+    <string name="revanced_sb_skip_seekbaronly">Show in seek bar</string>
+    <string name="revanced_sb_skip_ignore">Disable</string>
+    <string name="revanced_sb_color_dot_label">Color:</string>
+    <string name="revanced_sb_color_changed">Color changed.</string>
+    <string name="revanced_sb_color_reset">Color reset.</string>
+    <string name="revanced_sb_color_invalid">Invalid color code.</string>
+    <string name="revanced_sb_reset">Reset</string>
+    <string name="revanced_sb_reset_color">Reset color</string>
+    <string name="revanced_sb_share_copy_settings_success">Settings copied to clipboard.</string>
     <!-- PreferenceScreen: SponsorBlock, PreferenceCategory: Creating new segments -->
+    <string name="revanced_sb_create_segment_category">Creating new segments</string>
+    <string name="revanced_sb_enable_create_segment">Show create new segment button</string>
+    <string name="revanced_sb_enable_create_segment_sum_on">Create new segment button is shown.</string>
+    <string name="revanced_sb_enable_create_segment_sum_off">Create new segment button is not shown.</string>
+    <string name="revanced_sb_general_adjusting">Adjust new segment step</string>
+    <string name="revanced_sb_general_adjusting_sum">Number of milliseconds the time adjustment buttons move when creating new segments.</string>
+    <string name="revanced_sb_general_adjusting_invalid">Value must be a positive number.</string>
+    <string name="revanced_sb_guidelines_preference_title">View guidelines</string>
+    <string name="revanced_sb_guidelines_preference_sum">Guidelines contain rules and tips for creating new segments.</string>
+    <string name="revanced_sb_guidelines_popup_title">Follow the guidelines</string>
+    <string name="revanced_sb_guidelines_popup_content">Read the SponsorBlock guidelines before creating new segments.</string>
+    <string name="revanced_sb_guidelines_popup_already_read">Already read</string>
+    <string name="revanced_sb_guidelines_popup_open">Show me</string>
     <!-- PreferenceScreen: SponsorBlock, PreferenceCategory: General -->
+    <string name="revanced_sb_general">General</string>
+    <string name="revanced_sb_toast_on_connection_error_title">Show a toast if API is not available</string>
+    <string name="revanced_sb_toast_on_connection_error_summary_on">Toast is shown if SponsorBlock is not available.</string>
+    <string name="revanced_sb_toast_on_connection_error_summary_off">Toast is not shown if SponsorBlock is not available.</string>
+    <string name="revanced_sb_general_skipcount">Enable skip count tracking</string>
+    <string name="revanced_sb_general_skipcount_sum_on">Lets the SponsorBlock leaderboard know how much time is saved. A message is sent to the leaderboard each time a segment is skipped.</string>
+    <string name="revanced_sb_general_skipcount_sum_off">Skip count tracking is not enabled.</string>
+    <string name="revanced_sb_general_min_duration">Minimum segment duration</string>
+    <string name="revanced_sb_general_min_duration_sum">Segments shorter than this value (in seconds) will not be shown or skipped.</string>
+    <string name="revanced_sb_general_uuid">Your private user id</string>
+    <string name="revanced_sb_general_uuid_sum">This should be kept private. This is like a password and should not be shared with anyone. If someone has this, they can impersonate you.</string>
+    <string name="revanced_sb_general_uuid_invalid">Private user id must be at least 30 characters long.</string>
+    <string name="revanced_sb_general_api_url">Change API URL</string>
+    <string name="revanced_sb_general_api_url_sum">The address SponsorBlock uses to make calls to the server.</string>
+    <string name="revanced_sb_api_url_reset">API URL reset.</string>
+    <string name="revanced_sb_api_url_invalid">API URL is invalid.</string>
+    <string name="revanced_sb_api_url_changed">API URL changed.</string>
+    <string name="revanced_sb_settings_copy">Copy</string>
+    <string name="revanced_sb_settings_ie">Import / Export settings</string>
+    <string name="revanced_sb_settings_ie_sum">Your SponsorBlock JSON configuration that can be imported / exported to ReVanced Extended and other SponsorBlock platforms.</string>
+    <string name="revanced_sb_settings_ie_sum_warning">Your SponsorBlock JSON configuration that can be imported / exported to ReVanced Extended and other SponsorBlock platforms. This includes your private user id. Be sure to share this wisely.</string>
+    <string name="revanced_sb_settings_import_successful">Settings imported successfully.</string>
+    <string name="revanced_sb_settings_import_failed">Failed to import: %s.</string>
+    <string name="revanced_sb_settings_export_failed">Failed to export: %s.</string>
+    <string name="revanced_sb_settings_revanced_export_user_id_warning">Your settings contain a private SponsorBlock userid.\n\nYour user id is like a password and it should never be shared.\n</string>
+    <string name="revanced_sb_settings_revanced_export_user_id_warning_dismiss">Do not show again</string>
+    <string name="revanced_sb_sponsorblock_connection_failure_generic">SponsorBlock temporarily not available.</string>
+    <string name="revanced_sb_sponsorblock_connection_failure_status">SponsorBlock temporarily not available (status %d).</string>
+    <string name="revanced_sb_sponsorblock_connection_failure_timeout">SponsorBlock temporarily not available (API timed out).</string>
+    <string name="revanced_sb_submit_failed_invalid">Unable to submit segment: %s.</string>
+    <string name="revanced_sb_submit_failed_timeout">SponsorBlock is temporarily down.</string>
+    <string name="revanced_sb_submit_failed_unknown_error">Unable to submit segment (status: %1$d %2$s).</string>
+    <string name="revanced_sb_submit_failed_rate_limit">Unable to submit segment.\nRate Limited (too many from the same user or IP).</string>
+    <string name="revanced_sb_submit_failed_forbidden">Can\'t submit the segment: %s.</string>
+    <string name="revanced_sb_submit_failed_duplicate">Can\'t submit the segment.\nAlready exists.</string>
+    <string name="revanced_sb_submit_succeeded">Segment submitted successfully.</string>
+    <string name="revanced_sb_vote_failed_timeout">Unable to vote for segment (API timed out).</string>
+    <string name="revanced_sb_vote_failed_unknown_error">Unable to vote for segment (status: %1$d %2$s).</string>
+    <string name="revanced_sb_vote_failed_forbidden">Unable to vote for segment: %s.</string>
+    <string name="revanced_sb_vote_upvote">Upvote</string>
+    <string name="revanced_sb_vote_downvote">Downvote</string>
+    <string name="revanced_sb_vote_category">Change category</string>
+    <string name="revanced_sb_vote_no_segments">There are no segments to vote for.</string>
+    <string name="revanced_sb_new_segment_choose_category">Choose the segment category</string>
+    <string name="revanced_sb_new_segment_disabled_category">Category is disabled in settings. Enable category to submit.</string>
+    <string name="revanced_sb_new_segment_title">New SponsorBlock segment</string>
+    <string name="revanced_sb_new_segment_mark_time_as_question">Set %1$02d:%2$02d:%3$03d as the start or end of a new segment?</string>
+    <string name="revanced_sb_new_segment_mark_start">start</string>
+    <string name="revanced_sb_new_segment_mark_end">end</string>
+    <string name="revanced_sb_new_segment_now">now</string>
+    <string name="revanced_sb_new_segment_time_start">Time the segment begins at</string>
+    <string name="revanced_sb_new_segment_time_end">Time the segment ends at</string>
+    <string name="revanced_sb_new_segment_confirm_title">Are the times correct?</string>
+    <string name="revanced_sb_new_segment_confirm_content">The segment lasts from %1$02d:%2$02d to %3$02d:%4$02d (%5$d minutes %6$02d seconds)\nIs it ready to submit?</string>
+    <string name="revanced_sb_new_segment_start_is_before_end">Start must be before the end.</string>
+    <string name="revanced_sb_new_segment_mark_locations_first">Mark two locations on the time bar first.</string>
+    <string name="revanced_sb_new_segment_preview_segment_first">Preview the segment, and ensure it skips smoothly.</string>
+    <string name="revanced_sb_new_segment_edit_by_hand_title">Edit timing of segment manually</string>
+    <string name="revanced_sb_new_segment_edit_by_hand_content">Do you want to edit the timing for the start or end of the segment?</string>
+    <string name="revanced_sb_new_segment_edit_by_hand_parse_error">Invalid time given.</string>
     <!-- PreferenceScreen: SponsorBlock, PreferenceCategory: Stats -->
+    <string name="revanced_sb_stats">Stats</string>
+    <string name="revanced_sb_stats_connection_failure">Stats temporarily not available (API is down).</string>
+    <string name="revanced_sb_stats_loading">Loading...</string>
+    <string name="revanced_sb_stats_sb_disabled">SponsorBlock is disabled.</string>
+    <string name="revanced_sb_stats_username">Your username: &lt;b&gt;%s&lt;/b&gt;</string>
+    <string name="revanced_sb_stats_username_change">Tap here to change your username</string>
+    <string name="revanced_sb_stats_username_change_unknown_error">Unable to change username: Status: %1$d %2$s.</string>
+    <string name="revanced_sb_stats_username_changed">Username successfully changed.</string>
+    <string name="revanced_sb_stats_reputation">Your reputation is &lt;b&gt;%.2f&lt;/b&gt;</string>
+    <string name="revanced_sb_stats_submissions">You\'ve created &lt;b&gt;%s&lt;/b&gt; segments</string>
+    <string name="revanced_sb_stats_saved_zero">SponsorBlock leaderboard</string>
+    <string name="revanced_sb_stats_saved">You\'ve saved people from &lt;b&gt;%s&lt;/b&gt; segments</string>
+    <string name="revanced_sb_stats_saved_sum_zero">Tap here to see the global stats and top contributors.</string>
+    <string name="revanced_sb_stats_saved_sum">That\'s &lt;b&gt;%s&lt;/b&gt; of their lives.&lt;br&gt;Tap here to see the leaderboard.</string>
+    <string name="revanced_sb_stats_self_saved">You\'ve skipped &lt;b&gt;%s&lt;/b&gt; segments</string>
+    <string name="revanced_sb_stats_self_saved_sum">That\'s &lt;b&gt;%s&lt;/b&gt;.</string>
+    <string name="revanced_sb_stats_self_saved_reset_title">Reset skipped segments counter?</string>
+    <string name="revanced_sb_stats_saved_hour_format">%1$s hours %2$s minutes</string>
+    <string name="revanced_sb_stats_saved_minute_format">%1$s minutes %2$s seconds</string>
+    <string name="revanced_sb_stats_saved_second_format">%s seconds</string>
     <!-- PreferenceScreen: SponsorBlock, PreferenceCategory: About -->
+    <string name="revanced_sb_about">About</string>
+    <string name="revanced_sb_about_api">sponsor.ajay.app</string>
+    <string name="revanced_sb_about_api_sum">Data is provided by the SponsorBlock API. Tap here to learn more and see downloads for other platforms.</string>
     <!-- PreferenceScreen: Miscellaneous -->
+    <string name="revanced_preference_screen_misc_title">Miscellaneous</string>
+    <string name="revanced_enable_debug_logging_title">Enable debug logging</string>
+    <string name="revanced_enable_debug_logging_summary_on">Debug logs are enabled.</string>
+    <string name="revanced_enable_debug_logging_summary_off">Debug logs are disabled.</string>
+    <string name="revanced_enable_debug_buffer_logging_title">Enable debug buffer logging</string>
+    <string name="revanced_enable_debug_buffer_logging_summary_on">Debug logs include buffer.</string>
+    <string name="revanced_enable_debug_buffer_logging_summary_off">Debug logs do not include buffer.</string>
+    <string name="revanced_enable_external_browser_title">Enable external browser</string>
+    <string name="revanced_enable_external_browser_summary_on">External browser is enabled.</string>
+    <string name="revanced_enable_external_browser_summary_off">External browser is disabled.</string>
+    <string name="revanced_enable_open_links_directly_title">Enable open links directly</string>
+    <string name="revanced_enable_open_links_directly_summary_on">Bypassing URL redirects.</string>
+    <string name="revanced_enable_open_links_directly_summary_off">Following default redirect policy.</string>
+    <string name="revanced_default_app_settings_title">Open default app settings</string>
+    <string name="revanced_default_app_settings_summary">To open RVX in an external browser, turn on \'Open supported links\' and enable supported web addresses.</string>
+    <string name="gms_core_settings_title">Open GmsCore</string>
+    <string name="gms_core_settings_summary">Enable cloud messaging to receive notifications.</string>
+    <string name="gms_core_toast_not_installed_message">GmsCore is not installed. Install it.</string>
+    <string name="gms_core_dialog_title">Action needed</string>
+    <string name="gms_core_dialog_not_whitelisted_not_allowed_in_background_message">"GmsCore does not have permission to run in the background.
+
+Follow the 'Don't kill my app' guide for your phone, and apply the instructions to your MicroG installation.
+
+This is required for the app to work."</string>
+    <string name="gms_core_dialog_open_website_text">Open website</string>
+    <string name="gms_core_dialog_not_whitelisted_using_battery_optimizations_message">"GmsCore battery optimizations must be disabled to prevent issues.
+
+Tap on the continue button and disable battery optimizations."</string>
+    <string name="gms_core_dialog_continue_text">Continue</string>
+    <string name="revanced_sanitize_sharing_links_title">Sanitize sharing links</string>
+    <string name="revanced_sanitize_sharing_links_summary">Removes tracking query parameters from the URLs when sharing links.</string>
+    <string name="revanced_disable_quic_protocol_title">Disable QUIC protocol</string>
+    <string name="revanced_disable_quic_protocol_summary">"Disable CronetEngine's QUIC protocol."</string>
+    <string name="revanced_spoof_format_stream_data_title">Spoof format stream data</string>
+    <string name="revanced_spoof_format_stream_data_summary">"Spoofs format stream data to prevent playback issues.
+
+Limitations:
+• There may be about 5 seconds of buffering when the video starts.
+• If buffering takes too long, you may need to close and reopen the video.
+• Since it is still under development, there may be other unknown issues."</string>
+    <string name="revanced_spoof_player_parameter_title">Spoof player parameter</string>
+    <string name="revanced_spoof_player_parameter_summary">"Spoofs player parameters to prevent playback issues.
+
+Limitations:
+• Enhanced bitrate is not available.
+• No seekbar thumbnails for paid videos.
+• Offline downloads may not work.
+• Video may not start from the last watched time."</string>
+    <string name="revanced_spoof_player_parameter_in_feed_title">Spoof player parameter in feed</string>
+    <string name="revanced_spoof_player_parameter_in_feed_summary_on">"Player parameter spoofed for feed videos.
+
+Limitation: Automatically played feed videos will show up in your watch history."</string>
+    <string name="revanced_spoof_player_parameter_in_feed_summary_off">"Player parameter not spoofed for feed videos.
+
+Limitation: Feed videos will play for less than 1 minute before encountering playback issues."</string>
+    <string name="revanced_spoof_test_client_title">Spoof test client</string>
+    <string name="revanced_spoof_test_client_summary">"Spoof the client as a test client.
+
+• This client is used for testing purposes, so most YouTube features are not available.
+• There are no playback buffer issues in the test client."</string>
     <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Import / Export settings -->
+    <string name="revanced_preference_screen_import_export_title">Import / Export settings</string>
+    <string name="revanced_preference_screen_import_export_summary">Import or export settings.</string>
     <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Import / Export settings, PreferenceCategory: Import / Export as file -->
+    <string name="revanced_preference_category_import_export_as_file">Import / Export as file</string>
+    <string name="revanced_extended_settings_export_title">Export settings</string>
+    <string name="revanced_extended_settings_export_summary">Export settings to file.</string>
+    <string name="revanced_extended_settings_import_title">Import settings</string>
+    <string name="revanced_extended_settings_import_summary">Import settings from saved file.</string>
     <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Import / Export settings, PreferenceCategory: Import / Export as text -->
+    <string name="revanced_preference_category_import_export_as_text">Import / Export as text</string>
+    <string name="revanced_extended_settings_import_export_as_text_title">Import / Export as text</string>
+    <string name="revanced_extended_settings_import_export_as_text_summary">Import or export settings as text.</string>
+    <string name="revanced_extended_settings_export_failed">Failed to export settings.</string>
+    <string name="revanced_extended_settings_export_success">Settings were successfully exported.</string>
+    <string name="revanced_extended_settings_import">Import</string>
+    <string name="revanced_extended_settings_import_copy">Copy</string>
+    <string name="revanced_extended_settings_import_failed">Failed to import settings.</string>
+    <string name="revanced_extended_settings_import_reset">Settings reset to default.</string>
+    <string name="revanced_extended_settings_import_success">Settings were successfully imported.</string>
+    <string name="revanced_extended_settings_reset">Reset</string>
+    <string name="revanced_share_copy_settings_success">Settings copied to clipboard.</string>
     <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceCategory: Patch information -->
+    <string name="revanced_preference_category_patch_information">Patch information</string>
     <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Patch information -->
+    <string name="revanced_preference_screen_patch_information_title">Patch information</string>
+    <string name="revanced_preference_screen_patch_information_summary">Information about applied patches.</string>
     <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Patch information, PreferenceCategory: Tool used -->
+    <string name="revanced_preference_category_tool_used">Tool used</string>
     <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Patch information, PreferenceCategory: Others -->
+    <string name="revanced_preference_category_others">Others</string>
+    <string name="revanced_icon_custom">Custom</string>
+    <string name="revanced_icon_default">Stock</string>
+    <string name="revanced_icon_mmt">MMT</string>
+    <string name="revanced_icon_revancify_blue">Revancify Blue</string>
+    <string name="revanced_icon_revancify_red">Revancify Red</string>
+    <string name="revanced_label_default">Stock</string>
+    <string name="revanced_patches_excluded">Excluded</string>
+    <string name="revanced_patches_included">Included</string>
+    <string name="revanced_theme_default">Stock</string>
 </resources>

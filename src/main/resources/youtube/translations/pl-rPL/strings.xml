@@ -131,7 +131,7 @@ Stuknij tutaj, aby dowiedzieć się więcej o DeArrow."</string>
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Category bar -->
     <string name="revanced_preference_screen_category_bar_title">Pasek kategorii</string>
     <string name="revanced_preference_screen_category_bar_summary">Ukryj lub pokazuj pasek z kategoriami na stronie głównej, nad wynikami wyszukiwania i powiązanymi wideo.</string>
-    <string name="revanced_hide_category_bar_in_feed_title">Na stornie głównej</string>
+    <string name="revanced_hide_category_bar_in_feed_title">Na stronie głównej</string>
     <string name="revanced_hide_category_bar_in_feed_summary_on">Ukryty</string>
     <string name="revanced_hide_category_bar_in_feed_summary_off">Widoczny</string>
     <string name="revanced_hide_category_bar_in_related_videos_title">Nad powiązanymi wideo</string>
@@ -521,7 +521,7 @@ Zamiast tego, użyj ustawienia 'Ustawienia → Automatyczne odtwarzanie → Auto
     <string name="revanced_hide_comments_section_title">Komentarze</string>
     <string name="revanced_hide_comments_section_summary_on">Ukryte</string>
     <string name="revanced_hide_comments_section_summary_off">Widoczne</string>
-    <string name="revanced_hide_comments_section_in_home_feed_title">Komentarze na stornie głównej</string>
+    <string name="revanced_hide_comments_section_in_home_feed_title">Komentarze na stronie głównej</string>
     <string name="revanced_hide_comments_section_in_home_feed_summary_on">Ukryte</string>
     <string name="revanced_hide_comments_section_in_home_feed_summary_off">Widoczne</string>
     <string name="revanced_hide_preview_comment_title">Wyróżnione komentarze</string>
@@ -917,10 +917,6 @@ Ograniczenie: Nagłówki z tytułami będą ukryte w wynikach wyszukiwania."</st
     <string name="revanced_return_shorts_channel_name_title">Nazwy kanałów w shortsach</string>
     <string name="revanced_return_shorts_channel_name_summary_on">Widoczne nazwy</string>
     <string name="revanced_return_shorts_channel_name_summary_off">Widoczne nicki</string>
-    <string name="revanced_return_shorts_channel_name_fetch_title">Pobieraj z kanału RSS</string>
-    <string name="revanced_return_shorts_channel_name_fetch_summary_on">"Używaj nazwy kanału pobranej z kanału RSS.
-Pobieranie nazw kanałów może trwać dłużej."</string>
-    <string name="revanced_return_shorts_channel_name_fetch_summary_off">"Używaj normalnych nazw kanałów YouTube"</string>
     <!-- PreferenceScreen: Swipe controls -->
     <string name="revanced_preference_screen_swipe_controls_title">Sterowanie przesuwaniem</string>
     <string name="revanced_enable_swipe_lowest_value_auto_brightness_title">Automatyczna jasność przesuwaniem</string>

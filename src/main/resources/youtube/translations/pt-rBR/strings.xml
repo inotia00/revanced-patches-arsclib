@@ -281,8 +281,8 @@ Isso não ignora a restrição de idade, apenas aceita isso automaticamente."</s
     <string name="revanced_enable_phone_layout_summary">Engana o dpi para usar alguns layouts para telefone.</string>
     <string name="revanced_enable_tablet_layout_title">Ativar layout de tablet</string>
     <string name="revanced_enable_tablet_layout_summary">Engana o dpi para usar alguns layouts para tablets.</string>
-    <string name="revanced_spoof_app_version_title">Versão da falsificação do aplicativo</string>
-    <string name="revanced_spoof_app_version_summary">"Falsificação da versão cliente para a versão antiga
+    <string name="revanced_spoof_app_version_title">Falsificar versão do aplicativo</string>
+    <string name="revanced_spoof_app_version_summary">"Falsifica a versão cliente para a versão antiga
 
 • Isto alterará a aparência do aplicativo, mas poderão ocorrer efeitos colaterais desconhecidos.
 • Se for desativada posteriormente, a interface antiga poderá permanecer até que os dados do aplicativo sejam apagados."</string>
@@ -919,10 +919,6 @@ Limitação: Os cabeçalhos oficiais nos resultados da pesquisa serão ocultados
     <string name="revanced_return_shorts_channel_name_title">Recuperar o nome do canal de shorts</string>
     <string name="revanced_return_shorts_channel_name_summary_on">O nome do canal é usado.</string>
     <string name="revanced_return_shorts_channel_name_summary_off">O identificador do canal é usado.</string>
-    <string name="revanced_return_shorts_channel_name_fetch_title">Buscar do feed rss</string>
-    <string name="revanced_return_shorts_channel_name_fetch_summary_on">"Use o nome do canal retirado do feed RSS.
-Pode demorar mais para buscar o nome do canal."</string>
-    <string name="revanced_return_shorts_channel_name_fetch_summary_off">"Use o nome do canal interno do YouTube."</string>
     <!-- PreferenceScreen: Swipe controls -->
     <string name="revanced_preference_screen_swipe_controls_title">Controles deslizantes</string>
     <string name="revanced_enable_swipe_lowest_value_auto_brightness_title">Ativar gesto de brilho automático</string>

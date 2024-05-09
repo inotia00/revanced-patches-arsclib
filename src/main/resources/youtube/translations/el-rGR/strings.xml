@@ -51,12 +51,10 @@
     <string name="revanced_alt_thumbnail_options_entry_3">DeArrow &amp; Ακίνητα καρέ</string>
     <string name="revanced_alt_thumbnail_options_entry_4">Ακίνητα καρέ</string>
     <string name="revanced_alt_thumbnail_dearrow_about_title">Σχετικά με το DeArrow</string>
-    <string name="revanced_alt_thumbnail_dearrow_about_summary">"Το DeArrow παρέχει μικρογραφίες από το κοινό για τα βίντεο. Οι μικρογραφίες αυτές είναι συχνά πιο σχετικές από εκείνες που παρέχει το ίδιο το YouTube.
-
-Αν ενεργοποιηθεί, οι διευθύνσεις URL των βίντεο θα στέλνονται στον διακομιστή API χωρίς να στέλνονται άλλα δεδομένα. Αν ένα βίντεο δεν έχει μικρογραφίες DeArrow, θα εμφανιστούν είτε οι αρχικές του μικρογραφίες είτε λήψεις ακίνητων καρέ.
+    <string name="revanced_alt_thumbnail_dearrow_about_summary">"Το DeArrow παρέχει μικρογραφίες από το κοινό για τα βίντεο. Οι μικρογραφίες αυτές είναι συχνά πιο σχετικές από εκείνες που παρέχει το ίδιο το YouTube. Αν ενεργοποιηθεί, οι διευθύνσεις URL των βίντεο θα στέλνονται στον διακομιστή API χωρίς να στέλνονται άλλα δεδομένα. Αν ένα βίντεο δεν έχει μικρογραφίες DeArrow, θα εμφανιστούν είτε οι αρχικές του μικρογραφίες είτε λήψεις ακίνητων καρέ.
 
 Πατήστε για να μάθετε περισσότερα για το DeArrow."</string>
-    <string name="revanced_alt_thumbnail_dearrow_connection_toast_title">Εμφάνιση μηνύματος αν το API δεν είναι διαθέσιμο</string>
+    <string name="revanced_alt_thumbnail_dearrow_connection_toast_title">Μήνυμα αν το API δεν είναι διαθέσιμο</string>
     <string name="revanced_alt_thumbnail_dearrow_connection_toast_summary_on">Να εμφανίζεται μήνυμα στο κάτω μέρος της οθόνης αν το DeArrow δεν είναι διαθέσιμο.</string>
     <string name="revanced_alt_thumbnail_dearrow_connection_toast_summary_off">Να μην εμφανίζεται μήνυμα στο κάτω μέρος της οθόνης αν το DeArrow δεν είναι διαθέσιμο.</string>
     <string name="revanced_alt_thumbnail_dearrow_api_url_title">Διεύθυνση API του DeArrow</string>
@@ -133,7 +131,7 @@
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Category bar -->
     <string name="revanced_preference_screen_category_bar_title">Γραμμή κατηγοριών</string>
     <string name="revanced_preference_screen_category_bar_summary">Απόκρυψη η εμφάνιση της γραμμής κατηγοριών στη ροή, αποτελέσματα αναζήτησης και στα σχετικά βίντεο.</string>
-    <string name="revanced_hide_category_bar_in_feed_title">Γραμμή κατηγοριών στη ροή</string>
+    <string name="revanced_hide_category_bar_in_feed_title">Απόκρυψη στη ροή</string>
     <string name="revanced_hide_category_bar_in_feed_summary_on">Κρυμμένη.</string>
     <string name="revanced_hide_category_bar_in_feed_summary_off">Εμφανίζεται.</string>
     <string name="revanced_hide_category_bar_in_related_videos_title">Απόκρυψη στα σχετικά βίντεο</string>
@@ -224,12 +222,12 @@ Playlists
 • Βίντεο από κανάλια στα οποία δεν έχετε εγγραφεί και έχουν λιγότερες από 1,000 προβολές"</string>
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Video filter, PreferenceCategory: View count filter -->
     <string name="revanced_preference_category_view_counts_filter">Φίλτρο προβολών βίντεο</string>
-    <string name="revanced_hide_video_by_view_counts_title">Απόκρυψη προτεινόμενων βίντεο βάσει προβολών</string>
+    <string name="revanced_hide_video_by_view_counts_title">Απόκρυψη βάσει προβολών</string>
     <string name="revanced_hide_video_by_view_counts_summary">Απόκρυψη των προτεινόμενων βίντεο με προβολές λιγότερες από τον καθορισμένο αριθμό.</string>
     <string name="revanced_hide_video_view_counts_title">Αριθμός προβολών</string>
     <string name="revanced_hide_video_view_counts_summary">Τα προτεινόμενα βίντεο με προβολές λιγότερες από αυτόν τον αριθμό δεν θα εμφανίζονται.</string>
     <string name="revanced_hide_video_view_counts_multiplier_title">Επεξεργασία κλειδιών</string>
-    <string name="revanced_hide_video_view_counts_multiplier_summary">Γλωσσικό πρότυπο για τον αριθμό προβολών κάτω από κάθε βίντεο. Κάθε κλειδί (λέξη ή γράμμα στη γλώσσα σας) -&gt; τιμή (σημασία του κλειδιού) βρίσκεται σε νέα γραμμή. Τα κλειδιά μπαίνουν πριν από το \"-&gt;\". Αν αλλάξετε γλώσσα εφαρμογής ή συστήματος, θα χρειαστεί επαναρύθμιση.\n\nΠαραδείγματα:\nΕλληνικά: 10 χιλιάδες προβολές = χιλ. -&gt; 1000, προβολές -&gt; views\nΑγγλικά: 10K views = K -&gt; 1000, views -&gt; views</string>
+    <string name="revanced_hide_video_view_counts_multiplier_summary">Γλωσσικό πρότυπο για τον αριθμό προβολών κάτω από κάθε βίντεο. Κάθε κλειδί (λέξη ή γράμμα στη γλώσσα σας) -&gt; τιμή (σημασία του κλειδιού) βρίσκεται σε νέα γραμμή. Τα κλειδιά μπαίνουν πριν από το \"-&gt;\". Αν αλλάξετε γλώσσα εφαρμογής ή συστήματος, θα χρειαστεί επαναρύθμιση. Παραδείγματα:\nΕλληνικά: 10 χιλιάδες προβολές = χιλ. -&gt; 1000, προβολές -&gt; views\nΑγγλικά: 10K views = K -&gt; 1000, views -&gt; views</string>
     <string name="revanced_hide_video_view_counts_multiplier_default_value">χιλ. -&gt; 1 000\nεκ. -&gt; 1 000 000\nδισ. -&gt; 1 000 000 000\nπροβολές -&gt; views</string>
     <!-- PreferenceScreen: General -->
     <string name="revanced_preference_screen_general_title">Γενικά</string>
@@ -456,8 +454,8 @@ Playlists
     <string name="revanced_hide_timed_reactions_summary_on">Κρυμμένες.</string>
     <string name="revanced_hide_timed_reactions_summary_off">Εμφανίζονται.</string>
     <string name="revanced_skip_autoplay_countdown_title">Άμεση αυτόματη αναπαραγωγή</string>
-    <string name="revanced_skip_autoplay_countdown_summary_on">Αν είναι ενεργοποιημένη η αυτόματη αναπαραγωγή, το επόμενο βίντεο θα παίξει χωρίς αντίστροφη μέτρηση.</string>
-    <string name="revanced_skip_autoplay_countdown_summary_off">Αν είναι ενεργοποιημένη η αυτόματη αναπαραγωγή, το επόμενο βίντεο θα παίξει αφού τελειώσει η αντίστροφη μέτρηση.</string>
+    <string name="revanced_skip_autoplay_countdown_summary_on">Αν είναι ενεργοποιημένη η αυτόματη αναπαραγωγή, το επόμενο βίντεο παίζει χωρίς αντίστροφη μέτρηση.</string>
+    <string name="revanced_skip_autoplay_countdown_summary_off">Αν είναι ενεργοποιημένη η αυτόματη αναπαραγωγή, το επόμενο βίντεο παίζει αφού τελειώσει η αντίστροφη μέτρηση.</string>
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Action buttons -->
     <string name="revanced_preference_screen_action_buttons_title">Κουμπιά ενεργειών</string>
     <string name="revanced_preference_screen_action_buttons_summary">Απόκρυψη η εμφάνιση κουμπιών κάτω από τα βίντεο.</string>
@@ -584,7 +582,7 @@ Playlists
     <string name="revanced_hide_player_flyout_menu_loop_video_title">Μενού «Επανάληψη βίντεο»</string>
     <string name="revanced_hide_player_flyout_menu_loop_video_summary_on">Κρυμμένο.</string>
     <string name="revanced_hide_player_flyout_menu_loop_video_summary_off">Εμφανίζεται.</string>
-    <string name="revanced_hide_player_flyout_menu_pip_title">Απόκρυψη μενού «Picture-in-picture»</string>
+    <string name="revanced_hide_player_flyout_menu_pip_title">Μενού «Picture-in-picture»</string>
     <string name="revanced_hide_player_flyout_menu_pip_summary_on">Κρυμμένο.</string>
     <string name="revanced_hide_player_flyout_menu_pip_summary_off">Εμφανίζεται.</string>
     <string name="revanced_hide_player_flyout_menu_premium_controls_title">Μενού «Έλεγχοι Premium»</string>
@@ -666,7 +664,7 @@ Playlists
 • Όταν πατιέται μια χρονοσήμανση στα σχόλια.
 • Όταν ξεκινάει ένα βίντεο."</string>
     <string name="revanced_keep_landscape_mode_title">Διατήρηση οριζόντιας λειτουργίας</string>
-    <string name="revanced_keep_landscape_mode_summary">Διατήρηση της οριζόντιας λειτουργίας στο κλείσιμο και άνοιγμα της οθόνης ενώ βρίσκεστε σε λειτουργία πλήρους οθόνης.\n\nΓνωστό θέμα: Μπορεί να προκαλέσει θέματα με τη λειτουργία Picture-in-Picture (PIP).</string>
+    <string name="revanced_keep_landscape_mode_summary">Διατήρηση της οριζόντιας λειτουργίας στο κλείσιμο και άνοιγμα της οθόνης ενώ βρίσκεστε σε λειτουργία πλήρους οθόνης.</string>
     <string name="revanced_keep_landscape_mode_timeout_title">Χρονικό όριο οριζόντιας λειτουργίας</string>
     <string name="revanced_keep_landscape_mode_timeout_summary">Ο αριθμός των χιλιοστών δευτερολέπτου που θα εξαναγκάζεται η οριζόντια λειτουργία.</string>
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Haptic feedback -->
@@ -772,7 +770,7 @@ Playlists
     <string name="revanced_hide_seekbar_thumbnail_title">Γραμμή προόδου σε μικρογραφίες βίντεο</string>
     <string name="revanced_hide_seekbar_thumbnail_summary_on">Κρυμμένη.</string>
     <string name="revanced_hide_seekbar_thumbnail_summary_off">Εμφανίζεται.</string>
-    <string name="revanced_hide_seekbar_chapters_title">Κεφάλαια βίντεο στη γραμμή αναζήτησης</string>
+    <string name="revanced_hide_seekbar_chapters_title">Κεφάλαια βίντεο στη γραμμή προόδου</string>
     <string name="revanced_hide_seekbar_chapters_summary_on">Κρυμμένα.</string>
     <string name="revanced_hide_seekbar_chapters_summary_off">Εμφανίζονται.</string>
     <string name="revanced_hide_time_stamp_title">Χρονοσφραγίδα βίντεο</string>
@@ -832,7 +830,7 @@ Playlists
     <!-- PreferenceScreen: Shorts, PreferenceCategory: Shorts shelf -->
     <string name="revanced_preference_category_shorts_shelf">Ενότητα Shorts</string>
     <string name="revanced_hide_shorts_shelf_title">Απόκρυψη των Shorts</string>
-    <string name="revanced_hide_shorts_shelf_summary">"Απόκρυψη της ενότητας Shorts.\n\nΠεριορισμός: Οι ενότητες αποτελεσμάτων αναζήτησης δεν εμφανίζονται."</string>
+    <string name="revanced_hide_shorts_shelf_summary">"Απόκρυψη της ενότητας Shorts.\n\nΠεριορισμός: Οι τίτλοι ενοτήτων στα αποτελέσματα αναζήτησης δεν εμφανίζονται."</string>
     <string name="revanced_hide_shorts_shelf_home_related_videos_title">Απόκρυψη στην καρτέλα «Αρχική» και στα σχετικά βίντεο</string>
     <string name="revanced_hide_shorts_shelf_home_related_videos_summary_on">Κρυμμένη.</string>
     <string name="revanced_hide_shorts_shelf_home_related_videos_summary_off">Εμφανίζεται.</string>
@@ -920,10 +918,6 @@ Playlists
     <string name="revanced_return_shorts_channel_name_title">Επιστροφή όνομα καναλιού Shorts</string>
     <string name="revanced_return_shorts_channel_name_summary_on">Εμφανίζεται το όνομα καναλιού.</string>
     <string name="revanced_return_shorts_channel_name_summary_off">Εμφανίζεται το ψευδώνυμο καναλιού.</string>
-    <string name="revanced_return_shorts_channel_name_fetch_title">Χρήση ονομάτων από τη ροή RSS</string>
-    <string name="revanced_return_shorts_channel_name_fetch_summary_on">"Χρήση των ονομάτων καναλιών από τη ροή RSS.
-Ενδέχεται να πάρει περισσότερη ώρα να φορτωθούν τα ονόματα καναλιών."</string>
-    <string name="revanced_return_shorts_channel_name_fetch_summary_off">"Χρήση αρχικών ονομάτων καναλιών του YouTube."</string>
     <!-- PreferenceScreen: Swipe controls -->
     <string name="revanced_preference_screen_swipe_controls_title">Έλεγχος με σάρωση οθόνης</string>
     <string name="revanced_enable_swipe_lowest_value_auto_brightness_title">Αυτόματη φωτεινότητα με σάρωση</string>
@@ -1030,7 +1024,7 @@ Playlists
     <string name="revanced_ryd_compact_layout_title">Κουμπί «Μου αρέσει» μικρότερου στυλ</string>
     <string name="revanced_ryd_compact_layout_summary_on">Το κουμπί «Μου αρέσει» είναι διαμορφωμένο για ελάχιστο μέγεθος.</string>
     <string name="revanced_ryd_compact_layout_summary_off">Το κουμπί «Μου αρέσει» είναι διαμορφωμένο για καλύτερη εμφάνιση.</string>
-    <string name="revanced_ryd_toast_on_connection_error_title">Εμφάνιση μηνύματος αν το API δεν είναι διαθέσιμο</string>
+    <string name="revanced_ryd_toast_on_connection_error_title">Μήνυμα αν το API δεν είναι διαθέσιμο</string>
     <string name="revanced_ryd_toast_on_connection_error_summary_on">Να εμφανίζεται μήνυμα στο κάτω μέρος της οθόνης αν το Return YouTube Dislike δεν είναι διαθέσιμο.</string>
     <string name="revanced_ryd_toast_on_connection_error_summary_off">Να μην εμφανίζεται μήνυμα στο κάτω μέρος της οθόνης αν το Return YouTube Dislike δεν είναι διαθέσιμο.</string>
     <!-- PreferenceScreen: Return YouTube Dislike, PreferenceCategory: About -->
@@ -1143,7 +1137,7 @@ Playlists
     <string name="revanced_sb_guidelines_popup_open">Δείξε μου</string>
     <!-- PreferenceScreen: SponsorBlock, PreferenceCategory: General -->
     <string name="revanced_sb_general">Γενικά</string>
-    <string name="revanced_sb_toast_on_connection_error_title">Εμφάνιση μηνύματος αν το API δεν είναι διαθέσιμο</string>
+    <string name="revanced_sb_toast_on_connection_error_title">Μήνυμα αν το API δεν είναι διαθέσιμο</string>
     <string name="revanced_sb_toast_on_connection_error_summary_on">Να εμφανίζεται μήνυμα στο κάτω μέρος της οθόνης αν το SponsorBlock δεν είναι διαθέσιμο.</string>
     <string name="revanced_sb_toast_on_connection_error_summary_off">Να μην εμφανίζεται μήνυμα στο κάτω μέρος της οθόνης αν το SponsorBlock δεν είναι διαθέσιμο.</string>
     <string name="revanced_sb_general_skipcount">Mετρητής παραλείψεων τμημάτων</string>
@@ -1266,8 +1260,7 @@ Playlists
     <string name="revanced_spoof_format_stream_data_title">Παραποίηση δεδομένων ροής βίντεο</string>
     <string name="revanced_spoof_format_stream_data_summary">"Παραποίηση δεδομένων της ροής βίντεο για την αποφυγή προβλημάτων αναπαραγωγής.
 
-Περιορισμοί:
-• Μπορεί να υπάρχουν περίπου 5 δευτερόλεπτα φόρτωσης όταν ξεκινάει το βίντεο.
+• Μπορεί να υπάρξουν μερικά δευτερόλεπτα φόρτωσης όταν ξεκινάει το βίντεο.
 • Αν η φόρτωση παίρνει πολύ ώρα, κλείστε και ξαναανοίξτε το βίντεο.
 • Η λειτουργία αυτή είναι ακόμη υπό ανάπτυξη, άρα πιθανόν να υπάρχουν και άλλα άγνωστα θέματα."</string>
     <string name="revanced_spoof_player_parameter_title">Τροποποίηση παραμέτρου αναπαραγωγέα</string>

@@ -206,7 +206,7 @@ Kısıtlamalar:
 • Bazı arayüz bileşenleri gizlenemeyebilir
 • Anahtar kelime aratmak hiçbir sonuç göstermeyebilir"</string>
     <string name="revanced_hide_keyword_toast_invalid_common">Geçersiz anahtar kelime. \'%s\' kullanılamaz</string>
-    <string name="revanced_hide_keyword_toast_invalid_length">Geçersiz anahtar kelime. \'%s\', %s karakterden az</string>
+    <string name="revanced_hide_keyword_toast_invalid_length">Geçersiz anahtar kelime. \'%1$s\', %2$d karakterden az</string>
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Video filter, PreferenceCategory: Recommended video -->
     <string name="revanced_preference_category_recommended_video">Önerilen video</string>
     <string name="revanced_hide_recommended_video_title">Önerilen videoları gizle</string>
@@ -907,10 +907,6 @@ Bilinen sorun: Arama sonuçlarındaki resmi başlıklar da gizlenebiliyor."</str
     <string name="revanced_return_shorts_channel_name_title">Shorts kanal ismini geri getir</string>
     <string name="revanced_return_shorts_channel_name_summary_on">Kanal ismi kullanılıyor.</string>
     <string name="revanced_return_shorts_channel_name_summary_off">Kanal etiketi kullanılıyor.</string>
-    <string name="revanced_return_shorts_channel_name_fetch_title">rss akışından getir</string>
-    <string name="revanced_return_shorts_channel_name_fetch_summary_on">"RSS beslemesinden alınan kanal adını kullanın.
-Kanal adının getirilmesi daha uzun sürebilir."</string>
-    <string name="revanced_return_shorts_channel_name_fetch_summary_off">"YouTube'un yerleşik kanal adını kullanın."</string>
     <!-- PreferenceScreen: Swipe controls -->
     <string name="revanced_preference_screen_swipe_controls_title">Kaydırma kontrolleri</string>
     <string name="revanced_enable_swipe_lowest_value_auto_brightness_title">Kaydırarak otomatik parlaklığı etkinleştir</string>

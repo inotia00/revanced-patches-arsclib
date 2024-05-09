@@ -134,7 +134,7 @@ DeArrow에 대해 자세히 알아보려면 여기를 누르세요."</string>
     <string name="revanced_hide_ticket_shelf_summary_off">콘서트 티켓 선반이 노출됩니다.\n호주, 캐나다, 아일랜드, 뉴질랜드, 영국, 미국에만 해당.</string>
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Category bar -->
     <string name="revanced_preference_screen_category_bar_title">카테고리 바</string>
-    <string name="revanced_preference_screen_category_bar_summary">피드, 검색 결과 그리고 관련 동영상에서 카테고리 바를 숨기거나 노출할 수 있습니다.</string>
+    <string name="revanced_preference_screen_category_bar_summary">피드, 검색 결과 그리고 관련 동영상에서 카테고리 바를 숨기거나 표시할 수 있습니다.</string>
     <string name="revanced_hide_category_bar_in_feed_title">피드에서 카테고리 바 숨기기</string>
     <string name="revanced_hide_category_bar_in_feed_summary_on">피드에서 카테고리 바가 숨겨집니다.</string>
     <string name="revanced_hide_category_bar_in_feed_summary_off">피드에서 카테고리 바가 노출됩니다.</string>
@@ -146,12 +146,12 @@ DeArrow에 대해 자세히 알아보려면 여기를 누르세요."</string>
     <string name="revanced_hide_category_bar_in_search_summary_off">검색 결과에서 카테고리 바가 노출됩니다.</string>
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Channel profile -->
     <string name="revanced_preference_screen_channel_profile_title">채널 프로필</string>
-    <string name="revanced_preference_screen_channel_profile_summary">채널 프로필에서 구성요소를 숨기거나 노출할 수 있습니다.</string>
+    <string name="revanced_preference_screen_channel_profile_summary">채널 프로필에서 구성요소를 숨기거나 표시할 수 있습니다.</string>
     <string name="revanced_hide_channel_tab_title">채널 탭 필터 활성화하기</string>
     <string name="revanced_hide_channel_tab_summary_on">채널 탭 필터를 활성화합니다.</string>
     <string name="revanced_hide_channel_tab_summary_off">채널 탭 필터를 비활성화합니다.</string>
     <string name="revanced_hide_channel_tab_filter_strings_title">채널 탭 필터</string>
-    <string name="revanced_hide_channel_tab_filter_strings_summary">필터링할 채널 탭 이름 목록을 줄바꿈으로 구분하여 설정합니다.</string>
+    <string name="revanced_hide_channel_tab_filter_strings_summary">필터링할 채널 탭 이름을 줄바꿈으로 구분하여 설정합니다.</string>
     <string name="revanced_hide_channel_tab_filter_strings_hint">"Shorts
 재생목록
 스토어"</string>
@@ -165,11 +165,11 @@ DeArrow에 대해 자세히 알아보려면 여기를 누르세요."</string>
     <string name="revanced_hide_channel_profile_links_summary_on">채널 프로필 상단에서 링크가 숨겨집니다.</string>
     <string name="revanced_hide_channel_profile_links_summary_off">채널 프로필 상단에서 링크가 노출됩니다.</string>
     <string name="revanced_hide_for_you_shelf_title">"추천 선반 숨기기"</string>
-    <string name="revanced_hide_for_you_shelf_summary_on">"채널 프로필에서 추천 선반이 숨겨집니다."</string>
-    <string name="revanced_hide_for_you_shelf_summary_off">"채널 프로필에서 추천 선반이 노출됩니다."</string>
+    <string name="revanced_hide_for_you_shelf_summary_on">"추천 선반이 숨겨집니다."</string>
+    <string name="revanced_hide_for_you_shelf_summary_off">"추천 선반이 노출됩니다."</string>
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Community posts -->
     <string name="revanced_preference_screen_community_posts_title">커뮤니티 게시물</string>
-    <string name="revanced_preference_screen_community_posts_summary">피드와 채널에서 커뮤니티 게시물을 숨기거나 노출할 수 있습니다.</string>
+    <string name="revanced_preference_screen_community_posts_summary">피드와 채널에서 커뮤니티 게시물을 숨기거나 표시할 수 있습니다.</string>
     <string name="revanced_hide_community_posts_channel_title">채널에서 커뮤니티 게시물 숨기기</string>
     <string name="revanced_hide_community_posts_channel_summary_on">채널에서 커뮤니티 게시물이 숨겨집니다.</string>
     <string name="revanced_hide_community_posts_channel_summary_off">채널에서 커뮤니티 게시물이 노출됩니다.</string>
@@ -181,12 +181,12 @@ DeArrow에 대해 자세히 알아보려면 여기를 누르세요."</string>
     <string name="revanced_hide_community_posts_subscriptions_summary_off">구독 피드에서 커뮤니티 게시물이 노출됩니다.</string>
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Flyout menu -->
     <string name="revanced_preference_screen_feed_flyout_menu_title">메뉴 구성요소</string>
-    <string name="revanced_preference_screen_feed_flyout_menu_summary">피드에서 메뉴 구성요소를 숨기거나 노출할 수 있습니다.</string>
+    <string name="revanced_preference_screen_feed_flyout_menu_summary">피드에서 메뉴 구성요소를 숨기거나 표시할 수 있습니다.</string>
     <string name="revanced_hide_feed_flyout_menu_title">피드 메뉴 구성요소 필터 활성화하기</string>
     <string name="revanced_hide_feed_flyout_menu_summary_on">피드 메뉴 구성요소 필터를 활성화합니다.</string>
     <string name="revanced_hide_feed_flyout_menu_summary_off">피드 메뉴 구성요소 필터를 비활성화합니다.</string>
     <string name="revanced_hide_feed_flyout_menu_filter_strings_title">피드 메뉴 구성요소 필터</string>
-    <string name="revanced_hide_feed_flyout_menu_filter_strings_summary">필터링할 메뉴 구성요소 이름 목록을 줄바꿈으로 구분하여 설정합니다.</string>
+    <string name="revanced_hide_feed_flyout_menu_filter_strings_summary">필터링할 메뉴 구성요소 이름을 줄바꿈으로 구분하여 설정합니다.</string>
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Video filter -->
     <string name="revanced_preference_screen_video_filter_title">동영상 필터</string>
     <string name="revanced_preference_screen_video_filter_summary">키워드 또는 조회수로 동영상을 숨길 수 있습니다.</string>
@@ -302,12 +302,12 @@ DeArrow에 대해 자세히 알아보려면 여기를 누르세요."</string>
     <string name="revanced_spoof_app_version_target_entry_18_48_39">"18.48.39 - '조회수' &amp; '좋아요'의 실시간 업데이트를 비활성화합니다."</string>
     <!-- PreferenceScreen: General, PreferenceCategory: General, PreferenceScreen: Account menu -->
     <string name="revanced_preference_screen_account_munu_title">계정 메뉴</string>
-    <string name="revanced_preference_screen_account_munu_summary">계정 메뉴와 나(보관함) 탭에서 구성요소를 숨기거나 노출할 수 있습니다.</string>
+    <string name="revanced_preference_screen_account_munu_summary">계정 메뉴와 나(보관함) 탭에서 구성요소를 숨기거나 표시할 수 있습니다.</string>
     <string name="revanced_hide_account_menu_title">계정 메뉴 숨기기</string>
     <string name="revanced_hide_account_menu_summary">"계정 메뉴 및 나 탭에서 구성요소가 숨겨집니다.
 일부 구성요소는 숨겨지지 않을 수 있습니다."</string>
     <string name="revanced_hide_account_menu_filter_strings_title">계정 메뉴 필터 편집하기</string>
-    <string name="revanced_hide_account_menu_filter_strings_summary">필터링할 계정 메뉴 이름 목록을 줄바꿈으로 구분하여 설정합니다.</string>
+    <string name="revanced_hide_account_menu_filter_strings_summary">필터링할 계정 메뉴 이름을 줄바꿈으로 구분하여 설정합니다.</string>
     <string name="revanced_hide_handle_title">핸들(@사용자 아이디) 숨기기</string>
     <string name="revanced_hide_handle_summary_on">핸들(@사용자 아이디)이 숨겨집니다.</string>
     <string name="revanced_hide_handle_summary_off">핸들(@사용자 아이디)이 노출됩니다.</string>
@@ -319,11 +319,11 @@ DeArrow에 대해 자세히 알아보려면 여기를 누르세요."</string>
     <string name="revanced_custom_filter_summary_off">사용자 정의 필터를 비활성화합니다.</string>
     <string name="revanced_custom_filter_strings_title">사용자 정의 필터 편집하기</string>
     <!-- 'Component path builder strings' is the technical name for identifying the Litho UI layout items to hide. This is an advanced feature and most users will never use this. -->
-    <string name="revanced_custom_filter_strings_summary">필터링할 구성요소를 줄바꿈로 구분하여 설정합니다.</string>
+    <string name="revanced_custom_filter_strings_summary">필터링할 구성요소 경로 빌더 문자열(레이아웃 구성요소를 식별하는 이름)을 줄바꿈으로 구분하여 설정합니다.</string>
     <string name="revanced_custom_filter_toast_invalid_syntax">잘못된 필터 값입니다: %s</string>
     <!-- PreferenceScreen: General, PreferenceCategory: General, PreferenceScreen: Navigation buttons -->
     <string name="revanced_preference_screen_navigation_buttons_title">하단바 버튼</string>
-    <string name="revanced_preference_screen_navigation_buttons_summary">하단바 섹션 구성요소를 숨기거나 노출할 수 있습니다.</string>
+    <string name="revanced_preference_screen_navigation_buttons_summary">하단바 섹션 구성요소를 숨기거나 표시할 수 있습니다.</string>
     <string name="revanced_enable_narrow_navigation_buttons_title">좁은 하단바 버튼 활성화하기</string>
     <string name="revanced_enable_narrow_navigation_buttons_summary_on">하단바 버튼 사이의 간격이 좁아집니다.</string>
     <string name="revanced_enable_narrow_navigation_buttons_summary_off">하단바 버튼 사이의 간격이 좁아지지 않습니다.</string>
@@ -360,7 +360,7 @@ DeArrow에 대해 자세히 알아보려면 여기를 누르세요."</string>
     <string name="revanced_hide_settings_menu_title">YouTube 설정 메뉴 숨기기</string>
     <string name="revanced_hide_settings_menu_summary">YouTube 설정 메뉴에서 구성요소를 숨깁니다.</string>
     <string name="revanced_hide_settings_menu_filter_strings_title">YouTube 설정 메뉴 필터</string>
-    <string name="revanced_hide_settings_menu_filter_strings_summary">필터링할 YouTube 설정 메뉴 이름 목록을 줄바꿈으로 구분하여 설정합니다.</string>
+    <string name="revanced_hide_settings_menu_filter_strings_summary">필터링할 YouTube 설정 메뉴 이름을 줄바꿈으로 구분하여 설정합니다.</string>
     <string name="revanced_hide_settings_menu_filter_strings_hint">"계정
 데이터 절약
 자막"</string>
@@ -463,7 +463,7 @@ DeArrow에 대해 자세히 알아보려면 여기를 누르세요."</string>
     <string name="revanced_skip_autoplay_countdown_summary_off">자동 재생이 활성화되어 있으면, 다음 동영상을 카운트다운이 종료된 후에 재생합니다.</string>
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Action buttons -->
     <string name="revanced_preference_screen_action_buttons_title">액션 버튼</string>
-    <string name="revanced_preference_screen_action_buttons_summary">플레이어 하단에 있는 액션 버튼을 숨기거나 노출할 수 있습니다</string>
+    <string name="revanced_preference_screen_action_buttons_summary">플레이어 하단에 있는 액션 버튼을 숨기거나 표시할 수 있습니다.</string>
     <string name="revanced_hide_clip_button_title">클립 버튼 숨기기</string>
     <string name="revanced_hide_clip_button_summary_on">클립 버튼이 숨겨집니다.</string>
     <string name="revanced_hide_clip_button_summary_off">클립 버튼이 노출됩니다.</string>
@@ -506,7 +506,7 @@ DeArrow에 대해 자세히 알아보려면 여기를 누르세요."</string>
     <string name="revanced_disable_ambient_mode_in_fullscreen_summary">전체 화면에서만 앰비언트 모드를 비활성화합니다.</string>
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Channel bar -->
     <string name="revanced_preference_screen_channel_bar_title">채널바</string>
-    <string name="revanced_preference_screen_channel_bar_summary">플레이어 아래에 있는 채널바 구성요소를 숨기거나 노출할 수 있습니다.</string>
+    <string name="revanced_preference_screen_channel_bar_summary">플레이어 아래에 있는 채널바 구성요소를 숨기거나 표시할 수 있습니다.</string>
     <string name="revanced_hide_join_button_title">가입 버튼 숨기기</string>
     <string name="revanced_hide_join_button_summary_on">가입 버튼이 숨겨집니다.</string>
     <string name="revanced_hide_join_button_summary_off">가입 버튼이 노출됩니다.</string>
@@ -515,7 +515,7 @@ DeArrow에 대해 자세히 알아보려면 여기를 누르세요."</string>
     <string name="revanced_hide_start_trial_button_summary_off">일부 국가 OTT 채널의 채널바에서 체험 시작 버튼이 노출됩니다. (일부 국가 VPN를 사용하면 버튼이 노출됨.)</string>
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Comments -->
     <string name="revanced_preference_screen_comments_title">댓글</string>
-    <string name="revanced_preference_screen_comments_summary">댓글 섹션 구성요소를 숨기거나 노출할 수 있습니다.</string>
+    <string name="revanced_preference_screen_comments_summary">댓글 섹션 구성요소를 숨기거나 표시할 수 있습니다.</string>
     <string name="revanced_hide_channel_guidelines_title">커뮤니티 가이드라인 숨기기</string>
     <string name="revanced_hide_channel_guidelines_summary_on">커뮤니티 가이드라인이 숨겨집니다.</string>
     <string name="revanced_hide_channel_guidelines_summary_off">커뮤니티 가이드라인이 노출됩니다.</string>
@@ -696,7 +696,7 @@ DeArrow에 대해 자세히 알아보려면 여기를 누르세요."</string>
     <string name="revanced_disable_haptic_feedback_zoom_summary_off">진동 피드백을 활성화합니다.</string>
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Player buttons -->
     <string name="revanced_preference_screen_player_buttons_title">플레이어 버튼</string>
-    <string name="revanced_preference_screen_player_buttons_summary">플레이어에서 버튼을 숨기거나 노출할 수 있습니다.</string>
+    <string name="revanced_preference_screen_player_buttons_summary">플레이어에서 버튼을 숨기거나 표시할 수 있습니다.</string>
     <string name="revanced_hide_player_autoplay_button_title">자동 재생 버튼 숨기기</string>
     <string name="revanced_hide_player_autoplay_button_summary_on">자동 재생 버튼이 숨겨집니다.</string>
     <string name="revanced_hide_player_autoplay_button_summary_off">자동 재생 버튼이 노출됩니다.</string>
@@ -786,7 +786,7 @@ DeArrow에 대해 자세히 알아보려면 여기를 누르세요."</string>
     <string name="revanced_restore_old_seekbar_thumbnails_summary_off">플레이어에서 전체 화면 재생바 썸네일을 표시합니다.</string>
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Video description -->
     <string name="revanced_preference_screen_video_description_title">동영상 설명</string>
-    <string name="revanced_preference_screen_video_description_summary">동영상 설명 구성요소를 숨기거나 노출할 수 있습니다</string>
+    <string name="revanced_preference_screen_video_description_summary">동영상 설명 구성요소를 숨기거나 표시할 수 있습니다.</string>
     <string name="revanced_disable_rolling_number_animations_title">실시간 조회수 카운팅 애니메이션 비활성화하기</string>
     <string name="revanced_disable_rolling_number_animations_summary_on">실시간 조회수 카운팅 애니메이션을 비활성화합니다.</string>
     <string name="revanced_disable_rolling_number_animations_summary_off">실시간 조회수 카운팅 애니메이션을 활성화합니다.</string>
@@ -852,7 +852,7 @@ DeArrow에 대해 자세히 알아보려면 여기를 누르세요."</string>
     <string name="revanced_hide_shorts_shelf_history_summary_off">시청 기록에서 Shorts 선반이 노출됩니다.</string>
     <!-- PreferenceScreen: Shorts, PreferenceCategory: Shorts, PreferenceScreen: Shorts player -->
     <string name="revanced_preference_screen_shorts_player_title">Shorts 플레이어</string>
-    <string name="revanced_preference_screen_shorts_player_summary">Shorts 플레이어에서 구성요소를 숨기거나 노출할 수 있습니다.</string>
+    <string name="revanced_preference_screen_shorts_player_summary">Shorts 플레이어에서 구성요소를 숨기거나 표시할 수 있습니다.</string>
     <string name="revanced_hide_shorts_join_button_title">가입 버튼 숨기기</string>
     <string name="revanced_hide_shorts_join_button_summary_on">가입 버튼이 숨겨집니다.</string>
     <string name="revanced_hide_shorts_join_button_summary_off">가입 버튼이 노출됩니다.</string>
@@ -925,10 +925,6 @@ DeArrow에 대해 자세히 알아보려면 여기를 누르세요."</string>
     <string name="revanced_return_shorts_channel_name_title">Shorts 채널 이름 복원하기</string>
     <string name="revanced_return_shorts_channel_name_summary_on">채널 이름을 사용합니다.</string>
     <string name="revanced_return_shorts_channel_name_summary_off">채널 핸들(@아이디)을 사용합니다.</string>
-    <string name="revanced_return_shorts_channel_name_fetch_title">RSS 피드에서 가져오기</string>
-    <string name="revanced_return_shorts_channel_name_fetch_summary_on">"RSS 피드에서 가져온 채널 이름을 사용합니다.
-채널 이름을 가져오는 데 시간이 오래 걸릴 수 있습니다."</string>
-    <string name="revanced_return_shorts_channel_name_fetch_summary_off">"YouTube의 기본 제공 채널 이름을 사용합니다."</string>
     <!-- PreferenceScreen: Swipe controls -->
     <string name="revanced_preference_screen_swipe_controls_title">스와이프 제스처</string>
     <string name="revanced_enable_swipe_lowest_value_auto_brightness_title">스와이프 제스처로 자동 밝기 활성화하기</string>
@@ -1006,7 +1002,7 @@ DeArrow에 대해 자세히 알아보려면 여기를 누르세요."</string>
     <string name="revanced_skip_preloaded_buffer_toast_summary_off">팝업 메시지를 표시하지 않습니다.</string>
     <string name="revanced_spoof_device_dimensions_title">기기 크기 정보 변경하기</string>
     <string name="revanced_spoof_device_dimensions_summary">기기 크기 정보를 변경하여 이 기기에서 사용할 수 없는 더 높은 동영상 화질을 잠금 해제합니다.</string>
-    <string name="revanced_replace_av1_codec_title">소프트웨어 A1 코덱 변경하기</string>
+    <string name="revanced_replace_av1_codec_title">소프트웨어 AV1 코덱 변경하기</string>
     <string name="revanced_replace_av1_codec_summary">소프트웨어 AV1 코덱을 VP9 코덱으로 변경합니다.</string>
     <string name="revanced_reject_av1_codec_title">소프트웨어 AV1 코덱 응답 거부하기</string>
     <string name="revanced_reject_av1_codec_summary">"소프트웨어 AV1 코덱 응답을 강제로 거부합니다.
@@ -1019,7 +1015,7 @@ DeArrow에 대해 자세히 알아보려면 여기를 누르세요."</string>
     <string name="revanced_custom_playback_speeds_invalid">사용자 정의 재생 속도는 %s 배속보다 작아야 하므로 기본값으로 재설정합니다.</string>
     <string name="revanced_custom_playback_speeds_parse_exception">잘못된 재생 속도 값이므로 기본값으로 재설정합니다.</string>
     <!-- PreferenceScreen: Return YouTube Dislike -->
-    <string name="revanced_preference_screen_ryd_title">Return Youtube Dislike</string>
+    <string name="revanced_preference_screen_ryd_title">Return YouTube Dislike</string>
     <string name="revanced_ryd_enable_title">Return YouTube Dislike 활성화하기</string>
     <string name="revanced_ryd_enable_summary_on">싫어요 개수를 표시합니다.</string>
     <string name="revanced_ryd_enable_summary_off">싫어요 개수를 표시하지 않습니다.</string>
@@ -1291,8 +1287,8 @@ DeArrow에 대해 자세히 알아보려면 여기를 누르세요."</string>
     <string name="revanced_spoof_test_client_title">테스트 클라이언트 변경하기</string>
     <string name="revanced_spoof_test_client_summary">"클라이언트를 테스트 클라이언트로 변경합니다.
 
-• 이 클라이언트는 테스트 목적으로 사용되므로 대부분의 YouTube 기능을 사용할 수 없습니다.
-• 테스트 클라이언트에는 재생 버퍼 문제가 없습니다."</string>
+• 이 설정은 테스트 목적으로 사용되므로 대부분의 YouTube 기능을 사용할 수 없습니다.
+• 이 설정을 활성화하면 재생 문제가 발생하지 않습니다."</string>
     <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Import / Export settings -->
     <string name="revanced_preference_screen_import_export_title">설정 가져오기 / 내보내기</string>
     <string name="revanced_preference_screen_import_export_summary">설정을 가져오거나 내보낼 수 있습니다.</string>
