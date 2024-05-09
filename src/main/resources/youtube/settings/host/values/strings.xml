@@ -996,11 +996,6 @@ Limitation: Official headers in search results will be hidden."</string>
     <string name="revanced_return_shorts_channel_name_title">Return shorts channel name</string>
     <string name="revanced_return_shorts_channel_name_summary_on">Channel name is used.</string>
     <string name="revanced_return_shorts_channel_name_summary_off">Channel handle is used.</string>
-    <string name="revanced_return_shorts_channel_name_fetch_title">Fetch from rss feed</string>
-    <string name="revanced_return_shorts_channel_name_fetch_summary_on">"Use the channel name taken from RSS feed.
-It may take longer to fetch the channel name."</string>
-    <string name="revanced_return_shorts_channel_name_fetch_summary_off">"Use YouTube's built-in channel name."</string>
-
 
     <!-- PreferenceScreen: Swipe controls -->
     <string name="revanced_preference_screen_swipe_controls_title">Swipe controls</string>
