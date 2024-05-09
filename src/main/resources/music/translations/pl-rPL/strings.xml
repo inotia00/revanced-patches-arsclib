@@ -139,7 +139,7 @@ Informacje:
     <string name="revanced_hide_playlist_card_shelf_title">Ukryj półki z rekomendowanymi playlistami</string>
     <string name="revanced_hide_playlist_card_shelf_summary">Ukrywa półki z rekomendowanymi playlistami na stronie głównej.</string>
     <string name="revanced_hide_samples_shelf_title">Ukryj półki z samplami</string>
-    <string name="revanced_hide_samples_shelf_summary">Ukrywa półki z samplami na stornie głównej.</string>
+    <string name="revanced_hide_samples_shelf_summary">Ukrywa półki z samplami na stronie głównej.</string>
     <string name="revanced_hide_cast_button_title">Ukryj przycisk do castowania</string>
     <string name="revanced_hide_cast_button_summary">Ukrywa przyciski castowania na stronie głównej i w odtwarzaczu.</string>
     <string name="revanced_hide_category_bar_title">Ukryj panel kategorii</string>
@@ -176,8 +176,8 @@ Nie pomija to ograniczeń wiekowych, lecz akceptuje je automatycznie."</string>
     <string name="revanced_enable_black_navigation_bar_summary">Ustawia kolor paska nawigacji na czarny.</string>
     <string name="revanced_hide_navigation_home_button_title">Ukryj przycisk do strony głównej</string>
     <string name="revanced_hide_navigation_home_button_summary">Ukrywa przycisk do strony głównej.</string>
-    <string name="revanced_hide_navigation_samples_button_title">Ukryj przycisk od próbek</string>
-    <string name="revanced_hide_navigation_samples_button_summary">Ukrywa przycisk od próbek.</string>
+    <string name="revanced_hide_navigation_samples_button_title">Ukryj przycisk od sampli</string>
+    <string name="revanced_hide_navigation_samples_button_summary">Ukrywa przycisk od sampli.</string>
     <string name="revanced_hide_navigation_explore_button_title">Ukryj przycisk do strony od odkrywania</string>
     <string name="revanced_hide_navigation_explore_button_summary">Ukrywa przycisk do strony od odkrywania.</string>
     <string name="revanced_hide_navigation_library_button_title">Ukryj przycisk do biblioteki</string>

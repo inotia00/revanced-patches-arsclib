@@ -40,6 +40,10 @@
 • Açılır menü veya kitaplıktaki indirme düğmesini geçersiz kılmaz."</string>
     <string name="revanced_external_downloader_package_name_title">Harici indirici paket adı</string>
     <string name="revanced_external_downloader_package_name_summary">Yüklü olan harici indirme uygulamanızın paket adı, örneğin NewPipe veya YTDLnis gibi.</string>
+    <string name="revanced_external_downloader_dialog_title">Harici indirici</string>
+    <string name="revanced_external_downloader_not_installed_dialog_title">Uyarı</string>
+    <string name="revanced_external_downloader_not_installed_dialog_message">"%1$s yüklü değil.
+Lütfen web sitesinden %2$s dosyasını indirin."</string>
     <string name="revanced_external_downloader_not_installed_warning">%s kurulmamış. Lütfen önce indiriniz.</string>
     <!-- PreferenceScreen: Ads -->
     <string name="revanced_preference_screen_ads_title">Reklamlar</string>
@@ -63,6 +67,12 @@
 Bilinen sorunlar: 
 • Kitaplık sekmesindeki albüm resmi, ızgara halinde düzenlendiğinde küçülür. 
 • Uyku zamanlayıcısı düzeni olağandışı görünebilir."</string>
+    <string name="revanced_enable_trim_silence_title">Kırpma sessizliğini etkinleştir</string>
+    <string name="revanced_enable_trim_silence_summary">"Oynatma hızı açılır menüsüne 'Sessizliği kırp' geçişini etkinleştirir.
+
+Bilgi:
+• Bu özellik podcast'ler içindir.
+• Bu özellik henüz geliştirme aşamasında olduğundan kararsız olabilir."</string>
     <string name="revanced_hide_flyout_menu_like_dislike_title">Beğen ve beğenme butonunu gizle</string>
     <string name="revanced_hide_flyout_menu_3_column_component_title">3-sütunlu bileşenleri gizle</string>
     <string name="revanced_hide_flyout_menu_add_to_queue_title">Kuyruğa ekle menüsünü gizle</string>
@@ -126,6 +136,8 @@ Bilinen sorunlar:
     <string name="revanced_hide_button_shelf_summary">Düğme rafını ana sayfadan ve keşfet sekmesinden gizler.</string>
     <string name="revanced_hide_carousel_shelf_title">Atlıkarınca rafını gizle</string>
     <string name="revanced_hide_carousel_shelf_summary">Döner rafı ana sayfa ve keşfet sekmesinden gizler.</string>
+    <string name="revanced_hide_playlist_card_shelf_title">Çalma listesi kartı rafını gizle</string>
+    <string name="revanced_hide_playlist_card_shelf_summary">Oynatma listesi kartı rafını ana sayfadan gizler.</string>
     <string name="revanced_hide_samples_shelf_title">Örnek rafını gizle</string>
     <string name="revanced_hide_samples_shelf_summary">Feed\'deki örnek rafını gizler.</string>
     <string name="revanced_hide_cast_button_title">\"Yayınla\" butonunu gizle</string>
@@ -138,9 +150,13 @@ Bilinen sorunlar:
     <string name="revanced_hide_tap_to_update_button_summary">\'Güncellemek için tıkla\' butonunu gizler.</string>
     <string name="revanced_hide_history_button_title">Geçmiş düğmesini gizle</string>
     <string name="revanced_hide_history_button_summary">Araç çubuğundaki geçmiş düğmesini gizler.</string>
+    <string name="revanced_hide_notification_button_title">Bildirim butonunu gizle</string>
+    <string name="revanced_hide_notification_button_summary">Araç çubuğundaki bildirim düğmesini gizler.</string>
+    <string name="revanced_hide_sound_search_button_title">Sesli arama düğmesini gizle</string>
+    <string name="revanced_hide_sound_search_button_summary">Arama çubuğundaki ses arama düğmesini gizler.</string>
     <string name="revanced_hide_voice_search_button_title">Sesli arama düğmesini gizle</string>
     <string name="revanced_hide_voice_search_button_summary">Arama çubuğundaki sesli arama düğmesini gizler.</string>
-    <string name="revanced_restore_old_style_library_shelf_title">Eski stil kitaplık rafını etkinleştir</string>
+    <string name="revanced_restore_old_style_library_shelf_title">Eski stil kitaplık rafını geri getir</string>
     <string name="revanced_restore_old_style_library_shelf_summary">Kütüphane rafını eski stile döndürün.
 (Deneysel)</string>
     <string name="revanced_remove_viewer_discretion_dialog_title">İzleyicinin takdirine bağlı iletişim kutusunu kaldır</string>
@@ -188,6 +204,8 @@ Bilinen sorunlar:
     <string name="revanced_enable_zen_mode_summary">Video oynatıcıya açık gri bir ton ekleyerek göz yorgunluğunu azaltır.</string>
     <string name="revanced_enable_zen_mode_podcast_title">Podcastlerde zen modunu aç/kapa</string>
     <string name="revanced_enable_zen_mode_podcast_summary">Zen modu podcast\'lere de uygulanır.</string>
+    <string name="revanced_hide_comment_channel_guidelines_title">Kanal yönergelerini gizle</string>
+    <string name="revanced_hide_comment_channel_guidelines_summary">Yorumları bölümünün üst kısmında kanal kurallarını gizler.</string>
     <string name="revanced_hide_comment_timestamp_and_emoji_buttons_title">Zaman damgası ve emoji düğmelerini gizle</string>
     <string name="revanced_hide_comment_timestamp_and_emoji_buttons_summary">Yorum yazarken zaman damgası ve emoji düğmelerini gizle.</string>
     <string name="revanced_hide_fullscreen_share_button_title">Tam ekran\'daki paylaş butonunu gizle</string>
@@ -196,9 +214,16 @@ Bilinen sorunlar:
     <string name="revanced_remember_repeat_state_summary">Tekrarın durumunu hatırlar.</string>
     <string name="revanced_remember_shuffle_state_title">Karıştır durumunu hatırlar</string>
     <string name="revanced_remember_shuffle_state_summary">Karıştır durumunu hatırlar.</string>
+    <string name="revanced_restore_old_comments_popup_panels_title">Eski yorum açılır panellerini geri getir</string>
+    <string name="revanced_restore_old_comments_popup_panels_summary">Yorum açılır pencerelerini eski stile döndürür.</string>
+    <string name="revanced_restore_old_player_background_title">Eski oynatıcı arka planını geri getir</string>
+    <string name="revanced_restore_old_player_background_summary">Oynatıcı arkaplanını eski stile döndürür.</string>
+    <string name="revanced_restore_old_player_layout_title">Eski oynatıcı düzenini geri getir</string>
+    <string name="revanced_restore_old_player_layout_summary">"Oynatıcı düzenini eski stile döndürün. 
+Eski oynatıcı düzeninde bazı ayarlar düzgün çalışmayabilir."</string>
     <string name="revanced_replace_player_cast_button_title">Yayınla düğmesini değiştir</string>
-    <string name="revanced_replace_player_cast_button_summary">"Oynatıcıdaki yayın düğmesini \"Müziği aç\" düğmesiyle değiştirin. (Deneysel)
-Bilinen sorunlar: Çalma listesinde çalınamayan bir veya daha fazla müzik normal şekilde çalışmıyorsa."</string>
+    <string name="revanced_replace_player_cast_button_summary">"Oynatıcıdaki yayın düğmesini 'Müziği aç' düğmesiyle değiştirin. (Deneysel)
+Sınırlama: Çalma listesinde çalınamayan bir veya daha fazla müzik normal şekilde çalışmaz."</string>
     <string name="revanced_replace_player_cast_button_playlist_dismiss">Zaten orijinal ses kaynağından oynatılıyor.</string>
     <string name="revanced_replace_player_cast_button_playlist_error">Orijinal müzik kaynağı kullanılamıyor.</string>
     <!-- PreferenceScreen: Video -->
