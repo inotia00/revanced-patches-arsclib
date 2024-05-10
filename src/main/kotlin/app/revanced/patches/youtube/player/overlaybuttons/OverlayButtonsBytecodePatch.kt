@@ -12,7 +12,6 @@ import app.revanced.patches.youtube.player.overlaybuttons.fingerprints.OfflineVi
 import app.revanced.patches.youtube.player.overlaybuttons.fingerprints.PiPPlaybackFingerprint
 import app.revanced.patches.youtube.player.overlaybuttons.fingerprints.PlayerButtonConstructorFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.INTEGRATIONS_PATH
-import app.revanced.patches.youtube.utils.integrations.Constants.PATCH_STATUS_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.integrations.Constants.UTILS_PATH
 import app.revanced.patches.youtube.utils.mainactivity.MainActivityResolvePatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
@@ -22,7 +21,6 @@ import app.revanced.util.getReference
 import app.revanced.util.getTargetIndexWithReference
 import app.revanced.util.indexOfFirstInstruction
 import app.revanced.util.resultOrThrow
-import app.revanced.util.updatePatchStatus
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
@@ -140,8 +138,6 @@ object OverlayButtonsBytecodePatch : BytecodePatch(
         }
 
         // endregion
-
-        context.updatePatchStatus(PATCH_STATUS_CLASS_DESCRIPTOR, "OverlayButtons")
 
     }
 }
