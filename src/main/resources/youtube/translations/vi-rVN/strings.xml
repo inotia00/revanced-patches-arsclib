@@ -120,11 +120,11 @@ Nhấn vào đây để tìm hiểu thêm về DeArrow."</string>
     <string name="revanced_hide_playables_summary_on">Playables are hidden.</string>
     <string name="revanced_hide_playables_summary_off">Playables are shown.</string>
     <string name="revanced_hide_show_more_button_title">"Hide 'Show more' button"</string>
-    <string name="revanced_hide_show_more_button_summary_on">"'Show more' button is hidden."</string>
-    <string name="revanced_hide_show_more_button_summary_off">"'Show more' button is shown."</string>
-    <string name="revanced_hide_subscriptions_channel_section_title">Hide subscriptions channel section</string>
-    <string name="revanced_hide_subscriptions_channel_section_summary_on">Subscriptions channel section is hidden.</string>
-    <string name="revanced_hide_subscriptions_channel_section_summary_off">Subscriptions channel section is shown.</string>
+    <string name="revanced_hide_show_more_button_summary_on">"Nút 'Hiển thị thêm' đã ẩn."</string>
+    <string name="revanced_hide_show_more_button_summary_off">"Nút 'Hiển thị thêm' đã hiện."</string>
+    <string name="revanced_hide_subscriptions_channel_section_title">Ẩn Kênh đăng ký</string>
+    <string name="revanced_hide_subscriptions_channel_section_summary_on">Kênh đăng ký đã ẩn.</string>
+    <string name="revanced_hide_subscriptions_channel_section_summary_off">Kênh đăng ký đã hiện.</string>
     <string name="revanced_hide_ticket_shelf_title">Ẩn kệ bán vé</string>
     <string name="revanced_hide_ticket_shelf_summary_on">Kệ bán vé đã ẩn.</string>
     <string name="revanced_hide_ticket_shelf_summary_off">Kệ bán vé được hiển thị.</string>
@@ -138,19 +138,19 @@ Nhấn vào đây để tìm hiểu thêm về DeArrow."</string>
     <string name="revanced_hide_category_bar_in_related_videos_summary_on">Hidden in related videos.</string>
     <string name="revanced_hide_category_bar_in_related_videos_summary_off">Shown in related videos.</string>
     <string name="revanced_hide_category_bar_in_search_title">Hide in search results</string>
-    <string name="revanced_hide_category_bar_in_search_summary_on">Hidden in search results.</string>
-    <string name="revanced_hide_category_bar_in_search_summary_off">Shown in search results.</string>
+    <string name="revanced_hide_category_bar_in_search_summary_on">Đã ẩn kết quả tìm kiếm từ web.</string>
+    <string name="revanced_hide_category_bar_in_search_summary_off">Đã hiện kết quả tìm kiếm từ web.</string>
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Channel profile -->
     <string name="revanced_preference_screen_channel_profile_title">Channel profile</string>
-    <string name="revanced_preference_screen_channel_profile_summary">Hide or show components in the channel profile.</string>
-    <string name="revanced_hide_channel_tab_title">Enable channel tab filter</string>
+    <string name="revanced_preference_screen_channel_profile_summary">Ẩn hoặc hiển thị các thành phần trong hồ sơ kênh.</string>
+    <string name="revanced_hide_channel_tab_title">Bật bộ lọc tab kênh</string>
     <string name="revanced_hide_channel_tab_summary_on">Channel tab filter is enabled.</string>
     <string name="revanced_hide_channel_tab_summary_off">Channel tab filter is disabled.</string>
-    <string name="revanced_hide_channel_tab_filter_strings_title">Channel tab filter</string>
+    <string name="revanced_hide_channel_tab_filter_strings_title">Bộ lọc tùy chỉnh</string>
     <string name="revanced_hide_channel_tab_filter_strings_summary">List of channel tab names to filter separated by a new line.</string>
     <string name="revanced_hide_channel_tab_filter_strings_hint">"Shorts
-Playlists
-Store"</string>
+Danh sách phát
+Cửa hàng"</string>
     <string name="revanced_hide_browse_store_button_title">Ẩn nút Duyệt xem cửa hàng</string>
     <string name="revanced_hide_browse_store_button_summary_on">Nút Duyệt xem cửa hàng đã ẩn.</string>
     <string name="revanced_hide_browse_store_button_summary_off">Nút Duyệt xem cửa hàng được hiển thị.</string>
@@ -165,22 +165,22 @@ Store"</string>
     <string name="revanced_hide_for_you_shelf_summary_off">"Kệ Dành cho bạn được hiển thị."</string>
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Community posts -->
     <string name="revanced_preference_screen_community_posts_title">Community posts</string>
-    <string name="revanced_preference_screen_community_posts_summary">Hide or show community posts in the feed and channel.</string>
-    <string name="revanced_hide_community_posts_channel_title">Hide in channel</string>
-    <string name="revanced_hide_community_posts_channel_summary_on">Hidden in channel.</string>
-    <string name="revanced_hide_community_posts_channel_summary_off">Shown in channel.</string>
-    <string name="revanced_hide_community_posts_home_related_videos_title">Hide in home feed and related videos</string>
-    <string name="revanced_hide_community_posts_home_related_videos_summary_on">Hidden in home feed and related videos.</string>
-    <string name="revanced_hide_community_posts_home_related_videos_summary_off">Shown in home feed and related videos.</string>
+    <string name="revanced_preference_screen_community_posts_summary">Ẩn hoặc hiện bài viết cộng đồng trong bảng feed và kênh.</string>
+    <string name="revanced_hide_community_posts_channel_title">Ẩn trong kênh</string>
+    <string name="revanced_hide_community_posts_channel_summary_on">Đã ẩn trong kênh.</string>
+    <string name="revanced_hide_community_posts_channel_summary_off">Đã hiển thị trong kênh.</string>
+    <string name="revanced_hide_community_posts_home_related_videos_title">Ẩn trong bảng feed trên trang chủ và các video liên quan</string>
+    <string name="revanced_hide_community_posts_home_related_videos_summary_on">Đã ẩn trong bảng feed trên trang chủ và các video liên quan.</string>
+    <string name="revanced_hide_community_posts_home_related_videos_summary_off">Đã hiển thị trong bảng feed trên trang chủ và các video liên quan.</string>
     <string name="revanced_hide_community_posts_subscriptions_title">Ẩn bài đăng trên thẻ Kênh đăng ký</string>
     <string name="revanced_hide_community_posts_subscriptions_summary_on">Bài đăng đã ẩn khỏi thẻ Kênh đăng ký.</string>
     <string name="revanced_hide_community_posts_subscriptions_summary_off">Bài đăng được hiển thị trên thẻ Kênh đăng ký.</string>
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Flyout menu -->
-    <string name="revanced_preference_screen_feed_flyout_menu_title">Flyout menu</string>
-    <string name="revanced_preference_screen_feed_flyout_menu_summary">Hide or show flyout menu in the feed.</string>
-    <string name="revanced_hide_feed_flyout_menu_title">Enable feed flyout menu filter</string>
-    <string name="revanced_hide_feed_flyout_menu_summary_on">Feed flyout menu filter is enabled.</string>
-    <string name="revanced_hide_feed_flyout_menu_summary_off">Feed flyout menu filter is disabled.</string>
+    <string name="revanced_preference_screen_feed_flyout_menu_title">Menu nổi</string>
+    <string name="revanced_preference_screen_feed_flyout_menu_summary">Ẩn hoặc hiện menu nổi trên bảng feed.</string>
+    <string name="revanced_hide_feed_flyout_menu_title">Bật bộ lọc menu nổi của bảng feed</string>
+    <string name="revanced_hide_feed_flyout_menu_summary_on">Bộ lọc menu nổi trên bảng feed đã kích hoạt.</string>
+    <string name="revanced_hide_feed_flyout_menu_summary_off">Bộ lọc menu nổi trên bảng feed đã vô hiệu hoá.</string>
     <string name="revanced_hide_feed_flyout_menu_filter_strings_title">Feed flyout menu filter</string>
     <string name="revanced_hide_feed_flyout_menu_filter_strings_summary">List of flyout menu names to filter separated by a new line.</string>
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Video filter -->
@@ -353,6 +353,9 @@ Lưu ý:\n- Tuỳ chọn này sẽ thay đổi giao diện ứng dụng, tuy nhi
     <string name="revanced_preference_screen_settings_munu_summary">Hide elements in YouTube settings menu.</string>
     <string name="revanced_hide_settings_menu_title">Hide YouTube settings menu</string>
     <string name="revanced_hide_settings_menu_summary">Hide elements in YouTube settings menu.</string>
+    <string name="revanced_hide_settings_menu_filter_type_title">Select type to filter</string>
+    <string name="revanced_hide_settings_menu_filter_type_summary_on">Filter by whitelist method. Hides settings other than keywords added to the filter.</string>
+    <string name="revanced_hide_settings_menu_filter_type_summary_off">Filter by legacy method. Hides settings added to the filter.</string>
     <string name="revanced_hide_settings_menu_filter_strings_title">YouTube settings menu filter</string>
     <string name="revanced_hide_settings_menu_filter_strings_summary">List of YouTube settings menu names to filter separated by a new line.</string>
     <string name="revanced_hide_settings_menu_filter_strings_hint">"Account
@@ -448,7 +451,10 @@ Lưu ý: Bật tuỳ chọn này sẽ khôi phục tính năng Trượt để tu
     <string name="revanced_hide_suggested_video_end_screen_title">Hide suggested video end screen</string>
     <string name="revanced_hide_suggested_video_end_screen_summary">"This setting has been deprecated.
 
-Instead, use the 'Settings → Autoplay → Autoplay next video' setting."</string>
+Instead, use the 'Settings → Autoplay → Autoplay next video' setting.
+
+Note:
+• If you have any issues with 'Suggested video end screen', try restarting the app."</string>
     <string name="revanced_hide_timed_reactions_title">Ẩn phản ứng theo thời gian</string>
     <string name="revanced_hide_timed_reactions_summary_on">Phản ứng theo thời gian đã ẩn.</string>
     <string name="revanced_hide_timed_reactions_summary_off">Phản ứng theo thời gian được hiển thị.</string>

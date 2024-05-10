@@ -353,6 +353,9 @@ Niektóre komponenty mogą nie być ukryte."</string>
     <string name="revanced_preference_screen_settings_munu_summary">Ukryj ustawienia w ustawieniach YouTube</string>
     <string name="revanced_hide_settings_menu_title">Menu ustawień YouTube</string>
     <string name="revanced_hide_settings_menu_summary">Ukryj ustawienia w ustawieniach YouTube</string>
+    <string name="revanced_hide_settings_menu_filter_type_title">Select type to filter</string>
+    <string name="revanced_hide_settings_menu_filter_type_summary_on">Filter by whitelist method. Hides settings other than keywords added to the filter.</string>
+    <string name="revanced_hide_settings_menu_filter_type_summary_off">Filter by legacy method. Hides settings added to the filter.</string>
     <string name="revanced_hide_settings_menu_filter_strings_title">Filtr ustawień YouTube</string>
     <string name="revanced_hide_settings_menu_filter_strings_summary">Lista nazw ustawień YouTube, które mają być ukryte oddzielonych nowymi liniami</string>
     <string name="revanced_hide_settings_menu_filter_strings_hint">"Konto
@@ -1318,7 +1321,7 @@ Ograniczenie: Wideo na stronie głównej będą odtwarzane przez mniej niż minu
     <string name="revanced_icon_revancify_blue">Niebieska od Revancify</string>
     <string name="revanced_icon_revancify_red">Czerwona od Revancify</string>
     <string name="revanced_label_default">Domyślne</string>
-    <string name="revanced_patches_excluded">Wykluczony</string>
-    <string name="revanced_patches_included">Zawarty</string>
+    <string name="revanced_patches_excluded">Wykluczone</string>
+    <string name="revanced_patches_included">Zawarte</string>
     <string name="revanced_theme_default">Domyślny</string>
 </resources>

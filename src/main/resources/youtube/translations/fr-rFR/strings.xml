@@ -86,9 +86,9 @@ Ne modifiez pas cette adresse à moins de savoir ce que vous faites.</string>
     <string name="revanced_hide_chips_shelf_title">Section \"Vous pourriez aussi aimer\"</string>
     <string name="revanced_hide_chips_shelf_on">La section \"Vous pourriez aussi aimer\" est masquée.</string>
     <string name="revanced_hide_chips_shelf_off">La section \"Vous pourriez aussi aimer\" est affichée.</string>
-    <string name="revanced_hide_expandable_chip_title">Moments clés</string>
-    <string name="revanced_hide_expandable_chip_summary_on">Les moments clés sont masqués.</string>
-    <string name="revanced_hide_expandable_chip_summary_off">Les moments clés sont affichés</string>
+    <string name="revanced_hide_expandable_chip_title">Masquer les menus déroulants sous les vidéos</string>
+    <string name="revanced_hide_expandable_chip_summary_on">Les menus déroulants sont masqués.</string>
+    <string name="revanced_hide_expandable_chip_summary_off">Les menus déroulants sont affichés.</string>
     <string name="revanced_hide_feed_captions_button_title">Bouton \"Sous-titres\"</string>
     <string name="revanced_hide_feed_captions_button_on">Le bouton \"Sous-titres\" est masqué.</string>
     <string name="revanced_hide_feed_captions_button_off">Le bouton \"Sous-titres\" est affiché.</string>
@@ -360,6 +360,9 @@ Certains composants peuvent ne pas être masqués"</string>
     <string name="revanced_preference_screen_settings_munu_summary">Masque les éléments dans le menu des paramètres YouTube.</string>
     <string name="revanced_hide_settings_menu_title">Menu paramètre YouTube</string>
     <string name="revanced_hide_settings_menu_summary">Masque les éléments dans le menu des paramètres YouTube.</string>
+    <string name="revanced_hide_settings_menu_filter_type_title">Select type to filter</string>
+    <string name="revanced_hide_settings_menu_filter_type_summary_on">Filter by whitelist method. Hides settings other than keywords added to the filter.</string>
+    <string name="revanced_hide_settings_menu_filter_type_summary_off">Filter by legacy method. Hides settings added to the filter.</string>
     <string name="revanced_hide_settings_menu_filter_strings_title">Filtre du menu paramètre YouTube</string>
     <string name="revanced_hide_settings_menu_filter_strings_summary">Liste de noms du menu de paramètre YouTube à filtrer, séparés par une nouvelle ligne.</string>
     <string name="revanced_hide_settings_menu_filter_strings_hint">"Compte
@@ -1071,7 +1074,7 @@ Limitation : \"Je n'aime pas\" n'apparaîtras pas en mode incognito."</string>
     <string name="revanced_sb_segments_selfpromo_sum">Similaire à \'Sponsor\', sauf pour la promotion non rémunérée ou l\'auto-promotion. Comprend des sections sur les marchandises, les dons ou des informations sur les personnes avec qui ils ont collaboré.</string>
     <string name="revanced_sb_segments_interaction">Rappel d\'interaction (S\'abonner)</string>
     <string name="revanced_sb_segments_interaction_sum">Un rappel bref pour aimer, s\'abonner ou les suivre au milieu du contenu. S\'il est long ou concerne quelque chose de spécifique, il devrait plutôt être considéré comme de l\'auto-promotion.</string>
-    <string name="revanced_sb_segments_highlight">Moment clé</string>
+    <string name="revanced_sb_segments_highlight">Point clé</string>
     <string name="revanced_sb_segments_highlight_sum">La partie de la vidéo que la plupart des gens veulent voir.</string>
     <string name="revanced_sb_segments_intro">Intro / Entracte</string>
     <string name="revanced_sb_segments_intro_sum">Intervalle sans réel contenu. Il peut s\'agir d\'une pause, d\'une image statique ou d\'une animation répétitive. Ne comprend pas les transitions contenant des informations.</string>
@@ -1084,11 +1087,11 @@ Limitation : \"Je n'aime pas\" n'apparaîtras pas en mode incognito."</string>
     <string name="revanced_sb_segments_nomusic">Musique : Section non musicale</string>
     <string name="revanced_sb_segments_nomusic_sum">Uniquement destiné aux vidéos musicales. Sections de vidéos musicales sans musique, qui ne sont pas déjà couvertes par une autre catégorie.</string>
     <string name="revanced_sb_skip_button_compact">Passer</string>
-    <string name="revanced_sb_skip_button_compact_highlight">Moment clé</string>
+    <string name="revanced_sb_skip_button_compact_highlight">Point clé</string>
     <string name="revanced_sb_skip_button_sponsor">Passer le sponsor</string>
     <string name="revanced_sb_skip_button_selfpromo">Passer la promotion</string>
     <string name="revanced_sb_skip_button_interaction">Passer l\'interaction</string>
-    <string name="revanced_sb_skip_button_highlight">Passer au moment clé</string>
+    <string name="revanced_sb_skip_button_highlight">Passer au point clé</string>
     <string name="revanced_sb_skip_button_intro_beginning">Passer l\'intro</string>
     <string name="revanced_sb_skip_button_intro_middle">Passer entracte</string>
     <string name="revanced_sb_skip_button_intro_end">Passer entracte</string>
@@ -1102,7 +1105,7 @@ Limitation : \"Je n'aime pas\" n'apparaîtras pas en mode incognito."</string>
     <string name="revanced_sb_skipped_sponsor">Sponsor passé.</string>
     <string name="revanced_sb_skipped_selfpromo">Autopromotion passée.</string>
     <string name="revanced_sb_skipped_interaction">Rappel ennuyeux passé.</string>
-    <string name="revanced_sb_skipped_highlight">Passé au moment clé.</string>
+    <string name="revanced_sb_skipped_highlight">Passé au point clé.</string>
     <string name="revanced_sb_skipped_intro_beginning">Intro passée.</string>
     <string name="revanced_sb_skipped_intro_middle">Entracte passé.</string>
     <string name="revanced_sb_skipped_intro_end">Entracte passé.</string>

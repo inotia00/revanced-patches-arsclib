@@ -352,6 +352,9 @@ Playlists
     <string name="revanced_preference_screen_settings_munu_summary">Απόκρυψη στοιχείων στο μενού ρυθμίσεων του YouTube.</string>
     <string name="revanced_hide_settings_menu_title">Μενού ρυθμίσεων του YouTube</string>
     <string name="revanced_hide_settings_menu_summary">Απόκρυψη στοιχείων στο μενού ρυθμίσεων του YouTube.</string>
+    <string name="revanced_hide_settings_menu_filter_type_title">Select type to filter</string>
+    <string name="revanced_hide_settings_menu_filter_type_summary_on">Filter by whitelist method. Hides settings other than keywords added to the filter.</string>
+    <string name="revanced_hide_settings_menu_filter_type_summary_off">Filter by legacy method. Hides settings added to the filter.</string>
     <string name="revanced_hide_settings_menu_filter_strings_title">Αλλαγή φίλτρου μενού ρυθμίσεων του YouTube</string>
     <string name="revanced_hide_settings_menu_filter_strings_summary">Λίστα ονομάτων των επιλογών του μενού ρυθμίσεων YouTube για φιλτράρισμα, διαχωρισμένα με νέες γραμμές.</string>
     <string name="revanced_hide_settings_menu_filter_strings_hint">"Λογαριασμός
@@ -411,7 +414,7 @@ Playlists
     <string name="revanced_disable_speed_overlay_summary">"Απενεργοποίηση του «Παίζοντας με 2x ταχύτητα» κατά το παρατεταμένο πάτημα.
 
 Σημειώσεις: 
-• Ενεργοποιώντας αυτή τη ρύθμιση θα επαναφέρει τη λειτουργία «Σύρετε αριστερά η δεξιά για αναζήτηση».
+• Ενεργοποιώντας αυτή τη ρύθμιση θα επαναφερθεί η λειτουργία «Σύρετε αριστερά η δεξιά για αναζήτηση».
 • Σε περίπτωση απενεργοποίησης αυτής της ρύθμισης δεν εξαναγκάζεται η ενεργοποίηση της διεπαφής ταχύτητας."</string>
     <string name="revanced_speed_overlay_value_title">Τιμή διεπαφής ταχύτητας</string>
     <string name="revanced_speed_overlay_value_summary">Τιμή αλλαγής ταχύτητας κατά το παρατεταμένο πάτημα, μεταξύ 0 και 8.0.</string>
@@ -497,7 +500,7 @@ Playlists
     <string name="revanced_bypass_ambient_mode_restrictions_summary_off">Η λειτουργία περιβάλλοντος απενεργοποιείται σε λειτουργία εξοικονόμησης μπαταρίας.</string>
     <string name="revanced_disable_ambient_mode_title">Απενεργοποίηση λειτουργίας περιβάλλοντος</string>
     <string name="revanced_disable_ambient_mode_summary">Απενεργοποίηση της λειτουργίας περιβάλλοντος πάντα.</string>
-    <string name="revanced_disable_ambient_mode_in_fullscreen_title">Απενεργοποίηση λειτουργίας περιβάλλοντος σε πλήρη οθόνη</string>
+    <string name="revanced_disable_ambient_mode_in_fullscreen_title">Απενεργοποίηση σε πλήρη οθόνη</string>
     <string name="revanced_disable_ambient_mode_in_fullscreen_summary">Απενεργοποίηση της λειτουργίας περιβάλλοντος σε λειτουργία πλήρους οθόνης.</string>
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Channel bar -->
     <string name="revanced_preference_screen_channel_bar_title">Γραμμή καναλιού</string>
@@ -770,8 +773,8 @@ Playlists
     <string name="revanced_hide_seekbar_thumbnail_title">Γραμμή προόδου σε μικρογραφίες βίντεο</string>
     <string name="revanced_hide_seekbar_thumbnail_summary_on">Κρυμμένη.</string>
     <string name="revanced_hide_seekbar_thumbnail_summary_off">Εμφανίζεται.</string>
-    <string name="revanced_hide_seekbar_chapters_title">Κεφάλαια βίντεο στη γραμμή προόδου</string>
-    <string name="revanced_hide_seekbar_chapters_summary_on">Κρυμμένα.</string>
+    <string name="revanced_hide_seekbar_chapters_title">Ονομασίες κεφαλαίων στη γραμμή προόδου</string>
+    <string name="revanced_hide_seekbar_chapters_summary_on">Κρυμμένες.</string>
     <string name="revanced_hide_seekbar_chapters_summary_off">Εμφανίζονται.</string>
     <string name="revanced_hide_time_stamp_title">Χρονοσφραγίδα βίντεο</string>
     <string name="revanced_hide_time_stamp_summary_on">Κρυμμένη.</string>
@@ -1320,7 +1323,7 @@ Playlists
     <string name="revanced_icon_revancify_blue">Revancify Blue</string>
     <string name="revanced_icon_revancify_red">Revancify Red</string>
     <string name="revanced_label_default">Προεπιλογή</string>
-    <string name="revanced_patches_excluded">Εξαιρέθηκαν</string>
-    <string name="revanced_patches_included">Συμπεριλήφθηκαν</string>
+    <string name="revanced_patches_excluded">Εξαιρέθηκε</string>
+    <string name="revanced_patches_included">Συμπεριλήφθηκε</string>
     <string name="revanced_theme_default">Προεπιλογή</string>
 </resources>

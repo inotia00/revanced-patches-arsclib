@@ -354,6 +354,9 @@ Előfordulhat, hogy egyes komponensek nincsenek elrejtve."</string>
     <string name="revanced_preference_screen_settings_munu_summary">Hide elements in YouTube settings menu.</string>
     <string name="revanced_hide_settings_menu_title">Hide YouTube settings menu</string>
     <string name="revanced_hide_settings_menu_summary">Hide elements in YouTube settings menu.</string>
+    <string name="revanced_hide_settings_menu_filter_type_title">Select type to filter</string>
+    <string name="revanced_hide_settings_menu_filter_type_summary_on">Filter by whitelist method. Hides settings other than keywords added to the filter.</string>
+    <string name="revanced_hide_settings_menu_filter_type_summary_off">Filter by legacy method. Hides settings added to the filter.</string>
     <string name="revanced_hide_settings_menu_filter_strings_title">YouTube settings menu filter</string>
     <string name="revanced_hide_settings_menu_filter_strings_summary">List of YouTube settings menu names to filter separated by a new line.</string>
     <string name="revanced_hide_settings_menu_filter_strings_hint">"Account
@@ -449,7 +452,10 @@ Megjegyzés: sebesség átfedés letiltása esetén a régi felület csúsztatá
     <string name="revanced_hide_suggested_video_end_screen_title">Hide suggested video end screen</string>
     <string name="revanced_hide_suggested_video_end_screen_summary">"This setting has been deprecated.
 
-Instead, use the 'Settings → Autoplay → Autoplay next video' setting."</string>
+Instead, use the 'Settings → Autoplay → Autoplay next video' setting.
+
+Note:
+• If you have any issues with 'Suggested video end screen', try restarting the app."</string>
     <string name="revanced_hide_timed_reactions_title">Időzített reakciók elrejtése</string>
     <string name="revanced_hide_timed_reactions_summary_on">Az időzített reakciók el vannak rejtve.</string>
     <string name="revanced_hide_timed_reactions_summary_off">Az időzített reakciók láthatóak.</string>

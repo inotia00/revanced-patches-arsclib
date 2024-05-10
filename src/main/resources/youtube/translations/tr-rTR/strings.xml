@@ -346,6 +346,9 @@ Kısıtlamalar:
     <string name="revanced_preference_screen_settings_munu_summary">YouTube ayarlar menüsünde elementleri gizle.</string>
     <string name="revanced_hide_settings_menu_title">YouTube ayarlar menüsünü gizle</string>
     <string name="revanced_hide_settings_menu_summary">YouTube ayarlar menüsünde elementleri gizle.</string>
+    <string name="revanced_hide_settings_menu_filter_type_title">Select type to filter</string>
+    <string name="revanced_hide_settings_menu_filter_type_summary_on">Filter by whitelist method. Hides settings other than keywords added to the filter.</string>
+    <string name="revanced_hide_settings_menu_filter_type_summary_off">Filter by legacy method. Hides settings added to the filter.</string>
     <string name="revanced_hide_settings_menu_filter_strings_title">YouTube ayarlar menüsü filtresi</string>
     <string name="revanced_hide_settings_menu_filter_strings_summary">Yeni bir satırla ayrılmış olarak filtrelenecek YouTube ayarlar menüsü adlarının listesi.</string>
     <string name="revanced_hide_settings_menu_filter_strings_hint">"Hesap
