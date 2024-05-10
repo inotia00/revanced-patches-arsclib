@@ -493,7 +493,10 @@ Note:
     <string name="revanced_hide_suggested_video_end_screen_title">Hide suggested video end screen</string>
     <string name="revanced_hide_suggested_video_end_screen_summary">"This setting has been deprecated.
 
-Instead, use the 'Settings → Autoplay → Autoplay next video' setting."</string>
+Instead, use the 'Settings → Autoplay → Autoplay next video' setting.
+
+Note:
+• If you have any issues with 'Suggested video end screen', try restarting the app."</string>
     <string name="revanced_hide_timed_reactions_title">Hide timed reactions</string>
     <string name="revanced_hide_timed_reactions_summary_on">Timed reactions are hidden.</string>
     <string name="revanced_hide_timed_reactions_summary_off">Timed reactions are shown.</string>
