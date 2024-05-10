@@ -34,9 +34,9 @@
     <string name="revanced_hide_action_button_label_summary">Скрывает подписи на кнопках действий.</string>
     <string name="revanced_hide_action_button_label_title">Скрыть подписи кнопок действий</string>
     <string name="revanced_external_downloader_action_title">Подменить кнопку \"Скачать\"</string>
-    <string name="revanced_external_downloader_action_summary">"Кнопка \"Загрузить\" открывает внешний загрузчик.
+    <string name="revanced_external_downloader_action_summary">"Кнопка \"Скачать\" открывает внешний загрузчик.
 
-• Переопределяет только кнопку действия загрузки в плеере.
+• Переопределяет только кнопку загрузки в плеере.
 • Не переопределяет кнопку загрузки во всплывающем меню или библиотеке."</string>
     <string name="revanced_external_downloader_package_name_title">Имя пакета внешнего загрузчика</string>
     <string name="revanced_external_downloader_package_name_summary">Имя пакета вашего установленного внешнего загрузчика. Например, NewPipe или YTDLnis.</string>

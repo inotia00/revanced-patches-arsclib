@@ -105,11 +105,11 @@
     <string name="revanced_replace_flyout_menu_dismiss_queue_watch_on_youtube_label">Дивитись на YouTube</string>
     <string name="revanced_replace_flyout_menu_dismiss_queue_watch_on_youtube_warning">Недійсна url-адреса відео.</string>
     <string name="revanced_replace_flyout_menu_dismiss_queue_title">Заміна пункту \"Відхилити чергу\"</string>
-    <string name="revanced_replace_flyout_menu_dismiss_queue_summary">Замінює пункт \"Відхилити чергу\" на пункт \"Дивитись на YouTube\'.</string>
+    <string name="revanced_replace_flyout_menu_dismiss_queue_summary">Замінює пункт \"Відхилити чергу\" на пункт \"Дивитись на YouTube\".</string>
     <string name="revanced_replace_flyout_menu_report_only_player_title">Застосовується тільки до спливаючого меню плеєра</string>
     <string name="revanced_replace_flyout_menu_report_only_player_summary">Пункт меню \"Поскаржитися\" в коментарях не буде замінено.</string>
     <string name="revanced_replace_flyout_menu_report_title">Заміна пункту \"Поскаржитися\"</string>
-    <string name="revanced_replace_flyout_menu_report_summary">Замінює \"Поскаржитися\" на \"Швидкість відтворення\".</string>
+    <string name="revanced_replace_flyout_menu_report_summary">Замінює пункт \"Поскаржитися\" на пункт \"Швидкість відео\".</string>
     <!-- PreferenceScreen: General -->
     <string name="revanced_preference_screen_general_title">Загальні</string>
     <string name="revanced_change_start_page_title">Змінити початкову сторінку</string>
@@ -320,7 +320,7 @@
     <string name="revanced_enable_debug_buffer_logging_title">Увімкнути ведення журналу буфера налагодження</string>
     <string name="revanced_enable_debug_buffer_logging_summary">Друкує журнали налагодження включаючи буфер.</string>
     <string name="revanced_enable_opus_codec_title">Увімкнути кодек opus</string>
-    <string name="revanced_enable_opus_codec_summary">Вмикає аудіокодек opus 250/251 замість аудіокодека mp4a.</string>
+    <string name="revanced_enable_opus_codec_summary">Вмикає аудіокодек opus замість аудіокодека mp4a.</string>
     <string name="gms_core_settings_title">Відкрити GmsCore</string>
     <string name="gms_core_settings_summary">Увімкніть \"Харні повідомлення\", щоб отримувати сповіщення.</string>
     <string name="gms_core_toast_not_installed_message">GmsCore не встановлено. Встановіть.</string>

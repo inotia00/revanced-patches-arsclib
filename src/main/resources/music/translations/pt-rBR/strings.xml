@@ -74,7 +74,7 @@ Info:
 • Este recurso é para podcasts.
 • Este recurso ainda está em desenvolvimento, por isso pode ser instável."</string>
     <string name="revanced_hide_flyout_menu_like_dislike_title">Ocultar botão de Like e Deslike</string>
-    <string name="revanced_hide_flyout_menu_3_column_component_title">Ocultar componente 3-coluna</string>
+    <string name="revanced_hide_flyout_menu_3_column_component_title">Ocultar componente de 3 colunas</string>
     <string name="revanced_hide_flyout_menu_add_to_queue_title">Ocultar menu Adicionar à fila</string>
     <string name="revanced_hide_flyout_menu_captions_title">Ocultar menu Legendas</string>
     <string name="revanced_hide_flyout_menu_delete_playlist_title">Ocultar menu Excuir playlist</string>
@@ -108,9 +108,9 @@ Info:
     <string name="revanced_replace_flyout_menu_dismiss_queue_title">Substituir Remover fila</string>
     <string name="revanced_replace_flyout_menu_dismiss_queue_summary">Substitui \'Remover fila\' por \'Assistir no YouTube\'.</string>
     <string name="revanced_replace_flyout_menu_report_only_player_title">Aplica-se apenas ao menu flutuante do reprodutor</string>
-    <string name="revanced_replace_flyout_menu_report_only_player_summary">Menu de relatório em comentários não será substituído.</string>
-    <string name="revanced_replace_flyout_menu_report_title">Substituir relatório</string>
-    <string name="revanced_replace_flyout_menu_report_summary">Substitui \'Relatório\' por \'Velocidade de Reprodução\'.</string>
+    <string name="revanced_replace_flyout_menu_report_only_player_summary">Menu denunciar em comentários não será substituído.</string>
+    <string name="revanced_replace_flyout_menu_report_title">Substituir denunciar</string>
+    <string name="revanced_replace_flyout_menu_report_summary">Substitui \'Denunciar\' por \'Velocidade de Reprodução\'.</string>
     <!-- PreferenceScreen: General -->
     <string name="revanced_preference_screen_general_title">Geral</string>
     <string name="revanced_change_start_page_title">Alterar a página inicial</string>
