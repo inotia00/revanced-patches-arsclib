@@ -22,7 +22,7 @@ import com.android.tools.smali.dexlib2.iface.reference.FieldReference
 @Suppress("unused")
 object SpoofFormatStreamDataPatch : BaseBytecodePatch(
     name = "Spoof format stream data",
-    description = "Adds options to spoof format stream data to prevent playback issues.",
+    description = "Adds an option to spoof the format stream data to prevent playback issues.",
     dependencies = setOf(
         PlayerResponseMethodHookPatch::class,
         SettingsPatch::class,
