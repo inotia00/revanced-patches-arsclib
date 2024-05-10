@@ -219,7 +219,7 @@ object FlyoutMenuComponentsPatch : BaseBytecodePatch(
             SettingsPatch.addSwitchPreference(
                 CategoryType.FLYOUT,
                 "revanced_enable_trim_silence",
-                "true"
+                "false"
             )
         }
         SettingsPatch.addSwitchPreference(
