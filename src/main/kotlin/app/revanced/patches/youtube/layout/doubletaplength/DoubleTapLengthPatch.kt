@@ -14,7 +14,7 @@ import java.nio.file.Files
 @Suppress("DEPRECATION", "unused")
 object DoubleTapLengthPatch : BaseResourcePatch(
     name = "Custom double tap length",
-    description = "Adds 'double-tap to seek' values specified in options.json.",
+    description = "Adds 'double-tap to seek' values that are specified in options.json.",
     dependencies = setOf(SettingsPatch::class),
     compatiblePackages = COMPATIBLE_PACKAGE
 ) {
