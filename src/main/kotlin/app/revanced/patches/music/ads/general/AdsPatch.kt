@@ -96,7 +96,8 @@ object AdsPatch : BaseBytecodePatch(
                 addInstructionsWithLabels(
                     0,
                     """
-                        invoke-static {}, $FULLSCREEN_ADS_CLASS_DESCRIPTOR->hideFullscreenAds()Z
+                        move-object v0, p2
+                        invoke-static {v0}, $FULLSCREEN_ADS_CLASS_DESCRIPTOR->hideFullscreenAds(Ljava/lang/Object;)Z
                         move-result v0
                         if-eqz v0, :show
                         return-void
