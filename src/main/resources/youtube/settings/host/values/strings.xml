@@ -391,9 +391,6 @@ Some components may not be hidden."</string>
 
     <string name="revanced_hide_settings_menu_title">Hide YouTube settings menu</string>
     <string name="revanced_hide_settings_menu_summary">Hide elements in YouTube settings menu.</string>
-    <string name="revanced_hide_settings_menu_filter_type_title">Select type to filter</string>
-    <string name="revanced_hide_settings_menu_filter_type_summary_on">Filter by whitelist method. Hides settings other than keywords added to the filter.</string>
-    <string name="revanced_hide_settings_menu_filter_type_summary_off">Filter by legacy method. Hides settings added to the filter.</string>
     <string name="revanced_hide_settings_menu_filter_strings_title">YouTube settings menu filter</string>
     <string name="revanced_hide_settings_menu_filter_strings_summary">List of YouTube settings menu names to filter separated by a new line.</string>
     <string name="revanced_hide_settings_menu_filter_strings_hint">"Account
