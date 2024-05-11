@@ -360,9 +360,6 @@ Certains composants peuvent ne pas être masqués"</string>
     <string name="revanced_preference_screen_settings_munu_summary">Masque les éléments dans le menu des paramètres YouTube.</string>
     <string name="revanced_hide_settings_menu_title">Menu paramètre YouTube</string>
     <string name="revanced_hide_settings_menu_summary">Masque les éléments dans le menu des paramètres YouTube.</string>
-    <string name="revanced_hide_settings_menu_filter_type_title">Select type to filter</string>
-    <string name="revanced_hide_settings_menu_filter_type_summary_on">Filter by whitelist method. Hides settings other than keywords added to the filter.</string>
-    <string name="revanced_hide_settings_menu_filter_type_summary_off">Filter by legacy method. Hides settings added to the filter.</string>
     <string name="revanced_hide_settings_menu_filter_strings_title">Filtre du menu paramètre YouTube</string>
     <string name="revanced_hide_settings_menu_filter_strings_summary">Liste de noms du menu de paramètre YouTube à filtrer, séparés par une nouvelle ligne.</string>
     <string name="revanced_hide_settings_menu_filter_strings_hint">"Compte

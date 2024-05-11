@@ -353,9 +353,6 @@
     <string name="revanced_preference_screen_settings_munu_summary">Приховати елементи в меню налаштувань YouTube.</string>
     <string name="revanced_hide_settings_menu_title">Приховати меню налаштувань YouTube</string>
     <string name="revanced_hide_settings_menu_summary">Приховати елементи в меню налаштувань YouTube.</string>
-    <string name="revanced_hide_settings_menu_filter_type_title">Select type to filter</string>
-    <string name="revanced_hide_settings_menu_filter_type_summary_on">Filter by whitelist method. Hides settings other than keywords added to the filter.</string>
-    <string name="revanced_hide_settings_menu_filter_type_summary_off">Filter by legacy method. Hides settings added to the filter.</string>
     <string name="revanced_hide_settings_menu_filter_strings_title">Фільтр меню налаштувань YouTube</string>
     <string name="revanced_hide_settings_menu_filter_strings_summary">Список назв меню налаштувань YouTube для фільтрування, розділених новим рядком.</string>
     <string name="revanced_hide_settings_menu_filter_strings_hint">"Обліковий запис
@@ -414,7 +411,7 @@
     <string name="revanced_disable_speed_overlay_title">Вимкнути накладання швидкості</string>
     <string name="revanced_disable_speed_overlay_summary">"Вимикається 'Відтворення зі швидкістю 2x' під час утримання
 
-Примітка:
+Зауваження:
 • Вимкнення накладання швидкості відновлює поведінку 'Перемотки пересуванням' старого макету.
 • Це налаштування не вмикає примусове накладання швидкості."</string>
     <string name="revanced_speed_overlay_value_title">Значення накладання швидкості</string>
@@ -453,7 +450,10 @@
     <string name="revanced_hide_suggested_video_end_screen_title">Приховати кінцевий екран з пропонованими відео</string>
     <string name="revanced_hide_suggested_video_end_screen_summary">"Це налаштування застаріле.
 
-Натомість використовуйте 'Налаштування → Автоматичне відтворення → Автовідтворення наступного відео'."</string>
+Натомість використовуйте 'Налаштування → Автоматичне відтворення → Автовідтворення наступного відео'.
+
+Зауваження:
+• Якщо виникли проблеми з 'Кінцевим екраном з пропонованими відео', спробуйте перезапустити додаток."</string>
     <string name="revanced_hide_timed_reactions_title">Приховати тимчасові реакції</string>
     <string name="revanced_hide_timed_reactions_summary_on">Тимчасові реакції приховано</string>
     <string name="revanced_hide_timed_reactions_summary_off">Тимчасові реакції показується</string>

@@ -355,9 +355,6 @@
     <string name="revanced_preference_screen_settings_munu_summary">Элементы в меню настроек YouTube.</string>
     <string name="revanced_hide_settings_menu_title">Меню настроек YouTube</string>
     <string name="revanced_hide_settings_menu_summary">Элементы в меню настроек YouTube.</string>
-    <string name="revanced_hide_settings_menu_filter_type_title">Тип фильтра</string>
-    <string name="revanced_hide_settings_menu_filter_type_summary_on">Белый список. Скрывает все настройки, кроме прописанных.</string>
-    <string name="revanced_hide_settings_menu_filter_type_summary_off">Фильтр по методу наследования. Скрывает добавленные в фильтр параметры.</string>
     <string name="revanced_hide_settings_menu_filter_strings_title">Фильтр меню настроек YouTube</string>
     <string name="revanced_hide_settings_menu_filter_strings_summary">Список, меню настроек, YouTube для фильтрации, разделяемых новой строкой.</string>
     <string name="revanced_hide_settings_menu_filter_strings_hint">"Аккаунт

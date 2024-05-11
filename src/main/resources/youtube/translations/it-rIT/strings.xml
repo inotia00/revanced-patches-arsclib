@@ -21,9 +21,9 @@
     <string name="revanced_hide_merchandise_shelf_title">Nascondi lo scaffale del merchandising</string>
     <string name="revanced_hide_merchandise_shelf_summary_on">Lo scaffale del merchandising è nascosto</string>
     <string name="revanced_hide_merchandise_shelf_summary_off">Lo scaffale del merchandising è visibile</string>
-    <string name="revanced_hide_paid_promotion_label_title">Hide paid promotion label</string>
-    <string name="revanced_hide_paid_promotion_label_summary_on">Paid promotion label is hidden.</string>
-    <string name="revanced_hide_paid_promotion_label_summary_off">Paid promotion label is shown.</string>
+    <string name="revanced_hide_paid_promotion_label_title">Nascondi l\'etichetta della promozione a pagamento</string>
+    <string name="revanced_hide_paid_promotion_label_summary_on">L\'etichetta della promozione a pagamento è nascosta.</string>
+    <string name="revanced_hide_paid_promotion_label_summary_off">L\'etichetta della promozione a pagamento è visibile.</string>
     <string name="revanced_hide_self_sponsor_cards_title">Nascondi le schede autopromozionali</string>
     <string name="revanced_hide_self_sponsor_cards_summary_on">Le schede autopromozionali sono nascoste</string>
     <string name="revanced_hide_self_sponsor_cards_summary_off">Le schede autopromozionali sono visibili</string>
@@ -212,7 +212,7 @@ Problemi noti:
 • Alcuni componenti dell'interfaccia potrebbero non essere nascosti
 • La ricerca di una parola chiave potrebbe non mostrare risultati"</string>
     <string name="revanced_hide_keyword_toast_invalid_common">Parola chiave non valida, non è possibile usare \'%s\' come filtro</string>
-    <string name="revanced_hide_keyword_toast_invalid_length">Lunghezza della parola chiave non valida (deve contenere almeno %s caratteri): %s</string>
+    <string name="revanced_hide_keyword_toast_invalid_length">Invalid keyword. \'%1$s\' is less than %2$d characters</string>
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Video filter, PreferenceCategory: Recommended video -->
     <string name="revanced_preference_category_recommended_video">Video consigliati</string>
     <string name="revanced_hide_recommended_video_title">Nascondi video consigliati</string>
@@ -231,7 +231,7 @@ Problemi noti:
     <string name="revanced_hide_video_view_counts_multiplier_summary">Specify your language template for the number of views shown under each video in the user interface. Each key (a letter/word in your language) -&gt; value (meaning of the key) must be on a new line. Keys go before \"-&gt;\" sign. If you switch app or system language you have to reset this setting.\n\nExamples:\nEnglish: 10K views = K -&gt; 1000, views -&gt; views\nSpanish: 10 K vistas = K -&gt; 1000, vistas -&gt; views</string>
     <string name="revanced_hide_video_view_counts_multiplier_default_value">K -&gt; 1 000\nM -&gt; 1 000 000\nB -&gt; 1 000 000 000\nviews -&gt; views</string>
     <!-- PreferenceScreen: General -->
-    <string name="revanced_preference_screen_general_title">General</string>
+    <string name="revanced_preference_screen_general_title">Generale</string>
     <string name="revanced_change_start_page_title">Cambia la scheda iniziale</string>
     <string name="revanced_change_start_page_entry_default">Home (predefinita)</string>
     <string name="revanced_change_start_page_entry_explore">Esplora</string>
@@ -322,8 +322,8 @@ Alcuni componenti potrebbero non essere nascosti"</string>
     <string name="revanced_enable_narrow_navigation_buttons_title">Enable narrow navigation buttons</string>
     <string name="revanced_enable_narrow_navigation_buttons_summary_on">Spacing between navigation buttons becomes narrower.</string>
     <string name="revanced_enable_narrow_navigation_buttons_summary_off">Spacing between navigation buttons does not become narrower.</string>
-    <string name="revanced_hide_navigation_create_button_title">Hide create button</string>
-    <string name="revanced_hide_navigation_create_button_summary_on">Create button is hidden.</string>
+    <string name="revanced_hide_navigation_create_button_title">Nascondi il pulsante crea</string>
+    <string name="revanced_hide_navigation_create_button_summary_on">Il pulsante crea è nascosto.</string>
     <string name="revanced_hide_navigation_create_button_summary_off">Create button is shown.</string>
     <string name="revanced_hide_navigation_home_button_title">Hide home button</string>
     <string name="revanced_hide_navigation_home_button_summary_off">Home button is shown.</string>
@@ -354,9 +354,6 @@ Alcuni componenti potrebbero non essere nascosti"</string>
     <string name="revanced_preference_screen_settings_munu_summary">Hide elements in YouTube settings menu.</string>
     <string name="revanced_hide_settings_menu_title">Hide YouTube settings menu</string>
     <string name="revanced_hide_settings_menu_summary">Hide elements in YouTube settings menu.</string>
-    <string name="revanced_hide_settings_menu_filter_type_title">Select type to filter</string>
-    <string name="revanced_hide_settings_menu_filter_type_summary_on">Filter by whitelist method. Hides settings other than keywords added to the filter.</string>
-    <string name="revanced_hide_settings_menu_filter_type_summary_off">Filter by legacy method. Hides settings added to the filter.</string>
     <string name="revanced_hide_settings_menu_filter_strings_title">YouTube settings menu filter</string>
     <string name="revanced_hide_settings_menu_filter_strings_summary">List of YouTube settings menu names to filter separated by a new line.</string>
     <string name="revanced_hide_settings_menu_filter_strings_hint">"Account
@@ -627,12 +624,12 @@ Limitation: Video title disappears when clicked."</string>
     <string name="revanced_hide_quick_actions_comment_button_title">Hide comment button</string>
     <string name="revanced_hide_quick_actions_comment_button_summary_on">Comment button is hidden.</string>
     <string name="revanced_hide_quick_actions_comment_button_summary_off">Comment button is shown.</string>
-    <string name="revanced_hide_quick_actions_dislike_button_title">Hide dislike button</string>
-    <string name="revanced_hide_quick_actions_dislike_button_summary_on">Dislike button is hidden.</string>
+    <string name="revanced_hide_quick_actions_dislike_button_title">Nascondi il pulsante non mi piace</string>
+    <string name="revanced_hide_quick_actions_dislike_button_summary_on">Il pulsante non mi piace è nascosto.</string>
     <string name="revanced_hide_quick_actions_dislike_button_summary_off">Dislike button is shown.</string>
     <string name="revanced_hide_quick_actions_like_button_title">Hide like button</string>
-    <string name="revanced_hide_quick_actions_like_button_summary_on">Like button is hidden.</string>
-    <string name="revanced_hide_quick_actions_like_button_summary_off">Like button is shown.</string>
+    <string name="revanced_hide_quick_actions_like_button_summary_on">Il pulsante mi piace è nascosto.</string>
+    <string name="revanced_hide_quick_actions_like_button_summary_off">Il pulsante mi piace è mostrato.</string>
     <string name="revanced_hide_quick_actions_live_chat_button_title">Hide live chat button</string>
     <string name="revanced_hide_quick_actions_live_chat_button_summary_on">Live chat button is hidden.</string>
     <string name="revanced_hide_quick_actions_live_chat_button_summary_off">Live chat button is shown.</string>
@@ -701,13 +698,13 @@ Problema noto: potrebbe rompere la funzione Picture-in-Picture</string>
     <string name="revanced_hide_player_captions_button_title">Hide captions button</string>
     <string name="revanced_hide_player_captions_button_summary_on">Captions button is hidden.</string>
     <string name="revanced_hide_player_captions_button_summary_off">Captions button is shown.</string>
-    <string name="revanced_hide_player_cast_button_title">Hide cast button</string>
-    <string name="revanced_hide_player_cast_button_summary_on">Cast button is hidden.</string>
+    <string name="revanced_hide_player_cast_button_title">Nascondi il pulsante trasmetti</string>
+    <string name="revanced_hide_player_cast_button_summary_on">Il pulsante trasmetti è nascosto.</string>
     <string name="revanced_hide_player_cast_button_summary_off">Cast button is shown.</string>
     <string name="revanced_hide_player_collapse_button_title">Hide collapse button</string>
     <string name="revanced_hide_player_collapse_button_summary_on">Collapse button is hidden.</string>
     <string name="revanced_hide_player_collapse_button_summary_off">Collapse button is shown.</string>
-    <string name="revanced_hide_player_fullscreen_button_title">Hide fullscreen button</string>
+    <string name="revanced_hide_player_fullscreen_button_title">Nascondi il pulsante schermo intero</string>
     <string name="revanced_hide_player_fullscreen_button_summary_on">Fullscreen button is hidden.</string>
     <string name="revanced_hide_player_fullscreen_button_summary_off">Fullscreen button is shown.</string>
     <string name="revanced_hide_player_previous_next_button_title">Hide previous &amp; next button</string>
@@ -737,9 +734,9 @@ Tocca e tieni premuto per impostare la velocità di riproduzione a 1.0x"</string
     <string name="revanced_external_downloader_package_name_title">Nome del pacchetto del downloader esterno</string>
     <string name="revanced_external_downloader_package_name_summary">Nome del pacchetto dell\'app downloader esterna installata, ad esempio NewPipe o YTDLnis</string>
     <string name="revanced_external_downloader_dialog_title">External downloader</string>
-    <string name="revanced_external_downloader_not_installed_dialog_title">Warning</string>
-    <string name="revanced_external_downloader_not_installed_dialog_message">"%1$s is not installed.
-Please download %2$s from the website."</string>
+    <string name="revanced_external_downloader_not_installed_dialog_title">Attenzione</string>
+    <string name="revanced_external_downloader_not_installed_dialog_message">"%1$s non è installato.
+Si prega di scaricare %2$s dal sito web."</string>
     <string name="revanced_external_downloader_not_installed_warning">%s non è installato. Per favore installalo</string>
     <string name="revanced_external_downloader_action_title">Override download action button</string>
     <string name="revanced_external_downloader_action_summary_on">Download button opens your external downloader</string>
@@ -748,8 +745,8 @@ Please download %2$s from the website."</string>
     <string name="revanced_share_copy_url_success">URL copiato negli appunti</string>
     <string name="revanced_share_copy_url_timestamp_success">URL con timestamp copiato negli appunti</string>
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Seekbar -->
-    <string name="revanced_preference_screen_seekbar_title">Seekbar</string>
-    <string name="revanced_preference_screen_seekbar_summary">Customize the seekbar components.</string>
+    <string name="revanced_preference_screen_seekbar_title">Barra di avanzamento</string>
+    <string name="revanced_preference_screen_seekbar_summary">Personalizza i componenti della barra di avanzamento.</string>
     <string name="revanced_append_time_stamp_information_title">Mostra l\'informazione nel timestamp</string>
     <string name="revanced_append_time_stamp_information_summary_on">L\'informazione nel timestamp è visibile</string>
     <string name="revanced_append_time_stamp_information_summary_off">L\'informazione nel timestamp è nascosto</string>
@@ -762,7 +759,7 @@ Please download %2$s from the website."</string>
 (Tocca e tieni premuto il timestamp per cambiare il tipo durante la riproduzione del video)</string>
     <string name="revanced_replace_time_stamp_action_title">Replace time stamp action</string>
     <string name="revanced_replace_time_stamp_action_summary_on">Tap to open playback speed or video quality flyout menu.</string>
-    <string name="revanced_replace_time_stamp_action_summary_off">Tap to show the remaining time.</string>
+    <string name="revanced_replace_time_stamp_action_summary_off">Tocca per mostrare il tempo restante.</string>
     <string name="revanced_enable_custom_seekbar_color_title">Attiva il colore personalizzato della barra di avanzamento</string>
     <string name="revanced_enable_custom_seekbar_color_summary_on">Il colore personalizzato della barra di avanzamento è attivato</string>
     <string name="revanced_enable_custom_seekbar_color_summary_off">Il colore personalizzato della barra di avanzamento è disattivato</string>
@@ -777,24 +774,24 @@ Please download %2$s from the website."</string>
     <string name="revanced_hide_seekbar_thumbnail_title">Nascondi la barra di avanzamento nel thumbnail dei video</string>
     <string name="revanced_hide_seekbar_thumbnail_summary_on">La barra di avanzamento nel thumbnail dei video è nascosta</string>
     <string name="revanced_hide_seekbar_thumbnail_summary_off">La barra di avanzamento nel thumbnail dei video è visibile</string>
-    <string name="revanced_hide_seekbar_chapters_title">Hide seekbar chapters</string>
-    <string name="revanced_hide_seekbar_chapters_summary_on">Chapters are hidden in seekbar.</string>
-    <string name="revanced_hide_seekbar_chapters_summary_off">Chapters are shown in seekbar.</string>
+    <string name="revanced_hide_seekbar_chapters_title">Nascondi i capitoli della barra di avanzamento</string>
+    <string name="revanced_hide_seekbar_chapters_summary_on">I capitoli sono nascosti nella barra di avanzamento.</string>
+    <string name="revanced_hide_seekbar_chapters_summary_off">I capitoli sono mostrati nella barra di avanzamento.</string>
     <string name="revanced_hide_time_stamp_title">Nascondi il timestamp</string>
     <string name="revanced_hide_time_stamp_summary_on">Il timestamp è nascosto</string>
     <string name="revanced_hide_time_stamp_summary_off">Il timestamp è visibile</string>
-    <string name="revanced_restore_old_seekbar_thumbnails_title">Restore old seekbar thumbnails</string>
-    <string name="revanced_restore_old_seekbar_thumbnails_summary_on">Seekbar thumbnails will appear above the seekbar.</string>
-    <string name="revanced_restore_old_seekbar_thumbnails_summary_off">Seekbar thumbnails will appear in fullscreen.</string>
+    <string name="revanced_restore_old_seekbar_thumbnails_title">Ripristina vecchie miniature della barra di avanzamento</string>
+    <string name="revanced_restore_old_seekbar_thumbnails_summary_on">Le miniature della barra di ricerca appariranno sopra la barra di avanzamento.</string>
+    <string name="revanced_restore_old_seekbar_thumbnails_summary_off">Le miniature della barra di avanzamento appariranno a schermo intero.</string>
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Video description -->
-    <string name="revanced_preference_screen_video_description_title">Video description</string>
-    <string name="revanced_preference_screen_video_description_summary">Hide or show video description components.</string>
+    <string name="revanced_preference_screen_video_description_title">Descrizione del video</string>
+    <string name="revanced_preference_screen_video_description_summary">Nascondi o mostra i componenti della descrizione del video.</string>
     <string name="revanced_disable_rolling_number_animations_title">Disattiva le animazioni degli aggiornamenti in tempo reale dei contatori</string>
     <string name="revanced_disable_rolling_number_animations_summary_on">Le animazioni degli aggiornamenti in tempo reale dei contatori sono disattivate</string>
     <string name="revanced_disable_rolling_number_animations_summary_off">Le animazioni degli aggiornamenti in tempo reale dei contatori sono attivate</string>
-    <string name="revanced_hide_chapters_section_title">Hide chapters sections</string>
-    <string name="revanced_hide_chapters_section_summary_on">Chapters sections are hidden.</string>
-    <string name="revanced_hide_chapters_section_summary_off">Chapters sections are shown.</string>
+    <string name="revanced_hide_chapters_section_title">Nascondi le sezioni capitoli</string>
+    <string name="revanced_hide_chapters_section_summary_on">Le sezioni dei capitoli sono nascoste.</string>
+    <string name="revanced_hide_chapters_section_summary_off">Le sezioni dei capitoli sono mostrate.</string>
     <string name="revanced_hide_info_cards_section_title">Nascondi la sezione Schede Informative</string>
     <string name="revanced_hide_info_cards_section_summary_on">La sezione Schede Informative è nascosta</string>
     <string name="revanced_hide_info_cards_section_summary_off">La sezione Schede Informative è visibile</string>
@@ -804,14 +801,14 @@ Please download %2$s from the website."</string>
     <string name="revanced_hide_shopping_links_title">Nascondi la sezione Prodotti</string>
     <string name="revanced_hide_shopping_links_summary_on">La sezione Prodotti è nascosta</string>
     <string name="revanced_hide_shopping_links_summary_off">La sezione Prodotti è visibile</string>
-    <string name="revanced_hide_suggestions_section_title">Hide suggestions sections</string>
+    <string name="revanced_hide_suggestions_section_title">Nascondi le sezioni dei suggerimenti</string>
     <string name="revanced_hide_suggestions_section_summary_on">Game sections, music sections and place sections are hidden.</string>
     <string name="revanced_hide_suggestions_section_summary_off">Game sections, music sections and place sections are shown.</string>
     <string name="revanced_hide_transcript_section_title">Nascondi la sezione Trascrizione</string>
     <string name="revanced_hide_transcript_section_summary_on">La sezione Trascrizione è nascosta</string>
     <string name="revanced_hide_transcript_section_summary_off">La sezione Trascrizione è visibile</string>
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Video description, PreferenceCategory: Experimental Flags -->
-    <string name="revanced_disable_video_description_interaction_title">Disable video description interaction</string>
+    <string name="revanced_disable_video_description_interaction_title">Disabilita l\'interazione della descrizione video</string>
     <string name="revanced_disable_video_description_interaction_summary">"Disables the following interactions when the video description is expanded:
 
 • Tap to scroll.

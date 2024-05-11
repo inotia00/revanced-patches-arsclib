@@ -55,8 +55,8 @@
 
 Πατήστε για να μάθετε περισσότερα για το DeArrow."</string>
     <string name="revanced_alt_thumbnail_dearrow_connection_toast_title">Μήνυμα αν το API δεν είναι διαθέσιμο</string>
-    <string name="revanced_alt_thumbnail_dearrow_connection_toast_summary_on">Να εμφανίζεται μήνυμα στο κάτω μέρος της οθόνης αν το DeArrow δεν είναι διαθέσιμο.</string>
-    <string name="revanced_alt_thumbnail_dearrow_connection_toast_summary_off">Να μην εμφανίζεται μήνυμα στο κάτω μέρος της οθόνης αν το DeArrow δεν είναι διαθέσιμο.</string>
+    <string name="revanced_alt_thumbnail_dearrow_connection_toast_summary_on">Εμφανίζεται μήνυμα στο κάτω μέρος της οθόνης αν το DeArrow δεν είναι διαθέσιμο.</string>
+    <string name="revanced_alt_thumbnail_dearrow_connection_toast_summary_off">Δεν εμφανίζεται μήνυμα στο κάτω μέρος της οθόνης αν το DeArrow δεν είναι διαθέσιμο.</string>
     <string name="revanced_alt_thumbnail_dearrow_api_url_title">Διεύθυνση API του DeArrow</string>
     <string name="revanced_alt_thumbnail_dearrow_api_url_summary">Η διεύθυνση URL του τελικού σημείου αποθήκευσης μικρογραφιών DeArrow.</string>
     <string name="revanced_alt_thumbnail_stills_about_title">Σχετικά με τις λήψεις ακίνητων καρέ</string>
@@ -319,8 +319,8 @@ Playlists
     <string name="revanced_preference_screen_navigation_buttons_title">Κουμπιά πλοήγησης</string>
     <string name="revanced_preference_screen_navigation_buttons_summary">Απόκρυψη ή εμφάνιση στοιχείων της γραμμής πλοήγησης.</string>
     <string name="revanced_enable_narrow_navigation_buttons_title">Κουμπιά πλοήγησης στενού στυλ</string>
-    <string name="revanced_enable_narrow_navigation_buttons_summary_on">Το διάστημα μεταξύ των κουμπιών πλοήγησης γίνεται στενότερο.</string>
-    <string name="revanced_enable_narrow_navigation_buttons_summary_off">Το διάστημα μεταξύ των κουμπιών πλοήγησης δεν γίνεται στενότερο.</string>
+    <string name="revanced_enable_narrow_navigation_buttons_summary_on">Το διάστημα μεταξύ των κουμπιών πλοήγησης είναι στενότερο.</string>
+    <string name="revanced_enable_narrow_navigation_buttons_summary_off">Το διάστημα μεταξύ των κουμπιών πλοήγησης δεν είναι στενότερο.</string>
     <string name="revanced_hide_navigation_create_button_title">Κουμπί «Δημιουργία»</string>
     <string name="revanced_hide_navigation_create_button_summary_on">Κρυμμένο.</string>
     <string name="revanced_hide_navigation_create_button_summary_off">Εμφανίζεται.</string>
@@ -352,9 +352,6 @@ Playlists
     <string name="revanced_preference_screen_settings_munu_summary">Απόκρυψη στοιχείων στο μενού ρυθμίσεων του YouTube.</string>
     <string name="revanced_hide_settings_menu_title">Μενού ρυθμίσεων του YouTube</string>
     <string name="revanced_hide_settings_menu_summary">Απόκρυψη στοιχείων στο μενού ρυθμίσεων του YouTube.</string>
-    <string name="revanced_hide_settings_menu_filter_type_title">Select type to filter</string>
-    <string name="revanced_hide_settings_menu_filter_type_summary_on">Filter by whitelist method. Hides settings other than keywords added to the filter.</string>
-    <string name="revanced_hide_settings_menu_filter_type_summary_off">Filter by legacy method. Hides settings added to the filter.</string>
     <string name="revanced_hide_settings_menu_filter_strings_title">Αλλαγή φίλτρου μενού ρυθμίσεων του YouTube</string>
     <string name="revanced_hide_settings_menu_filter_strings_summary">Λίστα ονομάτων των επιλογών του μενού ρυθμίσεων YouTube για φιλτράρισμα, διαχωρισμένα με νέες γραμμές.</string>
     <string name="revanced_hide_settings_menu_filter_strings_hint">"Λογαριασμός
@@ -397,7 +394,7 @@ Playlists
     <string name="revanced_hide_voice_search_button_summary_off">Εμφανίζεται.</string>
     <string name="revanced_replace_toolbar_create_button_title">Αντικατάσταση κουμπιού δημιουργίας</string>
     <string name="revanced_replace_toolbar_create_button_summary">Αντικατάσταση του κουμπιού δημιουργίας με το κουμπί ρυθμίσεων.</string>
-    <string name="revanced_replace_toolbar_create_button_type_title">Τύπος ενέργειας για ανάθεση στο κουμπί</string>
+    <string name="revanced_replace_toolbar_create_button_type_title">Συμπεριφορά κουμπιού ρυθμίσεων</string>
     <string name="revanced_replace_toolbar_create_button_type_summary_on">"Πατήστε για να ανοίξετε τις ρυθμίσεις RVX.
 Πατήστε παρατεταμένα για να ανοίξετε τις ρυθμίσεις του YouTube."</string>
     <string name="revanced_replace_toolbar_create_button_type_summary_off">"Πατήστε για να ανοίξετε τις Ρυθμίσεις YouTube.
@@ -450,9 +447,10 @@ Playlists
     <string name="revanced_hide_suggested_actions_summary_on">Κρυμμένες.</string>
     <string name="revanced_hide_suggested_actions_summary_off">Εμφανίζονται.</string>
     <string name="revanced_hide_suggested_video_end_screen_title">Τελική οθόνη προτεινόμενου βίντεο</string>
-    <string name="revanced_hide_suggested_video_end_screen_summary">"Αυτή η ρύθμιση έχει καταργηθεί.
+    <string name="revanced_hide_suggested_video_end_screen_summary">"Αυτή η ρύθμιση έχει καταργηθεί. Αντ' αυτού, χρησιμοποιήστε τη ρύθμιση 'Ρυθμίσεις → Αυτόματη αναπαραγωγή → Αυτόματη αναπαραγωγή επόμενου βίντεο'.
 
-Αντ' αυτού, χρησιμοποιήστε τη ρύθμιση 'Ρυθμίσεις → Αυτόματη αναπαραγωγή → Αυτόματη αναπαραγωγή επόμενου βίντεο'."</string>
+Σημείωση:
+• Αν έχετε οποιοδήποτε θέμα με την τελική οθόνη προτεινόμενου βίντεο, προσπαθήστε να επανεκκινήσετε την εφαρμογή."</string>
     <string name="revanced_hide_timed_reactions_title">Χρονισμένες αντιδράσεις</string>
     <string name="revanced_hide_timed_reactions_summary_on">Κρυμμένες.</string>
     <string name="revanced_hide_timed_reactions_summary_off">Εμφανίζονται.</string>
@@ -545,8 +543,8 @@ Playlists
     <string name="revanced_preference_screen_player_flyout_menu_title">Αναδυόμενο μενού ρυθμίσεων</string>
     <string name="revanced_preference_screen_player_flyout_menu_summary">Απόκρυψη η αλλαγή στοιχείων του αναδυόμενου μενού της οθόνης αναπαραγωγής βίντεο.</string>
     <string name="revanced_change_player_flyout_menu_toggle_title">Αλλαγή τύπου εναλλαγής ρυθμίσεων</string>
-    <string name="revanced_change_player_flyout_menu_toggle_summary_on">Εναλλαγές κειμένου.</string>
-    <string name="revanced_change_player_flyout_menu_toggle_summary_off">Εναλλαγές διακόπτη.</string>
+    <string name="revanced_change_player_flyout_menu_toggle_summary_on">Εμφανίζονται εναλλαγές κειμένου.</string>
+    <string name="revanced_change_player_flyout_menu_toggle_summary_off">Εμφανίζονται εναλλαγές διακόπτη.</string>
     <string name="revanced_hide_player_flyout_menu_audio_track_title">Μενού «Κομμάτι ήχου»</string>
     <string name="revanced_hide_player_flyout_menu_audio_track_summary_on">Κρυμμένο.</string>
     <string name="revanced_hide_player_flyout_menu_audio_track_summary_off">Εμφανίζεται.</string>
@@ -927,17 +925,17 @@ Playlists
     <string name="revanced_enable_swipe_lowest_value_auto_brightness_summary_on">Η χαμηλότερη τιμή της χειρονομίας φωτεινότητας ενεργοποιεί την αυτόματη φωτεινότητα.</string>
     <string name="revanced_enable_swipe_lowest_value_auto_brightness_summary_off">Η χαμηλότερη τιμή της χειρονομίας φωτεινότητας δεν ενεργοποιεί την αυτόματη φωτεινότητα.</string>
     <string name="revanced_enable_swipe_brightness_title">Έλεγχος σάρωσης για Φωτεινότητα</string>
-    <string name="revanced_enable_swipe_brightness_summary_on">Η αλλαγή φωτεινότητας με χειρονομία σάρωσης είναι ενεργοποιημένη.</string>
-    <string name="revanced_enable_swipe_brightness_summary_off">Η αλλαγή φωτεινότητας με χειρονομία σάρωσης είναι απενεργοποιημένη.</string>
+    <string name="revanced_enable_swipe_brightness_summary_on">Η αλλαγή φωτεινότητας με χειρονομία σάρωσης στην αριστερή πλευρά της οθόνης είναι ενεργοποιημένη.</string>
+    <string name="revanced_enable_swipe_brightness_summary_off">Η αλλαγή φωτεινότητας με χειρονομία σάρωσης στην αριστερή πλευρά της οθόνης είναι απενεργοποιημένη.</string>
     <string name="revanced_enable_swipe_volume_title">Έλεγχος σάρωσης για Ένταση Ήχου</string>
-    <string name="revanced_enable_swipe_volume_summary_on">Η αλλαγή έντασης ήχου με χειρονομία σάρωσης είναι ενεργοποιημένη.</string>
-    <string name="revanced_enable_swipe_volume_summary_off">Η αλλαγή έντασης ήχου με χειρονομία σάρωσης είναι απενεργοποιημένη.</string>
+    <string name="revanced_enable_swipe_volume_summary_on">Η αλλαγή έντασης ήχου με χειρονομία σάρωσης στη δεξιά πλευρά της οθόνης είναι ενεργοποιημένη.</string>
+    <string name="revanced_enable_swipe_volume_summary_off">Η αλλαγή έντασης ήχου με χειρονομία σάρωσης στη δεξιά πλευρά της οθόνης είναι απενεργοποιημένη.</string>
     <string name="revanced_enable_swipe_press_to_engage_title">Παρατεταμένο πάτημα για σάρωση</string>
     <string name="revanced_enable_swipe_press_to_engage_summary_on">Αγγίξτε παρατεταμένα για να ενεργοποιήσετε τις χειρονομίες σάρωσης.</string>
     <string name="revanced_enable_swipe_press_to_engage_summary_off">Αγγίξτε για να ενεργοποιήσετε τις χειρονομίες σάρωσης.</string>
     <string name="revanced_enable_swipe_haptic_feedback_title">Απόκριση δόνησης</string>
     <string name="revanced_enable_swipe_haptic_feedback_summary_on">Η απόκριση δόνησης είναι ενεργοποιημένη.</string>
-    <string name="revanced_enable_swipe_haptic_feedback_summary_off">Η απόκριση δόνησης απενεργοποιήθηκε.</string>
+    <string name="revanced_enable_swipe_haptic_feedback_summary_off">Η απόκριση δόνησης είναι απενεργοποιημένη.</string>
     <string name="revanced_swipe_gestures_lock_mode_title">"Χρήση στη λειτουργία «Οθόνη κλειδώματος»"</string>
     <string name="revanced_swipe_gestures_lock_mode_summary_on">"Οι χειρονομίες σάρωσης είναι ενεργοποιημένες στη λειτουργία «Οθόνη κλειδώματος»."</string>
     <string name="revanced_swipe_gestures_lock_mode_summary_off">"Οι χειρονομίες σάρωσης είναι απενεργοποιημένες στη λειτουργία «Οθόνη κλειδώματος»."</string>
@@ -994,8 +992,8 @@ Playlists
 • Υπάρχει μια καθυστέρηση περίπου 0,7 δευτερολέπτων κατά την έναρξη του βίντεο, αλλά η προεπιλεγμένη ποιότητα εφαρμόζεται αμέσως.
 • Δεν εφαρμόζεται σε βίντεο HDR ή βίντεο μικρότερα των 10 δευτερολέπτων."</string>
     <string name="revanced_skip_preloaded_buffer_toast_title">Εμφάνιση μηνύματος κατά την παράλειψη</string>
-    <string name="revanced_skip_preloaded_buffer_toast_summary_on">Να εμφανίζεται μήνυμα στο κάτω μέρος της οθόνης.</string>
-    <string name="revanced_skip_preloaded_buffer_toast_summary_off">Να μην εμφανίζεται μήνυμα στο κάτω μέρος της οθόνης.</string>
+    <string name="revanced_skip_preloaded_buffer_toast_summary_on">Εμφανίζεται μήνυμα στο κάτω μέρος της οθόνης.</string>
+    <string name="revanced_skip_preloaded_buffer_toast_summary_off">Δεν εμφανίζεται μήνυμα στο κάτω μέρος της οθόνης.</string>
     <string name="revanced_spoof_device_dimensions_title">Παραποίηση διαστάσεων συσκευής</string>
     <string name="revanced_spoof_device_dimensions_summary">Η παραποίηση διαστάσεων συσκευής μπορεί να ξεκλειδώσει υψηλότερες ποιότητες βίντεο αλλά ενδέχεται να εμφανιστούν άγνωστες παρενέργειες.</string>
     <string name="revanced_replace_av1_codec_title">Αντικατάσταση κωδικοποιητή AV1</string>
@@ -1012,7 +1010,7 @@ Playlists
     <string name="revanced_custom_playback_speeds_parse_exception">Μη έγκυρες ταχύτητες αναπαραγωγής, επαναφέρθηκαν.</string>
     <!-- PreferenceScreen: Return YouTube Dislike -->
     <string name="revanced_preference_screen_ryd_title">Return YouΤube Dislike</string>
-    <string name="revanced_ryd_enable_title">Επιστρέψτε το «Δεν μου αρέσει» στο YouTube</string>
+    <string name="revanced_ryd_enable_title">Επιστροφή του «Δεν μου αρέσει» στο YouTube</string>
     <string name="revanced_ryd_enable_summary_on">Τα «Δεν μου αρέσει» εμφανίζονται.</string>
     <string name="revanced_ryd_enable_summary_off">Τα «Δεν μου αρέσει» δεν εμφανίζονται.</string>
     <string name="revanced_ryd_shorts_title">Εμφάνιση στα Shorts</string>
@@ -1021,15 +1019,15 @@ Playlists
 
 Περιορισμός: Τα «Δεν μου αρέσει» ενδέχεται να μην εμφανίζονται σε λειτουργία ανώνυμης περιήγησης."</string>
     <string name="revanced_ryd_shorts_summary_off">Τα dislike δεν εμφανίζονται στα Shorts.</string>
-    <string name="revanced_ryd_dislike_percentage_title">Εμφάνιση των dislikes ως ποσοστό</string>
+    <string name="revanced_ryd_dislike_percentage_title">Εμφάνιση ως ποσοστό</string>
     <string name="revanced_ryd_dislike_percentage_summary_on">Τα «Δεν μου αρέσει» εμφανίζονται ως ποσοστό.</string>
     <string name="revanced_ryd_dislike_percentage_summary_off">Τα «Δεν μου αρέσει» εμφανίζονται ως αριθμός.</string>
     <string name="revanced_ryd_compact_layout_title">Κουμπί «Μου αρέσει» μικρότερου στυλ</string>
     <string name="revanced_ryd_compact_layout_summary_on">Το κουμπί «Μου αρέσει» είναι διαμορφωμένο για ελάχιστο μέγεθος.</string>
     <string name="revanced_ryd_compact_layout_summary_off">Το κουμπί «Μου αρέσει» είναι διαμορφωμένο για καλύτερη εμφάνιση.</string>
     <string name="revanced_ryd_toast_on_connection_error_title">Μήνυμα αν το API δεν είναι διαθέσιμο</string>
-    <string name="revanced_ryd_toast_on_connection_error_summary_on">Να εμφανίζεται μήνυμα στο κάτω μέρος της οθόνης αν το Return YouTube Dislike δεν είναι διαθέσιμο.</string>
-    <string name="revanced_ryd_toast_on_connection_error_summary_off">Να μην εμφανίζεται μήνυμα στο κάτω μέρος της οθόνης αν το Return YouTube Dislike δεν είναι διαθέσιμο.</string>
+    <string name="revanced_ryd_toast_on_connection_error_summary_on">Εμφανίζεται μήνυμα στο κάτω μέρος της οθόνης αν το Return YouTube Dislike δεν είναι διαθέσιμο.</string>
+    <string name="revanced_ryd_toast_on_connection_error_summary_off">Δεν εμφανίζεται μήνυμα στο κάτω μέρος της οθόνης αν το Return YouTube Dislike δεν είναι διαθέσιμο.</string>
     <!-- PreferenceScreen: Return YouTube Dislike, PreferenceCategory: About -->
     <string name="revanced_ryd_about">Σχετικά με</string>
     <string name="revanced_ryd_attribution_title">ReturnYouTubeDislike.com</string>
@@ -1056,8 +1054,8 @@ Playlists
     <string name="revanced_sb_enable_auto_hide_skip_segment_button_sum_on">Το κουμπί παράλειψης εξαφανίζεται μετά από μερικά δευτερόλεπτα.</string>
     <string name="revanced_sb_enable_auto_hide_skip_segment_button_sum_off">Το κουμπί παράλειψης εμφανίζεται καθ\' όλη τη διάρκεια του τμήματος.</string>
     <string name="revanced_sb_general_skiptoast">Εμφάνιση μηνύματος κατά την αυτόματη παράλειψη</string>
-    <string name="revanced_sb_general_skiptoast_sum_on">Να εμφανίζεται μήνυμα στο κάτω μέρος της οθόνης όταν ένα τμήμα παραλείπεται αυτόματα. Πατήστε για να δείτε ένα παράδειγμα.</string>
-    <string name="revanced_sb_general_skiptoast_sum_off">Να μην εμφανίζεται μήνυμα στο κάτω μέρος της οθόνης. Πατήστε για να δείτε ένα παράδειγμα.</string>
+    <string name="revanced_sb_general_skiptoast_sum_on">Εμφανίζεται μήνυμα στο κάτω μέρος της οθόνης όταν ένα τμήμα παραλείπεται αυτόματα. Πατήστε για να δείτε ένα παράδειγμα.</string>
+    <string name="revanced_sb_general_skiptoast_sum_off">Δεν εμφανίζεται μήνυμα στο κάτω μέρος της οθόνης. Πατήστε για να δείτε ένα παράδειγμα.</string>
     <string name="revanced_sb_general_time_without">Εμφάνιση μήκους βίντεο χωρίς τα τμήματα</string>
     <string name="revanced_sb_general_time_without_sum_on">Εμφανίζεται το μήκος βίντεο μείον όλα τα τμήματα, σε παρένθεση δίπλα στο πλήρες μήκος βίντεο.</string>
     <string name="revanced_sb_general_time_without_sum_off">Εμφανίζεται το πλήρες μήκος του βίντεο.</string>
@@ -1141,8 +1139,8 @@ Playlists
     <!-- PreferenceScreen: SponsorBlock, PreferenceCategory: General -->
     <string name="revanced_sb_general">Γενικά</string>
     <string name="revanced_sb_toast_on_connection_error_title">Μήνυμα αν το API δεν είναι διαθέσιμο</string>
-    <string name="revanced_sb_toast_on_connection_error_summary_on">Να εμφανίζεται μήνυμα στο κάτω μέρος της οθόνης αν το SponsorBlock δεν είναι διαθέσιμο.</string>
-    <string name="revanced_sb_toast_on_connection_error_summary_off">Να μην εμφανίζεται μήνυμα στο κάτω μέρος της οθόνης αν το SponsorBlock δεν είναι διαθέσιμο.</string>
+    <string name="revanced_sb_toast_on_connection_error_summary_on">Εμφανίζεται μήνυμα στο κάτω μέρος της οθόνης αν το SponsorBlock δεν είναι διαθέσιμο.</string>
+    <string name="revanced_sb_toast_on_connection_error_summary_off">Δεν εμφανίζεται μήνυμα στο κάτω μέρος της οθόνης αν το SponsorBlock δεν είναι διαθέσιμο.</string>
     <string name="revanced_sb_general_skipcount">Mετρητής παραλείψεων τμημάτων</string>
     <string name="revanced_sb_general_skipcount_sum_on">Επιτρέπει στον πίνακα κατάταξης SponsorBlock να γνωρίζει πόσος χρόνος εξοικονομήθηκε. Αποστέλλεται ένα μήνυμα στον πίνακα κατάταξης κάθε φορά που παραλείπεται ένα τμήμα.</string>
     <string name="revanced_sb_general_skipcount_sum_off">Ο μετρητής παραλείψεων δεν είναι ενεργός.</string>

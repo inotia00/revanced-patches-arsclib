@@ -354,9 +354,6 @@
     <string name="revanced_preference_screen_settings_munu_summary">إخفاء العناصر في قائمة إعدادات YouTube.</string>
     <string name="revanced_hide_settings_menu_title">إخفاء قائمة إعدادات YouTube</string>
     <string name="revanced_hide_settings_menu_summary">إخفاء العناصر في قائمة إعدادات YouTube.</string>
-    <string name="revanced_hide_settings_menu_filter_type_title">Select type to filter</string>
-    <string name="revanced_hide_settings_menu_filter_type_summary_on">Filter by whitelist method. Hides settings other than keywords added to the filter.</string>
-    <string name="revanced_hide_settings_menu_filter_type_summary_off">Filter by legacy method. Hides settings added to the filter.</string>
     <string name="revanced_hide_settings_menu_filter_strings_title">فلتر قائمة إعدادات اليوتيوب</string>
     <string name="revanced_hide_settings_menu_filter_strings_summary">قائمة بأسماء قائمة إعدادات YouTube المراد تصفيتها مفصولة بسطر جديد.</string>
     <string name="revanced_hide_settings_menu_filter_strings_hint">"الحساب
@@ -454,7 +451,10 @@
     <string name="revanced_hide_suggested_video_end_screen_title">إخفاء شاشة نهاية الفيديو المقترح</string>
     <string name="revanced_hide_suggested_video_end_screen_summary">"لقد تم إهمال هذا الإعداد.
 
- بدلاً من ذلك، استخدم الإعداد \"الإعدادات ← التشغيل التلقائي ← التشغيل التلقائي للفيديو التالي\"."</string>
+ بدلاً من ذلك، استخدم الإعداد \"الإعدادات ← التشغيل التلقائي ← التشغيل التلقائي للفيديو التالي\".
+
+ملاحظة:
+• إذا كانت لديك أية مشكلات تتعلق بـ \"شاشة نهاية الفيديو المقترحة\"، فحاول إعادة تشغيل التطبيق."</string>
     <string name="revanced_hide_timed_reactions_title">إخفاء ردود الفعل المؤقتة</string>
     <string name="revanced_hide_timed_reactions_summary_on">تم إخفاء ردود الفعل المؤقتة.</string>
     <string name="revanced_hide_timed_reactions_summary_off">يتم عرض ردود الفعل المؤقتة.</string>

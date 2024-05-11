@@ -7,8 +7,8 @@
     <string name="revanced_extended_settings_title">ReVanced Extended</string>
     <!-- Shared Category -->
     <string name="revanced_preference_category_experimental_flag">實驗性功能</string>
-    <string name="revanced_extended_restart_first_run">重新啟動以套用更改之介面</string>
-    <string name="revanced_extended_restart_message">重新啟動以刷新介面</string>
+    <string name="revanced_extended_restart_first_run">重新啟動以套用更改後的介面</string>
+    <string name="revanced_extended_restart_message">重新啟動以重新整理介面</string>
     <string name="revanced_playback_speed_normal">一般</string>
     <!-- PreferenceScreen: Ads -->
     <string name="revanced_preference_screen_ads_title">廣告</string>
@@ -43,52 +43,52 @@
     <string name="revanced_preference_screen_alt_thumbnails_title">替代縮圖</string>
     <string name="revanced_alt_thumbnail_home_title">首頁標籤</string>
     <string name="revanced_alt_thumbnail_subscriptions_title">訂閱標籤</string>
-    <string name="revanced_alt_thumbnail_library_title">\'你\'的標籤</string>
+    <string name="revanced_alt_thumbnail_library_title">你的標籤</string>
     <string name="revanced_alt_thumbnail_player_title">播放器播放列表，推薦</string>
     <string name="revanced_alt_thumbnail_search_title">搜尋結果</string>
     <string name="revanced_alt_thumbnail_options_entry_1">原始縮圖</string>
-    <string name="revanced_alt_thumbnail_options_entry_2">DeArrow 和原始縮圖</string>
-    <string name="revanced_alt_thumbnail_options_entry_3">DeArrow 和靜止捕獲</string>
+    <string name="revanced_alt_thumbnail_options_entry_2">DeArrow &amp; 原始縮圖</string>
+    <string name="revanced_alt_thumbnail_options_entry_3">DeArrow &amp; 靜止捕獲</string>
     <string name="revanced_alt_thumbnail_options_entry_4">靜態擷取</string>
     <string name="revanced_alt_thumbnail_dearrow_about_title">DeArrow</string>
     <string name="revanced_alt_thumbnail_dearrow_about_summary">"DeArrow 提供 YouTube 影片的外包縮圖。這些縮圖通常比 YouTube 提供的更為相關。如果啟用, 影片 URL 將會被發送到 API 服務器, 但不會發送任何其他資料。如果影片沒有 DeArrow 縮圖，則會顯示原始縮圖或靜態擷取。
 
-點擊此處瞭解更多關於 DeArrow 的資訊。"</string>
+點擊這裡瞭解更多關於 DeArrow 的資訊。"</string>
     <string name="revanced_alt_thumbnail_dearrow_connection_toast_title">當API無法使用時顯示提示訊息</string>
     <string name="revanced_alt_thumbnail_dearrow_connection_toast_summary_on">如果 DeArrow 無法使用，顯示提示訊息。</string>
     <string name="revanced_alt_thumbnail_dearrow_connection_toast_summary_off">如果 DeArrow 無法使用，不顯示提示訊息。</string>
     <string name="revanced_alt_thumbnail_dearrow_api_url_title">DeArrow API 端點</string>
-    <string name="revanced_alt_thumbnail_dearrow_api_url_summary">DeArrow 縮圖快取端點的 網址。 除非您知道自己在做什麼，否則請勿更改此設定。</string>
+    <string name="revanced_alt_thumbnail_dearrow_api_url_summary">DeArrow 縮圖快取端點的網址。 除非您知道自己在做什麼，否則請勿更改此設定。</string>
     <string name="revanced_alt_thumbnail_stills_about_title">關於靜態影片擷取。</string>
     <string name="revanced_alt_thumbnail_stills_about_summary">靜態捕捉是截取每個影片的開頭/中間/結尾作為縮圖。 這些圖像內建於 YouTube 中，不會使用外部 API。</string>
     <string name="revanced_alt_thumbnail_stills_fast_title">使用快速靜態捕捉</string>
-    <string name="revanced_alt_thumbnail_stills_fast_summary_on">使用中等質量靜態擷取。 縮圖載入速度會更快，但直播、未發布或非常舊的影片可能會顯示空白縮圖。</string>
+    <string name="revanced_alt_thumbnail_stills_fast_summary_on">使用中等品質靜態擷取。 縮圖載入速度會更快，但直播、未發布或非常舊的影片可能會顯示空白縮圖。</string>
     <string name="revanced_alt_thumbnail_stills_fast_summary_off">使用高品質的靜態捕捉</string>
     <string name="revanced_alt_thumbnail_stills_time_title">選擇截取靜態圖的影片時間點</string>
     <string name="revanced_alt_thumbnail_stills_time_entry_1">影片的開頭</string>
     <string name="revanced_alt_thumbnail_stills_time_entry_2">影片的中間</string>
     <string name="revanced_alt_thumbnail_stills_time_entry_3">影片的結尾</string>
-    <string name="revanced_alt_thumbnail_dearrow_error">DeArrow 暫時無法使用。(status code: %s)</string>
+    <string name="revanced_alt_thumbnail_dearrow_error">DeArrow 暫時無法使用。(錯誤代碼： %s)</string>
     <string name="revanced_alt_thumbnail_dearrow_error_generic">DeArrow 暫時無法使用。</string>
     <!-- PreferenceScreen: Feed -->
-    <string name="revanced_preference_screen_feed_title">Feed</string>
+    <string name="revanced_preference_screen_feed_title">探索</string>
     <string name="revanced_hide_album_card_title">隱藏專輯卡</string>
     <string name="revanced_hide_album_card_summary_on">專輯卡已隱藏</string>
     <string name="revanced_hide_album_card_summary_off">專輯卡已顯示</string>
     <string name="revanced_hide_carousel_shelf_summary">"隱藏以下擺架：
-- 最新消息
+- 發燒新聞
 - 繼續觀看
 - 探索更多頻道
 - 購物
 - 再次觀看"</string>
     <string name="revanced_hide_carousel_shelf_title">隱藏輪播列表</string>
-    <string name="revanced_hide_chips_shelf_title">隱藏\"你可能也會喜歡\"</string>
-    <string name="revanced_hide_chips_shelf_on">\"你可能也會喜歡\"已隱藏</string>
-    <string name="revanced_hide_chips_shelf_off">\"你可能也會喜歡\"已顯示</string>
+    <string name="revanced_hide_chips_shelf_title">隱藏剪輯</string>
+    <string name="revanced_hide_chips_shelf_on">剪輯已隱藏</string>
+    <string name="revanced_hide_chips_shelf_off">剪輯已顯示</string>
     <string name="revanced_hide_expandable_chip_title">隱藏影片下方的章節選擇欄</string>
     <string name="revanced_hide_expandable_chip_summary_on">影片下方的章節選擇欄已隱藏</string>
     <string name="revanced_hide_expandable_chip_summary_off">影片下方的章節選擇欄已顯示</string>
-    <string name="revanced_hide_feed_captions_button_title">隱藏Feed的字幕按鈕</string>
+    <string name="revanced_hide_feed_captions_button_title">隱藏探索的字幕按鈕</string>
     <string name="revanced_hide_feed_captions_button_on">字幕按鈕已隱藏</string>
     <string name="revanced_hide_feed_captions_button_off">字幕按鈕已顯示</string>
     <string name="revanced_hide_feed_search_bar_title">隱藏Feed的搜尋欄</string>
@@ -131,14 +131,14 @@
     <string name="revanced_preference_screen_category_bar_title">類別欄</string>
     <string name="revanced_preference_screen_category_bar_summary">隱藏或顯示來源、搜尋和相關影片中的類別欄</string>
     <string name="revanced_hide_category_bar_in_feed_title">隱藏探索內的分類欄</string>
-    <string name="revanced_hide_category_bar_in_feed_summary_on">在Feed中隱藏</string>
-    <string name="revanced_hide_category_bar_in_feed_summary_off">在Feed中顯示</string>
+    <string name="revanced_hide_category_bar_in_feed_summary_on">在探索中隱藏</string>
+    <string name="revanced_hide_category_bar_in_feed_summary_off">在探索中顯示</string>
     <string name="revanced_hide_category_bar_in_related_videos_title">隱藏相關影片</string>
     <string name="revanced_hide_category_bar_in_related_videos_summary_on">在相關影片中隱藏</string>
     <string name="revanced_hide_category_bar_in_related_videos_summary_off">在相關影片中顯示</string>
-    <string name="revanced_hide_category_bar_in_search_title">在搜索結果中隱藏短片</string>
-    <string name="revanced_hide_category_bar_in_search_summary_on">搜索結果中的短片架已隱藏</string>
-    <string name="revanced_hide_category_bar_in_search_summary_off">搜索結果中的短片架已顯示</string>
+    <string name="revanced_hide_category_bar_in_search_title">在搜尋結果中隱藏短片</string>
+    <string name="revanced_hide_category_bar_in_search_summary_on">搜尋結果中的短片已隱藏</string>
+    <string name="revanced_hide_category_bar_in_search_summary_off">搜尋結果中的短片已顯示</string>
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Channel profile -->
     <string name="revanced_preference_screen_channel_profile_title">頻道簡介</string>
     <string name="revanced_preference_screen_channel_profile_summary">隱藏或顯示在頻道簡介中的按鈕</string>
@@ -164,23 +164,23 @@
     <string name="revanced_hide_for_you_shelf_summary_off">"「為您推薦」的功能列已顯示。"</string>
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Community posts -->
     <string name="revanced_preference_screen_community_posts_title">社群貼文</string>
-    <string name="revanced_preference_screen_community_posts_summary">在Feed跟頻道中隱藏或顯示社群貼文</string>
+    <string name="revanced_preference_screen_community_posts_summary">在探索跟頻道中隱藏或顯示社群貼文</string>
     <string name="revanced_hide_community_posts_channel_title">在頻道中隱藏社群</string>
-    <string name="revanced_hide_community_posts_channel_summary_on">已在頻道中隱藏社群</string>
-    <string name="revanced_hide_community_posts_channel_summary_off">已在頻道中顯示社群</string>
-    <string name="revanced_hide_community_posts_home_related_videos_title">在主頁和相關影片列表中隱藏社群貼文</string>
-    <string name="revanced_hide_community_posts_home_related_videos_summary_on">在主頁和相關影片列表中的社群貼文已隱藏</string>
-    <string name="revanced_hide_community_posts_home_related_videos_summary_off">在主頁和相關影片列表中的社群貼文已顯示</string>
+    <string name="revanced_hide_community_posts_channel_summary_on">在頻道中的社群已隱藏</string>
+    <string name="revanced_hide_community_posts_channel_summary_off">在頻道中的社群已顯示</string>
+    <string name="revanced_hide_community_posts_home_related_videos_title">在首頁和相關影片列表中隱藏社群貼文</string>
+    <string name="revanced_hide_community_posts_home_related_videos_summary_on">在首頁和相關影片列表中的社群貼文已隱藏</string>
+    <string name="revanced_hide_community_posts_home_related_videos_summary_off">在首頁和相關影片列表中的社群貼文已顯示</string>
     <string name="revanced_hide_community_posts_subscriptions_title">隱藏訂閱內容中的社群頁面</string>
     <string name="revanced_hide_community_posts_subscriptions_summary_on">訂閱內容中的社群頁面已隱藏</string>
     <string name="revanced_hide_community_posts_subscriptions_summary_off">訂閱內容中的社群頁面已顯示</string>
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Flyout menu -->
     <string name="revanced_preference_screen_feed_flyout_menu_title">彈出式選單</string>
-    <string name="revanced_preference_screen_feed_flyout_menu_summary">Hide or show flyout menu in the feed.</string>
-    <string name="revanced_hide_feed_flyout_menu_title">Enable feed flyout menu filter</string>
-    <string name="revanced_hide_feed_flyout_menu_summary_on">Feed flyout menu filter is enabled.</string>
-    <string name="revanced_hide_feed_flyout_menu_summary_off">Feed flyout menu filter is disabled.</string>
-    <string name="revanced_hide_feed_flyout_menu_filter_strings_title">Feed flyout menu filter</string>
+    <string name="revanced_preference_screen_feed_flyout_menu_summary">在來源中隱藏或顯示彈出式功能表。</string>
+    <string name="revanced_hide_feed_flyout_menu_title">啟用摘要彈出式選單過濾器</string>
+    <string name="revanced_hide_feed_flyout_menu_summary_on">動態資訊彈出選單已顯示</string>
+    <string name="revanced_hide_feed_flyout_menu_summary_off">動態資訊彈出選單已隱藏</string>
+    <string name="revanced_hide_feed_flyout_menu_filter_strings_title">動態資訊彈出選單過濾</string>
     <string name="revanced_hide_feed_flyout_menu_filter_strings_summary">列出彈出式選單的名稱來過濾，並以換行符號分隔</string>
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Video filter -->
     <string name="revanced_preference_screen_video_filter_title">影片篩選器</string>
@@ -190,9 +190,9 @@
     <string name="revanced_hide_keyword_content_home_title">按關鍵字隱藏首頁影片。</string>
     <string name="revanced_hide_keyword_content_home_summary_on">首頁影片按關鍵字過濾。</string>
     <string name="revanced_hide_keyword_content_home_summary_off">首頁影片不按關鍵字過濾。</string>
-    <string name="revanced_hide_keyword_content_search_title">按關鍵字隱藏搜索結果</string>
-    <string name="revanced_hide_keyword_content_search_summary_on">搜索結果按關鍵字進行篩選。</string>
-    <string name="revanced_hide_keyword_content_search_summary_off">搜索結果未按關鍵字進行篩選。</string>
+    <string name="revanced_hide_keyword_content_search_title">按關鍵字隱藏搜尋結果</string>
+    <string name="revanced_hide_keyword_content_search_summary_on">搜尋結果按關鍵字進行篩選。</string>
+    <string name="revanced_hide_keyword_content_search_summary_off">搜尋結果未按關鍵字進行篩選。</string>
     <string name="revanced_hide_keyword_content_subscriptions_title">按關鍵字隱藏訂閱影片</string>
     <string name="revanced_hide_keyword_content_subscriptions_summary_on">訂閱的視頻按關鍵字進行篩選。</string>
     <string name="revanced_hide_keyword_content_subscriptions_summary_off">訂閱的視頻未按關鍵字進行篩選。</string>
@@ -204,12 +204,12 @@
 
 中間帶有大寫字母的單詞必須按大小寫輸入（例如：iPhone, TikTok, LeBlanc）"</string>
     <string name="revanced_hide_keyword_content_about_title">關於關鍵字過濾</string>
-    <string name="revanced_hide_keyword_content_about_summary">"主頁/訂閱/搜索結果會過濾以隱藏與關鍵字短語匹配的內容
+    <string name="revanced_hide_keyword_content_about_summary">"主頁/訂閱/搜尋結果會過濾以隱藏與關鍵字短語匹配的內容
 
 限制：
 • 可能無法隱藏某些短片
 • 可能無法隱藏某些UI組件
-• 搜索關鍵字可能不會顯示結果"</string>
+• 搜尋關鍵字可能不會顯示結果"</string>
     <string name="revanced_hide_keyword_toast_invalid_common">無效的關鍵字。不能使用: \'%s\' 作為過濾器</string>
     <string name="revanced_hide_keyword_toast_invalid_length">無效的關鍵字。\'%1$s\' 少於 %2$d 個字符</string>
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Video filter, PreferenceCategory: Recommended video -->
@@ -242,9 +242,9 @@
     <string name="revanced_change_start_page_entry_subscriptions">訂閱</string>
     <string name="revanced_change_start_page_entry_trending">熱門</string>
     <string name="revanced_change_start_page_warning">無效的開始頁面，將回復至預設設定。</string>
-    <string name="revanced_disable_auto_audio_tracks_title">Disable forced auto audio tracks</string>
-    <string name="revanced_disable_auto_audio_tracks_summary_on">Forced auto audio tracks are disabled.</string>
-    <string name="revanced_disable_auto_audio_tracks_summary_off">Forced auto audio tracks are enabled.</string>
+    <string name="revanced_disable_auto_audio_tracks_title">停用強制自動音軌</string>
+    <string name="revanced_disable_auto_audio_tracks_summary_on">強制自動音軌已停用</string>
+    <string name="revanced_disable_auto_audio_tracks_summary_off">強制自動音軌已啟用</string>
     <string name="revanced_disable_auto_captions_title">停用強制自動字幕</string>
     <string name="revanced_disable_auto_captions_summary_on">強制自動字幕已停用</string>
     <string name="revanced_disable_auto_captions_summary_off">強制自動字幕已啟用</string>
@@ -353,9 +353,6 @@
     <string name="revanced_preference_screen_settings_munu_summary">Hide elements in YouTube settings menu.</string>
     <string name="revanced_hide_settings_menu_title">Hide YouTube settings menu</string>
     <string name="revanced_hide_settings_menu_summary">Hide elements in YouTube settings menu.</string>
-    <string name="revanced_hide_settings_menu_filter_type_title">Select type to filter</string>
-    <string name="revanced_hide_settings_menu_filter_type_summary_on">Filter by whitelist method. Hides settings other than keywords added to the filter.</string>
-    <string name="revanced_hide_settings_menu_filter_type_summary_off">Filter by legacy method. Hides settings added to the filter.</string>
     <string name="revanced_hide_settings_menu_filter_strings_title">YouTube settings menu filter</string>
     <string name="revanced_hide_settings_menu_filter_strings_summary">List of YouTube settings menu names to filter separated by a new line.</string>
     <string name="revanced_hide_settings_menu_filter_strings_hint">"Account
@@ -370,9 +367,9 @@ Captions"</string>
     <string name="revanced_enable_wide_search_bar_title">啟用寬搜尋列</string>
     <string name="revanced_enable_wide_search_bar_summary_on">已啟用寬搜尋列</string>
     <string name="revanced_enable_wide_search_bar_summary_off">已停用寬搜尋列</string>
-    <string name="revanced_enable_wide_search_bar_with_header_title">啟用帶有標題的寬版搜索欄</string>
-    <string name="revanced_enable_wide_search_bar_with_header_summary_on">寬版搜索欄且包含YouTube標題。</string>
-    <string name="revanced_enable_wide_search_bar_with_header_summary_off">寬版搜索欄且不包含YouTube標題。</string>
+    <string name="revanced_enable_wide_search_bar_with_header_title">啟用帶有標題的寬版搜尋欄</string>
+    <string name="revanced_enable_wide_search_bar_with_header_summary_on">寬版搜尋欄且包含YouTube標題。</string>
+    <string name="revanced_enable_wide_search_bar_with_header_summary_off">寬版搜尋欄且不包含YouTube標題。</string>
     <string name="revanced_enable_wide_search_bar_in_you_tab_title">在「你」標籤內，將搜尋欄設定為寬版</string>
     <string name="revanced_enable_wide_search_bar_in_you_tab_summary">"啟用這項設定後，「你」這一個標籤裡面的「設定」按鈕將會被停用
 
@@ -754,7 +751,7 @@ Please download %2$s from the website."</string>
     <string name="revanced_replace_time_stamp_action_title">Replace time stamp action</string>
     <string name="revanced_replace_time_stamp_action_summary_on">Tap to open playback speed or video quality flyout menu.</string>
     <string name="revanced_replace_time_stamp_action_summary_off">Tap to show the remaining time.</string>
-    <string name="revanced_enable_custom_seekbar_color_title">自訂搜索欄顏色</string>
+    <string name="revanced_enable_custom_seekbar_color_title">自訂搜尋欄顏色</string>
     <string name="revanced_enable_custom_seekbar_color_summary_on">自訂搜尋欄顏色已啟用</string>
     <string name="revanced_enable_custom_seekbar_color_summary_off">自訂搜尋欄顏色已停用</string>
     <string name="revanced_custom_seekbar_color_value_title">自訂搜尋欄顏色</string>
@@ -837,9 +834,9 @@ Limitation: Official headers in search results will be hidden."</string>
     <string name="revanced_hide_shorts_shelf_subscriptions_title">在訂閱中隱藏短片</string>
     <string name="revanced_hide_shorts_shelf_subscriptions_summary_on">訂閱中的短片架已隱藏</string>
     <string name="revanced_hide_shorts_shelf_subscriptions_summary_off">訂閱中的短片架已顯示</string>
-    <string name="revanced_hide_shorts_shelf_search_title">在搜索結果中隱藏短片</string>
-    <string name="revanced_hide_shorts_shelf_search_summary_on">搜索結果中的短片架已隱藏</string>
-    <string name="revanced_hide_shorts_shelf_search_summary_off">搜索結果中的短片架已顯示</string>
+    <string name="revanced_hide_shorts_shelf_search_title">在搜尋結果中隱藏短片</string>
+    <string name="revanced_hide_shorts_shelf_search_summary_on">搜尋結果中的短片架已隱藏</string>
+    <string name="revanced_hide_shorts_shelf_search_summary_off">搜尋結果中的短片架已顯示</string>
     <string name="revanced_hide_shorts_shelf_history_title">Hide in watch history</string>
     <string name="revanced_hide_shorts_shelf_history_summary_on">Hidden in watch history.</string>
     <string name="revanced_hide_shorts_shelf_history_summary_off">Shown in watch history.</string>
