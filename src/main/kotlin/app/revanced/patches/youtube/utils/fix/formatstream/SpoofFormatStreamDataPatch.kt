@@ -3,21 +3,27 @@ package app.revanced.patches.youtube.utils.fix.formatstream
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
+import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.revanced.patcher.patch.PatchException
-import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.youtube.utils.compatibility.Constants
 import app.revanced.patches.youtube.utils.fix.formatstream.fingerprints.FormatStreamModelConstructorFingerprint
-import app.revanced.patches.youtube.utils.fix.formatstream.fingerprints.VideoStreamingDataConstructorFingerprint
+import app.revanced.patches.youtube.utils.fix.formatstream.fingerprints.PlaybackStartFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.MISC_PATH
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.patches.youtube.video.information.VideoInformationPatch
 import app.revanced.patches.youtube.video.playerresponse.PlayerResponseMethodHookPatch
 import app.revanced.patches.youtube.video.videoid.VideoIdPatch
-import app.revanced.util.addFieldAndInstructions
+import app.revanced.util.getReference
+import app.revanced.util.getStringInstructionIndex
+import app.revanced.util.indexOfFirstInstruction
 import app.revanced.util.patch.BaseBytecodePatch
 import app.revanced.util.resultOrThrow
+import com.android.tools.smali.dexlib2.Opcode
+import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
+import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.reference.FieldReference
+import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 
 @Suppress("unused")
 object SpoofFormatStreamDataPatch : BaseBytecodePatch(
@@ -32,71 +38,95 @@ object SpoofFormatStreamDataPatch : BaseBytecodePatch(
     compatiblePackages = Constants.COMPATIBLE_PACKAGE,
     fingerprints = setOf(
         FormatStreamModelConstructorFingerprint,
-        VideoStreamingDataConstructorFingerprint
+        PlaybackStartFingerprint
     )
 ) {
     private const val INTEGRATIONS_CLASS_DESCRIPTOR =
         "$MISC_PATH/SpoofFormatStreamDataPatch;"
 
+    private const val INTEGRATIONS_METHOD_DESCRIPTOR =
+        "hookStreamData"
+
+    private const val INTEGRATIONS_METHOD_CALL =
+        INTEGRATIONS_CLASS_DESCRIPTOR +
+                "->" +
+                INTEGRATIONS_METHOD_DESCRIPTOR +
+                "(Ljava/lang/Object;)V"
+
+    private const val STREAMING_DATA_OUTER_CLASS =
+        "Lcom/google/protos/youtube/api/innertube/StreamingDataOuterClass\$StreamingData;"
+
     override fun execute(context: BytecodeContext) {
 
-        // hook player response video id, to start loading format stream data sooner in the background.
+        // Hook player response video id, to start loading format stream data sooner in the background.
         VideoIdPatch.hookPlayerResponseVideoId("$INTEGRATIONS_CLASS_DESCRIPTOR->newPlayerResponseVideoId(Ljava/lang/String;Z)V")
 
-        // TODO: Check if all instructions need to be spoofed.
         FormatStreamModelConstructorFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
-                val formatStreamDataIndex = it.scanResult.patternScanResult!!.startIndex
-                val formatStreamDataReference = getInstruction<ReferenceInstruction>(formatStreamDataIndex).reference
-                val formatStreamDataClass = context.findClass((formatStreamDataReference as FieldReference).definingClass)!!.mutableClass
 
-                formatStreamDataClass.methods.find { method -> method.name == "<init>" }
+                // Find the field name that will be used for reflection.
+                val streamDataIndex = it.scanResult.patternScanResult!!.startIndex
+                val streamDataReference = getInstruction<ReferenceInstruction>(streamDataIndex).reference
+                val streamDataFieldName = (streamDataReference as FieldReference).name
+
+                // Found field name is reflected in the integration.
+                context.findClass(INTEGRATIONS_CLASS_DESCRIPTOR)!!
+                    .mutableClass.methods.find { method -> method.name == INTEGRATIONS_METHOD_DESCRIPTOR }
                     ?.apply {
-                        val getSmaliInstructions =
-                            """
-                                if-eqz v0, :ignore
-                                iget-object v0, v0, $formatStreamDataReference
-                                if-eqz v0, :ignore
-                                return-object v0
-                                :ignore
-                                const-string v0, ""
-                                return-object v0
-                                """
-                        val setSmaliInstructions =
-                            """
-                                if-eqz p0, :ignore
-                                if-eqz v0, :ignore
-                                iput-object p0, v0, $formatStreamDataReference
-                                :ignore
-                                return-void
-                                """
+                        val index = getStringInstructionIndex("replaceMeWithFieldName")
+                        val register = getInstruction<OneRegisterInstruction>(index).registerA
 
-                        val integrationMutableClass =
-                            context.findClass(INTEGRATIONS_CLASS_DESCRIPTOR)!!.mutableClass
-
-                        integrationMutableClass.addFieldAndInstructions(
-                            context,
-                            "getFormatStreamData",
-                            "formatStreamDataClass",
-                            definingClass,
-                            getSmaliInstructions,
-                            true
+                        replaceInstruction(
+                            index,
+                            "const-string v$register, \"$streamDataFieldName\""
                         )
-                        integrationMutableClass.addFieldAndInstructions(
-                            context,
-                            "setFormatStreamData",
-                            "formatStreamDataClass",
-                            definingClass,
-                            setSmaliInstructions,
-                            true
-                        )
-                    } ?: throw PatchException("FormatStreamDataClass not found!")
-
-                hook()
+                    } ?: throw PatchException("SpoofFormatStreamDataPatch not found")
             }
         }
 
-        VideoStreamingDataConstructorFingerprint.resultOrThrow().mutableMethod.hook()
+        PlaybackStartFingerprint.resultOrThrow().mutableMethod.apply {
+
+            // Type of object being invoked is protobufList.
+            // Find the class name of protobufList.
+            val protobufListIndex = indexOfFirstInstruction {
+                opcode == Opcode.INVOKE_STATIC
+                        && getReference<MethodReference>()?.definingClass == STREAMING_DATA_OUTER_CLASS
+                        && getReference<MethodReference>()?.name == "emptyProtobufList"
+            }
+            if (protobufListIndex <= 0)
+                throw PatchException("ProtobufList index not found")
+
+            val protobufListReference = getInstruction<ReferenceInstruction>(protobufListIndex).reference
+            val protobufListClass = (protobufListReference as MethodReference).returnType
+
+            // Hooks all instructions that load or save protobufList.
+            for (index in implementation!!.instructions.size - 1 downTo 0) {
+                val instruction = getInstruction(index)
+
+                if (instruction.opcode != Opcode.IGET_OBJECT
+                            && instruction.opcode != Opcode.IPUT_OBJECT)
+                    continue
+
+                val fieldReference = instruction.getReference<FieldReference>()
+                if (fieldReference?.definingClass != STREAMING_DATA_OUTER_CLASS)
+                    continue
+                if (fieldReference.type != protobufListClass)
+                    continue
+
+                val insertRegister = getInstruction<TwoRegisterInstruction>(index).registerA
+                val insertIndex =
+                    if (instruction.opcode == Opcode.IPUT_OBJECT)
+                        index
+                    else
+                        index + 1
+
+                addInstruction(
+                    insertIndex,
+                    "invoke-static { v$insertRegister }, " +
+                            INTEGRATIONS_METHOD_CALL
+                )
+            }
+        }
 
         /**
          * Add settings
@@ -110,10 +140,4 @@ object SpoofFormatStreamDataPatch : BaseBytecodePatch(
 
         SettingsPatch.updatePatchStatus(this)
     }
-
-    private fun MutableMethod.hook() =
-        addInstruction(
-            1,
-            "invoke-static { }, $INTEGRATIONS_CLASS_DESCRIPTOR->hookFormatStreamData()V"
-        )
 }
