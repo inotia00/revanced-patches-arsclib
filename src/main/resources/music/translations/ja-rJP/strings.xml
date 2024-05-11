@@ -20,7 +20,7 @@
     <!-- PreferenceScreen: Action Bar -->
     <string name="revanced_preference_screen_action_bar_title">アクションバー</string>
     <string name="revanced_hide_action_button_like_dislike_title">評価ボタンを非表示</string>
-    <string name="revanced_hide_action_button_like_dislike_summary">「いいね」ボタンや「嫌い」ボタンを非表示にします。古いプレイヤーのレイアウトでは動作しません。</string>
+    <string name="revanced_hide_action_button_like_dislike_summary">高評価ボタンや低評価ボタンを非表示にします。古いプレイヤーのレイアウトでは動作しません。</string>
     <string name="revanced_hide_action_button_comment_title">コメントボタンを非表示</string>
     <string name="revanced_hide_action_button_comment_summary">コメントボタンを非表示にします。</string>
     <string name="revanced_hide_action_button_add_to_playlist_title">プレイリストに追加ボタンを非表示</string>
@@ -39,12 +39,12 @@
 • プレーヤー内のダウンロードボタンのみを置き換えます。
 • フライアウトメニューまたはライブラリのダウンロードボタンは置き換えません。"</string>
     <string name="revanced_external_downloader_package_name_title">外部ダウンローダーのパッケージ名</string>
-    <string name="revanced_external_downloader_package_name_summary">NewPipe や YTDLnis などの、インストールされている外部ダウンローダーアプリのパッケージ名</string>
+    <string name="revanced_external_downloader_package_name_summary">NewPipe や YTDLnis などの、インストールされている外部ダウンローダーアプリのパッケージ名。</string>
     <string name="revanced_external_downloader_dialog_title">外部ダウンローダーを選択</string>
     <string name="revanced_external_downloader_not_installed_dialog_title">警告</string>
     <string name="revanced_external_downloader_not_installed_dialog_message">"%1$s はインストールされていません。
 ウェブサイトから %2$s をダウンロードしてください。"</string>
-    <string name="revanced_external_downloader_not_installed_warning">%s はインストールされていません。インストールしてください</string>
+    <string name="revanced_external_downloader_not_installed_warning">%s はインストールされていません。インストールしてください。</string>
     <!-- PreferenceScreen: Ads -->
     <string name="revanced_preference_screen_ads_title">広告</string>
     <string name="revanced_hide_fullscreen_ads_title">全画面広告を非表示</string>
@@ -67,8 +67,8 @@
 既知の問題:
 • ライブラリのアルバムアートが小さくなります。
 • スリープタイマーのレイアウトが異常になる場合があります。"</string>
-    <string name="revanced_enable_trim_silence_title">「無音をスキップ」を有効化</string>
-    <string name="revanced_enable_trim_silence_summary">"再生スピードのフライアウトメニューで「無音をスキップ」スイッチを有効にする。
+    <string name="revanced_enable_trim_silence_title">「無音トリム」を有効化</string>
+    <string name="revanced_enable_trim_silence_summary">"再生スピードのフライアウトメニューで「無音トリム」スイッチを有効にする。
 
 情報
 - この機能はポッドキャスト用です。
@@ -104,7 +104,7 @@
     <string name="revanced_replace_flyout_menu_dismiss_queue_continue_watch_title">視聴を続ける</string>
     <string name="revanced_replace_flyout_menu_dismiss_queue_continue_watch_summary">YouTubeに切り替えたときに、現在の時間から再生します。</string>
     <string name="revanced_replace_flyout_menu_dismiss_queue_watch_on_youtube_label">YouTube で視聴</string>
-    <string name="revanced_replace_flyout_menu_dismiss_queue_watch_on_youtube_warning">無効な動画URL</string>
+    <string name="revanced_replace_flyout_menu_dismiss_queue_watch_on_youtube_warning">動画のURLが無効です。</string>
     <string name="revanced_replace_flyout_menu_dismiss_queue_title">「キューを閉じる」メニューを置き換え</string>
     <string name="revanced_replace_flyout_menu_dismiss_queue_summary">「キューを閉じる」を「YouTube で視聴」に置き換えます。</string>
     <string name="revanced_replace_flyout_menu_report_only_player_title">プレイヤーのフライアウトメニューにのみ適用</string>
@@ -152,17 +152,17 @@
     <string name="revanced_hide_history_button_summary">ツールバーの履歴ボタンを非表示にします。</string>
     <string name="revanced_hide_notification_button_title">通知ボタンを非表示</string>
     <string name="revanced_hide_notification_button_summary">ツールバーの通知ボタンを非表示にします。</string>
-    <string name="revanced_hide_sound_search_button_title">音声検索ボタンを非表示</string>
-    <string name="revanced_hide_sound_search_button_summary">検索バーの音声検索ボタンを非表示にします。</string>
-    <string name="revanced_hide_voice_search_button_title">音声検索ボタンを非表示</string>
-    <string name="revanced_hide_voice_search_button_summary">検索バーの音声検索ボタンを非表示にします。</string>
+    <string name="revanced_hide_sound_search_button_title">サウンドサーチボタンを非表示</string>
+    <string name="revanced_hide_sound_search_button_summary">検索バーのサウンドサーチボタンを非表示にします。</string>
+    <string name="revanced_hide_voice_search_button_title">ボイスサーチボタンを非表示</string>
+    <string name="revanced_hide_voice_search_button_summary">検索バーのボイスサーチボタンを非表示にします。</string>
     <string name="revanced_restore_old_style_library_shelf_title">古いスタイルのライブラリを有効化</string>
     <string name="revanced_restore_old_style_library_shelf_summary">ライブラリのUIを古いスタイルに戻します (実験的)</string>
     <string name="revanced_remove_viewer_discretion_dialog_title">ビューアの裁量ダイアログを削除</string>
     <string name="revanced_remove_viewer_discretion_dialog_summary">"視聴者の裁量ダイアログを削除します。
 これは年齢制限を回避するものではなく、自動的に受け入れられるだけです。"</string>
     <string name="revanced_spoof_app_version_title">アプリのバージョンを偽装</string>
-    <string name="revanced_spoof_app_version_summary">"YouTube のバージョンを古いバージョンに偽装します。
+    <string name="revanced_spoof_app_version_summary">"YT Music のバージョンを古いバージョンに偽装します。
 
 • これによりアプリの外観が変わりますが、未知の問題が発生する場合があります。
 • 後からこの機能を無効にしても、データを消去するまで古い UI のままになる場合があります。"</string>
@@ -259,8 +259,8 @@
     <string name="revanced_ryd_failure_generic">低評価数は一時的に利用できません。(%s)</string>
     <string name="revanced_ryd_video_likes_hidden_by_video_owner">非表示</string>
     <!-- PreferenceScreen: SponsorBlock -->
-    <string name="revanced_preference_screen_sb_title">スポンサーブロック</string>
-    <string name="revanced_sb_enabled">スポンサーブロックを有効化</string>
+    <string name="revanced_preference_screen_sb_title">SponsorBlock</string>
+    <string name="revanced_sb_enabled">Sponsor Block を有効化</string>
     <string name="revanced_sb_enabled_sum">SponsorBlock は、YouTube の動画の迷惑な部分をスキップするためのクラウドソーシングシステムです。</string>
     <string name="revanced_sb_toast_on_connection_error">API が利用できない場合にメッセージを表示</string>
     <string name="revanced_sb_toast_on_connection_error_sum">SponsorBlock API が利用できない場合、メッセージが表示されます。</string>
