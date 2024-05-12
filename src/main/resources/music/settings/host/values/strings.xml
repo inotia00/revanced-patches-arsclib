@@ -245,7 +245,7 @@ Some features may not work properly in the old player layout."</string>
     <string name="revanced_replace_player_cast_button_title">Replace cast button</string>
     <string name="revanced_replace_player_cast_button_summary">"Replaces the cast button in the player with the 'Open music' button. (Experimental)
 
-Limitation: It does not work normally if any songs in the playlist cannot be played."</string>
+Info: This feature does not work normally if any songs in the playlist cannot be played."</string>
     <string name="revanced_replace_player_cast_button_playlist_dismiss">Already playing from the official music source.</string>
     <string name="revanced_replace_player_cast_button_playlist_error">Official music source is unavailable.</string>
 
