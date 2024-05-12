@@ -791,7 +791,23 @@ Tap and hold to copy video timestamp."</string>
 Tap and hold to set playback speed to 1.0x."</string>
     <string name="revanced_overlay_button_speed_dialog_reset">Playback speed reseted (1.0x).</string>
     <string name="revanced_overlay_button_not_allowed_warning">Tap and hold to change button state.</string>
-
+    <string name="revanced_overlay_button_whitelisting_summary">Tap to launch add channel into Channel Whitelist.</string>
+    <string name="revanced_overlay_button_whitelisting_title">Show whitelisting button</string>
+    <string name="revanced_whitelisting_added" formatted="false">Channel %s was added to the %s whitelist</string>
+    <string name="revanced_whitelisting_add_failed" formatted="false">Failed to add channel %s to the %s whitelist</string>
+    <string name="revanced_whitelisting_channel_name">Channel Name</string>
+    <string name="revanced_whitelisting_empty">There are no whitelisted channels</string>
+    <string name="revanced_whitelisting_excluded">Not added to whitelist</string>
+    <string name="revanced_whitelisting_included">Added to whitelist</string>
+    <string name="revanced_whitelisting_reboot">Reboot to apply channel whitelist settings</string>
+    <string name="revanced_whitelisting_removed" formatted="false">Channel %s was removed from the %s whitelist</string>
+    <string name="revanced_whitelisting_remove_failed" formatted="false">Failed to remove channel %s from the %s whitelist</string>
+    <string name="revanced_whitelisting_settings_summary">Check or remove the list of channels added to the whitelist</string>
+    <string name="revanced_whitelisting_speed">Video Speed</string>
+    <string name="revanced_whitelisting_speed_button">Speed</string>
+    <string name="revanced_whitelisting_sponsorblock">SponsorBlock</string>
+    <string name="revanced_whitelisting_sponsorblock_button">SB</string>
+    <string name="revanced_whitelisting_title">Channel Whitelist</string>
     <string name="revanced_external_downloader_package_name_title">External downloader package name</string>
     <string name="revanced_external_downloader_package_name_summary">Package name of your installed external downloader app, such as NewPipe or YTDLnis.</string>
     <string name="revanced_external_downloader_dialog_title">External downloader</string>

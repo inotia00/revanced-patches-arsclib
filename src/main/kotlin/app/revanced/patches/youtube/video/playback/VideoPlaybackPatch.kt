@@ -164,7 +164,7 @@ object VideoPlaybackPatch : BaseBytecodePatch(
 
         VideoInformationPatch.hookBackgroundPlay("$INTEGRATIONS_PLAYBACK_SPEED_CLASS_DESCRIPTOR->newVideoStarted(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JZ)V")
 
-        context.updatePatchStatus(PATCH_STATUS_CLASS_DESCRIPTOR, "RememberPlaybackSpeed")
+        context.updatePatchStatus(PATCH_STATUS_CLASS_DESCRIPTOR, "PlaybackSpeed")
 
         // endregion
 
