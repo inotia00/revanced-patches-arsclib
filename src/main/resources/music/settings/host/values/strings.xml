@@ -120,7 +120,7 @@ Info:
     <string name="revanced_replace_flyout_menu_dismiss_queue_title">Replace dismiss queue</string>
     <string name="revanced_replace_flyout_menu_dismiss_queue_summary">Replaces \'Dismiss queue\' with \'Watch on YouTube\'.</string>
     <string name="revanced_replace_flyout_menu_report_only_player_title">Keep report in comments</string>
-    <string name="revanced_replace_flyout_menu_report_only_player_summary">Replaces \'Report\' only in the player flyout menu.</string>
+    <string name="revanced_replace_flyout_menu_report_only_player_summary">Keeps the report menu in the comments section intact.</string>
     <string name="revanced_replace_flyout_menu_report_title">Replace report</string>
     <string name="revanced_replace_flyout_menu_report_summary">Replaces \'Report\' with \'Playback speed\'.</string>
 
