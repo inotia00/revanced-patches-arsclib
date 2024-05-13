@@ -414,7 +414,7 @@ Captions"</string>
     <string name="revanced_enable_wide_search_bar_in_you_tab_summary">"Enabling this setting will disable the settings button in the You tab.
 
 In this case, please use the following path to access the settings:
-You tab > View channel > Menu > Settings."</string>
+You tab → View channel → Menu → Settings."</string>
     <string name="revanced_hide_toolbar_cast_button_title">Hide cast button</string>
     <string name="revanced_hide_toolbar_cast_button_summary_on">Cast button is hidden.</string>
     <string name="revanced_hide_toolbar_cast_button_summary_off">Cast button is shown.</string>
