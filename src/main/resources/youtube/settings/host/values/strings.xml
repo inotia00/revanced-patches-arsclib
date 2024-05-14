@@ -381,7 +381,7 @@ Some components may not be hidden."</string>
     <string name="revanced_switch_create_with_notifications_button_title">Switch create with notifications</string>
     <string name="revanced_switch_create_with_notifications_button_summary">"Swaps the positions of the create button and notification button by spoofing device information.
 
-• If this setting is changed, the device may need to be rebooted for it to take effect.
+• The device may need to be rebooted for a change of this setting to take effect.
 • Disabling this setting loads more ads from the server side.
 • You should disable this setting to make video ads visible."</string>
 
