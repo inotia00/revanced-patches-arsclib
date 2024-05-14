@@ -356,7 +356,7 @@ Some components may not be hidden."</string>
 
     <string name="revanced_enable_narrow_navigation_buttons_title">Enable narrow navigation buttons</string>
     <string name="revanced_enable_narrow_navigation_buttons_summary_on">Spacing between navigation buttons is narrow.</string>
-    <string name="revanced_enable_narrow_navigation_buttons_summary_off">Spacing between navigation buttons is not narrow.</string>
+    <string name="revanced_enable_narrow_navigation_buttons_summary_off">Spacing between navigation buttons is normal.</string>
     <string name="revanced_hide_navigation_create_button_title">Hide create button</string>
     <string name="revanced_hide_navigation_create_button_summary_on">Create button is hidden.</string>
     <string name="revanced_hide_navigation_create_button_summary_off">Create button is shown.</string>
