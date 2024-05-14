@@ -120,9 +120,9 @@ Tap here to learn more about DeArrow."</string>
     <string name="revanced_hide_latest_videos_button_title">"Hide 'Latest videos' button"</string>
     <string name="revanced_hide_latest_videos_button_summary_on">"'Latest videos' button is hidden."</string>
     <string name="revanced_hide_latest_videos_button_summary_off">"'Latest videos' button is shown."</string>
-    <string name="revanced_hide_mix_playlists_title">Hide mix playlist</string>
-    <string name="revanced_hide_mix_playlists_summary_on">Mix playlist is hidden.</string>
-    <string name="revanced_hide_mix_playlists_summary_off">Mix playlist is shown.</string>
+    <string name="revanced_hide_mix_playlists_title">Hide mix playlists</string>
+    <string name="revanced_hide_mix_playlists_summary_on">Mix playlists are hidden.</string>
+    <string name="revanced_hide_mix_playlists_summary_off">Mix playlists are shown.</string>
     <string name="revanced_hide_movie_shelf_title">Hide movies shelves</string>
     <string name="revanced_hide_movie_shelf_summary_on">Movies shelves are hidden.</string>
     <string name="revanced_hide_movie_shelf_summary_off">Movies shelves are shown.</string>
@@ -456,7 +456,7 @@ Tap and hold to open RVX Settings."</string>
 
 Note:
 • Disabling the speed overlay restores the 'Slide to seek' behavior of the old layout.
-• This setting does not force the speed overlay to be enabled."</string>
+• Disabling this setting does not forcefully enable the speed overlay."</string>
     <string name="revanced_speed_overlay_value_title">Speed overlay value</string>
     <string name="revanced_speed_overlay_value_summary">Speed overlay value between 0-8.0.</string>
     <string name="revanced_speed_overlay_value_warning">Speed overlay value must be between 0-8.0. Reset to default values.</string>
@@ -728,7 +728,7 @@ Limitation: Video title disappears when clicked."</string>
     <string name="revanced_keep_landscape_mode_title">Keep landscape mode</string>
     <string name="revanced_keep_landscape_mode_summary">Keeps landscape mode when turning the screen off and on in fullscreen.</string>
     <string name="revanced_keep_landscape_mode_timeout_title">Keep landscape mode timeout</string>
-    <string name="revanced_keep_landscape_mode_timeout_summary">The amount of milliseconds the landscape mode is forced.</string>
+    <string name="revanced_keep_landscape_mode_timeout_summary">The amount of milliseconds the landscape mode is forced after the screen in turned on.</string>
 
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Haptic feedback -->
     <string name="revanced_preference_screen_haptic_feedback_title">Haptic feedback</string>
@@ -883,9 +883,8 @@ Please download %2$s from the website."</string>
     <string name="revanced_expand_video_description_summary_on">Video descriptions are expanded automatically.</string>
     <string name="revanced_expand_video_description_summary_off">Video descriptions are not expanded automatically.</string>
     <string name="revanced_expand_video_description_strings_title">Title in video description panel</string>
-    <string name="revanced_expand_video_description_strings_summary">"Enter a title in the video description panel.
-These characters vary depending on your language.
-'Expand video description' may not work if you save an incorrect string."</string>
+    <string name="revanced_expand_video_description_strings_summary">"Enter the title of the video description panel in your language.
+'Expand video description' may not work if the entered string does not match the video description panel title. "</string>
     <string name="revanced_expand_video_description_strings_default_value">Description</string>
 
 
@@ -1374,7 +1373,7 @@ Tap on the continue button and disable battery optimizations."</string>
     <string name="revanced_spoof_format_stream_data_summary">"Spoofs the format stream data to prevent playback issues.
 
 Limitations:
-• There may be about 5 seconds of buffering when the video starts.
+• There may be about 5 seconds of buffering when videos start.
 • If buffering takes too long, you may need to close and reopen the video.
 • Since this is still under development, there may be other unknown issues."</string>
     <string name="revanced_spoof_player_parameter_title">Spoof player parameter</string>
