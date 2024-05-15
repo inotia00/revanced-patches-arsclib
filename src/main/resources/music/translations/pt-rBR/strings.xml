@@ -204,6 +204,8 @@ Isso não ignora a restrição de idade, apenas aceita isso automaticamente."</s
     <string name="revanced_enable_zen_mode_summary">Muda o fundo do reprodutor para cinza claro para reduzir o cansaço ocular.</string>
     <string name="revanced_enable_zen_mode_podcast_title">Ativar o modo calmo em podcasts</string>
     <string name="revanced_enable_zen_mode_podcast_summary">O modo calmo também é aplicado aos podcasts.</string>
+    <string name="revanced_hide_audio_video_switch_toggle_title">Hide audio video switch toggle</string>
+    <string name="revanced_hide_audio_video_switch_toggle_summary">Hides the audio video switch toggle in player.</string>
     <string name="revanced_hide_comment_channel_guidelines_title">Ocultar diretrizes do canal</string>
     <string name="revanced_hide_comment_channel_guidelines_summary">Oculta as diretrizes do canal no topo da seção de comentários.</string>
     <string name="revanced_hide_comment_timestamp_and_emoji_buttons_title">Ocultar botões de marcação de tempo e emoji</string>
