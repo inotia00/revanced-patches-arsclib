@@ -220,12 +220,22 @@ Ograniczenia:
 • Wideo z tagiem 'Dla wspierających'
 • Wideo z takimi frazami jak 'Inne osoby również obejrzały' u dołu wideo
 • Wideo przesłane z kanałów nie zasubskrybowanych, które mają mniej niż tysiąc wyświetleń"</string>
+    <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Video filter, PreferenceCategory: Duration filter -->
+    <string name="revanced_preference_category_duration_filter">Duration filter</string>
+    <string name="revanced_hide_video_by_duration_title">Hide videos based on duration</string>
+    <string name="revanced_hide_video_by_duration_summary">Hide videos with shorter than or longer than duration.\n\nKnown issue: It will not hide videos in the player related videos, instead it will hide the timestamp.</string>
+    <string name="revanced_hide_video_by_duration_longer_than_title">Longer than duration</string>
+    <string name="revanced_hide_video_by_duration_longer_than_summary">Videos with duration longer than this number will be hidden.</string>
+    <string name="revanced_hide_video_by_duration_shorter_than_title">Shorter than duration</string>
+    <string name="revanced_hide_video_by_duration_shorter_than_summary">Videos with duration shorter than this number will be hidden.</string>
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Video filter, PreferenceCategory: View count filter -->
     <string name="revanced_preference_category_view_counts_filter">Filtr ilości wyświetleń</string>
     <string name="revanced_hide_video_by_view_counts_title">Ukryj rekomendowane wideo, według ilości wyświetleń</string>
     <string name="revanced_hide_video_by_view_counts_summary">Ukryj rekomendowane wideo, które mają mniejszą ilość wyświetleń niż podana.</string>
-    <string name="revanced_hide_video_view_counts_title">Liczba wyświetleń</string>
-    <string name="revanced_hide_video_view_counts_summary">Rekomendowane wideo, które mają mniejszą ilość wyświetleń, od tej liczby będą ukryte.</string>
+    <string name="revanced_hide_video_view_counts_greater_than_title">Greater than views</string>
+    <string name="revanced_hide_video_view_counts_greater_than_summary">Videos with views greater than this number will be hidden.</string>
+    <string name="revanced_hide_video_view_counts_less_than_title">Less than views</string>
+    <string name="revanced_hide_video_view_counts_less_than_summary">Videos with views less than this number will be hidden.</string>
     <string name="revanced_hide_video_view_counts_multiplier_title">Wyświetl klucze</string>
     <string name="revanced_hide_video_view_counts_multiplier_summary">Określ swój szablon językowy dla liczby wyświetleń pod każdym wideo w interfejsie użytkownika. Każdy klucz (litera/słowo w twoim języku) - &gt; wsrtość(znaczenie klucza) musi znajdować się w nowej linii. Klucze muszą znajdować się przed znakiem \"-&gt;\". Jeśli zmienisz język aplikacji, musisz zresetować to ustawienie.\n\nPrzykłady:\nAngielski: 10K views = K -&gt; 1000, views -&gt; views\nHiszpański: 10 K vistas = K -&gt; 1000, vistas -&gt; views</string>
     <string name="revanced_hide_video_view_counts_multiplier_default_value">tys. -&gt; 1 000\nmln -&gt; 1 000 000\nmld - &gt; 1 000 000 000\n wyświetleń-&gt; views</string>
@@ -447,10 +457,13 @@ Uwaga:
     <string name="revanced_hide_suggested_actions_title">Sugerowane działania</string>
     <string name="revanced_hide_suggested_actions_summary_on">Ukryte</string>
     <string name="revanced_hide_suggested_actions_summary_off">Widoczne</string>
-    <string name="revanced_hide_suggested_video_end_screen_title">Rekomendacje YouTube na końcach wideo</string>
+    <string name="revanced_hide_suggested_video_end_screen_title">Sugerowane wideo na końcu filmu</string>
     <string name="revanced_hide_suggested_video_end_screen_summary">"To ustawienie nie jest już wspierane.
 
-Zamiast tego, użyj ustawienia 'Ustawienia → Automatyczne odtwarzanie → Automatycznie odtwarzaj następne wideo'."</string>
+Zamiast tego, użyj ustawienia 'Ustawienia → Automatyczne odtwarzanie → Automatycznie odtwarzaj następne wideo'.
+
+Notka:
+• Jeśli masz jakiekolwiek problemy z 'Rekomdendacjami YouTube na końcu wideo', spróbuj ponownie uruchomić aplikację."</string>
     <string name="revanced_hide_timed_reactions_title">Reakcje czasowe</string>
     <string name="revanced_hide_timed_reactions_summary_on">Ukryte</string>
     <string name="revanced_hide_timed_reactions_summary_off">Widoczne</string>
@@ -613,7 +626,7 @@ Ograniczenie: tytuły wideo znikają po stuknięciu w nie."</string>
     <string name="revanced_hide_autoplay_preview_title">Ramki z następnym wideo</string>
     <string name="revanced_hide_related_video_overlay_summary_on">Ukryte</string>
     <string name="revanced_hide_related_video_overlay_summary_off">Widoczne</string>
-    <string name="revanced_hide_related_video_overlay_title">Rekomendacje YouTube na końcach wideo</string>
+    <string name="revanced_hide_related_video_overlay_title">Rekomendacje YouTube na końcu wideo</string>
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Fullscreen, PreferenceCategory: Quick actions -->
     <string name="revanced_preference_category_quick_actions">Pod paskiem wideo</string>
     <string name="revanced_hide_quick_actions_title">Przyciski na dole odtwarzacza</string>
@@ -1255,12 +1268,12 @@ Kontynuuj i wyłącz optymalizację baterii."</string>
     <string name="revanced_disable_quic_protocol_title">Wyłącz protokół QUIC</string>
     <string name="revanced_disable_quic_protocol_summary">"Wyłącz protokół QUIC w CronetEngine"</string>
     <string name="revanced_spoof_format_stream_data_title">Oszukaj format strumienia danych</string>
-    <string name="revanced_spoof_format_stream_data_summary">"Oszukuje format strumienia danych, aby zapobiec problem z odtwarzaniem.
+    <string name="revanced_spoof_format_stream_data_summary">"Oszukuje format strumienia danych, aby zapobiec problemom z odtwarzaniem.
 
 Ograniczenia:
-• Po uruchomieniu wideo może nastąpić około 5-sekundowe buforowanie
-• Jeśli buforowanie trwa zbyt długo, może być konieczne zamknięcie i ponowne otwarcie wideo
-• Ponieważ opcja jest wciąż w fazie rozwoju, mogą występować inne nieznane problemy"</string>
+• Po uruchomieniu wideo może nastąpić około 5 sekund buforowania.
+• Jeśli buforowanie trwa zbyt długo, może być konieczne zamknięcie i ponowne otwarcie wideo.
+• Ponieważ to ustawienie jest wciąż w fazie rozwoju, mogą występować inne nieznane problemy."</string>
     <string name="revanced_spoof_player_parameter_title">Oszukaj parametry odtwarzacza</string>
     <string name="revanced_spoof_player_parameter_summary">"Oszukuje parametry odtwarzacza, aby uniknąć problemów z odtwarzaniem.
 

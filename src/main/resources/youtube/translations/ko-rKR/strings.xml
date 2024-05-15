@@ -225,12 +225,22 @@ DeArrow에 대해 자세히 알아보려면 여기를 누르세요."</string>
 • '회원 전용' 태그가 있는 동영상
 • 썸네일 하단에 '시청자가 이 동영상도 시청함'와 같은 문구가 있는 동영상
 • 구독하지 않는 채널에서 업로드한 동영상 중 조회수가 1,000회 미만인 동영상"</string>
+    <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Video filter, PreferenceCategory: Duration filter -->
+    <string name="revanced_preference_category_duration_filter">Duration filter</string>
+    <string name="revanced_hide_video_by_duration_title">Hide videos based on duration</string>
+    <string name="revanced_hide_video_by_duration_summary">Hide videos with shorter than or longer than duration.\n\nKnown issue: It will not hide videos in the player related videos, instead it will hide the timestamp.</string>
+    <string name="revanced_hide_video_by_duration_longer_than_title">Longer than duration</string>
+    <string name="revanced_hide_video_by_duration_longer_than_summary">Videos with duration longer than this number will be hidden.</string>
+    <string name="revanced_hide_video_by_duration_shorter_than_title">Shorter than duration</string>
+    <string name="revanced_hide_video_by_duration_shorter_than_summary">Videos with duration shorter than this number will be hidden.</string>
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Video filter, PreferenceCategory: View count filter -->
     <string name="revanced_preference_category_view_counts_filter">조회수 필터</string>
     <string name="revanced_hide_video_by_view_counts_title">조회수가 낮은 추천 동영상 숨기기</string>
     <string name="revanced_hide_video_by_view_counts_summary">설정한 숫자보다 낮은 조회수를 가진 추천 동영상을 숨길 수 있습니다.</string>
-    <string name="revanced_hide_video_view_counts_title">조회수</string>
-    <string name="revanced_hide_video_view_counts_summary">설정한 숫자보다 낮은 조회수를 가진 추천 동영상이 숨겨집니다.</string>
+    <string name="revanced_hide_video_view_counts_greater_than_title">Greater than views</string>
+    <string name="revanced_hide_video_view_counts_greater_than_summary">Videos with views greater than this number will be hidden.</string>
+    <string name="revanced_hide_video_view_counts_less_than_title">Less than views</string>
+    <string name="revanced_hide_video_view_counts_less_than_summary">Videos with views less than this number will be hidden.</string>
     <string name="revanced_hide_video_view_counts_multiplier_title">키 보기</string>
     <string name="revanced_hide_video_view_counts_multiplier_summary">UI에서 노출되는 동영상의 조회수에 대한 언어 템플릿을 설정할 수 있습니다. \n• \'키(해당 언어의 문자/단어) -&gt; 값(키의 의미)\'은 줄바꿈으로 구분하여 설정해야 하고, 키는 \'-&gt;\' 기호 앞에 와야 합니다. \n• 편집창은 \'하나의 언어에 대한 키만 입력\' &amp; \'앞에는 숫자 관련 키, 마지막에는 조회수 단어 키 순으로 입력\' 해야 합니다. \n• 앱 언어 또는 시스템 언어를 변경하는 경우 이 설정을 재설정해야 합니다.\n• 실시간 스트리밍 동영상과 \'조회수 없음\' 동영상은 숨길 수 없습니다. \n예시) 한국어: 조회수 10만회 = 만회 -&gt; 10000, 조회수 -&gt; views\n영어: 10K views = K -&gt; 1000, views -&gt; views</string>
     <string name="revanced_hide_video_view_counts_multiplier_default_value">천회 -&gt; 1000\n만회 -&gt; 10000\n억회 -&gt; 100000000\n조회수 -&gt; views</string>

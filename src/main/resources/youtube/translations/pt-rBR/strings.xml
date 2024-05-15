@@ -222,12 +222,22 @@ Limitações:
 • Vídeos com a tag 'Somente para membros'
 • Vídeos com frases como 'Pessoas também assistiram' na parte inferior do vídeo
 • Vídeos enviados de canais não inscritos com menos de 1,000 visualizações"</string>
+    <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Video filter, PreferenceCategory: Duration filter -->
+    <string name="revanced_preference_category_duration_filter">Duration filter</string>
+    <string name="revanced_hide_video_by_duration_title">Hide videos based on duration</string>
+    <string name="revanced_hide_video_by_duration_summary">Hide videos with shorter than or longer than duration.\n\nKnown issue: It will not hide videos in the player related videos, instead it will hide the timestamp.</string>
+    <string name="revanced_hide_video_by_duration_longer_than_title">Longer than duration</string>
+    <string name="revanced_hide_video_by_duration_longer_than_summary">Videos with duration longer than this number will be hidden.</string>
+    <string name="revanced_hide_video_by_duration_shorter_than_title">Shorter than duration</string>
+    <string name="revanced_hide_video_by_duration_shorter_than_summary">Videos with duration shorter than this number will be hidden.</string>
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Video filter, PreferenceCategory: View count filter -->
     <string name="revanced_preference_category_view_counts_filter">Filtro por contagem de visualização</string>
     <string name="revanced_hide_video_by_view_counts_title">Ocultar vídeos recomendados por visualizações</string>
     <string name="revanced_hide_video_by_view_counts_summary">Oculte vídeos recomendados com menos de um determinado número de visualizações.</string>
-    <string name="revanced_hide_video_view_counts_title">Número de visualizações</string>
-    <string name="revanced_hide_video_view_counts_summary">Vídeos recomendados com visualizações menores do que este número serão ocultados.</string>
+    <string name="revanced_hide_video_view_counts_greater_than_title">Greater than views</string>
+    <string name="revanced_hide_video_view_counts_greater_than_summary">Videos with views greater than this number will be hidden.</string>
+    <string name="revanced_hide_video_view_counts_less_than_title">Less than views</string>
+    <string name="revanced_hide_video_view_counts_less_than_summary">Videos with views less than this number will be hidden.</string>
     <string name="revanced_hide_video_view_counts_multiplier_title">Chaves de visualização</string>
     <string name="revanced_hide_video_view_counts_multiplier_summary">Especifique seu modelo de idioma para o número de visualizações mostradas em cada vídeo na interface do usuário. Cada chave (uma letra/palavra no seu idioma) sinal -&gt; (significado da chave) deve estar em uma nova linha. Chaves vão antes do sinal \"-&gt;\". Se você alternar o idioma do aplicativo ou do sistema, você terá que redefinir esta configuração.\n\nExemplos:\nInglês: 10K views = K -&gt; 1000, views -&gt; visualizações\nSpanish: 10 K vistas = K -&gt; 1000, vistas -&gt; visualizações</string>
     <string name="revanced_hide_video_view_counts_multiplier_default_value">K -&gt; 1 000\nM -&gt; 1 000 000\nB -&gt; 1 000 000 000\nvisualizações -&gt; visualizações</string>

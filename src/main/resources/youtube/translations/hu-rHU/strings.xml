@@ -147,7 +147,7 @@ Koppintson ide, ha többet szeretne megtudni a DeArrow-ról."</string>
     <string name="revanced_hide_channel_tab_summary_on">Channel tab filter is enabled.</string>
     <string name="revanced_hide_channel_tab_summary_off">Channel tab filter is disabled.</string>
     <string name="revanced_hide_channel_tab_filter_strings_title">Channel tab filter</string>
-    <string name="revanced_hide_channel_tab_filter_strings_summary">List of channel tab names to filter separated by a new line.</string>
+    <string name="revanced_hide_channel_tab_filter_strings_summary">List of channel tab names to filter, separated by new lines.</string>
     <string name="revanced_hide_channel_tab_filter_strings_hint">"Shorts
 Playlists
 Store"</string>
@@ -177,12 +177,12 @@ Store"</string>
     <string name="revanced_hide_community_posts_subscriptions_summary_off">A közösségi bejegyzések a feliratkozások fülön láthatóak.</string>
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Flyout menu -->
     <string name="revanced_preference_screen_feed_flyout_menu_title">Flyout menu</string>
-    <string name="revanced_preference_screen_feed_flyout_menu_summary">Hide or show flyout menu in the feed.</string>
+    <string name="revanced_preference_screen_feed_flyout_menu_summary">Hide or show components of the flyout menu in the feed.</string>
     <string name="revanced_hide_feed_flyout_menu_title">Enable feed flyout menu filter</string>
     <string name="revanced_hide_feed_flyout_menu_summary_on">Feed flyout menu filter is enabled.</string>
     <string name="revanced_hide_feed_flyout_menu_summary_off">Feed flyout menu filter is disabled.</string>
     <string name="revanced_hide_feed_flyout_menu_filter_strings_title">Feed flyout menu filter</string>
-    <string name="revanced_hide_feed_flyout_menu_filter_strings_summary">List of flyout menu names to filter separated by a new line.</string>
+    <string name="revanced_hide_feed_flyout_menu_filter_strings_summary">List of flyout menu names to filter, separated by new lines.</string>
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Video filter -->
     <string name="revanced_preference_screen_video_filter_title">Video filter</string>
     <string name="revanced_preference_screen_video_filter_summary">Hide videos by keywords or views.</string>
@@ -216,19 +216,29 @@ Korlátozások:
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Video filter, PreferenceCategory: Recommended video -->
     <string name="revanced_preference_category_recommended_video">Recommended video</string>
     <string name="revanced_hide_recommended_video_title">Hide recommended videos</string>
-    <string name="revanced_hide_recommended_video_summary">"Hides following recommended videos:
+    <string name="revanced_hide_recommended_video_summary">"Hides the following recommended videos:
 
-• Videos with 'Only for Membership' tag
-• Videos with the phrases such as 'People also watched' at the bottom of the video
-• Videos uploaded from channels not subscribed to that have less than 1,000 views"</string>
+• Videos with 'Only for Membership' tag.
+• Videos with phrases such as 'People also watched' underneath.
+• Videos uploaded from channels not subscribed to that have less than 1,000 views."</string>
+    <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Video filter, PreferenceCategory: Duration filter -->
+    <string name="revanced_preference_category_duration_filter">Duration filter</string>
+    <string name="revanced_hide_video_by_duration_title">Hide videos based on duration</string>
+    <string name="revanced_hide_video_by_duration_summary">Hide videos with shorter than or longer than duration.\n\nKnown issue: It will not hide videos in the player related videos, instead it will hide the timestamp.</string>
+    <string name="revanced_hide_video_by_duration_longer_than_title">Longer than duration</string>
+    <string name="revanced_hide_video_by_duration_longer_than_summary">Videos with duration longer than this number will be hidden.</string>
+    <string name="revanced_hide_video_by_duration_shorter_than_title">Shorter than duration</string>
+    <string name="revanced_hide_video_by_duration_shorter_than_summary">Videos with duration shorter than this number will be hidden.</string>
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Video filter, PreferenceCategory: View count filter -->
     <string name="revanced_preference_category_view_counts_filter">View count filter</string>
     <string name="revanced_hide_video_by_view_counts_title">Hide recommended videos by views</string>
     <string name="revanced_hide_video_by_view_counts_summary">Hide recommended videos with less than a specified number of views.</string>
-    <string name="revanced_hide_video_view_counts_title">Number of views</string>
-    <string name="revanced_hide_video_view_counts_summary">Recommended videos with views less than this number will be hidden.</string>
+    <string name="revanced_hide_video_view_counts_greater_than_title">Greater than views</string>
+    <string name="revanced_hide_video_view_counts_greater_than_summary">Videos with views greater than this number will be hidden.</string>
+    <string name="revanced_hide_video_view_counts_less_than_title">Less than views</string>
+    <string name="revanced_hide_video_view_counts_less_than_summary">Videos with views less than this number will be hidden.</string>
     <string name="revanced_hide_video_view_counts_multiplier_title">View keys</string>
-    <string name="revanced_hide_video_view_counts_multiplier_summary">Specify your language template for the number of views shown under each video in the user interface. Each key (a letter/word in your language) -&gt; value (meaning of the key) must be on a new line. Keys go before \"-&gt;\" sign. If you switch app or system language you have to reset this setting.\n\nExamples:\nEnglish: 10K views = K -&gt; 1000, views -&gt; views\nSpanish: 10 K vistas = K -&gt; 1000, vistas -&gt; views</string>
+    <string name="revanced_hide_video_view_counts_multiplier_summary">Specify your language template for the number of views shown under each video in the user interface. Each key (a letter/word in your language) -&gt; value (meaning of the key) must be on a new line. Keys go before \"-&gt;\" sign. If you change the app or system language you need to reset this setting.\n\nExamples:\nEnglish: 10K views = K -&gt; 1000, views -&gt; views\nSpanish: 10 K vistas = K -&gt; 1000, vistas -&gt; views</string>
     <string name="revanced_hide_video_view_counts_multiplier_default_value">K -&gt; 1 000\nM -&gt; 1 000 000\nB -&gt; 1 000 000 000\nviews -&gt; views</string>
     <!-- PreferenceScreen: General -->
     <string name="revanced_preference_screen_general_title">General</string>
@@ -302,7 +312,7 @@ Ez nem kerüli meg a korhatárt, csak automatikusan elfogadja."</string>
     <string name="revanced_hide_account_menu_summary">"Fiókmenü és az Ön lap elemeinek elrejtése.
 Előfordulhat, hogy egyes komponensek nincsenek elrejtve."</string>
     <string name="revanced_hide_account_menu_filter_strings_title">Fiókmenü szűrő szerkesztése</string>
-    <string name="revanced_hide_account_menu_filter_strings_summary">List of account menu names to filter separated by a new line.</string>
+    <string name="revanced_hide_account_menu_filter_strings_summary">List of account menu names to filter, separated by new lines.</string>
     <string name="revanced_hide_handle_title">Kezelő elrejtése</string>
     <string name="revanced_hide_handle_summary_on">A kezelő el van rejtve.</string>
     <string name="revanced_hide_handle_summary_off">A kezelő látható.</string>
@@ -320,8 +330,8 @@ Előfordulhat, hogy egyes komponensek nincsenek elrejtve."</string>
     <string name="revanced_preference_screen_navigation_buttons_title">Navigation buttons</string>
     <string name="revanced_preference_screen_navigation_buttons_summary">Hide or show navigation bar section components.</string>
     <string name="revanced_enable_narrow_navigation_buttons_title">Enable narrow navigation buttons</string>
-    <string name="revanced_enable_narrow_navigation_buttons_summary_on">Spacing between navigation buttons becomes narrower.</string>
-    <string name="revanced_enable_narrow_navigation_buttons_summary_off">Spacing between navigation buttons does not become narrower.</string>
+    <string name="revanced_enable_narrow_navigation_buttons_summary_on">Spacing between navigation buttons is narrow.</string>
+    <string name="revanced_enable_narrow_navigation_buttons_summary_off">Spacing between navigation buttons is normal.</string>
     <string name="revanced_hide_navigation_create_button_title">Hide create button</string>
     <string name="revanced_hide_navigation_create_button_summary_on">Create button is hidden.</string>
     <string name="revanced_hide_navigation_create_button_summary_off">Create button is shown.</string>
@@ -344,27 +354,27 @@ Előfordulhat, hogy egyes komponensek nincsenek elrejtve."</string>
     <string name="revanced_hide_navigation_label_summary_on">A navigációs sáv el van rejtve.</string>
     <string name="revanced_hide_navigation_label_summary_off">A navigációs sáv látható.</string>
     <string name="revanced_switch_create_with_notifications_button_title">Switch create with notifications</string>
-    <string name="revanced_switch_create_with_notifications_button_summary">"Switch the positions of the create button and notification button by spoofing device information.
+    <string name="revanced_switch_create_with_notifications_button_summary">"Swaps the positions of the create button and notification button by spoofing device information.
 
-• Even if you change this setting, it may not take effect until you reboot the device.
+• The device may need to be rebooted for a change of this setting to take effect.
 • Disabling this setting loads more ads from the server side.
 • You should disable this setting to make video ads visible."</string>
     <!-- PreferenceScreen: General, PreferenceCategory: General, PreferenceScreen: Settings menu -->
     <string name="revanced_preference_screen_settings_munu_title">Settings menu</string>
-    <string name="revanced_preference_screen_settings_munu_summary">Hide elements in YouTube settings menu.</string>
+    <string name="revanced_preference_screen_settings_munu_summary">Hide elements of the YouTube settings menu.</string>
     <string name="revanced_hide_settings_menu_title">Hide YouTube settings menu</string>
     <string name="revanced_hide_settings_menu_summary">Hide elements in YouTube settings menu.</string>
     <string name="revanced_hide_settings_menu_filter_strings_title">YouTube settings menu filter</string>
-    <string name="revanced_hide_settings_menu_filter_strings_summary">List of YouTube settings menu names to filter separated by a new line.</string>
+    <string name="revanced_hide_settings_menu_filter_strings_summary">List of YouTube settings menu names to filter, separated by new lines.</string>
     <string name="revanced_hide_settings_menu_filter_strings_hint">"Account
 Data saving
 Captions"</string>
     <!-- PreferenceScreen: General, PreferenceCategory: General, PreferenceScreen: Toolbar -->
     <string name="revanced_preference_screen_toolbar_title">Toolbar</string>
-    <string name="revanced_preference_screen_toolbar_summary">Hide or change components located on the toolbar such as toolbar buttons, search bar, header.</string>
+    <string name="revanced_preference_screen_toolbar_summary">Hide or change components located on the toolbar, such as the search bar, toolbar buttons, and header.</string>
     <string name="revanced_change_youtube_header_title">Change YouTube header</string>
     <string name="revanced_change_youtube_header_summary_on">Premium header is enabled.</string>
-    <string name="revanced_change_youtube_header_summary_off">Generic headers is enabled.</string>
+    <string name="revanced_change_youtube_header_summary_off">Generic header is enabled.</string>
     <string name="revanced_enable_wide_search_bar_title">Széles keresősáv engedélyezése</string>
     <string name="revanced_enable_wide_search_bar_summary_on">A széles keresősáv engedélyezve van.</string>
     <string name="revanced_enable_wide_search_bar_summary_off">A széles keresősáv le van tiltva.</string>
@@ -407,8 +417,8 @@ Tap and hold to open RVX Settings."</string>
     <string name="revanced_custom_player_overlay_opacity_summary">Átlátszósági érték 0 és 100 között, ahol a 0 az átlátszó.</string>
     <string name="revanced_custom_player_overlay_opacity_warning">A lejátszó átlátszóságának 0 és 100 között kell lennie. Visszaállítás alapértelmezettre.</string>
     <string name="revanced_disable_auto_player_popup_panels_title">Disable player popup panels</string>
-    <string name="revanced_disable_auto_player_popup_panels_summary_on">Auto player popup panels are enabled.</string>
-    <string name="revanced_disable_auto_player_popup_panels_summary_off">Auto player popup panels are disabled.</string>
+    <string name="revanced_disable_auto_player_popup_panels_summary_on">Auto player popup panels are disabled.</string>
+    <string name="revanced_disable_auto_player_popup_panels_summary_off">Auto player popup panels are enabled.</string>
     <string name="revanced_disable_speed_overlay_title">Sebesség átfedés letiltása</string>
     <string name="revanced_disable_speed_overlay_summary">"A 'Lejátszás 2x sebességgel' kikapcsolása lenyomva tartás közben.
 
@@ -457,8 +467,8 @@ Note:
     <string name="revanced_hide_timed_reactions_summary_on">Az időzített reakciók el vannak rejtve.</string>
     <string name="revanced_hide_timed_reactions_summary_off">Az időzített reakciók láthatóak.</string>
     <string name="revanced_skip_autoplay_countdown_title">Skip autoplay countdown</string>
-    <string name="revanced_skip_autoplay_countdown_summary_on">If autoplay is turned on, next video will play without a countdown.</string>
-    <string name="revanced_skip_autoplay_countdown_summary_off">If autoplay is turned on, next video will play after the countdown ends.</string>
+    <string name="revanced_skip_autoplay_countdown_summary_on">If autoplay is enabled, the next video will play immediately.</string>
+    <string name="revanced_skip_autoplay_countdown_summary_off">If autoplay is enabled, the next video will play after the countdown ends.</string>
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Action buttons -->
     <string name="revanced_preference_screen_action_buttons_title">Action buttons</string>
     <string name="revanced_preference_screen_action_buttons_summary">Hide or show action buttons under videos.</string>
@@ -494,7 +504,7 @@ Note:
     <string name="revanced_hide_thanks_button_summary_off">Thanks button is shown.</string>
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Ambient mode -->
     <string name="revanced_preference_screen_ambient_mode_title">Ambient mode</string>
-    <string name="revanced_preference_screen_ambient_mode_summary">Bypass ambient mode restrictions or disable ambient mode.</string>
+    <string name="revanced_preference_screen_ambient_mode_summary">Disable ambient mode or bypass ambient mode restrictions.</string>
     <string name="revanced_bypass_ambient_mode_restrictions_title">Megkerüli a \'Mozifilmes világítás\' mód korlátozásait</string>
     <string name="revanced_bypass_ambient_mode_restrictions_summary_on">A \'Mozifilmes világítás\' mód engedélyezett akkumulátorkímélő üzemmódban.</string>
     <string name="revanced_bypass_ambient_mode_restrictions_summary_off">A \'Mozifilmes világítás\' mód le van tiltva akkumulátorkímélő üzemmódban.</string>
@@ -504,7 +514,7 @@ Note:
     <string name="revanced_disable_ambient_mode_in_fullscreen_summary">Letiltja a \'Mozifilmes világítás\' módot teljes képernyőn.</string>
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Channel bar -->
     <string name="revanced_preference_screen_channel_bar_title">Channel bar</string>
-    <string name="revanced_preference_screen_channel_bar_summary">Hide or show channel bar components under videos.</string>
+    <string name="revanced_preference_screen_channel_bar_summary">Hide or show components of the channel bar under videos.</string>
     <string name="revanced_hide_join_button_title">Csatlakozás gomb elrejtése</string>
     <string name="revanced_hide_join_button_summary_on">A csatlakozás gomb el van rejtve.</string>
     <string name="revanced_hide_join_button_summary_off">A csatlakozás gomb látható.</string>
@@ -533,8 +543,8 @@ Note:
     <string name="revanced_hide_preview_comment_type_on">Ez nem változtatja meg a megjegyzés rész méretét, így lehet a megjegyzés részben élő chat választ nyitni.</string>
     <string name="revanced_hide_preview_comment_type_off">Ez megváltoztatja a megjegyzés rész méretét, így nem lehet a megjegyzés részben élő chat választ nyitni.</string>
     <string name="revanced_hide_comment_create_shorts_button_title">Hide create shorts button</string>
-    <string name="revanced_hide_comment_create_shorts_button_summary_on">Create shorts button is hidden.</string>
-    <string name="revanced_hide_comment_create_shorts_button_summary_off">Create shorts button is shown.</string>
+    <string name="revanced_hide_comment_create_shorts_button_summary_on">Create Shorts button is hidden.</string>
+    <string name="revanced_hide_comment_create_shorts_button_summary_off">Create Shorts button is shown.</string>
     <string name="revanced_hide_comment_thanks_button_title">Hide thanks button</string>
     <string name="revanced_hide_comment_thanks_button_summary_on">Thanks button is hidden.</string>
     <string name="revanced_hide_comment_thanks_button_summary_off">Thanks button is shown.</string>
@@ -543,7 +553,7 @@ Note:
     <string name="revanced_hide_comment_timestamp_and_emoji_buttons_summary_off">Timestamp and emoji buttons are shown.</string>
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Flyout menu -->
     <string name="revanced_preference_screen_player_flyout_menu_title">Flyout menu</string>
-    <string name="revanced_preference_screen_player_flyout_menu_summary">Hide or change flyout menu in the video player.</string>
+    <string name="revanced_preference_screen_player_flyout_menu_summary">Hide or change components of the flyout menu in the video player.</string>
     <string name="revanced_change_player_flyout_menu_toggle_title">Change toggle type</string>
     <string name="revanced_change_player_flyout_menu_toggle_summary_on">Text toggles are used.</string>
     <string name="revanced_change_player_flyout_menu_toggle_summary_off">Switch toggles are used.</string>
@@ -607,7 +617,7 @@ Note:
     <string name="revanced_disable_engagement_panel_summary_on">Engagement panel is disabled.</string>
     <string name="revanced_disable_engagement_panel_summary_off">Engagement panel is enabled.</string>
     <string name="revanced_show_video_title_section_title">Show video title section</string>
-    <string name="revanced_show_video_title_section_summary">"Shows the video title section in full screen.
+    <string name="revanced_show_video_title_section_summary">"Shows the video title section in fullscreen.
 
 Limitation: Video title disappears when clicked."</string>
     <string name="revanced_hide_autoplay_preview_summary_on">Az automatikus lejátszás előnézeti kerete el van rejtve.</string>
@@ -690,7 +700,7 @@ Limitation: Video title disappears when clicked."</string>
     <string name="revanced_disable_haptic_feedback_zoom_summary_off">Haptic feedback is enabled.</string>
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Player buttons -->
     <string name="revanced_preference_screen_player_buttons_title">Player buttons</string>
-    <string name="revanced_preference_screen_player_buttons_summary">Hide or show buttons in videos.</string>
+    <string name="revanced_preference_screen_player_buttons_summary">Hide or show buttons in the video player.</string>
     <string name="revanced_hide_player_autoplay_button_title">Hide autoplay button</string>
     <string name="revanced_hide_player_autoplay_button_summary_on">Autoplay button is hidden.</string>
     <string name="revanced_hide_player_autoplay_button_summary_off">Autoplay button is shown.</string>
@@ -738,8 +748,8 @@ Tartsa nyomva a sebesség alaphelyzetbe állításához."</string>
 Please download %2$s from the website."</string>
     <string name="revanced_external_downloader_not_installed_warning">%s nincs telepítve. Kérjük, telepítse.</string>
     <string name="revanced_external_downloader_action_title">Override download action button</string>
-    <string name="revanced_external_downloader_action_summary_on">Download button opens your external downloader</string>
-    <string name="revanced_external_downloader_action_summary_off">Download button opens the native in-app downloader</string>
+    <string name="revanced_external_downloader_action_summary_on">Native download button opens your external downloader.</string>
+    <string name="revanced_external_downloader_action_summary_off">Native download button opens the native in-app downloader.</string>
     <string name="revanced_share_copy_timestamp_success">Az időbélyeg a vágólapra másolva. (%s)</string>
     <string name="revanced_share_copy_url_success">Az URL a vágólapra másolva.</string>
     <string name="revanced_share_copy_url_timestamp_success">Az URL időbélyeggel a vágólapra másolva.</string>
@@ -770,8 +780,8 @@ Please download %2$s from the website."</string>
     <string name="revanced_hide_seekbar_thumbnail_summary_on">A minilejátszó keresősávja el van rejtve.</string>
     <string name="revanced_hide_seekbar_thumbnail_summary_off">A minilejátszó keresősávja látható.</string>
     <string name="revanced_hide_seekbar_chapters_title">Hide seekbar chapters</string>
-    <string name="revanced_hide_seekbar_chapters_summary_on">Chapters are hidden in seekbar.</string>
-    <string name="revanced_hide_seekbar_chapters_summary_off">Chapters are shown in seekbar.</string>
+    <string name="revanced_hide_seekbar_chapters_summary_on">Chapters are hidden in the seekbar.</string>
+    <string name="revanced_hide_seekbar_chapters_summary_off">Chapters are shown in the seekbar.</string>
     <string name="revanced_hide_time_stamp_title">Időtartam elrejtése</string>
     <string name="revanced_hide_time_stamp_summary_on">Az időtartam el van rejtve.</string>
     <string name="revanced_hide_time_stamp_summary_off">Az időtartam látható.</string>
@@ -797,8 +807,8 @@ Please download %2$s from the website."</string>
     <string name="revanced_hide_shopping_links_summary_on">A vásárlási linkek el vannak rejtve.</string>
     <string name="revanced_hide_shopping_links_summary_off">A vásárlási linkek láthatóak.</string>
     <string name="revanced_hide_suggestions_section_title">Hide suggestions sections</string>
-    <string name="revanced_hide_suggestions_section_summary_on">Game sections, music sections and place sections are hidden.</string>
-    <string name="revanced_hide_suggestions_section_summary_off">Game sections, music sections and place sections are shown.</string>
+    <string name="revanced_hide_suggestions_section_summary_on">Game sections, music sections, and place sections are hidden.</string>
+    <string name="revanced_hide_suggestions_section_summary_off">Game sections, music sections, and place sections are shown.</string>
     <string name="revanced_hide_transcript_section_title">Átirat rész elrejtése</string>
     <string name="revanced_hide_transcript_section_summary_on">Az átirat részek el vannak rejtve.</string>
     <string name="revanced_hide_transcript_section_summary_off">Az átirat részek láthatóak.</string>
@@ -808,13 +818,12 @@ Please download %2$s from the website."</string>
 
 • Tap to scroll.
 • Tap and hold to select text."</string>
-    <string name="revanced_expand_video_description_title">Expand video description</string>
-    <string name="revanced_expand_video_description_summary_on">Video description is expanded automatically.</string>
-    <string name="revanced_expand_video_description_summary_off">Video description is expanded manually.</string>
+    <string name="revanced_expand_video_description_title">Expand video descriptions</string>
+    <string name="revanced_expand_video_description_summary_on">Video descriptions are expanded automatically.</string>
+    <string name="revanced_expand_video_description_summary_off">Video descriptions are not expanded automatically.</string>
     <string name="revanced_expand_video_description_strings_title">Title in video description panel</string>
-    <string name="revanced_expand_video_description_strings_summary">"Enter a title in the video description panel.
-These characters vary depending on your language.
-'Expand video description' may not work if you save an incorrect string."</string>
+    <string name="revanced_expand_video_description_strings_summary">"Enter the title of the video description panel in your language.
+'Expand video description' may not work if the entered string does not match the video description panel title. "</string>
     <string name="revanced_expand_video_description_strings_default_value">Description</string>
     <!-- PreferenceScreen: Shorts -->
     <string name="revanced_preference_screen_shorts_title">Shorts</string>
@@ -824,10 +833,10 @@ These characters vary depending on your language.
     <string name="revanced_change_shorts_repeat_state_entry_pause">Pause</string>
     <string name="revanced_change_shorts_repeat_state_entry_repeat">Repeat</string>
     <string name="revanced_disable_resuming_shorts_player_title">Disable resuming Shorts player</string>
-    <string name="revanced_disable_resuming_shorts_player_summary_on">Shorts player will not resume on app startup</string>
-    <string name="revanced_disable_resuming_shorts_player_summary_off">Shorts player will resume on app startup</string>
+    <string name="revanced_disable_resuming_shorts_player_summary_on">Shorts player will not resume on app startup.</string>
+    <string name="revanced_disable_resuming_shorts_player_summary_off">Shorts player will resume on app startup.</string>
     <!-- PreferenceScreen: Shorts, PreferenceCategory: Shorts shelf -->
-    <string name="revanced_preference_category_shorts_shelf">Shorts shelf</string>
+    <string name="revanced_preference_category_shorts_shelf">Shorts shelves</string>
     <string name="revanced_hide_shorts_shelf_title">Shorts polcok elrejtése</string>
     <string name="revanced_hide_shorts_shelf_summary">"Elrejti a Shorts polcokat.
 
@@ -846,7 +855,7 @@ Ismert probléma: a keresési eredményekben a hivatalos fejlécek el lesznek re
     <string name="revanced_hide_shorts_shelf_history_summary_off">Shown in watch history.</string>
     <!-- PreferenceScreen: Shorts, PreferenceCategory: Shorts, PreferenceScreen: Shorts player -->
     <string name="revanced_preference_screen_shorts_player_title">Shorts player</string>
-    <string name="revanced_preference_screen_shorts_player_summary">Hide or show components in the shorts player.</string>
+    <string name="revanced_preference_screen_shorts_player_summary">Hide or show components in the Shorts player.</string>
     <string name="revanced_hide_shorts_join_button_title">Hide join button</string>
     <string name="revanced_hide_shorts_join_button_summary_on">Join button is hidden.</string>
     <string name="revanced_hide_shorts_join_button_summary_off">Join button is shown.</string>
@@ -869,8 +878,8 @@ Ismert probléma: a keresési eredményekben a hivatalos fejlécek el lesznek re
     <string name="revanced_hide_shorts_location_label_summary_on">Location label is hidden.</string>
     <string name="revanced_hide_shorts_location_label_summary_off">Location label is shown.</string>
     <string name="revanced_hide_shorts_save_sound_button_title">Hide save sound to playlist button</string>
-    <string name="revanced_hide_shorts_save_sound_button_summary_on">Save sound to playlist is hidden.</string>
-    <string name="revanced_hide_shorts_save_sound_button_summary_off">Save sound to playlist is shown.</string>
+    <string name="revanced_hide_shorts_save_sound_button_summary_on">Save sound to playlist button is hidden.</string>
+    <string name="revanced_hide_shorts_save_sound_button_summary_off">Save sound to playlist button is shown.</string>
     <string name="revanced_hide_shorts_search_suggestions_title">Hide search suggestions</string>
     <string name="revanced_hide_shorts_search_suggestions_summary_on">Search suggestions are hidden.</string>
     <string name="revanced_hide_shorts_search_suggestions_summary_off">Search suggestions are shown.</string>
@@ -997,10 +1006,10 @@ Ismert probléma: a keresési eredményekben a hivatalos fejlécek el lesznek re
     <string name="revanced_spoof_device_dimensions_title">Eszköz méret hamisítása</string>
     <string name="revanced_spoof_device_dimensions_summary">Meghamisítja az eszköz méreteit annak érdekében, hogy feloldjon olyan jobb videóminőséget, amely esetleg nem érhető el az eszközön.</string>
     <string name="revanced_replace_av1_codec_title">Replace software AV1 codec</string>
-    <string name="revanced_replace_av1_codec_summary">Replace software AV1 codec with VP9 codec.</string>
+    <string name="revanced_replace_av1_codec_summary">Replaces the software AV1 codec with the VP9 codec.</string>
     <string name="revanced_reject_av1_codec_title">Reject software AV1 codec response</string>
     <string name="revanced_reject_av1_codec_summary">"Forcefully rejects the software AV1 codec response.
-After about 20 seconds of buffering, switches to different codec."</string>
+A different codec will be applied after about 20 seconds of buffering."</string>
     <string name="revanced_reject_av1_codec_toast">Fallback process causes about 20 seconds of buffering.</string>
     <string name="revanced_remember_playback_speed_toast">Changing default speed to %s.</string>
     <string name="revanced_remember_video_quality_mobile">Changing default mobile data quality to %s.</string>
@@ -1051,22 +1060,22 @@ Limitation: Dislikes may not appear in incognito mode."</string>
     <string name="revanced_sb_enable_compact_skip_button_sum_on">Skip button styled for minimum width.</string>
     <string name="revanced_sb_enable_compact_skip_button_sum_off">Skip button styled for best appearance.</string>
     <string name="revanced_sb_enable_auto_hide_skip_segment_button">Automatically hide skip button</string>
-    <string name="revanced_sb_enable_auto_hide_skip_segment_button_sum_on">Skip button hides after a few seconds.</string>
+    <string name="revanced_sb_enable_auto_hide_skip_segment_button_sum_on">Skip button hides after several seconds.</string>
     <string name="revanced_sb_enable_auto_hide_skip_segment_button_sum_off">Skip button displayed for entire segment.</string>
     <string name="revanced_sb_general_skiptoast">Show a toast when skipping automatically</string>
     <string name="revanced_sb_general_skiptoast_sum_on">Toast is shown when a segment is automatically skipped. Tap here to see an example.</string>
     <string name="revanced_sb_general_skiptoast_sum_off">Toast is not shown. Tap here to see an example.</string>
     <string name="revanced_sb_general_time_without">Show video length without segments</string>
-    <string name="revanced_sb_general_time_without_sum_on">Video length minus all segments, shown in parentheses next to the full video length.</string>
+    <string name="revanced_sb_general_time_without_sum_on">Video length minus the combined segment length is shown in parentheses next to the full video length.</string>
     <string name="revanced_sb_general_time_without_sum_off">Full video length shown.</string>
     <!-- PreferenceScreen: SponsorBlock, PreferenceCategory: Change segment behavior -->
     <string name="revanced_sb_diff_segments">Change segment behavior</string>
     <string name="revanced_sb_segments_sponsor">Sponsor</string>
-    <string name="revanced_sb_segments_sponsor_sum">Paid promotion, paid referrals and direct advertisements. Not for self-promotion or free shout-outs to causes / creators / websites / products they like.</string>
+    <string name="revanced_sb_segments_sponsor_sum">Paid promotion, paid referrals, and direct advertisements. Not for self-promotion or free shout-outs to causes / creators / websites / products they like.</string>
     <string name="revanced_sb_segments_selfpromo">Unpaid / Self Promotion</string>
     <string name="revanced_sb_segments_selfpromo_sum">Similar to \'Sponsor\' except for unpaid or self promotion. Includes sections about merchandise, donations, or information about who they collaborated with.</string>
     <string name="revanced_sb_segments_interaction">Interaction Reminder (Subscribe)</string>
-    <string name="revanced_sb_segments_interaction_sum">A short reminder to like, subscribe or follow them in the middle of content. If it is long or about something specific, it should instead be under self promotion.</string>
+    <string name="revanced_sb_segments_interaction_sum">A short reminder to like, subscribe, or follow them in the middle of content. If it is long or about something specific, it should instead be under self promotion.</string>
     <string name="revanced_sb_segments_highlight">Highlight</string>
     <string name="revanced_sb_segments_highlight_sum">The part of the video that most people are looking for.</string>
     <string name="revanced_sb_segments_intro">Intermission / Intro Animation</string>
@@ -1163,9 +1172,9 @@ Limitation: Dislikes may not appear in incognito mode."</string>
     <string name="revanced_sb_settings_export_failed">Failed to export: %s.</string>
     <string name="revanced_sb_settings_revanced_export_user_id_warning">Your settings contain a private SponsorBlock userid.\n\nYour user id is like a password and it should never be shared.\n</string>
     <string name="revanced_sb_settings_revanced_export_user_id_warning_dismiss">Do not show again</string>
-    <string name="revanced_sb_sponsorblock_connection_failure_generic">SponsorBlock temporarily not available.</string>
-    <string name="revanced_sb_sponsorblock_connection_failure_status">SponsorBlock temporarily not available (status %d).</string>
-    <string name="revanced_sb_sponsorblock_connection_failure_timeout">SponsorBlock temporarily not available (API timed out).</string>
+    <string name="revanced_sb_sponsorblock_connection_failure_generic">SponsorBlock temporarily unavailable.</string>
+    <string name="revanced_sb_sponsorblock_connection_failure_status">SponsorBlock temporarily unavailable (status %d).</string>
+    <string name="revanced_sb_sponsorblock_connection_failure_timeout">SponsorBlock temporarily unavailable (API timed out).</string>
     <string name="revanced_sb_submit_failed_invalid">Unable to submit segment: %s.</string>
     <string name="revanced_sb_submit_failed_timeout">SponsorBlock is temporarily down.</string>
     <string name="revanced_sb_submit_failed_unknown_error">Unable to submit segment (status: %1$d %2$s).</string>
@@ -1244,7 +1253,7 @@ Limitation: Dislikes may not appear in incognito mode."</string>
     <string name="gms_core_dialog_title">Action needed</string>
     <string name="gms_core_dialog_not_whitelisted_not_allowed_in_background_message">"GmsCore does not have permission to run in the background.
 
-Follow the 'Don't kill my app' guide for your phone, and apply the instructions to your MicroG installation.
+Follow the 'Don't kill my app!' guide for your device, and apply the instructions to your GmsCore installation.
 
 This is required for the app to work."</string>
     <string name="gms_core_dialog_open_website_text">Open website</string>
@@ -1257,12 +1266,12 @@ Tap on the continue button and disable battery optimizations."</string>
     <string name="revanced_disable_quic_protocol_title">QUIC protokoll letiltása</string>
     <string name="revanced_disable_quic_protocol_summary">"A CronetEngine QUIC protokoll letiltása."</string>
     <string name="revanced_spoof_format_stream_data_title">Spoof format stream data</string>
-    <string name="revanced_spoof_format_stream_data_summary">"Spoofs format stream data to prevent playback issues.
+    <string name="revanced_spoof_format_stream_data_summary">"Spoofs the format stream data to prevent playback issues.
 
 Limitations:
-• There may be about 5 seconds of buffering when the video starts.
+• There may be about 5 seconds of buffering when videos start.
 • If buffering takes too long, you may need to close and reopen the video.
-• Since it is still under development, there may be other unknown issues."</string>
+• Since this is still under development, there may be other unknown issues."</string>
     <string name="revanced_spoof_player_parameter_title">Lejátszó paraméter hamisítása</string>
     <string name="revanced_spoof_player_parameter_summary">"A lejátszási problémák megelőzése érdekében hamisítja a lejátszó paramétereket.
 
@@ -1279,7 +1288,7 @@ Ismert probléma: az automatikusan lejátszott hírfolyam videók megjelennek a 
 
 Ismert probléma: a hírfolyam videók kevesebb mint 1 percig játszódnak le, mielőtt lejátszási problémák lépnének fel."</string>
     <string name="revanced_spoof_test_client_title">Spoof test client</string>
-    <string name="revanced_spoof_test_client_summary">"Spoof the client as a test client.
+    <string name="revanced_spoof_test_client_summary">"Spoofs the client as a test client.
 
 • This client is used for testing purposes, so most YouTube features are not available.
 • There are no playback buffer issues in the test client."</string>

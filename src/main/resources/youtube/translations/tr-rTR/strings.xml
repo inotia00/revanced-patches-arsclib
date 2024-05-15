@@ -215,12 +215,22 @@ Kısıtlamalar:
 • 'Yalnızca Üyelik İçin' etiketine sahip videolar
 • Videonun altında 'Kullanıcılar da izledi' gibi ibarelerin yer aldığı videolar
 • Abone olunmayan kanallardan yüklenen ve izlenme sayısı 1.000'den az olan videolar"</string>
+    <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Video filter, PreferenceCategory: Duration filter -->
+    <string name="revanced_preference_category_duration_filter">Duration filter</string>
+    <string name="revanced_hide_video_by_duration_title">Hide videos based on duration</string>
+    <string name="revanced_hide_video_by_duration_summary">Hide videos with shorter than or longer than duration.\n\nKnown issue: It will not hide videos in the player related videos, instead it will hide the timestamp.</string>
+    <string name="revanced_hide_video_by_duration_longer_than_title">Longer than duration</string>
+    <string name="revanced_hide_video_by_duration_longer_than_summary">Videos with duration longer than this number will be hidden.</string>
+    <string name="revanced_hide_video_by_duration_shorter_than_title">Shorter than duration</string>
+    <string name="revanced_hide_video_by_duration_shorter_than_summary">Videos with duration shorter than this number will be hidden.</string>
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Video filter, PreferenceCategory: View count filter -->
     <string name="revanced_preference_category_view_counts_filter">İzlenme sayısı filtresi</string>
     <string name="revanced_hide_video_by_view_counts_title">Önerilen videoları izlenmeye göre gizle</string>
     <string name="revanced_hide_video_by_view_counts_summary">Belirtilen görüntüleme sayısından daha az olan önerilen videoları gizleyin.</string>
-    <string name="revanced_hide_video_view_counts_title">Görüntülenme sayısı</string>
-    <string name="revanced_hide_video_view_counts_summary">Bu sayıdan daha az izlenen önerilen videolar gizlenecektir.</string>
+    <string name="revanced_hide_video_view_counts_greater_than_title">Greater than views</string>
+    <string name="revanced_hide_video_view_counts_greater_than_summary">Videos with views greater than this number will be hidden.</string>
+    <string name="revanced_hide_video_view_counts_less_than_title">Less than views</string>
+    <string name="revanced_hide_video_view_counts_less_than_summary">Videos with views less than this number will be hidden.</string>
     <string name="revanced_hide_video_view_counts_multiplier_title">Anahtarları göster</string>
     <string name="revanced_hide_video_view_counts_multiplier_summary">Kullanıcı arayüzünde her videonun altında gösterilen görüntüleme sayısı için dil şablonunuzu belirtin. Her tuş (dilinizde bir harf/kelime) -&gt; değer (anahtarın anlamı) yeni bir satırda olmalıdır. Tuşlar \"-&gt;\"den önce gelir imza. Uygulamayı veya sistem dilini değiştirirseniz bu ayarı sıfırlamanız gerekir.\n\nÖrnekler:\nTürkçe: 10K görüntüleme = K -&gt; 1000, görüntülemeler -&gt; görüntüleme\nİspanyolca: 10 K manzara = K -&gt; 1000, manzaralar -&gt; Görüntüleme</string>
     <string name="revanced_hide_video_view_counts_multiplier_default_value">K -&gt; 1 000\nM -&gt; 1 000 000\nB -&gt; 1 000 000 000\ngörüntüleme -&gt; Görüntüleme</string>
@@ -440,7 +450,10 @@ Not: Bu özelliği devre dışı bırakmak, eski arayüzdeki \"Videoyu sarmak i�
     <string name="revanced_hide_suggested_video_end_screen_title">Önerilen video bitiş ekranını devre dışı bırak</string>
     <string name="revanced_hide_suggested_video_end_screen_summary">"Bu ayar kullanımdan kaldırıldı.
 
-Bunun yerine 'Ayarlar → Otomatik oynat → Sonraki videoyu otomatik oynat' ayarını kullanın."</string>
+Bunun yerine 'Ayarlar → Otomatik oynat → Sonraki videoyu otomatik oynat' ayarını kullanın.
+
+Not:
+• 'Önerilen video bitiş ekranı' ile ilgili herhangi bir sorun yaşarsanız uygulamayı yeniden başlatmayı deneyin."</string>
     <string name="revanced_hide_timed_reactions_title">Zamanlı tepkileri gizle</string>
     <string name="revanced_hide_timed_reactions_summary_on">Gizleniyor</string>
     <string name="revanced_hide_timed_reactions_summary_off">Gizlenmiyor</string>
