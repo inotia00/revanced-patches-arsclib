@@ -803,8 +803,8 @@ Tap and hold to set playback speed to 1.0x."</string>
 Please download %2$s from the website."</string>
     <string name="revanced_external_downloader_not_installed_warning">%s is not installed. Please install it.</string>
     <string name="revanced_external_downloader_action_title">Override download action button</string>
-    <string name="revanced_external_downloader_action_summary_on">Download button opens your external downloader.</string>
-    <string name="revanced_external_downloader_action_summary_off">Download button opens the native in-app downloader.</string>
+    <string name="revanced_external_downloader_action_summary_on">Native download button opens your external downloader.</string>
+    <string name="revanced_external_downloader_action_summary_off">Native download button opens the native in-app downloader.</string>
 
     <string name="revanced_share_copy_timestamp_success">Time stamp copied to clipboard. (%s)</string>
     <string name="revanced_share_copy_url_success">URL copied to clipboard.</string>
