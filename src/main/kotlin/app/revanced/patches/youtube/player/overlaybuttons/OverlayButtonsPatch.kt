@@ -38,6 +38,7 @@ object OverlayButtonsPatch : BaseResourcePatch(
 ) {
     private const val DEFAULT_MARGIN = "0.0dip"
     private const val WIDER_MARGIN = "6.0dip"
+
     private const val DEFAULT_ICON_KEY = "Rounded"
 
     // Mapping of icon types to their respective resource folder names
@@ -74,9 +75,8 @@ object OverlayButtonsPatch : BaseResourcePatch(
      * @param context The resource context for patching.
      */
     override fun execute(context: ResourceContext) {
-        /**
-         * Inject hooks for overlay buttons.
-         */
+
+        // Inject hooks for overlay buttons.
         arrayOf(
             "AlwaysRepeat;",
             "CopyVideoUrl;",
@@ -88,9 +88,7 @@ object OverlayButtonsPatch : BaseResourcePatch(
             PlayerControlsPatch.hookOverlayButtons("$OVERLAY_BUTTONS_PATH/$className")
         }
 
-        /**
-         * Copy necessary resources for the overlay buttons.
-         */
+        // Copy necessary resources for the overlay buttons.
         arrayOf(
             ResourceGroup(
                 "drawable",
@@ -135,39 +133,42 @@ object OverlayButtonsPatch : BaseResourcePatch(
             }
         }
 
-        /**
-         * Merge XML nodes from the host to their respective XML files.
-         */
+        // Merge XML nodes from the host to their respective XML files.
         context.copyXmlNode(
             "youtube/overlaybuttons/shared/host",
             "layout/youtube_controls_bottom_ui_container.xml",
             "android.support.constraint.ConstraintLayout"
         )
 
-        val marginBottom = "$BottomMargin"
+        val marginBottom = BottomMargin
+            ?: DEFAULT_MARGIN
 
         // Modify the layout of fullscreen button for newer YouTube versions (19.09.xx+)
-        try {
-            context.xmlEditor["res/layout/youtube_controls_fullscreen_button.xml"].use { editor ->
-                editor.file.doRecursively loop@{ node ->
-                    if (node !is Element) return@loop
+        arrayOf(
+            "youtube_controls_cf_fullscreen_button.xml",
+            "youtube_controls_fullscreen_button.xml"
+        ).forEach { xmlFile ->
+            val targetXml = context["res"].resolve("layout").resolve(xmlFile)
+            if (targetXml.exists()) {
+                context.xmlEditor["res/layout/$xmlFile"].use { editor ->
+                    editor.file.doRecursively loop@{ node ->
+                        if (node !is Element) return@loop
 
-                    if (node.getAttribute("android:id").endsWith("_button")) {
-                        node.setAttribute("android:layout_marginBottom", marginBottom)
-                        node.setAttribute("android:paddingLeft", "0.0dip")
-                        node.setAttribute("android:paddingRight", "0.0dip")
-                        node.setAttribute("android:paddingBottom", "22.0dip")
-                        if (!node.getAttribute("android:layout_height").equals("0.0dip") &&
-                            !node.getAttribute("android:layout_width").equals("0.0dip")
-                        ) {
-                            node.setAttribute("android:layout_height", "48.0dip")
-                            node.setAttribute("android:layout_width", "48.0dip")
+                        if (node.getAttribute("android:id").endsWith("_button")) {
+                            node.setAttribute("android:layout_marginBottom", marginBottom)
+                            node.setAttribute("android:paddingLeft", "0.0dip")
+                            node.setAttribute("android:paddingRight", "0.0dip")
+                            node.setAttribute("android:paddingBottom", "22.0dip")
+                            if (!node.getAttribute("android:layout_height").equals("0.0dip") &&
+                                !node.getAttribute("android:layout_width").equals("0.0dip")
+                            ) {
+                                node.setAttribute("android:layout_height", "48.0dip")
+                                node.setAttribute("android:layout_width", "48.0dip")
+                            }
                         }
                     }
                 }
             }
-        } catch (e: Exception) {
-            // Do nothing if there's an error
         }
 
         context.xmlEditor["res/layout/youtube_controls_bottom_ui_container.xml"].use { editor ->
