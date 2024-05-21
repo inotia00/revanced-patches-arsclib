@@ -688,12 +688,15 @@ Note:
     <string name="revanced_show_video_title_section_summary">"Shows the video title section in fullscreen.
 
 Limitation: Video title disappears when clicked."</string>
+    <string name="revanced_hide_autoplay_preview_title">Hide autoplay preview container</string>
     <string name="revanced_hide_autoplay_preview_summary_on">Autoplay preview container is hidden.</string>
     <string name="revanced_hide_autoplay_preview_summary_off">Autoplay preview container is shown.</string>
-    <string name="revanced_hide_autoplay_preview_title">Hide autoplay preview container</string>
+    <string name="revanced_hide_live_chat_replay_button_title">Hide live chat replay button</string>
+    <string name="revanced_hide_live_chat_replay_button_summary_on">Live chat replay button is hidden.\n\nIt appears in fullscreen when closing live chat.</string>
+    <string name="revanced_hide_live_chat_replay_button_summary_off">Live chat replay button is shown.\n\nIt appears in fullscreen when closing live chat.</string>
+    <string name="revanced_hide_related_video_overlay_title">Hide related video overlay</string>
     <string name="revanced_hide_related_video_overlay_summary_on">Related video overlay is hidden.</string>
     <string name="revanced_hide_related_video_overlay_summary_off">Related video overlay is shown.</string>
-    <string name="revanced_hide_related_video_overlay_title">Hide related video overlay</string>
 
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Fullscreen, PreferenceCategory: Quick actions -->
     <string name="revanced_preference_category_quick_actions">Quick actions</string>
@@ -733,9 +736,6 @@ Limitation: Video title disappears when clicked."</string>
     <string name="revanced_quick_actions_top_margin_title">Quick actions top margin</string>
     <string name="revanced_quick_actions_top_margin_summary">Configure the spacing from the seekbar to the quick action container, between 0-32.</string>
     <string name="revanced_quick_actions_top_margin_warning">Quick actions top margin must be between 0-32. Reset to default values.</string>
-    <string name="revanced_hide_fullscreen_live_chat_replay_title">Hide live chat replay button</string>
-    <string name="revanced_hide_fullscreen_live_chat_replay_summary_on">Live chat replay button in fullscreen bottom right corner is hidden.\n\nIt appears in fullscreen when closing live chat.</string>
-    <string name="revanced_hide_fullscreen_live_chat_replay_summary_off">Live chat replay button in fullscreen bottom right corner is shown.\n\nIt appears in fullscreen when closing live chat.</string>
 
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Fullscreen, PreferenceCategory: Experimental Flags -->
     <string name="revanced_disable_landscape_mode_title">Disable landscape mode</string>
