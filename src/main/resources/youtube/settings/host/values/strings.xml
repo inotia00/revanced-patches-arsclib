@@ -1396,13 +1396,6 @@ Tap on the continue button and disable battery optimizations."</string>
     <string name="revanced_sanitize_sharing_links_summary">Removes tracking query parameters from the URLs when sharing links.</string>
     <string name="revanced_disable_quic_protocol_title">Disable QUIC protocol</string>
     <string name="revanced_disable_quic_protocol_summary">"Disable CronetEngine's QUIC protocol."</string>
-    <string name="revanced_spoof_format_stream_data_title">Spoof format stream data</string>
-    <string name="revanced_spoof_format_stream_data_summary">"Spoofs the format stream data to prevent playback issues.
-
-Limitations:
-• There may be about 5 seconds of buffering when videos start.
-• If buffering takes too long, you may need to close and reopen the video.
-• Since this is still under development, there may be other unknown issues."</string>
     <string name="revanced_spoof_player_parameter_title">Spoof player parameter</string>
     <string name="revanced_spoof_player_parameter_summary">"Spoofs player parameters to prevent playback issues.
 

@@ -562,9 +562,6 @@
         <!-- PREFERENCE_CATEGORY: MISC_EXPERIMENTAL_FLAGS
         <PreferenceCategory android:title="@string/revanced_preference_category_experimental_flag" android:layout="@layout/revanced_settings_preferences_category"/>PREFERENCE_CATEGORY: MISC_EXPERIMENTAL_FLAGS -->
 
-        <!-- SETTINGS: SPOOF_FORMAT_STREAM_DATA
-        <SwitchPreference android:title="@string/revanced_spoof_format_stream_data_title" android:key="revanced_spoof_format_stream_data" android:defaultValue="false" android:summary="@string/revanced_spoof_format_stream_data_summary" />SETTINGS: SPOOF_FORMAT_STREAM_DATA -->
-
         <!-- SETTINGS: SPOOF_PLAYER_PARAMETER
         <SwitchPreference android:title="@string/revanced_spoof_player_parameter_title" android:key="revanced_spoof_player_parameter" android:defaultValue="false" android:summary="@string/revanced_spoof_player_parameter_summary" />
         <SwitchPreference android:title="@string/revanced_spoof_player_parameter_in_feed_title" android:key="revanced_spoof_player_parameter_in_feed" android:defaultValue="false" android:summaryOn="@string/revanced_spoof_player_parameter_in_feed_summary_on" android:summaryOff="@string/revanced_spoof_player_parameter_in_feed_summary_off" android:dependency="revanced_spoof_player_parameter" />SETTINGS: SPOOF_PLAYER_PARAMETER -->
@@ -644,7 +641,6 @@
                 <Preference android:title="Enable minimized playback" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
                 <Preference android:title="Enable open links directly" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
                 <Preference android:title="Sanitize sharing links" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
-                <Preference android:title="Spoof format stream data" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
                 <Preference android:title="Spoof test client" android:summary="@string/revanced_patches_excluded" android:selectable="false"/>
             </PreferenceCategory>
 
