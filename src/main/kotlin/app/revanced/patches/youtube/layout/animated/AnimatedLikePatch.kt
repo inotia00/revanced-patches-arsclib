@@ -11,7 +11,7 @@ import app.revanced.util.patch.BaseResourcePatch
 @Suppress("unused")
 object AnimatedLikePatch : BaseResourcePatch(
     name = "Hide double tap to like animations",
-    description = "Hide the like animations when double tap the screen in the Shorts player at compile time.",
+    description = "Removes the like animations when double-tapping the screen in the Shorts player at compile time.",
     dependencies = setOf(SettingsPatch::class),
     compatiblePackages = COMPATIBLE_PACKAGE,
     use = false
