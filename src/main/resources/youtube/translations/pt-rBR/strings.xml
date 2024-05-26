@@ -223,36 +223,43 @@ Limitações:
 • Vídeos com frases como 'Pessoas também assistiram' na parte inferior do vídeo
 • Vídeos enviados de canais não inscritos com menos de 1,000 visualizações"</string>
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Video filter, PreferenceCategory: Duration filter -->
-    <string name="revanced_preference_category_duration_filter">Duration filter</string>
-    <string name="revanced_hide_video_by_duration_title">Hide videos based on duration</string>
-    <string name="revanced_hide_video_by_duration_summary">Hide videos with shorter than or longer than duration.\n\nKnown issue: It will not hide videos in the player related videos, instead it will hide the timestamp.</string>
-    <string name="revanced_hide_video_by_duration_longer_than_title">Longer than duration</string>
-    <string name="revanced_hide_video_by_duration_longer_than_summary">Videos with duration longer than this number will be hidden.</string>
-    <string name="revanced_hide_video_by_duration_shorter_than_title">Shorter than duration</string>
-    <string name="revanced_hide_video_by_duration_shorter_than_summary">Videos with duration shorter than this number will be hidden.</string>
+    <string name="revanced_preference_category_duration_filter">Filtro de duração</string>
+    <string name="revanced_hide_video_by_duration_title">Ocultar vídeos baseado na duração</string>
+    <string name="revanced_hide_video_by_duration_summary">Ocultar vídeos com duração menor ou maior que.\n\nProblema conhecido: não ocultará vídeos nos vídeos relacionados no reprodutor, ao invés disso ocultará a marcação de tempo.</string>
+    <string name="revanced_hide_video_by_duration_longer_than_title">Maior que a duração</string>
+    <string name="revanced_hide_video_by_duration_longer_than_summary">Vídeos com duração maior que este número serão ocultados.</string>
+    <string name="revanced_hide_video_by_duration_shorter_than_title">Menor que a duração</string>
+    <string name="revanced_hide_video_by_duration_shorter_than_summary">Vídeos com duração menor que este número serão ocultados.</string>
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Video filter, PreferenceCategory: View count filter -->
     <string name="revanced_preference_category_view_counts_filter">Filtro por contagem de visualização</string>
     <string name="revanced_hide_video_by_view_counts_title">Ocultar vídeos recomendados por visualizações</string>
     <string name="revanced_hide_video_by_view_counts_summary">Oculte vídeos recomendados com menos de um determinado número de visualizações.</string>
-    <string name="revanced_hide_video_view_counts_greater_than_title">Greater than views</string>
-    <string name="revanced_hide_video_view_counts_greater_than_summary">Videos with views greater than this number will be hidden.</string>
-    <string name="revanced_hide_video_view_counts_less_than_title">Less than views</string>
-    <string name="revanced_hide_video_view_counts_less_than_summary">Videos with views less than this number will be hidden.</string>
+    <string name="revanced_hide_video_view_counts_greater_than_title">Maior que as visualizações</string>
+    <string name="revanced_hide_video_view_counts_greater_than_summary">Vídeos com visualizações maiores que este número serão ocultados.</string>
+    <string name="revanced_hide_video_view_counts_less_than_title">Menos que as visualizações</string>
+    <string name="revanced_hide_video_view_counts_less_than_summary">Vídeos com visualizações menores do que este número serão ocultados.</string>
     <string name="revanced_hide_video_view_counts_multiplier_title">Chaves de visualização</string>
     <string name="revanced_hide_video_view_counts_multiplier_summary">Especifique seu modelo de idioma para o número de visualizações mostradas em cada vídeo na interface do usuário. Cada chave (uma letra/palavra no seu idioma) sinal -&gt; (significado da chave) deve estar em uma nova linha. Chaves vão antes do sinal \"-&gt;\". Se você alternar o idioma do aplicativo ou do sistema, você terá que redefinir esta configuração.\n\nExemplos:\nInglês: 10K views = K -&gt; 1000, views -&gt; visualizações\nSpanish: 10 K vistas = K -&gt; 1000, vistas -&gt; visualizações</string>
     <string name="revanced_hide_video_view_counts_multiplier_default_value">K -&gt; 1 000\nM -&gt; 1 000 000\nB -&gt; 1 000 000 000\nvisualizações -&gt; visualizações</string>
     <!-- PreferenceScreen: General -->
     <string name="revanced_preference_screen_general_title">Geral</string>
     <string name="revanced_change_start_page_title">Alterar a página inicial</string>
+    <string name="revanced_change_start_page_entry_browse">Explorar canais</string>
     <string name="revanced_change_start_page_entry_default">Padrão</string>
     <string name="revanced_change_start_page_entry_explore">Explorar</string>
+    <string name="revanced_change_start_page_entry_gaming">Jogos</string>
     <string name="revanced_change_start_page_entry_history">Histórico</string>
     <string name="revanced_change_start_page_entry_library">Biblioteca</string>
     <string name="revanced_change_start_page_entry_liked_videos">Vídeos curtidos</string>
+    <string name="revanced_change_start_page_entry_live">Ao Vivo</string>
+    <string name="revanced_change_start_page_entry_movies">Filmes</string>
+    <string name="revanced_change_start_page_entry_music">Música</string>
     <string name="revanced_change_start_page_entry_search">Buscar</string>
     <string name="revanced_change_start_page_entry_shorts">Shorts</string>
+    <string name="revanced_change_start_page_entry_sports">Esportes</string>
     <string name="revanced_change_start_page_entry_subscriptions">Inscrições</string>
     <string name="revanced_change_start_page_entry_trending">Em alta</string>
+    <string name="revanced_change_start_page_entry_watch_later">Assistir mais tarde</string>
     <string name="revanced_change_start_page_warning">Página inicial inválida, redefinindo para o padrão.</string>
     <string name="revanced_disable_auto_audio_tracks_title">Desativar faixas de áudio automáticas forçadas</string>
     <string name="revanced_disable_auto_audio_tracks_summary_on">As faixas de áudio automáticas forçadas estão desativadas.</string>
@@ -399,9 +406,6 @@ Aba Você &gt; Visualizar canal &gt; Menu &gt; Configurações."</string>
     <string name="revanced_hide_search_term_thumbnail_title">Ocultar miniatura do termo de pesquisa</string>
     <string name="revanced_hide_search_term_thumbnail_summary_on">As miniaturas do histórico de pesquisa estão ocultas.</string>
     <string name="revanced_hide_search_term_thumbnail_summary_off">As miniaturas do histórico de pesquisa serão exibidas.</string>
-    <string name="revanced_hide_trending_searches_title">Ocultar pesquisas em alta</string>
-    <string name="revanced_hide_trending_searches_summary_on">As pesquisas de alta estão ocultas.</string>
-    <string name="revanced_hide_trending_searches_summary_off">As pesquisas em alta serão exibidas.</string>
     <string name="revanced_hide_voice_search_button_title">Ocultar botão de pesquisa por voz</string>
     <string name="revanced_hide_voice_search_button_summary_on">O botão de pesquisa por voz está oculto.</string>
     <string name="revanced_hide_voice_search_button_summary_off">O botão de pesquisa por voz será exibido.</string>
@@ -447,6 +451,9 @@ Nota:
     <string name="revanced_hide_info_panel_title">Ocultar painéis de informações</string>
     <string name="revanced_hide_info_panel_summary_on">Os painéis de informações estão ocultos.</string>
     <string name="revanced_hide_info_panel_summary_off">Os painéis de informações serão exibidos.</string>
+    <string name="revanced_hide_live_chat_messages_title">Ocultar mensagens de bate-papo ao vivo</string>
+    <string name="revanced_hide_live_chat_messages_summary_on">As mensagens de bate-papo ao vivo estão ocultas.\n\nEssa configuração se aplica a vídeos do Shorts também.</string>
+    <string name="revanced_hide_live_chat_messages_summary_off">As mensagens de bate-papo ao vivo serão exibidas.\n\nEssa configuração se aplica a vídeos do Shorts também.</string>
     <string name="revanced_hide_medical_panel_title">Ocultar painéis médicos</string>
     <string name="revanced_hide_medical_panel_summary_on">Os painéis médicos estão ocultos.</string>
     <string name="revanced_hide_medical_panel_summary_off">Os painéis médicos serão exibidos.</string>
@@ -499,9 +506,9 @@ Ao invés disso, use a configuração 'Configurações → Reprodução automát
     <string name="revanced_hide_shop_button_title">Ocultar botão comprar</string>
     <string name="revanced_hide_shop_button_summary_on">O botão comprar está oculto.</string>
     <string name="revanced_hide_shop_button_summary_off">O botão comprar será exibido.</string>
-    <string name="revanced_hide_thanks_button_title">Ocultar botão de agradecimento</string>
-    <string name="revanced_hide_thanks_button_summary_on">O botão de agradecimento está oculto.</string>
-    <string name="revanced_hide_thanks_button_summary_off">O botão de agradecimento será exibido.</string>
+    <string name="revanced_hide_thanks_button_title">Ocultar botão valeu</string>
+    <string name="revanced_hide_thanks_button_summary_on">O botão valeu está oculto.</string>
+    <string name="revanced_hide_thanks_button_summary_off">O botão valeu será exibido.</string>
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Ambient mode -->
     <string name="revanced_preference_screen_ambient_mode_title">Modo ambiente</string>
     <string name="revanced_preference_screen_ambient_mode_summary">Ignorar restrições do modo ambiente ou desativar o modo ambiente.</string>
@@ -545,9 +552,9 @@ Ao invés disso, use a configuração 'Configurações → Reprodução automát
     <string name="revanced_hide_comment_create_shorts_button_title">Ocultar botão de criação de shorts</string>
     <string name="revanced_hide_comment_create_shorts_button_summary_on">O botão de criação de shorts está oculto.</string>
     <string name="revanced_hide_comment_create_shorts_button_summary_off">O botão de criação de shorts será exibido.</string>
-    <string name="revanced_hide_comment_thanks_button_title">Ocultar botão de agradecimento</string>
-    <string name="revanced_hide_comment_thanks_button_summary_on">O botão de agradecimento está oculto.</string>
-    <string name="revanced_hide_comment_thanks_button_summary_off">O botão de agradecimento será exibido.</string>
+    <string name="revanced_hide_comment_thanks_button_title">Ocultar botão valeu</string>
+    <string name="revanced_hide_comment_thanks_button_summary_on">O botão valeu está oculto.</string>
+    <string name="revanced_hide_comment_thanks_button_summary_off">O botão valeu será exibido.</string>
     <string name="revanced_hide_comment_timestamp_and_emoji_buttons_title">Ocultar botões de marcação de tempo e emoji</string>
     <string name="revanced_hide_comment_timestamp_and_emoji_buttons_summary_on">Os botões de marcação de tempo e emoji estão ocultos.</string>
     <string name="revanced_hide_comment_timestamp_and_emoji_buttons_summary_off">Os botões de marcação de tempo e emoji serão exibidos.</string>
@@ -620,12 +627,15 @@ Ao invés disso, use a configuração 'Configurações → Reprodução automát
     <string name="revanced_show_video_title_section_summary">"Exibe a seção de título do vídeo em tela cheia.
 
 Limitação: Título do vídeo desaparece quando clicado."</string>
+    <string name="revanced_hide_autoplay_preview_title">Ocultar contêiner de visualização de reprodução automática</string>
     <string name="revanced_hide_autoplay_preview_summary_on">O contêiner de visualização da reprodução automática está oculto.</string>
     <string name="revanced_hide_autoplay_preview_summary_off">O contêiner de visualização da reprodução automática será exibido.</string>
-    <string name="revanced_hide_autoplay_preview_title">Ocultar contêiner de visualização de reprodução automática</string>
+    <string name="revanced_hide_live_chat_replay_button_title">Ocultar botão de repetição do chat ao vivo</string>
+    <string name="revanced_hide_live_chat_replay_button_summary_on">O botão de repetição do chat ao vivo está oculto.\n\nEle aparece em tela cheia ao fechar o chat ao vivo.</string>
+    <string name="revanced_hide_live_chat_replay_button_summary_off">O botão de repetição do chat ao vivo será exbido.\n\nEle aparece em tela cheia ao fechar o chat ao vivo.</string>
+    <string name="revanced_hide_related_video_overlay_title">Ocultar sobreposição de vídeo relacionado</string>
     <string name="revanced_hide_related_video_overlay_summary_on">A sobreposição de vídeo relacionado está oculta.</string>
     <string name="revanced_hide_related_video_overlay_summary_off">A sobreposição de vídeo relacionado será exibida.</string>
-    <string name="revanced_hide_related_video_overlay_title">Ocultar sobreposição de vídeo relacionado</string>
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Fullscreen, PreferenceCategory: Quick actions -->
     <string name="revanced_preference_category_quick_actions">Ações rápidas</string>
     <string name="revanced_hide_quick_actions_title">Ocultar contêiner de ações rápidas</string>
@@ -652,9 +662,6 @@ Limitação: Título do vídeo desaparece quando clicado."</string>
     <string name="revanced_hide_quick_actions_open_playlist_button_title">Ocultar botão abrir lista de reprodução</string>
     <string name="revanced_hide_quick_actions_open_playlist_button_summary_on">O botão de abrir lista de reprodução está oculto.</string>
     <string name="revanced_hide_quick_actions_open_playlist_button_summary_off">O botão de abrir lista de reprodução será exibido.</string>
-    <string name="revanced_hide_quick_actions_related_videos_title">Ocultar vídeos relacionados em ações rápidas</string>
-    <string name="revanced_hide_quick_actions_related_videos_summary_on">Os vídeos relacionados estão ocultos.</string>
-    <string name="revanced_hide_quick_actions_related_videos_summary_off">Os vídeos relacionados serão exibidos.</string>
     <string name="revanced_hide_quick_actions_save_to_playlist_button_title">Ocultar botão salvar para lista de reprodução</string>
     <string name="revanced_hide_quick_actions_save_to_playlist_button_summary_on">O botão salvar para lista de reprodução está oculto.</string>
     <string name="revanced_hide_quick_actions_save_to_playlist_button_summary_off">O botão salvar para lista de reprodução será exibido.</string>
@@ -737,9 +744,27 @@ Toque e segure para copiar a marcação de tempo do vídeo."</string>
     <string name="revanced_overlay_button_external_downloader_summary">Toque para iniciar o aplicativo de download externo.</string>
     <string name="revanced_overlay_button_speed_dialog_title">Exibir botão de velocidade</string>
     <string name="revanced_overlay_button_speed_dialog_summary">"Toque para abrir a caixa de diálogo de velocidade.
-Toque e segure para redefinir a velocidade do vídeo para 1.0x."</string>
-    <string name="revanced_overlay_button_speed_dialog_reset">Velocidade de reprodução redefinida (1,0x).</string>
-    <string name="revanced_overlay_button_not_allowed_warning">Toque e segure para alterar o estado do botão.</string>
+Toque e segure para redefinir a velocidade do vídeo para 1.0x.
+Toque e segure novamente para redefinir para a velocidade padrão."</string>
+    <string name="revanced_overlay_button_whitelist_title">Exibir botão de lista branca</string>
+    <string name="revanced_overlay_button_whitelist_summary">Toque para abrir a caixa de diálogo da lista branca.
+Toque e segure para abrir a caixa de diálogo de configuração da lista branca.</string>
+    <string name="revanced_overlay_button_time_ordered_playlist_title">Exibir botão de lista de reprodução ordenada por tempo</string>
+    <string name="revanced_overlay_button_time_ordered_playlist_summary">"Toque para gerar uma lista de reprodução de todos os vídeos do canal, do mais antigo para o mais recente.
+Toque e segure para desfazer."</string>
+    <string name="revanced_whitelist_settings_title">Lista branca de canais</string>
+    <string name="revanced_whitelist_settings_summary">Verifique ou remova a lista de canais adicionados à lista branca.</string>
+    <string name="revanced_whitelist_added">O canal \'%1$s\' foi adicionado à lista branca de %2$s.</string>
+    <string name="revanced_whitelist_add_failed">Falha ao adicionar o canal \'%1$s\' à lista branca de %2$s.</string>
+    <string name="revanced_whitelist_removed">O canal \'%1$s\' foi removido da lista branca de %2$s.</string>
+    <string name="revanced_whitelist_remove_failed">Falha ao remover o canal \'%1$s\' da lista branca de %2$s.</string>
+    <string name="revanced_whitelist_remove_dialog_message">Remover canal \'%1$s\' da lista branca de %2$s?</string>
+    <string name="revanced_whitelist_empty">Não há canais na lista branca.</string>
+    <string name="revanced_whitelist_excluded">Não adicionado à lista branca.</string>
+    <string name="revanced_whitelist_included">Adicionado à lista branca.</string>
+    <string name="revanced_whitelist_playback_speed">Velocidade de reprodução</string>
+    <string name="revanced_whitelist_sponsor_block">SponsorBlock</string>
+    <string name="revanced_whitelist_failure_generic">Falha ao carregar informações do canal.</string>
     <string name="revanced_external_downloader_package_name_title">Nome do pacote do aplicativo de download externo</string>
     <string name="revanced_external_downloader_package_name_summary">Nome do pacote do seu aplicativo de download externo instalado, como NewPipe ou YTDLnis.</string>
     <string name="revanced_external_downloader_dialog_title">Aplicativo de download externo</string>
@@ -750,6 +775,8 @@ Por favor, baixe %2$s do site."</string>
     <string name="revanced_external_downloader_action_title">Substituir botão de ação de download</string>
     <string name="revanced_external_downloader_action_summary_on">O botão de download abre seu aplicativo de download externo</string>
     <string name="revanced_external_downloader_action_summary_off">O botão de download abre o download nativo do aplicativo</string>
+    <string name="revanced_overlay_button_speed_dialog_reset">Velocidade de reprodução redefinida (1,0x).</string>
+    <string name="revanced_overlay_button_not_allowed_warning">Toque e segure para alterar o estado do botão.</string>
     <string name="revanced_share_copy_timestamp_success">Marcador de Tempo copiado para área de transferência. (%s)</string>
     <string name="revanced_share_copy_url_success">URL copiada para a área de transferência.</string>
     <string name="revanced_share_copy_url_timestamp_success">URL com marcador de Tempo copiado para área de transferência.</string>
@@ -955,6 +982,9 @@ Limitação: Os cabeçalhos oficiais nos resultados da pesquisa serão ocultados
     <string name="revanced_swipe_magnitude_threshold_summary">A quantidade de limite para que o deslize ocorra.</string>
     <string name="revanced_swipe_overlay_text_size_title">Tamanho do texto da sobreposição de gestos</string>
     <string name="revanced_swipe_overlay_text_size_summary">O tamanho do texto para a sobreposição de gestos</string>
+    <string name="revanced_swipe_overlay_rect_size_title">Tamanho da área deslizável da tela de sobreposição</string>
+    <string name="revanced_swipe_overlay_rect_size_summary">Porcentagem de área deslizável da tela.\n\nNota: isto também altera o tamanho da área da tela para o gesto de toque duplo na tela.</string>
+    <string name="revanced_swipe_overlay_rect_size_warning">Tamanho da área deslizável não pode ser maior que %s%%. Redefinir para o valor padrão.</string>
     <string name="revanced_swipe_overlay_timeout_title">Tempo limite da sobreposição de gestos</string>
     <string name="revanced_swipe_overlay_timeout_summary">A quantidade de milissegundos em que a sobreposição é visível.</string>
     <string name="revanced_disable_hdr_auto_brightness_title">Desativar brilho automático HDR</string>
@@ -1266,13 +1296,7 @@ Toque no botão continuar e desative as otimizações da bateria."</string>
     <string name="revanced_sanitize_sharing_links_summary">Remove os parâmetros de consulta de rastreamento das URLs ao compartilhar os links.</string>
     <string name="revanced_disable_quic_protocol_title">Desativar protocolo QUIC</string>
     <string name="revanced_disable_quic_protocol_summary">"Desativar o protocolo QUIC do CronetEngine."</string>
-    <string name="revanced_spoof_format_stream_data_title">Falsificar os dados de formato de transmissão</string>
-    <string name="revanced_spoof_format_stream_data_summary">"Falsifica os dados de formato de transmissão para prevenir problemas de reprodução.
-
-Limitações:
-• Pode haver cerca de 5 segundos de armazenamento quando o vídeo é iniciado.
-• Como ainda está em desenvolvimento, pode haver outras questões desconhecidas."</string>
-    <string name="revanced_spoof_player_parameter_title">Parâmetro de falsificação do reprodutor</string>
+    <string name="revanced_spoof_player_parameter_title">Falsificar parâmetro do reprodutor</string>
     <string name="revanced_spoof_player_parameter_summary">"Falsifica os parâmetros do reprodutor para evitar problemas de reprodução.
 
 Limitações:
@@ -1280,18 +1304,13 @@ Limitações:
 • Não há miniaturas da barra de progresso para vídeos pagos.
 • Os downloads off-line podem não funcionar.
 • O vídeo pode não começar a partir do último horário assistido."</string>
-    <string name="revanced_spoof_player_parameter_in_feed_title">Parâmetro do player falso no feed</string>
-    <string name="revanced_spoof_player_parameter_in_feed_summary_on">"Parâmetro do player falsificado para vídeos de feed.
+    <string name="revanced_spoof_player_parameter_in_feed_title">Falsificar parâmetro do reprodutor no feed</string>
+    <string name="revanced_spoof_player_parameter_in_feed_summary_on">"Falsificando parâmetro do reprodutor para vídeos do feed.
 
-Limitação: Os vídeos de feed reproduzidos automaticamente aparecerão no seu histórico de exibição."</string>
+Limitação: Os vídeos do feed reproduzidos automaticamente aparecerão no seu histórico de exibição."</string>
     <string name="revanced_spoof_player_parameter_in_feed_summary_off">"Parâmetro do reprodutor não falsificado para vídeos de feed.
 
 Limitação: Os vídeos do feed serão reproduzidos por menos de 1 minuto antes de encontrarem problemas de reprodução."</string>
-    <string name="revanced_spoof_test_client_title">Falsificar cliente de teste</string>
-    <string name="revanced_spoof_test_client_summary">"Falsificar o cliente como um cliente de teste.
-
-• Este cliente é usado para fins de teste, portanto a maioria dos recursos do YouTube não está disponível.
-• Não há problemas de buffer de reprodução no cliente de teste."</string>
     <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Import / Export settings -->
     <string name="revanced_preference_screen_import_export_title">Importar / Exportar configurações</string>
     <string name="revanced_preference_screen_import_export_summary">Importar ou exportar configurações.</string>

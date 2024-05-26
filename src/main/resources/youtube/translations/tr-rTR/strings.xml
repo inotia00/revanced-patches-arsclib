@@ -4,7 +4,7 @@
     <string name="accessibility_settings_edu_opt_in_text">Video oynatıcı için erişilebilirlik kontrolleri açılsın mı?</string>
     <string name="accessibility_settings_edu_opt_out_text">Bir erişilebilirlik hizmeti açık olduğundan kontrolleriniz değiştirildi.</string>
     <!-- Shared PreferenceScreen -->
-    <string name="revanced_extended_settings_title">ReVanced Extended</string>
+    <string name="revanced_extended_settings_title">ReVanced Genişletilmiş</string>
     <!-- Shared Category -->
     <string name="revanced_preference_category_experimental_flag">Deneysel Parametreler</string>
     <string name="revanced_extended_restart_first_run">Düzeni normal şekilde yüklemek için yeniden başlatın</string>
@@ -110,7 +110,7 @@ DeArrow hakkında daha fazla bilgi edinmek için buraya dokunun."</string>
     <string name="revanced_hide_notify_me_button_title">"\"Beni bilgilendir\" butonunu gizle"</string>
     <string name="revanced_hide_notify_me_button_summary_on">"\"Beni bilgilendir\" butonu gizleniyor."</string>
     <string name="revanced_hide_notify_me_button_summary_off">"\"Beni bilgilendir\" butonu gizlenmiyor."</string>
-    <string name="revanced_hide_playables_title">Oynanabilir öğeleri gizle</string>
+    <string name="revanced_hide_playables_title">Oynanabilirleri gizle</string>
     <string name="revanced_hide_playables_summary_on">Oynanabilir öğeler gizli.</string>
     <string name="revanced_hide_playables_summary_off">Oynanabilir öğeler görünür.</string>
     <string name="revanced_hide_show_more_button_title">"'Daha fazla göster' düğmesini gizle"</string>
@@ -216,36 +216,43 @@ Kısıtlamalar:
 • Videonun altında 'Kullanıcılar da izledi' gibi ibarelerin yer aldığı videolar
 • Abone olunmayan kanallardan yüklenen ve izlenme sayısı 1.000'den az olan videolar"</string>
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Video filter, PreferenceCategory: Duration filter -->
-    <string name="revanced_preference_category_duration_filter">Duration filter</string>
-    <string name="revanced_hide_video_by_duration_title">Hide videos based on duration</string>
-    <string name="revanced_hide_video_by_duration_summary">Hide videos with shorter than or longer than duration.\n\nKnown issue: It will not hide videos in the player related videos, instead it will hide the timestamp.</string>
-    <string name="revanced_hide_video_by_duration_longer_than_title">Longer than duration</string>
-    <string name="revanced_hide_video_by_duration_longer_than_summary">Videos with duration longer than this number will be hidden.</string>
-    <string name="revanced_hide_video_by_duration_shorter_than_title">Shorter than duration</string>
-    <string name="revanced_hide_video_by_duration_shorter_than_summary">Videos with duration shorter than this number will be hidden.</string>
+    <string name="revanced_preference_category_duration_filter">Süre filtresi</string>
+    <string name="revanced_hide_video_by_duration_title">Süresine göre videoları gizleyin</string>
+    <string name="revanced_hide_video_by_duration_summary">Süresi daha kısa veya daha uzun olan videoları gizleyin.\n\nBilinen problem: Oynatıcı ile bağlantılı videoları gizlemez, bunun yerine zaman damgasını gizler.</string>
+    <string name="revanced_hide_video_by_duration_longer_than_title">Bu süreden daha uzun</string>
+    <string name="revanced_hide_video_by_duration_longer_than_summary">Süresi bu sayıdan daha uzun olan videolar gizlenecektir.</string>
+    <string name="revanced_hide_video_by_duration_shorter_than_title">Bu süreden daha kısa</string>
+    <string name="revanced_hide_video_by_duration_shorter_than_summary">Süresi bu sayıdan daha kısa olan videolar gizlenecektir.</string>
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Video filter, PreferenceCategory: View count filter -->
     <string name="revanced_preference_category_view_counts_filter">İzlenme sayısı filtresi</string>
     <string name="revanced_hide_video_by_view_counts_title">Önerilen videoları izlenmeye göre gizle</string>
     <string name="revanced_hide_video_by_view_counts_summary">Belirtilen görüntüleme sayısından daha az olan önerilen videoları gizleyin.</string>
-    <string name="revanced_hide_video_view_counts_greater_than_title">Greater than views</string>
-    <string name="revanced_hide_video_view_counts_greater_than_summary">Videos with views greater than this number will be hidden.</string>
-    <string name="revanced_hide_video_view_counts_less_than_title">Less than views</string>
-    <string name="revanced_hide_video_view_counts_less_than_summary">Videos with views less than this number will be hidden.</string>
+    <string name="revanced_hide_video_view_counts_greater_than_title">Görüntülemelerden büyük</string>
+    <string name="revanced_hide_video_view_counts_greater_than_summary">Görüntüleme sayısı bu sayıdan fazla olan videolar gizlenecektir.</string>
+    <string name="revanced_hide_video_view_counts_less_than_title">Görüntülemelerden az</string>
+    <string name="revanced_hide_video_view_counts_less_than_summary">Görüntüleme sayısı bu sayıdan az olan videolar gizlenecektir.</string>
     <string name="revanced_hide_video_view_counts_multiplier_title">Anahtarları göster</string>
     <string name="revanced_hide_video_view_counts_multiplier_summary">Kullanıcı arayüzünde her videonun altında gösterilen görüntüleme sayısı için dil şablonunuzu belirtin. Her tuş (dilinizde bir harf/kelime) -&gt; değer (anahtarın anlamı) yeni bir satırda olmalıdır. Tuşlar \"-&gt;\"den önce gelir imza. Uygulamayı veya sistem dilini değiştirirseniz bu ayarı sıfırlamanız gerekir.\n\nÖrnekler:\nTürkçe: 10K görüntüleme = K -&gt; 1000, görüntülemeler -&gt; görüntüleme\nİspanyolca: 10 K manzara = K -&gt; 1000, manzaralar -&gt; Görüntüleme</string>
     <string name="revanced_hide_video_view_counts_multiplier_default_value">K -&gt; 1 000\nM -&gt; 1 000 000\nB -&gt; 1 000 000 000\ngörüntüleme -&gt; Görüntüleme</string>
     <!-- PreferenceScreen: General -->
     <string name="revanced_preference_screen_general_title">Genel</string>
     <string name="revanced_change_start_page_title">Başlangıç ​​sayfasını değiştir</string>
+    <string name="revanced_change_start_page_entry_browse">Kanalları Tara</string>
     <string name="revanced_change_start_page_entry_default">Varsayılan</string>
     <string name="revanced_change_start_page_entry_explore">Keşfet</string>
+    <string name="revanced_change_start_page_entry_gaming">Gaming</string>
     <string name="revanced_change_start_page_entry_history">Geçmiş</string>
     <string name="revanced_change_start_page_entry_library">Kitaplık</string>
     <string name="revanced_change_start_page_entry_liked_videos">Beğenilen videolar</string>
+    <string name="revanced_change_start_page_entry_live">Canlı</string>
+    <string name="revanced_change_start_page_entry_movies">Filmler</string>
+    <string name="revanced_change_start_page_entry_music">Müzik</string>
     <string name="revanced_change_start_page_entry_search">Ara</string>
     <string name="revanced_change_start_page_entry_shorts">Shorts</string>
+    <string name="revanced_change_start_page_entry_sports">Sporlar</string>
     <string name="revanced_change_start_page_entry_subscriptions">Abonelikler</string>
     <string name="revanced_change_start_page_entry_trending">Trendler</string>
+    <string name="revanced_change_start_page_entry_watch_later">Daha sonra izlenecekler</string>
     <string name="revanced_change_start_page_warning">Başlangıç sayfası geçersiz, varsayılana dönülüyor.</string>
     <string name="revanced_disable_auto_audio_tracks_title">Ses parçalarının kendiliğinden açılmasını kapat</string>
     <string name="revanced_disable_auto_audio_tracks_summary_on">Ses parçalarının kendiliğinden açılması kapalı.</string>
@@ -389,9 +396,6 @@ Bu durumda lütfen şu yolu kullanın: Siz sekmesi &gt; Kanalı görüntüle &gt
     <string name="revanced_hide_search_term_thumbnail_title">Arama geçmişindeki kapak fotoğraflarını gizle</string>
     <string name="revanced_hide_search_term_thumbnail_summary_on">Arama geçmişindeki kapak fotoğrafları gizleniyor.</string>
     <string name="revanced_hide_search_term_thumbnail_summary_off">Arama geçmişindeki kapak fotoğrafları gösteriliyor.</string>
-    <string name="revanced_hide_trending_searches_title">Aramada, trend aramaları gizle</string>
-    <string name="revanced_hide_trending_searches_summary_on">Trend aramalar gizleniyor</string>
-    <string name="revanced_hide_trending_searches_summary_off">Trend aramalar gösteriliyor</string>
     <string name="revanced_hide_voice_search_button_title">Sesli arama düğmesini gizle</string>
     <string name="revanced_hide_voice_search_button_summary_on">Sesli arama butonu gizlendi.</string>
     <string name="revanced_hide_voice_search_button_summary_off">Sesli arama butonu gösteriliyor.</string>
@@ -435,6 +439,9 @@ Not: Bu özelliği devre dışı bırakmak, eski arayüzdeki \"Videoyu sarmak i�
     <string name="revanced_hide_info_panel_title">Bilgi panellerini gizle</string>
     <string name="revanced_hide_info_panel_summary_on">Bilgi panelleri gizleniyor.</string>
     <string name="revanced_hide_info_panel_summary_off">Bilgi panelleri gizlenmiyor.</string>
+    <string name="revanced_hide_live_chat_messages_title">Canlı sohbet mesajlarını gizle</string>
+    <string name="revanced_hide_live_chat_messages_summary_on">Canlı sohbet mesajları gizlenir.\n\nBu ayar, Shorts canlı videoları için de geçerlidir.</string>
+    <string name="revanced_hide_live_chat_messages_summary_off">Canlı sohbet mesajları gösterilir.\n\nBu ayar, Shorts canlı videoları için de geçerlidir.</string>
     <string name="revanced_hide_medical_panel_title">Tıbbi panelleri gizle</string>
     <string name="revanced_hide_medical_panel_summary_on">Tıbbi bilgi içeren paneller gizleniyor.</string>
     <string name="revanced_hide_medical_panel_summary_off">Tıbbi bilgi içeren paneller gizlenmiyor.</string>
@@ -611,12 +618,15 @@ Not:
     <string name="revanced_show_video_title_section_summary">"Video başlığı bölümünü tam ekranda gösterir.
 
 Sınırlama: Tıklandığında video başlığı kayboluyor."</string>
+    <string name="revanced_hide_autoplay_preview_title">Video sonunda sol üstteki \"Sıradaki\"ni gizle</string>
     <string name="revanced_hide_autoplay_preview_summary_on">Video sonunda sol üstteki \"Sıradaki\" video gizleniyor</string>
     <string name="revanced_hide_autoplay_preview_summary_off">Video sonunda sol üstteki \"Sıradaki\" video gösteriliyor</string>
-    <string name="revanced_hide_autoplay_preview_title">Video sonunda sol üstteki \"Sıradaki\"ni gizle</string>
+    <string name="revanced_hide_live_chat_replay_button_title">Canlı sohbet tekrarı butonunu gizle</string>
+    <string name="revanced_hide_live_chat_replay_button_summary_on">Canlı sohbeti tekrar oynat düğmesi gizlidir.\n\nCanlı sohbet kapatıldığında tam ekranda görünür.</string>
+    <string name="revanced_hide_live_chat_replay_button_summary_off">Canlı sohbeti tekrar oynat düğmesi görünür.\n\nCanlı sohbet kapatıldığında tam ekranda görünür.</string>
+    <string name="revanced_hide_related_video_overlay_title">\"Önerilen video\" arayüzünü gizle</string>
     <string name="revanced_hide_related_video_overlay_summary_on">İlgili video yer paylaşımı gizlenir.</string>
     <string name="revanced_hide_related_video_overlay_summary_off">İlgili video yer paylaşımı gizlenmiyor.</string>
-    <string name="revanced_hide_related_video_overlay_title">\"Önerilen video\" arayüzünü gizle</string>
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Fullscreen, PreferenceCategory: Quick actions -->
     <string name="revanced_preference_category_quick_actions">Hızlı eylemler</string>
     <string name="revanced_hide_quick_actions_title">Zaman çubuğunun altındaki butonları gizle</string>
@@ -643,9 +653,6 @@ Sınırlama: Tıklandığında video başlığı kayboluyor."</string>
     <string name="revanced_hide_quick_actions_open_playlist_button_title">Oynatma listesini aç butonunu gizle</string>
     <string name="revanced_hide_quick_actions_open_playlist_button_summary_on">Tam ekranda oynatma listesini aç butonu gizleniyor.</string>
     <string name="revanced_hide_quick_actions_open_playlist_button_summary_off">Oynatma listesini aç butonu gösteriliyor.</string>
-    <string name="revanced_hide_quick_actions_related_videos_title">\"Diğer videolar\"ı gizle</string>
-    <string name="revanced_hide_quick_actions_related_videos_summary_on">Tam ekranda zaman çubuğunun sağ altındaki \"Diğer videolar\" butonu gizleniyor.</string>
-    <string name="revanced_hide_quick_actions_related_videos_summary_off">Tam ekranda zaman çubuğunun sağ altındaki \"Diğer videolar\" butonu gizlenmiyor.</string>
     <string name="revanced_hide_quick_actions_save_to_playlist_button_title">Oynatma listesine kaydet butonunu gizle</string>
     <string name="revanced_hide_quick_actions_save_to_playlist_button_summary_on">Oynatma listesine kaydetme düğmesi gizli.</string>
     <string name="revanced_hide_quick_actions_save_to_playlist_button_summary_off">Oynatma listesine kaydetme düğmesi görünür.</string>
@@ -728,9 +735,26 @@ Videoyu zaman damgasıyla kopyalamak için basılı tutun."</string>
     <string name="revanced_overlay_button_external_downloader_summary">Harici indirme uygulamasını açmak için tıklayın</string>
     <string name="revanced_overlay_button_speed_dialog_title">Oynatma hızını ayarlama butonunu ekle</string>
     <string name="revanced_overlay_button_speed_dialog_summary">"Hız iletişim kutusunu açmak için dokunun.
-Çalma hızını 1.0x olarak ayarlamak için dokunun ve basılı tutun."</string>
-    <string name="revanced_overlay_button_speed_dialog_reset">Oynatma hızı sıfırlandı (1.0x)</string>
-    <string name="revanced_overlay_button_not_allowed_warning">Buton durumunu değiştirmek için buraya dokunup basılı tutun.</string>
+Oynatma hızını 1,0x'e sıfırlamak için dokunun ve basılı tutun. Varsayılan hıza sıfırlamak için tekrar dokunun ve basılı tutun."</string>
+    <string name="revanced_overlay_button_whitelist_title">Beyaz liste düğmesini göster</string>
+    <string name="revanced_overlay_button_whitelist_summary">\"Beyaz liste iletişim kutusunu açmak için dokunun.
+Beyaz liste ayarı iletişim kutusunu açmak için dokunun ve basılı tutun.</string>
+    <string name="revanced_overlay_button_time_ordered_playlist_title">Zaman Sıralı Çalma Listesi Düğmesini göster</string>
+    <string name="revanced_overlay_button_time_ordered_playlist_summary">"Kanaldaki en eskiden en yeniye tüm videolardan oluşan bir oynatma listesi oluşturmak için dokunun.
+Geri almak için dokunun ve basılı tutun."</string>
+    <string name="revanced_whitelist_settings_title">Kanal beyaz listesi</string>
+    <string name="revanced_whitelist_settings_summary">Beyaz listeye eklenen kanalların listesini kontrol edin veya kaldırın.</string>
+    <string name="revanced_whitelist_added">\'%1$s\' kanalı \'%2$s\' beyaz listesine eklendi.</string>
+    <string name="revanced_whitelist_add_failed">Kanal \'%1$s\', \'%2$s\' beyaz listesine eklenemedi.</string>
+    <string name="revanced_whitelist_removed">\'%1$s\' kanalı \'%2$s\' beyaz listesinden kaldırıldı.</string>
+    <string name="revanced_whitelist_remove_failed">Kanal \'%1$s\', \'%2$s\' beyaz listesinden kaldırılamadı.</string>
+    <string name="revanced_whitelist_remove_dialog_message">Kanalı %1$s\', \'%2$s\' beyaz listesinden kaldır?</string>
+    <string name="revanced_whitelist_empty">Beyaz listeye alınmış kanal yok.</string>
+    <string name="revanced_whitelist_excluded">Beyaz listeye eklenmedi.</string>
+    <string name="revanced_whitelist_included">Beyaz listeye eklendi.</string>
+    <string name="revanced_whitelist_playback_speed">Oynatma hızı</string>
+    <string name="revanced_whitelist_sponsor_block">SponsorBlock</string>
+    <string name="revanced_whitelist_failure_generic">Kanal bilgileri yüklenemedi.</string>
     <string name="revanced_external_downloader_package_name_title">Harici indirici paket adı</string>
     <string name="revanced_external_downloader_package_name_summary">Yüklü olan harici indirme uygulamanızın paket adı, örneğin NewPipe veya YTDLnis gibi.</string>
     <string name="revanced_external_downloader_dialog_title">Harici indirici</string>
@@ -741,6 +765,8 @@ Lütfen web sitesinden %2$s dosyasını indirin."</string>
     <string name="revanced_external_downloader_action_title">İndirme eylem düğmesini kullan</string>
     <string name="revanced_external_downloader_action_summary_on">İndirme düğmesi harici indiricinizi açar</string>
     <string name="revanced_external_downloader_action_summary_off">İndirme düğmesi yerel uygulama içi indiriciyi açar</string>
+    <string name="revanced_overlay_button_speed_dialog_reset">Oynatma hızı sıfırlandı: %sx.</string>
+    <string name="revanced_overlay_button_not_allowed_warning">Buton durumunu değiştirmek için buraya dokunup basılı tutun.</string>
     <string name="revanced_share_copy_timestamp_success">Süre Sayacı panoya kopyalandı (%s)</string>
     <string name="revanced_share_copy_url_success">URL panoya kopyalandı</string>
     <string name="revanced_share_copy_url_timestamp_success">Videonun şuanki saniyeli URL\'si panoya kopyalandı</string>
@@ -946,6 +972,9 @@ Bilinen sorun: Arama sonuçlarındaki resmi başlıklar da gizlenebiliyor."</str
     <string name="revanced_swipe_magnitude_threshold_summary">Kaydırma işleminin gerçekleşmesi için eşik miktarı</string>
     <string name="revanced_swipe_overlay_text_size_title">Kaydırma metin boyutu</string>
     <string name="revanced_swipe_overlay_text_size_summary">Kaydırma animasyonu için metin boyutu</string>
+    <string name="revanced_swipe_overlay_rect_size_title">Kaydırma arayüzü boyutu</string>
+    <string name="revanced_swipe_overlay_rect_size_summary">Kaydırılabilir ekran alanının yüzdesi.\n\nNot: Bu aynı zamanda aramak için iki kez dokunma hareketi için ekran alanının boyutunu da değiştirecektir.</string>
+    <string name="revanced_swipe_overlay_rect_size_warning">Kaydırılabilir alan boyutu %s%%\'den fazla olamaz. Varsayılan değere sıfırlayın.</string>
     <string name="revanced_swipe_overlay_timeout_title">Kaydırma zaman aşımı</string>
     <string name="revanced_swipe_overlay_timeout_summary">Kaplamanın görünür olduğu milisaniye miktarı</string>
     <string name="revanced_disable_hdr_auto_brightness_title">Otomatik HDR parlaklığını devre dışı bırak</string>
@@ -1257,13 +1286,6 @@ Devam düğmesine dokunun ve pil optimizasyonlarını devre dışı bırakın."<
     <string name="revanced_sanitize_sharing_links_summary">Bağlantıları paylaşırken, tracking query parametrelerini URL\'lerden kaldırır.</string>
     <string name="revanced_disable_quic_protocol_title">QUIC protokolünü devre dışı bırak</string>
     <string name="revanced_disable_quic_protocol_summary">"CronetEngine'in QUIC protokolünü devre dışı bırak"</string>
-    <string name="revanced_spoof_format_stream_data_title">Akış verileri formatlarını taklit et</string>
-    <string name="revanced_spoof_format_stream_data_summary">"Sahtekarlıklar, oynatma sorunlarını önlemek için akış verilerini biçimlendirir.
-
-Sınırlamalar:
-• Video başladığında yaklaşık 5 saniyelik ara belleğe alma süresi olabilir.
-• Ara belleğe alma çok uzun sürerse videoyu kapatıp yeniden açmanız gerekebilir.
-• Henüz geliştirme aşamasında olduğundan bilinmeyen başka sorunlar da olabilir."</string>
     <string name="revanced_spoof_player_parameter_title">Oynatıcı parametresini taklit et</string>
     <string name="revanced_spoof_player_parameter_summary">"Oynatma sorunlarını önlemek için oynatıcı parametrelerini taklit eder
 
@@ -1279,11 +1301,6 @@ Bilinen sorun: Otomatik olarak oynatılan yayın videoları izleme geçmişinizd
     <string name="revanced_spoof_player_parameter_in_feed_summary_off">"Akış videoları için oynatıcı parametresi sahteciliği yapılmıyor
 
 Bilinen sorun: Akış videoları, oynatma sorunlarıyla karşılaşmadan önce 1 dakikadan daha kısa bir süre oynatılacak"</string>
-    <string name="revanced_spoof_test_client_title">Sahte test istemcisi</string>
-    <string name="revanced_spoof_test_client_summary">"İstemciyi bir test istemcisi olarak taklit edin.
-
-• Bu istemci test amaçlı kullanıldığından çoğu YouTube özelliği mevcut değildir.
-• Test istemcisinde oynatma arabelleği sorunu yoktur."</string>
     <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Import / Export settings -->
     <string name="revanced_preference_screen_import_export_title">Ayarları içe / dışa aktar</string>
     <string name="revanced_preference_screen_import_export_summary">Ayarları içe veya dışa aktarın.</string>
