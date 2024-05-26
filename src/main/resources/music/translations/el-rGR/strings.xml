@@ -7,9 +7,9 @@
     <string name="revanced_extended_restart_message">Ανανέωση και επανεκκίνηση</string>
     <!-- PreferenceScreen: Account -->
     <string name="revanced_preference_screen_account_title">Λογαριασμός</string>
-    <string name="revanced_hide_account_menu_title">Στοιχεία μενού λογαριασμού</string>
+    <string name="revanced_hide_account_menu_title">Φιλτράρισμα μενού λογαριασμού</string>
     <string name="revanced_hide_account_menu_summary">Απόκρυψη στοιχείων του μενού λογαριασμού.</string>
-    <string name="revanced_hide_account_menu_filter_strings_title">Φίλτρο μενού λογαριασμού</string>
+    <string name="revanced_hide_account_menu_filter_strings_title">Αλλαγή φίλτρου μενού λογαριασμού</string>
     <string name="revanced_hide_account_menu_filter_strings_summary">Λίστα ονομάτων των επιλογών του μενού λογαριασμού για φιλτράρισμα, διαχωρισμένα με νέες γραμμές.</string>
     <string name="revanced_hide_account_menu_empty_component_title">Απόκρυψη κενών στοιχείων</string>
     <string name="revanced_hide_account_menu_empty_component_summary">Απόκρυψη κενών στοιχείων στο μενού λογαριασμού.</string>
@@ -37,7 +37,7 @@
     <string name="revanced_external_downloader_action_summary">"Το κουμπί «Λήψη» ανοίγει το εξωτερικό πρόγραμμα λήψης σας.
 
 • Η μετατροπή αφορά μόνο το κουμπί ενέργειας στην οθόνη αναπαραγωγής.
-• Δεν μετατρέπεται και το κουμπί «Λήψη» στο αναδυόμενο μενού ή στη βιβλιοθήκη."</string>
+• Δεν αφορά το κουμπί «Λήψη» στο αναδυόμενο μενού ή στη βιβλιοθήκη."</string>
     <string name="revanced_external_downloader_package_name_title">Όνομα πακέτου εξωτερικού προγράμματος λήψης</string>
     <string name="revanced_external_downloader_package_name_summary">Όνομα πακέτου της εγκατεστημένης εξωτερικής εφαρμογής λήψης (π.χ NewPipe, Seal).</string>
     <string name="revanced_external_downloader_dialog_title">Εξωτερικό πρόγραμμα λήψης</string>
@@ -55,7 +55,7 @@
     <string name="revanced_hide_music_ads_summary">Απόκρυψη διαφημίσεων πριν την αναπαραγωγή κομματιού.</string>
     <string name="revanced_hide_paid_promotion_label_title">Ετικέτες προώθησης επί πληρωμή</string>
     <string name="revanced_hide_paid_promotion_label_summary">Απόκρυψη των ετικετών προώθησης επί πληρωμή.</string>
-    <string name="revanced_hide_premium_promotion_title">Απόκρυψη παραθύρου προώθησης Premium</string>
+    <string name="revanced_hide_premium_promotion_title">Απόκρυψη παραθύρων προώθησης Premium</string>
     <string name="revanced_hide_premium_promotion_summary">Απόκρυψη των αναδυόμενων παραθύρων προώθησης Premium.</string>
     <string name="revanced_hide_premium_renewal_title">Απόκρυψη διαφημιστικού ανανέωσης Premium</string>
     <string name="revanced_hide_premium_renewal_summary">Απόκρυψη του διαφημιστικού ανανέωσης YT Premium.</string>
@@ -67,48 +67,48 @@
 Περιορισμοί:
 • Τα εξώφυλλα άλμπουμ στην καρτέλα βιβλιοθήκης γίνονται μικρότερα επίσης.
 • Η διεπαφή του χρονομέτρου ύπνου ενδέχεται να φαίνεται ασυνήθιστη."</string>
-    <string name="revanced_enable_trim_silence_title">Ενεργοποίηση παράλειψης σιγής</string>
-    <string name="revanced_enable_trim_silence_summary">"Ενεργοποίηση του διακόπτη «Παράλειψη σιγής» στο αναδυόμενο μενού αλλαγής ταχύτητας αναπαραγωγής.
+    <string name="revanced_enable_trim_silence_title">Ενεργοποίηση περικοπής σίγασης</string>
+    <string name="revanced_enable_trim_silence_summary">"Ενεργοποίηση του διακόπτη «Περικοπή σίγασης» στο αναδυόμενο μενού αλλαγής ταχύτητας αναπαραγωγής.
 
 Πληροφορίες:
 • Αυτή η λειτουργία είναι για ηχητικές εκπομπές.
 • Αυτή η λειτουργία είναι ακόμη υπό ανάπτυξη, οπότε ενδέχεται να είναι ασταθής."</string>
     <string name="revanced_hide_flyout_menu_like_dislike_title">Απόκρυψη κουμπιών «Μου αρέσει» και «Δεν μου αρέσει»</string>
     <string name="revanced_hide_flyout_menu_3_column_component_title">Απόκρυψη στοιχείου 3 στηλών</string>
-    <string name="revanced_hide_flyout_menu_add_to_queue_title">Απόκρυψη του «Προσθήκη στην ουρά»</string>
-    <string name="revanced_hide_flyout_menu_captions_title">Απόκρυψη του «Υπότιτλοι»</string>
-    <string name="revanced_hide_flyout_menu_delete_playlist_title">Απόκρυψη του «Διαγραφή playlist»</string>
-    <string name="revanced_hide_flyout_menu_dismiss_queue_title">Απόκρυψη του «Παράβλεψη ουράς»</string>
-    <string name="revanced_hide_flyout_menu_download_title">Απόκρυψη του «Λήψη»</string>
-    <string name="revanced_hide_flyout_menu_edit_playlist_title">Απόκρυψη του «Επεξεργασία playlist»</string>
-    <string name="revanced_hide_flyout_menu_go_to_album_title">Απόκρυψη του «Μετάβαση στο άλμπουμ»</string>
-    <string name="revanced_hide_flyout_menu_go_to_artist_title">Απόκρυψη του «Μετάβαση στον καλλιτέχνη»</string>
-    <string name="revanced_hide_flyout_menu_go_to_episode_title">Απόκρυψη του «Μετάβαση στο επεισόδιο»</string>
-    <string name="revanced_hide_flyout_menu_go_to_podcast_title">Απόκρυψη του «Μετάβαση στο podcast»</string>
-    <string name="revanced_hide_flyout_menu_help_title">Απόκρυψη του «Βοήθεια &amp; σχόλια»</string>
-    <string name="revanced_hide_flyout_menu_play_next_title">Απόκρυψη του «Αναπαραγωγή μετά»</string>
-    <string name="revanced_hide_flyout_menu_quality_title">Απόκρυψη του «Ποιότητα»</string>
-    <string name="revanced_hide_flyout_menu_remove_from_library_title">Απόκρυψη του «Κατάργηση playlist από τη βιβλιοθήκη»</string>
-    <string name="revanced_hide_flyout_menu_remove_from_playlist_title">Απόκρυψη του «Κατάργηση από playlist»</string>
-    <string name="revanced_hide_flyout_menu_report_title">Απόκρυψη του «Αναφορά»</string>
-    <string name="revanced_hide_flyout_menu_save_episode_for_later_title">Απόκρυψη του «Αποθήκευση επεισοδίου για αργότερα»</string>
-    <string name="revanced_hide_flyout_menu_save_to_library_title">Απόκρυψη του «Αποθήκευση playlist στη Βιβλιοθήκη»</string>
-    <string name="revanced_hide_flyout_menu_save_to_playlist_title">Απόκρυψη του «Αποθήκευση στο playlist»</string>
-    <string name="revanced_hide_flyout_menu_share_title">Απόκρυψη του «Κοινοποίηση»</string>
-    <string name="revanced_hide_flyout_menu_shuffle_play_title">Απόκρυψη του «Τυχαία αναπαραγωγή»</string>
-    <string name="revanced_hide_flyout_menu_sleep_timer_title">Απόκρυψη του «Χρονόμετρο ύπνου»</string>
-    <string name="revanced_hide_flyout_menu_start_radio_title">Απόκρυψη του «Έναρξη ραδιοφώνου»</string>
-    <string name="revanced_hide_flyout_menu_stats_for_nerds_title">Απόκρυψη του «Στατιστικά για σπασίκλες»</string>
+    <string name="revanced_hide_flyout_menu_add_to_queue_title">Απόκρυψη μενού «Προσθήκη στην ουρά»</string>
+    <string name="revanced_hide_flyout_menu_captions_title">Απόκρυψη μενού «Υπότιτλοι»</string>
+    <string name="revanced_hide_flyout_menu_delete_playlist_title">Απόκρυψη μενού «Διαγραφή playlist»</string>
+    <string name="revanced_hide_flyout_menu_dismiss_queue_title">Απόκρυψη μενού «Παράβλεψη ουράς»</string>
+    <string name="revanced_hide_flyout_menu_download_title">Απόκρυψη μενού «Λήψη»</string>
+    <string name="revanced_hide_flyout_menu_edit_playlist_title">Απόκρυψη μενού «Επεξεργασία playlist»</string>
+    <string name="revanced_hide_flyout_menu_go_to_album_title">Απόκρυψη μενού «Μετάβαση στο άλμπουμ»</string>
+    <string name="revanced_hide_flyout_menu_go_to_artist_title">Απόκρυψη μενού «Μετάβαση στον καλλιτέχνη»</string>
+    <string name="revanced_hide_flyout_menu_go_to_episode_title">Απόκρυψη μενού «Μετάβαση στο επεισόδιο»</string>
+    <string name="revanced_hide_flyout_menu_go_to_podcast_title">Απόκρυψη μενού «Μετάβαση στο podcast»</string>
+    <string name="revanced_hide_flyout_menu_help_title">Απόκρυψη μενού «Βοήθεια &amp; σχόλια»</string>
+    <string name="revanced_hide_flyout_menu_play_next_title">Απόκρυψη μενού «Αναπαραγωγή μετά»</string>
+    <string name="revanced_hide_flyout_menu_quality_title">Απόκρυψη μενού «Ποιότητα»</string>
+    <string name="revanced_hide_flyout_menu_remove_from_library_title">Απόκρυψη μενού «Κατάργηση playlist από τη βιβλιοθήκη»</string>
+    <string name="revanced_hide_flyout_menu_remove_from_playlist_title">Απόκρυψη μενού «Κατάργηση από playlist»</string>
+    <string name="revanced_hide_flyout_menu_report_title">Απόκρυψη μενού «Αναφορά»</string>
+    <string name="revanced_hide_flyout_menu_save_episode_for_later_title">Απόκρυψη μενού «Αποθήκευση επεισοδίου για αργότερα»</string>
+    <string name="revanced_hide_flyout_menu_save_to_library_title">Απόκρυψη μενού «Αποθήκευση playlist στη Βιβλιοθήκη»</string>
+    <string name="revanced_hide_flyout_menu_save_to_playlist_title">Απόκρυψη μενού «Αποθήκευση στο playlist»</string>
+    <string name="revanced_hide_flyout_menu_share_title">Απόκρυψη μενού «Κοινοποίηση»</string>
+    <string name="revanced_hide_flyout_menu_shuffle_play_title">Απόκρυψη μενού «Τυχαία αναπαραγωγή»</string>
+    <string name="revanced_hide_flyout_menu_sleep_timer_title">Απόκρυψη μενού «Χρονόμετρο ύπνου»</string>
+    <string name="revanced_hide_flyout_menu_start_radio_title">Απόκρυψη μενού «Έναρξη ραδιοφώνου»</string>
+    <string name="revanced_hide_flyout_menu_stats_for_nerds_title">Απόκρυψη μενού «Στατιστικά για σπασίκλες»</string>
     <string name="revanced_hide_flyout_menu_subscribe_title">Απόκρυψη των «Εγγραφή» / «Απεγγραφή»</string>
-    <string name="revanced_hide_flyout_menu_view_song_credit_title">Απόκρυψη του «Προβολή συντελεστών τραγουδιού»</string>
+    <string name="revanced_hide_flyout_menu_view_song_credit_title">Απόκρυψη μενού «Προβολή συντελεστών τραγουδιού»</string>
     <string name="revanced_replace_flyout_menu_dismiss_queue_continue_watch_title">Συνέχιση παρακολούθησης</string>
     <string name="revanced_replace_flyout_menu_dismiss_queue_continue_watch_summary">Αν πατήσετε το «Παρακολούθηση στο YouTube», η αναπαραγωγή θα συνεχιστεί από την τρέχουσα ώρα προβολής.</string>
     <string name="revanced_replace_flyout_menu_dismiss_queue_watch_on_youtube_label">Παρακολούθηση στο YouTube</string>
     <string name="revanced_replace_flyout_menu_dismiss_queue_watch_on_youtube_warning">Μη έγκυρη διεύθυνση URL βίντεο.</string>
     <string name="revanced_replace_flyout_menu_dismiss_queue_title">Αντικατάσταση μενού «Παράβλεψη ουράς»</string>
     <string name="revanced_replace_flyout_menu_dismiss_queue_summary">Αντικατάσταση του μενού «Παράβλεψη ουράς» με «Παρακολούθηση στο YouTube».</string>
-    <string name="revanced_replace_flyout_menu_report_only_player_title">Να ισχύει μόνο για το αναδυόμενο μενού του αναπαραγωγέα</string>
-    <string name="revanced_replace_flyout_menu_report_only_player_summary">Το μενού αναφοράς στα σχόλια δεν θα αντικατασταθεί.</string>
+    <string name="revanced_replace_flyout_menu_report_only_player_title">Διατήρηση του «Αναφορά» στα σχόλια</string>
+    <string name="revanced_replace_flyout_menu_report_only_player_summary">Το μενού αναφοράς στα σχόλια δε θα επηρεαστεί.</string>
     <string name="revanced_replace_flyout_menu_report_title">Αντικατάσταση μενού «Αναφορά»</string>
     <string name="revanced_replace_flyout_menu_report_summary">Αντικατάσταση του μενού «Αναφορά» με «Ταχύτητα αναπαραγωγής».</string>
     <!-- PreferenceScreen: General -->
@@ -204,8 +204,8 @@
     <string name="revanced_enable_zen_mode_summary">Προσθήκη μιας γκρι απόχρωσης στο πρόγραμμα αναπαραγωγής βίντεο για να μειωθεί η καταπόνηση των ματιών.</string>
     <string name="revanced_enable_zen_mode_podcast_title">Λειτουργία zen σε ηχητικές εκπομπές</string>
     <string name="revanced_enable_zen_mode_podcast_summary">Η λειτουργία Zen εφαρμόζεται σε ηχητικές εκπομπές επίσης.</string>
-    <string name="revanced_hide_audio_video_switch_toggle_title">Hide audio video switch toggle</string>
-    <string name="revanced_hide_audio_video_switch_toggle_summary">Hides the audio video switch toggle in player.</string>
+    <string name="revanced_hide_audio_video_switch_toggle_title">Απόκρυψη εναλλαγής ήχου-βίντεο</string>
+    <string name="revanced_hide_audio_video_switch_toggle_summary">Απόκρυψη της εναλλαγής ήχου-βίντεο στην οθόνη αναπαραγωγής.</string>
     <string name="revanced_hide_comment_channel_guidelines_title">Απόκρυψη οδηγιών κοινότητας</string>
     <string name="revanced_hide_comment_channel_guidelines_summary">Απόκρυψη των οδηγιών κοινότητας στην κορυφή των σχολίων.</string>
     <string name="revanced_hide_comment_timestamp_and_emoji_buttons_title">Απόκρυψη κουμπιών χρονοσήμανσης &amp; emoji</string>
@@ -224,8 +224,8 @@
     <string name="revanced_restore_old_player_layout_summary">"Επιστροφή της εμφάνισης της οθόνης αναπαραγωγής στο παλιό στυλ.
 Κάποιες λειτουργίες ενδέχεται να μη λειτουργούν σωστά στην παλιά εμφάνιση του αναπαραγωγέα."</string>
     <string name="revanced_replace_player_cast_button_title">Αντικατάσταση κουμπιού μετάδοσης</string>
-    <string name="revanced_replace_player_cast_button_summary">"Αντικατάσταση του κουμπιού μετάδοσης στον αναπαραγωγέα με το κουμπί «Άνοιγμα μουσικής». (Πειραματικό)
-Περιορισμός: Αν ένα η περισσότερα κομμάτια στη λίστα αναπαραγωγής δεν γίνεται να αναπαραχθούν για οποιονδήποτε λόγο, δε λειτουργεί σωστά."</string>
+    <string name="revanced_replace_player_cast_button_summary">"Αντικατάσταση του κουμπιού μετάδοσης στην οθόνη αναπαραγωγής με το κουμπί «Άνοιγμα μουσικής», το οποίο ανοίγει το επίσημο κομμάτι αντί για το μουσικό βίντεο. (Πειραματικό)
+Προειδοποίηση: Αν ένα η περισσότερα κομμάτια στη λίστα αναπαραγωγής δεν γίνεται να αναπαραχθούν για οποιονδήποτε λόγο, δε λειτουργεί σωστά."</string>
     <string name="revanced_replace_player_cast_button_playlist_dismiss">Γίνεται ήδη αναπαραγωγή από την επίσημη πηγή μουσικής.</string>
     <string name="revanced_replace_player_cast_button_playlist_error">Η επίσημη πηγή μουσικής δεν είναι διαθέσιμη.</string>
     <!-- PreferenceScreen: Video -->
@@ -250,7 +250,7 @@
     <string name="revanced_ryd_dislike_percentage_summary">Αντί για τον αριθμό των dislike, θα εμφανίζεται το ποσοστό τους.</string>
     <string name="revanced_ryd_compact_layout_title">Κουμπί «Μου αρέσει» μικρότερου στυλ</string>
     <string name="revanced_ryd_compact_layout_summary">Απόκρυψη του διαχωριστικού του κουμπιού «Μου αρέσει».</string>
-    <string name="revanced_ryd_toast_on_connection_error_title">Εμφάνιση μηνύματος αν το API δεν είναι διαθέσιμο</string>
+    <string name="revanced_ryd_toast_on_connection_error_title">Μήνυμα αν το API δεν είναι διαθέσιμο</string>
     <string name="revanced_ryd_toast_on_connection_error_summary">Να εμφανίζεται μήνυμα στο κάτω μέρος της οθόνης αν το Return YouTube Dislike API δεν είναι διαθέσιμο.</string>
     <string name="revanced_ryd_about">Σχετικά με</string>
     <string name="revanced_ryd_attribution_title">ReturnYouTubeDislike.com</string>
@@ -264,7 +264,7 @@
     <string name="revanced_preference_screen_sb_title">SponsorBlock</string>
     <string name="revanced_sb_enabled">Ενεργοποίηση του SponsorBlock</string>
     <string name="revanced_sb_enabled_sum">Το SponsorBlock είναι ένα σύστημα που προέρχεται από το κοινό για παράβλεψη ενοχλητικών τμημάτων σε βίντεο YouTube.</string>
-    <string name="revanced_sb_toast_on_connection_error">Εμφάνιση μηνύματος αν το API δεν είναι διαθέσιμο</string>
+    <string name="revanced_sb_toast_on_connection_error">Μήνυμα αν το API δεν είναι διαθέσιμο</string>
     <string name="revanced_sb_toast_on_connection_error_sum">Να εμφανίζεται μήνυμα στο κάτω μέρος της οθόνης αν το SponsorBlock API δεν είναι διαθέσιμο.</string>
     <string name="revanced_sb_toast_on_skip">Εμφάνιση μηνύματος κατά την αυτόματη παράλειψη</string>
     <string name="revanced_sb_toast_on_skip_sum">Να εμφανίζεται μήνυμα στο κάτω μέρος της οθόνης όταν ένα τμήμα παραλείπεται αυτόματα.</string>
