@@ -31,21 +31,21 @@ ReVanced Extended Patches.
 | `Enable minimized playback` | Enables minimized and background playback. | 18.29.38 ~ 19.20.34 |
 | `Enable open links directly` | Adds an option to skip over redirection URLs in external links. | 18.29.38 ~ 19.20.34 |
 | `Enable tablet mini player` | Adds an option to enable the tablet mini player layout. | 18.29.38 ~ 19.20.34 |
-| `Force hide player buttons background` | Hide the dark background surrounding the video player controls at compile time. | 18.29.38 ~ 19.20.34 |
+| `Force hide player buttons background` | Removes, at compile time, the dark background surrounding the video player controls. | 18.29.38 ~ 19.20.34 |
 | `Fullscreen components` | Adds options to hide or change components related to fullscreen. | 18.29.38 ~ 19.20.34 |
 | `GmsCore support` | Allows patched Google apps to run without root and under a different package name by using GmsCore instead of Google Play Services. | 18.29.38 ~ 19.20.34 |
 | `Hide action buttons` | Adds options to hide action buttons under videos. | 18.29.38 ~ 19.20.34 |
 | `Hide ads` | Adds options to hide ads. | 18.29.38 ~ 19.20.34 |
-| `Hide animated button background` | Hides the background of the pause and play animated buttons in the Shorts player at compile time. | 18.29.38 ~ 19.20.34 |
+| `Hide animated button background` | Removes, at compile time, the background of the animated pause and play buttons in the Shorts player. | 18.29.38 ~ 19.20.34 |
 | `Hide comments component` | Adds options to hide components related to comments. | 18.29.38 ~ 19.20.34 |
-| `Hide double tap overlay filter` | Hides the dark overlay when double-tapping to seek. | 18.29.38 ~ 19.20.34 |
-| `Hide double tap to like animations` | Hide the like animations when double tap the screen in the Shorts player at compile time. | 18.29.38 ~ 19.20.34 |
+| `Hide double tap overlay filter` | Removes, at compile time, the dark overlay that appears when double-tapping to seek. | 18.29.38 ~ 19.20.34 |
+| `Hide double tap to like animations` | Removes, at compile time, the like animations that appear when double-tapping in the Shorts player. | 18.29.38 ~ 19.20.34 |
 | `Hide feed components` | Adds options to hide components related to the feed. | 18.29.38 ~ 19.20.34 |
 | `Hide feed flyout menu` | Adds the ability to hide feed flyout menu components using a custom filter. | 18.29.38 ~ 19.20.34 |
 | `Hide layout components` | Adds options to hide general layout components. | 18.29.38 ~ 19.20.34 |
 | `Hide player buttons` | Adds an option to hide buttons in the video player. | 18.29.38 ~ 19.20.34 |
 | `Hide player flyout menu` | Adds options to hide player flyout menu components. | 18.29.38 ~ 19.20.34 |
-| `Hide shorts dimming` | Hide the dimming effect on the top and bottom of Shorts video at compile time. | 18.29.38 ~ 19.20.34 |
+| `Hide shorts dimming` | Removes, at compile time, the dimming effect at the top and bottom of Shorts videos. | 18.29.38 ~ 19.20.34 |
 | `Layout switch` | Adds an option to spoof the dpi in order to use a tablet or phone layout. | 18.29.38 ~ 19.20.34 |
 | `MaterialYou` | Enables MaterialYou theme for Android 12+. | 18.29.38 ~ 19.20.34 |
 | `Navigation bar components` | Adds options to hide or change components related to the navigation bar. | 18.29.38 ~ 19.20.34 |
@@ -60,7 +60,7 @@ ReVanced Extended Patches.
 | `Shorts outline button` | Applies the outline icon to the action buttons in the Shorts player. | 18.29.38 ~ 19.20.34 |
 | `SponsorBlock` | Adds options to enable and configure SponsorBlock, which can skip undesired video segments, such as sponsored content. | 18.29.38 ~ 19.20.34 |
 | `Spoof app version` | Adds options to spoof the YouTube client version. This can be used to restore old UI elements and features. | 18.29.38 ~ 19.20.34 |
-| `Spoof client` | Adds options to spoofs the client to allow video playback. | 18.29.38 ~ 19.20.34 |
+| `Spoof client` | Adds options to spoof the client to allow video playback. | 18.29.38 ~ 19.20.34 |
 | `Swipe controls` | Adds options to enable and configure volume and brightness swipe controls. | 18.29.38 ~ 19.20.34 |
 | `Theme` | Changes the app's theme to the values specified in options.json. | 18.29.38 ~ 19.20.34 |
 | `Toolbar components` | Adds options to hide or change components located on the toolbar, such as toolbar buttons, search bar, and header. | 18.29.38 ~ 19.20.34 |
@@ -91,10 +91,10 @@ ReVanced Extended Patches.
 | `Hide account components` | Adds options to hide components related to the account menu. | 6.29.58 ~ 7.02.51 |
 | `Hide action bar components` | Adds options to hide action bar components and replace the offline download button with an external download button. | 6.29.58 ~ 7.02.51 |
 | `Hide ads` | Adds options to hide ads. | 6.29.58 ~ 7.02.51 |
-| `Hide double tap overlay filter` | Hides the dark overlay when double-tapping to seek. | 6.29.58 ~ 7.02.51 |
+| `Hide double tap overlay filter` | Removes, at compile time, the dark overlay that appears when double-tapping to seek. | 6.29.58 ~ 7.02.51 |
 | `Hide layout components` | Adds options to hide general layout components. | 6.29.58 ~ 7.02.51 |
-| `Hide overlay filter` | Hides the dark overlay when player flyout menus are open. | 6.29.58 ~ 7.02.51 |
-| `Hide player overlay filter` | Hides the dark overlay when single-tapping the player. | 6.29.58 ~ 7.02.51 |
+| `Hide overlay filter` | Removes, at compile time, the dark overlay that appears when player flyout menus are open. | 6.29.58 ~ 7.02.51 |
+| `Hide player overlay filter` | Removes, at compile time, the dark overlay that appears when single-tapping in the player. | 6.29.58 ~ 7.02.51 |
 | `Navigation bar components` | Adds options to hide or change components related to the navigation bar. | 6.29.58 ~ 7.02.51 |
 | `Player components` | Adds options to hide or change components related to the player. | 6.29.58 ~ 7.02.51 |
 | `Remove viewer discretion dialog` | Adds an option to remove the dialog that appears when opening a video that has been age-restricted by accepting it automatically. This does not bypass the age restriction. | 6.29.58 ~ 7.02.51 |
