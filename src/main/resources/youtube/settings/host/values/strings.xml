@@ -177,7 +177,7 @@ Store"</string>
     <string name="revanced_hide_channel_profile_links_title">Hide channel profile links</string>
     <string name="revanced_hide_channel_profile_links_summary_on">Links at the top of channel profile is hidden.</string>
     <string name="revanced_hide_channel_profile_links_summary_off">Links at the top of channel profile is shown.</string>
-    <string name="revanced_hide_for_you_shelf_title">"Hide 'For You' shelf"</string>
+    <string name="revanced_hide_for_you_shelf_title">"Hide 'For You' shelves"</string>
     <string name="revanced_hide_for_you_shelf_summary_on">"'For You' shelves are hidden."</string>
     <string name="revanced_hide_for_you_shelf_summary_off">"'For You' shelves are shown."</string>
 
@@ -250,9 +250,9 @@ Limitations:
     <string name="revanced_hide_video_by_duration_title">Hide videos based on duration</string>
     <string name="revanced_hide_video_by_duration_summary">Hide videos with shorter than or longer than duration.\n\nKnown issue: It will not hide videos in the player related videos, instead it will hide the timestamp.</string>
     <string name="revanced_hide_video_by_duration_longer_than_title">Longer than duration</string>
-    <string name="revanced_hide_video_by_duration_longer_than_summary">Videos with duration longer than this number will be hidden.</string>
+    <string name="revanced_hide_video_by_duration_longer_than_summary">Videos with durations longer than this number will be hidden.</string>
     <string name="revanced_hide_video_by_duration_shorter_than_title">Shorter than duration</string>
-    <string name="revanced_hide_video_by_duration_shorter_than_summary">Videos with duration shorter than this number will be hidden.</string>
+    <string name="revanced_hide_video_by_duration_shorter_than_summary">Videos with durations shorter than this number will be hidden.</string>
 
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Video filter, PreferenceCategory: View count filter -->
     <string name="revanced_preference_category_view_counts_filter">View count filter</string>
@@ -378,26 +378,26 @@ Some components may not be hidden."</string>
     <string name="revanced_hide_navigation_create_button_title">Hide create button</string>
     <string name="revanced_hide_navigation_create_button_summary_on">Create button is hidden.</string>
     <string name="revanced_hide_navigation_create_button_summary_off">Create button is shown.</string>
-    <string name="revanced_hide_navigation_home_button_title">Hide home button</string>
+    <string name="revanced_hide_navigation_home_button_title">Hide Home button</string>
     <string name="revanced_hide_navigation_home_button_summary_off">Home button is shown.</string>
     <string name="revanced_hide_navigation_home_button_summary_on">Home button is hidden.</string>
-    <string name="revanced_hide_navigation_library_button_title">Hide library button</string>
+    <string name="revanced_hide_navigation_library_button_title">Hide Library button</string>
     <string name="revanced_hide_navigation_library_button_summary_on">Library button is hidden.</string>
     <string name="revanced_hide_navigation_library_button_summary_off">Library button is shown.</string>
     <string name="revanced_hide_navigation_notifications_button_title">Hide notifications button</string>
     <string name="revanced_hide_navigation_notifications_button_summary_on">Notifications button is hidden.</string>
     <string name="revanced_hide_navigation_notifications_button_summary_off">Notifications button is shown.</string>
-    <string name="revanced_hide_navigation_shorts_button_title">Hide shorts button</string>
+    <string name="revanced_hide_navigation_shorts_button_title">Hide Shorts button</string>
     <string name="revanced_hide_navigation_shorts_button_summary_on">Shorts button is hidden.</string>
     <string name="revanced_hide_navigation_shorts_button_summary_off">Shorts button is shown.</string>
-    <string name="revanced_hide_navigation_subscriptions_button_title">Hide subscriptions button</string>
+    <string name="revanced_hide_navigation_subscriptions_button_title">Hide Subscriptions button</string>
     <string name="revanced_hide_navigation_subscriptions_button_summary_on">Subscriptions button is hidden.</string>
     <string name="revanced_hide_navigation_subscriptions_button_summary_off">Subscriptions button is shown.</string>
-    <string name="revanced_hide_navigation_label_title">Hide navigation label</string>
-    <string name="revanced_hide_navigation_label_summary_on">Navigation label is hidden.</string>
-    <string name="revanced_hide_navigation_label_summary_off">Navigation label is shown.</string>
-    <string name="revanced_switch_create_with_notifications_button_title">Switch create with notifications</string>
-    <string name="revanced_switch_create_with_notifications_button_summary">"Swaps the positions of the create button and notification button by spoofing device information.
+    <string name="revanced_hide_navigation_label_title">Hide navigation labels</string>
+    <string name="revanced_hide_navigation_label_summary_on">Navigation labels are hidden.</string>
+    <string name="revanced_hide_navigation_label_summary_off">Navigation labels are shown.</string>
+    <string name="revanced_switch_create_with_notifications_button_title">Swap create and Notifications buttons</string>
+    <string name="revanced_switch_create_with_notifications_button_summary">"Swaps the positions of the create button with the Notifications button by spoofing device information.
 
 • The device may need to be rebooted for a change of this setting to take effect.
 • Disabling this setting loads more ads from the server side.
@@ -426,8 +426,8 @@ Captions"</string>
     <string name="revanced_enable_wide_search_bar_summary_on">Wide search bar is enabled.</string>
     <string name="revanced_enable_wide_search_bar_summary_off">Wide search bar is disabled.</string>
     <string name="revanced_enable_wide_search_bar_with_header_title">Enable wide search bar with header</string>
-    <string name="revanced_enable_wide_search_bar_with_header_summary_on">Wide search bar includes YouTube header.</string>
-    <string name="revanced_enable_wide_search_bar_with_header_summary_off">Wide search bar does not include YouTube header.</string>
+    <string name="revanced_enable_wide_search_bar_with_header_summary_on">Wide search bar does not hide the YouTube header.</string>
+    <string name="revanced_enable_wide_search_bar_with_header_summary_off">Wide search bar hides the YouTube header.</string>
     <string name="revanced_enable_wide_search_bar_in_you_tab_title">Enable wide search bar in You tab</string>
     <string name="revanced_enable_wide_search_bar_in_you_tab_summary">"Enabling this setting will disable the settings button in the You tab.
 
@@ -525,34 +525,34 @@ Autoplay can be changed in YouTube settings:
     <string name="revanced_preference_screen_action_buttons_title">Action buttons</string>
     <string name="revanced_preference_screen_action_buttons_summary">Hide or show action buttons under videos.</string>
 
-    <string name="revanced_hide_clip_button_title">Hide clip button</string>
+    <string name="revanced_hide_clip_button_title">Hide Clip button</string>
     <string name="revanced_hide_clip_button_summary_on">Clip button is hidden.</string>
     <string name="revanced_hide_clip_button_summary_off">Clip button is shown.</string>
-    <string name="revanced_hide_download_button_title">Hide download button</string>
+    <string name="revanced_hide_download_button_title">Hide Download button</string>
     <string name="revanced_hide_download_button_summary_on">Download button is hidden.</string>
     <string name="revanced_hide_download_button_summary_off">Download button is shown.</string>
     <string name="revanced_hide_like_dislike_button_title">Hide like and dislike buttons</string>
     <string name="revanced_hide_like_dislike_button_summary_on">Like and dislike buttons are hidden.</string>
     <string name="revanced_hide_like_dislike_button_summary_off">Like and dislike buttons are shown.</string>
-    <string name="revanced_hide_remix_button_title">Hide remix button</string>
+    <string name="revanced_hide_remix_button_title">Hide Remix button</string>
     <string name="revanced_hide_remix_button_summary_on">Remix button is hidden.</string>
     <string name="revanced_hide_remix_button_summary_off">Remix button is shown.</string>
-    <string name="revanced_hide_report_button_title">Hide report button</string>
+    <string name="revanced_hide_report_button_title">Hide Report button</string>
     <string name="revanced_hide_report_button_summary_on">Report button is hidden.</string>
     <string name="revanced_hide_report_button_summary_off">Report button is shown.</string>
-    <string name="revanced_hide_rewards_button_title">Hide rewards button</string>
+    <string name="revanced_hide_rewards_button_title">Hide Rewards button</string>
     <string name="revanced_hide_rewards_button_summary_on">Rewards button is hidden.</string>
     <string name="revanced_hide_rewards_button_summary_off">Rewards button is shown.</string>
-    <string name="revanced_hide_playlist_button_title">Hide save to playlist button</string>
-    <string name="revanced_hide_playlist_button_summary_on">Save to playlist button is hidden.</string>
-    <string name="revanced_hide_playlist_button_summary_off">Save to playlist button is shown.</string>
-    <string name="revanced_hide_share_button_title">Hide share button</string>
+    <string name="revanced_hide_playlist_button_title">"Hide 'Save to playlist' button"</string>
+    <string name="revanced_hide_playlist_button_summary_on">"'Save to playlist' button is hidden."</string>
+    <string name="revanced_hide_playlist_button_summary_off">"'Save to playlist' button is shown."</string>
+    <string name="revanced_hide_share_button_title">Hide Share button</string>
     <string name="revanced_hide_share_button_summary_on">Share button is hidden.</string>
     <string name="revanced_hide_share_button_summary_off">Share button is shown.</string>
-    <string name="revanced_hide_shop_button_title">Hide shop button</string>
+    <string name="revanced_hide_shop_button_title">Hide Shop button</string>
     <string name="revanced_hide_shop_button_summary_on">Shop button is hidden.</string>
     <string name="revanced_hide_shop_button_summary_off">Shop button is shown.</string>
-    <string name="revanced_hide_thanks_button_title">Hide thanks button</string>
+    <string name="revanced_hide_thanks_button_title">Hide Thanks button</string>
     <string name="revanced_hide_thanks_button_summary_on">Thanks button is hidden.</string>
     <string name="revanced_hide_thanks_button_summary_off">Thanks button is shown.</string>
 
@@ -572,12 +572,12 @@ Autoplay can be changed in YouTube settings:
     <string name="revanced_preference_screen_channel_bar_title">Channel bar</string>
     <string name="revanced_preference_screen_channel_bar_summary">Hide or show components of the channel bar under videos.</string>
 
-    <string name="revanced_hide_join_button_title">Hide join button</string>
+    <string name="revanced_hide_join_button_title">Hide Join button</string>
     <string name="revanced_hide_join_button_summary_on">Join button is hidden.</string>
     <string name="revanced_hide_join_button_summary_off">Join button is shown.</string>
-    <string name="revanced_hide_start_trial_button_title">Hide start trial button</string>
-    <string name="revanced_hide_start_trial_button_summary_on">Start trial button is hidden.</string>
-    <string name="revanced_hide_start_trial_button_summary_off">Start trial button is shown.</string>
+    <string name="revanced_hide_start_trial_button_title">"Hide 'Start trial' button"</string>
+    <string name="revanced_hide_start_trial_button_summary_on">"'Start trial' button is hidden."</string>
+    <string name="revanced_hide_start_trial_button_summary_off">"'Start trial' button is shown."</string>
 
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Comments -->
     <string name="revanced_preference_screen_comments_title">Comments</string>
@@ -586,9 +586,9 @@ Autoplay can be changed in YouTube settings:
     <string name="revanced_hide_channel_guidelines_title">Hide channel guidelines</string>
     <string name="revanced_hide_channel_guidelines_summary_on">Channel guidelines are hidden.</string>
     <string name="revanced_hide_channel_guidelines_summary_off">Channel guidelines are shown.</string>
-    <string name="revanced_hide_comments_by_members_title">Hide comments by members banner</string>
-    <string name="revanced_hide_comments_by_members_summary_on">Comments by members banner is hidden.</string>
-    <string name="revanced_hide_comments_by_members_summary_off">Comments by members banner is shown.</string>
+    <string name="revanced_hide_comments_by_members_title">"Hide 'Comments by members' banner"</string>
+    <string name="revanced_hide_comments_by_members_summary_on">"'Comments by members' banner is hidden."</string>
+    <string name="revanced_hide_comments_by_members_summary_off">"'Comments by members' banner is shown."</string>
     <string name="revanced_hide_comments_section_title">Hide comments section</string>
     <string name="revanced_hide_comments_section_summary_on">Comments section is hidden.</string>
     <string name="revanced_hide_comments_section_summary_off">Comments section is shown.</string>
@@ -601,10 +601,10 @@ Autoplay can be changed in YouTube settings:
     <string name="revanced_hide_preview_comment_type_title">Hide preview comment type</string>
     <string name="revanced_hide_preview_comment_type_on">This does not change the size of the comment section, so it is possible to open the live chat replay in the comment section.</string>
     <string name="revanced_hide_preview_comment_type_off">This changes the size of the comment section, so it is impossible to open a live chat replay in the comment section.</string>
-    <string name="revanced_hide_comment_create_shorts_button_title">Hide create shorts button</string>
+    <string name="revanced_hide_comment_create_shorts_button_title">Hide create Shorts button</string>
     <string name="revanced_hide_comment_create_shorts_button_summary_on">Create Shorts button is hidden.</string>
     <string name="revanced_hide_comment_create_shorts_button_summary_off">Create Shorts button is shown.</string>
-    <string name="revanced_hide_comment_thanks_button_title">Hide thanks button</string>
+    <string name="revanced_hide_comment_thanks_button_title">Hide Thanks button</string>
     <string name="revanced_hide_comment_thanks_button_summary_on">Thanks button is hidden.</string>
     <string name="revanced_hide_comment_thanks_button_summary_off">Thanks button is shown.</string>
     <string name="revanced_hide_comment_timestamp_and_emoji_buttons_title">Hide timestamp and emoji buttons</string>
@@ -922,14 +922,14 @@ Please download %2$s from the website."</string>
     <string name="revanced_expand_video_description_summary_off">Video descriptions are not expanded automatically.</string>
     <string name="revanced_expand_video_description_strings_title">Title in video description panel</string>
     <string name="revanced_expand_video_description_strings_summary">"Enter the title of the video description panel in your language.
-'Expand video description' may not work if the entered string does not match the video description panel title. "</string>
+'Expand video description' may not work if the entered string does not match the video description panel title."</string>
     <string name="revanced_expand_video_description_strings_default_value">Description</string>
 
 
     <!-- PreferenceScreen: Shorts -->
     <string name="revanced_preference_screen_shorts_title">Shorts</string>
 
-    <string name="revanced_change_shorts_repeat_state_title">Change shorts repeat state</string>
+    <string name="revanced_change_shorts_repeat_state_title">Change Shorts repeat state</string>
     <string name="revanced_change_shorts_repeat_state_entry_auto_play">Autoplay</string>
     <string name="revanced_change_shorts_repeat_state_entry_default">Default</string>
     <string name="revanced_change_shorts_repeat_state_entry_pause">Pause</string>
@@ -941,7 +941,7 @@ Please download %2$s from the website."</string>
     <!-- PreferenceScreen: Shorts, PreferenceCategory: Shorts shelf -->
     <string name="revanced_preference_category_shorts_shelf">Shorts shelves</string>
 
-    <string name="revanced_hide_shorts_shelf_title">Hide shorts shelves</string>
+    <string name="revanced_hide_shorts_shelf_title">Hide Shorts shelves</string>
     <string name="revanced_hide_shorts_shelf_summary">"Hides Shorts shelves.
 
 Limitation: Official headers in search results will be hidden."</string>
@@ -962,10 +962,10 @@ Limitation: Official headers in search results will be hidden."</string>
     <string name="revanced_preference_screen_shorts_player_title">Shorts player</string>
     <string name="revanced_preference_screen_shorts_player_summary">Hide or show components in the Shorts player.</string>
 
-    <string name="revanced_hide_shorts_join_button_title">Hide join button</string>
+    <string name="revanced_hide_shorts_join_button_title">Hide Join button</string>
     <string name="revanced_hide_shorts_join_button_summary_on">Join button is hidden.</string>
     <string name="revanced_hide_shorts_join_button_summary_off">Join button is shown.</string>
-    <string name="revanced_hide_shorts_subscribe_button_title">Hide subscribe button</string>
+    <string name="revanced_hide_shorts_subscribe_button_title">Hide Subscribe button</string>
     <string name="revanced_hide_shorts_subscribe_button_summary_on">Subscribe button is hidden.</string>
     <string name="revanced_hide_shorts_subscribe_button_summary_off">Subscribe button is shown.</string>
     <string name="revanced_hide_shorts_paused_overlay_buttons_title">Hide paused overlay buttons</string>
@@ -974,7 +974,7 @@ Limitation: Official headers in search results will be hidden."</string>
     <string name="revanced_hide_shorts_paid_promotion_label_title">Hide paid promotion label</string>
     <string name="revanced_hide_shorts_paid_promotion_label_summary_on">Paid promotion label is hidden.</string>
     <string name="revanced_hide_shorts_paid_promotion_label_summary_off">Paid promotion label is shown.</string>
-    <string name="revanced_hide_shorts_shop_button_title">Hide shop button</string>
+    <string name="revanced_hide_shorts_shop_button_title">Hide Shop button</string>
     <string name="revanced_hide_shorts_shop_button_summary_on">Shop button is hidden.</string>
     <string name="revanced_hide_shorts_shop_button_summary_off">Shop button is shown.</string>
     <string name="revanced_hide_shorts_tagged_products_title">Hide tagged products</string>
@@ -1007,19 +1007,19 @@ Limitation: Official headers in search results will be hidden."</string>
 
     <!-- PreferenceScreen: Shorts, PreferenceCategory: Shorts, PreferenceScreen: Shorts player, PreferenceCategory: Action buttons -->
     <string name="revanced_preference_category_action_buttons">Action buttons</string>
-    <string name="revanced_hide_shorts_like_button_title">Hide like button</string>
+    <string name="revanced_hide_shorts_like_button_title">Hide Like button</string>
     <string name="revanced_hide_shorts_like_button_summary_on">Like button is hidden.</string>
     <string name="revanced_hide_shorts_like_button_summary_off">Like button is shown.</string>
-    <string name="revanced_hide_shorts_dislike_button_title">Hide dislike button</string>
+    <string name="revanced_hide_shorts_dislike_button_title">Hide Dislike button</string>
     <string name="revanced_hide_shorts_dislike_button_summary_on">Dislike button is hidden.</string>
     <string name="revanced_hide_shorts_dislike_button_summary_off">Dislike button is shown.</string>
     <string name="revanced_hide_shorts_comments_button_title">Hide comments button</string>
     <string name="revanced_hide_shorts_comments_button_summary_on">Comments button is hidden.</string>
     <string name="revanced_hide_shorts_comments_button_summary_off">Comments button is shown.</string>
-    <string name="revanced_hide_shorts_remix_button_title">Hide remix button</string>
+    <string name="revanced_hide_shorts_remix_button_title">Hide Remix button</string>
     <string name="revanced_hide_shorts_remix_button_summary_on">Remix button is hidden.</string>
     <string name="revanced_hide_shorts_remix_button_summary_off">Remix button is shown.</string>
-    <string name="revanced_hide_shorts_share_button_title">Hide share button</string>
+    <string name="revanced_hide_shorts_share_button_title">Hide Share button</string>
     <string name="revanced_hide_shorts_share_button_summary_on">Share button is hidden.</string>
     <string name="revanced_hide_shorts_share_button_summary_off">Share button is shown.</string>
     <string name="revanced_hide_shorts_sound_button_title">Hide sound button</string>
@@ -1033,7 +1033,7 @@ Limitation: Official headers in search results will be hidden."</string>
     <string name="revanced_hide_shorts_navigation_bar_title">Hide navigation bar</string>
     <string name="revanced_hide_shorts_navigation_bar_summary_on">Navigation bar is hidden.</string>
     <string name="revanced_hide_shorts_navigation_bar_summary_off">Navigation bar is shown.</string>
-    <string name="revanced_return_shorts_channel_name_title">Return shorts channel name</string>
+    <string name="revanced_return_shorts_channel_name_title">Return Shorts channel name</string>
     <string name="revanced_return_shorts_channel_name_summary_on">Channel name is used.</string>
     <string name="revanced_return_shorts_channel_name_summary_off">Channel handle is used.</string>
 
