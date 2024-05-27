@@ -37,12 +37,12 @@ object OverlayButtonsPatch : BaseResourcePatch(
     private const val DEFAULT_MARGIN = "0.0dip"
     private const val WIDER_MARGIN = "6.0dip"
 
-    private const val DEFAULT_ICON_KEY = "Rounded"
+    private const val DEFAULT_ICON_KEY = "Bold"
 
     // Mapping of icon types to their respective resource folder names
     private val iconTypes = mapOf(
-        "Bold" to "bold",
-        DEFAULT_ICON_KEY to "rounded",
+        DEFAULT_ICON_KEY to "bold",
+        "Rounded" to "rounded",
         "Thin" to "thin"
     )
 
