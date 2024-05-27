@@ -22,8 +22,8 @@
         <item name="android:windowBackground">?ytBaseBackground</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:background">@android:color/transparent</item>
-        <item name="windowMinWidthMajor">@dimen/revanced_edit_text_dialog_min_width_major</item>
-        <item name="windowMinWidthMinor">@dimen/revanced_edit_text_dialog_min_width_minor</item>
+        <item name="android:windowFixedWidthMajor">@dimen/revanced_edit_text_dialog_min_width_major</item>
+        <item name="android:windowFixedWidthMinor">@dimen/revanced_edit_text_dialog_min_width_minor</item>
     </style>
     <style name="revanced_edit_text_dialog_max_width_style" parent="@android:style/ThemeOverlay.Material.Dialog.Alert">
         <item name="android:windowBackground">?ytBaseBackground</item>
