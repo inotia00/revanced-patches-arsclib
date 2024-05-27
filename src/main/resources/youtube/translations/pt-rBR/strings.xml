@@ -4,7 +4,7 @@
     <string name="accessibility_settings_edu_opt_in_text">Ativar os controles de acessibilidade para o reprodutor de vídeo?</string>
     <string name="accessibility_settings_edu_opt_out_text">Seus controles foram modificados porque um serviço de acessibilidade está ativado.</string>
     <!-- Shared PreferenceScreen -->
-    <string name="revanced_extended_settings_title">Configurações RVX</string>
+    <string name="revanced_extended_settings_title">ReVanced Extended</string>
     <!-- Shared Category -->
     <string name="revanced_preference_category_experimental_flag">Sinalizadores experimentais</string>
     <string name="revanced_extended_restart_first_run">Reinicie para carregar o layout normalmente</string>
@@ -213,7 +213,6 @@ Limitações:
 • Alguns componentes da UI podem não ser ocultos.
 • A pesquisa por uma palavra-chave pode não apresentar resultados."</string>
     <string name="revanced_hide_keyword_toast_invalid_common">Palavra-chave inválida. Não pode usar: \'%s\' como um filtro</string>
-    <string name="revanced_hide_keyword_toast_invalid_length">Palavra-chave inválida. \'%1$s\' tem menos de %2$d caracteres</string>
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Video filter, PreferenceCategory: Recommended video -->
     <string name="revanced_preference_category_recommended_video">Vídeo recomendado</string>
     <string name="revanced_hide_recommended_video_title">Ocultar vídeos recomendados</string>
@@ -466,13 +465,10 @@ Nota:
     <string name="revanced_hide_suggested_actions_title">Ocultar ações sugeridas</string>
     <string name="revanced_hide_suggested_actions_summary_on">As ações sugeridas estão ocultas.</string>
     <string name="revanced_hide_suggested_actions_summary_off">As ações sugeridas serão exibidas.</string>
-    <string name="revanced_hide_suggested_video_end_screen_title">Ocultar a tela final de vídeo sugerido</string>
-    <string name="revanced_hide_suggested_video_end_screen_summary">"Esta configuração foi depreciada.
-
-Ao invés disso, use a configuração 'Configurações → Reprodução automática → Reprodução automática do próximo vídeo'."</string>
     <string name="revanced_hide_timed_reactions_title">Ocultar reações temporizadas</string>
     <string name="revanced_hide_timed_reactions_summary_on">As reações temporizadas estão ocultas.</string>
     <string name="revanced_hide_timed_reactions_summary_off">As reações temporizadas são exibidas.</string>
+    <string name="revanced_hide_suggested_video_end_screen_title">Ocultar a tela final de vídeo sugerido</string>
     <string name="revanced_skip_autoplay_countdown_title">Pular contagem regressiva de reprodução automática</string>
     <string name="revanced_skip_autoplay_countdown_summary_on">Se a reprodução automática estiver ativada, o próximo vídeo será reproduzido sem uma contagem regressiva.</string>
     <string name="revanced_skip_autoplay_countdown_summary_off">Se a reprodução automática estiver ativada, o próximo vídeo será reproduzido após a contagem regressiva terminar.</string>
@@ -1230,7 +1226,6 @@ Limitação: Dislikes pode não aparecer no modo incógnito."</string>
     <string name="revanced_sb_new_segment_time_start">Tempo que o segmento começa</string>
     <string name="revanced_sb_new_segment_time_end">Tempo que o segmento termina</string>
     <string name="revanced_sb_new_segment_confirm_title">Os tempos estão corretos?</string>
-    <string name="revanced_sb_new_segment_confirm_content">O segmento dura de %1$02d:%2$02d a %3$02d:%4$02d (%5$d minutos %6$02d segundos)\nEle está pronto para enviar?</string>
     <string name="revanced_sb_new_segment_start_is_before_end">O início deve ser antes do fim.</string>
     <string name="revanced_sb_new_segment_mark_locations_first">Marque dois locais na barra de tempo primeiro.</string>
     <string name="revanced_sb_new_segment_preview_segment_first">Pré-visualizar o segmento e garantir que ele pule sem problemas.</string>
@@ -1296,6 +1291,27 @@ Toque no botão continuar e desative as otimizações da bateria."</string>
     <string name="revanced_sanitize_sharing_links_summary">Remove os parâmetros de consulta de rastreamento das URLs ao compartilhar os links.</string>
     <string name="revanced_disable_quic_protocol_title">Desativar protocolo QUIC</string>
     <string name="revanced_disable_quic_protocol_summary">"Desativar o protocolo QUIC do CronetEngine."</string>
+    <string name="revanced_spoof_client_title">Falsificar cliente</string>
+    <string name="revanced_spoof_client_summary_on">"O cliente é falsificado.
+
+Os efeitos colaterais incluem:
+• Sem vídeo HDR.
+• O histórico de exibição pode não funcionar."</string>
+    <string name="revanced_spoof_client_summary_off">"O cliente não é falsificado. A reprodução de vídeo pode não funcionar."</string>
+    <string name="revanced_spoof_client_use_ios_title">Falsificar cliente para iOS</string>
+    <string name="revanced_spoof_client_use_ios_summary_on">"O cliente está atualmente falsificado para iOS.
+
+Os efeitos colaterais incluem:
+• O menu de velocidade de reprodução está ausente.
+• As transmissões ao vivo não podem ser reproduzidas apenas como áudio.
+• Transmissões ao vivo não disponíveis no Android 8.0.
+• Qualidades de vídeo superiores podem estar faltando."</string>
+    <string name="revanced_spoof_client_use_ios_summary_off">"O cliente está atualmente falsificado para Android VR. (O cliente iOS é usado para clipes ou Shorts)
+
+Os efeitos colaterais incluem:
+• Os gestos de deslizar do reprodutor não funcionam.
+• Os vídeos infantis não são reproduzidos.
+• Os vídeos pausados podem ser retomados aleatoriamente."</string>
     <string name="revanced_spoof_player_parameter_title">Falsificar parâmetro do reprodutor</string>
     <string name="revanced_spoof_player_parameter_summary">"Falsifica os parâmetros do reprodutor para evitar problemas de reprodução.
 

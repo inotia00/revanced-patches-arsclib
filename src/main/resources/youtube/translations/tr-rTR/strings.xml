@@ -206,7 +206,6 @@ Kısıtlamalar:
 • Bazı arayüz bileşenleri gizlenemeyebilir
 • Anahtar kelime aratmak hiçbir sonuç göstermeyebilir"</string>
     <string name="revanced_hide_keyword_toast_invalid_common">Geçersiz anahtar kelime. \'%s\' kullanılamaz</string>
-    <string name="revanced_hide_keyword_toast_invalid_length">Geçersiz anahtar kelime. \'%1$s\', %2$d karakterden az</string>
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Video filter, PreferenceCategory: Recommended video -->
     <string name="revanced_preference_category_recommended_video">Önerilen video</string>
     <string name="revanced_hide_recommended_video_title">Önerilen videoları gizle</string>
@@ -454,16 +453,10 @@ Not: Bu özelliği devre dışı bırakmak, eski arayüzdeki \"Videoyu sarmak i�
     <string name="revanced_hide_suggested_actions_title">Önerilen eylemleri gizle</string>
     <string name="revanced_hide_suggested_actions_summary_on">Gizleniyor</string>
     <string name="revanced_hide_suggested_actions_summary_off">Gizlenmiyor</string>
-    <string name="revanced_hide_suggested_video_end_screen_title">Önerilen video bitiş ekranını devre dışı bırak</string>
-    <string name="revanced_hide_suggested_video_end_screen_summary">"Bu ayar kullanımdan kaldırıldı.
-
-Bunun yerine 'Ayarlar → Otomatik oynat → Sonraki videoyu otomatik oynat' ayarını kullanın.
-
-Not:
-• 'Önerilen video bitiş ekranı' ile ilgili herhangi bir sorun yaşarsanız uygulamayı yeniden başlatmayı deneyin."</string>
     <string name="revanced_hide_timed_reactions_title">Zamanlı tepkileri gizle</string>
     <string name="revanced_hide_timed_reactions_summary_on">Gizleniyor</string>
     <string name="revanced_hide_timed_reactions_summary_off">Gizlenmiyor</string>
+    <string name="revanced_hide_suggested_video_end_screen_title">Önerilen video bitiş ekranını devre dışı bırak</string>
     <string name="revanced_skip_autoplay_countdown_title">Otomatik oynatma geri sayımını atla</string>
     <string name="revanced_skip_autoplay_countdown_summary_on">Otomatik oynatma açıksa sonraki video geri sayım olmadan oynatılır.</string>
     <string name="revanced_skip_autoplay_countdown_summary_off">Otomatik oynatma açıksa sonraki video geri sayım bitmeden oynatılır.</string>
@@ -625,8 +618,8 @@ Sınırlama: Tıklandığında video başlığı kayboluyor."</string>
     <string name="revanced_hide_live_chat_replay_button_summary_on">Canlı sohbeti tekrar oynat düğmesi gizlidir.\n\nCanlı sohbet kapatıldığında tam ekranda görünür.</string>
     <string name="revanced_hide_live_chat_replay_button_summary_off">Canlı sohbeti tekrar oynat düğmesi görünür.\n\nCanlı sohbet kapatıldığında tam ekranda görünür.</string>
     <string name="revanced_hide_related_video_overlay_title">\"Önerilen video\" arayüzünü gizle</string>
-    <string name="revanced_hide_related_video_overlay_summary_on">İlgili video yer paylaşımı gizlenir.</string>
-    <string name="revanced_hide_related_video_overlay_summary_off">İlgili video yer paylaşımı gizlenmiyor.</string>
+    <string name="revanced_hide_related_video_overlay_summary_on">Hızlı işlemler kapsayıcısındaki \'Diğer videolar\' bölümü ve ilgili video katmanı gizlenir.</string>
+    <string name="revanced_hide_related_video_overlay_summary_off">Hızlı işlemler kapsayıcısındaki \'Diğer videolar\' bölümü ve ilgili video katmanı gizlenmiyor.</string>
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Fullscreen, PreferenceCategory: Quick actions -->
     <string name="revanced_preference_category_quick_actions">Hızlı eylemler</string>
     <string name="revanced_hide_quick_actions_title">Zaman çubuğunun altındaki butonları gizle</string>
@@ -1220,7 +1213,6 @@ Bir örnek görmek için buraya dokunun.</string>
     <string name="revanced_sb_new_segment_time_start">Kısmın başlangıcı</string>
     <string name="revanced_sb_new_segment_time_end">Kısmın bitişi</string>
     <string name="revanced_sb_new_segment_confirm_title">Zaman aralığı doğru mu?</string>
-    <string name="revanced_sb_new_segment_confirm_content">Bu kısmın başlangıcı %1$02d.%2$02d, bitişi %3$02d.%4$02d, süresi %5$d dakika %6$02d saniye.\nGönderilmeye hazır mı?</string>
     <string name="revanced_sb_new_segment_start_is_before_end">Başlangıç, bitişten önce olmalıdır</string>
     <string name="revanced_sb_new_segment_mark_locations_first">Öncelikle zaman çizgisinde iki konum işaretleyin.</string>
     <string name="revanced_sb_new_segment_preview_segment_first">Segmenti önizleyin ve sorunsuz bir şekilde atladığından emin olun.</string>
@@ -1286,6 +1278,26 @@ Devam düğmesine dokunun ve pil optimizasyonlarını devre dışı bırakın."<
     <string name="revanced_sanitize_sharing_links_summary">Bağlantıları paylaşırken, tracking query parametrelerini URL\'lerden kaldırır.</string>
     <string name="revanced_disable_quic_protocol_title">QUIC protokolünü devre dışı bırak</string>
     <string name="revanced_disable_quic_protocol_summary">"CronetEngine'in QUIC protokolünü devre dışı bırak"</string>
+    <string name="revanced_spoof_client_title">İstemciyi taklit et</string>
+    <string name="revanced_spoof_client_summary_on">"İstemci taklit ediliyor.
+
+Yan etkiler şunları içerir:
+• HDR video yok.
+• İzleme geçmişi çalışmayabilir."</string>
+    <string name="revanced_spoof_client_summary_off">"İstemci taklit edilmiyor. Video oynatma çalışmayabilir."</string>
+    <string name="revanced_spoof_client_use_ios_title">İstemciyi iOS olarak taklit et</string>
+    <string name="revanced_spoof_client_use_ios_summary_on">"İstemci şu anda iOS'a sahtedir.
+
+Yan etkiler şunları içerir:
+• Oynatma hızı menüsü eksik.
+• Arka planda oynatma canlı yayınlarda çalışmaz.
+• Daha yüksek video kaliteleri eksik olabilir."</string>
+    <string name="revanced_spoof_client_use_ios_summary_off">"İstemci şu anda Android VR'ye sahtedir. (iOS istemcisi Klipler veya Kısa Videolar için kullanılır)
+
+Yan etkiler şunları içerir:
+• Oyuncunun kaydırma hareketleri çalışmıyor.
+• Çocuk videoları oynatılmıyor.
+• Duraklatılan videolar rastgele devam ettirilebilir."</string>
     <string name="revanced_spoof_player_parameter_title">Oynatıcı parametresini taklit et</string>
     <string name="revanced_spoof_player_parameter_summary">"Oynatma sorunlarını önlemek için oynatıcı parametrelerini taklit eder
 

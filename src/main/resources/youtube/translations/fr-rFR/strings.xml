@@ -218,7 +218,6 @@ Limitations :
 
 "</string>
     <string name="revanced_hide_keyword_toast_invalid_common">Mot-clé invalide. Impossible d\'utiliser : \'%s\' comme filtre.</string>
-    <string name="revanced_hide_keyword_toast_invalid_length">Longueur du mot-clé invalide (doit comporter au moins %2$d caractères) : %1$s.</string>
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Video filter, PreferenceCategory: Recommended video -->
     <string name="revanced_preference_category_recommended_video">Vidéo recommandée</string>
     <string name="revanced_hide_recommended_video_title">Vidéos recommandées</string>
@@ -461,13 +460,10 @@ Note :
     <string name="revanced_hide_suggested_actions_title">Actions suggérées</string>
     <string name="revanced_hide_suggested_actions_summary_on">Les actions suggérées sont masquées</string>
     <string name="revanced_hide_suggested_actions_summary_off">Les actions suggérées sont affichées</string>
-    <string name="revanced_hide_suggested_video_end_screen_title">Vidéos suggérées à la fin de vidéo</string>
-    <string name="revanced_hide_suggested_video_end_screen_summary">"Cette option est obsolète.
-
-À la place, utilisez l'option 'Paramètres → Lecture automatique → Lecture automatique de la vidéo suivante'."</string>
     <string name="revanced_hide_timed_reactions_title">Réactions rapides</string>
     <string name="revanced_hide_timed_reactions_summary_on">Les réactions rapides sont masquées</string>
     <string name="revanced_hide_timed_reactions_summary_off">Les réactions rapides sont affichées</string>
+    <string name="revanced_hide_suggested_video_end_screen_title">Vidéos suggérées à la fin de vidéo</string>
     <string name="revanced_skip_autoplay_countdown_title">Ignore le compte à rebours à la fin de vidéo</string>
     <string name="revanced_skip_autoplay_countdown_summary_on">Si la lecture automatique est activée, la vidéo suivante sera lue sans prendre en compte le compte à rebours.</string>
     <string name="revanced_skip_autoplay_countdown_summary_off">Si la lecture automatique est activée, la prochaine vidéo sera lue après la fin du compte à rebours.</string>
@@ -1198,7 +1194,6 @@ Limitation : \"Je n'aime pas\" n'apparaîtras pas en mode incognito."</string>
     <string name="revanced_sb_new_segment_time_start">Définir le début du segment à</string>
     <string name="revanced_sb_new_segment_time_end">Définir la fin du segment à</string>
     <string name="revanced_sb_new_segment_confirm_title">Les temps sont-ils corrects ?</string>
-    <string name="revanced_sb_new_segment_confirm_content">Le segment dure de %1$02d:%2$02d à %3$02d:%4$02d (%5$d minutes et %6$02d secondes)\nEst-il prêt à être soumis ?</string>
     <string name="revanced_sb_new_segment_start_is_before_end">Le début doit précéder la fin.</string>
     <string name="revanced_sb_new_segment_mark_locations_first">Marquez d\'abord deux points sur la barre de progression.</string>
     <string name="revanced_sb_new_segment_preview_segment_first">Prévisualisez le segment et assurez-vous qu\'il passe sans problème.</string>

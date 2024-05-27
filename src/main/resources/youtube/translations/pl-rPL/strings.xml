@@ -211,7 +211,7 @@ Ograniczenia:
 • Niektóre elementy interfejsu użytkownika mogą nie być ukryte.
 • Wyszukiwanie słowa z filtru może nie pokazywać żadnych wyników."</string>
     <string name="revanced_hide_keyword_toast_invalid_common">Nieprawidłowe słowo. Nie można użyć: \'%s\' jako filtru</string>
-    <string name="revanced_hide_keyword_toast_invalid_length">Nieprawidłowe słowo. \'%1$s\' ma mniej niż %2$d znaków</string>
+    <string name="revanced_hide_keyword_toast_invalid_keyword">Nieprawidłowe słowo. \'%1$s\' ma mniej niż %2$d znaków</string>
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Video filter, PreferenceCategory: Recommended video -->
     <string name="revanced_preference_category_recommended_video">Rekomendowane wideo</string>
     <string name="revanced_hide_recommended_video_title">Ukryj rekomendowane wideo</string>
@@ -464,16 +464,10 @@ Uwaga:
     <string name="revanced_hide_suggested_actions_title">Sugerowane działania</string>
     <string name="revanced_hide_suggested_actions_summary_on">Ukryte</string>
     <string name="revanced_hide_suggested_actions_summary_off">Widoczne</string>
-    <string name="revanced_hide_suggested_video_end_screen_title">Sugerowane wideo na końcu filmu</string>
-    <string name="revanced_hide_suggested_video_end_screen_summary">"To ustawienie nie jest już wspierane.
-
-Zamiast tego, użyj ustawienia 'Ustawienia → Automatyczne odtwarzanie → Automatycznie odtwarzaj następne wideo'.
-
-Notka:
-• Jeśli masz jakiekolwiek problemy z 'Rekomdendacjami YouTube na końcu wideo', spróbuj ponownie uruchomić aplikację."</string>
     <string name="revanced_hide_timed_reactions_title">Reakcje czasowe</string>
     <string name="revanced_hide_timed_reactions_summary_on">Ukryte</string>
     <string name="revanced_hide_timed_reactions_summary_off">Widoczne</string>
+    <string name="revanced_hide_suggested_video_end_screen_title">Sugerowane wideo na końcu filmu</string>
     <string name="revanced_skip_autoplay_countdown_title">Pomiń odliczanie do automatycznego odtwarzania</string>
     <string name="revanced_skip_autoplay_countdown_summary_on">Jeżeli automatyczne odtwarzanie jest włączone, następne wideo zostanie odtworzone bez odliczania.</string>
     <string name="revanced_skip_autoplay_countdown_summary_off">Jeżeli automatyczne odtwarzanie jest włączone, następne wideo zostanie odtworzone po ukończeniu odliczania.</string>
@@ -1057,7 +1051,7 @@ Po około 20 sekundach ładowania kodek zostanie zmieniony."</string>
     <string name="revanced_ryd_shorts_summary_on">Widoczna</string>
     <string name="revanced_ryd_shorts_summary_on_disclaimer">"Widoczna
 
-Ograniczenie: Liczba łapek w dół może nie być widoczna w trybie incognito."</string>
+Ograniczenie: Liczba łapek w dół może nie być widoczna, gdy użytkownik nie jest zalogowany, bądź jest w trybie incognito."</string>
     <string name="revanced_ryd_shorts_summary_off">Niewidoczna</string>
     <string name="revanced_ryd_dislike_percentage_title">Łapki w dół wyświetlane jako procent</string>
     <string name="revanced_ryd_dislike_percentage_summary_on">Tak</string>
@@ -1230,7 +1224,7 @@ Ograniczenie: Liczba łapek w dół może nie być widoczna w trybie incognito."
     <string name="revanced_sb_new_segment_time_start">Czas rozpoczęcia segmentu</string>
     <string name="revanced_sb_new_segment_time_end">Czas zakończenia segmentu</string>
     <string name="revanced_sb_new_segment_confirm_title">Czy te czasy są poprawne?</string>
-    <string name="revanced_sb_new_segment_confirm_content">Segment trwa od %1$02d:%2$02d do %3$02d:%4$02d (%5$d minut i %6$02d sekund)\nCzy jest gotowy do wysłania?</string>
+    <string name="revanced_sb_new_segment_confirm_contents">Segment jest od \n\n%1$s\ndo\n%2$s\n\n(%3$s)\n\nGotowe do przesłania?</string>
     <string name="revanced_sb_new_segment_start_is_before_end">Początek musi być przed końcem.</string>
     <string name="revanced_sb_new_segment_mark_locations_first">Najpierw zaznacz dwa miejsca na pasku wideo.</string>
     <string name="revanced_sb_new_segment_preview_segment_first">Zobacz i dopilnuj, aby segment pomijał się płynnie.</string>
@@ -1296,6 +1290,27 @@ Kontynuuj i wyłącz optymalizację baterii."</string>
     <string name="revanced_sanitize_sharing_links_summary">Usuwa śledzące parametry z adresów URL podczas udostępniania linków</string>
     <string name="revanced_disable_quic_protocol_title">Wyłącz protokół QUIC</string>
     <string name="revanced_disable_quic_protocol_summary">"Wyłącz protokół QUIC w CronetEngine"</string>
+    <string name="revanced_spoof_client_title">Oszukaj klienta</string>
+    <string name="revanced_spoof_client_summary_on">"Klient jest oszukiwany.
+
+Efekty uboczne:
+• Brak wideo w HDR
+• Historia oglądania może nie działać"</string>
+    <string name="revanced_spoof_client_summary_off">"Klient nie jest oszukiwany. Odtwarzanie wideo może nie działać."</string>
+    <string name="revanced_spoof_client_use_ios_title">Oszukaj klienta do wersji iOS</string>
+    <string name="revanced_spoof_client_use_ios_summary_on">"Klient jest obecnie oszukiwany do wersji iOS.
+
+Efekty uboczne:
+• Brakuje menu prędkości odtwarzania
+• Transmisje na żywo nie działają w trybie odtwarzania jedynie dźwięku
+• Transmisje na żywo są niedostępne na Androidzie 8.0
+• Może brakować wyższych jakości wideo"</string>
+    <string name="revanced_spoof_client_use_ios_summary_off">"Klient jest obecnie oszukiwany do wersji Android VR (klient iOS jest używany do klipów oraz shortsów).
+
+Efekty uboczne:
+• Gesty w odtwarzaczu nie działają
+• Wideo dla dzieci nie odtwarzają się
+• Spauzowane filmy mogą się losowo wznawiać"</string>
     <string name="revanced_spoof_player_parameter_title">Oszukaj parametry odtwarzacza</string>
     <string name="revanced_spoof_player_parameter_summary">"Oszukuje parametry odtwarzacza, aby uniknąć problemów z odtwarzaniem.
 

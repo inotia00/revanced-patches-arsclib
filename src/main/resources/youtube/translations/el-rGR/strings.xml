@@ -211,7 +211,7 @@ Playlists
 • Κάποια στοιχεία UI ενδέχεται να μην κρύβονται.
 • Η αναζήτηση για μια λέξη-κλειδί ενδέχεται να μην εμφανίζει κανένα αποτέλεσμα."</string>
     <string name="revanced_hide_keyword_toast_invalid_common">Μη έγκυρη λέξη-κλειδί. Αδυναμία χρήσης: \'%s\' ως φίλτρο</string>
-    <string name="revanced_hide_keyword_toast_invalid_length">Μη έγκυρη λέξη-κλειδί. \'%1$s\' είναι μικρότερο από %2$d χαρακτήρες</string>
+    <string name="revanced_hide_keyword_toast_invalid_keyword">Μη έγκυρη λέξη-κλειδί. \'%1$s\' είναι μικρότερο από %2$d χαρακτήρες</string>
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Video filter, PreferenceCategory: Recommended video -->
     <string name="revanced_preference_category_recommended_video">Προτεινόμενο βίντεο</string>
     <string name="revanced_hide_recommended_video_title">Προτεινόμενα βίντεο</string>
@@ -463,14 +463,15 @@ Playlists
     <string name="revanced_hide_suggested_actions_title">Προτεινόμενες ενέργειες</string>
     <string name="revanced_hide_suggested_actions_summary_on">Κρυμμένες.</string>
     <string name="revanced_hide_suggested_actions_summary_off">Εμφανίζονται.</string>
-    <string name="revanced_hide_suggested_video_end_screen_title">Τελική οθόνη προτεινόμενου βίντεο</string>
-    <string name="revanced_hide_suggested_video_end_screen_summary">"Αυτή η ρύθμιση έχει καταργηθεί. Αντ' αυτού, χρησιμοποιήστε τη ρύθμιση 'Ρυθμίσεις → Αυτόματη αναπαραγωγή → Αυτόματη αναπαραγωγή επόμενου βίντεο'.
-
-Σημείωση:
-• Αν έχετε οποιοδήποτε θέμα με την τελική οθόνη προτεινόμενου βίντεο, προσπαθήστε να επανεκκινήσετε την εφαρμογή."</string>
     <string name="revanced_hide_timed_reactions_title">Χρονισμένες αντιδράσεις</string>
     <string name="revanced_hide_timed_reactions_summary_on">Κρυμμένες.</string>
     <string name="revanced_hide_timed_reactions_summary_off">Εμφανίζονται.</string>
+    <string name="revanced_hide_suggested_video_end_screen_title">Τελική οθόνη προτεινόμενου βίντεο</string>
+    <string name="revanced_hide_suggested_video_end_screen_summary_on">"Κρυμμένη όταν η αυτόματη αναπαραγωγή είναι απενεργοποιημένη.
+
+Η αυτόματη αναπαραγωγή μπορεί να αλλαχτεί στις ρυθμίσεις YouTube:
+'Ρυθμίσεις → Αυτόματη αναπαραγωγή → Αυτόματη αναπαραγωγή επόμενου βίντεο'"</string>
+    <string name="revanced_hide_suggested_video_end_screen_summary_off">Εμφανίζεται.</string>
     <string name="revanced_skip_autoplay_countdown_title">Άμεση αυτόματη αναπαραγωγή</string>
     <string name="revanced_skip_autoplay_countdown_summary_on">Αν είναι ενεργοποιημένη η αυτόματη αναπαραγωγή, το επόμενο βίντεο παίζει χωρίς αντίστροφη μέτρηση.</string>
     <string name="revanced_skip_autoplay_countdown_summary_off">Αν είναι ενεργοποιημένη η αυτόματη αναπαραγωγή, το επόμενο βίντεο παίζει αφού τελειώσει η αντίστροφη μέτρηση.</string>
@@ -1058,7 +1059,7 @@ Playlists
     <string name="revanced_ryd_shorts_summary_on">Τα dislike εμφανίζονται στα Shorts. %s</string>
     <string name="revanced_ryd_shorts_summary_on_disclaimer">"Τα «Δεν μου αρέσει» εμφανίζονται στα Shorts.
 
-Περιορισμός: Τα «Δεν μου αρέσει» ενδέχεται να μην εμφανίζονται σε λειτουργία ανώνυμης περιήγησης."</string>
+Περιορισμός: Τα «Δεν μου αρέσει» ενδέχεται να μην εμφανίζονται σε λειτουργία ανώνυμης περιήγησης ή αν δεν έχετε συνδεθεί στον λογαριασμό σας."</string>
     <string name="revanced_ryd_shorts_summary_off">Τα dislike δεν εμφανίζονται στα Shorts.</string>
     <string name="revanced_ryd_dislike_percentage_title">Εμφάνιση ως ποσοστό</string>
     <string name="revanced_ryd_dislike_percentage_summary_on">Τα «Δεν μου αρέσει» εμφανίζονται ως ποσοστό.</string>
@@ -1231,7 +1232,7 @@ Playlists
     <string name="revanced_sb_new_segment_time_start">Χρόνος έναρξης του τμήματος</string>
     <string name="revanced_sb_new_segment_time_end">Χρόνος λήξης του τμήματος</string>
     <string name="revanced_sb_new_segment_confirm_title">Είναι σωστοί οι χρόνοι;</string>
-    <string name="revanced_sb_new_segment_confirm_content">Το τμήμα έχει διάρκεια από %1$02d:%2$02d έως %3$02d:%4$02d (%5$d λεπτά και %6$02d δευτερόλεπτα)\nΕίναι έτοιμο για υποβολή;</string>
+    <string name="revanced_sb_new_segment_confirm_contents">Το τμήμα είναι από\n\n%1$s\nσε\n%2$s\n\n(%3$s)\n\nΈτοιμο για υποβολή;</string>
     <string name="revanced_sb_new_segment_start_is_before_end">Η αρχή πρέπει να είναι πριν το τέλος.</string>
     <string name="revanced_sb_new_segment_mark_locations_first">Σημειώστε δύο σημεία στην γραμμή προόδου πρώτα.</string>
     <string name="revanced_sb_new_segment_preview_segment_first">Κάντε προεπισκόπηση του τμήματος, και σιγουρευτείτε ότι παραλείπεται σωστά.</string>
@@ -1299,6 +1300,21 @@ Playlists
     <string name="revanced_disable_quic_protocol_summary">"Απενεργοποίηση πρωτοκόλλου QUIC του CronetEngine.
 
 Αυτή η λειτουργία αποτρέπει την συμπίεση και αποσυμπίεση των βίντεο κατά την αναπαραγωγή, τα οποία μπορούν να προκαλέσουν κολλήματα, ενδέχεται όμως να χρησιμοποιηθούν περισσότερα δεδομένα."</string>
+    <string name="revanced_spoof_client_title">Παραποίηση προγράμματος πελάτη</string>
+    <string name="revanced_spoof_client_summary_on">"Το πρόγραμμα πελάτη παραποιείται.
+
+• Η ποιότητα HDR δεν είναι διαθέσιμη."</string>
+    <string name="revanced_spoof_client_summary_off">"Το πρόγραμμα πελάτη δεν παραποιείται. Η αναπαραγωγή βίντεο ενδέχεται να μη λειτουργεί."</string>
+    <string name="revanced_spoof_client_use_ios_title">Παραποίηση σε iOS</string>
+    <string name="revanced_spoof_client_use_ios_summary_on">"Το πρόγραμμα πελάτη παραποιείται σε έκδοση iOS.
+• Το μενού ταχύτητας αναπαραγωγής λείπει.
+• Το ιστορικό αναπαραγωγής δεν λειτουργεί σε λογαριασμούς επωνυμίας (Brand).
+• Η αναπαραγωγή παρασκηνίου δεν λειτουργεί για ζωντανές μεταδόσεις σε λειτουργία ήχου μόνο.
+• Οι ζωντανές μεταδόσεις δεν παίζουν σε έκδοση Android 8.0."</string>
+    <string name="revanced_spoof_client_use_ios_summary_off">"Το πρόγραμμα πελάτη παραποιείται σε έκδοση Android VR. (η έκδοση iOS χρησιμοποιείται για Κλιπ ή Shorts)
+• Οι χειρονομίες σάρωσης αναπαραγωγέα του YouTube δε λειτουργούν.
+• Τα βίντεο YouTube Kids δεν αναπαράγονται.
+• Tα βίντεο σε παύση μπορεί να συνεχίσουν να παίζουν από μόνα τους."</string>
     <string name="revanced_spoof_player_parameter_title">Τροποποίηση παραμέτρου αναπαραγωγέα</string>
     <string name="revanced_spoof_player_parameter_summary">"Τροποποίηση παραμέτρων του αναπαραγωγέα για την αποφυγή προβλημάτων αναπαραγωγής.
 

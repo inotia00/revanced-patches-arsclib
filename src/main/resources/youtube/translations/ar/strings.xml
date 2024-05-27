@@ -135,13 +135,13 @@
     <string name="revanced_preference_screen_category_bar_summary">إخفاء شريط الفئة أو عرضه في الموجز والبحث ومقاطع الفيديو ذات الصلة.</string>
     <string name="revanced_hide_category_bar_in_feed_title">إخفاء في الموجز</string>
     <string name="revanced_hide_category_bar_in_feed_summary_on">مخفي في الموجز.</string>
-    <string name="revanced_hide_category_bar_in_feed_summary_off">يعرض في الموجز.</string>
+    <string name="revanced_hide_category_bar_in_feed_summary_off">يُعرض في الموجز.</string>
     <string name="revanced_hide_category_bar_in_related_videos_title">إخفاء في مقاطع الفيديو ذات الصلة</string>
     <string name="revanced_hide_category_bar_in_related_videos_summary_on">مخفي في مقاطع الفيديو ذات الصلة.</string>
-    <string name="revanced_hide_category_bar_in_related_videos_summary_off">يعرض في مقاطع الفيديو ذات الصلة.</string>
+    <string name="revanced_hide_category_bar_in_related_videos_summary_off">يُعرض في مقاطع الفيديو ذات الصلة.</string>
     <string name="revanced_hide_category_bar_in_search_title">إخفاء في نتائج البحث</string>
     <string name="revanced_hide_category_bar_in_search_summary_on">مخفي في نتائج البحث.</string>
-    <string name="revanced_hide_category_bar_in_search_summary_off">يعرض في نتائج البحث.</string>
+    <string name="revanced_hide_category_bar_in_search_summary_off">يُعرض في نتائج البحث.</string>
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Channel profile -->
     <string name="revanced_preference_screen_channel_profile_title">ملف القناة</string>
     <string name="revanced_preference_screen_channel_profile_summary">إخفاء أو عرض المكونات في الملف الشخصي للقناة.</string>
@@ -213,7 +213,7 @@
  • قد لا تكون بعض مكونات واجهة المستخدم مخفية.
  • قد لا يؤدي البحث عن كلمة رئيسية إلى ظهور أية نتائج."</string>
     <string name="revanced_hide_keyword_toast_invalid_common">الكلمة الرئيسية غير صالحة. لا يمكن استخدام: \'%s\' كعامل تصفية</string>
-    <string name="revanced_hide_keyword_toast_invalid_length">الكلمة الرئيسية غير صالحة. \'%1$s\' أقل من %2$d حرفًا</string>
+    <string name="revanced_hide_keyword_toast_invalid_keyword">الكلمة الرئيسية غير صالحة. \'%1$s\' أقل من %2$d حرفًا</string>
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Video filter, PreferenceCategory: Recommended video -->
     <string name="revanced_preference_category_recommended_video">الفيديو الموصى به</string>
     <string name="revanced_hide_recommended_video_title">إخفاء الفيديوهات الموصى بها</string>
@@ -465,16 +465,10 @@
     <string name="revanced_hide_suggested_actions_title">إخفاء الإجراءات المقترحة</string>
     <string name="revanced_hide_suggested_actions_summary_on">تم إخفاء الإجراءات المقترحة.</string>
     <string name="revanced_hide_suggested_actions_summary_off">يتم عرض الإجراءات المقترحة.</string>
-    <string name="revanced_hide_suggested_video_end_screen_title">إخفاء شاشة نهاية الفيديو المقترح</string>
-    <string name="revanced_hide_suggested_video_end_screen_summary">"لقد تم إهمال هذا الإعداد.
-
- بدلاً من ذلك، استخدم الإعداد \"الإعدادات ← التشغيل التلقائي ← التشغيل التلقائي للفيديو التالي\".
-
-ملاحظة:
-• إذا كانت لديك أية مشكلات تتعلق بـ \"شاشة نهاية الفيديو المقترحة\"، فحاول إعادة تشغيل التطبيق."</string>
     <string name="revanced_hide_timed_reactions_title">إخفاء ردود الفعل المؤقتة</string>
     <string name="revanced_hide_timed_reactions_summary_on">تم إخفاء ردود الفعل المؤقتة.</string>
     <string name="revanced_hide_timed_reactions_summary_off">يتم عرض ردود الفعل المؤقتة.</string>
+    <string name="revanced_hide_suggested_video_end_screen_title">إخفاء شاشة نهاية الفيديو المقترح</string>
     <string name="revanced_skip_autoplay_countdown_title">تخطي العد التنازلي للتشغيل التلقائي</string>
     <string name="revanced_skip_autoplay_countdown_summary_on">إذا تم تمكين التشغيل التلقائي، فسيتم تشغيل الفيديو التالي على الفور.</string>
     <string name="revanced_skip_autoplay_countdown_summary_off">إذا تم تمكين التشغيل التلقائي، فسيتم تشغيل الفيديو التالي بعد انتهاء العد التنازلي.</string>
@@ -632,6 +626,9 @@
     <string name="revanced_hide_autoplay_preview_title">إخفاء حاوية عرض التشغيل التلقائي</string>
     <string name="revanced_hide_autoplay_preview_summary_on">تم إخفاء حاوية عرض التشغيل التلقائي.</string>
     <string name="revanced_hide_autoplay_preview_summary_off">يتم عرض حاوية عرض التشغيل التلقائي.</string>
+    <string name="revanced_hide_live_chat_replay_button_title">إخفاء زر إعادة عرض المحادثات المباشرة</string>
+    <string name="revanced_hide_live_chat_replay_button_summary_on">تم إخفاء زر إعادة تشغيل المحادثات المباشرة.\n\nيظهر في وضع ملء الشاشة عند إغلاق المحادثات المباشرة.</string>
+    <string name="revanced_hide_live_chat_replay_button_summary_off">يتم عرض زر إعادة تشغيل المحادثات المباشرة.\n\nيظهر في وضع ملء الشاشة عند إغلاق المحادثات المباشرة.</string>
     <string name="revanced_hide_related_video_overlay_title">إخفاء تراكب الفيديو ذي الصلة</string>
     <string name="revanced_hide_related_video_overlay_summary_on">تم إخفاء قسم \'المزيد من مقاطع الفيديو\' في حاوية الإجراءات السريعة وتراكب الفيديو ذي الصلة.</string>
     <string name="revanced_hide_related_video_overlay_summary_off">يتم عرض قسم \'المزيد من مقاطع الفيديو\' في حاوية الإجراءات السريعة وتراكب الفيديو ذي الصلة.</string>
@@ -874,10 +871,10 @@
     <string name="revanced_hide_shorts_shelf_subscriptions_summary_off">يُعرض في موجز الاشتراكات.</string>
     <string name="revanced_hide_shorts_shelf_search_title">إخفاء في نتائج البحث</string>
     <string name="revanced_hide_shorts_shelf_search_summary_on">مخفي في نتائج البحث.</string>
-    <string name="revanced_hide_shorts_shelf_search_summary_off">يعرض في نتائج البحث.</string>
+    <string name="revanced_hide_shorts_shelf_search_summary_off">يُعرض في نتائج البحث.</string>
     <string name="revanced_hide_shorts_shelf_history_title">إخفاء في سجل المشاهدة</string>
     <string name="revanced_hide_shorts_shelf_history_summary_on">مخفي في سجل المشاهدة.</string>
-    <string name="revanced_hide_shorts_shelf_history_summary_off">يعرض في سجل المشاهدة.</string>
+    <string name="revanced_hide_shorts_shelf_history_summary_off">يُعرض في سجل المشاهدة.</string>
     <!-- PreferenceScreen: Shorts, PreferenceCategory: Shorts, PreferenceScreen: Shorts player -->
     <string name="revanced_preference_screen_shorts_player_title">مُشَغِل Shorts</string>
     <string name="revanced_preference_screen_shorts_player_summary">إخفاء أو عرض المكونات في مشغل Shorts.</string>
@@ -1062,7 +1059,7 @@
     <string name="revanced_ryd_shorts_summary_on">يتم عرض لم يعجني في مقاطع Shorts.</string>
     <string name="revanced_ryd_shorts_summary_on_disclaimer">"إبداءات لم يعجبني التي تظهر على فيديوهات Shorts.
 
-التقييد: قد لا تظهر إبداءات لم يعجبني في وضع التصفح المتخفي."</string>
+التقييد: قد لا تظهر إبداءات لم يعجبني إذا لم يقم المستخدم بتسجيل الدخول أو في وضع التصفح المتخفي."</string>
     <string name="revanced_ryd_shorts_summary_off">تم إخفاء لم يعجني في مقاطع Shorts.</string>
     <string name="revanced_ryd_dislike_percentage_title">لم يعجبني كــ نسبة مئوية</string>
     <string name="revanced_ryd_dislike_percentage_summary_on">يعرض عدد لم يعجبني كـ نسبة مئوية.</string>
@@ -1235,7 +1232,7 @@
     <string name="revanced_sb_new_segment_time_start">الوقت الذي يبدأ عنده المقطع</string>
     <string name="revanced_sb_new_segment_time_end">الوقت الذي ينتهي عنده المقطع</string>
     <string name="revanced_sb_new_segment_confirm_title">هل الأوقات صحيحة؟</string>
-    <string name="revanced_sb_new_segment_confirm_content">المقطع يدوم من %1$02d:%2$02d إلى %3$02d:%4$02d (%5$d دقيقة %6$02d ثانية)\nهل هو جاهز للإرسال؟</string>
+    <string name="revanced_sb_new_segment_confirm_contents">المقطع من\n\n%1$s\nإلى\n%2$s\n\n(%3$s)\n\nجاهز للإرسال؟</string>
     <string name="revanced_sb_new_segment_start_is_before_end">يجب أن تكون البداية قبل النهاية.</string>
     <string name="revanced_sb_new_segment_mark_locations_first">ضع علامة على موقعين في شريط الوقت أولًا.</string>
     <string name="revanced_sb_new_segment_preview_segment_first">معاينة المقطع، والتأكد من تخطيه بسلاسة.</string>
@@ -1309,13 +1306,14 @@
 • قد لا يعمل سجل المشاهدة."</string>
     <string name="revanced_spoof_client_summary_off">"لا تتم محاكاة العميل. قد لا يعمل تشغيل الفيديو."</string>
     <string name="revanced_spoof_client_use_ios_title">Spoof Client to iOS</string>
-    <string name="revanced_spoof_client_use_ios_summary_on">"تتم محاكاة العميل إلى نظام التشغيل iOS.
+    <string name="revanced_spoof_client_use_ios_summary_on">"تتم حاليًا محاكاة العميل إلى iOS.
 
 تشمل الآثار الجانبية ما يلي:
 • قائمة سرعة التشغيل مفقودة.
-• تشغيل الخلفية لا يعمل على البث المباشر.
+• لا يمكن تشغيل البث المباشر كصوت فقط.
+• البث المباشر غير متوفر على Android 8.0.
 • قد تكون جودة الفيديو الأعلى مفقودة."</string>
-    <string name="revanced_spoof_client_use_ios_summary_off">"تتم محاكاة العميل إلى Android VR. (يتم استخدام عميل iOS للمقاطع أو Shorts)
+    <string name="revanced_spoof_client_use_ios_summary_off">"تتم حاليًا محاكاة العميل إلى Android VR. (يتم استخدام عميل iOS للمقاطع أو Shorts)
 
 تشمل الآثار الجانبية ما يلي:
 • إيماءات التمرير الخاصة بالمشغل لا تعمل.
