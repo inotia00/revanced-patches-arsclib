@@ -508,16 +508,15 @@ Note:
     <string name="revanced_hide_suggested_actions_title">Hide suggested actions</string>
     <string name="revanced_hide_suggested_actions_summary_on">Suggested actions hidden.</string>
     <string name="revanced_hide_suggested_actions_summary_off">Suggested actions shown.</string>
-    <string name="revanced_hide_suggested_video_end_screen_title">Hide suggested video end screen</string>
-    <string name="revanced_hide_suggested_video_end_screen_summary">"This setting has been deprecated.
-
-Instead, use the 'Settings → Autoplay → Autoplay next video' setting.
-
-Note:
-• If you have any issues with 'Suggested video end screen', try restarting the app."</string>
     <string name="revanced_hide_timed_reactions_title">Hide timed reactions</string>
     <string name="revanced_hide_timed_reactions_summary_on">Timed reactions are hidden.</string>
     <string name="revanced_hide_timed_reactions_summary_off">Timed reactions are shown.</string>
+    <string name="revanced_hide_suggested_video_end_screen_title">Hide suggested video end screen</string>
+    <string name="revanced_hide_suggested_video_end_screen_summary_on">"Suggested video end screen is hidden when autoplay is turned off.
+
+Autoplay can be changed in YouTube settings:
+'Settings → Autoplay → Autoplay next video'"</string>
+    <string name="revanced_hide_suggested_video_end_screen_summary_off">Suggested video end screen is shown.</string>
     <string name="revanced_skip_autoplay_countdown_title">Skip autoplay countdown</string>
     <string name="revanced_skip_autoplay_countdown_summary_on">If autoplay is enabled, the next video will play immediately.</string>
     <string name="revanced_skip_autoplay_countdown_summary_off">If autoplay is enabled, the next video will play after the countdown ends.</string>
