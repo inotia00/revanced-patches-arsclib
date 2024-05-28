@@ -543,9 +543,9 @@ Autoplay can be changed in YouTube settings:
     <string name="revanced_hide_rewards_button_title">Hide Rewards button</string>
     <string name="revanced_hide_rewards_button_summary_on">Rewards button is hidden.</string>
     <string name="revanced_hide_rewards_button_summary_off">Rewards button is shown.</string>
-    <string name="revanced_hide_playlist_button_title">"Hide 'Save to playlist' button"</string>
-    <string name="revanced_hide_playlist_button_summary_on">"'Save to playlist' button is hidden."</string>
-    <string name="revanced_hide_playlist_button_summary_off">"'Save to playlist' button is shown."</string>
+    <string name="revanced_hide_playlist_button_title">Hide Save button</string>
+    <string name="revanced_hide_playlist_button_summary_on">Save button is hidden.</string>
+    <string name="revanced_hide_playlist_button_summary_off">Save button is shown.</string>
     <string name="revanced_hide_share_button_title">Hide Share button</string>
     <string name="revanced_hide_share_button_summary_on">Share button is hidden.</string>
     <string name="revanced_hide_share_button_summary_off">Share button is shown.</string>
