@@ -23,6 +23,7 @@ object TranslationsPatch : BaseResourcePatch(
                 "el-rGR",
                 "es-rES",
                 "fr-rFR",
+                "hu-rHU",
                 "id-rID",
                 "in",
                 "it-rIT",
