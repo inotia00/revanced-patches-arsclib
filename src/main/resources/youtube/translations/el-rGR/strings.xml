@@ -467,7 +467,8 @@ Playlists
     <string name="revanced_hide_timed_reactions_summary_on">Κρυμμένες.</string>
     <string name="revanced_hide_timed_reactions_summary_off">Εμφανίζονται.</string>
     <string name="revanced_hide_suggested_video_end_screen_title">Τελική οθόνη προτεινόμενου βίντεο</string>
-    <string name="revanced_hide_suggested_video_end_screen_summary_on">"Κρυμμένη όταν η αυτόματη αναπαραγωγή είναι απενεργοποιημένη.
+    <string name="revanced_hide_suggested_video_end_screen_summary_on">"Κρυμμένη.
+Ισχύει μόνο όταν η αυτόματη αναπαραγωγή είναι απενεργοποιημένη.
 
 Η αυτόματη αναπαραγωγή μπορεί να αλλαχτεί στις ρυθμίσεις YouTube:
 'Ρυθμίσεις → Αυτόματη αναπαραγωγή → Αυτόματη αναπαραγωγή επόμενου βίντεο'"</string>
@@ -533,9 +534,9 @@ Playlists
     <string name="revanced_hide_channel_guidelines_title">Οδηγίες κοινότητας</string>
     <string name="revanced_hide_channel_guidelines_summary_on">Κρυμμένες.</string>
     <string name="revanced_hide_channel_guidelines_summary_off">Εμφανίζονται.</string>
-    <string name="revanced_hide_comments_by_members_title">Ετικέτα «Σχόλια από μέλη»</string>
-    <string name="revanced_hide_comments_by_members_summary_on">Κρυμμένη.</string>
-    <string name="revanced_hide_comments_by_members_summary_off">Εμφανίζεται.</string>
+    <string name="revanced_hide_comments_by_members_title">"Ετικέτα «Σχόλια από μέλη»"</string>
+    <string name="revanced_hide_comments_by_members_summary_on">"Κρυμμένη."</string>
+    <string name="revanced_hide_comments_by_members_summary_off">"Εμφανίζεται."</string>
     <string name="revanced_hide_comments_section_title">Ενότητα σχολίων</string>
     <string name="revanced_hide_comments_section_summary_on">Κρυμμένη.</string>
     <string name="revanced_hide_comments_section_summary_off">Εμφανίζεται.</string>
@@ -607,9 +608,9 @@ Playlists
     <string name="revanced_hide_player_flyout_menu_premium_controls_title">Μενού «Έλεγχοι Premium»</string>
     <string name="revanced_hide_player_flyout_menu_premium_controls_summary_on">Κρυμμένο.</string>
     <string name="revanced_hide_player_flyout_menu_premium_controls_summary_off">Εμφανίζεται.</string>
+    <string name="revanced_hide_player_flyout_menu_stable_volume_title">Μενού «Σταθερή ένταση»</string>
     <string name="revanced_hide_player_flyout_menu_stable_volume_summary_off">Εμφανίζεται.</string>
     <string name="revanced_hide_player_flyout_menu_stable_volume_summary_on">Κρυμμένο.</string>
-    <string name="revanced_hide_player_flyout_menu_stable_volume_title">Μενού «Σταθερή ένταση»</string>
     <string name="revanced_hide_player_flyout_menu_stats_for_nerds_title">Μενού «Στατιστικά για σπασίκλες»</string>
     <string name="revanced_hide_player_flyout_menu_stats_for_nerds_summary_on">Κρυμμένο.</string>
     <string name="revanced_hide_player_flyout_menu_stats_for_nerds_summary_off">Εμφανίζεται.</string>
@@ -1300,21 +1301,6 @@ Playlists
     <string name="revanced_disable_quic_protocol_summary">"Απενεργοποίηση πρωτοκόλλου QUIC του CronetEngine.
 
 Αυτή η λειτουργία αποτρέπει την συμπίεση και αποσυμπίεση των βίντεο κατά την αναπαραγωγή, τα οποία μπορούν να προκαλέσουν κολλήματα, ενδέχεται όμως να χρησιμοποιηθούν περισσότερα δεδομένα."</string>
-    <string name="revanced_spoof_client_title">Παραποίηση προγράμματος πελάτη</string>
-    <string name="revanced_spoof_client_summary_on">"Το πρόγραμμα πελάτη παραποιείται.
-
-• Η ποιότητα HDR δεν είναι διαθέσιμη."</string>
-    <string name="revanced_spoof_client_summary_off">"Το πρόγραμμα πελάτη δεν παραποιείται. Η αναπαραγωγή βίντεο ενδέχεται να μη λειτουργεί."</string>
-    <string name="revanced_spoof_client_use_ios_title">Παραποίηση σε iOS</string>
-    <string name="revanced_spoof_client_use_ios_summary_on">"Το πρόγραμμα πελάτη παραποιείται σε έκδοση iOS.
-• Το μενού ταχύτητας αναπαραγωγής λείπει.
-• Το ιστορικό αναπαραγωγής δεν λειτουργεί σε λογαριασμούς επωνυμίας (Brand).
-• Η αναπαραγωγή παρασκηνίου δεν λειτουργεί για ζωντανές μεταδόσεις σε λειτουργία ήχου μόνο.
-• Οι ζωντανές μεταδόσεις δεν παίζουν σε έκδοση Android 8.0."</string>
-    <string name="revanced_spoof_client_use_ios_summary_off">"Το πρόγραμμα πελάτη παραποιείται σε έκδοση Android VR. (η έκδοση iOS χρησιμοποιείται για Κλιπ ή Shorts)
-• Οι χειρονομίες σάρωσης αναπαραγωγέα του YouTube δε λειτουργούν.
-• Τα βίντεο YouTube Kids δεν αναπαράγονται.
-• Tα βίντεο σε παύση μπορεί να συνεχίσουν να παίζουν από μόνα τους."</string>
     <string name="revanced_spoof_player_parameter_title">Τροποποίηση παραμέτρου αναπαραγωγέα</string>
     <string name="revanced_spoof_player_parameter_summary">"Τροποποίηση παραμέτρων του αναπαραγωγέα για την αποφυγή προβλημάτων αναπαραγωγής.
 
@@ -1352,6 +1338,9 @@ Playlists
     <string name="revanced_extended_settings_import_success">Οι ρυθμίσεις εισήχθησαν με επιτυχία.</string>
     <string name="revanced_extended_settings_reset">Επαναφορά</string>
     <string name="revanced_share_copy_settings_success">Οι ρυθμίσεις αντιγράφηκαν στο πρόχειρο.</string>
+    <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Spoof client -->
+    <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Spoof client, PreferenceCategory: Spoof client options -->
+    <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Spoof client, PreferenceCategory: About -->
     <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceCategory: Patch information -->
     <string name="revanced_preference_category_patch_information">Πληροφορίες τροποποίησης</string>
     <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Patch information -->

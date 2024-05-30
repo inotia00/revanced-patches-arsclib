@@ -469,6 +469,10 @@
     <string name="revanced_hide_timed_reactions_summary_on">تم إخفاء ردود الفعل المؤقتة.</string>
     <string name="revanced_hide_timed_reactions_summary_off">يتم عرض ردود الفعل المؤقتة.</string>
     <string name="revanced_hide_suggested_video_end_screen_title">إخفاء شاشة نهاية الفيديو المقترح</string>
+    <string name="revanced_hide_suggested_video_end_screen_summary_on">"تم إخفاء شاشة نهاية الفيديو المقترح عند إيقاف التشغيل التلقائي.
+
+يمكن تغيير التشغيل التلقائي في إعدادات YouTube: 'الإعدادات ← التشغيل التلقائي ← تشغيل الفيديو التالي تلقائيًا'"</string>
+    <string name="revanced_hide_suggested_video_end_screen_summary_off">يتم عرض شاشة نهاية الفيديو المقترح.</string>
     <string name="revanced_skip_autoplay_countdown_title">تخطي العد التنازلي للتشغيل التلقائي</string>
     <string name="revanced_skip_autoplay_countdown_summary_on">إذا تم تمكين التشغيل التلقائي، فسيتم تشغيل الفيديو التالي على الفور.</string>
     <string name="revanced_skip_autoplay_countdown_summary_off">إذا تم تمكين التشغيل التلقائي، فسيتم تشغيل الفيديو التالي بعد انتهاء العد التنازلي.</string>
@@ -530,9 +534,9 @@
     <string name="revanced_hide_channel_guidelines_title">إخفاء إرشادات القناة</string>
     <string name="revanced_hide_channel_guidelines_summary_on">تم إخفاء إرشادات القناة.</string>
     <string name="revanced_hide_channel_guidelines_summary_off">يتم عرض إرشادات القناة.</string>
-    <string name="revanced_hide_comments_by_members_title">إخفاء تعليقات بانر الأعضاء</string>
-    <string name="revanced_hide_comments_by_members_summary_on">تم إخفاء تعليقات الأعضاء.</string>
-    <string name="revanced_hide_comments_by_members_summary_off">يتم عرض شعار التعليقات بواسطة الأعضاء.</string>
+    <string name="revanced_hide_comments_by_members_title">"إخفاء تعليقات بانر الأعضاء"</string>
+    <string name="revanced_hide_comments_by_members_summary_on">"تم إخفاء تعليقات الأعضاء."</string>
+    <string name="revanced_hide_comments_by_members_summary_off">"يتم عرض شعار التعليقات بواسطة الأعضاء."</string>
     <string name="revanced_hide_comments_section_title">إخفاء قسم التعليقات</string>
     <string name="revanced_hide_comments_section_summary_on">تم إخفاء قسم التعليقات.</string>
     <string name="revanced_hide_comments_section_summary_off">يتم عرض قسم التعليقات.</string>
@@ -604,9 +608,9 @@
     <string name="revanced_hide_player_flyout_menu_premium_controls_title">إخفاء قائمة عناصر التحكم في Premium</string>
     <string name="revanced_hide_player_flyout_menu_premium_controls_summary_on">تم إخفاء قائمة عناصر التحكم في Premium.</string>
     <string name="revanced_hide_player_flyout_menu_premium_controls_summary_off">يتم عرض قائمة عناصر التحكم في Premium.</string>
+    <string name="revanced_hide_player_flyout_menu_stable_volume_title">إخفاء قائمة مستوى الصوت الثابت</string>
     <string name="revanced_hide_player_flyout_menu_stable_volume_summary_off">يتم عرض قائمة مستوى الصوت الثابت.</string>
     <string name="revanced_hide_player_flyout_menu_stable_volume_summary_on">تم إخفاء قائمة مستوى الصوت الثابت.</string>
-    <string name="revanced_hide_player_flyout_menu_stable_volume_title">إخفاء قائمة مستوى الصوت الثابت</string>
     <string name="revanced_hide_player_flyout_menu_stats_for_nerds_title">إخفاء قائمة إحصاءات تقنية</string>
     <string name="revanced_hide_player_flyout_menu_stats_for_nerds_summary_on">تم إخفاء قائمة إحصاءات تقنية.</string>
     <string name="revanced_hide_player_flyout_menu_stats_for_nerds_summary_off">يتم عرض قائمة إحصاءات تقنية.</string>
@@ -1298,27 +1302,6 @@
     <string name="revanced_sanitize_sharing_links_summary">يزيل معلمات استعلام التتبع من عناوين URL عند مشاركة الروابط.</string>
     <string name="revanced_disable_quic_protocol_title">تعطيل بروتوكول QUIC</string>
     <string name="revanced_disable_quic_protocol_summary">"تعطيل بروتوكول QUIC الخاص بـ CronetEngine."</string>
-    <string name="revanced_spoof_client_title">Spoof Client</string>
-    <string name="revanced_spoof_client_summary_on">"تتم محاكاة العميل.
-
-تشمل الآثار الجانبية ما يلي:
-• لا يوجد فيديو بتقنية HDR.
-• قد لا يعمل سجل المشاهدة."</string>
-    <string name="revanced_spoof_client_summary_off">"لا تتم محاكاة العميل. قد لا يعمل تشغيل الفيديو."</string>
-    <string name="revanced_spoof_client_use_ios_title">Spoof Client to iOS</string>
-    <string name="revanced_spoof_client_use_ios_summary_on">"تتم حاليًا محاكاة العميل إلى iOS.
-
-تشمل الآثار الجانبية ما يلي:
-• قائمة سرعة التشغيل مفقودة.
-• لا يمكن تشغيل البث المباشر كصوت فقط.
-• البث المباشر غير متوفر على Android 8.0.
-• قد تكون جودة الفيديو الأعلى مفقودة."</string>
-    <string name="revanced_spoof_client_use_ios_summary_off">"تتم حاليًا محاكاة العميل إلى Android VR. (يتم استخدام عميل iOS للمقاطع أو Shorts)
-
-تشمل الآثار الجانبية ما يلي:
-• إيماءات التمرير الخاصة بالمشغل لا تعمل.
-• لا يتم تشغيل مقاطع فيديو الأطفال.
-• يمكن استئناف مقاطع الفيديو المتوقفة مؤقتًا بشكل عشوائي."</string>
     <string name="revanced_spoof_player_parameter_title">Spoof Player Parameter</string>
     <string name="revanced_spoof_player_parameter_summary">"لمنع مشاكل التشغيل Spoofs Player Parameters
 
@@ -1356,6 +1339,34 @@
     <string name="revanced_extended_settings_import_success">تم استيراد الإعدادات بنجاح.</string>
     <string name="revanced_extended_settings_reset">إعادة تعيين</string>
     <string name="revanced_share_copy_settings_success">تم نسخ الإعدادات إلى الحافظة.</string>
+    <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Spoof client -->
+    <string name="revanced_preference_screen_spoof_client_title">Spoof Client</string>
+    <string name="revanced_preference_screen_spoof_client_summary">محاكاة العميل لمنع مشاكل التشغيل.</string>
+    <string name="revanced_spoof_client_title">Spoof Client</string>
+    <string name="revanced_spoof_client_summary_on">تتم محاكاة العميل.</string>
+    <string name="revanced_spoof_client_summary_off">"لا تتم محاكاة العميل. قد لا يعمل تشغيل الفيديو."</string>
+    <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Spoof client, PreferenceCategory: Spoof client options -->
+    <string name="revanced_preference_category_spoof_client_options">خيارات Spoof Client</string>
+    <string name="revanced_spoof_client_general_title">عام</string>
+    <string name="revanced_spoof_client_livestream_title">بث مباشر</string>
+    <string name="revanced_spoof_client_shorts_title">مقاطع ,Shorts</string>
+    <string name="revanced_spoof_client_options_entry_ios">iOS</string>
+    <string name="revanced_spoof_client_options_entry_android_testsuite">Android Testsuite</string>
+    <string name="revanced_spoof_client_options_entry_android_tv">Android TV</string>
+    <string name="revanced_spoof_client_options_entry_android_vr">Android VR</string>
+    <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Spoof client, PreferenceCategory: About -->
+    <string name="revanced_preference_category_spoof_client_about">لمحة</string>
+    <string name="revanced_spoof_client_use_ios_title">iOS</string>
+    <string name="revanced_spoof_client_use_ios_summary">"تتم محاكاة العميل لـ iOS.
+
+تشمل الآثار الجانبية ما يلي:
+• لا يوجد فيديو بتقنية HDR.
+• قائمة سرعة التشغيل مفقودة.
+• قد تكون جودة الفيديو الأعلى مفقودة.
+• سجل المشاهدة لا يعمل مع حساب العلامة التجارية.
+• لا يمكن تشغيل البث المباشر كصوت فقط.
+• البث المباشر غير متوفر على Android 8.0."</string>
+    <string name="revanced_spoof_client_use_android_testsuite_title">Android Testsuite</string>
     <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceCategory: Patch information -->
     <string name="revanced_preference_category_patch_information">معلومات التعديل</string>
     <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Patch information -->

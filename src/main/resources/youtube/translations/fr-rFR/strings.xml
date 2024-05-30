@@ -525,9 +525,9 @@ Note :
     <string name="revanced_hide_channel_guidelines_title">Règles de la chaîne</string>
     <string name="revanced_hide_channel_guidelines_summary_on">Les règles de la chaîne sont masquées</string>
     <string name="revanced_hide_channel_guidelines_summary_off">Les règles de la chaîne sont affichées</string>
-    <string name="revanced_hide_comments_by_members_title">Commentaires des membres</string>
-    <string name="revanced_hide_comments_by_members_summary_on">Les commentaires des membres sont cachés.</string>
-    <string name="revanced_hide_comments_by_members_summary_off">Les commentaires des membres sont affichés.</string>
+    <string name="revanced_hide_comments_by_members_title">"Commentaires des membres"</string>
+    <string name="revanced_hide_comments_by_members_summary_on">"Les commentaires des membres sont cachés."</string>
+    <string name="revanced_hide_comments_by_members_summary_off">"Les commentaires des membres sont affichés."</string>
     <string name="revanced_hide_comments_section_title">Section des commentaires</string>
     <string name="revanced_hide_comments_section_summary_on">La section des commentaires est masquée</string>
     <string name="revanced_hide_comments_section_summary_off">La section des commentaires est affichée</string>
@@ -599,9 +599,9 @@ Note :
     <string name="revanced_hide_player_flyout_menu_premium_controls_title">Bouton \"Commandes Premium\"</string>
     <string name="revanced_hide_player_flyout_menu_premium_controls_summary_on">Le bouton \"Commandes Premium\" est masqué.</string>
     <string name="revanced_hide_player_flyout_menu_premium_controls_summary_off">Le bouton \"Commandes Premium\" est affiché.</string>
+    <string name="revanced_hide_player_flyout_menu_stable_volume_title">Bouton \"Volume stable\"</string>
     <string name="revanced_hide_player_flyout_menu_stable_volume_summary_off">Le bouton \"Volume stable\" est affiché.</string>
     <string name="revanced_hide_player_flyout_menu_stable_volume_summary_on">Le bouton \"Volume stable\" est masqué.</string>
-    <string name="revanced_hide_player_flyout_menu_stable_volume_title">Bouton \"Volume stable\"</string>
     <string name="revanced_hide_player_flyout_menu_stats_for_nerds_title">Bouton \"Statistique pour les nerds\"</string>
     <string name="revanced_hide_player_flyout_menu_stats_for_nerds_summary_on">Le bouton \"Statistiques pour les nerds\" est masqué.</string>
     <string name="revanced_hide_player_flyout_menu_stats_for_nerds_summary_off">Le bouton \"Statistiques pour les nerds\" est affiché.</string>
@@ -1298,6 +1298,9 @@ Problèmes connus
     <string name="revanced_extended_settings_import_success">Les paramètres ont été importés avec succès</string>
     <string name="revanced_extended_settings_reset">Réinitialiser</string>
     <string name="revanced_share_copy_settings_success">Paramètres copiés dans le presse-papier.</string>
+    <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Spoof client -->
+    <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Spoof client, PreferenceCategory: Spoof client options -->
+    <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Spoof client, PreferenceCategory: About -->
     <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceCategory: Patch information -->
     <string name="revanced_preference_category_patch_information">Informations sur les patchs</string>
     <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Patch information -->

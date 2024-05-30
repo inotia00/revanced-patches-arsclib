@@ -213,6 +213,7 @@
 • 某些UI组件可能不会隐藏
 • 搜索关键词可能不会显示任何结果"</string>
     <string name="revanced_hide_keyword_toast_invalid_common">关键词无效无法使用：\'%s\' 作为过滤器</string>
+    <string name="revanced_hide_keyword_toast_invalid_keyword">关键字无效。\'%1$s\' 少于 %2$d 个字符</string>
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Video filter, PreferenceCategory: Recommended video -->
     <string name="revanced_preference_category_recommended_video">推荐视频</string>
     <string name="revanced_hide_recommended_video_title">隐藏推荐视频</string>
@@ -467,6 +468,11 @@
     <string name="revanced_hide_timed_reactions_summary_on">（评论）时间跳转已隐藏</string>
     <string name="revanced_hide_timed_reactions_summary_off">（评论）时间跳转已显示</string>
     <string name="revanced_hide_suggested_video_end_screen_title">隐藏推荐视频结束界面</string>
+    <string name="revanced_hide_suggested_video_end_screen_summary_on">"关闭自动播放时，推荐视频结束界面会隐藏
+
+ 可以在 YouTube 设置中更改自动播放：
+ “设置→自动播放→自动播放下一个视频”"</string>
+    <string name="revanced_hide_suggested_video_end_screen_summary_off">推荐视频结束界面已显示</string>
     <string name="revanced_skip_autoplay_countdown_title">跳过自动播放倒计时</string>
     <string name="revanced_skip_autoplay_countdown_summary_on">如果自动播放已开启，下一个视频将在无倒计时的情况下播放</string>
     <string name="revanced_skip_autoplay_countdown_summary_off">如果自动播放已开启，下一个视频将在倒计时结束后播放</string>
@@ -528,9 +534,9 @@
     <string name="revanced_hide_channel_guidelines_title">隐藏频道指南</string>
     <string name="revanced_hide_channel_guidelines_summary_on">频道指南已隐藏</string>
     <string name="revanced_hide_channel_guidelines_summary_off">频道指南已显示</string>
-    <string name="revanced_hide_comments_by_members_title">隐藏会员评论横幅</string>
-    <string name="revanced_hide_comments_by_members_summary_on">会员评论中横幅已隐藏</string>
-    <string name="revanced_hide_comments_by_members_summary_off">会员评论中横幅已显示</string>
+    <string name="revanced_hide_comments_by_members_title">"隐藏会员评论横幅"</string>
+    <string name="revanced_hide_comments_by_members_summary_on">"会员评论中横幅已隐藏"</string>
+    <string name="revanced_hide_comments_by_members_summary_off">"会员评论中横幅已显示"</string>
     <string name="revanced_hide_comments_section_title">隐藏评论部分</string>
     <string name="revanced_hide_comments_section_summary_on">评论部分已隐藏</string>
     <string name="revanced_hide_comments_section_summary_off">评论部分已显示</string>
@@ -602,9 +608,9 @@
     <string name="revanced_hide_player_flyout_menu_premium_controls_title">隐藏高级控件菜单</string>
     <string name="revanced_hide_player_flyout_menu_premium_controls_summary_on">高级控件菜单已隐藏</string>
     <string name="revanced_hide_player_flyout_menu_premium_controls_summary_off">高级控件菜单已显示</string>
+    <string name="revanced_hide_player_flyout_menu_stable_volume_title">隐藏稳定音量菜单</string>
     <string name="revanced_hide_player_flyout_menu_stable_volume_summary_off">稳定音量菜单已显示</string>
     <string name="revanced_hide_player_flyout_menu_stable_volume_summary_on">稳定音量菜单已隐藏</string>
-    <string name="revanced_hide_player_flyout_menu_stable_volume_title">隐藏稳定音量菜单</string>
     <string name="revanced_hide_player_flyout_menu_stats_for_nerds_title">隐藏技术统计菜单</string>
     <string name="revanced_hide_player_flyout_menu_stats_for_nerds_summary_on">技术统计菜单已隐藏</string>
     <string name="revanced_hide_player_flyout_menu_stats_for_nerds_summary_off">技术统计菜单已显示</string>
@@ -1224,6 +1230,7 @@
     <string name="revanced_sb_new_segment_time_start">片段开始时间</string>
     <string name="revanced_sb_new_segment_time_end">片段结束时间</string>
     <string name="revanced_sb_new_segment_confirm_title">时间是否正确？</string>
+    <string name="revanced_sb_new_segment_confirm_contents">该片段从\n\n%1$s\n到\n%2$s\n\n(%3$s)\n\n准备好提交了吗？</string>
     <string name="revanced_sb_new_segment_start_is_before_end">开始时间必须早于结束时间</string>
     <string name="revanced_sb_new_segment_mark_locations_first">首先在时间轴上标记两个位置</string>
     <string name="revanced_sb_new_segment_preview_segment_first">预览片段，并确保跳过顺畅</string>
@@ -1274,7 +1281,7 @@
     <string name="gms_core_settings_title">打开 GmsCore</string>
     <string name="gms_core_settings_summary">启用云消息传递以接收通知</string>
     <string name="gms_core_toast_not_installed_message">GmsCore 没有安装。请安装它</string>
-    <string name="gms_core_dialog_title">需要采取行动</string>
+    <string name="gms_core_dialog_title">需要采取措施</string>
     <string name="gms_core_dialog_not_whitelisted_not_allowed_in_background_message">"GmsCore 没有后台运行的权限
 
 请遵循适用于您手机的 “Don't kill my app!” 指南，并将这些说明应用于您的 GmsCore 安装
@@ -1289,27 +1296,6 @@
     <string name="revanced_sanitize_sharing_links_summary">共享链接时，删除 URL 中的跟踪查询参数</string>
     <string name="revanced_disable_quic_protocol_title">禁用 QUIC 协议</string>
     <string name="revanced_disable_quic_protocol_summary">"禁用 Cronet 引擎的 QUIC 协议"</string>
-    <string name="revanced_spoof_client_title">伪装客户端</string>
-    <string name="revanced_spoof_client_summary_on">"客户端伪装已启用
-
-副作用：
-• 没有 HDR 视频
-• 观察历史可能无法正常记录"</string>
-    <string name="revanced_spoof_client_summary_off">"客户端伪装未启用。视频可能无法正常播放。"</string>
-    <string name="revanced_spoof_client_use_ios_title">伪装为 IOS 客户端</string>
-    <string name="revanced_spoof_client_use_ios_summary_on">"已伪装为 IOS 客户端
-
-副作用:
-• 失去播放速度菜单
-• 无法在后台播放直播
-• 无法在 Android 8.0 播放直播
-• 可能失去视频更高画质"</string>
-    <string name="revanced_spoof_client_use_ios_summary_off">"客户端已伪装为 Android VR (iOS 客户端用于 Clips 或 Shorts)
-
- 副作用：
- • 播放滑动手势无法使用
- • 无法播放儿童视频
- • 暂停的视频可以随机恢复"</string>
     <string name="revanced_spoof_player_parameter_title">伪装播放器参数</string>
     <string name="revanced_spoof_player_parameter_summary">"伪装播放器参数以回避播放问题
 
@@ -1347,6 +1333,9 @@
     <string name="revanced_extended_settings_import_success">导入配置成功</string>
     <string name="revanced_extended_settings_reset">重置</string>
     <string name="revanced_share_copy_settings_success">设置已复制到剪贴板</string>
+    <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Spoof client -->
+    <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Spoof client, PreferenceCategory: Spoof client options -->
+    <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Spoof client, PreferenceCategory: About -->
     <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceCategory: Patch information -->
     <string name="revanced_preference_category_patch_information">补丁信息</string>
     <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Patch information -->
