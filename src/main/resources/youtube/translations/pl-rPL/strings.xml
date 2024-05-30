@@ -468,11 +468,6 @@ Uwaga:
     <string name="revanced_hide_timed_reactions_summary_on">Ukryte</string>
     <string name="revanced_hide_timed_reactions_summary_off">Widoczne</string>
     <string name="revanced_hide_suggested_video_end_screen_title">Sugerowane wideo na końcu filmu</string>
-    <string name="revanced_hide_suggested_video_end_screen_summary_on">"Ukryte, lecz wyłącznie, gdy autoodtwarzanie jest wyłączone.
-
-Autoodtwarzanie można zmienić w ustawieniach YouTube:
-'Ustawienia → Autoodtwarzanie → Autoodtwarzanie następnego wideo'"</string>
-    <string name="revanced_hide_suggested_video_end_screen_summary_off">Widoczne</string>
     <string name="revanced_skip_autoplay_countdown_title">Pomiń odliczanie do automatycznego odtwarzania</string>
     <string name="revanced_skip_autoplay_countdown_summary_on">Jeżeli automatyczne odtwarzanie jest włączone, następne wideo zostanie odtworzone bez odliczania.</string>
     <string name="revanced_skip_autoplay_countdown_summary_off">Jeżeli automatyczne odtwarzanie jest włączone, następne wideo zostanie odtworzone po ukończeniu odliczania.</string>
@@ -534,9 +529,9 @@ Autoodtwarzanie można zmienić w ustawieniach YouTube:
     <string name="revanced_hide_channel_guidelines_title">Wytyczne</string>
     <string name="revanced_hide_channel_guidelines_summary_on">Ukryte</string>
     <string name="revanced_hide_channel_guidelines_summary_off">Widoczne</string>
-    <string name="revanced_hide_comments_by_members_title">"Banery z komentarzami sponsorów"</string>
-    <string name="revanced_hide_comments_by_members_summary_on">"Ukryte"</string>
-    <string name="revanced_hide_comments_by_members_summary_off">"Widoczne"</string>
+    <string name="revanced_hide_comments_by_members_title">Banery z komentarzami sponsorów</string>
+    <string name="revanced_hide_comments_by_members_summary_on">Ukryte</string>
+    <string name="revanced_hide_comments_by_members_summary_off">Widoczne</string>
     <string name="revanced_hide_comments_section_title">Komentarze</string>
     <string name="revanced_hide_comments_section_summary_on">Ukryte</string>
     <string name="revanced_hide_comments_section_summary_off">Widoczne</string>
@@ -608,9 +603,9 @@ Autoodtwarzanie można zmienić w ustawieniach YouTube:
     <string name="revanced_hide_player_flyout_menu_premium_controls_title">Menu od elementów sterujących Premium</string>
     <string name="revanced_hide_player_flyout_menu_premium_controls_summary_on">Ukryte</string>
     <string name="revanced_hide_player_flyout_menu_premium_controls_summary_off">Widoczne</string>
-    <string name="revanced_hide_player_flyout_menu_stable_volume_title">Menu od stabilnej głośności</string>
     <string name="revanced_hide_player_flyout_menu_stable_volume_summary_off">Widoczne</string>
     <string name="revanced_hide_player_flyout_menu_stable_volume_summary_on">Ukryte</string>
+    <string name="revanced_hide_player_flyout_menu_stable_volume_title">Menu od stabilnej głośności</string>
     <string name="revanced_hide_player_flyout_menu_stats_for_nerds_title">Menu od statystyk dla nerdów</string>
     <string name="revanced_hide_player_flyout_menu_stats_for_nerds_summary_on">Ukryte</string>
     <string name="revanced_hide_player_flyout_menu_stats_for_nerds_summary_off">Widoczne</string>
@@ -1295,6 +1290,27 @@ Kontynuuj i wyłącz optymalizację baterii."</string>
     <string name="revanced_sanitize_sharing_links_summary">Usuwa śledzące parametry z adresów URL podczas udostępniania linków</string>
     <string name="revanced_disable_quic_protocol_title">Wyłącz protokół QUIC</string>
     <string name="revanced_disable_quic_protocol_summary">"Wyłącz protokół QUIC w CronetEngine"</string>
+    <string name="revanced_spoof_client_title">Oszukaj klienta</string>
+    <string name="revanced_spoof_client_summary_on">"Klient jest oszukiwany.
+
+Efekty uboczne:
+• Brak wideo w HDR
+• Historia oglądania może nie działać"</string>
+    <string name="revanced_spoof_client_summary_off">"Klient nie jest oszukiwany. Odtwarzanie wideo może nie działać."</string>
+    <string name="revanced_spoof_client_use_ios_title">Oszukaj klienta do wersji iOS</string>
+    <string name="revanced_spoof_client_use_ios_summary_on">"Klient jest obecnie oszukiwany do wersji iOS.
+
+Efekty uboczne:
+• Brakuje menu prędkości odtwarzania
+• Transmisje na żywo nie działają w trybie odtwarzania jedynie dźwięku
+• Transmisje na żywo są niedostępne na Androidzie 8.0
+• Może brakować wyższych jakości wideo"</string>
+    <string name="revanced_spoof_client_use_ios_summary_off">"Klient jest obecnie oszukiwany do wersji Android VR (klient iOS jest używany do klipów oraz shortsów).
+
+Efekty uboczne:
+• Gesty w odtwarzaczu nie działają
+• Wideo dla dzieci nie odtwarzają się
+• Spauzowane filmy mogą się losowo wznawiać"</string>
     <string name="revanced_spoof_player_parameter_title">Oszukaj parametry odtwarzacza</string>
     <string name="revanced_spoof_player_parameter_summary">"Oszukuje parametry odtwarzacza, aby uniknąć problemów z odtwarzaniem.
 
@@ -1332,9 +1348,6 @@ Ograniczenie: Wideo na stronie głównej będą odtwarzane przez mniej niż minu
     <string name="revanced_extended_settings_import_success">Ustawienia zostały pomyślnie zaimportowane.</string>
     <string name="revanced_extended_settings_reset">Zresetuj</string>
     <string name="revanced_share_copy_settings_success">Skopiowano ustawienia do schowka.</string>
-    <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Spoof client -->
-    <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Spoof client, PreferenceCategory: Spoof client options -->
-    <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Spoof client, PreferenceCategory: About -->
     <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceCategory: Patch information -->
     <string name="revanced_preference_category_patch_information">Lista łatek</string>
     <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Patch information -->

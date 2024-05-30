@@ -4,7 +4,7 @@
     <string name="accessibility_settings_edu_opt_in_text">Video oynatıcı için erişilebilirlik kontrolleri açılsın mı?</string>
     <string name="accessibility_settings_edu_opt_out_text">Bir erişilebilirlik hizmeti açık olduğundan kontrolleriniz değiştirildi.</string>
     <!-- Shared PreferenceScreen -->
-    <string name="revanced_extended_settings_title">ReVanced Extended</string>
+    <string name="revanced_extended_settings_title">ReVanced Genişletilmiş</string>
     <!-- Shared Category -->
     <string name="revanced_preference_category_experimental_flag">Deneysel Parametreler</string>
     <string name="revanced_extended_restart_first_run">Düzeni normal şekilde yüklemek için yeniden başlatın</string>
@@ -206,7 +206,6 @@ Kısıtlamalar:
 • Bazı arayüz bileşenleri gizlenemeyebilir
 • Anahtar kelime aratmak hiçbir sonuç göstermeyebilir"</string>
     <string name="revanced_hide_keyword_toast_invalid_common">Geçersiz anahtar kelime. \'%s\' kullanılamaz</string>
-    <string name="revanced_hide_keyword_toast_invalid_keyword">Geçersiz anahtar kelime. \'%1$s\', %2$d karakterden az</string>
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Video filter, PreferenceCategory: Recommended video -->
     <string name="revanced_preference_category_recommended_video">Önerilen video</string>
     <string name="revanced_hide_recommended_video_title">Önerilen videoları gizle</string>
@@ -458,11 +457,6 @@ Not: Bu özelliği devre dışı bırakmak, eski arayüzdeki \"Videoyu sarmak i�
     <string name="revanced_hide_timed_reactions_summary_on">Gizleniyor</string>
     <string name="revanced_hide_timed_reactions_summary_off">Gizlenmiyor</string>
     <string name="revanced_hide_suggested_video_end_screen_title">Önerilen video bitiş ekranını devre dışı bırak</string>
-    <string name="revanced_hide_suggested_video_end_screen_summary_on">"Otomatik oynatma kapatıldığında önerilen video bitiş ekranı gizlenir.
-
-Otomatik oynatma YouTube ayarlarından değiştirilebilir:
-'Ayarlar → Otomatik oynat → Sonraki videoyu otomatik oynat'"</string>
-    <string name="revanced_hide_suggested_video_end_screen_summary_off">Önerilen video bitiş ekranı gizlenmiyor.</string>
     <string name="revanced_skip_autoplay_countdown_title">Otomatik oynatma geri sayımını atla</string>
     <string name="revanced_skip_autoplay_countdown_summary_on">Otomatik oynatma açıksa sonraki video geri sayım olmadan oynatılır.</string>
     <string name="revanced_skip_autoplay_countdown_summary_off">Otomatik oynatma açıksa sonraki video geri sayım bitmeden oynatılır.</string>
@@ -524,9 +518,9 @@ Otomatik oynatma YouTube ayarlarından değiştirilebilir:
     <string name="revanced_hide_channel_guidelines_title">Kanal yönergelerini gizle</string>
     <string name="revanced_hide_channel_guidelines_summary_on">Yorumların en üstündeki Topluluk Kuralları hatırlatıcısı gizleniyor</string>
     <string name="revanced_hide_channel_guidelines_summary_off">Yorumların en üstündeki Topluluk Kuralları hatırlatıcısı gizlenmiyor</string>
-    <string name="revanced_hide_comments_by_members_title">"Üyeler tarafından yapılan yorumlar afişini gizle"</string>
-    <string name="revanced_hide_comments_by_members_summary_on">"Üyeler tarafından yapılan yorumlar afişi gizleniyor."</string>
-    <string name="revanced_hide_comments_by_members_summary_off">"Üyeler tarafından yapılan yorumlar afişi gizlenmiyor."</string>
+    <string name="revanced_hide_comments_by_members_title">Üyeler tarafından yapılan yorumlar afişini gizle</string>
+    <string name="revanced_hide_comments_by_members_summary_on">Üyeler tarafından yapılan yorumlar afişi gizleniyor.</string>
+    <string name="revanced_hide_comments_by_members_summary_off">Üyeler tarafından yapılan yorumlar afişi gizlenmiyor.</string>
     <string name="revanced_hide_comments_section_title">\"Yorumlar\" bölümünü gizle</string>
     <string name="revanced_hide_comments_section_summary_on">Yorumlar kısmı gizleniyor.</string>
     <string name="revanced_hide_comments_section_summary_off">Yorumlar kısmı gizlenmiyor.</string>
@@ -598,9 +592,9 @@ Otomatik oynatma YouTube ayarlarından değiştirilebilir:
     <string name="revanced_hide_player_flyout_menu_premium_controls_title">Premium kontrolleri menüsünü gizle</string>
     <string name="revanced_hide_player_flyout_menu_premium_controls_summary_on">Premium kontrolleri menüsü gizli.</string>
     <string name="revanced_hide_player_flyout_menu_premium_controls_summary_off">Premium kontrolleri menüsü gizlenmiyor.</string>
-    <string name="revanced_hide_player_flyout_menu_stable_volume_title">\"Sabit ses\" butonunu gizle</string>
     <string name="revanced_hide_player_flyout_menu_stable_volume_summary_off">\"Sabit ses\" butonu gösteriliyor.</string>
     <string name="revanced_hide_player_flyout_menu_stable_volume_summary_on">\"Sabit ses\" butonu gizleniyor.</string>
+    <string name="revanced_hide_player_flyout_menu_stable_volume_title">\"Sabit ses\" butonunu gizle</string>
     <string name="revanced_hide_player_flyout_menu_stats_for_nerds_title">\"Meraklısı için istatikler\" butonunu gizle</string>
     <string name="revanced_hide_player_flyout_menu_stats_for_nerds_summary_on">\"Meraklısı için istatikler\" butonu gizleniyor.</string>
     <string name="revanced_hide_player_flyout_menu_stats_for_nerds_summary_off">\"Meraklısı için istatikler\" butonu gösteriliyor.</string>
@@ -1045,7 +1039,6 @@ Yaklaşık 20 saniyelik ara belleğe alma işleminin ardından farklı codec bil
     <string name="revanced_ryd_shorts_title">Shorts videolarda beğenmemeleri göster</string>
     <string name="revanced_ryd_shorts_summary_on">Shorts videolarda beğenmemeler gösteriliyor. %s</string>
     <string name="revanced_ryd_shorts_summary_on_disclaimer">"Shorts'da beğenmeme sayıları gösteriliyor.
-
 Kısıtlama: Gizli modda beğenmeme sayıları görünmeyebilir."</string>
     <string name="revanced_ryd_shorts_summary_off">Shorts videolarda beğenmemeler gösterilmiyor</string>
     <string name="revanced_ryd_dislike_percentage_title">Yüzde olarak beğenmemeler</string>
@@ -1220,7 +1213,6 @@ Bir örnek görmek için buraya dokunun.</string>
     <string name="revanced_sb_new_segment_time_start">Kısmın başlangıcı</string>
     <string name="revanced_sb_new_segment_time_end">Kısmın bitişi</string>
     <string name="revanced_sb_new_segment_confirm_title">Zaman aralığı doğru mu?</string>
-    <string name="revanced_sb_new_segment_confirm_contents">Segment\n\n%1$s\niçin\n%2$s\n\n(%3$s)\n\nGöndermeye hazır mısınız?</string>
     <string name="revanced_sb_new_segment_start_is_before_end">Başlangıç, bitişten önce olmalıdır</string>
     <string name="revanced_sb_new_segment_mark_locations_first">Öncelikle zaman çizgisinde iki konum işaretleyin.</string>
     <string name="revanced_sb_new_segment_preview_segment_first">Segmenti önizleyin ve sorunsuz bir şekilde atladığından emin olun.</string>
@@ -1286,6 +1278,26 @@ Devam düğmesine dokunun ve pil optimizasyonlarını devre dışı bırakın."<
     <string name="revanced_sanitize_sharing_links_summary">Bağlantıları paylaşırken, tracking query parametrelerini URL\'lerden kaldırır.</string>
     <string name="revanced_disable_quic_protocol_title">QUIC protokolünü devre dışı bırak</string>
     <string name="revanced_disable_quic_protocol_summary">"CronetEngine'in QUIC protokolünü devre dışı bırak"</string>
+    <string name="revanced_spoof_client_title">İstemciyi taklit et</string>
+    <string name="revanced_spoof_client_summary_on">"İstemci taklit ediliyor.
+
+Yan etkiler şunları içerir:
+• HDR video yok.
+• İzleme geçmişi çalışmayabilir."</string>
+    <string name="revanced_spoof_client_summary_off">"İstemci taklit edilmiyor. Video oynatma çalışmayabilir."</string>
+    <string name="revanced_spoof_client_use_ios_title">İstemciyi iOS olarak taklit et</string>
+    <string name="revanced_spoof_client_use_ios_summary_on">"İstemci şu anda iOS'a sahtedir.
+
+Yan etkiler şunları içerir:
+• Oynatma hızı menüsü eksik.
+• Arka planda oynatma canlı yayınlarda çalışmaz.
+• Daha yüksek video kaliteleri eksik olabilir."</string>
+    <string name="revanced_spoof_client_use_ios_summary_off">"İstemci şu anda Android VR'ye sahtedir. (iOS istemcisi Klipler veya Kısa Videolar için kullanılır)
+
+Yan etkiler şunları içerir:
+• Oyuncunun kaydırma hareketleri çalışmıyor.
+• Çocuk videoları oynatılmıyor.
+• Duraklatılan videolar rastgele devam ettirilebilir."</string>
     <string name="revanced_spoof_player_parameter_title">Oynatıcı parametresini taklit et</string>
     <string name="revanced_spoof_player_parameter_summary">"Oynatma sorunlarını önlemek için oynatıcı parametrelerini taklit eder
 
@@ -1323,9 +1335,6 @@ Bilinen sorun: Akış videoları, oynatma sorunlarıyla karşılaşmadan önce 1
     <string name="revanced_extended_settings_import_success">%d ayar içe aktarıldı.</string>
     <string name="revanced_extended_settings_reset">Sıfırla</string>
     <string name="revanced_share_copy_settings_success">Ayarlar panoya kopyalandı</string>
-    <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Spoof client -->
-    <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Spoof client, PreferenceCategory: Spoof client options -->
-    <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Spoof client, PreferenceCategory: About -->
     <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceCategory: Patch information -->
     <string name="revanced_preference_category_patch_information">Yama Bilgileri</string>
     <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Patch information -->

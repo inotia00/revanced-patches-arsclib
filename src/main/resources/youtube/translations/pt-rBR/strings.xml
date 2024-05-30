@@ -213,7 +213,6 @@ Limitações:
 • Alguns componentes da UI podem não ser ocultos.
 • A pesquisa por uma palavra-chave pode não apresentar resultados."</string>
     <string name="revanced_hide_keyword_toast_invalid_common">Palavra-chave inválida. Não pode usar: \'%s\' como um filtro</string>
-    <string name="revanced_hide_keyword_toast_invalid_keyword">Palavra-chave inválida. \'%1$s\' tem menos de %2$d caracteres</string>
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Video filter, PreferenceCategory: Recommended video -->
     <string name="revanced_preference_category_recommended_video">Vídeo recomendado</string>
     <string name="revanced_hide_recommended_video_title">Ocultar vídeos recomendados</string>
@@ -239,7 +238,7 @@ Limitações:
     <string name="revanced_hide_video_view_counts_less_than_title">Menos que as visualizações</string>
     <string name="revanced_hide_video_view_counts_less_than_summary">Vídeos com visualizações menores do que este número serão ocultados.</string>
     <string name="revanced_hide_video_view_counts_multiplier_title">Chaves de visualização</string>
-    <string name="revanced_hide_video_view_counts_multiplier_summary">Especifique seu modelo de idioma para o número de visualizações mostradas em cada vídeo na interface do usuário. Cada chave (uma letra/palavra no seu idioma) sinal -&gt; (significado da chave) deve estar em uma nova linha. Chaves vão antes do sinal \"-&gt;\". Se você alternar o idioma do aplicativo ou do sistema, você terá que redefinir esta configuração.\n\nExemplos:\nInglês: 10K views = K -&gt; 1000, views -&gt; views\nEspanhol: 10K vistas = K -&gt; 1000, vistas -&gt; views</string>
+    <string name="revanced_hide_video_view_counts_multiplier_summary">Especifique seu modelo de idioma para o número de visualizações mostradas em cada vídeo na interface do usuário. Cada chave (uma letra/palavra no seu idioma) sinal -&gt; (significado da chave) deve estar em uma nova linha. Chaves vão antes do sinal \"-&gt;\". Se você alternar o idioma do aplicativo ou do sistema, você terá que redefinir esta configuração.\n\nExemplos:\nInglês: 10K views = K -&gt; 1000, views -&gt; visualizações\nSpanish: 10 K vistas = K -&gt; 1000, vistas -&gt; visualizações</string>
     <string name="revanced_hide_video_view_counts_multiplier_default_value">K -&gt; 1 000\nM -&gt; 1 000 000\nB -&gt; 1 000 000 000\nvisualizações -&gt; visualizações</string>
     <!-- PreferenceScreen: General -->
     <string name="revanced_preference_screen_general_title">Geral</string>
@@ -470,11 +469,6 @@ Nota:
     <string name="revanced_hide_timed_reactions_summary_on">As reações temporizadas estão ocultas.</string>
     <string name="revanced_hide_timed_reactions_summary_off">As reações temporizadas são exibidas.</string>
     <string name="revanced_hide_suggested_video_end_screen_title">Ocultar a tela final de vídeo sugerido</string>
-    <string name="revanced_hide_suggested_video_end_screen_summary_on">"A tela de fim de vídeo sugerido fica oculta quando a reprodução automática é desativada.
-
-A reprodução automática pode ser alterada nas configurações do YouTube:
-'Configurações → Reprodução automática → Reprodução automática do próximo vídeo'"</string>
-    <string name="revanced_hide_suggested_video_end_screen_summary_off">A tela de vídeo sugerido no fim é exibida.</string>
     <string name="revanced_skip_autoplay_countdown_title">Pular contagem regressiva de reprodução automática</string>
     <string name="revanced_skip_autoplay_countdown_summary_on">Se a reprodução automática estiver ativada, o próximo vídeo será reproduzido sem uma contagem regressiva.</string>
     <string name="revanced_skip_autoplay_countdown_summary_off">Se a reprodução automática estiver ativada, o próximo vídeo será reproduzido após a contagem regressiva terminar.</string>
@@ -536,9 +530,9 @@ A reprodução automática pode ser alterada nas configurações do YouTube:
     <string name="revanced_hide_channel_guidelines_title">Ocultar diretrizes do canal</string>
     <string name="revanced_hide_channel_guidelines_summary_on">As diretrizes do canal estão ocultas.</string>
     <string name="revanced_hide_channel_guidelines_summary_off">As diretrizes do canal serão exibidas.</string>
-    <string name="revanced_hide_comments_by_members_title">"Ocultar banner de comentários de membros"</string>
-    <string name="revanced_hide_comments_by_members_summary_on">"O banner de comentários de membros estão ocultos."</string>
-    <string name="revanced_hide_comments_by_members_summary_off">"O banner de comentários de membros serão exibidos."</string>
+    <string name="revanced_hide_comments_by_members_title">Ocultar banner de comentários de membros</string>
+    <string name="revanced_hide_comments_by_members_summary_on">O banner de comentários de membros estão ocultos.</string>
+    <string name="revanced_hide_comments_by_members_summary_off">O banner de comentários de membros serão exibidos.</string>
     <string name="revanced_hide_comments_section_title">Ocultar seção de comentários</string>
     <string name="revanced_hide_comments_section_summary_on">A seção de comentários está oculta.</string>
     <string name="revanced_hide_comments_section_summary_off">A seção de comentários será exibida.</string>
@@ -610,9 +604,9 @@ A reprodução automática pode ser alterada nas configurações do YouTube:
     <string name="revanced_hide_player_flyout_menu_premium_controls_title">Ocultar menu de controles premium</string>
     <string name="revanced_hide_player_flyout_menu_premium_controls_summary_on">O menu de controles premium está oculto.</string>
     <string name="revanced_hide_player_flyout_menu_premium_controls_summary_off">O menu de controles premium será exibido.</string>
-    <string name="revanced_hide_player_flyout_menu_stable_volume_title">Ocultar menu volume estável</string>
     <string name="revanced_hide_player_flyout_menu_stable_volume_summary_off">O menu volume estável será exibido.</string>
     <string name="revanced_hide_player_flyout_menu_stable_volume_summary_on">O menu volume estável está oculto.</string>
+    <string name="revanced_hide_player_flyout_menu_stable_volume_title">Ocultar menu volume estável</string>
     <string name="revanced_hide_player_flyout_menu_stats_for_nerds_title">Ocultar menu estatísticas para nerds</string>
     <string name="revanced_hide_player_flyout_menu_stats_for_nerds_summary_on">O menu estatísticas para nerds está oculto.</string>
     <string name="revanced_hide_player_flyout_menu_stats_for_nerds_summary_off">O menu estatísticas para nerds será exibido.</string>
@@ -664,9 +658,9 @@ Limitação: Título do vídeo desaparece quando clicado."</string>
     <string name="revanced_hide_quick_actions_open_playlist_button_title">Ocultar botão abrir lista de reprodução</string>
     <string name="revanced_hide_quick_actions_open_playlist_button_summary_on">O botão de abrir lista de reprodução está oculto.</string>
     <string name="revanced_hide_quick_actions_open_playlist_button_summary_off">O botão de abrir lista de reprodução será exibido.</string>
-    <string name="revanced_hide_quick_actions_save_to_playlist_button_title">Ocultar botão salvar</string>
-    <string name="revanced_hide_quick_actions_save_to_playlist_button_summary_on">O botão salvar está oculto.</string>
-    <string name="revanced_hide_quick_actions_save_to_playlist_button_summary_off">O botão salvar será exibido.</string>
+    <string name="revanced_hide_quick_actions_save_to_playlist_button_title">Ocultar botão salvar para lista de reprodução</string>
+    <string name="revanced_hide_quick_actions_save_to_playlist_button_summary_on">O botão salvar para lista de reprodução está oculto.</string>
+    <string name="revanced_hide_quick_actions_save_to_playlist_button_summary_off">O botão salvar para lista de reprodução será exibido.</string>
     <string name="revanced_hide_quick_actions_share_button_title">Ocultar botão compartilhar</string>
     <string name="revanced_hide_quick_actions_share_button_summary_on">O botão compartilhar está oculto.</string>
     <string name="revanced_hide_quick_actions_share_button_summary_off">O botão compartilhar será exibido.</string>
@@ -1232,7 +1226,6 @@ Limitação: Dislikes pode não aparecer no modo incógnito."</string>
     <string name="revanced_sb_new_segment_time_start">Tempo que o segmento começa</string>
     <string name="revanced_sb_new_segment_time_end">Tempo que o segmento termina</string>
     <string name="revanced_sb_new_segment_confirm_title">Os tempos estão corretos?</string>
-    <string name="revanced_sb_new_segment_confirm_contents">O segmento é de\n\n%1$s\na\n%2$s\n\n(%3$s)\n\nPronto para enviar?</string>
     <string name="revanced_sb_new_segment_start_is_before_end">O início deve ser antes do fim.</string>
     <string name="revanced_sb_new_segment_mark_locations_first">Marque dois locais na barra de tempo primeiro.</string>
     <string name="revanced_sb_new_segment_preview_segment_first">Pré-visualizar o segmento e garantir que ele pule sem problemas.</string>
@@ -1298,6 +1291,27 @@ Toque no botão continuar e desative as otimizações da bateria."</string>
     <string name="revanced_sanitize_sharing_links_summary">Remove os parâmetros de consulta de rastreamento das URLs ao compartilhar os links.</string>
     <string name="revanced_disable_quic_protocol_title">Desativar protocolo QUIC</string>
     <string name="revanced_disable_quic_protocol_summary">"Desativar o protocolo QUIC do CronetEngine."</string>
+    <string name="revanced_spoof_client_title">Falsificar cliente</string>
+    <string name="revanced_spoof_client_summary_on">"O cliente é falsificado.
+
+Os efeitos colaterais incluem:
+• Sem vídeo HDR.
+• O histórico de exibição pode não funcionar."</string>
+    <string name="revanced_spoof_client_summary_off">"O cliente não é falsificado. A reprodução de vídeo pode não funcionar."</string>
+    <string name="revanced_spoof_client_use_ios_title">Falsificar cliente para iOS</string>
+    <string name="revanced_spoof_client_use_ios_summary_on">"O cliente está atualmente falsificado para iOS.
+
+Os efeitos colaterais incluem:
+• O menu de velocidade de reprodução está ausente.
+• As transmissões ao vivo não podem ser reproduzidas apenas como áudio.
+• Transmissões ao vivo não disponíveis no Android 8.0.
+• Qualidades de vídeo superiores podem estar faltando."</string>
+    <string name="revanced_spoof_client_use_ios_summary_off">"O cliente está atualmente falsificado para Android VR. (O cliente iOS é usado para clipes ou Shorts)
+
+Os efeitos colaterais incluem:
+• Os gestos de deslizar do reprodutor não funcionam.
+• Os vídeos infantis não são reproduzidos.
+• Os vídeos pausados podem ser retomados aleatoriamente."</string>
     <string name="revanced_spoof_player_parameter_title">Falsificar parâmetro do reprodutor</string>
     <string name="revanced_spoof_player_parameter_summary">"Falsifica os parâmetros do reprodutor para evitar problemas de reprodução.
 
@@ -1335,9 +1349,6 @@ Limitação: Os vídeos do feed serão reproduzidos por menos de 1 minuto antes 
     <string name="revanced_extended_settings_import_success">As configurações foram importadas com sucesso.</string>
     <string name="revanced_extended_settings_reset">Redefinir</string>
     <string name="revanced_share_copy_settings_success">Configurações copiadas para a área de transferência.</string>
-    <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Spoof client -->
-    <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Spoof client, PreferenceCategory: Spoof client options -->
-    <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Spoof client, PreferenceCategory: About -->
     <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceCategory: Patch information -->
     <string name="revanced_preference_category_patch_information">Informações do patch</string>
     <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Patch information -->
