@@ -1411,26 +1411,6 @@ Tap on the continue button and disable battery optimizations."</string>
     <string name="revanced_disable_quic_protocol_title">Disable QUIC protocol</string>
     <string name="revanced_disable_quic_protocol_summary">"Disable CronetEngine's QUIC protocol."</string>
 
-    <string name="revanced_spoof_client_title">Spoof client</string>
-    <string name="revanced_spoof_client_summary_on">"Client is spoofed.
-
-Side effects include:
-• No HDR video.
-• Watch history may not work."</string>
-    <string name="revanced_spoof_client_summary_off">"Client is not spoofed. Video playback may not work."</string>
-    <string name="revanced_spoof_client_use_ios_title">Spoof client to iOS</string>
-    <string name="revanced_spoof_client_use_ios_summary_on">"Client is currently spoofed to iOS.
-
-Side effects include:
-• Playback speed menu is missing.
-• Live streams cannot play as audio only.
-• Live streams not available on Android 8.0.
-• Higher video qualities may be missing."</string>
-    <string name="revanced_spoof_client_use_ios_summary_off">"Client is currently spoofed to Android VR. (iOS client is used for Clips or Shorts)
-
-Side effects include:
-• Kids videos do not playback.
-• Paused videos can randomly resume."</string>
     <string name="revanced_spoof_player_parameter_title">Spoof player parameter</string>
     <string name="revanced_spoof_player_parameter_summary">"Spoofs player parameters to prevent playback issues.
 
@@ -1472,6 +1452,61 @@ Limitation: Feed videos will play for less than 1 minute before encountering pla
     <string name="revanced_extended_settings_import_success">Settings were successfully imported.</string>
     <string name="revanced_extended_settings_reset">Reset</string>
     <string name="revanced_share_copy_settings_success">Settings copied to clipboard.</string>
+
+    <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Spoof client -->
+    <string name="revanced_preference_screen_spoof_client_title">Spoof client</string>
+    <string name="revanced_preference_screen_spoof_client_summary">Spoof the client to prevent playback issues.</string>
+    <string name="revanced_spoof_client_title">Spoof client</string>
+    <string name="revanced_spoof_client_summary_on">Client is spoofed.</string>
+    <string name="revanced_spoof_client_summary_off">"Client is not spoofed. Video playback may not work."</string>
+
+    <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Spoof client, PreferenceCategory: Spoof client options -->
+    <string name="revanced_preference_category_spoof_client_options">Spoof client options</string>
+    <string name="revanced_spoof_client_general_title">General</string>
+    <string name="revanced_spoof_client_livestream_title">Live streams</string>
+    <string name="revanced_spoof_client_shorts_title">Shorts, Clips</string>
+    <string name="revanced_spoof_client_fallback_title">Fallback</string>
+    <string name="revanced_spoof_client_options_entry_ios">iOS</string>
+    <string name="revanced_spoof_client_options_entry_android_testsuite">Android Testsuite</string>
+    <string name="revanced_spoof_client_options_entry_android_tv">Android TV</string>
+    <string name="revanced_spoof_client_options_entry_android_vr">Android VR</string>
+
+    <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Spoof client, PreferenceCategory: About -->
+    <string name="revanced_preference_category_spoof_client_about">About</string>
+
+    <string name="revanced_spoof_client_use_ios_title">iOS</string>
+    <string name="revanced_spoof_client_use_ios_summary">"Spoof client to iOS.
+
+Side effects include:
+• No HDR video.
+• Playback speed menu is missing.
+• Higher video qualities may be missing.
+• Watch history does not work with a brand account.
+• Live streams cannot play as audio only.
+• Live streams not available on Android 8.0."</string>
+    <string name="revanced_spoof_client_use_android_testsuite_title">Android Testsuite</string>
+    <string name="revanced_spoof_client_use_android_testsuite_summary">"Spoof client to Android Testsuite.
+
+Side effects include:
+• No HDR video.
+• Audio track menu and playback speed menu are missing.
+• Subtitles may not be available."</string>
+    <string name="revanced_spoof_client_use_android_tv_title">Android TV</string>
+    <string name="revanced_spoof_client_use_android_tv_summary">"Spoof client to Android TV (YouTube TV).
+
+Side effects include:
+• No HDR video.
+• Audio track menu and playback speed menu are missing.
+• Subtitles may not be available.
+• Some live streams are not supported for playback."</string>
+    <string name="revanced_spoof_client_use_android_vr_title">Android VR</string>
+    <string name="revanced_spoof_client_use_android_vr_summary">"Spoof client to Android VR.
+
+Side effects include:
+• No HDR video.
+• Paused videos can randomly resume.
+• Low quality Shorts seekbar thumbnails.
+• Kids videos do not playback."</string>
 
     <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceCategory: Patch information -->
     <string name="revanced_preference_category_patch_information">Patch information</string>
