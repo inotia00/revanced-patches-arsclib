@@ -4,6 +4,7 @@ import app.revanced.patcher.data.ResourceContext
 import app.revanced.patches.shared.elements.StringsElementsUtils.removeStringsElements
 import app.revanced.patches.shared.mapping.ResourceMappingPatch
 import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.revanced.patches.youtube.utils.fix.cairo.CairoSettingsPatch
 import app.revanced.patches.youtube.utils.integrations.IntegrationsPatch
 import app.revanced.patches.youtube.utils.resourceid.SharedResourceIdPatch
 import app.revanced.patches.youtube.utils.settings.ResourceUtils.addPreference
@@ -30,7 +31,8 @@ object SettingsPatch : BaseResourcePatch(
         IntegrationsPatch::class,
         ResourceMappingPatch::class,
         SharedResourceIdPatch::class,
-        SettingsBytecodePatch::class
+        SettingsBytecodePatch::class,
+        CairoSettingsPatch::class
     ),
     compatiblePackages = COMPATIBLE_PACKAGE,
     requiresIntegrations = true
@@ -46,7 +48,6 @@ object SettingsPatch : BaseResourcePatch(
     internal var upward1842 = false
     internal var upward1849 = false
     internal var upward1902 = false
-    internal var upward1909 = false
     internal var upward1912 = false
 
     override fun execute(context: ResourceContext) {
@@ -81,7 +82,6 @@ object SettingsPatch : BaseResourcePatch(
                         upward1842 = 234302000 <= playServicesVersion
                         upward1849 = 235000000 <= playServicesVersion
                         upward1902 = 240204000 < playServicesVersion
-                        upward1909 = 241002000 <= playServicesVersion
                         upward1912 = 241302000 <= playServicesVersion
 
                         break
