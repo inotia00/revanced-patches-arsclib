@@ -153,18 +153,18 @@
     <string name="revanced_hide_channel_tab_filter_strings_hint">"Shorts
 قوائم التشغيل
 المتجر"</string>
-    <string name="revanced_hide_browse_store_button_title">إخفاء زر تصفح المتجر</string>
-    <string name="revanced_hide_browse_store_button_summary_on">تم إخفاء زر تصفح المتجر.</string>
-    <string name="revanced_hide_browse_store_button_summary_off">يتم عرض زر تصفح المتجر.</string>
+    <string name="revanced_hide_browse_store_button_title">إخفاء زر زيارة المتجر</string>
+    <string name="revanced_hide_browse_store_button_summary_on">تم إخفاء زر زيارة المتجر.</string>
+    <string name="revanced_hide_browse_store_button_summary_off">يتم عرض زر زيارة المتجر.</string>
     <string name="revanced_hide_channel_member_shelf_title">إخفاء رف أعضاء القناة</string>
     <string name="revanced_hide_channel_member_shelf_summary_on">تم إخفاء رف أعضاء القناة.</string>
     <string name="revanced_hide_channel_member_shelf_summary_off">يتم عرض رف أعضاء القناة.</string>
     <string name="revanced_hide_channel_profile_links_title">إخفاء روابط ملف تعريف القناة</string>
-    <string name="revanced_hide_channel_profile_links_summary_on">تم إخفاء الروابط في أعلى ملف تعريف القناة.</string>
-    <string name="revanced_hide_channel_profile_links_summary_off">يتم عرض الروابط في أعلى ملف تعريف القناة.</string>
+    <string name="revanced_hide_channel_profile_links_summary_on">تم إخفاء الروابط في أعلى ملفات القناة الشخصية.</string>
+    <string name="revanced_hide_channel_profile_links_summary_off">يتم عرض الروابط في أعلى ملفات القناة الشخصية.</string>
     <string name="revanced_hide_for_you_shelf_title">"إخفاء رف 'من أجلك'"</string>
-    <string name="revanced_hide_for_you_shelf_summary_on">"تم إخفاء رفوف 'لـك'."</string>
-    <string name="revanced_hide_for_you_shelf_summary_off">"يتم عرض رفوف 'لـك'."</string>
+    <string name="revanced_hide_for_you_shelf_summary_on">"تم إخفاء رف 'لـك'."</string>
+    <string name="revanced_hide_for_you_shelf_summary_off">"يتم عرض رف 'لـك'."</string>
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Community posts -->
     <string name="revanced_preference_screen_community_posts_title">مشاركات المجتمع</string>
     <string name="revanced_preference_screen_community_posts_summary">إخفاء أو عرض مشاركات المجتمع في الموجز والقناة.</string>
@@ -357,11 +357,11 @@
     <string name="revanced_hide_navigation_subscriptions_button_title">إخفاء زر الاشتراكات</string>
     <string name="revanced_hide_navigation_subscriptions_button_summary_on">تم إخفاء زر الاشتراكات.</string>
     <string name="revanced_hide_navigation_subscriptions_button_summary_off">يتم عرض زر الاشتراكات.</string>
-    <string name="revanced_hide_navigation_label_title">إخفاء تسمية شريط التنقل</string>
-    <string name="revanced_hide_navigation_label_summary_on">تم إخفاء تسمية شريط التنقل.</string>
-    <string name="revanced_hide_navigation_label_summary_off">يتم عرض تسمية شريط التنقل.</string>
-    <string name="revanced_switch_create_with_notifications_button_title">تبديل الإنشاء بالإشعارات</string>
-    <string name="revanced_switch_create_with_notifications_button_summary">"لتبديل مواضع زر الإنشاء وزر الإشعارات عن طريق إيهام معلومات الجهاز.
+    <string name="revanced_hide_navigation_label_title">إخفاء تسميات شريط التنقل</string>
+    <string name="revanced_hide_navigation_label_summary_on">تم إخفاء تسميات شريط التنقل.</string>
+    <string name="revanced_hide_navigation_label_summary_off">يتم عرض تسميات شريط التنقل.</string>
+    <string name="revanced_switch_create_with_notifications_button_title">تبديل أزرار الإنشاء و الإشعارات</string>
+    <string name="revanced_switch_create_with_notifications_button_summary">"لتبديل مواضع زر الإنشاء و زر الإشعارات عن طريق إيهام معلومات الجهاز.
 
 • قد يحتاج الجهاز إلى إعادة التشغيل حتى يسري تغيير هذا الإعداد.
 • يؤدي تعطيل هذا الإعداد إلى تحميل المزيد من الإعلانات من جانب الخادم.
@@ -386,8 +386,8 @@
     <string name="revanced_enable_wide_search_bar_summary_on">تم تمكين شريط البحث العريض.</string>
     <string name="revanced_enable_wide_search_bar_summary_off">تم تعطيل شريط البحث العريض.</string>
     <string name="revanced_enable_wide_search_bar_with_header_title">تمكين شريط البحث العريض مع الرأس</string>
-    <string name="revanced_enable_wide_search_bar_with_header_summary_on">يتضمن شريط البحث العريض رأس YouTube.</string>
-    <string name="revanced_enable_wide_search_bar_with_header_summary_off">لا يتضمن شريط البحث العريض على رأس YouTube.</string>
+    <string name="revanced_enable_wide_search_bar_with_header_summary_on">لا يخفي شريط البحث العريض رأس YouTube.</string>
+    <string name="revanced_enable_wide_search_bar_with_header_summary_off">يخفي شريط البحث العريض رأس YouTube.</string>
     <string name="revanced_enable_wide_search_bar_in_you_tab_title">تمكين شريط البحث العريض في علامة التبويب أنت</string>
     <string name="revanced_enable_wide_search_bar_in_you_tab_summary">"سيؤدي تمكين هذا الإعداد إلى تعطيل زر الإعدادات في علامة التبويب \"أنت\".
 
@@ -402,7 +402,7 @@
     <string name="revanced_hide_toolbar_notification_button_title">إخفاء زر الإشعارات</string>
     <string name="revanced_hide_toolbar_notification_button_summary_on">تم إخفاء زر الإشعارات.</string>
     <string name="revanced_hide_toolbar_notification_button_summary_off">يتم عرض زر الإشعارات.</string>
-    <string name="revanced_hide_search_term_thumbnail_title">إخفاء مصغرات البحث</string>
+    <string name="revanced_hide_search_term_thumbnail_title">إخفاء مصغرات مصطلحات البحث</string>
     <string name="revanced_hide_search_term_thumbnail_summary_on">تم إخفاء المصغرات في سجل مصطلحات البحث.</string>
     <string name="revanced_hide_search_term_thumbnail_summary_off">يتم عرض المصغرات في سجل مصطلحات البحث.</string>
     <string name="revanced_hide_voice_search_button_title">إخفاء زر البحث الصوتي</string>
@@ -469,6 +469,10 @@
     <string name="revanced_hide_timed_reactions_summary_on">تم إخفاء ردود الفعل المؤقتة.</string>
     <string name="revanced_hide_timed_reactions_summary_off">يتم عرض ردود الفعل المؤقتة.</string>
     <string name="revanced_hide_suggested_video_end_screen_title">إخفاء شاشة نهاية الفيديو المقترح</string>
+    <string name="revanced_hide_suggested_video_end_screen_summary_on">"تم إخفاء شاشة نهاية الفيديو المقترح عند إيقاف التشغيل التلقائي.
+
+يمكن تغيير التشغيل التلقائي في إعدادات YouTube: 'الإعدادات ← التشغيل التلقائي ← تشغيل الفيديو التالي تلقائيًا'"</string>
+    <string name="revanced_hide_suggested_video_end_screen_summary_off">يتم عرض شاشة نهاية الفيديو المقترح.</string>
     <string name="revanced_skip_autoplay_countdown_title">تخطي العد التنازلي للتشغيل التلقائي</string>
     <string name="revanced_skip_autoplay_countdown_summary_on">إذا تم تمكين التشغيل التلقائي، فسيتم تشغيل الفيديو التالي على الفور.</string>
     <string name="revanced_skip_autoplay_countdown_summary_off">إذا تم تمكين التشغيل التلقائي، فسيتم تشغيل الفيديو التالي بعد انتهاء العد التنازلي.</string>
@@ -493,9 +497,9 @@
     <string name="revanced_hide_rewards_button_title">إخفاء زر المكافآت</string>
     <string name="revanced_hide_rewards_button_summary_on">تم إخفاء زر المكافآت.</string>
     <string name="revanced_hide_rewards_button_summary_off">يتم عرض زر المكافآت.</string>
-    <string name="revanced_hide_playlist_button_title">إخفاء زر الحفظ في قائمة التشغيل</string>
-    <string name="revanced_hide_playlist_button_summary_on">تم إخفاء زر الحفظ في قائمة التشغيل.</string>
-    <string name="revanced_hide_playlist_button_summary_off">يتم عرض زر الحفظ في قائمة التشغيل.</string>
+    <string name="revanced_hide_playlist_button_title">إخفاء زر الحفظ</string>
+    <string name="revanced_hide_playlist_button_summary_on">تم إخفاء زر الحفظ.</string>
+    <string name="revanced_hide_playlist_button_summary_off">يتم عرض زر الحفظ.</string>
     <string name="revanced_hide_share_button_title">إخفاء زر مشاركة</string>
     <string name="revanced_hide_share_button_summary_on">تم إخفاء زر مشاركة.</string>
     <string name="revanced_hide_share_button_summary_off">يتم عرض زر مشاركة.</string>
@@ -530,9 +534,9 @@
     <string name="revanced_hide_channel_guidelines_title">إخفاء إرشادات القناة</string>
     <string name="revanced_hide_channel_guidelines_summary_on">تم إخفاء إرشادات القناة.</string>
     <string name="revanced_hide_channel_guidelines_summary_off">يتم عرض إرشادات القناة.</string>
-    <string name="revanced_hide_comments_by_members_title">إخفاء تعليقات بانر الأعضاء</string>
-    <string name="revanced_hide_comments_by_members_summary_on">تم إخفاء تعليقات الأعضاء.</string>
-    <string name="revanced_hide_comments_by_members_summary_off">يتم عرض شعار التعليقات بواسطة الأعضاء.</string>
+    <string name="revanced_hide_comments_by_members_title">"إخفاء لافتة 'تعليقات من الأعضاء'"</string>
+    <string name="revanced_hide_comments_by_members_summary_on">"تم إخفاء لافتة 'تعليقات من الأعضاء'."</string>
+    <string name="revanced_hide_comments_by_members_summary_off">"يتم عرض لافتة 'تعليقات من الأعضاء'."</string>
     <string name="revanced_hide_comments_section_title">إخفاء قسم التعليقات</string>
     <string name="revanced_hide_comments_section_summary_on">تم إخفاء قسم التعليقات.</string>
     <string name="revanced_hide_comments_section_summary_off">يتم عرض قسم التعليقات.</string>
@@ -604,9 +608,9 @@
     <string name="revanced_hide_player_flyout_menu_premium_controls_title">إخفاء قائمة عناصر التحكم في Premium</string>
     <string name="revanced_hide_player_flyout_menu_premium_controls_summary_on">تم إخفاء قائمة عناصر التحكم في Premium.</string>
     <string name="revanced_hide_player_flyout_menu_premium_controls_summary_off">يتم عرض قائمة عناصر التحكم في Premium.</string>
+    <string name="revanced_hide_player_flyout_menu_stable_volume_title">إخفاء قائمة مستوى الصوت الثابت</string>
     <string name="revanced_hide_player_flyout_menu_stable_volume_summary_off">يتم عرض قائمة مستوى الصوت الثابت.</string>
     <string name="revanced_hide_player_flyout_menu_stable_volume_summary_on">تم إخفاء قائمة مستوى الصوت الثابت.</string>
-    <string name="revanced_hide_player_flyout_menu_stable_volume_title">إخفاء قائمة مستوى الصوت الثابت</string>
     <string name="revanced_hide_player_flyout_menu_stats_for_nerds_title">إخفاء قائمة إحصاءات تقنية</string>
     <string name="revanced_hide_player_flyout_menu_stats_for_nerds_summary_on">تم إخفاء قائمة إحصاءات تقنية.</string>
     <string name="revanced_hide_player_flyout_menu_stats_for_nerds_summary_off">يتم عرض قائمة إحصاءات تقنية.</string>
@@ -637,9 +641,9 @@
     <string name="revanced_hide_quick_actions_title">إخفاء حاوية الإجراءات السريعة</string>
     <string name="revanced_hide_quick_actions_summary_on">تم إخفاء حاوية الإجراءات السريعة.</string>
     <string name="revanced_hide_quick_actions_summary_off">يتم عرض حاوية الإجراءات السريعة.</string>
-    <string name="revanced_hide_quick_actions_comment_button_title">إخفاء زر التعليق</string>
-    <string name="revanced_hide_quick_actions_comment_button_summary_on">تم إخفاء زر التعليق.</string>
-    <string name="revanced_hide_quick_actions_comment_button_summary_off">يتم عرض زر التعليق.</string>
+    <string name="revanced_hide_quick_actions_comment_button_title">إخفاء زر التعليقات</string>
+    <string name="revanced_hide_quick_actions_comment_button_summary_on">تم إخفاء زر التعليقات.</string>
+    <string name="revanced_hide_quick_actions_comment_button_summary_off">يتم عرض زر التعليقات.</string>
     <string name="revanced_hide_quick_actions_dislike_button_title">إخفاء زر لم يعجبني</string>
     <string name="revanced_hide_quick_actions_dislike_button_summary_on">تم إخفاء زر لم يعجبني.</string>
     <string name="revanced_hide_quick_actions_dislike_button_summary_off">يتم عرض زر لم يعجبني.</string>
@@ -658,9 +662,9 @@
     <string name="revanced_hide_quick_actions_open_playlist_button_title">إخفاء زر فتح قائمة التشغيل</string>
     <string name="revanced_hide_quick_actions_open_playlist_button_summary_on">تم إخفاء زر فتح قائمة التشغيل.</string>
     <string name="revanced_hide_quick_actions_open_playlist_button_summary_off">يتم عرض زر فتح قائمة التشغيل.</string>
-    <string name="revanced_hide_quick_actions_save_to_playlist_button_title">إخفاء زر الحفظ في قائمة التشغيل</string>
-    <string name="revanced_hide_quick_actions_save_to_playlist_button_summary_on">تم إخفاء زر الحفظ في قائمة التشغيل.</string>
-    <string name="revanced_hide_quick_actions_save_to_playlist_button_summary_off">يتم عرض زر الحفظ في قائمة التشغيل.</string>
+    <string name="revanced_hide_quick_actions_save_to_playlist_button_title">إخفاء زر الحفظ</string>
+    <string name="revanced_hide_quick_actions_save_to_playlist_button_summary_on">تم إخفاء زر الحفظ.</string>
+    <string name="revanced_hide_quick_actions_save_to_playlist_button_summary_off">يتم عرض زر الحفظ.</string>
     <string name="revanced_hide_quick_actions_share_button_title">إخفاء زر مشاركة</string>
     <string name="revanced_hide_quick_actions_share_button_summary_on">تم إخفاء زر مشاركة.</string>
     <string name="revanced_hide_quick_actions_share_button_summary_off">يتم عرض زر مشاركة.</string>
@@ -719,7 +723,7 @@
     <string name="revanced_hide_player_fullscreen_button_title">إخفاء زر ملء الشاشة</string>
     <string name="revanced_hide_player_fullscreen_button_summary_on">تم إخفاء زر ملء الشاشة.</string>
     <string name="revanced_hide_player_fullscreen_button_summary_off">يتم عرض زر ملء الشاشة.</string>
-    <string name="revanced_hide_player_previous_next_button_title">إخفاء زر السابق &amp; التالي</string>
+    <string name="revanced_hide_player_previous_next_button_title">إخفاء أزرار السابق &amp; التالي</string>
     <string name="revanced_hide_player_previous_next_button_summary_on">تم إخفاء الأزرار.</string>
     <string name="revanced_hide_player_previous_next_button_summary_off">يتم عرض الأزرار.</string>
     <string name="revanced_hide_player_youtube_music_button_title">إخفاء زر موسيقى YouTube</string>
@@ -1004,9 +1008,9 @@
     <string name="revanced_disable_hdr_video_title">تعطيل فيديو HDR</string>
     <string name="revanced_disable_hdr_video_summary_on">تم تعطيل فيديو HDR.</string>
     <string name="revanced_disable_hdr_video_summary_off">تم تمكين فيديو HDR.</string>
-    <string name="revanced_disable_default_playback_speed_live_title">تعطيل سرعة التشغيل في البث المباشر</string>
-    <string name="revanced_disable_default_playback_speed_live_summary_on">تم تعطيل سرعة التشغيل الافتراضية في البث المباشر.</string>
-    <string name="revanced_disable_default_playback_speed_live_summary_off">تم تمكين سرعة التشغيل الافتراضية في البث المباشر.</string>
+    <string name="revanced_disable_default_playback_speed_live_title">تعطيل سرعة التشغيل للبث المباشر</string>
+    <string name="revanced_disable_default_playback_speed_live_summary_on">تم تعطيل سرعة التشغيل الافتراضية للبث المباشر.</string>
+    <string name="revanced_disable_default_playback_speed_live_summary_off">تم تمكين سرعة التشغيل الافتراضية للبث المباشر.</string>
     <string name="revanced_enable_custom_playback_speed_title">تمكين سرعة التشغيل المخصصة</string>
     <string name="revanced_enable_custom_playback_speed_summary_on">تم تمكين سرعة التشغيل المخصصة.</string>
     <string name="revanced_enable_custom_playback_speed_summary_off">تم تعطيل سرعة التشغيل المخصصة.</string>
@@ -1067,8 +1071,8 @@
     <string name="revanced_ryd_compact_layout_title">مقاس زر أعجبني</string>
     <string name="revanced_ryd_compact_layout_summary_on">زر أعجبني مصمم لأدنى عرض.</string>
     <string name="revanced_ryd_compact_layout_summary_off">زر أعجبني مصمم لأفضل مظهر.</string>
-    <string name="revanced_ryd_toast_on_connection_error_title">عرض ملاحظة إذا كان API غير متاح</string>
-    <string name="revanced_ryd_toast_on_connection_error_summary_on">يتم عرض الملاحظة في حالة عدم توفر ReturnYouTubeDislike Api.</string>
+    <string name="revanced_ryd_toast_on_connection_error_title">عرض ملاحظة إذا كان API غير متوفر</string>
+    <string name="revanced_ryd_toast_on_connection_error_summary_on">يتم عرض الملاحظة في حالة عدم توفر Return YouTube Dislike.</string>
     <string name="revanced_ryd_toast_on_connection_error_summary_off">لا يتم عرض الملاحظة في حالة عدم توفر Return YouTube Dislike.</string>
     <!-- PreferenceScreen: Return YouTube Dislike, PreferenceCategory: About -->
     <string name="revanced_ryd_about">لمحة</string>
@@ -1180,7 +1184,7 @@
     <string name="revanced_sb_guidelines_popup_open">اعرضها لي</string>
     <!-- PreferenceScreen: SponsorBlock, PreferenceCategory: General -->
     <string name="revanced_sb_general">عام</string>
-    <string name="revanced_sb_toast_on_connection_error_title">عرض ملاحظة إذا كان API غير متاح</string>
+    <string name="revanced_sb_toast_on_connection_error_title">عرض ملاحظة إذا كان API غير متوفر</string>
     <string name="revanced_sb_toast_on_connection_error_summary_on">يتم عرض الملاحظة في حالة عدم توفر SponsorBlock.</string>
     <string name="revanced_sb_toast_on_connection_error_summary_off">لا يتم عرض الملاحظة في حالة عدم توفر SponsorBlock.</string>
     <string name="revanced_sb_general_skipcount">تمكين تتبع مرات التخطي</string>
@@ -1298,27 +1302,6 @@
     <string name="revanced_sanitize_sharing_links_summary">يزيل معلمات استعلام التتبع من عناوين URL عند مشاركة الروابط.</string>
     <string name="revanced_disable_quic_protocol_title">تعطيل بروتوكول QUIC</string>
     <string name="revanced_disable_quic_protocol_summary">"تعطيل بروتوكول QUIC الخاص بـ CronetEngine."</string>
-    <string name="revanced_spoof_client_title">Spoof Client</string>
-    <string name="revanced_spoof_client_summary_on">"تتم محاكاة العميل.
-
-تشمل الآثار الجانبية ما يلي:
-• لا يوجد فيديو بتقنية HDR.
-• قد لا يعمل سجل المشاهدة."</string>
-    <string name="revanced_spoof_client_summary_off">"لا تتم محاكاة العميل. قد لا يعمل تشغيل الفيديو."</string>
-    <string name="revanced_spoof_client_use_ios_title">Spoof Client to iOS</string>
-    <string name="revanced_spoof_client_use_ios_summary_on">"تتم حاليًا محاكاة العميل إلى iOS.
-
-تشمل الآثار الجانبية ما يلي:
-• قائمة سرعة التشغيل مفقودة.
-• لا يمكن تشغيل البث المباشر كصوت فقط.
-• البث المباشر غير متوفر على Android 8.0.
-• قد تكون جودة الفيديو الأعلى مفقودة."</string>
-    <string name="revanced_spoof_client_use_ios_summary_off">"تتم حاليًا محاكاة العميل إلى Android VR. (يتم استخدام عميل iOS للمقاطع أو Shorts)
-
-تشمل الآثار الجانبية ما يلي:
-• إيماءات التمرير الخاصة بالمشغل لا تعمل.
-• لا يتم تشغيل مقاطع فيديو الأطفال.
-• يمكن استئناف مقاطع الفيديو المتوقفة مؤقتًا بشكل عشوائي."</string>
     <string name="revanced_spoof_player_parameter_title">Spoof Player Parameter</string>
     <string name="revanced_spoof_player_parameter_summary">"لمنع مشاكل التشغيل Spoofs Player Parameters
 
@@ -1356,6 +1339,56 @@
     <string name="revanced_extended_settings_import_success">تم استيراد الإعدادات بنجاح.</string>
     <string name="revanced_extended_settings_reset">إعادة تعيين</string>
     <string name="revanced_share_copy_settings_success">تم نسخ الإعدادات إلى الحافظة.</string>
+    <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Spoof client -->
+    <string name="revanced_preference_screen_spoof_client_title">Spoof Client</string>
+    <string name="revanced_preference_screen_spoof_client_summary">محاكاة العميل لمنع مشاكل التشغيل.</string>
+    <string name="revanced_spoof_client_title">Spoof Client</string>
+    <string name="revanced_spoof_client_summary_on">تتم محاكاة العميل.</string>
+    <string name="revanced_spoof_client_summary_off">"لا تتم محاكاة العميل. قد لا يعمل تشغيل الفيديو."</string>
+    <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Spoof client, PreferenceCategory: Spoof client options -->
+    <string name="revanced_preference_category_spoof_client_options">خيارات Spoof Client</string>
+    <string name="revanced_spoof_client_general_title">عام</string>
+    <string name="revanced_spoof_client_livestream_title">بث مباشر</string>
+    <string name="revanced_spoof_client_shorts_title">مقاطع ,Shorts</string>
+    <string name="revanced_spoof_client_fallback_title">التراجع</string>
+    <string name="revanced_spoof_client_options_entry_ios">iOS</string>
+    <string name="revanced_spoof_client_options_entry_android_testsuite">Android Testsuite</string>
+    <string name="revanced_spoof_client_options_entry_android_vr">Android VR</string>
+    <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Spoof client, PreferenceCategory: About -->
+    <string name="revanced_preference_category_spoof_client_about">لمحة</string>
+    <string name="revanced_spoof_client_use_ios_title">iOS</string>
+    <string name="revanced_spoof_client_use_ios_summary">"تتم محاكاة العميل لـ iOS.
+
+تشمل الآثار الجانبية ما يلي:
+• لا يوجد فيديو بتقنية HDR.
+• قائمة سرعة التشغيل مفقودة.
+• قد تكون جودة الفيديو الأعلى مفقودة.
+• سجل المشاهدة لا يعمل مع حساب العلامة التجارية.
+• لا يمكن تشغيل البث المباشر كصوت فقط.
+• البث المباشر غير متوفر على Android 8.0."</string>
+    <string name="revanced_spoof_client_use_android_testsuite_title">Android Testsuite</string>
+    <string name="revanced_spoof_client_use_android_testsuite_summary">"تتم محاكاة العميل لـ Android Testsuite.
+
+تشمل الآثار الجانبية ما يلي:
+• لا يوجد فيديو بتقنية HDR.
+• قائمة المقطع الصوتي وقائمة سرعة التشغيل مفقودة.
+• قد لا تكون الترجمة متاحة."</string>
+    <string name="revanced_spoof_client_use_android_tv_title">Android TV</string>
+    <string name="revanced_spoof_client_use_android_tv_summary">"تتم محاكاة العميل على Android TV (YouTube TV).
+
+تشمل الآثار الجانبية ما يلي:
+• لا يوجد فيديو بتقنية HDR.
+• قائمة المقطع الصوتي وقائمة سرعة التشغيل مفقودة.
+• قد لا تكون الترجمة متاحة.
+• بعض مجموعات البث المباشر غير مدعومة للتشغيل."</string>
+    <string name="revanced_spoof_client_use_android_vr_title">Android VR</string>
+    <string name="revanced_spoof_client_use_android_vr_summary">"تتم محاكاة العميل لـ Android VR.
+
+تشمل الآثار الجانبية ما يلي:
+• لا يوجد فيديو بتقنية HDR.
+• استئناف مقاطع الفيديو المتوقفة مؤقتًا يتم بشكل عشوائي.
+• مصغرات شريط تقدم Shorts ذات جودة منخفضة.
+• لا يتم تشغيل مقاطع فيديو الأطفال."</string>
     <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceCategory: Patch information -->
     <string name="revanced_preference_category_patch_information">معلومات التعديل</string>
     <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Patch information -->

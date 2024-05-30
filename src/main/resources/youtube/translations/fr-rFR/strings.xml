@@ -77,11 +77,12 @@ Ne modifiez pas cette adresse à moins de savoir ce que vous faites.</string>
     <string name="revanced_hide_album_card_summary_on">Les fiches d\'album sont masquées</string>
     <string name="revanced_hide_album_card_summary_off">Les fiches d\'album sont affichées</string>
     <string name="revanced_hide_carousel_shelf_summary">"Masque les étagères suivantes :
-- Actualités
-- Continuer à regarder
-- Explorer d'autres chaînes
-- Marchandises
-- Regarder à nouveau"</string>
+• Actualités
+• Continuer à regarder
+• Explorer d'autres chaînes
+• Écouter à nouveau
+• Marchandises
+• Regarder à nouveau"</string>
     <string name="revanced_hide_carousel_shelf_title">Étagère des suggestions</string>
     <string name="revanced_hide_chips_shelf_title">Section \"Vous pourriez aussi aimer\"</string>
     <string name="revanced_hide_chips_shelf_on">La section \"Vous pourriez aussi aimer\" est masquée.</string>
@@ -218,6 +219,7 @@ Limitations :
 
 "</string>
     <string name="revanced_hide_keyword_toast_invalid_common">Mot-clé invalide. Impossible d\'utiliser : \'%s\' comme filtre.</string>
+    <string name="revanced_hide_keyword_toast_invalid_keyword">Mot-clé invalide. \'%1$s\' contient moins de %2$d caractères</string>
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Video filter, PreferenceCategory: Recommended video -->
     <string name="revanced_preference_category_recommended_video">Vidéo recommandée</string>
     <string name="revanced_hide_recommended_video_title">Vidéos recommandées</string>
@@ -248,15 +250,22 @@ Limitations :
     <!-- PreferenceScreen: General -->
     <string name="revanced_preference_screen_general_title">Interface générale</string>
     <string name="revanced_change_start_page_title">Page de démarrage</string>
+    <string name="revanced_change_start_page_entry_browse">Parcourir les chaînes</string>
     <string name="revanced_change_start_page_entry_default">Défaut</string>
     <string name="revanced_change_start_page_entry_explore">Explorer</string>
+    <string name="revanced_change_start_page_entry_gaming">Jeux vidéos</string>
     <string name="revanced_change_start_page_entry_history">Historique</string>
     <string name="revanced_change_start_page_entry_library">Bibliothèque</string>
     <string name="revanced_change_start_page_entry_liked_videos">Vidéos \"J\'aime\"</string>
+    <string name="revanced_change_start_page_entry_live">Direct</string>
+    <string name="revanced_change_start_page_entry_movies">Films</string>
+    <string name="revanced_change_start_page_entry_music">Musique</string>
     <string name="revanced_change_start_page_entry_search">Rechercher sur YouTube</string>
     <string name="revanced_change_start_page_entry_shorts">Shorts</string>
+    <string name="revanced_change_start_page_entry_sports">Sports</string>
     <string name="revanced_change_start_page_entry_subscriptions">Abonnements</string>
     <string name="revanced_change_start_page_entry_trending">Tendances</string>
+    <string name="revanced_change_start_page_entry_watch_later">Regarder plus tard</string>
     <string name="revanced_change_start_page_warning">Page d\'accueil invalide, réinitialisation par défaut.</string>
     <string name="revanced_disable_auto_audio_tracks_title">Sous-titres auto.</string>
     <string name="revanced_disable_auto_audio_tracks_summary_on">Les sous-titres automatiques sont désactivé.</string>
@@ -296,10 +305,10 @@ Cela ne contourne pas la restriction d'âge, mais confirme automatiquement."</st
     <string name="revanced_enable_tablet_layout_title">Interface tablette</string>
     <string name="revanced_enable_tablet_layout_summary">Modifie le Dpi pour activer l\'interface tablette.</string>
     <string name="revanced_spoof_app_version_title">Falsifier la version de l\'app</string>
-    <string name="revanced_spoof_app_version_summary">"Falsification de l'ancienne version du client
+    <string name="revanced_spoof_app_version_summary">"Falsifie la version du client par une ancienne version.
 
-Celle-ci modifiera l'apparence de l'application, mais des effets indésirables inconnus peuvent se produire
-Si elle est désactivée ultérieurement, l'ancienne interface utilisateur peut subsister jusqu'à ce que les données de l'application soient effacées"</string>
+• Celle-ci modifiera l'apparence de l'application, mais des effets indésirables inconnus peuvent se produire
+• Si elle est désactivée ultérieurement, l'ancienne interface utilisateur peut subsister jusqu'à ce que les données de l'application soient effacées."</string>
     <string name="revanced_spoof_app_version_target_title">Falsifier la version de l\'application</string>
     <string name="revanced_spoof_app_version_target_summary">Saisissez la version cible de l\'application à falsifier</string>
     <string name="revanced_spoof_app_version_target_entry_title">Version cible pour la falsification</string>
@@ -448,6 +457,9 @@ Note :
     <string name="revanced_hide_info_panel_title">Panneaux d\'information</string>
     <string name="revanced_hide_info_panel_summary_on">Les panneaux d\'information sont masqués</string>
     <string name="revanced_hide_info_panel_summary_off">Les panneaux d\'information sont affichés</string>
+    <string name="revanced_hide_live_chat_messages_title">Masquer les messages du chat en direct</string>
+    <string name="revanced_hide_live_chat_messages_summary_on">Les messages de chat en direct sont masqués.\n\nCe paramètre s\'applique également aux vidéos en direct Shorts.</string>
+    <string name="revanced_hide_live_chat_messages_summary_off">Les messages de chat en direct sont affichées.\n\nCe paramètre s\'applique également aux vidéos en direct Shorts.</string>
     <string name="revanced_hide_medical_panel_title">Panneaux d\'infos médicaux</string>
     <string name="revanced_hide_medical_panel_summary_on">Les panneaux d\'infos médicaux sont masqués</string>
     <string name="revanced_hide_medical_panel_summary_off">Les panneaux d\'infos médicaux sont affichés</string>
@@ -460,10 +472,15 @@ Note :
     <string name="revanced_hide_suggested_actions_title">Actions suggérées</string>
     <string name="revanced_hide_suggested_actions_summary_on">Les actions suggérées sont masquées</string>
     <string name="revanced_hide_suggested_actions_summary_off">Les actions suggérées sont affichées</string>
-    <string name="revanced_hide_timed_reactions_title">Réactions rapides</string>
-    <string name="revanced_hide_timed_reactions_summary_on">Les réactions rapides sont masquées</string>
-    <string name="revanced_hide_timed_reactions_summary_off">Les réactions rapides sont affichées</string>
+    <string name="revanced_hide_timed_reactions_title">Barre d\'emojis dans le chat en direct</string>
+    <string name="revanced_hide_timed_reactions_summary_on">La barre des émojis dans le chat en direct est masqué.</string>
+    <string name="revanced_hide_timed_reactions_summary_off">La barre des émojis dans le chat en direct est affiché.</string>
     <string name="revanced_hide_suggested_video_end_screen_title">Vidéos suggérées à la fin de vidéo</string>
+    <string name="revanced_hide_suggested_video_end_screen_summary_on">"Les suggestions de vidéos à l'écran de fin sont masqué lorsque la lecture automatique est désactivée.
+
+La lecture automatique peut être modifiée dans les paramètres de YouTube :
+'Paramètres → Lecture automatique → Lecture automatique de la vidéo suivante'"</string>
+    <string name="revanced_hide_suggested_video_end_screen_summary_off">Les suggestions de vidéos à la fin sont affichés.</string>
     <string name="revanced_skip_autoplay_countdown_title">Ignore le compte à rebours à la fin de vidéo</string>
     <string name="revanced_skip_autoplay_countdown_summary_on">Si la lecture automatique est activée, la vidéo suivante sera lue sans prendre en compte le compte à rebours.</string>
     <string name="revanced_skip_autoplay_countdown_summary_off">Si la lecture automatique est activée, la prochaine vidéo sera lue après la fin du compte à rebours.</string>
@@ -525,9 +542,9 @@ Note :
     <string name="revanced_hide_channel_guidelines_title">Règles de la chaîne</string>
     <string name="revanced_hide_channel_guidelines_summary_on">Les règles de la chaîne sont masquées</string>
     <string name="revanced_hide_channel_guidelines_summary_off">Les règles de la chaîne sont affichées</string>
-    <string name="revanced_hide_comments_by_members_title">Commentaires des membres</string>
-    <string name="revanced_hide_comments_by_members_summary_on">Les commentaires des membres sont cachés.</string>
-    <string name="revanced_hide_comments_by_members_summary_off">Les commentaires des membres sont affichés.</string>
+    <string name="revanced_hide_comments_by_members_title">"Commentaires des membres"</string>
+    <string name="revanced_hide_comments_by_members_summary_on">"Les commentaires des membres sont cachés."</string>
+    <string name="revanced_hide_comments_by_members_summary_off">"Les commentaires des membres sont affichés."</string>
     <string name="revanced_hide_comments_section_title">Section des commentaires</string>
     <string name="revanced_hide_comments_section_summary_on">La section des commentaires est masquée</string>
     <string name="revanced_hide_comments_section_summary_off">La section des commentaires est affichée</string>
@@ -599,9 +616,9 @@ Note :
     <string name="revanced_hide_player_flyout_menu_premium_controls_title">Bouton \"Commandes Premium\"</string>
     <string name="revanced_hide_player_flyout_menu_premium_controls_summary_on">Le bouton \"Commandes Premium\" est masqué.</string>
     <string name="revanced_hide_player_flyout_menu_premium_controls_summary_off">Le bouton \"Commandes Premium\" est affiché.</string>
+    <string name="revanced_hide_player_flyout_menu_stable_volume_title">Bouton \"Volume stable\"</string>
     <string name="revanced_hide_player_flyout_menu_stable_volume_summary_off">Le bouton \"Volume stable\" est affiché.</string>
     <string name="revanced_hide_player_flyout_menu_stable_volume_summary_on">Le bouton \"Volume stable\" est masqué.</string>
-    <string name="revanced_hide_player_flyout_menu_stable_volume_title">Bouton \"Volume stable\"</string>
     <string name="revanced_hide_player_flyout_menu_stats_for_nerds_title">Bouton \"Statistique pour les nerds\"</string>
     <string name="revanced_hide_player_flyout_menu_stats_for_nerds_summary_on">Le bouton \"Statistiques pour les nerds\" est masqué.</string>
     <string name="revanced_hide_player_flyout_menu_stats_for_nerds_summary_off">Le bouton \"Statistiques pour les nerds\" est affiché.</string>
@@ -621,6 +638,9 @@ Limitation : Le titre de la vidéo disparaît lorsque vous cliquez dessus."</str
     <string name="revanced_hide_autoplay_preview_title">Prévisualisation de lecture automatique</string>
     <string name="revanced_hide_autoplay_preview_summary_on">La prévisualisation automatique des vidéos est masqué.</string>
     <string name="revanced_hide_autoplay_preview_summary_off">La prévisualisation automatique des vidéos est affiché</string>
+    <string name="revanced_hide_live_chat_replay_button_title">Masquer le bouton de chat en direct en replay</string>
+    <string name="revanced_hide_live_chat_replay_button_summary_on">Le bouton Replay du chat en direct est masqué.\n\nIl apparaît en plein écran lors de la fermeture du chat en direct.</string>
+    <string name="revanced_hide_live_chat_replay_button_summary_off">Le bouton Replay du chat en direct est affiché.\n\nIl apparaît en plein écran lors de la fermeture du chat en direct.</string>
     <string name="revanced_hide_related_video_overlay_title">Vidéo associé</string>
     <string name="revanced_hide_related_video_overlay_summary_on">Les vidéos associées sont masquées.</string>
     <string name="revanced_hide_related_video_overlay_summary_off">Les vidéos associées sont affichées.</string>
@@ -733,6 +753,25 @@ Appuyez longuement pour copier seulement l'horodatage"</string>
     <string name="revanced_overlay_button_speed_dialog_title">Bouton \"Vitesse de lecture\"</string>
     <string name="revanced_overlay_button_speed_dialog_summary">"Appuyez pour ouvrir des paramètres de vitesse
 Appuyez longuement pour régler la vitesse de la vidéo sur 1.0x."</string>
+    <string name="revanced_overlay_button_whitelist_title">Afficher le bouton \"whitelist\" (liste blanche)</string>
+    <string name="revanced_overlay_button_whitelist_summary">\"Appuyez pour ouvrir la boîte de dialogue de la liste blanche.
+Appuyez et maintenez enfoncé pour ouvrir la boîte de dialogue des paramètres de la liste blanche.</string>
+    <string name="revanced_overlay_button_time_ordered_playlist_title">Afficher le bouton de playlist chronométrée</string>
+    <string name="revanced_overlay_button_time_ordered_playlist_summary">"Appuyez pour générer une playlist de toutes les vidéos de la chaîne de la plus ancienne à la plus récente.
+Appuyez longuement pour annuler."</string>
+    <string name="revanced_whitelist_settings_title">Liste blanche des chaînes</string>
+    <string name="revanced_whitelist_settings_summary">Vérifier ou supprimer les chaînes ajoutées à la liste blanche.</string>
+    <string name="revanced_whitelist_added">La chaîne \'%1$s\' a été ajoutée à la liste blanche \'%2$s\'.</string>
+    <string name="revanced_whitelist_add_failed">Impossible d\'ajouter la chaîne \'%1$s\' à la liste blanche \'%2$s\'.</string>
+    <string name="revanced_whitelist_removed">La chaîne \'%1$s\' a été retirée de la liste blanche \'%2$s\'.</string>
+    <string name="revanced_whitelist_remove_failed">Impossible de supprimer la chaîne \'%1$s\' de la liste blanche \'%2$s\'.</string>
+    <string name="revanced_whitelist_remove_dialog_message">Supprimer la chaîne \'%1$s\' de la liste blanche \'%2$s\'?</string>
+    <string name="revanced_whitelist_empty">Il n\'y a pas de chaînes dans la liste blanche.</string>
+    <string name="revanced_whitelist_excluded">Non ajouté à la liste blanche.</string>
+    <string name="revanced_whitelist_included">Ajouté à la liste blanche.</string>
+    <string name="revanced_whitelist_playback_speed">Vitesse de lecture</string>
+    <string name="revanced_whitelist_sponsor_block">SponsorBlock</string>
+    <string name="revanced_whitelist_failure_generic">Impossible de charger les informations de la chaîne.</string>
     <string name="revanced_external_downloader_package_name_title">Nom du paquet du téléchargeur externe</string>
     <string name="revanced_external_downloader_package_name_summary">Nom de package du téléchargeur externe installé, telle que NewPipe ou YTDLnis</string>
     <string name="revanced_external_downloader_dialog_title">Téléchargeur externe</string>
@@ -811,8 +850,8 @@ Veuillez télécharger %2$s à partir du site web."</string>
     <string name="revanced_disable_video_description_interaction_title">Désactive l\'interaction avec la description de la vidéo</string>
     <string name="revanced_disable_video_description_interaction_summary">"Désactive les interactions suivantes lorsque la description de la vidéo est développée :
 
-- Effleurez pour faire défiler.
-- Appuyez et maintenez enfoncé pour sélectionner du texte."</string>
+• Appuyez pour défiler.
+• Appuyez et maintenez enfoncé pour sélectionner du texte."</string>
     <string name="revanced_expand_video_description_title">Ouvrir la description automatiquement</string>
     <string name="revanced_expand_video_description_summary_on">La description s\'ouvre automatiquement.</string>
     <string name="revanced_expand_video_description_summary_off">La description s\'ouvre manuellement.</string>
@@ -834,9 +873,9 @@ L'option \"Ouvrir la description automatiquement\" risque de ne pas fonctionner 
     <!-- PreferenceScreen: Shorts, PreferenceCategory: Shorts shelf -->
     <string name="revanced_preference_category_shorts_shelf">Étagères Shorts</string>
     <string name="revanced_hide_shorts_shelf_title">Étagère à Shorts</string>
-    <string name="revanced_hide_shorts_shelf_summary">"Proposition de Shorts
+    <string name="revanced_hide_shorts_shelf_summary">"Masquer les propositions de Shorts.
 
-Problème connu : Les fiches officielles dans les résultats de recherche sont masquées"</string>
+Problème connu : Les fiches officielles dans les résultats de recherche sont masquées."</string>
     <string name="revanced_hide_shorts_shelf_home_related_videos_title">Masquer dans la page d\'accueil et dans les vidéos similaires</string>
     <string name="revanced_hide_shorts_shelf_home_related_videos_summary_on">Masqué les Shorts dans page d\'accueil et dans les vidéos similaires.</string>
     <string name="revanced_hide_shorts_shelf_home_related_videos_summary_off">Affiché les Shorts dans page d\'accueil et dans les vidéos similaires.</string>
@@ -1298,6 +1337,54 @@ Problèmes connus
     <string name="revanced_extended_settings_import_success">Les paramètres ont été importés avec succès</string>
     <string name="revanced_extended_settings_reset">Réinitialiser</string>
     <string name="revanced_share_copy_settings_success">Paramètres copiés dans le presse-papier.</string>
+    <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Spoof client -->
+    <string name="revanced_spoof_client_title">Falsifier le client</string>
+    <string name="revanced_spoof_client_summary_on">Le client est falsifié.</string>
+    <string name="revanced_spoof_client_summary_off">"Le client n'est pas falsifié, la lecture des vidéos peut ne pas fonctionner."</string>
+    <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Spoof client, PreferenceCategory: Spoof client options -->
+    <string name="revanced_preference_category_spoof_client_options">Falsifier les options du client</string>
+    <string name="revanced_spoof_client_general_title">Général</string>
+    <string name="revanced_spoof_client_livestream_title">Contenu en direct</string>
+    <string name="revanced_spoof_client_shorts_title">Shorts, Clips</string>
+    <string name="revanced_spoof_client_fallback_title">Remplacement</string>
+    <string name="revanced_spoof_client_options_entry_ios">iOS</string>
+    <string name="revanced_spoof_client_options_entry_android_testsuite">Android Test suite</string>
+    <string name="revanced_spoof_client_options_entry_android_vr">Android VR</string>
+    <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Spoof client, PreferenceCategory: About -->
+    <string name="revanced_preference_category_spoof_client_about">À propos</string>
+    <string name="revanced_spoof_client_use_ios_title">iOS</string>
+    <string name="revanced_spoof_client_use_ios_summary">"Falsifier le client vers IOS.
+
+Créée des effets secondaires :
+• Pas de vidéo HDR.
+• Le menu \"vitesse de lecture\" est absent.
+• Les hautes qualités peuvent être absent.
+• l'historique de vidéo ne fonctionne pas pour les comptes de marques.
+• Les contenus en direct ne peuvent être lu en audio uniquement.
+• Les contenus en direct ne sont pas disponibles sur Android 8.0."</string>
+    <string name="revanced_spoof_client_use_android_testsuite_title">Android test suite</string>
+    <string name="revanced_spoof_client_use_android_testsuite_summary">"Falsifier le client vers Android Test suite.
+
+Créée des effets secondaires :
+• Pas de vidéo HDR.
+• Le menu \"piste audio\" et \"vitesse de lecture\" sont absents.
+• Les sous-titres peuvent ne pas être disponibles."</string>
+    <string name="revanced_spoof_client_use_android_tv_title">Android TV</string>
+    <string name="revanced_spoof_client_use_android_tv_summary">"Falsifier le client vers Android TV (YouTube TV).
+
+Créée des effets secondaires :
+• Pas de vidéo HDR.
+• Le menu \"piste audio\" et \"vitesse de lecture\" sont absents.
+• Les sous-titres peuvent ne pas être disponibles.
+• Certains contenus en direct ne sont pas pris en charge pour la lecture."</string>
+    <string name="revanced_spoof_client_use_android_vr_title">Android VR</string>
+    <string name="revanced_spoof_client_use_android_vr_summary">"Falsifier le client vers Android VR.
+
+Crée des effets secondaires :
+• Pas de vidéo HDR.
+• Les vidéos en pause redémarrer aléatoirement.
+• Les miniatures de la barre de progression sont en basses qualités.
+• Les vidéos conçues pour les enfants ne sont pas lues."</string>
     <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceCategory: Patch information -->
     <string name="revanced_preference_category_patch_information">Informations sur les patchs</string>
     <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Patch information -->
