@@ -1429,7 +1429,6 @@ Side effects include:
     <string name="revanced_spoof_client_use_ios_summary_off">"Client is currently spoofed to Android VR. (iOS client is used for Clips or Shorts)
 
 Side effects include:
-• Player swipe gestures do not work.
 • Kids videos do not playback.
 • Paused videos can randomly resume."</string>
     <string name="revanced_spoof_player_parameter_title">Spoof player parameter</string>
