@@ -10,7 +10,7 @@ import app.revanced.util.patch.BaseResourcePatch
 @Suppress("unused")
 object ShortsOutlineButtonPatch : BaseResourcePatch(
     name = "Shorts outline button",
-    description = "Applies the outline icon to the action buttons in the Shorts player.",
+    description = "Applies, at compile time, the outline icon to the action buttons in the Shorts player.",
     dependencies = setOf(SettingsPatch::class),
     compatiblePackages = COMPATIBLE_PACKAGE
 ) {
