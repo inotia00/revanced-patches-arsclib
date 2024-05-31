@@ -19,7 +19,6 @@ object CustomBrandingIconPatch : BaseResourcePatch(
     description = "Changes the YouTube app icon to the icon specified in options.json.",
     dependencies = setOf(SettingsPatch::class),
     compatiblePackages = COMPATIBLE_PACKAGE,
-    use = false,
 ) {
     private const val DEFAULT_ICON_KEY = "Revancify Blue"
 
