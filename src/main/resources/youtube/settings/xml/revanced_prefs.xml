@@ -449,7 +449,6 @@
         <SwitchPreference android:title="@string/revanced_hide_shorts_toolbar_title" android:key="revanced_hide_shorts_toolbar" android:defaultValue="false" android:summaryOn="@string/revanced_hide_shorts_toolbar_summary_on" android:summaryOff="@string/revanced_hide_shorts_toolbar_summary_off" />
         <SwitchPreference android:title="@string/revanced_hide_shorts_navigation_bar_title" android:key="revanced_hide_shorts_navigation_bar" android:defaultValue="false" android:summaryOn="@string/revanced_hide_shorts_navigation_bar_summary_on" android:summaryOff="@string/revanced_hide_shorts_navigation_bar_summary_off" />
         <SwitchPreference android:title="@string/revanced_return_shorts_channel_name_title" android:key="revanced_return_shorts_channel_name" android:defaultValue="false" android:summaryOn="@string/revanced_return_shorts_channel_name_summary_on" android:summaryOff="@string/revanced_return_shorts_channel_name_summary_off" />
-        <SwitchPreference android:title="@string/revanced_return_shorts_channel_name_fetch_title" android:key="revanced_return_shorts_channel_name_fetch" android:defaultValue="false" android:summaryOn="@string/revanced_return_shorts_channel_name_fetch_summary_on" android:summaryOff="@string/revanced_return_shorts_channel_name_fetch_summary_off" />
     </PreferenceScreen>SETTINGS: SHORTS_COMPONENTS -->
 
     <!-- SETTINGS: CHANGE_SHORTS_REPEAT_STATE

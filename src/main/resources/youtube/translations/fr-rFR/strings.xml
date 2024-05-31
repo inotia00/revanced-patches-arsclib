@@ -320,8 +320,8 @@ Cela ne contourne pas la restriction d'âge, mais confirme automatiquement."</st
     <string name="revanced_spoof_app_version_target_entry_18_38_45">18.38.45 - Restaure l\'ancien fonctionnement par défaut de la qualité vidéo</string>
     <string name="revanced_spoof_app_version_target_entry_18_48_39">"18.48.39 - Désactive les \"vues\" et \"j'aimes\" en temps réel"</string>
     <!-- PreferenceScreen: General, PreferenceCategory: General, PreferenceScreen: Account menu -->
-    <string name="revanced_preference_screen_account_munu_title">Menu du compte YouTube</string>
-    <string name="revanced_preference_screen_account_munu_summary">Masque ou affiche les éléments dans le menu du compte et dans l\'onglet \"Vous\".</string>
+    <string name="revanced_preference_screen_account_menu_title">Menu du compte YouTube</string>
+    <string name="revanced_preference_screen_account_menu_summary">Masque ou affiche les éléments dans le menu du compte et dans l\'onglet \"Vous\".</string>
     <string name="revanced_hide_account_menu_title">Menu du compte YouTube</string>
     <string name="revanced_hide_account_menu_summary">"Masque les éléments du menu du compte et de la catégorie \"Vous\"
 Certains composants peuvent ne pas être masqués"</string>
@@ -374,8 +374,8 @@ Certains composants peuvent ne pas être masqués"</string>
 • Désactiver ce paramètre fait chargé plus de pubs côté serveur
 • Vous devez désactiver ce paramètre pour pouvoir avoir des publicités vidéos."</string>
     <!-- PreferenceScreen: General, PreferenceCategory: General, PreferenceScreen: Settings menu -->
-    <string name="revanced_preference_screen_settings_munu_title">Menu paramètre</string>
-    <string name="revanced_preference_screen_settings_munu_summary">Masque les éléments dans le menu des paramètres YouTube.</string>
+    <string name="revanced_preference_screen_settings_menu_title">Menu paramètre</string>
+    <string name="revanced_preference_screen_settings_menu_summary">Masque les éléments dans le menu des paramètres YouTube.</string>
     <string name="revanced_hide_settings_menu_title">Menu paramètre YouTube</string>
     <string name="revanced_hide_settings_menu_summary">Masque les éléments dans le menu des paramètres YouTube.</string>
     <string name="revanced_hide_settings_menu_filter_strings_title">Filtre du menu paramètre YouTube</string>

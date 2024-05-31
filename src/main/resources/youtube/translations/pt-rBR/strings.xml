@@ -314,8 +314,8 @@ Isso não ignora a restrição de idade, apenas aceita isso automaticamente."</s
     <string name="revanced_spoof_app_version_target_entry_18_38_45">18.38.45 - Restaurar antigo comportamento padrão de qualidade de vídeo</string>
     <string name="revanced_spoof_app_version_target_entry_18_48_39">"18.48.39 - Desativa a atualização em tempo real de 'visualizações' e 'curtidas'"</string>
     <!-- PreferenceScreen: General, PreferenceCategory: General, PreferenceScreen: Account menu -->
-    <string name="revanced_preference_screen_account_munu_title">Menu da Conta</string>
-    <string name="revanced_preference_screen_account_munu_summary">Ocultar ou mostrar elementos no menu de contas e na aba Você.</string>
+    <string name="revanced_preference_screen_account_menu_title">Menu da Conta</string>
+    <string name="revanced_preference_screen_account_menu_summary">Ocultar ou mostrar elementos no menu de contas e na aba Você.</string>
     <string name="revanced_hide_account_menu_title">Ocultar menu de contas</string>
     <string name="revanced_hide_account_menu_summary">"Ocultar elementos do menu de contas e aba Você
 Alguns componentes podem não ser ocultos"</string>
@@ -368,8 +368,8 @@ Alguns componentes podem não ser ocultos"</string>
 • Desativar esta configuração carrega mais anúncios do lado do servidor.
 • Você deve desativar esta configuração para tornar os anúncios em vídeo visíveis."</string>
     <!-- PreferenceScreen: General, PreferenceCategory: General, PreferenceScreen: Settings menu -->
-    <string name="revanced_preference_screen_settings_munu_title">Menu de configurações</string>
-    <string name="revanced_preference_screen_settings_munu_summary">Ocultar elementos no menu de configurações do YouTube.</string>
+    <string name="revanced_preference_screen_settings_menu_title">Menu de configurações</string>
+    <string name="revanced_preference_screen_settings_menu_summary">Ocultar elementos no menu de configurações do YouTube.</string>
     <string name="revanced_hide_settings_menu_title">Ocultar menu de configurações do YouTube</string>
     <string name="revanced_hide_settings_menu_summary">Ocultar elementos no menu de configurações do YouTube.</string>
     <string name="revanced_hide_settings_menu_filter_strings_title">Filtro do menu de configurações do YouTube</string>

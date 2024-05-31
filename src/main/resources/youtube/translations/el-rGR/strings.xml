@@ -312,8 +312,8 @@ Playlists
     <string name="revanced_spoof_app_version_target_entry_18_38_45">18.38.45 - Επαναφορά της παλιάς συμπεριφοράς προεπιλεγμένης ποιότητας βίντεο</string>
     <string name="revanced_spoof_app_version_target_entry_18_48_39">"18.48.39 - Απενεργοποίηση ενημέρωσης των προβολών &amp; αριθμού των «Μου αρέσει» σε πραγματικό χρόνο"</string>
     <!-- PreferenceScreen: General, PreferenceCategory: General, PreferenceScreen: Account menu -->
-    <string name="revanced_preference_screen_account_munu_title">Μενού λογαριασμού</string>
-    <string name="revanced_preference_screen_account_munu_summary">Απόκρυψη ή εμφάνιση στοιχείων στο μενού λογαριασμού και στην καρτέλα «Εσείς».</string>
+    <string name="revanced_preference_screen_account_menu_title">Μενού λογαριασμού</string>
+    <string name="revanced_preference_screen_account_menu_summary">Απόκρυψη ή εμφάνιση στοιχείων στο μενού λογαριασμού και στην καρτέλα «Εσείς».</string>
     <string name="revanced_hide_account_menu_title">Φιλτράρισμα μενού λογαριασμού</string>
     <string name="revanced_hide_account_menu_summary">"Απόκρυψη στοιχείων του μενού λογαριασμού και της καρτέλας «Εσείς»
 Κάποια στοιχεία ενδέχεται να μην αποκρύπτονται."</string>
@@ -365,8 +365,8 @@ Playlists
 • Όταν ενεργοποιηθεί, μπορεί να μη λειτουργήσει μέχρι να γίνει επανεκκίνηση της συσκευής σας.
 • Αν θέλετε να εμφανίζονται οι διαφημίσεις βίντεο, απενεργοποιήστε αυτή τη ρύθμιση."</string>
     <!-- PreferenceScreen: General, PreferenceCategory: General, PreferenceScreen: Settings menu -->
-    <string name="revanced_preference_screen_settings_munu_title">Μενού ρυθμίσεων</string>
-    <string name="revanced_preference_screen_settings_munu_summary">Απόκρυψη στοιχείων στο μενού ρυθμίσεων του YouTube.</string>
+    <string name="revanced_preference_screen_settings_menu_title">Μενού ρυθμίσεων</string>
+    <string name="revanced_preference_screen_settings_menu_summary">Απόκρυψη στοιχείων στο μενού ρυθμίσεων του YouTube.</string>
     <string name="revanced_hide_settings_menu_title">Φιλτράρισμα του μενού ρυθμίσεων YouTube</string>
     <string name="revanced_hide_settings_menu_summary">Απόκρυψη στοιχείων στο μενού ρυθμίσεων του YouTube.</string>
     <string name="revanced_hide_settings_menu_filter_strings_title">Αλλαγή φίλτρου μενού ρυθμίσεων του YouTube</string>

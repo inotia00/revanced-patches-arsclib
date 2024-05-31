@@ -308,8 +308,8 @@ Lưu ý: Tùy chọn này chỉ tự động chấp nhận hộp thoại cảnh 
     <string name="revanced_spoof_app_version_target_entry_18_38_45">18.38.45 - Khôi phục phương thức áp dụng chất lượng video mặc định kiểu cũ</string>
     <string name="revanced_spoof_app_version_target_entry_18_48_39">"18.48.39  - Tắt tính năng cập nhật 'lượt xem' và 'lượt thích' theo thời gian thực"</string>
     <!-- PreferenceScreen: General, PreferenceCategory: General, PreferenceScreen: Account menu -->
-    <string name="revanced_preference_screen_account_munu_title">Menu Tài khoản</string>
-    <string name="revanced_preference_screen_account_munu_summary">Ẩn hoặc hiển thị các thành phần menu tài khoản và thẻ Bạn.</string>
+    <string name="revanced_preference_screen_account_menu_title">Menu Tài khoản</string>
+    <string name="revanced_preference_screen_account_menu_summary">Ẩn hoặc hiển thị các thành phần menu tài khoản và thẻ Bạn.</string>
     <string name="revanced_hide_account_menu_title">Bộ lọc menu Tài khoản</string>
     <string name="revanced_hide_account_menu_summary">"Ẩn các thành phần của menu Tài khoản và thẻ Bạn.
 Lưu ý: Một số thành phần có thể không được ẩn."</string>
@@ -361,8 +361,8 @@ Lưu ý: Một số thành phần có thể không được ẩn."</string>
  • Tắt cài đặt này sẽ tải thêm quảng cáo từ phía máy chủ.
  • Tắt cài đặt này có thể hiển thị quảng cáo dạng video."</string>
     <!-- PreferenceScreen: General, PreferenceCategory: General, PreferenceScreen: Settings menu -->
-    <string name="revanced_preference_screen_settings_munu_title">Menu Cài đặt</string>
-    <string name="revanced_preference_screen_settings_munu_summary">Ẩn các thành phần trong menu cài đặt YouTube.</string>
+    <string name="revanced_preference_screen_settings_menu_title">Menu Cài đặt</string>
+    <string name="revanced_preference_screen_settings_menu_summary">Ẩn các thành phần trong menu cài đặt YouTube.</string>
     <string name="revanced_hide_settings_menu_title">Ẩn menu cài đặt YouTube</string>
     <string name="revanced_hide_settings_menu_summary">Ẩn các thành phần trong menu cài đặt YouTube.</string>
     <string name="revanced_hide_settings_menu_filter_strings_title">Bộ lọc menu cài đặt YouTube</string>
