@@ -27,9 +27,7 @@ object CustomBrandingIconPatch : BaseResourcePatch(
         "AFN Red" to "afn_red",
         "MMT" to "mmt",
         DEFAULT_ICON_KEY to "revancify_blue",
-        "Revancify Red" to "revancify_red",
-        "Vanced Black" to "vanced_black",
-        "Vanced Light" to "vanced_light"
+        "Revancify Red" to "revancify_red"
     )
 
     private val drawableIconResourceFileNames = arrayOf(
