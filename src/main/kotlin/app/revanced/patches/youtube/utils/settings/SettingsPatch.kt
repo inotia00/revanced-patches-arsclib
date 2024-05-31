@@ -4,7 +4,7 @@ import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.options.PatchOption.PatchExtensions.stringPatchOption
 import app.revanced.patches.shared.elements.StringsElementsUtils.removeStringsElements
 import app.revanced.patches.shared.mapping.ResourceMappingPatch
-import app.revanced.patches.youtube.misc.translations.LANGUAGES
+import app.revanced.patches.youtube.layout.translations.LANGUAGES
 import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.fix.cairo.CairoSettingsPatch
 import app.revanced.patches.youtube.utils.integrations.IntegrationsPatch
