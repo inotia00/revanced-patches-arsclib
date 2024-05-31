@@ -85,7 +85,7 @@ Limitations:
 Info:
 • This feature is for podcasts.
 • This feature is still in development, so it may be unstable."</string>
-    <string name="revanced_hide_flyout_menu_like_dislike_title">Hide Like and dislike button</string>
+    <string name="revanced_hide_flyout_menu_like_dislike_title">Hide Like and Dislike buttons</string>
     <string name="revanced_hide_flyout_menu_3_column_component_title">Hide 3-column component</string>
     <string name="revanced_hide_flyout_menu_add_to_queue_title">Hide Add to queue menu</string>
     <string name="revanced_hide_flyout_menu_captions_title">Hide Captions menu</string>
