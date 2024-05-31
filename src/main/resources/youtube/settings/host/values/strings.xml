@@ -432,7 +432,7 @@ Captions"</string>
     <string name="revanced_enable_wide_search_bar_in_you_tab_summary">"Enabling this setting will disable the Settings button in the You tab.
 
 In this case, please use the following path to access the settings:
-You tab → View channel → Menu → Settings."</string>
+'You tab → View channel → Menu → Settings'"</string>
     <string name="revanced_hide_toolbar_cast_button_title">Hide Cast button</string>
     <string name="revanced_hide_toolbar_cast_button_summary_on">Cast button is hidden.</string>
     <string name="revanced_hide_toolbar_cast_button_summary_off">Cast button is shown.</string>
@@ -1489,22 +1489,22 @@ Side effects include:
 • Playback speed menu is missing.
 • Higher video qualities may be missing.
 • Watch history does not work with a brand account.
-• Live streams cannot play as audio only.
-• Live streams not available on Android 8.0."</string>
+• Live streams cannot play as audio-only.
+• Live streams not available on Android 8."</string>
     <string name="revanced_spoof_client_use_android_testsuite_title">Android Testsuite</string>
     <string name="revanced_spoof_client_use_android_testsuite_summary">"Spoof client to Android Testsuite.
 
 Side effects include:
 • No HDR video.
 • Audio track menu and playback speed menu are missing.
-• Subtitles may not be available."</string>
+• Captions may not be available."</string>
     <string name="revanced_spoof_client_use_android_tv_title">Android TV</string>
     <string name="revanced_spoof_client_use_android_tv_summary">"Spoof client to Android TV (YouTube TV).
 
 Side effects include:
 • No HDR video.
 • Audio track menu and playback speed menu are missing.
-• Subtitles may not be available.
+• Captions may not be available.
 • Some live streams are not supported for playback."</string>
     <string name="revanced_spoof_client_use_android_vr_title">Android VR</string>
     <string name="revanced_spoof_client_use_android_vr_summary">"Spoof client to Android VR.
@@ -1513,7 +1513,7 @@ Side effects include:
 • No HDR video.
 • Paused videos can randomly resume.
 • Low quality Shorts seekbar thumbnails.
-• Kids videos do not playback."</string>
+• Kids videos do not play."</string>
 
     <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceCategory: Patch information -->
     <string name="revanced_preference_category_patch_information">Patch information</string>
