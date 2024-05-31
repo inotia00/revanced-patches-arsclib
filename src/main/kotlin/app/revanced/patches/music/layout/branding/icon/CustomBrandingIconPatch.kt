@@ -2,6 +2,7 @@ package app.revanced.patches.music.layout.branding.icon
 
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.PatchException
+import app.revanced.patcher.patch.options.PatchOption.PatchExtensions.booleanPatchOption
 import app.revanced.patcher.patch.options.PatchOption.PatchExtensions.stringPatchOption
 import app.revanced.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
 import app.revanced.util.ResourceGroup
@@ -21,7 +22,19 @@ object CustomBrandingIconPatch : BaseResourcePatch(
     private val availableIcon = mapOf(
         "MMT" to "mmt",
         DEFAULT_ICON_KEY to "revancify_blue",
-        "Revancify Red" to "revancify_red"
+        "Revancify Red" to "revancify_red",
+        "AFN Blue" to "afn_blue",
+        "AFN Red" to "afn_red",
+        "Vanced Black" to "vanced_black",
+        "Vanced Light" to "vanced_light"
+    )
+
+    private val SplashHeaderIcon by booleanPatchOption(
+        key = "SplashHeaderIcon",
+        default = true,
+        title = "Splash and header icons",
+        description = "Apply custom branding icon to Splash and Header.",
+        required = true
     )
 
     private val mipmapIconResourceFileNames = arrayOf(
@@ -59,7 +72,7 @@ object CustomBrandingIconPatch : BaseResourcePatch(
 
     override fun execute(context: ResourceContext) {
         AppIcon?.let { appIcon ->
-            val appIconValue = appIcon.lowercase().replace(" ","_")
+            val appIconValue = appIcon.lowercase().replace(" ", "_")
             if (!availableIcon.containsValue(appIconValue)) {
                 mipmapDirectories.map { directory ->
                     ResourceGroup(
@@ -107,6 +120,83 @@ object CustomBrandingIconPatch : BaseResourcePatch(
                     )
                 ).forEach { resourceGroup ->
                     context.copyResources("$resourcePath/monochrome", resourceGroup)
+                }
+
+                // change resource icons.
+                if (SplashHeaderIcon == true) {
+                    try {
+                        arrayOf(
+                            ResourceGroup(
+                                "drawable-hdpi",
+                                "action_bar_logo_release.png",
+                                "action_bar_logo.png",
+                                "logo_music.png", // 6.32 and earlier
+                                "ytm_logo.png", // 6.33 and later
+                                "record.png",
+                            ),
+
+                            ResourceGroup(
+                                "drawable-large-hdpi",
+                                "record.png",
+                            ),
+
+                            ResourceGroup(
+                                "drawable-large-mdpi",
+                                "record.png",
+                            ),
+
+                            ResourceGroup(
+                                "drawable-large-xhdpi",
+                                "record.png",
+                            ),
+
+                            ResourceGroup(
+                                "drawable-xlarge-hdpi",
+                                "record.png",
+                            ),
+
+                            ResourceGroup(
+                                "drawable-xlarge-mdpi",
+                                "record.png",
+                            ),
+
+                            ResourceGroup(
+                                "drawable-mdpi",
+                                "action_bar_logo.png",
+                                "logo_music.png", // 6.32 and earlier
+                                "ytm_logo.png", // 6.33 and later
+                                "record.png",
+                            ),
+
+                            ResourceGroup(
+                                "drawable-xhdpi",
+                                "action_bar_logo.png",
+                                "logo_music.png", // 6.32 and earlier
+                                "ytm_logo.png", // 6.33 and later
+                                "record.png",
+                            ),
+
+                            ResourceGroup(
+                                "drawable-xxhdpi",
+                                "action_bar_logo.png",
+                                "logo_music.png", // 6.32 and earlier
+                                "ytm_logo.png", // 6.33 and later
+                                "record.png",
+                            ),
+
+
+                            ResourceGroup(
+                                "drawable-xxxhdpi",
+                                "action_bar_logo.png",
+                                "logo_music.png", // 6.32 and earlier
+                                "ytm_logo.png", // 6.33 and later
+                            ),
+                        ).forEach { resourceGroup ->
+                            context.copyResources("$resourcePath/resource", resourceGroup)
+                        }
+                    } catch (e: Exception) {
+                        // Do nothing
+                    }
                 }
             }
         } ?: throw PatchException("Invalid app icon path.")

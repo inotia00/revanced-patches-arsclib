@@ -9,6 +9,7 @@ import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.util.ResourceGroup
 import app.revanced.util.copyResources
 import app.revanced.util.patch.BaseResourcePatch
+import org.w3c.dom.Element
 import java.io.File
 import java.nio.file.Files
 
@@ -17,17 +18,33 @@ object CustomBrandingIconPatch : BaseResourcePatch(
     name = "Custom branding icon YouTube",
     description = "Changes the YouTube app icon to the icon specified in options.json.",
     dependencies = setOf(SettingsPatch::class),
-    compatiblePackages = COMPATIBLE_PACKAGE
+    compatiblePackages = COMPATIBLE_PACKAGE,
+    use = false,
 ) {
     private const val DEFAULT_ICON_KEY = "Revancify Blue"
 
     private val availableIcon = mapOf(
+        "AFN Blue" to "afn_blue",
+        "AFN Red" to "afn_red",
         "MMT" to "mmt",
         DEFAULT_ICON_KEY to "revancify_blue",
-        "Revancify Red" to "revancify_red"
+        "Revancify Red" to "revancify_red",
+        "Vanced Black" to "vanced_black",
+        "Vanced Light" to "vanced_light"
     )
 
     private val drawableIconResourceFileNames = arrayOf(
+        "product_logo_youtube_color_24",
+        "product_logo_youtube_color_36",
+        "product_logo_youtube_color_144",
+        "product_logo_youtube_color_192",
+        "yt_premium_wordmark_header_dark",
+        "yt_premium_wordmark_header_light",
+        "yt_wordmark_header_dark",
+        "yt_wordmark_header_light"
+    ).map { "$it.png" }.toTypedArray()
+
+    private val drawableIconResourceFileNamesRevancify = arrayOf(
         "product_logo_youtube_color_24",
         "product_logo_youtube_color_36",
         "product_logo_youtube_color_144",
@@ -57,7 +74,7 @@ object CustomBrandingIconPatch : BaseResourcePatch(
         "mdpi"
     ).map { "mipmap-$it" }
 
-    private var AppIcon by stringPatchOption(
+    var AppIcon by stringPatchOption(
         key = "AppIcon",
         default = DEFAULT_ICON_KEY,
         values = availableIcon,
@@ -78,7 +95,7 @@ object CustomBrandingIconPatch : BaseResourcePatch(
 
     override fun execute(context: ResourceContext) {
         AppIcon?.let { appIcon ->
-            val appIconValue = appIcon.lowercase().replace(" ","_")
+            val appIconValue = appIcon.lowercase().replace(" ", "_")
             if (!availableIcon.containsValue(appIconValue)) {
                 mipmapDirectories.map { directory ->
                     ResourceGroup(
@@ -120,24 +137,33 @@ object CustomBrandingIconPatch : BaseResourcePatch(
                 }
 
                 // change splash icon.
-                drawableDirectories.map { directory ->
-                    ResourceGroup(
-                        directory, *drawableIconResourceFileNames
-                    )
-                }.let { resourceGroups ->
-                    resourceGroups.forEach {
-                        context.copyResources("$resourcePath/splash", it)
-                    }
+                val drawableAnimResourceFileNames = Array(5) { index -> "\$avd_anim__$index.xml" }
+
+                val splashResourceGroups: Array<Array<ResourceGroup>> = when (appIconValue) {
+                    "mmt" -> arrayOf(arrayOf(ResourceGroup("drawable", "avd_anim.xml", *drawableAnimResourceFileNames))
+                        .plus(drawableDirectories.map { ResourceGroup(it, *drawableIconResourceFileNames) }))
+                    "revancify_blue", "revancify_red" -> arrayOf(drawableDirectories.map { ResourceGroup(it, *drawableIconResourceFileNamesRevancify) }.toTypedArray())
+                    else -> arrayOf(drawableDirectories.map { ResourceGroup(it, *drawableIconResourceFileNames) }.toTypedArray())
                 }
 
-                // change monochrome icon.
-                arrayOf(
-                    ResourceGroup(
-                        "drawable",
-                        "adaptive_monochrome_ic_youtube_launcher.xml"
-                    )
-                ).forEach { resourceGroup ->
-                    context.copyResources("$resourcePath/monochrome", resourceGroup)
+                splashResourceGroups.forEach { group ->
+                    group.forEach { context.copyResources("$resourcePath/splash", it) }
+                }
+
+                // monochrome
+                val monochromeIcon = ResourceGroup("drawable", "adaptive_monochrome_ic_youtube_launcher.xml")
+                if (appIconValue in listOf("mmt", "revancify_blue", "revancify_red")) {
+                    context.copyResources("$resourcePath/monochrome", monochromeIcon)
+                }
+
+                // disable splash animation
+                if (appIconValue != "mmt") {
+                    context.xmlEditor["res/values-v31/styles.xml"].use { editor ->
+                        val nodeList = editor.file.getElementsByTagName("item")
+                        val tags = (0 until nodeList.length).map { nodeList.item(it) as Element }
+                        tags.filter { it.getAttribute("name").contains("android:windowSplashScreenAnimatedIcon") }
+                            .forEach { it.parentNode.removeChild(it) }
+                    }
                 }
 
                 context.updatePatchStatusIcon(appIconValue)
