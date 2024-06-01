@@ -64,7 +64,7 @@ object OverlayButtonsPatch : BaseResourcePatch(
             "Default" to DEFAULT_MARGIN
         ),
         title = "Bottom margin",
-        description = "The bottom margin for the Overlay buttons and Timestamp."
+        description = "The bottom margin for the overlay buttons and timestamp."
     )
 
     /**
