@@ -75,7 +75,7 @@ object SettingsPatch : BaseResourcePatch(
         default = DEFAULT_ELEMENT,
         values = SETTINGS_ELEMENTS_MAP,
         title = "Insert position",
-        description = "Specify the setting name before which the RVX setting should be inserted."
+        description = "The settings menu name that the RVX settings menu should be above."
     )
 
     private val CustomName by stringPatchOption(
