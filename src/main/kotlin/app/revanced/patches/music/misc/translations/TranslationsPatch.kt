@@ -38,8 +38,8 @@ object TranslationsPatch : BaseResourcePatch(
     private var SelectedLanguages by stringPatchOption(
         key = "SelectedLanguages",
         default = LANGUAGES.joinToString(", "),
-        title = "Selected RVX languages",
-        description = "Selected RVX languages that will be added."
+        title = "RVX languages to add",
+        description = "A list of languages to be added for the RVX settings, separated by commas."
     )
 
     private var SelectedAppLanguages by stringPatchOption(
