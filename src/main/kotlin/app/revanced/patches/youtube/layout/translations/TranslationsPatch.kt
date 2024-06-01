@@ -34,7 +34,7 @@ val LANGUAGES = arrayOf(
 @Suppress("DEPRECATION", "unused")
 object TranslationsPatch : BaseResourcePatch(
     name = "Translations",
-    description = "Add Crowdin translations for YouTube.",
+    description = "Adds Crowdin translations for YouTube.",
     dependencies = setOf(SettingsPatch::class),
     compatiblePackages = COMPATIBLE_PACKAGE
 ) {
