@@ -81,8 +81,8 @@ object SettingsPatch : BaseResourcePatch(
     private val CustomName by stringPatchOption(
         key = "CustomName",
         default = DEFAULT_NAME,
-        title = "Setting Name",
-        description = "Specify a custom name for the Extended preference."
+        title = "Settings menu name",
+        description = "The name of the RVX settings menu."
     )
 
     private val THREAD_COUNT = Runtime.getRuntime().availableProcessors()
