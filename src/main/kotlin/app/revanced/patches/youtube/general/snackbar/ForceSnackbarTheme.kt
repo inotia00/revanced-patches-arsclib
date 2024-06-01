@@ -23,7 +23,7 @@ object ForceSnackbarTheme : BaseResourcePatch(
         key = "CornerRadius",
         default = "8.0dip",
         title = "Corner radius",
-        description = "Specify a corner radius for the snackbar."
+        description = "The corner radius of the snackbar."
     )
 
     private val BackgroundColor by stringPatchOption(
