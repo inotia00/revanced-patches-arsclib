@@ -45,8 +45,8 @@ object TranslationsPatch : BaseResourcePatch(
     private var SelectedAppLanguages by stringPatchOption(
         key = "SelectedAppLanguages",
         default = APP_LANGUAGES.joinToString(", "),
-        title = "Selected app languages",
-        description = "Selected app languages that will be kept, languages that are not in the list will be removed from the app."
+        title = "App languages to keep",
+        description = "A list of languages to be kept for the app, separated by commas. Languages not in the list will be removed from the app."
     )
 
     override fun execute(context: ResourceContext) {
