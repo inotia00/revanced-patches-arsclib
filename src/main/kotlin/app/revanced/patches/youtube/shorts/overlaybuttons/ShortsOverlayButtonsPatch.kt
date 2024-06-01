@@ -12,7 +12,7 @@ import app.revanced.util.patch.BaseResourcePatch
 @Suppress("unused")
 object ShortsOverlayButtonsPatch : BaseResourcePatch(
     name = "Shorts overlay buttons",
-    description = "Apply the new icons to the action buttons of the Shorts player.",
+    description = "Applies the new icons to the action buttons in the Shorts player.",
     dependencies = setOf(SettingsPatch::class),
     compatiblePackages = COMPATIBLE_PACKAGE,
     use = true
