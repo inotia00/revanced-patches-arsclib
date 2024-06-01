@@ -137,10 +137,34 @@ object CustomBrandingIconPatch : BaseResourcePatch(
                 val drawableAnimResourceFileNames = Array(5) { index -> "\$avd_anim__$index.xml" }
 
                 val splashResourceGroups: Array<Array<ResourceGroup>> = when (appIconValue) {
-                    "mmt" -> arrayOf(arrayOf(ResourceGroup("drawable", "avd_anim.xml", *drawableAnimResourceFileNames))
-                        .plus(drawableDirectories.map { ResourceGroup(it, *drawableIconResourceFileNames) }))
-                    "revancify_blue", "revancify_red" -> arrayOf(drawableDirectories.map { ResourceGroup(it, *drawableIconResourceFileNamesRevancify) }.toTypedArray())
-                    else -> arrayOf(drawableDirectories.map { ResourceGroup(it, *drawableIconResourceFileNames) }.toTypedArray())
+                    "mmt" -> arrayOf(arrayOf(
+                        ResourceGroup(
+                            "drawable",
+                            "avd_anim.xml",
+                            *drawableAnimResourceFileNames
+                        )
+                    )
+                        .plus(drawableDirectories.map {
+                            ResourceGroup(
+                                it,
+                                *drawableIconResourceFileNames
+                            )
+                        })
+                    )
+
+                    "revancify_blue", "revancify_red" -> arrayOf(drawableDirectories.map {
+                        ResourceGroup(
+                            it,
+                            *drawableIconResourceFileNamesRevancify
+                        )
+                    }.toTypedArray())
+
+                    else -> arrayOf(drawableDirectories.map {
+                        ResourceGroup(
+                            it,
+                            *drawableIconResourceFileNames
+                        )
+                    }.toTypedArray())
                 }
 
                 splashResourceGroups.forEach { group ->
@@ -148,7 +172,8 @@ object CustomBrandingIconPatch : BaseResourcePatch(
                 }
 
                 // monochrome
-                val monochromeIcon = ResourceGroup("drawable", "adaptive_monochrome_ic_youtube_launcher.xml")
+                val monochromeIcon =
+                    ResourceGroup("drawable", "adaptive_monochrome_ic_youtube_launcher.xml")
                 if (appIconValue in listOf("mmt", "revancify_blue", "revancify_red")) {
                     context.copyResources("$resourcePath/monochrome", monochromeIcon)
                 }
@@ -158,7 +183,10 @@ object CustomBrandingIconPatch : BaseResourcePatch(
                     context.xmlEditor["res/values-v31/styles.xml"].use { editor ->
                         val nodeList = editor.file.getElementsByTagName("item")
                         val tags = (0 until nodeList.length).map { nodeList.item(it) as Element }
-                        tags.filter { it.getAttribute("name").contains("android:windowSplashScreenAnimatedIcon") }
+                        tags.filter {
+                            it.getAttribute("name")
+                                .contains("android:windowSplashScreenAnimatedIcon")
+                        }
                             .forEach { it.parentNode.removeChild(it) }
                     }
                 }

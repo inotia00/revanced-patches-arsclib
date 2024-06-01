@@ -78,19 +78,23 @@ object TranslationsPatch : BaseResourcePatch(
             }
         } ?: run {
             // Process selected RVX languages if no custom language file is set.
-            val selectedLanguagesArray = SelectedLanguages!!.split(",").map { it.trim() }.toTypedArray()
+            val selectedLanguagesArray =
+                SelectedLanguages!!.split(",").map { it.trim() }.toTypedArray()
             val filteredLanguages = LANGUAGES.filter { it in selectedLanguagesArray }.toTypedArray()
             context.copyXml("youtube", filteredLanguages)
         }
 
         // Process selected app languages.
-        val selectedAppLanguagesArray = SelectedAppLanguages!!.split(",").map { it.trim() }.toTypedArray()
-        val filteredAppLanguages = APP_LANGUAGES.filter { it in selectedAppLanguagesArray }.toTypedArray()
+        val selectedAppLanguagesArray =
+            SelectedAppLanguages!!.split(",").map { it.trim() }.toTypedArray()
+        val filteredAppLanguages =
+            APP_LANGUAGES.filter { it in selectedAppLanguagesArray }.toTypedArray()
         val resourceDirectory = context["res"]
 
         // Remove unselected app languages.
         APP_LANGUAGES.filter { it !in filteredAppLanguages }.forEach { language ->
-            resourceDirectory.resolve("values-$language").takeIf { it.exists() && it.isDirectory }?.deleteRecursively()
+            resourceDirectory.resolve("values-$language").takeIf { it.exists() && it.isDirectory }
+                ?.deleteRecursively()
         }
 
         SettingsPatch.updatePatchStatus(this)

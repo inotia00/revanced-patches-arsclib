@@ -186,7 +186,8 @@ object SettingsPatch : BaseResourcePatch(
          * initialize ReVanced Extended Settings
          */
         val elementKey =
-            SETTINGS_ELEMENTS_MAP[InsertPosition] ?: InsertPosition ?: SETTINGS_ELEMENTS_MAP[DEFAULT_ELEMENT]
+            SETTINGS_ELEMENTS_MAP[InsertPosition] ?: InsertPosition
+            ?: SETTINGS_ELEMENTS_MAP[DEFAULT_ELEMENT]
 
         elementKey?.let { insertKey ->
             context.addPreferenceFragment(
@@ -254,9 +255,11 @@ object SettingsPatch : BaseResourcePatch(
 
         // region set ReVanced Integrations Version
 
-        val buildConfigMutableClass = SettingsBytecodePatch.contexts.findClass { it.sourceFile == "BuildConfig.java" }!!.mutableClass
+        val buildConfigMutableClass =
+            SettingsBytecodePatch.contexts.findClass { it.sourceFile == "BuildConfig.java" }!!.mutableClass
         val versionNameField = buildConfigMutableClass.fields.single { it.name == "VERSION_NAME" }
-        val versionName = versionNameField.initialValue.toString().trim().replace("\"","").replace("&quot;", "")
+        val versionName =
+            versionNameField.initialValue.toString().trim().replace("\"", "").replace("&quot;", "")
 
         contexts.updatePatchStatusSettings(
             "ReVanced Integrations",
@@ -273,7 +276,8 @@ object SettingsPatch : BaseResourcePatch(
             "", // used for the default values-v21
             *LANGUAGES
         ).forEach {
-            val valueFilePath: String = if (it != "") "res/values-$it-v21/strings.xml" else "res/values/strings.xml"
+            val valueFilePath: String =
+                if (it != "") "res/values-$it-v21/strings.xml" else "res/values/strings.xml"
 
             try {
                 contexts.xmlEditor[valueFilePath].use { editor ->
@@ -289,8 +293,8 @@ object SettingsPatch : BaseResourcePatch(
                         }
                     }
                 }
+            } catch (_: FileNotFoundException) { /* ignore missing files */
             }
-            catch (_: FileNotFoundException) { /* ignore missing files */ }
         }
 
     }

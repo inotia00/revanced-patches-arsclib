@@ -111,7 +111,8 @@ object ResourceUtils {
                 doRecursively loop@{ node ->
                     if (node !is Element) return@loop // Skip if not an element
 
-                    val attributeNode = node.getAttributeNode("android:key") ?: return@loop // Skip if no key attribute
+                    val attributeNode = node.getAttributeNode("android:key")
+                        ?: return@loop // Skip if no key attribute
                     val currentKey = attributeNode.textContent
 
                     // Check if the current key has already been processed
@@ -128,7 +129,10 @@ object ResourceUtils {
                                 setAttribute("android:title", "@string/${key}_title")
                                 this.appendChild(
                                     ownerDocument.createElement("intent").also { intentNode ->
-                                        intentNode.setAttribute("android:targetPackage", youtubePackageName)
+                                        intentNode.setAttribute(
+                                            "android:targetPackage",
+                                            youtubePackageName
+                                        )
                                         intentNode.setAttribute("android:data", key + "_intent")
                                         intentNode.setAttribute("android:targetClass", targetClass)
                                     }
@@ -136,6 +140,7 @@ object ResourceUtils {
                             }
                             node.setAttribute("app:iconSpaceReserved", "true")
                         }
+
                         "true" -> {
                             attributeNode.textContent = "false"
                         }

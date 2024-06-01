@@ -294,7 +294,10 @@ object VisualPreferencesIconsPatch : BaseResourcePatch(
 
         fun copyResourcesWithFallback(iconPath: String) {
             try {
-                context.copyResources(iconPath, ResourceGroup("drawable", "revanced_extended_settings_key_icon.xml"))
+                context.copyResources(
+                    iconPath,
+                    ResourceGroup("drawable", "revanced_extended_settings_key_icon.xml")
+                )
             } catch (_: Exception) {
                 // Ignore if resource copy fails
 
@@ -350,7 +353,8 @@ object VisualPreferencesIconsPatch : BaseResourcePatch(
                 val elements = file.getElementsByTagName(tagName)
                 for (i in 0 until elements.length) {
                     val preference = elements.item(i) as? Element
-                    val icon = when (val title = preference?.getAttribute("android:key")?.removePrefix("@string/")) {
+                    val icon = when (val title =
+                        preference?.getAttribute("android:key")?.removePrefix("@string/")) {
                         in validTitles -> validTitlesIcons[title]
 
                         // Add custom extended icon
