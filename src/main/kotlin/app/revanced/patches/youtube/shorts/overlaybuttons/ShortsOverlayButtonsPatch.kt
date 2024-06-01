@@ -27,8 +27,8 @@ object ShortsOverlayButtonsPatch : BaseResourcePatch(
             "OutlineCircle" to "outlinecircle",
             DEFAULT_ICON_KEY to "tiktok"
         ),
-        title = "Icon type of Shorts",
-        description = "Apply different icons for Shorts action buttons."
+        title = "Shorts icon style ",
+        description = "The style of the icons for the action buttons in the Shorts player."
     )
 
     override fun execute(context: ResourceContext) {
