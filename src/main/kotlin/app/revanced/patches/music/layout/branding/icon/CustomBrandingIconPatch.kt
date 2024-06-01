@@ -31,7 +31,7 @@ object CustomBrandingIconPatch : BaseResourcePatch(
         key = "SplashHeaderIcon",
         default = true,
         title = "Splash and header icons",
-        description = "Apply custom branding icon to Splash and Header.",
+        description = "Apply the custom branding icon to the splash screen and header.",
         required = true
     )
 
