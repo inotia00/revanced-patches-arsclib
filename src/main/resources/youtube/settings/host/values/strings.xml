@@ -1490,7 +1490,7 @@ Side effects include:
 • Higher video qualities may be missing.
 • Watch history does not work with a brand account.
 • Live streams cannot play as audio-only.
-• Live streams not available on Android 8."</string>
+• Live streams not available on Android 8.0."</string>
     <string name="revanced_spoof_client_use_android_testsuite_title">Android Testsuite</string>
     <string name="revanced_spoof_client_use_android_testsuite_summary">"Spoof client to Android Testsuite.
 
