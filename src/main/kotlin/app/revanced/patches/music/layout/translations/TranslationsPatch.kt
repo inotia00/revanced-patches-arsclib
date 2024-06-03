@@ -27,7 +27,7 @@ object TranslationsPatch : BaseResourcePatch(
         default = "",
         title = "Custom translations",
         description = """
-            The file path to the 'strings.xml' file.
+            The path to the 'strings.xml' file.
             Please note that applying the 'strings.xml' file will overwrite all existing language translations.
             """.trimIndent()
     )
@@ -35,16 +35,18 @@ object TranslationsPatch : BaseResourcePatch(
     private var SelectedTranslations by stringPatchOption(
         key = "SelectedTranslations",
         default = TRANSLATIONS.joinToString(", "),
-        title = "Selected translations",
-        description = "Selected translations that will be added."
+        title = "Translations to add",
+        description = "A list of translations to be added for the RVX settings, separated by commas."
     )
 
     private var SelectedStringResources by stringPatchOption(
         key = "SelectedStringResources",
         default = APP_LANGUAGES.joinToString(", "),
-        title = "Selected string resources",
+        title = "String resources to keep",
         description = """
-            Selected string resources that will be kept, string resources that are not in the list will be removed from the app.
+            A list of string resources to be kept, separated by commas.
+            String resources not in the list will be removed from the app.
+
             Default string resource, English, is not removed.
             """.trimIndent()
     )
