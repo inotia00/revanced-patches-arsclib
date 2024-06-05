@@ -589,10 +589,10 @@ Autoplay can be changed in YouTube settings:
     <string name="revanced_hide_comments_by_members_title">"Hide 'Comments by members' banner"</string>
     <string name="revanced_hide_comments_by_members_summary_on">"'Comments by members' banner is hidden."</string>
     <string name="revanced_hide_comments_by_members_summary_off">"'Comments by members' banner is shown."</string>
-    <string name="revanced_hide_comments_section_title">Hide comments section</string>
+    <string name="revanced_hide_comments_section_title">Hide Comments section</string>
     <string name="revanced_hide_comments_section_summary_on">Comments section is hidden.</string>
     <string name="revanced_hide_comments_section_summary_off">Comments section is shown.</string>
-    <string name="revanced_hide_comments_section_in_home_feed_title">Hide comments section in home feed</string>
+    <string name="revanced_hide_comments_section_in_home_feed_title">Hide Comments section in home feed</string>
     <string name="revanced_hide_comments_section_in_home_feed_summary_on">Comments section is hidden in home feed.</string>
     <string name="revanced_hide_comments_section_in_home_feed_summary_off">Comments section is shown in home feed.</string>
     <string name="revanced_hide_preview_comment_title">Hide preview comment</string>
@@ -1013,7 +1013,7 @@ Limitation: Official headers in search results will be hidden."</string>
     <string name="revanced_hide_shorts_dislike_button_title">Hide Dislike button</string>
     <string name="revanced_hide_shorts_dislike_button_summary_on">Dislike button is hidden.</string>
     <string name="revanced_hide_shorts_dislike_button_summary_off">Dislike button is shown.</string>
-    <string name="revanced_hide_shorts_comments_button_title">Hide comments button</string>
+    <string name="revanced_hide_shorts_comments_button_title">Hide Comments button</string>
     <string name="revanced_hide_shorts_comments_button_summary_on">Comments button is hidden.</string>
     <string name="revanced_hide_shorts_comments_button_summary_off">Comments button is shown.</string>
     <string name="revanced_hide_shorts_remix_button_title">Hide Remix button</string>
