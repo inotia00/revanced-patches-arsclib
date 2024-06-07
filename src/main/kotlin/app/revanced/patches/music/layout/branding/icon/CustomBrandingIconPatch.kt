@@ -20,11 +20,12 @@ object CustomBrandingIconPatch : BaseResourcePatch(
     private const val DEFAULT_ICON_KEY = "Revancify Blue"
 
     private val availableIcon = mapOf(
+        "AFN Blue" to "afn_blue",
+        "AFN Red" to "afn_red",
         "MMT" to "mmt",
         DEFAULT_ICON_KEY to "revancify_blue",
         "Revancify Red" to "revancify_red",
-        "AFN Blue" to "afn_blue",
-        "AFN Red" to "afn_red"
+        "YouTube Music" to "youtube_music"
     )
 
     private val sizeArray = arrayOf(
@@ -110,13 +111,6 @@ object CustomBrandingIconPatch : BaseResourcePatch(
             .trimIndent(), // Remove the leading newline.
     )
 
-    private val ChangeSplashIcon by booleanPatchOption(
-        key = "ChangeSplashIcon",
-        default = true,
-        title = "Change splash icons",
-        description = "Apply the custom branding icon to the splash screen."
-    )
-
     private val ChangeHeader by booleanPatchOption(
         key = "ChangeHeader",
         default = false,
@@ -124,9 +118,17 @@ object CustomBrandingIconPatch : BaseResourcePatch(
         description = "Apply the custom branding icon to the header."
     )
 
+    private val ChangeSplashIcon by booleanPatchOption(
+        key = "ChangeSplashIcon",
+        default = true,
+        title = "Change splash icons",
+        description = "Apply the custom branding icon to the splash screen."
+    )
+
     override fun execute(context: ResourceContext) {
         AppIcon?.let { appIcon ->
             val appIconValue = appIcon.lowercase().replace(" ", "_")
+            val appIconResourcePath = "music/branding/$appIconValue"
 
             // Check if a custom path is used in the patch options.
             if (!availableIcon.containsValue(appIconValue)) {
@@ -152,12 +154,11 @@ object CustomBrandingIconPatch : BaseResourcePatch(
                     }
                 }
             } else {
-                val resourcePath = "music/branding/$appIconValue"
 
                 // Change launcher icon.
                 launcherIconResourceGroups.let { resourceGroups ->
                     resourceGroups.forEach {
-                        context.copyResources("$resourcePath/launcher", it)
+                        context.copyResources("$appIconResourcePath/launcher", it)
                     }
                 }
 
@@ -168,14 +169,14 @@ object CustomBrandingIconPatch : BaseResourcePatch(
                         "ic_app_icons_themed_youtube_music.xml"
                     )
                 ).forEach { resourceGroup ->
-                    context.copyResources("$resourcePath/monochrome", resourceGroup)
+                    context.copyResources("$appIconResourcePath/monochrome", resourceGroup)
                 }
 
                 // Change header.
                 if (ChangeHeader == true) {
                     headerIconResourceGroups.let { resourceGroups ->
                         resourceGroups.forEach {
-                            context.copyResources("$resourcePath/header", it)
+                            context.copyResources("$appIconResourcePath/header", it)
                         }
                     }
                 }
@@ -184,7 +185,7 @@ object CustomBrandingIconPatch : BaseResourcePatch(
                 if (ChangeSplashIcon == true) {
                     splashIconResourceGroups.let { resourceGroups ->
                         resourceGroups.forEach {
-                            context.copyResources("$resourcePath/splash", it)
+                            context.copyResources("$appIconResourcePath/splash", it)
                         }
                     }
                 }

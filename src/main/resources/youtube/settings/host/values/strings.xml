@@ -1536,9 +1536,12 @@ Side effects include:
     <string name="revanced_preference_category_others">Others</string>
     <string name="revanced_icon_custom">Custom</string>
     <string name="revanced_icon_default">Stock</string>
+    <string name="revanced_icon_afn_blue">Afn Blue</string>
+    <string name="revanced_icon_afn_red">Afn Red</string>
     <string name="revanced_icon_mmt">MMT</string>
     <string name="revanced_icon_revancify_blue">Revancify Blue</string>
     <string name="revanced_icon_revancify_red">Revancify Red</string>
+    <string name="revanced_icon_youtube">YouTube</string>
     <string name="revanced_label_default">Stock</string>
     <string name="revanced_patches_excluded">Excluded</string>
     <string name="revanced_patches_included">Included</string>
