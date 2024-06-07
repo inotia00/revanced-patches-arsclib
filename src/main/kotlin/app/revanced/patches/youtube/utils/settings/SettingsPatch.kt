@@ -4,7 +4,6 @@ import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.options.PatchOption.PatchExtensions.stringPatchOption
 import app.revanced.patches.shared.elements.StringsElementsUtils.removeStringsElements
 import app.revanced.patches.shared.mapping.ResourceMappingPatch
-import app.revanced.patches.youtube.layout.translations.LANGUAGES
 import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.fix.cairo.CairoSettingsPatch
 import app.revanced.patches.youtube.utils.integrations.IntegrationsPatch
@@ -20,9 +19,6 @@ import app.revanced.util.copyXmlNode
 import app.revanced.util.patch.BaseBytecodePatch
 import app.revanced.util.patch.BaseResourcePatch
 import org.w3c.dom.Element
-import org.w3c.dom.Node
-import java.io.Closeable
-import java.io.FileNotFoundException
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 import java.util.jar.Manifest
@@ -40,8 +36,7 @@ object SettingsPatch : BaseResourcePatch(
     ),
     compatiblePackages = COMPATIBLE_PACKAGE,
     requiresIntegrations = true
-), Closeable {
-
+) {
     private const val DEFAULT_ELEMENT = "About"
     private const val DEFAULT_NAME = "ReVanced Extended"
 
@@ -81,12 +76,9 @@ object SettingsPatch : BaseResourcePatch(
     private val CustomName by stringPatchOption(
         key = "CustomName",
         default = DEFAULT_NAME,
-        title = "Settings menu name",
+        title = "RVX settings menu name",
         description = "The name of the RVX settings menu."
     )
-
-    private val THREAD_COUNT = Runtime.getRuntime().availableProcessors()
-    private val threadPoolExecutor = Executors.newFixedThreadPool(THREAD_COUNT)
 
     internal lateinit var contexts: ResourceContext
     internal var upward1831 = false
@@ -98,48 +90,16 @@ object SettingsPatch : BaseResourcePatch(
     internal var upward1912 = false
 
     override fun execute(context: ResourceContext) {
+
+        /**
+         * set resource context
+         */
         contexts = context
 
-        val resourceXmlFile = context["res/values/integers.xml"].readBytes()
-
-        for (threadIndex in 0 until THREAD_COUNT) {
-            threadPoolExecutor.execute thread@{
-                context.xmlEditor[resourceXmlFile.inputStream()].use { editor ->
-                    val resources = editor.file.documentElement.childNodes
-                    val resourcesLength = resources.length
-                    val jobSize = resourcesLength / THREAD_COUNT
-
-                    val batchStart = jobSize * threadIndex
-                    val batchEnd = jobSize * (threadIndex + 1)
-                    element@ for (i in batchStart until batchEnd) {
-                        if (i >= resourcesLength) return@thread
-
-                        val node = resources.item(i)
-                        if (node !is Element) continue
-
-                        if (node.nodeName != "integer" || !node.getAttribute("name")
-                                .startsWith("google_play_services_version")
-                        ) continue
-
-                        val playServicesVersion = node.textContent.toInt()
-
-                        upward1831 = 233200000 <= playServicesVersion
-                        upward1834 = 233500000 <= playServicesVersion
-                        upward1839 = 234000000 <= playServicesVersion
-                        upward1842 = 234302000 <= playServicesVersion
-                        upward1849 = 235000000 <= playServicesVersion
-                        upward1902 = 240204000 < playServicesVersion
-                        upward1912 = 241302000 <= playServicesVersion
-
-                        break
-                    }
-                }
-            }
-        }
-
-        threadPoolExecutor
-            .also { it.shutdown() }
-            .awaitTermination(Long.MAX_VALUE, TimeUnit.SECONDS)
+        /**
+         * set version info
+         */
+        setVersionInfo()
 
         /**
          * remove strings duplicated with RVX resources
@@ -185,8 +145,8 @@ object SettingsPatch : BaseResourcePatch(
         /**
          * initialize ReVanced Extended Settings
          */
-        val elementKey =
-            SETTINGS_ELEMENTS_MAP[InsertPosition] ?: InsertPosition
+        val elementKey = SETTINGS_ELEMENTS_MAP[InsertPosition]
+            ?: InsertPosition
             ?: SETTINGS_ELEMENTS_MAP[DEFAULT_ELEMENT]
 
         elementKey?.let { insertKey ->
@@ -194,6 +154,32 @@ object SettingsPatch : BaseResourcePatch(
                 "revanced_extended_settings",
                 insertKey
             )
+        }
+
+        /**
+         * change ReVanced Extended title
+         */
+        CustomName?.let { customName ->
+            if (customName != DEFAULT_NAME) {
+                context.removeStringsElements(
+                    arrayOf("revanced_extended_settings_title")
+                )
+                context.xmlEditor["res/values/strings.xml"].use { editor ->
+                    val document = editor.file
+
+                    mapOf(
+                        "revanced_extended_settings_title" to customName
+                    ).forEach { (k, v) ->
+                        val stringElement = document.createElement("string")
+
+                        stringElement.setAttribute("name", k)
+                        stringElement.textContent = v
+
+                        document.getElementsByTagName("resources").item(0)
+                            .appendChild(stringElement)
+                    }
+                }
+            }
         }
 
         /**
@@ -220,6 +206,83 @@ object SettingsPatch : BaseResourcePatch(
             }
         }
 
+        /**
+         * set revanced-patches version
+         */
+        val jarManifest = classLoader.getResources("META-INF/MANIFEST.MF")
+        while (jarManifest.hasMoreElements())
+            contexts.updatePatchStatusSettings(
+                "ReVanced Patches",
+                Manifest(jarManifest.nextElement().openStream())
+                    .mainAttributes
+                    .getValue("Version") + ""
+            )
+
+        /**
+         * set revanced-integrations version
+         */
+        val buildConfigMutableClass = SettingsBytecodePatch.contexts
+            .findClass { it.sourceFile == "BuildConfig.java" }!!
+            .mutableClass
+        val versionNameField = buildConfigMutableClass
+            .fields
+            .single { it.name == "VERSION_NAME" }
+        val versionName = versionNameField.initialValue
+            .toString()
+            .trim()
+            .replace("\"", "")
+            .replace("&quot;", "")
+
+        contexts.updatePatchStatusSettings(
+            "ReVanced Integrations",
+            versionName
+        )
+    }
+
+    private fun setVersionInfo() {
+        val threadCount = Runtime.getRuntime().availableProcessors()
+        val threadPoolExecutor = Executors.newFixedThreadPool(threadCount)
+
+        val resourceXmlFile = contexts["res/values/integers.xml"].readBytes()
+
+        for (threadIndex in 0 until threadCount) {
+            threadPoolExecutor.execute thread@{
+                contexts.xmlEditor[resourceXmlFile.inputStream()].use { editor ->
+                    val resources = editor.file.documentElement.childNodes
+                    val resourcesLength = resources.length
+                    val jobSize = resourcesLength / threadCount
+
+                    val batchStart = jobSize * threadIndex
+                    val batchEnd = jobSize * (threadIndex + 1)
+                    element@ for (i in batchStart until batchEnd) {
+                        if (i >= resourcesLength) return@thread
+
+                        val node = resources.item(i)
+                        if (node !is Element) continue
+
+                        if (node.nodeName != "integer" || !node.getAttribute("name")
+                                .startsWith("google_play_services_version")
+                        ) continue
+
+                        val playServicesVersion = node.textContent.toInt()
+
+                        upward1831 = 233200000 <= playServicesVersion
+                        upward1834 = 233500000 <= playServicesVersion
+                        upward1839 = 234000000 <= playServicesVersion
+                        upward1842 = 234302000 <= playServicesVersion
+                        upward1849 = 235000000 <= playServicesVersion
+                        upward1902 = 240204000 < playServicesVersion
+                        upward1912 = 241302000 <= playServicesVersion
+
+                        break
+                    }
+                }
+            }
+        }
+
+        threadPoolExecutor
+            .also { it.shutdown() }
+            .awaitTermination(Long.MAX_VALUE, TimeUnit.SECONDS)
     }
 
     internal fun addPreference(settingArray: Array<String>) {
@@ -234,68 +297,7 @@ object SettingsPatch : BaseResourcePatch(
         updatePatchStatus(patch.name!!)
     }
 
-    internal fun updatePatchStatus(patchTitle: String) {
-        contexts.updatePatchStatus(patchTitle)
-    }
-
-    override fun close() {
-
-        // region set ReVanced Patches Version
-
-        val jarManifest = classLoader.getResources("META-INF/MANIFEST.MF")
-        while (jarManifest.hasMoreElements())
-            contexts.updatePatchStatusSettings(
-                "ReVanced Patches",
-                Manifest(jarManifest.nextElement().openStream())
-                    .mainAttributes
-                    .getValue("Version") + ""
-            )
-
-        // endregion
-
-        // region set ReVanced Integrations Version
-
-        val buildConfigMutableClass =
-            SettingsBytecodePatch.contexts.findClass { it.sourceFile == "BuildConfig.java" }!!.mutableClass
-        val versionNameField = buildConfigMutableClass.fields.single { it.name == "VERSION_NAME" }
-        val versionName =
-            versionNameField.initialValue.toString().trim().replace("\"", "").replace("&quot;", "")
-
-        contexts.updatePatchStatusSettings(
-            "ReVanced Integrations",
-            versionName
-        )
-
-        // endregion
-
-        /**
-         * change ReVanced Extended title:
-         * everything points to `revanced_extended_settings_title` in the values files
-         */
-        setOf(
-            "", // used for the default values-v21
-            *LANGUAGES
-        ).forEach {
-            val valueFilePath: String =
-                if (it != "") "res/values-$it-v21/strings.xml" else "res/values/strings.xml"
-
-            try {
-                contexts.xmlEditor[valueFilePath].use { editor ->
-                    with(editor.file) {
-                        val nodeList = getElementsByTagName("string")
-
-                        for (i in 0 until nodeList.length) {
-                            val node: Node = nodeList.item(i)
-                            if (node.attributes.getNamedItem("name").nodeValue != "revanced_extended_settings_title")
-                                continue
-                            node.textContent = CustomName
-                            break
-                        }
-                    }
-                }
-            } catch (_: FileNotFoundException) { /* ignore missing files */
-            }
-        }
-
+    internal fun updatePatchStatus(patchName: String) {
+        contexts.updatePatchStatus(patchName)
     }
 }
