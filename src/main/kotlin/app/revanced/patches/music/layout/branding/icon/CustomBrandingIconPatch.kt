@@ -59,7 +59,7 @@ object CustomBrandingIconPatch : BaseResourcePatch(
 
     override fun execute(context: ResourceContext) {
         AppIcon?.let { appIcon ->
-            val appIconValue = appIcon.lowercase().replace(" ","_")
+            val appIconValue = appIcon.lowercase().replace(" ", "_")
             if (!availableIcon.containsValue(appIconValue)) {
                 mipmapDirectories.map { directory ->
                     ResourceGroup(
