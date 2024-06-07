@@ -22,12 +22,13 @@ object CustomBrandingNamePatch : BaseResourcePatch(
         key = "AppName",
         default = APP_NAME,
         values = mapOf(
-            "Full name" to "ReVanced Extended",
-            "Short name" to APP_NAME
+            "ReVanced Extended" to "ReVanced Extended",
+            "RVX" to APP_NAME,
+            "YouTube RVX" to "YouTube RVX",
+            "YouTube" to "YouTube",
         ),
         title = "App name",
-        description = "The name of the app.",
-        required = true
+        description = "The name of the app."
     )
 
     override fun execute(context: ResourceContext) {
