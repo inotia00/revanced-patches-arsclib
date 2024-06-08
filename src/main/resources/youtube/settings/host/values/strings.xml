@@ -433,7 +433,7 @@ Captions"</string>
     <string name="revanced_enable_wide_search_bar_in_you_tab_summary">"Enabling this setting will disable the Settings button in the You tab.
 
 In this case, please use the following path to access the settings:
-You tab → View channel → Menu → Settings."</string>
+'You tab → View channel → Menu → Settings'"</string>
     <string name="revanced_hide_toolbar_cast_button_title">Hide Cast button</string>
     <string name="revanced_hide_toolbar_cast_button_summary_on">Cast button is hidden.</string>
     <string name="revanced_hide_toolbar_cast_button_summary_off">Cast button is shown.</string>
@@ -590,10 +590,10 @@ Autoplay can be changed in YouTube settings:
     <string name="revanced_hide_comments_by_members_title">"Hide 'Comments by members' banner"</string>
     <string name="revanced_hide_comments_by_members_summary_on">"'Comments by members' banner is hidden."</string>
     <string name="revanced_hide_comments_by_members_summary_off">"'Comments by members' banner is shown."</string>
-    <string name="revanced_hide_comments_section_title">Hide comments section</string>
+    <string name="revanced_hide_comments_section_title">Hide Comments section</string>
     <string name="revanced_hide_comments_section_summary_on">Comments section is hidden.</string>
     <string name="revanced_hide_comments_section_summary_off">Comments section is shown.</string>
-    <string name="revanced_hide_comments_section_in_home_feed_title">Hide comments section in home feed</string>
+    <string name="revanced_hide_comments_section_in_home_feed_title">Hide Comments section in home feed</string>
     <string name="revanced_hide_comments_section_in_home_feed_summary_on">Comments section is hidden in home feed.</string>
     <string name="revanced_hide_comments_section_in_home_feed_summary_off">Comments section is shown in home feed.</string>
     <string name="revanced_hide_preview_comment_title">Hide preview comment</string>
@@ -1017,7 +1017,7 @@ Limitation: Official headers in search results will be hidden."</string>
     <string name="revanced_hide_shorts_dislike_button_title">Hide Dislike button</string>
     <string name="revanced_hide_shorts_dislike_button_summary_on">Dislike button is hidden.</string>
     <string name="revanced_hide_shorts_dislike_button_summary_off">Dislike button is shown.</string>
-    <string name="revanced_hide_shorts_comments_button_title">Hide comments button</string>
+    <string name="revanced_hide_shorts_comments_button_title">Hide Comments button</string>
     <string name="revanced_hide_shorts_comments_button_summary_on">Comments button is hidden.</string>
     <string name="revanced_hide_shorts_comments_button_summary_off">Comments button is shown.</string>
     <string name="revanced_hide_shorts_comments_disabled_button_title">Hide disabled comments button</string>
@@ -1496,7 +1496,7 @@ Side effects include:
 • Playback speed menu is missing.
 • Higher video qualities may be missing.
 • Watch history does not work with a brand account.
-• Live streams cannot play as audio only.
+• Live streams cannot play as audio-only.
 • Live streams not available on Android 8.0."</string>
     <string name="revanced_spoof_client_use_android_testsuite_title">Android Testsuite</string>
     <string name="revanced_spoof_client_use_android_testsuite_summary">"Spoof client to Android Testsuite.
@@ -1504,14 +1504,14 @@ Side effects include:
 Side effects include:
 • No HDR video.
 • Audio track menu and playback speed menu are missing.
-• Subtitles may not be available."</string>
+• Captions may not be available."</string>
     <string name="revanced_spoof_client_use_android_tv_title">Android TV</string>
     <string name="revanced_spoof_client_use_android_tv_summary">"Spoof client to Android TV (YouTube TV).
 
 Side effects include:
 • No HDR video.
 • Audio track menu and playback speed menu are missing.
-• Subtitles may not be available.
+• Captions may not be available.
 • Some live streams are not supported for playback."</string>
     <string name="revanced_spoof_client_use_android_vr_title">Android VR</string>
     <string name="revanced_spoof_client_use_android_vr_summary">"Spoof client to Android VR.
@@ -1520,7 +1520,7 @@ Side effects include:
 • No HDR video.
 • Paused videos can randomly resume.
 • Low quality Shorts seekbar thumbnails.
-• Kids videos do not playback."</string>
+• Kids videos do not play."</string>
 
     <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceCategory: Patch information -->
     <string name="revanced_preference_category_patch_information">Patch information</string>
