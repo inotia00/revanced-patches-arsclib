@@ -994,8 +994,8 @@ Limitation: Official headers in search results will be hidden."</string>
     <string name="revanced_hide_shorts_info_panel_summary_on">Info panels are hidden.</string>
     <string name="revanced_hide_shorts_info_panel_summary_off">Info panels are shown.</string>
     <string name="revanced_hide_shorts_live_header_title">Hide live chat header</string>
-    <string name="revanced_hide_shorts_live_header_summary_on">Live chat header is hidden.\n\nBack button in header won\'t be hidden.</string>
-    <string name="revanced_hide_shorts_live_header_summary_off">Live chat header is shown.\n\nBack button in header won\'t be hidden.</string>
+    <string name="revanced_hide_shorts_live_header_summary_on">Live chat header is hidden.\n\nBack button in header will not be hidden.</string>
+    <string name="revanced_hide_shorts_live_header_summary_off">Live chat header is shown.\n\nBack button in header will not be hidden.</string>
     <string name="revanced_hide_shorts_channel_bar_title">Hide channel bar</string>
     <string name="revanced_hide_shorts_channel_bar_summary_on">Channel bar is hidden.</string>
     <string name="revanced_hide_shorts_channel_bar_summary_off">Channel bar is shown.</string>
