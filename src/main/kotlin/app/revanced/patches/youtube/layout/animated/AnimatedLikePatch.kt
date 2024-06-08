@@ -21,7 +21,7 @@ object AnimatedLikePatch : BaseResourcePatch(
          * Copy json
          */
         context.copyResources(
-            "youtube/animated",
+            "youtube/shorts/animated",
             ResourceGroup(
                 "raw",
                 "like_tap_feedback.json"
