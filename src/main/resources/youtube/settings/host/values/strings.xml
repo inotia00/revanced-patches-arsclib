@@ -380,8 +380,8 @@ Some components may not be hidden."</string>
     <string name="revanced_hide_navigation_create_button_summary_on">Create button is hidden.</string>
     <string name="revanced_hide_navigation_create_button_summary_off">Create button is shown.</string>
     <string name="revanced_hide_navigation_home_button_title">Hide Home button</string>
-    <string name="revanced_hide_navigation_home_button_summary_off">Home button is shown.</string>
     <string name="revanced_hide_navigation_home_button_summary_on">Home button is hidden.</string>
+    <string name="revanced_hide_navigation_home_button_summary_off">Home button is shown.</string>
     <string name="revanced_hide_navigation_library_button_title">Hide Library button</string>
     <string name="revanced_hide_navigation_library_button_summary_on">Library button is hidden.</string>
     <string name="revanced_hide_navigation_library_button_summary_off">Library button is shown.</string>
