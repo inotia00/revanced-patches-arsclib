@@ -32,7 +32,7 @@ object CustomBrandingNamePatch : BaseResourcePatch(
         val appName = if (AppName != null) {
             AppName!!
         } else {
-            println("WARNING: Invalid name name. Does not apply patches.")
+            println("WARNING: Invalid app name. Does not apply patches.")
             ORIGINAL_APP_NAME
         }
 
