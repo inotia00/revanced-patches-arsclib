@@ -19,6 +19,7 @@ import app.revanced.util.copyXmlNode
 import app.revanced.util.patch.BaseBytecodePatch
 import app.revanced.util.patch.BaseResourcePatch
 import org.w3c.dom.Element
+import java.io.Closeable
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 import java.util.jar.Manifest
@@ -36,7 +37,7 @@ object SettingsPatch : BaseResourcePatch(
     ),
     compatiblePackages = COMPATIBLE_PACKAGE,
     requiresIntegrations = true
-) {
+), Closeable {
     private const val DEFAULT_ELEMENT = "About"
     private const val DEFAULT_NAME = "ReVanced Extended"
 
@@ -73,8 +74,8 @@ object SettingsPatch : BaseResourcePatch(
         description = "The settings menu name that the RVX settings menu should be above."
     )
 
-    private val CustomName by stringPatchOption(
-        key = "CustomName",
+    private val RVXSettingsMenuName by stringPatchOption(
+        key = "RVXSettingsMenuName",
         default = DEFAULT_NAME,
         title = "RVX settings menu name",
         description = "The name of the RVX settings menu."
@@ -157,32 +158,6 @@ object SettingsPatch : BaseResourcePatch(
         }
 
         /**
-         * change ReVanced Extended title
-         */
-        CustomName?.let { customName ->
-            if (customName != DEFAULT_NAME) {
-                context.removeStringsElements(
-                    arrayOf("revanced_extended_settings_title")
-                )
-                context.xmlEditor["res/values/strings.xml"].use { editor ->
-                    val document = editor.file
-
-                    mapOf(
-                        "revanced_extended_settings_title" to customName
-                    ).forEach { (k, v) ->
-                        val stringElement = document.createElement("string")
-
-                        stringElement.setAttribute("name", k)
-                        stringElement.textContent = v
-
-                        document.getElementsByTagName("resources").item(0)
-                            .appendChild(stringElement)
-                    }
-                }
-            }
-        }
-
-        /**
          * remove ReVanced Extended Settings divider
          */
         arrayOf("Theme.YouTube.Settings", "Theme.YouTube.Settings.Dark").forEach { themeName ->
@@ -221,13 +196,12 @@ object SettingsPatch : BaseResourcePatch(
         /**
          * set revanced-integrations version
          */
-        val buildConfigMutableClass = SettingsBytecodePatch.contexts
+        val versionName = SettingsBytecodePatch.contexts
             .findClass { it.sourceFile == "BuildConfig.java" }!!
             .mutableClass
-        val versionNameField = buildConfigMutableClass
             .fields
             .single { it.name == "VERSION_NAME" }
-        val versionName = versionNameField.initialValue
+            .initialValue
             .toString()
             .trim()
             .replace("\"", "")
@@ -237,6 +211,36 @@ object SettingsPatch : BaseResourcePatch(
             "ReVanced Integrations",
             versionName
         )
+    }
+
+    override fun close() {
+        /**
+         * change RVX settings menu name
+         * since it must be invoked after the Translations patch, it must be the last in the order.
+         */
+        RVXSettingsMenuName?.let { customName ->
+            if (customName != DEFAULT_NAME) {
+                contexts.removeStringsElements(
+                    arrayOf("revanced_extended_settings_title")
+                )
+                contexts.xmlEditor["res/values/strings.xml"].use { editor ->
+                    val document = editor.file
+
+                    mapOf(
+                        "revanced_extended_settings_title" to customName
+                    ).forEach { (k, v) ->
+                        val stringElement = document.createElement("string")
+
+                        stringElement.setAttribute("name", k)
+                        stringElement.textContent = v
+
+                        document.getElementsByTagName("resources").item(0)
+                            .appendChild(stringElement)
+                    }
+                }
+            }
+        } ?: println("WARNING: Invalid RVX settings menu name. RVX settings menu name does not change.")
+
     }
 
     private fun setVersionInfo() {
