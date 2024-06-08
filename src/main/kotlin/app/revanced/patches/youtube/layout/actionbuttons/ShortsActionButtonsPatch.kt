@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.shorts.overlaybuttons
+package app.revanced.patches.youtube.layout.actionbuttons
 
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.PatchException
@@ -10,14 +10,13 @@ import app.revanced.util.copyResources
 import app.revanced.util.patch.BaseResourcePatch
 
 @Suppress("unused")
-object ShortsOverlayButtonsPatch : BaseResourcePatch(
-    name = "Shorts overlay buttons",
-    description = "Applies the new icons to the action buttons in the Shorts player.",
+object ShortsActionButtonsPatch : BaseResourcePatch(
+    name = "Custom Shorts action buttons",
+    description = "Changes, at compile time, the icon of the action buttons of the Shorts player.",
     dependencies = setOf(SettingsPatch::class),
-    compatiblePackages = COMPATIBLE_PACKAGE,
-    use = true
+    compatiblePackages = COMPATIBLE_PACKAGE
 ) {
-    private const val DEFAULT_ICON_KEY = "TikTok"
+    private const val DEFAULT_ICON_KEY = "Round"
 
     private val IconType by stringPatchOption(
         key = "IconType",
@@ -25,7 +24,7 @@ object ShortsOverlayButtonsPatch : BaseResourcePatch(
         values = mapOf(
             "Outline" to "outline",
             "OutlineCircle" to "outlinecircle",
-            DEFAULT_ICON_KEY to "tiktok"
+            DEFAULT_ICON_KEY to "round"
         ),
         title = "Shorts icon style ",
         description = "The style of the icons for the action buttons in the Shorts player."
@@ -43,7 +42,7 @@ object ShortsOverlayButtonsPatch : BaseResourcePatch(
                 "mdpi"
             ).forEach { dpi ->
                 context.copyResources(
-                    "youtube/shorts/$selectedIconType",
+                    "youtube/shorts/actionbuttons/$selectedIconType",
                     ResourceGroup(
                         "drawable-$dpi",
                         "ic_remix_filled_white_shadowed.webp",
@@ -59,7 +58,6 @@ object ShortsOverlayButtonsPatch : BaseResourcePatch(
                         "ic_right_dislike_on_32c.webp",
                         "ic_right_like_on_32c.webp"
                     ),
-
                     ResourceGroup(
                         "drawable",
                         "ic_right_comment_32c.xml",
@@ -70,7 +68,7 @@ object ShortsOverlayButtonsPatch : BaseResourcePatch(
                 )
 
                 context.copyResources(
-                    "youtube/shorts/outline",
+                    "youtube/shorts/actionbuttons/shared",
                     ResourceGroup(
                         "drawable",
                         "reel_camera_bold_24dp.xml",
@@ -79,7 +77,7 @@ object ShortsOverlayButtonsPatch : BaseResourcePatch(
                     )
                 )
             }
-        } ?: throw PatchException("Invalid icon type path.")
+        } ?: throw PatchException("Invalid icon type.")
 
         SettingsPatch.updatePatchStatus(this)
     }
