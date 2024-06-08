@@ -100,18 +100,33 @@ object ResourceUtils {
         }
     }
 
-    fun ResourceContext.addPreferenceFragment(key: String) {
+    fun ResourceContext.addPreferenceFragment(key: String, insertKey: String) {
         val targetClass =
             "com.google.android.apps.youtube.app.settings.videoquality.VideoQualitySettingsActivity"
 
         this.xmlEditor[YOUTUBE_SETTINGS_PATH].use { editor ->
             with(editor.file) {
-                doRecursively loop@{
-                    if (it !is Element) return@loop
-                    it.getAttributeNode("android:key")?.let { attribute ->
-                        if (attribute.textContent == "@string/about_key" && it.getAttributeNode("app:iconSpaceReserved").textContent == "false") {
-                            it.insertNode("Preference", it) {
-                                setAttribute("android:title", "@string/" + key + "_title")
+                val processedKeys = mutableSetOf<String>() // To track processed keys
+
+                doRecursively loop@{ node ->
+                    if (node !is Element) return@loop // Skip if not an element
+
+                    val attributeNode = node.getAttributeNode("android:key")
+                        ?: return@loop // Skip if no key attribute
+                    val currentKey = attributeNode.textContent
+
+                    // Check if the current key has already been processed
+                    if (processedKeys.contains(currentKey)) {
+                        return@loop // Skip if already processed
+                    } else {
+                        processedKeys.add(currentKey) // Add the current key to processedKeys
+                    }
+
+                    when (currentKey) {
+                        insertKey -> {
+                            node.insertNode("Preference", node) {
+                                setAttribute("android:key", "${key}_key")
+                                setAttribute("android:title", "@string/${key}_title")
                                 this.appendChild(
                                     ownerDocument.createElement("intent").also { intentNode ->
                                         intentNode.setAttribute(
@@ -120,20 +135,14 @@ object ResourceUtils {
                                         )
                                         intentNode.setAttribute("android:data", key + "_intent")
                                         intentNode.setAttribute("android:targetClass", targetClass)
-                                    })
+                                    }
+                                )
                             }
-                            it.getAttributeNode("app:iconSpaceReserved").textContent = "true"
-                            return@loop
+                            node.setAttribute("app:iconSpaceReserved", "true")
                         }
-                    }
-                }
 
-                doRecursively loop@{
-                    if (it !is Element) return@loop
-
-                    it.getAttributeNode("app:iconSpaceReserved")?.let { attribute ->
-                        if (attribute.textContent == "true") {
-                            attribute.textContent = "false"
+                        "true" -> {
+                            attributeNode.textContent = "false"
                         }
                     }
                 }

@@ -314,8 +314,8 @@
     <string name="revanced_spoof_app_version_target_entry_18_38_45">18.38.45 - 恢復舊的預設影片畫質</string>
     <string name="revanced_spoof_app_version_target_entry_18_48_39">"18.48.39 - 停用即時更新「播放量」和「喜歡次數」"</string>
     <!-- PreferenceScreen: General, PreferenceCategory: General, PreferenceScreen: Account menu -->
-    <string name="revanced_preference_screen_account_munu_title">帳戶選單</string>
-    <string name="revanced_preference_screen_account_munu_summary">隱藏或顯示帳戶選單和「你的」選項卡中的元素</string>
+    <string name="revanced_preference_screen_account_menu_title">帳戶選單</string>
+    <string name="revanced_preference_screen_account_menu_summary">隱藏或顯示帳戶選單和「你的」選項卡中的元素</string>
     <string name="revanced_hide_account_menu_title">賬號選單</string>
     <string name="revanced_hide_account_menu_summary">"隱藏帳戶選單和你的選項卡的元素
 某些組件可能不會隱藏"</string>
@@ -368,8 +368,8 @@
  • 停用此設定會從伺服器端載入更多廣告
  • 你應該停用此設定以顯示影片廣告"</string>
     <!-- PreferenceScreen: General, PreferenceCategory: General, PreferenceScreen: Settings menu -->
-    <string name="revanced_preference_screen_settings_munu_title">設定選單</string>
-    <string name="revanced_preference_screen_settings_munu_summary">隱藏 YouTube 設定選單中的元素</string>
+    <string name="revanced_preference_screen_settings_menu_title">設定選單</string>
+    <string name="revanced_preference_screen_settings_menu_summary">隱藏 YouTube 設定選單中的元素</string>
     <string name="revanced_hide_settings_menu_title">YouTube 設定選單</string>
     <string name="revanced_hide_settings_menu_summary">隱藏 YouTube 設定選單中的元素</string>
     <string name="revanced_hide_settings_menu_filter_strings_title">YouTube 設定選單過濾器</string>

@@ -304,8 +304,8 @@ Ez nem kerüli meg a korhatárt. Csak automatikusan fogadja el."</string>
     <string name="revanced_spoof_app_version_target_entry_18_38_45">18.38.45 - Visszaállítja a régi alapértelmezett videó minőség viselkedést</string>
     <string name="revanced_spoof_app_version_target_entry_18_48_39">"18.48.39 - Letiltja a 'nézetek' és 'kedvelések' valós idejű frissítését"</string>
     <!-- PreferenceScreen: General, PreferenceCategory: General, PreferenceScreen: Account menu -->
-    <string name="revanced_preference_screen_account_munu_title">Fiók menü</string>
-    <string name="revanced_preference_screen_account_munu_summary">Elemek elrejtése vagy megjelenítése a fiók menüben és a Te fülön.</string>
+    <string name="revanced_preference_screen_account_menu_title">Fiók menü</string>
+    <string name="revanced_preference_screen_account_menu_summary">Elemek elrejtése vagy megjelenítése a fiók menüben és a Te fülön.</string>
     <string name="revanced_hide_account_menu_title">Fiókmenü elrejtése</string>
     <string name="revanced_hide_account_menu_summary">"Fiókmenü és az Ön lap elemeinek elrejtése.
 Előfordulhat, hogy egyes komponensek nincsenek elrejtve."</string>
@@ -358,8 +358,8 @@ Előfordulhat, hogy egyes komponensek nincsenek elrejtve."</string>
 • Ha ezt a beállítást letiltja, több hirdetést tölt be a szerver oldalról.
 • Ha a videó hirdetések láthatóak akarja tenni, letiltja ezt a beállítást."</string>
     <!-- PreferenceScreen: General, PreferenceCategory: General, PreferenceScreen: Settings menu -->
-    <string name="revanced_preference_screen_settings_munu_title">Beállítások menü</string>
-    <string name="revanced_preference_screen_settings_munu_summary">Elrejt a YouTube beállítások menü elemeit.</string>
+    <string name="revanced_preference_screen_settings_menu_title">Beállítások menü</string>
+    <string name="revanced_preference_screen_settings_menu_summary">Elrejt a YouTube beállítások menü elemeit.</string>
     <string name="revanced_hide_settings_menu_title">YouTube beállítások menü elrejtése</string>
     <string name="revanced_hide_settings_menu_summary">Elrejt elemeket a YouTube beállítások menüben.</string>
     <string name="revanced_hide_settings_menu_filter_strings_title">YouTube beállítások menü szűrő</string>

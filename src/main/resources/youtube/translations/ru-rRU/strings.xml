@@ -320,8 +320,8 @@ Store"</string>
     <string name="revanced_spoof_app_version_target_entry_18_38_45">18.38.45 - Восстановить старое поведение качества по умолчанию</string>
     <string name="revanced_spoof_app_version_target_entry_18_48_39">"18.48.39 - Отключает обновления в реальном времени для 'просмотры' и 'лайки'"</string>
     <!-- PreferenceScreen: General, PreferenceCategory: General, PreferenceScreen: Account menu -->
-    <string name="revanced_preference_screen_account_munu_title">Меню аккаунта</string>
-    <string name="revanced_preference_screen_account_munu_summary">Элементы в меню аккаунта и вкладке Вы.</string>
+    <string name="revanced_preference_screen_account_menu_title">Меню аккаунта</string>
+    <string name="revanced_preference_screen_account_menu_summary">Элементы в меню аккаунта и вкладке Вы.</string>
     <string name="revanced_hide_account_menu_title">Скрыть меню аккаунта</string>
     <string name="revanced_hide_account_menu_summary">"Скрыть элементы меню аккаунта и вкладки \"Вы\".
 Некоторые компоненты не могут быть скрыты."</string>
@@ -374,8 +374,8 @@ Store"</string>
 • Отключая этот параметр, получите больше рекламы.
 • Отключите параметр поменять местами, чтобы сделать рекламу видимой."</string>
     <!-- PreferenceScreen: General, PreferenceCategory: General, PreferenceScreen: Settings menu -->
-    <string name="revanced_preference_screen_settings_munu_title">Меню настроек</string>
-    <string name="revanced_preference_screen_settings_munu_summary">Элементы в меню настроек YouTube.</string>
+    <string name="revanced_preference_screen_settings_menu_title">Меню настроек</string>
+    <string name="revanced_preference_screen_settings_menu_summary">Элементы в меню настроек YouTube.</string>
     <string name="revanced_hide_settings_menu_title">Меню настроек YouTube</string>
     <string name="revanced_hide_settings_menu_summary">Скрытие элементов в меню настроек YouTube.</string>
     <string name="revanced_hide_settings_menu_filter_strings_title">Фильтр меню настроек YouTube</string>

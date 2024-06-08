@@ -313,8 +313,8 @@
     <string name="revanced_spoof_app_version_target_entry_18_38_45">18.38.45 - استعادة سلوك جودة الفيديو الافتراضي القديم</string>
     <string name="revanced_spoof_app_version_target_entry_18_48_39">"18.48.39 - تعطيل تحديث 'المشاهدات' و'الإعجابات' في الوقت الفعلي"</string>
     <!-- PreferenceScreen: General, PreferenceCategory: General, PreferenceScreen: Account menu -->
-    <string name="revanced_preference_screen_account_munu_title">قائمة الحساب</string>
-    <string name="revanced_preference_screen_account_munu_summary">إخفاء أو عرض العناصر في قائمة الحساب وعلامة التبويب أنت.</string>
+    <string name="revanced_preference_screen_account_menu_title">قائمة الحساب</string>
+    <string name="revanced_preference_screen_account_menu_summary">إخفاء أو عرض العناصر في قائمة الحساب وعلامة التبويب أنت.</string>
     <string name="revanced_hide_account_menu_title">إخفاء قائمة الحساب</string>
     <string name="revanced_hide_account_menu_summary">"إخفاء عناصر قائمة الحساب وعلامة التبويب أنت.
 قد لا يتم إخفاء بعض المكونات."</string>
@@ -367,8 +367,8 @@
 • يؤدي تعطيل هذا الإعداد إلى تحميل المزيد من الإعلانات من جانب الخادم.
 • يجب عليك تعطيل هذا الإعداد لجعل إعلانات الفيديو مرئية."</string>
     <!-- PreferenceScreen: General, PreferenceCategory: General, PreferenceScreen: Settings menu -->
-    <string name="revanced_preference_screen_settings_munu_title">قائمة الإعدادات</string>
-    <string name="revanced_preference_screen_settings_munu_summary">إخفاء عناصر قائمة إعدادات YouTube.</string>
+    <string name="revanced_preference_screen_settings_menu_title">قائمة الإعدادات</string>
+    <string name="revanced_preference_screen_settings_menu_summary">إخفاء عناصر قائمة إعدادات YouTube.</string>
     <string name="revanced_hide_settings_menu_title">إخفاء قائمة إعدادات YouTube</string>
     <string name="revanced_hide_settings_menu_summary">إخفاء العناصر في قائمة إعدادات YouTube.</string>
     <string name="revanced_hide_settings_menu_filter_strings_title">فلتر قائمة إعدادات اليوتيوب</string>

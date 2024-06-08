@@ -306,8 +306,8 @@ Kısıtlamalar:
     <string name="revanced_spoof_app_version_target_entry_18_38_45">18.38.45 - Eski varsayılan video kalitesi davranışını geri getir</string>
     <string name="revanced_spoof_app_version_target_entry_18_48_39">"18.48.39 - \"Görüntülemelerin\" ve \"beğenilerin\" gerçek zamanlı olarak güncellenmesini devre dışı bırakır"</string>
     <!-- PreferenceScreen: General, PreferenceCategory: General, PreferenceScreen: Account menu -->
-    <string name="revanced_preference_screen_account_munu_title">Hesap Menüsü</string>
-    <string name="revanced_preference_screen_account_munu_summary">Hesap menüsünde ve siz sekmesinde gizli veya göster.</string>
+    <string name="revanced_preference_screen_account_menu_title">Hesap Menüsü</string>
+    <string name="revanced_preference_screen_account_menu_summary">Hesap menüsünde ve siz sekmesinde gizli veya göster.</string>
     <string name="revanced_hide_account_menu_title">Hesap menüsünü gizle</string>
     <string name="revanced_hide_account_menu_summary">"Özel filtredeki hesap menüsü elementlerini gizle."</string>
     <string name="revanced_hide_account_menu_filter_strings_title">Hesap menüsü filtresini düzenle</string>
@@ -359,8 +359,8 @@ Kısıtlamalar:
 • Bu ayarın devre dışı bırakılması, sunucu tarafından daha fazla reklamın yüklenmesine neden olur.
 • Video reklamların görünür olması için bu ayarı devre dışı bırakmalısınız."</string>
     <!-- PreferenceScreen: General, PreferenceCategory: General, PreferenceScreen: Settings menu -->
-    <string name="revanced_preference_screen_settings_munu_title">Ayarlar menüsü</string>
-    <string name="revanced_preference_screen_settings_munu_summary">YouTube ayarlar menüsünde elementleri gizle.</string>
+    <string name="revanced_preference_screen_settings_menu_title">Ayarlar menüsü</string>
+    <string name="revanced_preference_screen_settings_menu_summary">YouTube ayarlar menüsünde elementleri gizle.</string>
     <string name="revanced_hide_settings_menu_title">YouTube ayarlar menüsünü gizle</string>
     <string name="revanced_hide_settings_menu_summary">YouTube ayarlar menüsünde elementleri gizle.</string>
     <string name="revanced_hide_settings_menu_filter_strings_title">YouTube ayarlar menüsü filtresi</string>

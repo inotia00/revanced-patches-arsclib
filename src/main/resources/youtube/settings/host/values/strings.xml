@@ -6,6 +6,7 @@
 
     <!-- Shared PreferenceScreen -->
     <string name="revanced_extended_settings_title">ReVanced Extended</string>
+    <string name="revanced_extended_settings_search_title">Search settings</string>
 
     <!-- Shared Category -->
     <string name="revanced_preference_category_experimental_flag">Experimental Flags</string>
@@ -344,8 +345,8 @@ This does not bypass the age restriction. It just accepts it automatically."</st
     <string name="revanced_spoof_app_version_target_entry_18_48_39">"18.48.39 - Disables 'views' and 'likes' from being updated in real time"</string>
 
     <!-- PreferenceScreen: General, PreferenceCategory: General, PreferenceScreen: Account menu -->
-    <string name="revanced_preference_screen_account_munu_title">Account menu</string>
-    <string name="revanced_preference_screen_account_munu_summary">Hide or show elements in account menu and You tab.</string>
+    <string name="revanced_preference_screen_account_menu_title">Account menu</string>
+    <string name="revanced_preference_screen_account_menu_summary">Hide or show elements in account menu and You tab.</string>
 
     <string name="revanced_hide_account_menu_title">Hide account menu</string>
     <string name="revanced_hide_account_menu_summary">"Hide elements of the account menu and You tab.
@@ -379,8 +380,8 @@ Some components may not be hidden."</string>
     <string name="revanced_hide_navigation_create_button_summary_on">Create button is hidden.</string>
     <string name="revanced_hide_navigation_create_button_summary_off">Create button is shown.</string>
     <string name="revanced_hide_navigation_home_button_title">Hide Home button</string>
-    <string name="revanced_hide_navigation_home_button_summary_off">Home button is shown.</string>
     <string name="revanced_hide_navigation_home_button_summary_on">Home button is hidden.</string>
+    <string name="revanced_hide_navigation_home_button_summary_off">Home button is shown.</string>
     <string name="revanced_hide_navigation_library_button_title">Hide Library button</string>
     <string name="revanced_hide_navigation_library_button_summary_on">Library button is hidden.</string>
     <string name="revanced_hide_navigation_library_button_summary_off">Library button is shown.</string>
@@ -404,8 +405,8 @@ Some components may not be hidden."</string>
 • You should disable this setting to make video ads visible."</string>
 
     <!-- PreferenceScreen: General, PreferenceCategory: General, PreferenceScreen: Settings menu -->
-    <string name="revanced_preference_screen_settings_munu_title">Settings menu</string>
-    <string name="revanced_preference_screen_settings_munu_summary">Hide elements of the YouTube settings menu.</string>
+    <string name="revanced_preference_screen_settings_menu_title">Settings menu</string>
+    <string name="revanced_preference_screen_settings_menu_summary">Hide elements of the YouTube settings menu.</string>
 
     <string name="revanced_hide_settings_menu_title">Hide YouTube settings menu</string>
     <string name="revanced_hide_settings_menu_summary">Hide elements of the YouTube settings menu.</string>
@@ -992,6 +993,9 @@ Limitation: Official headers in search results will be hidden."</string>
     <string name="revanced_hide_shorts_info_panel_title">Hide info panels</string>
     <string name="revanced_hide_shorts_info_panel_summary_on">Info panels are hidden.</string>
     <string name="revanced_hide_shorts_info_panel_summary_off">Info panels are shown.</string>
+    <string name="revanced_hide_shorts_live_header_title">Hide live chat header</string>
+    <string name="revanced_hide_shorts_live_header_summary_on">Live chat header is hidden.\n\nBack button in header will not be hidden.</string>
+    <string name="revanced_hide_shorts_live_header_summary_off">Live chat header is shown.\n\nBack button in header will not be hidden.</string>
     <string name="revanced_hide_shorts_channel_bar_title">Hide channel bar</string>
     <string name="revanced_hide_shorts_channel_bar_summary_on">Channel bar is hidden.</string>
     <string name="revanced_hide_shorts_channel_bar_summary_off">Channel bar is shown.</string>
@@ -1016,6 +1020,9 @@ Limitation: Official headers in search results will be hidden."</string>
     <string name="revanced_hide_shorts_comments_button_title">Hide comments button</string>
     <string name="revanced_hide_shorts_comments_button_summary_on">Comments button is hidden.</string>
     <string name="revanced_hide_shorts_comments_button_summary_off">Comments button is shown.</string>
+    <string name="revanced_hide_shorts_comments_disabled_button_title">Hide disabled comments button</string>
+    <string name="revanced_hide_shorts_comments_disabled_button_summary_on">Disabled comments button or with label \"0\" is hidden.</string>
+    <string name="revanced_hide_shorts_comments_disabled_button_summary_off">Disabled comments button or with label \"0\" is shown.</string>
     <string name="revanced_hide_shorts_remix_button_title">Hide Remix button</string>
     <string name="revanced_hide_shorts_remix_button_summary_on">Remix button is hidden.</string>
     <string name="revanced_hide_shorts_remix_button_summary_off">Remix button is shown.</string>
@@ -1529,9 +1536,12 @@ Side effects include:
     <string name="revanced_preference_category_others">Others</string>
     <string name="revanced_icon_custom">Custom</string>
     <string name="revanced_icon_default">Stock</string>
+    <string name="revanced_icon_afn_blue">Afn Blue</string>
+    <string name="revanced_icon_afn_red">Afn Red</string>
     <string name="revanced_icon_mmt">MMT</string>
     <string name="revanced_icon_revancify_blue">Revancify Blue</string>
     <string name="revanced_icon_revancify_red">Revancify Red</string>
+    <string name="revanced_icon_youtube">YouTube</string>
     <string name="revanced_label_default">Stock</string>
     <string name="revanced_patches_excluded">Excluded</string>
     <string name="revanced_patches_included">Included</string>

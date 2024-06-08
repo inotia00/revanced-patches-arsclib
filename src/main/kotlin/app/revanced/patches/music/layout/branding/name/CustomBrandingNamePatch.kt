@@ -20,24 +20,26 @@ object CustomBrandingNamePatch : BaseResourcePatch(
         key = "AppNameNotification",
         default = APP_NAME_LAUNCHER,
         values = mapOf(
-            "Full name" to APP_NAME_NOTIFICATION,
-            "Short name" to APP_NAME_LAUNCHER
+            "ReVanced Extended Music" to APP_NAME_NOTIFICATION,
+            "RVX Music" to APP_NAME_LAUNCHER,
+            "YouTube Music" to "YouTube Music",
+            "YT Music" to "YT Music",
         ),
         title = "App name in notification panel",
         description = "The name of the app as it appears in the notification panel.",
-        required = true
     )
 
     private val AppNameLauncher by stringPatchOption(
         key = "AppNameLauncher",
         default = APP_NAME_LAUNCHER,
         values = mapOf(
-            "Full name" to APP_NAME_NOTIFICATION,
-            "Short name" to APP_NAME_LAUNCHER
+            "ReVanced Extended Music" to APP_NAME_NOTIFICATION,
+            "RVX Music" to APP_NAME_LAUNCHER,
+            "YouTube Music" to "YouTube Music",
+            "YT Music" to "YT Music",
         ),
         title = "App name in launcher",
         description = "The name of the app as it appears in the launcher.",
-        required = true
     )
 
     override fun execute(context: ResourceContext) {
@@ -64,7 +66,7 @@ object CustomBrandingNamePatch : BaseResourcePatch(
                             .appendChild(stringElement)
                     }
                 }
-            } ?: throw PatchException("Invalid app name.")
-        } ?: throw PatchException("Invalid app name.")
+            } ?: throw PatchException("Invalid launcher name.")
+        } ?: throw PatchException("Invalid notification name.")
     }
 }

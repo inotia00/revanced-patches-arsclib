@@ -311,8 +311,8 @@ DeArrowの詳細については、ここをタップしてください。"</stri
     <string name="revanced_spoof_app_version_target_entry_18_38_45">18.38.45 - 以前のデフォルトの画質の動作を復元</string>
     <string name="revanced_spoof_app_version_target_entry_18_48_39">"18.48.39 - リアルタイムで更新される「再生回数」と「高評価数」を無効化"</string>
     <!-- PreferenceScreen: General, PreferenceCategory: General, PreferenceScreen: Account menu -->
-    <string name="revanced_preference_screen_account_munu_title">アカウントメニュー</string>
-    <string name="revanced_preference_screen_account_munu_summary">アカウントメニューとマイページ タブで要素を非表示または表示します。</string>
+    <string name="revanced_preference_screen_account_menu_title">アカウントメニュー</string>
+    <string name="revanced_preference_screen_account_menu_summary">アカウントメニューとマイページ タブで要素を非表示または表示します。</string>
     <string name="revanced_hide_account_menu_title">アカウントメニューを非表示</string>
     <string name="revanced_hide_account_menu_summary">"アカウントメニューとマイページタブの要素を非表示にします。
 一部のコンポーネントは非表示にならない可能性があります。"</string>
@@ -364,8 +364,8 @@ DeArrowの詳細については、ここをタップしてください。"</stri
 • この設定を無効にすると、サーバーからさらに多くの広告が読み込まれます。
 • 動画広告を表示するには、この設定を無効にする必要があります。"</string>
     <!-- PreferenceScreen: General, PreferenceCategory: General, PreferenceScreen: Settings menu -->
-    <string name="revanced_preference_screen_settings_munu_title">設定メニュー</string>
-    <string name="revanced_preference_screen_settings_munu_summary">YouTube 設定メニューの要素を非表示にします。</string>
+    <string name="revanced_preference_screen_settings_menu_title">設定メニュー</string>
+    <string name="revanced_preference_screen_settings_menu_summary">YouTube 設定メニューの要素を非表示にします。</string>
     <string name="revanced_hide_settings_menu_title">YouTube 設定メニューを非表示</string>
     <string name="revanced_hide_settings_menu_summary">YouTube 設定メニューの要素を非表示にします。</string>
     <string name="revanced_hide_settings_menu_filter_strings_title">YouTube 設定メニューフィルター</string>
