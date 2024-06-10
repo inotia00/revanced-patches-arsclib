@@ -1496,8 +1496,7 @@ Limitation: Feed videos will play for less than 1 minute before encountering pla
 
 Side effects include:
 • No HDR video.
-• Playback speed menu is missing.
-• Higher video qualities may be missing.
+• Higher video qualities may not be available.
 • Watch history does not work with a brand account.
 • Live streams cannot play as audio-only.
 • Live streams not available on Android 8.0."</string>
@@ -1506,14 +1505,14 @@ Side effects include:
 
 Side effects include:
 • No HDR video.
-• Audio track menu and playback speed menu are missing.
+• Audio track menu is missing.
 • Captions may not be available."</string>
     <string name="revanced_spoof_client_use_android_tv_title">Android TV</string>
     <string name="revanced_spoof_client_use_android_tv_summary">"Spoof client to Android TV (YouTube TV).
 
 Side effects include:
 • No HDR video.
-• Audio track menu and playback speed menu are missing.
+• Audio track menu is missing.
 • Captions may not be available.
 • Some live streams are not supported for playback."</string>
     <string name="revanced_spoof_client_use_android_vr_title">Android VR</string>
