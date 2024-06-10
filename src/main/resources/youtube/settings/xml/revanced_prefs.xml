@@ -5,6 +5,7 @@
     <!-- PREFERENCE_SCREEN: ADS
     <PreferenceScreen android:title="@string/revanced_preference_screen_ads_title" android:key="revanced_preference_screen_ads">
         <SwitchPreference android:title="@string/revanced_hide_fullscreen_ads_title" android:key="revanced_hide_fullscreen_ads" android:summaryOn="@string/revanced_hide_fullscreen_ads_summary_on" android:summaryOff="@string/revanced_hide_fullscreen_ads_summary_off" />
+        <SwitchPreference android:title="@string/revanced_hide_fullscreen_ads_type_title" android:key="revanced_hide_fullscreen_ads_type" android:summaryOn="@string/revanced_hide_fullscreen_ads_type_summary_on" android:summaryOff="@string/revanced_hide_fullscreen_ads_type_summary_off" android:dependency="revanced_hide_fullscreen_ads" />
         <SwitchPreference android:title="@string/revanced_hide_general_ads_title" android:key="revanced_hide_general_ads" android:summaryOn="@string/revanced_hide_general_ads_summary_on" android:summaryOff="@string/revanced_hide_general_ads_summary_off" />
         <SwitchPreference android:title="@string/revanced_hide_merchandise_shelf_title" android:key="revanced_hide_merchandise_shelf" android:summaryOn="@string/revanced_hide_merchandise_shelf_summary_on" android:summaryOff="@string/revanced_hide_merchandise_shelf_summary_off" />
         <SwitchPreference android:title="@string/revanced_hide_paid_promotion_label_title" android:key="revanced_hide_paid_promotion_label" android:summaryOn="@string/revanced_hide_paid_promotion_label_summary_on" android:summaryOff="@string/revanced_hide_paid_promotion_label_summary_off" />
@@ -73,6 +74,7 @@
             </PreferenceCategory>
             <PreferenceCategory android:title="@string/revanced_preference_category_recommended_video" android:layout="@layout/revanced_settings_preferences_category">
                 <SwitchPreference android:title="@string/revanced_hide_recommended_video_title" android:key="revanced_hide_recommended_video" android:summary="@string/revanced_hide_recommended_video_summary" />
+                <SwitchPreference android:title="@string/revanced_hide_low_views_video_title" android:key="revanced_hide_low_views_video" android:summary="@string/revanced_hide_low_views_video_summary" />
             </PreferenceCategory>
             <PreferenceCategory android:title="@string/revanced_preference_category_duration_filter" android:layout="@layout/revanced_settings_preferences_category">
                 <SwitchPreference android:title="@string/revanced_hide_video_by_duration_title" android:key="revanced_hide_video_by_duration" android:summary="@string/revanced_hide_video_by_duration_summary" />
