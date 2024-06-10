@@ -45,6 +45,18 @@ object CustomBrandingIconPatch : BaseResourcePatch(
 
     private val mipmapDirectories = sizeArray.map { "mipmap-$it" }
 
+    private val headerResourceDirectoryNames = mapOf(
+        "xxxhdpi" to "512px x 192px",
+        "xxhdpi" to "387px x 144px",
+        "xhdpi" to "258px x 96px",
+        "hdpi" to "194px x 72px",
+        "mdpi" to "129px x 48px",
+    ).map { (dpi, dim) ->
+        "drawable-$dpi" to dim
+    }.toMap()
+
+    private val variants = arrayOf("light", "dark")
+
     private val headerIconResourceFileNames = arrayOf(
         "yt_premium_wordmark_header_dark",
         "yt_premium_wordmark_header_light",
@@ -122,6 +134,26 @@ object CustomBrandingIconPatch : BaseResourcePatch(
         description = "Apply the custom branding icon to the header."
     )
 
+    private val CustomHeader by stringPatchOption(
+        key = "CustomHeader",
+        default = "",
+        title = "Custom header",
+        description = """
+            The header to apply to the app.
+            
+            If a path to a folder is provided, the folder must contain one or more of the following folders, depending on the DPI of the device:
+            
+            ${headerResourceDirectoryNames.keys.joinToString("\n") { "- $it" }}
+            
+            Each of the folders must contain all of the following files:
+            
+            ${headerIconResourceFileNames.joinToString("\n") { "- $it" }}
+
+            The image dimensions must be as follows:
+            ${headerResourceDirectoryNames.map { (dpi, dim) -> "- $dpi: $dim" }.joinToString("\n")}
+        """.trimIndentMultiline(),
+    )
+
     private val ChangeSplashIcon by booleanPatchOption(
         key = "ChangeSplashIcon",
         default = true,
@@ -146,29 +178,13 @@ object CustomBrandingIconPatch : BaseResourcePatch(
 
             // Check if a custom path is used in the patch options.
             if (!availableIcon.containsValue(appIconValue)) {
-                launcherIconResourceGroups.let { resourceGroups ->
-                    try {
-                        val path = File(appIcon)
-                        val resourceDirectory = context["res"]
-
-                        resourceGroups.forEach { group ->
-                            val fromDirectory = path.resolve(group.resourceDirectoryName)
-                            val toDirectory = resourceDirectory.resolve(group.resourceDirectoryName)
-
-                            group.resources.forEach { iconFileName ->
-                                Files.write(
-                                    toDirectory.resolve(iconFileName).toPath(),
-                                    fromDirectory.resolve(iconFileName).readBytes()
-                                )
-                            }
-                        }
-
-                        context.updatePatchStatusIcon("custom")
-                    } catch (_: Exception) {
-                        // Exception is thrown if an invalid path is used in the patch option.
-                        throw PatchException("Invalid app icon path: $appIcon")
-                    }
-                }
+                val copiedFiles = context.copyFile(
+                    launcherIconResourceGroups,
+                    appIcon,
+                    "WARNING: Invalid app icon path: $appIcon. Does not apply patches."
+                )
+                if (copiedFiles)
+                    context.updatePatchStatusIcon("custom")
             } else {
                 // Change launcher icon.
                 launcherIconResourceGroups.let { resourceGroups ->
@@ -189,9 +205,21 @@ object CustomBrandingIconPatch : BaseResourcePatch(
 
                 // Change header.
                 if (ChangeHeader == true) {
-                    headerIconResourceGroups.let { resourceGroups ->
-                        resourceGroups.forEach {
-                            context.copyResources("$appIconResourcePath/header", it)
+                    CustomHeader?.let { customHeader ->
+                        var copiedFiles = false
+                        if (customHeader.isNotEmpty()) {
+                            copiedFiles = context.copyFile(
+                                headerIconResourceGroups,
+                                customHeader,
+                                "WARNING: Invalid header path: $customHeader. Does not apply patches."
+                            )
+                        }
+                        if (!copiedFiles) {
+                            headerIconResourceGroups.let { resourceGroups ->
+                                resourceGroups.forEach {
+                                    context.copyResources("$appIconResourcePath/header", it)
+                                }
+                            }
                         }
                     }
                 }
@@ -220,5 +248,35 @@ object CustomBrandingIconPatch : BaseResourcePatch(
                 context.updatePatchStatusIcon(appIconValue)
             }
         } ?: throw PatchException("Invalid app icon path.")
+    }
+
+    private fun ResourceContext.copyFile(
+        iconResourceGroup: List<ResourceGroup>,
+        path: String,
+        message: String
+    ): Boolean {
+        iconResourceGroup.let { resourceGroups ->
+            try {
+                val filePath = File(path)
+                val resourceDirectory = this["res"]
+
+                resourceGroups.forEach { group ->
+                    val fromDirectory = filePath.resolve(group.resourceDirectoryName)
+                    val toDirectory = resourceDirectory.resolve(group.resourceDirectoryName)
+
+                    group.resources.forEach { iconFileName ->
+                        Files.write(
+                            toDirectory.resolve(iconFileName).toPath(),
+                            fromDirectory.resolve(iconFileName).readBytes()
+                        )
+                    }
+                }
+
+                return true
+            } catch (_: Exception) {
+                println(message)
+            }
+        }
+        return false
     }
 }
