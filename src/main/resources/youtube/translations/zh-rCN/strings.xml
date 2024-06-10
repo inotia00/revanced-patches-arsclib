@@ -204,7 +204,7 @@
     <string name="revanced_hide_keyword_content_comments_summary_off">评论关键词过滤器已禁用</string>
     <string name="revanced_hide_keyword_content_phrases_title">要隐藏的关键词</string>
     <string name="revanced_hide_keyword_content_phrases_summary">"配置要隐藏的关键词和短语，以换行符分隔\n\n
-中间有大写字母的单词必须使用大小写（例如：iPhone、TikTok、LeBlanc）"</string>
+中间有大写字母的单词必须使用大小写(例如：iPhone、TikTok、LeBlanc)"</string>
     <string name="revanced_hide_keyword_content_about_title">关于关键词过滤</string>
     <string name="revanced_hide_keyword_content_about_summary">"搜索、首页、订阅和评论会被过滤以隐藏与关键词短语匹配的内容
 
@@ -314,8 +314,6 @@
     <string name="revanced_spoof_app_version_target_entry_18_38_45">18.38.45 - 恢复旧的默认视频质量行为</string>
     <string name="revanced_spoof_app_version_target_entry_18_48_39">"\"18.48.39 - 禁止实时更新“播放量”和“喜欢次数”"</string>
     <!-- PreferenceScreen: General, PreferenceCategory: General, PreferenceScreen: Account menu -->
-    <string name="revanced_preference_screen_account_menu_title">账户菜单</string>
-    <string name="revanced_preference_screen_account_menu_summary">隐藏或显示账户菜单和“你的”选项卡中的元素</string>
     <string name="revanced_hide_account_menu_title">账号菜单</string>
     <string name="revanced_hide_account_menu_summary">"隐藏帐户菜单和你的选项卡的元素
 某些组件可能不会隐藏"</string>
@@ -344,8 +342,8 @@
     <string name="revanced_hide_navigation_create_button_summary_on">创建按钮已隐藏</string>
     <string name="revanced_hide_navigation_create_button_summary_off">创建按钮已显示</string>
     <string name="revanced_hide_navigation_home_button_title">隐藏首页按钮</string>
-    <string name="revanced_hide_navigation_home_button_summary_off">首页按钮已显示</string>
     <string name="revanced_hide_navigation_home_button_summary_on">首页按钮已隐藏</string>
+    <string name="revanced_hide_navigation_home_button_summary_off">首页按钮已显示</string>
     <string name="revanced_hide_navigation_library_button_title">隐藏库按钮</string>
     <string name="revanced_hide_navigation_library_button_summary_on">库按钮已隐藏</string>
     <string name="revanced_hide_navigation_library_button_summary_off">库按钮已显示</string>
@@ -368,8 +366,6 @@
 • 禁用此设置会从服务器端加载更多广告
 • 你应该禁用此设置以显示视频广告"</string>
     <!-- PreferenceScreen: General, PreferenceCategory: General, PreferenceScreen: Settings menu -->
-    <string name="revanced_preference_screen_settings_menu_title">设置菜单</string>
-    <string name="revanced_preference_screen_settings_menu_summary">隐藏 YouTube 设置菜单中的元素</string>
     <string name="revanced_hide_settings_menu_title">YouTube 设置菜单</string>
     <string name="revanced_hide_settings_menu_summary">隐藏 YouTube 设置菜单中的元素</string>
     <string name="revanced_hide_settings_menu_filter_strings_title">YouTube 设置菜单过滤器</string>
@@ -1033,7 +1029,7 @@
     <string name="revanced_skip_preloaded_buffer_toast_summary_on">提示信息已显示</string>
     <string name="revanced_skip_preloaded_buffer_toast_summary_off">提示信息已隐藏</string>
     <string name="revanced_spoof_device_dimensions_title">伪装设备尺寸</string>
-    <string name="revanced_spoof_device_dimensions_summary">伪装设备尺寸，以解锁设备可能无法提供的更高视频质量</string>
+    <string name="revanced_spoof_device_dimensions_summary">"伪装设备尺寸，以解锁设备可能无法提供的更高视频质量"</string>
     <string name="revanced_replace_av1_codec_title">替换软件 AV1 编解码器</string>
     <string name="revanced_replace_av1_codec_summary">使用 VP9 编解码器替换软件 AV1 编解码器</string>
     <string name="revanced_reject_av1_codec_title">拒绝软件 AV1 编解码器切换</string>
@@ -1052,7 +1048,7 @@
     <string name="revanced_ryd_enable_summary_off">点踩数已隐藏</string>
     <string name="revanced_ryd_shorts_title">点踩</string>
     <string name="revanced_ryd_shorts_summary_on">Shorts 中显示的不喜欢内容 %s</string>
-    <string name="revanced_ryd_shorts_summary_on_disclaimer">"在短视频中显示不喜欢
+    <string name="revanced_ryd_shorts_summary_on_disclaimer">"在短视频中显示点踩
 
 限制：在无痕模式下，点踩可能不会显示"</string>
     <string name="revanced_ryd_shorts_summary_off">点踩已隐藏</string>
@@ -1239,7 +1235,7 @@
     <string name="revanced_sb_new_segment_edit_by_hand_parse_error">提供的时间无效</string>
     <!-- PreferenceScreen: SponsorBlock, PreferenceCategory: Stats -->
     <string name="revanced_sb_stats">统计信息</string>
-    <string name="revanced_sb_stats_connection_failure">统计信息暂时无法使用（API 出现问题）</string>
+    <string name="revanced_sb_stats_connection_failure">统计信息暂时无法使用(API 出现问题)</string>
     <string name="revanced_sb_stats_loading">加载中...</string>
     <string name="revanced_sb_stats_sb_disabled">SponsorBlock 已禁用</string>
     <string name="revanced_sb_stats_username">你的用户名：&lt;b&gt;%s&lt;/b&gt;</string>
@@ -1334,8 +1330,63 @@
     <string name="revanced_extended_settings_reset">重置</string>
     <string name="revanced_share_copy_settings_success">设置已复制到剪贴板</string>
     <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Spoof client -->
+    <string name="revanced_preference_screen_spoof_client_title">伪装客户端</string>
+    <string name="revanced_preference_screen_spoof_client_summary">伪装客户端以防止播放问题</string>
+    <string name="revanced_spoof_client_title">伪装客户端</string>
+    <string name="revanced_spoof_client_summary_on">客户端已伪装</string>
+    <string name="revanced_spoof_client_summary_off">"客户端未伪装，视频可能无法正常播放"</string>
+    <string name="revanced_spoof_client_stats_for_nerds_title">显示详细统计信息</string>
+    <string name="revanced_spoof_client_stats_for_nerds_summary_on">伪装客户端已在统计信息中显示</string>
+    <string name="revanced_spoof_client_stats_for_nerds_summary_off">伪装客户端已在统计信息中隐藏</string>
     <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Spoof client, PreferenceCategory: Spoof client options -->
+    <string name="revanced_preference_category_spoof_client_options">伪装客户端选项</string>
+    <string name="revanced_spoof_client_general_title">常规设置</string>
+    <string name="revanced_spoof_client_livestream_title">直播</string>
+    <string name="revanced_spoof_client_shorts_title">短视频，剪辑</string>
+    <string name="revanced_spoof_client_fallback_title">无法播放的视频</string>
+    <string name="revanced_spoof_client_options_entry_ios">iOS</string>
+    <string name="revanced_spoof_client_options_entry_android">Android</string>
+    <string name="revanced_spoof_client_options_entry_android_embedded_player">Android 嵌入式播放器</string>
+    <string name="revanced_spoof_client_options_entry_android_testsuite">Android 测试套件</string>
+    <string name="revanced_spoof_client_options_entry_android_unplugged">Android TV</string>
+    <string name="revanced_spoof_client_options_entry_android_vr">Android VR</string>
+    <string name="revanced_spoof_client_options_entry_tvhtml5_simply_embedded_player">TV HTML5</string>
+    <string name="revanced_spoof_client_options_entry_web">网址</string>
     <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Spoof client, PreferenceCategory: About -->
+    <string name="revanced_preference_category_spoof_client_about">关于</string>
+    <string name="revanced_spoof_client_use_ios_title">iOS</string>
+    <string name="revanced_spoof_client_use_ios_summary">"伪装客户端到iOS
+
+副作用:
+• 无 HDR 视频
+• 缺少播放速度菜单
+• 可能失去更高视频画质
+• 历史记录不适用于品牌帐号
+• 直播不能只作为音频播放
+• 直播在 Android 8.0 上不可用"</string>
+    <string name="revanced_spoof_client_use_android_testsuite_title">Android 测试套件</string>
+    <string name="revanced_spoof_client_use_android_testsuite_summary">"伪装客户端到 Android 测试套件
+
+副作用:
+• 无 HDR 视频
+• 缺少音轨菜单和播放速度菜单
+• 字幕可能不可用"</string>
+    <string name="revanced_spoof_client_use_android_tv_title">Android TV</string>
+    <string name="revanced_spoof_client_use_android_tv_summary">"伪装客户端到 Android TV (YouTube TV) 
+
+副作用：
+• 无 HDR 视频
+• 缺少音轨菜单和播放速度菜单
+• 字幕可能不可用
+• 某些直播流不支持播放"</string>
+    <string name="revanced_spoof_client_use_android_vr_title">Android VR</string>
+    <string name="revanced_spoof_client_use_android_vr_summary">"伪装客户端到 Android VR 
+
+副作用：
+• 无 HDR 视频
+• 暂停的视频可以随时恢复
+• 低质量短视频滚动栏缩略图
+• 儿童视频无法播放"</string>
     <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceCategory: Patch information -->
     <string name="revanced_preference_category_patch_information">补丁信息</string>
     <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Patch information -->

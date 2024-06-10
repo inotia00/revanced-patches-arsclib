@@ -5,6 +5,7 @@
     <string name="accessibility_settings_edu_opt_out_text">Seus controles foram modificados porque um serviço de acessibilidade está ativado.</string>
     <!-- Shared PreferenceScreen -->
     <string name="revanced_extended_settings_title">ReVanced Extended</string>
+    <string name="revanced_extended_settings_search_title">Pesquisar configurações</string>
     <!-- Shared Category -->
     <string name="revanced_preference_category_experimental_flag">Sinalizadores experimentais</string>
     <string name="revanced_extended_restart_first_run">Reinicie para carregar o layout normalmente</string>
@@ -15,6 +16,13 @@
     <string name="revanced_hide_fullscreen_ads_title">Ocultar anúncios em tela cheia</string>
     <string name="revanced_hide_fullscreen_ads_summary_on">Os anúncios em tela cheia estão ocultos.</string>
     <string name="revanced_hide_fullscreen_ads_summary_off">Os anúncios em tela cheia serão exibidos.</string>
+    <string name="revanced_hide_fullscreen_ads_type_title">Fechar anúncios em tela cheia</string>
+    <string name="revanced_hide_fullscreen_ads_type_summary_on">Os anúncios de tela cheia são fechados através do botão Fechar.</string>
+    <string name="revanced_hide_fullscreen_ads_type_summary_off">"Anúncios em tela cheia estão bloqueados.
+
+Limitação: A imagem do post da comunidade em tela cheia pode ser bloqueada."</string>
+    <string name="revanced_hide_fullscreen_ads_blocked_success">Os anúncios em tela cheia foram bloqueados. (Tipo de diálogo: %s)</string>
+    <string name="revanced_hide_fullscreen_ads_closed_success">Os anúncios de tela cheia foram fechados.</string>
     <string name="revanced_hide_general_ads_title">Ocultar anúncios gerais</string>
     <string name="revanced_hide_general_ads_summary_on">Os anúncios gerais estão ocultos.</string>
     <string name="revanced_hide_general_ads_summary_off">Os anúncios gerais serão exibidos.</string>
@@ -222,6 +230,8 @@ Limitações:
 • Vídeos com a tag 'Somente para membros'
 • Vídeos com frases como 'Pessoas também assistiram' na parte inferior do vídeo
 • Vídeos enviados de canais não inscritos com menos de 1,000 visualizações"</string>
+    <string name="revanced_hide_low_views_video_title">Ocultar vídeos com baixas visualizações</string>
+    <string name="revanced_hide_low_views_video_summary">Ocultar vídeos com menos de 1.000 visualizações do feed de início que foram enviadas de canais não inscritos.</string>
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Video filter, PreferenceCategory: Duration filter -->
     <string name="revanced_preference_category_duration_filter">Filtro de duração</string>
     <string name="revanced_hide_video_by_duration_title">Ocultar vídeos baseado na duração</string>
@@ -344,8 +354,8 @@ Alguns componentes podem não ser ocultos"</string>
     <string name="revanced_hide_navigation_create_button_summary_on">O botão de criação está oculto.</string>
     <string name="revanced_hide_navigation_create_button_summary_off">O botão de criação será exibido.</string>
     <string name="revanced_hide_navigation_home_button_title">Ocultar botão Início</string>
-    <string name="revanced_hide_navigation_home_button_summary_off">O botão início será exibido.</string>
     <string name="revanced_hide_navigation_home_button_summary_on">O botão início está oculto.</string>
+    <string name="revanced_hide_navigation_home_button_summary_off">O botão início será exibido.</string>
     <string name="revanced_hide_navigation_library_button_title">Ocultar botão Biblioteca</string>
     <string name="revanced_hide_navigation_library_button_summary_on">O botão biblioteca está oculto.</string>
     <string name="revanced_hide_navigation_library_button_summary_off">O botão biblioteca será exibido.</string>
@@ -584,6 +594,9 @@ A reprodução automática pode ser alterada nas configurações do YouTube:
     <string name="revanced_hide_player_flyout_menu_playback_speed_title">Ocultar menu velocidade de reprodução</string>
     <string name="revanced_hide_player_flyout_menu_playback_speed_summary_on">O menu velocidade de reprodução está oculto.</string>
     <string name="revanced_hide_player_flyout_menu_playback_speed_summary_off">O menu velocidade de reprodução será exibido.</string>
+    <string name="revanced_hide_player_flyout_menu_quality_header_title">Ocultar cabeçalho do menu de qualidade</string>
+    <string name="revanced_hide_player_flyout_menu_quality_header_summary_on">O cabeçalho do menu de qualidade está oculto.</string>
+    <string name="revanced_hide_player_flyout_menu_quality_header_summary_off">O cabeçalho do menu de qualidade será exibido.</string>
     <string name="revanced_hide_player_flyout_menu_quality_footer_title">Ocultar rodapé do menu de qualidade</string>
     <string name="revanced_hide_player_flyout_menu_quality_footer_summary_on">O rodapé do menu de qualidade está oculto.</string>
     <string name="revanced_hide_player_flyout_menu_quality_footer_summary_off">O rodapé do menu de qualidade será exibido.</string>
@@ -901,6 +914,9 @@ Limitação: Os cabeçalhos oficiais nos resultados da pesquisa serão ocultados
     <string name="revanced_hide_shorts_shop_button_title">Ocultar botão comprar</string>
     <string name="revanced_hide_shorts_shop_button_summary_on">O botão comprar está oculto.</string>
     <string name="revanced_hide_shorts_shop_button_summary_off">O botão comprar será exibido.</string>
+    <string name="revanced_hide_shorts_super_thanks_button_title">Ocultar botão de Super Valeu</string>
+    <string name="revanced_hide_shorts_super_thanks_button_summary_on">O botão de Super Valeu está oculto.</string>
+    <string name="revanced_hide_shorts_super_thanks_button_summary_off">O botão de Super Valeu será exibido.</string>
     <string name="revanced_hide_shorts_tagged_products_title">Ocultar produtos marcados</string>
     <string name="revanced_hide_shorts_tagged_products_summary_on">Os produtos marcados estão ocultos.</string>
     <string name="revanced_hide_shorts_tagged_products_summary_off">Os produtos marcados serão exibidos.</string>
@@ -916,6 +932,9 @@ Limitação: Os cabeçalhos oficiais nos resultados da pesquisa serão ocultados
     <string name="revanced_hide_shorts_info_panel_title">Ocultar painéis de informações</string>
     <string name="revanced_hide_shorts_info_panel_summary_on">Os painéis de informação estão ocultos.</string>
     <string name="revanced_hide_shorts_info_panel_summary_off">Os painéis de informação serão exibidos.</string>
+    <string name="revanced_hide_shorts_live_header_title">Ocultar o cabeçalho do chat ao vivo</string>
+    <string name="revanced_hide_shorts_live_header_summary_on">O cabeçalho do chat ao vivo está oculto.\n\nO botão Voltar no cabeçalho não será ocultado.</string>
+    <string name="revanced_hide_shorts_live_header_summary_off">O cabeçalho do chat ao vivo será exibido.\n\nO botão Voltar no cabeçalho não será ocultado.</string>
     <string name="revanced_hide_shorts_channel_bar_title">Ocultar barra de canal</string>
     <string name="revanced_hide_shorts_channel_bar_summary_on">A barra do canal está oculta.</string>
     <string name="revanced_hide_shorts_channel_bar_summary_off">A barra do canal será exibida.</string>
@@ -939,6 +958,9 @@ Limitação: Os cabeçalhos oficiais nos resultados da pesquisa serão ocultados
     <string name="revanced_hide_shorts_comments_button_title">Ocultar botão comentários</string>
     <string name="revanced_hide_shorts_comments_button_summary_on">O botão comentários está oculto.</string>
     <string name="revanced_hide_shorts_comments_button_summary_off">O botão comentários será exibido.</string>
+    <string name="revanced_hide_shorts_comments_disabled_button_title">Ocultar o botão de comentários desativados</string>
+    <string name="revanced_hide_shorts_comments_disabled_button_summary_on">O botão de comentários desativado ou com rótulo \"0\" está oculto.</string>
+    <string name="revanced_hide_shorts_comments_disabled_button_summary_off">O botão de comentários desativado ou com rótulo \"0\" será exibido.</string>
     <string name="revanced_hide_shorts_remix_button_title">Ocultar botão remix</string>
     <string name="revanced_hide_shorts_remix_button_summary_on">O botão remix está oculto.</string>
     <string name="revanced_hide_shorts_remix_button_summary_off">O botão remix será exibido.</string>
@@ -1037,7 +1059,7 @@ Limitação: Os cabeçalhos oficiais nos resultados da pesquisa serão ocultados
     <string name="revanced_skip_preloaded_buffer_toast_summary_on">Uma notificação flutuante será exibida.</string>
     <string name="revanced_skip_preloaded_buffer_toast_summary_off">Uma notificação flutuante não será exibida.</string>
     <string name="revanced_spoof_device_dimensions_title">Falsificar dimensões do dispositivo</string>
-    <string name="revanced_spoof_device_dimensions_summary">Falsifica as dimensões do dispositivo para desbloquear qualidades de vídeo superiores que podem não estar disponíveis no seu dispositivo.</string>
+    <string name="revanced_spoof_device_dimensions_summary">"Falsifica as dimensões do dispositivo para desbloquear qualidades de vídeo superiores que podem não estar disponíveis no seu dispositivo."</string>
     <string name="revanced_replace_av1_codec_title">Substituir codec AV1 do software</string>
     <string name="revanced_replace_av1_codec_summary">Substitua o codec AV1 do software com o codec VP9.</string>
     <string name="revanced_reject_av1_codec_title">Rejeitar resposta do codec AV1 do software</string>
@@ -1336,8 +1358,63 @@ Limitação: Os vídeos do feed serão reproduzidos por menos de 1 minuto antes 
     <string name="revanced_extended_settings_reset">Redefinir</string>
     <string name="revanced_share_copy_settings_success">Configurações copiadas para a área de transferência.</string>
     <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Spoof client -->
+    <string name="revanced_preference_screen_spoof_client_title">Falsificar cliente</string>
+    <string name="revanced_preference_screen_spoof_client_summary">Falsificar o cliente para evitar problemas de reprodução.</string>
+    <string name="revanced_spoof_client_title">Falsificar cliente</string>
+    <string name="revanced_spoof_client_summary_on">O cliente é falsificado.</string>
+    <string name="revanced_spoof_client_summary_off">"O cliente não é falsificado. A reprodução de vídeo pode não funcionar."</string>
+    <string name="revanced_spoof_client_stats_for_nerds_title">Exibir em Estatísticas para nerds</string>
+    <string name="revanced_spoof_client_stats_for_nerds_summary_on">O cliente falsificado é exibido em Estatísticas para nerds.</string>
+    <string name="revanced_spoof_client_stats_for_nerds_summary_off">O cliente falsificado é oculto em Estatísticas para nerds.</string>
     <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Spoof client, PreferenceCategory: Spoof client options -->
+    <string name="revanced_preference_category_spoof_client_options">Opções de cliente falso</string>
+    <string name="revanced_spoof_client_general_title">Geral</string>
+    <string name="revanced_spoof_client_livestream_title">Transmissões ao vivo</string>
+    <string name="revanced_spoof_client_shorts_title">Shorts, Clipes</string>
+    <string name="revanced_spoof_client_fallback_title">Vídeo não reproduzível</string>
+    <string name="revanced_spoof_client_options_entry_ios">iOS</string>
+    <string name="revanced_spoof_client_options_entry_android">Android</string>
+    <string name="revanced_spoof_client_options_entry_android_embedded_player">Reprodutor Incorporado Android</string>
+    <string name="revanced_spoof_client_options_entry_android_testsuite">Suite de teste Android</string>
+    <string name="revanced_spoof_client_options_entry_android_unplugged">Android TV</string>
+    <string name="revanced_spoof_client_options_entry_android_vr">Android VR</string>
+    <string name="revanced_spoof_client_options_entry_tvhtml5_simply_embedded_player">TV HTML5</string>
+    <string name="revanced_spoof_client_options_entry_web">Web</string>
     <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Spoof client, PreferenceCategory: About -->
+    <string name="revanced_preference_category_spoof_client_about">Sobre</string>
+    <string name="revanced_spoof_client_use_ios_title">iOS</string>
+    <string name="revanced_spoof_client_use_ios_summary">"Cliente falso para iOS.
+
+Os efeitos colaterais incluem:
+• Sem vídeo HDR.
+• O menu de velocidade de reprodução está ausente.
+• Qualidades de vídeo maiores podem estar faltando.
+• O histórico de exibição não funciona com uma conta de marca.
+• As transmissões ao vivo não podem ser reproduzidas apenas como áudio.
+• Transmissões ao vivo não disponíveis no Android 8.0."</string>
+    <string name="revanced_spoof_client_use_android_testsuite_title">Suite de teste Android</string>
+    <string name="revanced_spoof_client_use_android_testsuite_summary">"Cliente falso para suite de teste Android.
+
+Os efeitos colaterais incluem:
+• Sem vídeo HDR.
+• O menu da faixa de áudio e o menu de velocidade de reprodução estão ausentes.
+• As legendas podem não estar disponíveis."</string>
+    <string name="revanced_spoof_client_use_android_tv_title">Android TV</string>
+    <string name="revanced_spoof_client_use_android_tv_summary">"Cliente falso para Android TV (YouTube TV).
+
+Os efeitos colaterais incluem:
+• Sem vídeo HDR.
+• O menu da faixa de áudio e o menu de velocidade de reprodução estão ausentes.
+• As legendas podem não estar disponíveis.
+• Algumas transmissões ao vivo não são suportadas para reprodução."</string>
+    <string name="revanced_spoof_client_use_android_vr_title">Android VR</string>
+    <string name="revanced_spoof_client_use_android_vr_summary">"Cliente falso para Android VR.
+
+Os efeitos colaterais incluem:
+• Sem vídeo HDR.
+• Os vídeos pausados podem ser retomados aleatoriamente.
+• Miniaturas da barra de busca de Shorts de baixa qualidade.
+• Os vídeos infantis não são reproduzidos."</string>
     <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceCategory: Patch information -->
     <string name="revanced_preference_category_patch_information">Informações do patch</string>
     <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Patch information -->
@@ -1349,9 +1426,12 @@ Limitação: Os vídeos do feed serão reproduzidos por menos de 1 minuto antes 
     <string name="revanced_preference_category_others">Outros</string>
     <string name="revanced_icon_custom">Personalizado</string>
     <string name="revanced_icon_default">Padrão</string>
+    <string name="revanced_icon_afn_blue">Afn Blue</string>
+    <string name="revanced_icon_afn_red">Afn Red</string>
     <string name="revanced_icon_mmt">MMT</string>
     <string name="revanced_icon_revancify_blue">Revancify Blue</string>
     <string name="revanced_icon_revancify_red">Revancify Red</string>
+    <string name="revanced_icon_youtube">YouTube</string>
     <string name="revanced_label_default">Padrão</string>
     <string name="revanced_patches_excluded">Excluído</string>
     <string name="revanced_patches_included">Incluído</string>
