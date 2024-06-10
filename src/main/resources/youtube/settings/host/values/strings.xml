@@ -250,8 +250,9 @@ Limitations:
     <string name="revanced_hide_recommended_video_summary">"Hides the following recommended videos:
 
 • Videos with 'Only for Membership' tag.
-• Videos with phrases such as 'People also watched' underneath.
-• Videos uploaded from channels not subscribed to that have less than 1,000 views."</string>
+• Videos with phrases such as 'People also watched' underneath."</string>
+    <string name="revanced_hide_low_views_video_title">Hide low views video</string>
+    <string name="revanced_hide_low_views_video_summary">Hide videos with less than 1,000 views from home feeds that have been uploaded from unsubscribed channels.</string>
 
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Video filter, PreferenceCategory: Duration filter -->
     <string name="revanced_preference_category_duration_filter">Duration filter</string>
