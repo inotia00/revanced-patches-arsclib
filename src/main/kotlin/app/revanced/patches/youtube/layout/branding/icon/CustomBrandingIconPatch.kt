@@ -8,6 +8,7 @@ import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PAC
 import app.revanced.patches.youtube.utils.settings.ResourceUtils.updatePatchStatusIcon
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.util.ResourceGroup
+import app.revanced.util.Utils.trimIndentMultiline
 import app.revanced.util.copyResources
 import app.revanced.util.copyXmlNode
 import app.revanced.util.patch.BaseResourcePatch
@@ -111,10 +112,7 @@ object CustomBrandingIconPatch : BaseResourcePatch(
             Each of these folders must contain the following files:
 
             ${launcherIconResourceFileNames.joinToString("\n") { "- $it" }}
-            """
-            .split("\n")
-            .joinToString("\n") { it.trimIndent() } // Remove the leading whitespace from each line.
-            .trimIndent(), // Remove the leading newline.
+            """.trimIndentMultiline(),
     )
 
     private val ChangeHeader by booleanPatchOption(

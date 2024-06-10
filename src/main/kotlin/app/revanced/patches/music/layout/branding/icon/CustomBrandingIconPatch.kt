@@ -6,6 +6,7 @@ import app.revanced.patcher.patch.options.PatchOption.PatchExtensions.booleanPat
 import app.revanced.patcher.patch.options.PatchOption.PatchExtensions.stringPatchOption
 import app.revanced.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
 import app.revanced.util.ResourceGroup
+import app.revanced.util.Utils.trimIndentMultiline
 import app.revanced.util.copyResources
 import app.revanced.util.patch.BaseResourcePatch
 import java.io.File
@@ -107,10 +108,7 @@ object CustomBrandingIconPatch : BaseResourcePatch(
             Each of these folders must contain the following files:
 
             ${launcherIconResourceFileNames.joinToString("\n") { "- $it" }}
-            """
-            .split("\n")
-            .joinToString("\n") { it.trimIndent() } // Remove the leading whitespace from each line.
-            .trimIndent(), // Remove the leading newline.
+            """.trimIndentMultiline(),
     )
 
     private val ChangeHeader by booleanPatchOption(
