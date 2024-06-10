@@ -1142,7 +1142,8 @@ Info:
     <string name="revanced_skip_preloaded_buffer_toast_summary_on">Toast is shown.</string>
     <string name="revanced_skip_preloaded_buffer_toast_summary_off">Toast is not shown.</string>
     <string name="revanced_spoof_device_dimensions_title">Spoof device dimensions</string>
-    <string name="revanced_spoof_device_dimensions_summary">Spoofs the device dimensions in order to unlock higher video qualities that may not be available on your device.</string>
+    <string name="revanced_spoof_device_dimensions_summary">"Spoofs the device dimensions to the maximum value.
+High quality may be unlocked on some videos that require high device dimensions, but not all videos."</string>
     <string name="revanced_replace_av1_codec_title">Replace software AV1 codec</string>
     <string name="revanced_replace_av1_codec_summary">Replaces the software AV1 codec with the VP9 codec.</string>
     <string name="revanced_reject_av1_codec_title">Reject software AV1 codec response</string>
