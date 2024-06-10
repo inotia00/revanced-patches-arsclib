@@ -1433,6 +1433,9 @@ Tap on the continue button and disable battery optimizations."</string>
     <string name="revanced_disable_quic_protocol_title">Disable QUIC protocol</string>
     <string name="revanced_disable_quic_protocol_summary">"Disable CronetEngine's QUIC protocol."</string>
 
+    <string name="revanced_enable_opus_codec_title">Enable OPUS codec</string>
+    <string name="revanced_enable_opus_codec_summary">Enable the OPUS codec if the player response includes the OPUS codec.</string>
+
     <string name="revanced_spoof_player_parameter_title">Spoof player parameter</string>
     <string name="revanced_spoof_player_parameter_summary">"Spoofs player parameters to prevent playback issues.
 
