@@ -6,7 +6,7 @@ import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.smali.ExternalLabel
-import app.revanced.patches.music.ads.general.MusicAdsPatch.hookLithoFullscreenAds
+import app.revanced.patches.youtube.ads.general.VideoAdsPatch.hookLithoFullscreenAds
 import app.revanced.patches.youtube.ads.general.VideoAdsPatch.hookNonLithoFullscreenAds
 import app.revanced.patches.youtube.ads.general.fingerprints.CompactYpcOfferModuleViewFingerprint
 import app.revanced.patches.youtube.ads.general.fingerprints.InterstitialsContainerFingerprint

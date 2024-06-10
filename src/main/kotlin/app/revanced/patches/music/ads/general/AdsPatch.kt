@@ -5,6 +5,7 @@ import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patches.music.ads.general.MusicAdsPatch.hookLithoFullscreenAds
+import app.revanced.patches.music.ads.general.MusicAdsPatch.hookNonLithoFullscreenAds
 import app.revanced.patches.music.ads.general.fingerprints.AccountMenuFooterFingerprint
 import app.revanced.patches.music.ads.general.fingerprints.FloatingLayoutFingerprint
 import app.revanced.patches.music.ads.general.fingerprints.GetPremiumTextViewFingerprint
@@ -24,7 +25,6 @@ import app.revanced.patches.music.utils.resourceid.SharedResourceIdPatch.Interst
 import app.revanced.patches.music.utils.settings.CategoryType
 import app.revanced.patches.music.utils.settings.SettingsPatch
 import app.revanced.patches.shared.litho.LithoFilterPatch
-import app.revanced.patches.youtube.ads.general.VideoAdsPatch.hookNonLithoFullscreenAds
 import app.revanced.util.getTargetIndex
 import app.revanced.util.getTargetIndexWithReference
 import app.revanced.util.getWalkerMethod
