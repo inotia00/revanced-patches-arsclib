@@ -637,6 +637,9 @@ Autoplay can be changed in YouTube settings:
     <string name="revanced_hide_player_flyout_menu_playback_speed_title">Hide Playback speed menu</string>
     <string name="revanced_hide_player_flyout_menu_playback_speed_summary_on">Playback speed menu is hidden.</string>
     <string name="revanced_hide_player_flyout_menu_playback_speed_summary_off">Playback speed menu is shown.</string>
+    <string name="revanced_hide_player_flyout_menu_quality_header_title">Hide quality menu header</string>
+    <string name="revanced_hide_player_flyout_menu_quality_header_summary_on">Quality menu header is hidden.</string>
+    <string name="revanced_hide_player_flyout_menu_quality_header_summary_off">Quality menu header is shown.</string>
     <string name="revanced_hide_player_flyout_menu_quality_footer_title">Hide quality menu footer</string>
     <string name="revanced_hide_player_flyout_menu_quality_footer_summary_on">Quality menu footer is hidden.</string>
     <string name="revanced_hide_player_flyout_menu_quality_footer_summary_off">Quality menu footer is shown.</string>
