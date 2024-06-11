@@ -299,14 +299,12 @@ object ShortsComponentPatch : BaseBytecodePatch(
         /**
          * Add settings
          */
-        var settingArray = arrayOf(
-            "PREFERENCE_SCREEN: SHORTS",
-            "SETTINGS: SHORTS_COMPONENTS"
+        SettingsPatch.addPreference(
+            arrayOf(
+                "PREFERENCE_SCREEN: SHORTS",
+                "SETTINGS: SHORTS_COMPONENTS"
+            )
         )
-        if (SettingsPatch.upward1834) {
-            settingArray += "SETTINGS: HIDE_SHORTS_COMMENTS_DISABLED_BUTTON"
-        }
-        SettingsPatch.addPreference(settingArray)
 
         SettingsPatch.updatePatchStatus(this)
     }

@@ -1034,9 +1034,6 @@ Limitation: Official headers in search results will be hidden."</string>
     <string name="revanced_hide_shorts_comments_button_title">Hide Comments button</string>
     <string name="revanced_hide_shorts_comments_button_summary_on">Comments button is hidden.</string>
     <string name="revanced_hide_shorts_comments_button_summary_off">Comments button is shown.</string>
-    <string name="revanced_hide_shorts_comments_disabled_button_title">Hide disabled comments button</string>
-    <string name="revanced_hide_shorts_comments_disabled_button_summary_on">Disabled comments button or with label \"0\" is hidden.</string>
-    <string name="revanced_hide_shorts_comments_disabled_button_summary_off">Disabled comments button or with label \"0\" is shown.</string>
     <string name="revanced_hide_shorts_remix_button_title">Hide Remix button</string>
     <string name="revanced_hide_shorts_remix_button_summary_on">Remix button is hidden.</string>
     <string name="revanced_hide_shorts_remix_button_summary_off">Remix button is shown.</string>
