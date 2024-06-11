@@ -27,7 +27,8 @@ object ShortsActionButtonsPatch : BaseResourcePatch(
             DEFAULT_ICON_KEY to "round"
         ),
         title = "Shorts icon style ",
-        description = "The style of the icons for the action buttons in the Shorts player."
+        description = "The style of the icons for the action buttons in the Shorts player.",
+        required = true
     )
 
     override fun execute(context: ResourceContext) {

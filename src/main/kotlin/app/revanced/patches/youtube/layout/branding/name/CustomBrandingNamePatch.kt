@@ -28,7 +28,8 @@ object CustomBrandingNamePatch : BaseResourcePatch(
             "YouTube" to "YouTube",
         ),
         title = "App name",
-        description = "The name of the app."
+        description = "The name of the app.",
+        required = true
     )
 
     override fun execute(context: ResourceContext) {

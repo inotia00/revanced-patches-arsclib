@@ -71,14 +71,16 @@ object SettingsPatch : BaseResourcePatch(
         default = DEFAULT_ELEMENT,
         values = SETTINGS_ELEMENTS_MAP,
         title = "Insert position",
-        description = "The settings menu name that the RVX settings menu should be above."
+        description = "The settings menu name that the RVX settings menu should be above.",
+        required = true
     )
 
     private val RVXSettingsMenuName by stringPatchOption(
         key = "RVXSettingsMenuName",
         default = DEFAULT_NAME,
         title = "RVX settings menu name",
-        description = "The name of the RVX settings menu."
+        description = "The name of the RVX settings menu.",
+        required = true
     )
 
     internal lateinit var contexts: ResourceContext

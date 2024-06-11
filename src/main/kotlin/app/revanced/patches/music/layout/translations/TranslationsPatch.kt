@@ -29,14 +29,16 @@ object TranslationsPatch : BaseResourcePatch(
         description = """
             The path to the 'strings.xml' file.
             Please note that applying the 'strings.xml' file will overwrite all existing language translations.
-            """.trimIndent()
+            """.trimIndent(),
+        required = true
     )
 
     private var SelectedTranslations by stringPatchOption(
         key = "SelectedTranslations",
         default = TRANSLATIONS.joinToString(", "),
         title = "Translations to add",
-        description = "A list of translations to be added for the RVX settings, separated by commas."
+        description = "A list of translations to be added for the RVX settings, separated by commas.",
+        required = true
     )
 
     private var SelectedStringResources by stringPatchOption(
@@ -48,7 +50,8 @@ object TranslationsPatch : BaseResourcePatch(
             String resources not in the list will be removed from the app.
 
             Default string resource, English, is not removed.
-            """.trimIndent()
+            """.trimIndent(),
+        required = true
     )
 
     override fun execute(context: ResourceContext) {

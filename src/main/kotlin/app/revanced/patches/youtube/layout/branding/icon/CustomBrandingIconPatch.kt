@@ -125,13 +125,15 @@ object CustomBrandingIconPatch : BaseResourcePatch(
 
             ${launcherIconResourceFileNames.joinToString("\n") { "- $it" }}
             """.trimIndentMultiline(),
+        required = true
     )
 
     private val ChangeHeader by booleanPatchOption(
         key = "ChangeHeader",
         default = false,
         title = "Change header",
-        description = "Apply the custom branding icon to the header."
+        description = "Apply the custom branding icon to the header.",
+        required = true
     )
 
     private val CustomHeader by stringPatchOption(
@@ -152,20 +154,23 @@ object CustomBrandingIconPatch : BaseResourcePatch(
             The image dimensions must be as follows:
             ${headerResourceDirectoryNames.map { (dpi, dim) -> "- $dpi: $dim" }.joinToString("\n")}
         """.trimIndentMultiline(),
+        required = true
     )
 
     private val ChangeSplashIcon by booleanPatchOption(
         key = "ChangeSplashIcon",
         default = true,
         title = "Change splash icons",
-        description = "Apply the custom branding icon to the splash screen."
+        description = "Apply the custom branding icon to the splash screen.",
+        required = true
     )
 
     private val RestoreOldSplashAnimation by booleanPatchOption(
         key = "RestoreOldSplashAnimation",
         default = false,
         title = "Restore old splash animation",
-        description = "Restores old style splash animation."
+        description = "Restores old style splash animation.",
+        required = true
     )
 
     // endregion

@@ -27,6 +27,7 @@ object CustomBrandingNamePatch : BaseResourcePatch(
         ),
         title = "App name in notification panel",
         description = "The name of the app as it appears in the notification panel.",
+        required = true
     )
 
     private val AppNameLauncher by stringPatchOption(
@@ -40,6 +41,7 @@ object CustomBrandingNamePatch : BaseResourcePatch(
         ),
         title = "App name in launcher",
         description = "The name of the app as it appears in the launcher.",
+        required = true
     )
 
     override fun execute(context: ResourceContext) {

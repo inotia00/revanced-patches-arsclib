@@ -52,7 +52,8 @@ object OverlayButtonsPatch : BaseResourcePatch(
         default = DEFAULT_ICON_KEY,
         values = iconTypes,
         title = "Icon type",
-        description = "The icon type."
+        description = "The icon type.",
+        required = true
     )
 
     // Option to set bottom margin
@@ -64,7 +65,8 @@ object OverlayButtonsPatch : BaseResourcePatch(
             "Default" to DEFAULT_MARGIN
         ),
         title = "Bottom margin",
-        description = "The bottom margin for the overlay buttons and timestamp."
+        description = "The bottom margin for the overlay buttons and timestamp.",
+        required = true
     )
 
     /**
