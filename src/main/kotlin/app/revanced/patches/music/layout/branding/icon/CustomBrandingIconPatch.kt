@@ -5,6 +5,7 @@ import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.options.PatchOption.PatchExtensions.booleanPatchOption
 import app.revanced.patcher.patch.options.PatchOption.PatchExtensions.stringPatchOption
 import app.revanced.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.revanced.patches.music.utils.settings.ResourceUtils.setIconType
 import app.revanced.util.ResourceGroup
 import app.revanced.util.Utils.trimIndentMultiline
 import app.revanced.util.copyResources
@@ -56,12 +57,6 @@ object CustomBrandingIconPatch : BaseResourcePatch(
 
     private val mipmapDirectories = sizeArray.map { "mipmap-$it" }
 
-    private val headerIconResourceFileNames = arrayOf(
-        "action_bar_logo",
-        "logo_music",
-        "ytm_logo"
-    ).map { "$it.png" }.toTypedArray()
-
     private val launcherIconResourceFileNames = arrayOf(
         "adaptiveproduct_youtube_music_background_color_108",
         "adaptiveproduct_youtube_music_foreground_color_108",
@@ -75,12 +70,6 @@ object CustomBrandingIconPatch : BaseResourcePatch(
         "action_bar_logo_release",
         "record"
     ).map { "$it.png" }.toTypedArray()
-
-    private val headerIconResourceGroups = drawableDirectories.map { directory ->
-        ResourceGroup(
-            directory, *headerIconResourceFileNames
-        )
-    }
 
     private val launcherIconResourceGroups = mipmapDirectories.map { directory ->
         ResourceGroup(
@@ -110,14 +99,6 @@ object CustomBrandingIconPatch : BaseResourcePatch(
 
             ${launcherIconResourceFileNames.joinToString("\n") { "- $it" }}
             """.trimIndentMultiline(),
-        required = true
-    )
-
-    private val ChangeHeader by booleanPatchOption(
-        key = "ChangeHeader",
-        default = false,
-        title = "Change header",
-        description = "Apply the custom branding icon to the header.",
         required = true
     )
 
@@ -179,15 +160,6 @@ object CustomBrandingIconPatch : BaseResourcePatch(
                 context.copyResources("$appIconResourcePath/monochrome", resourceGroup)
             }
 
-            // Change header.
-            if (ChangeHeader == true) {
-                headerIconResourceGroups.let { resourceGroups ->
-                    resourceGroups.forEach {
-                        context.copyResources("$appIconResourcePath/header", it)
-                    }
-                }
-            }
-
             // Change splash icon.
             if (ChangeSplashIcon == true) {
                 splashIconResourceGroups.let { resourceGroups ->
@@ -196,6 +168,8 @@ object CustomBrandingIconPatch : BaseResourcePatch(
                     }
                 }
             }
+
+            setIconType(appIcon)
         }
     }
 }
