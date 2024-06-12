@@ -11,7 +11,7 @@ import app.revanced.util.valueOrThrow
 
 @Suppress("DEPRECATION", "unused")
 object CustomBrandingNamePatch : BaseResourcePatch(
-    name = "Custom branding name YouTube",
+    name = "Custom branding name for YouTube",
     description = "Renames the YouTube app to the name specified in options.json.",
     dependencies = setOf(SettingsPatch::class),
     compatiblePackages = COMPATIBLE_PACKAGE

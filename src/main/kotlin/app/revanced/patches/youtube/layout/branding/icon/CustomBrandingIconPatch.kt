@@ -16,7 +16,7 @@ import app.revanced.util.underBarOrThrow
 
 @Suppress("unused")
 object CustomBrandingIconPatch : BaseResourcePatch(
-    name = "Custom branding icon YouTube",
+    name = "Custom branding icon for YouTube",
     description = "Changes the YouTube app icon to the icon specified in options.json.",
     dependencies = setOf(SettingsPatch::class),
     compatiblePackages = COMPATIBLE_PACKAGE,

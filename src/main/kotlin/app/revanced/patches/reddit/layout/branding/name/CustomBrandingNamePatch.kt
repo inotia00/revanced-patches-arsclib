@@ -10,7 +10,7 @@ import java.nio.file.Files
 
 @Suppress("DEPRECATION", "unused")
 object CustomBrandingNamePatch : BaseResourcePatch(
-    name = "Custom branding name Reddit",
+    name = "Custom branding name for Reddit",
     description = "Renames the Reddit app to the name specified in options.json.",
     compatiblePackages = COMPATIBLE_PACKAGE,
     use = false

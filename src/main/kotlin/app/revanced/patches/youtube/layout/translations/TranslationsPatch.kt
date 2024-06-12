@@ -10,7 +10,7 @@ import app.revanced.util.patch.BaseResourcePatch
 
 @Suppress("unused")
 object TranslationsPatch : BaseResourcePatch(
-    name = "Translations YouTube",
+    name = "Translations for YouTube",
     description = "Add translations or remove string resources.",
     dependencies = setOf(SettingsPatch::class),
     compatiblePackages = COMPATIBLE_PACKAGE

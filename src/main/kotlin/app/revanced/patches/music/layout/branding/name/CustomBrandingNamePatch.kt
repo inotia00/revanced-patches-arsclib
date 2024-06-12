@@ -9,7 +9,7 @@ import app.revanced.util.valueOrThrow
 
 @Suppress("DEPRECATION", "unused")
 object CustomBrandingNamePatch : BaseResourcePatch(
-    name = "Custom branding name YouTube Music",
+    name = "Custom branding name for YouTube Music",
     description = "Renames the YouTube Music app to the name specified in options.json.",
     compatiblePackages = COMPATIBLE_PACKAGE
 ) {
