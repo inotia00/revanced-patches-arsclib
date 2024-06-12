@@ -29,6 +29,7 @@ object SettingsPatch : BaseResourcePatch(
         description = "The name of the RVX settings menu.",
         required = true
     )
+
     override fun execute(context: ResourceContext) {
         /**
          * Replace settings icon and label

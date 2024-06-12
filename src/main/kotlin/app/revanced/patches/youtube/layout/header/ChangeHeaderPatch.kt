@@ -50,8 +50,10 @@ object ChangeHeaderPatch : BaseResourcePatch(
         premiumHeaderResourceDirectoryNames.keys.map { directory ->
             ResourceGroup(
                 directory,
-                *variants.map { variant -> "${GENERIC_HEADER_FILE_NAME}_$variant.png" }.toTypedArray(),
-                *variants.map { variant -> "${PREMIUM_HEADER_FILE_NAME}_$variant.png" }.toTypedArray(),
+                *variants.map { variant -> "${GENERIC_HEADER_FILE_NAME}_$variant.png" }
+                    .toTypedArray(),
+                *variants.map { variant -> "${PREMIUM_HEADER_FILE_NAME}_$variant.png" }
+                    .toTypedArray(),
             )
         }
 
@@ -82,14 +84,20 @@ object ChangeHeaderPatch : BaseResourcePatch(
 
             The image dimensions must be as follows:
             
-            ${genericHeaderResourceDirectoryNames.map { (dpi, dim) -> "- $dpi: $dim" }.joinToString("\n")}
+            ${
+            genericHeaderResourceDirectoryNames.map { (dpi, dim) -> "- $dpi: $dim" }
+                .joinToString("\n")
+        }
 
             [Premium header]
 
             ${variants.joinToString("\n") { variant -> "- ${PREMIUM_HEADER_FILE_NAME}_$variant.png" }}
 
             The image dimensions must be as follows:
-            ${premiumHeaderResourceDirectoryNames.map { (dpi, dim) -> "- $dpi: $dim" }.joinToString("\n")}
+            ${
+            premiumHeaderResourceDirectoryNames.map { (dpi, dim) -> "- $dpi: $dim" }
+                .joinToString("\n")
+        }
         """.trimIndentMultiline(),
         required = true,
     )

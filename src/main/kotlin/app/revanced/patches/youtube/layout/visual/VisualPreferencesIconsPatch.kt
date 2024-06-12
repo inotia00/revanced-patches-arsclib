@@ -1,7 +1,6 @@
 package app.revanced.patches.youtube.layout.visual
 
 import app.revanced.patcher.data.ResourceContext
-import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.options.PatchOption.PatchExtensions.stringPatchOption
 import app.revanced.patches.youtube.layout.branding.icon.CustomBrandingIconPatch
 import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE

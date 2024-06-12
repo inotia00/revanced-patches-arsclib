@@ -38,12 +38,13 @@ object TranslationsUtils {
                 // Exception is thrown if an invalid path is used in the patch option.
                 throw PatchException("Invalid custom translations path:  $customLang")
             }
-        }?: run {
+        } ?: run {
             // Process selected translations if no custom translation is set.
             val selectedTranslationsArray =
                 selectedTranslations?.split(",")?.map { it.trim() }?.toTypedArray()
                     ?: throw PatchException("Invalid selected languages.")
-            val filteredLanguages = translationsArray.filter { it in selectedTranslationsArray }.toTypedArray()
+            val filteredLanguages =
+                translationsArray.filter { it in selectedTranslationsArray }.toTypedArray()
             copyXml(sourceDirectory, filteredLanguages)
         }
 

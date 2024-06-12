@@ -79,11 +79,14 @@ object CustomBrandingIconPatch : BaseResourcePatch(
         )
     }
 
-    private val launcherIconResourceGroups = mipmapDirectories.getResourceGroup(launcherIconResourceFileNames)
+    private val launcherIconResourceGroups =
+        mipmapDirectories.getResourceGroup(launcherIconResourceFileNames)
 
-    private val splashIconResourceGroups = drawableDirectories.getResourceGroup(splashIconResourceFileNames)
+    private val splashIconResourceGroups =
+        drawableDirectories.getResourceGroup(splashIconResourceFileNames)
 
-    private val oldSplashAnimationResourceGroups = listOf("drawable").getResourceGroup(oldSplashAnimationResourceFileNames)
+    private val oldSplashAnimationResourceGroups =
+        listOf("drawable").getResourceGroup(oldSplashAnimationResourceFileNames)
 
     // region patch option
 
@@ -178,7 +181,11 @@ object CustomBrandingIconPatch : BaseResourcePatch(
                     }
                 }
 
-                context.copyXmlNode("$stockResourcePath/splash", "values-v31/styles.xml", "resources")
+                context.copyXmlNode(
+                    "$stockResourcePath/splash",
+                    "values-v31/styles.xml",
+                    "resources"
+                )
             }
 
             context.updatePatchStatusIcon(appIcon)
