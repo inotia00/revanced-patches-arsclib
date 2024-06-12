@@ -343,7 +343,7 @@
 Πατήστε το κουμπί «Συνέχεια» και απενεργοποιήστε τις βελτιστοποιήσεις μπαταρίας για το MicroG."</string>
     <string name="gms_core_dialog_continue_text">Συνέχεια</string>
     <string name="revanced_sanitize_sharing_links_title">Καθαρισμός συνδέσμων κοινοποίησης</string>
-    <string name="revanced_sanitize_sharing_links_summary">Αφαίρεση των παραμέτρων παρακολούθησης από τις διευθύνσεις URL κατά την κοινή χρήση συνδέσμων.</string>
+    <string name="revanced_sanitize_sharing_links_summary">Αφαίρεση των παραμέτρων παρακολούθησης από τις διευθύνσεις URL κατά την κοινοποίηση συνδέσμων.</string>
     <string name="revanced_extended_settings_import_export_title">Εισαγωγή / Εξαγωγή</string>
     <string name="revanced_extended_settings_import_export_summary">Εισαγωγή ή εξαγωγή των ρυθμίσεών σας.</string>
     <string name="revanced_extended_settings_export_as_file">Εξαγωγή ρυθμίσεων σε αρχείο</string>

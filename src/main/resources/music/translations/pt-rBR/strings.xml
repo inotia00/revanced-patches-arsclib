@@ -31,7 +31,7 @@
     <string name="revanced_hide_action_button_share_summary">Oculta botão de Compartilhar.</string>
     <string name="revanced_hide_action_button_radio_title">Ocultar botão Rádio</string>
     <string name="revanced_hide_action_button_radio_summary">Oculta o botão de Rádio.</string>
-    <string name="revanced_hide_action_button_label_title">Ocultar rótulos do botão de ação</string>
+    <string name="revanced_hide_action_button_label_title">Ocultar rótulo do botão de ação</string>
     <string name="revanced_hide_action_button_label_summary">Oculta os rótulos dos botões de ação.</string>
     <string name="revanced_external_downloader_action_title">Substituir ação do botão de Download</string>
     <string name="revanced_external_downloader_action_summary">"O botão de Download abre seu aplicativo de download externo.
