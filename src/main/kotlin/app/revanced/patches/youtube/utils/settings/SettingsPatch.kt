@@ -18,6 +18,7 @@ import app.revanced.util.copyResources
 import app.revanced.util.copyXmlNode
 import app.revanced.util.patch.BaseBytecodePatch
 import app.revanced.util.patch.BaseResourcePatch
+import app.revanced.util.valueOrThrow
 import org.w3c.dom.Element
 import java.io.Closeable
 import java.util.concurrent.Executors
@@ -38,7 +39,7 @@ object SettingsPatch : BaseResourcePatch(
     compatiblePackages = COMPATIBLE_PACKAGE,
     requiresIntegrations = true
 ), Closeable {
-    private const val DEFAULT_ELEMENT = "About"
+    private const val DEFAULT_ELEMENT = "@string/about_key"
     private const val DEFAULT_NAME = "ReVanced Extended"
 
     private val SETTINGS_ELEMENTS_MAP = mapOf(
@@ -63,10 +64,10 @@ object SettingsPatch : BaseResourcePatch(
         "Live chat" to "@string/live_chat_key",
         "Captions" to "@string/captions_key",
         "Accessibility" to "@string/accessibility_settings_key",
-        DEFAULT_ELEMENT to "@string/about_key"
+        "About" to DEFAULT_ELEMENT
     )
 
-    private val InsertPosition by stringPatchOption(
+    private val InsertPosition = stringPatchOption(
         key = "InsertPosition",
         default = DEFAULT_ELEMENT,
         values = SETTINGS_ELEMENTS_MAP,
@@ -75,13 +76,15 @@ object SettingsPatch : BaseResourcePatch(
         required = true
     )
 
-    private val RVXSettingsMenuName by stringPatchOption(
+    private val RVXSettingsMenuName = stringPatchOption(
         key = "RVXSettingsMenuName",
         default = DEFAULT_NAME,
         title = "RVX settings menu name",
         description = "The name of the RVX settings menu.",
         required = true
     )
+
+    private lateinit var customName: String
 
     internal lateinit var contexts: ResourceContext
     internal var upward1831 = false
@@ -93,6 +96,15 @@ object SettingsPatch : BaseResourcePatch(
     internal var upward1912 = false
 
     override fun execute(context: ResourceContext) {
+
+        /**
+         * check patch options
+         */
+        customName = RVXSettingsMenuName
+            .valueOrThrow()
+
+        val insertKey = InsertPosition
+            .valueOrThrow()
 
         /**
          * set resource context
@@ -148,16 +160,10 @@ object SettingsPatch : BaseResourcePatch(
         /**
          * initialize ReVanced Extended Settings
          */
-        val elementKey = SETTINGS_ELEMENTS_MAP[InsertPosition]
-            ?: InsertPosition
-            ?: SETTINGS_ELEMENTS_MAP[DEFAULT_ELEMENT]
-
-        elementKey?.let { insertKey ->
-            context.addPreferenceFragment(
-                "revanced_extended_settings",
-                insertKey
-            )
-        }
+        context.addPreferenceFragment(
+            "revanced_extended_settings",
+            insertKey
+        )
 
         /**
          * remove ReVanced Extended Settings divider
@@ -220,29 +226,26 @@ object SettingsPatch : BaseResourcePatch(
          * change RVX settings menu name
          * since it must be invoked after the Translations patch, it must be the last in the order.
          */
-        RVXSettingsMenuName?.let { customName ->
-            if (customName != DEFAULT_NAME) {
-                contexts.removeStringsElements(
-                    arrayOf("revanced_extended_settings_title")
-                )
-                contexts.xmlEditor["res/values/strings.xml"].use { editor ->
-                    val document = editor.file
+        if (customName != DEFAULT_NAME) {
+            contexts.removeStringsElements(
+                arrayOf("revanced_extended_settings_title")
+            )
+            contexts.xmlEditor["res/values/strings.xml"].use { editor ->
+                val document = editor.file
 
-                    mapOf(
-                        "revanced_extended_settings_title" to customName
-                    ).forEach { (k, v) ->
-                        val stringElement = document.createElement("string")
+                mapOf(
+                    "revanced_extended_settings_title" to customName
+                ).forEach { (k, v) ->
+                    val stringElement = document.createElement("string")
 
-                        stringElement.setAttribute("name", k)
-                        stringElement.textContent = v
+                    stringElement.setAttribute("name", k)
+                    stringElement.textContent = v
 
-                        document.getElementsByTagName("resources").item(0)
-                            .appendChild(stringElement)
-                    }
+                    document.getElementsByTagName("resources").item(0)
+                        .appendChild(stringElement)
                 }
             }
-        } ?: println("WARNING: Invalid RVX settings menu name. RVX settings menu name does not change.")
-
+        }
     }
 
     private fun setVersionInfo() {

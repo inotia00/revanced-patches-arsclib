@@ -1,6 +1,7 @@
 package app.revanced.patches.youtube.layout.visual
 
 import app.revanced.patcher.data.ResourceContext
+import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.options.PatchOption.PatchExtensions.stringPatchOption
 import app.revanced.patches.youtube.layout.branding.icon.CustomBrandingIconPatch
 import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
@@ -9,6 +10,7 @@ import app.revanced.util.ResourceGroup
 import app.revanced.util.copyResources
 import app.revanced.util.doRecursively
 import app.revanced.util.patch.BaseResourcePatch
+import app.revanced.util.underBarOrThrow
 import org.w3c.dom.Element
 
 @Suppress("DEPRECATION", "unused")
@@ -19,14 +21,14 @@ object VisualPreferencesIconsPatch : BaseResourcePatch(
     compatiblePackages = COMPATIBLE_PACKAGE,
     use = false
 ) {
-    private const val DEFAULT_ICON_KEY = "Extension"
+    private const val DEFAULT_ICON = "extension"
 
-    private val RVXSettingsMenuIcon by stringPatchOption(
+    private val RVXSettingsMenuIcon = stringPatchOption(
         key = "RVXSettingsMenuIcon",
-        default = DEFAULT_ICON_KEY,
+        default = DEFAULT_ICON,
         values = mapOf(
             "Custom branding icon" to "custom_branding_icon",
-            DEFAULT_ICON_KEY to "extension",
+            "Extension" to DEFAULT_ICON,
             "Gear" to "gear",
             "ReVanced" to "revanced",
             "ReVanced Colored" to "revanced_colored",
@@ -37,6 +39,13 @@ object VisualPreferencesIconsPatch : BaseResourcePatch(
     )
 
     override fun execute(context: ResourceContext) {
+
+        // Check patch options first.
+        val selectedIconType = RVXSettingsMenuIcon
+            .underBarOrThrow()
+
+        val customBrandingIconType = CustomBrandingIconPatch.AppIcon
+            .underBarOrThrow()
 
         // region copy shared resources.
 
@@ -57,31 +66,27 @@ object VisualPreferencesIconsPatch : BaseResourcePatch(
 
         // region copy RVX settings menu icon.
 
-        RVXSettingsMenuIcon?.lowercase()?.replace(" ", "_")?.let { selectedIconType ->
-            CustomBrandingIconPatch.AppIcon?.lowercase()?.replace(" ", "_")?.let { appIconValue ->
-                val fallbackIconPath = "youtube/visual/icons/extension"
-                val iconPath = when (selectedIconType) {
-                    "custom_branding_icon" -> "youtube/branding/$appIconValue/settings"
-                    else -> "youtube/visual/icons/$selectedIconType"
-                }
-                val resourceGroup = ResourceGroup(
-                    "drawable",
-                    "revanced_extended_settings_key_icon.xml"
-                )
+        val fallbackIconPath = "youtube/visual/icons/extension"
+        val iconPath = when (selectedIconType) {
+            "custom_branding_icon" -> "youtube/branding/$customBrandingIconType/settings"
+            else -> "youtube/visual/icons/$selectedIconType"
+        }
+        val resourceGroup = ResourceGroup(
+            "drawable",
+            "revanced_extended_settings_key_icon.xml"
+        )
 
-                try {
-                    context.copyResources(iconPath, resourceGroup)
-                } catch (_: Exception) {
-                    // Ignore if resource copy fails
+        try {
+            context.copyResources(iconPath, resourceGroup)
+        } catch (_: Exception) {
+            // Ignore if resource copy fails
 
-                    // Add a fallback extended icon
-                    // It's needed if someone provides custom path to icon(s) folder
-                    // but custom branding icons for Extended setting are predefined,
-                    // so it won't copy custom branding icon
-                    // and will raise an error without fallback icon
-                    context.copyResources(fallbackIconPath, resourceGroup)
-                }
-            }
+            // Add a fallback extended icon
+            // It's needed if someone provides custom path to icon(s) folder
+            // but custom branding icons for Extended setting are predefined,
+            // so it won't copy custom branding icon
+            // and will raise an error without fallback icon
+            context.copyResources(fallbackIconPath, resourceGroup)
         }
 
         // endregion.

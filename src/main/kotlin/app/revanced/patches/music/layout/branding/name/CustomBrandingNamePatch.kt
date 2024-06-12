@@ -1,11 +1,11 @@
 package app.revanced.patches.music.layout.branding.name
 
 import app.revanced.patcher.data.ResourceContext
-import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.options.PatchOption.PatchExtensions.stringPatchOption
 import app.revanced.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.shared.elements.StringsElementsUtils.removeStringsElements
 import app.revanced.util.patch.BaseResourcePatch
+import app.revanced.util.valueOrThrow
 
 @Suppress("DEPRECATION", "unused")
 object CustomBrandingNamePatch : BaseResourcePatch(
@@ -16,7 +16,7 @@ object CustomBrandingNamePatch : BaseResourcePatch(
     private const val APP_NAME_NOTIFICATION = "ReVanced Extended Music"
     private const val APP_NAME_LAUNCHER = "RVX Music"
 
-    private val AppNameNotification by stringPatchOption(
+    private val AppNameNotification = stringPatchOption(
         key = "AppNameNotification",
         default = APP_NAME_LAUNCHER,
         values = mapOf(
@@ -30,7 +30,7 @@ object CustomBrandingNamePatch : BaseResourcePatch(
         required = true
     )
 
-    private val AppNameLauncher by stringPatchOption(
+    private val AppNameLauncher = stringPatchOption(
         key = "AppNameLauncher",
         default = APP_NAME_LAUNCHER,
         values = mapOf(
@@ -46,29 +46,31 @@ object CustomBrandingNamePatch : BaseResourcePatch(
 
     override fun execute(context: ResourceContext) {
 
+        // Check patch options first.
+        val notificationName = AppNameNotification
+            .valueOrThrow()
+        val launcherName = AppNameLauncher
+            .valueOrThrow()
+
         context.removeStringsElements(
             arrayOf("app_launcher_name", "app_name")
         )
 
-        AppNameNotification?.let { notificationName ->
-            AppNameLauncher?.let { launcherName ->
-                context.xmlEditor["res/values/strings.xml"].use { editor ->
-                    val document = editor.file
+        context.xmlEditor["res/values/strings.xml"].use { editor ->
+            val document = editor.file
 
-                    mapOf(
-                        "app_name" to notificationName,
-                        "app_launcher_name" to launcherName
-                    ).forEach { (k, v) ->
-                        val stringElement = document.createElement("string")
+            mapOf(
+                "app_name" to notificationName,
+                "app_launcher_name" to launcherName
+            ).forEach { (k, v) ->
+                val stringElement = document.createElement("string")
 
-                        stringElement.setAttribute("name", k)
-                        stringElement.textContent = v
+                stringElement.setAttribute("name", k)
+                stringElement.textContent = v
 
-                        document.getElementsByTagName("resources").item(0)
-                            .appendChild(stringElement)
-                    }
-                }
-            } ?: throw PatchException("Invalid launcher name.")
-        } ?: throw PatchException("Invalid notification name.")
+                document.getElementsByTagName("resources").item(0)
+                    .appendChild(stringElement)
+            }
+        }
     }
 }

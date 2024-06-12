@@ -12,6 +12,7 @@ import app.revanced.util.ResourceGroup
 import app.revanced.util.copyResources
 import app.revanced.util.copyXmlNode
 import app.revanced.util.doRecursively
+import app.revanced.util.lowerCaseOrThrow
 import app.revanced.util.patch.BaseResourcePatch
 import org.w3c.dom.Element
 
@@ -37,27 +38,24 @@ object OverlayButtonsPatch : BaseResourcePatch(
     private const val DEFAULT_MARGIN = "0.0dip"
     private const val WIDER_MARGIN = "6.0dip"
 
-    private const val DEFAULT_ICON_KEY = "Bold"
-
-    // Mapping of icon types to their respective resource folder names
-    private val iconTypes = mapOf(
-        DEFAULT_ICON_KEY to "bold",
-        "Rounded" to "rounded",
-        "Thin" to "thin"
-    )
+    private const val DEFAULT_ICON = "bold"
 
     // Option to select icon type
-    private val IconType by stringPatchOption(
+    private val IconType = stringPatchOption(
         key = "IconType",
-        default = DEFAULT_ICON_KEY,
-        values = iconTypes,
+        default = DEFAULT_ICON,
+        values = mapOf(
+            "Bold" to DEFAULT_ICON,
+            "Rounded" to "rounded",
+            "Thin" to "thin"
+        ),
         title = "Icon type",
         description = "The icon type.",
         required = true
     )
 
     // Option to set bottom margin
-    private val BottomMargin by stringPatchOption(
+    private val BottomMargin = stringPatchOption(
         key = "BottomMargin",
         default = DEFAULT_MARGIN,
         values = mapOf(
@@ -75,6 +73,13 @@ object OverlayButtonsPatch : BaseResourcePatch(
      * @param context The resource context for patching.
      */
     override fun execute(context: ResourceContext) {
+
+        // Check patch options first.
+        val iconType = IconType
+            .lowerCaseOrThrow()
+
+        val marginBottom = BottomMargin
+            .lowerCaseOrThrow()
 
         // Inject hooks for overlay buttons.
         arrayOf(
@@ -101,41 +106,38 @@ object OverlayButtonsPatch : BaseResourcePatch(
             context.copyResources("youtube/overlaybuttons/shared", resourceGroup)
         }
 
-        // Apply the selected icon type to the overlay buttons
-        IconType?.let { iconType ->
-            val iconValue = iconType.lowercase()
-            val commonResources = arrayOf(
-                "ic_fullscreen_vertical_button.png",
-                "ic_vr.png",
-                "quantum_ic_fullscreen_exit_grey600_24.png",
-                "quantum_ic_fullscreen_exit_white_24.png",
-                "quantum_ic_fullscreen_grey600_24.png",
-                "quantum_ic_fullscreen_white_24.png",
-                "revanced_time_ordered_playlist_icon.png",
-                "revanced_copy_icon.png",
-                "revanced_copy_icon_with_time.png",
-                "revanced_download_icon.png",
-                "revanced_speed_icon.png",
-                "revanced_whitelist_icon.png",
-                "yt_fill_arrow_repeat_white_24.png",
-                "yt_outline_arrow_repeat_1_white_24.png",
-                "yt_outline_arrow_shuffle_1_white_24.png",
-                "yt_outline_screen_full_exit_white_24.png",
-                "yt_outline_screen_full_white_24.png"
+        // Apply the selected icon type to the overlay buttons.
+        val commonResources = arrayOf(
+            "ic_fullscreen_vertical_button.png",
+            "ic_vr.png",
+            "quantum_ic_fullscreen_exit_grey600_24.png",
+            "quantum_ic_fullscreen_exit_white_24.png",
+            "quantum_ic_fullscreen_grey600_24.png",
+            "quantum_ic_fullscreen_white_24.png",
+            "revanced_time_ordered_playlist_icon.png",
+            "revanced_copy_icon.png",
+            "revanced_copy_icon_with_time.png",
+            "revanced_download_icon.png",
+            "revanced_speed_icon.png",
+            "revanced_whitelist_icon.png",
+            "yt_fill_arrow_repeat_white_24.png",
+            "yt_outline_arrow_repeat_1_white_24.png",
+            "yt_outline_arrow_shuffle_1_white_24.png",
+            "yt_outline_screen_full_exit_white_24.png",
+            "yt_outline_screen_full_white_24.png"
+        )
+        val specificResources = if (iconType == "thin") {
+            arrayOf("yt_outline_screen_vertical_vd_theme_24.xml")
+        } else {
+            arrayOf("yt_outline_screen_vertical_vd_theme_24.png")
+        }
+        val resources = commonResources + specificResources
+        resources.forEach { resource ->
+            val folderName = if (resource.endsWith(".xml")) "drawable" else "drawable-xxhdpi"
+            context.copyResources(
+                "youtube/overlaybuttons/$iconType",
+                ResourceGroup(folderName, resource)
             )
-            val specificResources = if (iconValue == "thin") {
-                arrayOf("yt_outline_screen_vertical_vd_theme_24.xml")
-            } else {
-                arrayOf("yt_outline_screen_vertical_vd_theme_24.png")
-            }
-            val resources = commonResources + specificResources
-            resources.forEach { resource ->
-                val folderName = if (resource.endsWith(".xml")) "drawable" else "drawable-xxhdpi"
-                context.copyResources(
-                    "youtube/overlaybuttons/$iconValue",
-                    ResourceGroup(folderName, resource)
-                )
-            }
         }
 
         // Merge XML nodes from the host to their respective XML files.
@@ -144,9 +146,6 @@ object OverlayButtonsPatch : BaseResourcePatch(
             "layout/youtube_controls_bottom_ui_container.xml",
             "android.support.constraint.ConstraintLayout"
         )
-
-        val marginBottom = BottomMargin
-            ?: DEFAULT_MARGIN
 
         // Modify the layout of fullscreen button for newer YouTube versions (19.09.xx+)
         arrayOf(
