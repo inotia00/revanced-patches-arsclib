@@ -344,8 +344,7 @@ DeArrowの詳細については、ここをタップしてください。"</stri
     <string name="revanced_miniplayer_type_entry_6">モダン3</string>
     <string name="revanced_miniplayer_hide_expand_close_title">拡大/縮小ボタンを非表示</string>
     <string name="revanced_miniplayer_hide_expand_close_summary_on">拡大/縮小のボタンを非表示にします。\n(ミニプレーヤーをスワイプして拡大/縮小できます)</string>
-    <string name="revanced_miniplayer_hide_expand_close_summary_off">拡大/縮小ボタンを非表示にします。
-(ミニプレーヤーをスワイプして拡大/縮小できます)</string>
+    <string name="revanced_miniplayer_hide_expand_close_summary_off">拡大/縮小のボタンを非表示にします。\n(ミニプレーヤーをスワイプして拡大/縮小できます)</string>
     <string name="revanced_miniplayer_hide_subtext_title">サブテキストを非表示</string>
     <string name="revanced_miniplayer_hide_subtext_summary_on">ミニプレーヤーに表示される「プロモーションを含みます」などの文章を非表示にします。</string>
     <string name="revanced_miniplayer_hide_subtext_summary_off">ミニプレーヤーに表示される「プロモーションを含みます」などの文章を非表示にします。</string>
@@ -608,10 +607,10 @@ DeArrowの詳細については、ここをタップしてください。"</stri
     <string name="revanced_hide_player_flyout_menu_playback_speed_title">「再生速度」メニューを非表示</string>
     <string name="revanced_hide_player_flyout_menu_playback_speed_summary_on">「再生速度」メニューを非表示にします。</string>
     <string name="revanced_hide_player_flyout_menu_playback_speed_summary_off">「再生速度」メニューを非表示にします。</string>
-    <string name="revanced_hide_player_flyout_menu_quality_header_title">画質メニュー上のスペースを非表示</string>
+    <string name="revanced_hide_player_flyout_menu_quality_header_title">画質メニューの上のスペースを削除</string>
     <string name="revanced_hide_player_flyout_menu_quality_header_summary_on">画質メニューの上にあるスペースを削除します。</string>
     <string name="revanced_hide_player_flyout_menu_quality_header_summary_off">画質メニューの上にあるスペースを削除します。</string>
-    <string name="revanced_hide_player_flyout_menu_quality_footer_title">画質メニュー下のスペースを削除</string>
+    <string name="revanced_hide_player_flyout_menu_quality_footer_title">画質メニューの下のスペースを削除</string>
     <string name="revanced_hide_player_flyout_menu_quality_footer_summary_on">画質メニューの下にあるスペースを削除します。</string>
     <string name="revanced_hide_player_flyout_menu_quality_footer_summary_off">画質メニューの下にあるスペースを削除します。</string>
     <string name="revanced_hide_player_flyout_menu_report_title">「報告」メニューを非表示</string>
@@ -945,8 +944,8 @@ DeArrowの詳細については、ここをタップしてください。"</stri
     <string name="revanced_hide_shorts_info_panel_summary_on">情報パネルを非表示にします。</string>
     <string name="revanced_hide_shorts_info_panel_summary_off">情報パネルを非表示にします。</string>
     <string name="revanced_hide_shorts_live_header_title">ライブチャットのヘッダーを非表示</string>
-    <string name="revanced_hide_shorts_live_header_summary_on">縦型のライブのプレーヤー内で上部に表示されるチャンネル名などを非表示にします。\n\nヘッダーの戻るボタンは非表示になりません。</string>
-    <string name="revanced_hide_shorts_live_header_summary_off">縦型のライブのプレーヤー内で上部に表示されるチャンネル名などを非表示にします。\n\nヘッダーの戻るボタンは非表示になりません。</string>
+    <string name="revanced_hide_shorts_live_header_summary_on">縦型のライブ配信のプレーヤー内で上部に表示されるチャンネル名などを非表示にします。\n\nヘッダーの戻るボタンは非表示になりません。</string>
+    <string name="revanced_hide_shorts_live_header_summary_off">縦型のライブ配信のプレーヤー内で上部に表示されるチャンネル名などを非表示にします。\n\nヘッダーの戻るボタンは非表示になりません。</string>
     <string name="revanced_hide_shorts_channel_bar_title">チャンネルバーを非表示</string>
     <string name="revanced_hide_shorts_channel_bar_summary_on">プレーヤー下部の「チャンネルバー」を非表示にします。</string>
     <string name="revanced_hide_shorts_channel_bar_summary_off">プレーヤー下部の「チャンネルバー」を非表示にします。</string>

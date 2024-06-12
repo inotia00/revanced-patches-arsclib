@@ -21,7 +21,7 @@
     <string name="revanced_hide_fullscreen_ads_type_summary_off">"Les publicités en plein écran sont bloquées.
 
 Limitation : Les images des posts communautaires en plein écran peut être bloquée."</string>
-    <string name="revanced_hide_fullscreen_ads_blocked_success">Les publicités en plein écran sont bloquées. (Réponse : %s)</string>
+    <string name="revanced_hide_fullscreen_ads_blocked_success">Les publicités en plein écran sont bloquées. (Type de dialogue : %s)</string>
     <string name="revanced_hide_fullscreen_ads_closed_success">La publicité en plein écran a été fermée.</string>
     <string name="revanced_hide_general_ads_title">Masquer les publicités générales</string>
     <string name="revanced_hide_general_ads_summary_on">Les publicités générales sont masquées.</string>

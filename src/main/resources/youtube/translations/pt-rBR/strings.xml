@@ -505,8 +505,8 @@ A reprodução automática pode ser alterada nas configurações do YouTube:
     <string name="revanced_preference_screen_action_buttons_title">Botões de ação</string>
     <string name="revanced_preference_screen_action_buttons_summary">Ocultar ou mostrar botões de ação sob os vídeos.</string>
     <string name="revanced_disable_like_dislike_glow_title">Desativar brilho do botão Like e Dislike</string>
-    <string name="revanced_disable_like_dislike_glow_summary_on">Os botões Like e Dislike não brilharão quando mencionados.</string>
-    <string name="revanced_disable_like_dislike_glow_summary_off">Os botões Like e Dislike brilharão quando mencionados.</string>
+    <string name="revanced_disable_like_dislike_glow_summary_on">Os botões Like e Dislike não brilharão quando pressionados.</string>
+    <string name="revanced_disable_like_dislike_glow_summary_off">Os botões Like e Dislike brilharão quando pressionados.</string>
     <string name="revanced_hide_clip_button_title">Ocultar botão clipe</string>
     <string name="revanced_hide_clip_button_summary_on">O botão clipe está oculto.</string>
     <string name="revanced_hide_clip_button_summary_off">O botão clipe será exibido.</string>

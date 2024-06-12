@@ -1026,6 +1026,9 @@
     <string name="revanced_enable_watch_panel_gestures_title">启用观看面板手势</string>
     <string name="revanced_enable_watch_panel_gestures_summary_on">当在视频播放器下方向下滑动时，启用进入全屏模式</string>
     <string name="revanced_enable_watch_panel_gestures_summary_off">当在视频播放器下方向下滑动时，禁用进入全屏模式</string>
+    <string name="revanced_enable_swipe_to_switch_video_title">启用滑动以在全屏中更改视频</string>
+    <string name="revanced_enable_swipe_to_switch_video_summary_on">向上/向下滑动将播放下一个/上一个视频</string>
+    <string name="revanced_enable_swipe_to_switch_video_summary_off">向上/向下滑动不会播放下一/上一个视频</string>
     <string name="revanced_swipe_lowest_value_auto_brightness_overlay_text">自动</string>
     <!-- PreferenceScreen: Video -->
     <string name="revanced_preference_screen_video_title">视频</string>
