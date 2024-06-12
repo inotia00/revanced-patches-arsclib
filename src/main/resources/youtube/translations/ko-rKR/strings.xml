@@ -22,7 +22,7 @@
 
 알려진 문제점: 전체 화면에서 커뮤니티 게시물 이미지가 차단될 수 있습니다."</string>
     <string name="revanced_hide_fullscreen_ads_blocked_success">전체 화면 광고가 차단되었습니다. (다이얼로그 타입: %s)</string>
-    <string name="revanced_hide_fullscreen_ads_closed_success">전체 화면 광고가 닫혀졌습니다.</string>
+    <string name="revanced_hide_fullscreen_ads_closed_success">전체 화면 광고가 닫혔습니다.</string>
     <string name="revanced_hide_general_ads_title">일반 레이아웃 광고 숨기기</string>
     <string name="revanced_hide_general_ads_summary_on">일반 레이아웃 광고가 숨겨집니다.</string>
     <string name="revanced_hide_general_ads_summary_off">일반 레이아웃 광고가 노출됩니다.</string>
@@ -130,10 +130,8 @@ DeArrow에 대해 자세히 알아보려면 여기를 누르세요."</string>
     <string name="revanced_hide_notify_me_button_summary_on">"게시 예정 동영상 하단에서 '알림 받기' 버튼이 숨겨집니다."</string>
     <string name="revanced_hide_notify_me_button_summary_off">"게시 예정 동영상 하단에서 '알림 받기' 버튼이 노출됩니다."</string>
     <string name="revanced_hide_playables_title">Playables 숨기기</string>
-    <string name="revanced_hide_playables_summary_on">Playables가 숨겨집니다. 
-• YouTube 앱에 내장된 미니 게임</string>
-    <string name="revanced_hide_playables_summary_off">Playables가 노출됩니다.
-• YouTube 앱에 내장된 미니 게임</string>
+    <string name="revanced_hide_playables_summary_on">Playables가 숨겨집니다. \n• YouTube 앱에 내장된 미니 게임</string>
+    <string name="revanced_hide_playables_summary_off">Playables가 노출됩니다. \n• YouTube 앱에 내장된 미니 게임</string>
     <string name="revanced_hide_show_more_button_title">"'자세히 보기' 버튼 숨기기"</string>
     <string name="revanced_hide_show_more_button_summary_on">"'자세히 보기' 버튼이 숨겨집니다."</string>
     <string name="revanced_hide_show_more_button_summary_off">"'자세히 보기' 버튼이 노출됩니다."</string>
@@ -275,7 +273,7 @@ DeArrow에 대해 자세히 알아보려면 여기를 누르세요."</string>
     <string name="revanced_change_start_page_entry_subscriptions">구독</string>
     <string name="revanced_change_start_page_entry_trending">인기 급상승</string>
     <string name="revanced_change_start_page_entry_watch_later">나중에 볼 동영상</string>
-    <string name="revanced_change_start_page_warning">잘못된 앱 시작 페이지이므로 기본값으로 초기화합니다.</string>
+    <string name="revanced_change_start_page_invalid_toast">잘못된 앱 시작 페이지이므로 기본값으로 초기화합니다.</string>
     <string name="revanced_disable_auto_audio_tracks_title">자동 오디오 트랙 비활성화하기</string>
     <string name="revanced_disable_auto_audio_tracks_summary_on">오디오 트랙 사용이 강제된 동영상에서 오디오 트랙을 비활성화합니다.</string>
     <string name="revanced_disable_auto_audio_tracks_summary_off">오디오 트랙 사용이 강제된 동영상에서 오디오 트랙을 활성화합니다.</string>
@@ -288,15 +286,6 @@ DeArrow에 대해 자세히 알아보려면 여기를 누르세요."</string>
     <string name="revanced_enable_gradient_loading_screen_title">그라데이션 색상 로딩 화면 활성화하기</string>
     <string name="revanced_enable_gradient_loading_screen_summary_on">그라데이션 색상 로딩 화면을 활성화합니다.</string>
     <string name="revanced_enable_gradient_loading_screen_summary_off">그라데이션 색상 로딩 화면을 비활성화합니다.</string>
-    <string name="revanced_enable_tablet_mini_player_title">태블릿용 미니 플레이어 활성화하기</string>
-    <string name="revanced_enable_tablet_mini_player_summary_on">태블릿용 미니 플레이어를 활성화합니다.</string>
-    <string name="revanced_enable_tablet_mini_player_summary_off">태블릿용 미니 플레이어를 비활성화합니다.</string>
-    <string name="revanced_enable_modern_mini_player_title">최신 미니 플레이어 활성화하기</string>
-    <string name="revanced_enable_modern_mini_player_summary_on">최신 미니 플레이어를 활성화합니다.</string>
-    <string name="revanced_enable_modern_mini_player_summary_off">최신 미니 플레이어를 비활성화합니다.</string>
-    <string name="revanced_hide_mini_player_rewind_forward_button_title">\'되감기\' &amp; \'빨리 감기\' 버튼 숨기기</string>
-    <string name="revanced_hide_mini_player_rewind_forward_button_summary_on">미니 플레이어에서 버튼이 숨겨집니다.</string>
-    <string name="revanced_hide_mini_player_rewind_forward_button_summary_off">미니 플레이어에서 버튼이 노출됩니다.</string>
     <string name="revanced_hide_floating_microphone_title">플로팅 마이크 버튼 숨기기</string>
     <string name="revanced_hide_floating_microphone_summary_on">검색할 때, 오른쪽 하단에서 플로팅 마이크 버튼이 숨겨집니다.</string>
     <string name="revanced_hide_floating_microphone_summary_off">검색할 때, 오른쪽 하단에서 플로팅 마이크 버튼이 노출됩니다.</string>
@@ -350,6 +339,28 @@ DeArrow에 대해 자세히 알아보려면 여기를 누르세요."</string>
     <!-- 'Component path builder strings' is the technical name for identifying the Litho UI layout items to hide. This is an advanced feature and most users will never use this. -->
     <string name="revanced_custom_filter_strings_summary">필터링할 구성요소를 줄바꿈으로 구분하여 설정합니다.</string>
     <string name="revanced_custom_filter_toast_invalid_syntax">잘못된 필터 값입니다: %s</string>
+    <!-- PreferenceScreen: General, PreferenceCategory: General, PreferenceScreen: Miniplayer -->
+    <string name="revanced_preference_screen_miniplayer_title">미니 플레이어</string>
+    <string name="revanced_preference_screen_miniplayer_summary">앱 내에서 최소화된 플레이어의 스타일을 변경할 수 있습니다.</string>
+    <string name="revanced_miniplayer_type_title">미니 플레이어 타입 설정</string>
+    <string name="revanced_miniplayer_type_entry_1">기기 기본값 사용</string>
+    <string name="revanced_miniplayer_type_entry_2">폰</string>
+    <string name="revanced_miniplayer_type_entry_3">태블릿</string>
+    <string name="revanced_miniplayer_type_entry_4">최신 스타일 1</string>
+    <string name="revanced_miniplayer_type_entry_5">최신 스타일 2</string>
+    <string name="revanced_miniplayer_type_entry_6">최신 스타일 3</string>
+    <string name="revanced_miniplayer_hide_expand_close_title">\'펼치기\' &amp; \'닫기\' 버튼 숨기기</string>
+    <string name="revanced_miniplayer_hide_expand_close_summary_on">\'펼치기\' &amp; \'닫기\' 버튼이 숨겨집니다.\n• 스와이프하여 미니 플레이어를 펼치거나 닫을 수 있습니다.</string>
+    <string name="revanced_miniplayer_hide_expand_close_summary_off">\'펼치기\' &amp; \'닫기\' 버튼이 노출됩니다.</string>
+    <string name="revanced_miniplayer_hide_subtext_title">서브텍스트 숨기기</string>
+    <string name="revanced_miniplayer_hide_subtext_summary_on">서브텍스트가 숨겨집니다.\n• 왼쪽 하단에서 표시되는 \'유료 광고 포함\'과 같은 라벨</string>
+    <string name="revanced_miniplayer_hide_subtext_summary_off">서브텍스트가 노출됩니다.\n• 왼쪽 하단에서 표시되는 \'유료 광고 포함\'과 같은 라벨</string>
+    <string name="revanced_miniplayer_hide_rewind_forward_title">\'되감기\' &amp; \'빨리 감기\' 버튼 숨기기</string>
+    <string name="revanced_miniplayer_hide_rewind_forward_summary_on">\'되감기\' &amp; \'빨리 감기\' 버튼이 숨겨집니다.</string>
+    <string name="revanced_miniplayer_hide_rewind_forward_summary_off">\'되감기\' &amp; \'빨리 감기\' 버튼이 노출됩니다.</string>
+    <string name="revanced_miniplayer_opacity_title">미니 플레이어 오버레이 불투명도</string>
+    <string name="revanced_miniplayer_opacity_summary">불투명도 값은 0-100 사이이며, 0은 투명입니다.</string>
+    <string name="revanced_miniplayer_opacity_invalid_toast">불투명도 값은 0-100 사이어야 하므로 기본값으로 재설정합니다.</string>
     <!-- PreferenceScreen: General, PreferenceCategory: General, PreferenceScreen: Navigation buttons -->
     <string name="revanced_preference_screen_navigation_buttons_title">하단바 버튼</string>
     <string name="revanced_preference_screen_navigation_buttons_summary">하단바 섹션에서 구성요소를 숨기거나 표시할 수 있습니다.</string>
@@ -436,7 +447,7 @@ DeArrow에 대해 자세히 알아보려면 여기를 누르세요."</string>
     <string name="revanced_preference_screen_player_title">플레이어</string>
     <string name="revanced_custom_player_overlay_opacity_title">사용자 정의 플레이어 오버레이 불투명도</string>
     <string name="revanced_custom_player_overlay_opacity_summary">불투명도 값은 0-100 사이이며, 0은 투명입니다.</string>
-    <string name="revanced_custom_player_overlay_opacity_warning">불투명도 값은 0-100 사이어야 하므로 기본값으로 초기화합니다.</string>
+    <string name="revanced_custom_player_overlay_opacity_invalid_toast">불투명도 값은 0-100 사이어야 하므로 기본값으로 초기화합니다.</string>
     <string name="revanced_disable_auto_player_popup_panels_title">플레이어 팝업 패널 비활성화하기</string>
     <string name="revanced_disable_auto_player_popup_panels_summary_on">자동 플레이어 팝업 패널을 활성화합니다.
 • 재생목록, 실시간 채팅 ...</string>
@@ -448,7 +459,7 @@ DeArrow에 대해 자세히 알아보려면 여기를 누르세요."</string>
 알림: 동영상 재생 속도 오버레이를 비활성화하면 이전 레이아웃의 '좌우 슬라이드하여 탐색' 동작이 복원됩니다."</string>
     <string name="revanced_speed_overlay_value_title">동영상 재생 속도 오버레이 값</string>
     <string name="revanced_speed_overlay_value_summary">동영상 재생 속도 오버레이 값은 0-8.0 사이어야 합니다.</string>
-    <string name="revanced_speed_overlay_value_warning">재생 속도 오버레이 값은 0-8.0 사이어야 하므로 기본값으로 초기화합니다.</string>
+    <string name="revanced_speed_overlay_value_invalid_toast">재생 속도 오버레이 값은 0-8.0 사이어야 하므로 기본값으로 초기화합니다.</string>
     <string name="revanced_hide_channel_watermark_title">동영상 하단에서 채널 워터마크 숨기기</string>
     <string name="revanced_hide_channel_watermark_summary_on">동영상 하단에서 채널 워터마크가 숨겨집니다.</string>
     <string name="revanced_hide_channel_watermark_summary_off">동영상 하단에서 채널 워터마크가 노출됩니다.</string>
@@ -497,6 +508,9 @@ DeArrow에 대해 자세히 알아보려면 여기를 누르세요."</string>
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Action buttons -->
     <string name="revanced_preference_screen_action_buttons_title">액션 버튼</string>
     <string name="revanced_preference_screen_action_buttons_summary">플레이어 하단에 있는 액션 버튼을 숨기거나 표시할 수 있습니다.</string>
+    <string name="revanced_disable_like_dislike_glow_title">빛나는 \'좋아요\' &amp; \'싫어요\' 버튼 비활성화하기</string>
+    <string name="revanced_disable_like_dislike_glow_summary_on">동영상에서 \'좋아요\' &amp; \'싫어요\' 버튼이 언급되었을 때, 버튼에 빛나는 애니메이션을 적용하지 않습니다.</string>
+    <string name="revanced_disable_like_dislike_glow_summary_off">동영상에서 \'좋아요\' &amp; \'싫어요\' 버튼이 언급되었을 때, 버튼에 빛나는 애니메이션을 적용합니다.</string>
     <string name="revanced_hide_clip_button_title">클립 버튼 숨기기</string>
     <string name="revanced_hide_clip_button_summary_on">클립 버튼이 숨겨집니다.</string>
     <string name="revanced_hide_clip_button_summary_off">클립 버튼이 노출됩니다.</string>
@@ -691,7 +705,7 @@ DeArrow에 대해 자세히 알아보려면 여기를 누르세요."</string>
     <string name="revanced_hide_quick_actions_share_button_summary_off">공유 버튼이 노출됩니다.</string>
     <string name="revanced_quick_actions_top_margin_title">빠른 작업 상단 여백</string>
     <string name="revanced_quick_actions_top_margin_summary">재생바에서 빠른 작업 컨테이너까지의 간격을 0-32 사이로 설정할 수 있습니다.</string>
-    <string name="revanced_quick_actions_top_margin_warning">상단 여백 값은 0-32 사이어야 하므로 기본값으로 초기화합니다.</string>
+    <string name="revanced_quick_actions_top_margin_invalid_toast">빠른 작업 상단 여백 값은 0-32 사이어야 하므로 기본값으로 초기화합니다.</string>
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Fullscreen, PreferenceCategory: Experimental Flags -->
     <string name="revanced_disable_landscape_mode_title">전체 화면에서 세로 모드 활성화하기</string>
     <string name="revanced_disable_landscape_mode_summary_on">전체 화면에서 동영상의 방향을 세로 모드로 활성화합니다.</string>
@@ -941,8 +955,8 @@ DeArrow에 대해 자세히 알아보려면 여기를 누르세요."</string>
     <string name="revanced_hide_shorts_info_panel_summary_on">정보 패널이 숨겨집니다.</string>
     <string name="revanced_hide_shorts_info_panel_summary_off">정보 패널이 노출됩니다.</string>
     <string name="revanced_hide_shorts_live_header_title">실시간 채팅 헤더 숨기기</string>
-    <string name="revanced_hide_shorts_live_header_summary_on">실시간 채팅 헤더(채널바)가 숨겨집니다.\n\n헤더에서 뒤로 가기 버튼은 숨길 수 없습니다.</string>
-    <string name="revanced_hide_shorts_live_header_summary_off">실시간 채팅 헤더(채널바)가 노출됩니다.\n\n헤더에서 뒤로 가기 버튼은 숨길 수 없습니다.</string>
+    <string name="revanced_hide_shorts_live_header_summary_on">실시간 채팅 헤더(상단 채널바)가 숨겨집니다.\n\n헤더에서 뒤로 가기 버튼은 숨길 수 없습니다.</string>
+    <string name="revanced_hide_shorts_live_header_summary_off">실시간 채팅 헤더(상단 채널바)가 노출됩니다.\n\n헤더에서 뒤로 가기 버튼은 숨길 수 없습니다.</string>
     <string name="revanced_hide_shorts_channel_bar_title">채널바 숨기기</string>
     <string name="revanced_hide_shorts_channel_bar_summary_on">채널바가 숨겨집니다.</string>
     <string name="revanced_hide_shorts_channel_bar_summary_off">채널바가 노출됩니다.</string>
@@ -966,9 +980,6 @@ DeArrow에 대해 자세히 알아보려면 여기를 누르세요."</string>
     <string name="revanced_hide_shorts_comments_button_title">댓글 버튼 숨기기</string>
     <string name="revanced_hide_shorts_comments_button_summary_on">댓글 버튼이 숨겨집니다.</string>
     <string name="revanced_hide_shorts_comments_button_summary_off">댓글 버튼이 노출됩니다.</string>
-    <string name="revanced_hide_shorts_comments_disabled_button_title">\'사용 중지됨\' 또는 \'0\'으로 표시된 댓글 버튼 숨기기</string>
-    <string name="revanced_hide_shorts_comments_disabled_button_summary_on">\'사용 중지됨\' 또는 \'0\'으로 표시된 댓글 버튼이 숨겨집니다.</string>
-    <string name="revanced_hide_shorts_comments_disabled_button_summary_off">\'사용 중지됨\' 또는 \'0\'으로 표시된 댓글 버튼이 노출됩니다.</string>
     <string name="revanced_hide_shorts_remix_button_title">리믹스 버튼 숨기기</string>
     <string name="revanced_hide_shorts_remix_button_summary_on">리믹스 버튼이 숨겨집니다.</string>
     <string name="revanced_hide_shorts_remix_button_summary_off">리믹스 버튼이 노출됩니다.</string>
@@ -1016,7 +1027,7 @@ DeArrow에 대해 자세히 알아보려면 여기를 누르세요."</string>
     <string name="revanced_swipe_overlay_text_size_summary">오버레이 텍스트 크기를 지정할 수 있습니다.</string>
     <string name="revanced_swipe_overlay_rect_size_title">스와이프 오버레이 화면 크기</string>
     <string name="revanced_swipe_overlay_rect_size_summary">스와이프가 가능한 화면 영역 크기를 지정할 수 있습니다. (백분율)\n\n알림: \'두 번 탭하여 탐색\' 제스처의 화면 영역 크기도 변경됩니다.</string>
-    <string name="revanced_swipe_overlay_rect_size_warning">스와이프가 가능한 영역 크기는 %s%%보다 클 수 없으므로 기본값으로 초기화합니다.</string>
+    <string name="revanced_swipe_overlay_rect_size_invalid_toast">스와이프가 가능한 영역 크기는 50 보다 클 수 없으므로 기본값으로 초기화합니다.</string>
     <string name="revanced_swipe_overlay_timeout_title">오버레이 타임아웃</string>
     <string name="revanced_swipe_overlay_timeout_summary">오버레이가 표시되는 시간을 지정할 수 있습니다. (밀리초)</string>
     <string name="revanced_disable_hdr_auto_brightness_title">HDR 자동 밝기 비활성화하기</string>
@@ -1025,6 +1036,9 @@ DeArrow에 대해 자세히 알아보려면 여기를 누르세요."</string>
     <string name="revanced_enable_watch_panel_gestures_title">시청 패널 제스처 활성화하기</string>
     <string name="revanced_enable_watch_panel_gestures_summary_on">동영상 플레이어 하단에서 아래로 스와이프하여 전체 화면으로 전환합니다.</string>
     <string name="revanced_enable_watch_panel_gestures_summary_off">동영상 플레이어 하단에서 아래로 스와이프하여 전체 화면으로 전환하지 않습니다.</string>
+    <string name="revanced_enable_swipe_to_switch_video_title">전체화면에서 스와이프하여 동영상 전환 활성화하기</string>
+    <string name="revanced_enable_swipe_to_switch_video_summary_on">위 / 아래로 스와이프하여 다음 / 이전 동영상을 재생합니다.</string>
+    <string name="revanced_enable_swipe_to_switch_video_summary_off">위 / 아래로 스와이프하여 다음 / 이전 동영상을 재생하지 않습니다.</string>
     <string name="revanced_swipe_lowest_value_auto_brightness_overlay_text">자동</string>
     <!-- PreferenceScreen: Video -->
     <string name="revanced_preference_screen_video_title">동영상</string>
@@ -1330,7 +1344,7 @@ DeArrow에 대해 자세히 알아보려면 여기를 누르세요."</string>
     <string name="revanced_disable_quic_protocol_title">QUIC 프로토콜 비활성화하기</string>
     <string name="revanced_disable_quic_protocol_summary">"QUIC 프로토콜을 비활성화해서 동영상을 불러올 때 발생하는 동영상 압축과 푸는 과정을 제거하여 동영상 로딩 속도를 향상시킵니다. 모바일 데이터 사용량이 증가할 수 있으니 주의하세요."</string>
     <string name="revanced_enable_opus_codec_title">OPUS 코덱 활성화하기</string>
-    <string name="revanced_enable_opus_codec_summary">플레이어 응답에 OPUS 코덱이 포함되어 있는 경우에는 OPUS 코덱을 활성화합니다.</string>
+    <string name="revanced_enable_opus_codec_summary">플레이어 응답에 OPUS 코덱이 포함된 경우에는 OPUS 코덱을 활성화합니다.</string>
     <string name="revanced_spoof_player_parameter_title">플레이어 매개변수 변경하기</string>
     <string name="revanced_spoof_player_parameter_summary">"플레이어 매개변수를 변경하여 재생 문제를 방지합니다.
 
