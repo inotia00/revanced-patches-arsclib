@@ -1111,6 +1111,9 @@ Limitation: Official headers in search results will be hidden."</string>
     <string name="revanced_enable_watch_panel_gestures_title">Enable watch panel gestures</string>
     <string name="revanced_enable_watch_panel_gestures_summary_on">Entering fullscreen when swiping down below the video player is enabled.</string>
     <string name="revanced_enable_watch_panel_gestures_summary_off">Entering fullscreen when swiping down below the video player is disabled.</string>
+    <string name="revanced_enable_swipe_to_switch_video_title">Enable swipe to change video</string>
+    <string name="revanced_enable_swipe_to_switch_video_summary_on">Swiping up / down will play the next / previous video.</string>
+    <string name="revanced_enable_swipe_to_switch_video_summary_off">Swiping up / down will not play the next / previous video.</string>
     <string name="revanced_swipe_lowest_value_auto_brightness_overlay_text">Auto</string>
 
 
