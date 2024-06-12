@@ -309,15 +309,6 @@ Limitations:
     <string name="revanced_enable_gradient_loading_screen_title">Enable gradient loading screen</string>
     <string name="revanced_enable_gradient_loading_screen_summary_on">Gradient loading screen is enabled.</string>
     <string name="revanced_enable_gradient_loading_screen_summary_off">Gradient loading screen is disabled.</string>
-    <string name="revanced_enable_tablet_mini_player_title">Enable tablet mini player</string>
-    <string name="revanced_enable_tablet_mini_player_summary_on">Tablet mini player is enabled.</string>
-    <string name="revanced_enable_tablet_mini_player_summary_off">Tablet mini player is disabled.</string>
-    <string name="revanced_enable_modern_mini_player_title">Enable modern mini player</string>
-    <string name="revanced_enable_modern_mini_player_summary_on">Modern mini player is enabled.</string>
-    <string name="revanced_enable_modern_mini_player_summary_off">Modern mini player is disabled.</string>
-    <string name="revanced_hide_mini_player_rewind_forward_button_title">Hide rewind &amp; forward button</string>
-    <string name="revanced_hide_mini_player_rewind_forward_button_summary_on">Buttons are hidden in mini player.</string>
-    <string name="revanced_hide_mini_player_rewind_forward_button_summary_off">Buttons are shown in mini player.</string>
 
     <string name="revanced_hide_floating_microphone_title">Hide floating microphone button</string>
     <string name="revanced_hide_floating_microphone_summary_on">Floating microphone button is hidden.</string>
@@ -376,6 +367,30 @@ Some components may not be hidden."</string>
     <!-- 'Component path builder strings' is the technical name for identifying the Litho UI layout items to hide. This is an advanced feature and most users will never use this. -->
     <string name="revanced_custom_filter_strings_summary">List of component path builder strings to filter, separated by new lines.</string>
     <string name="revanced_custom_filter_toast_invalid_syntax">Invalid custom filter: %s.</string>
+
+    <!-- PreferenceScreen: General, PreferenceCategory: General, PreferenceScreen: Miniplayer -->
+    <string name="revanced_preference_screen_miniplayer_title">Miniplayer</string>
+    <string name="revanced_preference_screen_miniplayer_summary">Change the style of the in app minimized player.</string>
+
+    <string name="revanced_miniplayer_type_title">Miniplayer type</string>
+    <string name="revanced_miniplayer_type_entry_1">Original</string>
+    <string name="revanced_miniplayer_type_entry_2">Phone</string>
+    <string name="revanced_miniplayer_type_entry_3">Tablet</string>
+    <string name="revanced_miniplayer_type_entry_4">Modern 1</string>
+    <string name="revanced_miniplayer_type_entry_5">Modern 2</string>
+    <string name="revanced_miniplayer_type_entry_6">Modern 3</string>
+    <string name="revanced_miniplayer_hide_expand_close_title">Hide expand and close buttons</string>
+    <string name="revanced_miniplayer_hide_expand_close_summary_on">Buttons are hidden.\n(swipe miniplayer to expand or close)</string>
+    <string name="revanced_miniplayer_hide_expand_close_summary_off">Expand and close buttons are shown.</string>
+    <string name="revanced_miniplayer_hide_subtext_title">Hide subtexts</string>
+    <string name="revanced_miniplayer_hide_subtext_summary_on">Subtexts are hidden.</string>
+    <string name="revanced_miniplayer_hide_subtext_summary_off">Subtexts are shown.</string>
+    <string name="revanced_miniplayer_hide_rewind_forward_title">Hide skip forward and back buttons</string>
+    <string name="revanced_miniplayer_hide_rewind_forward_summary_on">Skip forward and back are hidden.</string>
+    <string name="revanced_miniplayer_hide_rewind_forward_summary_off">Skip forward and back are shown.</string>
+    <string name="revanced_miniplayer_opacity_title">Overlay opacity</string>
+    <string name="revanced_miniplayer_opacity_summary">Opacity value between 0-100, where 0 is transparent.</string>
+    <string name="revanced_miniplayer_opacity_invalid_toast">Miniplayer overlay opacity must be between 0-100. Reset to default values.</string>
 
     <!-- PreferenceScreen: General, PreferenceCategory: General, PreferenceScreen: Navigation buttons -->
     <string name="revanced_preference_screen_navigation_buttons_title">Navigation buttons</string>
