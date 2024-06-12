@@ -44,25 +44,6 @@ object CustomBrandingIconPatch : BaseResourcePatch(
 
     private val mipmapDirectories = sizeArray.map { "mipmap-$it" }
 
-    private val headerResourceDirectoryNames = mapOf(
-        "xxxhdpi" to "512px x 192px",
-        "xxhdpi" to "387px x 144px",
-        "xhdpi" to "258px x 96px",
-        "hdpi" to "194px x 72px",
-        "mdpi" to "129px x 48px",
-    ).map { (dpi, dim) ->
-        "drawable-$dpi" to dim
-    }.toMap()
-
-    private val variants = arrayOf("light", "dark")
-
-    private val headerIconResourceFileNames = arrayOf(
-        "yt_premium_wordmark_header_dark",
-        "yt_premium_wordmark_header_light",
-        "yt_wordmark_header_dark",
-        "yt_wordmark_header_light"
-    ).map { "$it.png" }.toTypedArray()
-
     private val launcherIconResourceFileNames = arrayOf(
         "adaptiveproduct_youtube_background_color_108",
         "adaptiveproduct_youtube_foreground_color_108",
@@ -98,8 +79,6 @@ object CustomBrandingIconPatch : BaseResourcePatch(
         )
     }
 
-    private val headerIconResourceGroups = drawableDirectories.getResourceGroup(headerIconResourceFileNames)
-
     private val launcherIconResourceGroups = mipmapDirectories.getResourceGroup(launcherIconResourceFileNames)
 
     private val splashIconResourceGroups = drawableDirectories.getResourceGroup(splashIconResourceFileNames)
@@ -124,35 +103,6 @@ object CustomBrandingIconPatch : BaseResourcePatch(
 
             ${launcherIconResourceFileNames.joinToString("\n") { "- $it" }}
             """.trimIndentMultiline(),
-        required = true
-    )
-
-    private val ChangeHeader by booleanPatchOption(
-        key = "ChangeHeader",
-        default = false,
-        title = "Change header",
-        description = "Apply the custom branding icon to the header.",
-        required = true
-    )
-
-    private val CustomHeader by stringPatchOption(
-        key = "CustomHeader",
-        default = "",
-        title = "Custom header",
-        description = """
-            The header to apply to the app.
-            
-            If a path to a folder is provided, the folder must contain one or more of the following folders, depending on the DPI of the device:
-            
-            ${headerResourceDirectoryNames.keys.joinToString("\n") { "- $it" }}
-            
-            Each of the folders must contain all of the following files:
-            
-            ${headerIconResourceFileNames.joinToString("\n") { "- $it" }}
-
-            The image dimensions must be as follows:
-            ${headerResourceDirectoryNames.map { (dpi, dim) -> "- $dpi: $dim" }.joinToString("\n")}
-        """.trimIndentMultiline(),
         required = true
     )
 
@@ -208,27 +158,6 @@ object CustomBrandingIconPatch : BaseResourcePatch(
                 )
             ).forEach { resourceGroup ->
                 context.copyResources("$appIconResourcePath/monochrome", resourceGroup)
-            }
-
-            // Change header.
-            if (ChangeHeader == true) {
-                CustomHeader?.let { customHeader ->
-                    var copiedFiles = false
-                    if (customHeader.isNotEmpty()) {
-                        copiedFiles = context.copyFile(
-                            headerIconResourceGroups,
-                            customHeader,
-                            "WARNING: Invalid header path: $customHeader. Does not apply patches."
-                        )
-                    }
-                    if (!copiedFiles) {
-                        headerIconResourceGroups.let { resourceGroups ->
-                            resourceGroups.forEach {
-                                context.copyResources("$appIconResourcePath/header", it)
-                            }
-                        }
-                    }
-                }
             }
 
             // Change splash icon.

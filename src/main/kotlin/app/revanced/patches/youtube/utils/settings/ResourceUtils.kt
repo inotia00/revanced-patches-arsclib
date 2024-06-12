@@ -14,6 +14,9 @@ object ResourceUtils {
 
     var youtubePackageName = "com.google.android.youtube"
 
+    private var iconType = "default"
+    fun getIconType() = iconType
+
     fun ResourceContext.updatePackageName(
         fromPackageName: String,
         toPackageName: String
@@ -72,6 +75,7 @@ object ResourceUtils {
     }
 
     fun ResourceContext.updatePatchStatusIcon(iconName: String) {
+        iconType = iconName
         updatePatchStatusSettings("Icon", "@string/revanced_icon_$iconName")
     }
 
