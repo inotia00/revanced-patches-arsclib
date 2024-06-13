@@ -107,36 +107,40 @@ object OverlayButtonsPatch : BaseResourcePatch(
         }
 
         // Apply the selected icon type to the overlay buttons.
-        val commonResources = arrayOf(
-            "ic_fullscreen_vertical_button.png",
-            "ic_vr.png",
-            "quantum_ic_fullscreen_exit_grey600_24.png",
-            "quantum_ic_fullscreen_exit_white_24.png",
-            "quantum_ic_fullscreen_grey600_24.png",
-            "quantum_ic_fullscreen_white_24.png",
-            "revanced_time_ordered_playlist_icon.png",
-            "revanced_copy_icon.png",
-            "revanced_copy_icon_with_time.png",
-            "revanced_download_icon.png",
-            "revanced_speed_icon.png",
-            "revanced_whitelist_icon.png",
-            "yt_fill_arrow_repeat_white_24.png",
-            "yt_outline_arrow_repeat_1_white_24.png",
-            "yt_outline_arrow_shuffle_1_white_24.png",
-            "yt_outline_screen_full_exit_white_24.png",
-            "yt_outline_screen_full_white_24.png"
-        )
-        val specificResources = if (iconType == "thin") {
-            arrayOf("yt_outline_screen_vertical_vd_theme_24.xml")
-        } else {
-            arrayOf("yt_outline_screen_vertical_vd_theme_24.png")
-        }
-        val resources = commonResources + specificResources
-        resources.forEach { resource ->
-            val folderName = if (resource.endsWith(".xml")) "drawable" else "drawable-xxhdpi"
+        arrayOf(
+            "xxxhdpi",
+            "xxhdpi",
+            "xhdpi",
+            "hdpi",
+            "mdpi"
+        ).forEach { dpi ->
             context.copyResources(
                 "youtube/overlaybuttons/$iconType",
-                ResourceGroup(folderName, resource)
+                ResourceGroup(
+                    "drawable-$dpi",
+                    "ic_fullscreen_vertical_button.png",
+                    "ic_vr.png",
+                    "quantum_ic_fullscreen_exit_grey600_24.png",
+                    "quantum_ic_fullscreen_exit_white_24.png",
+                    "quantum_ic_fullscreen_grey600_24.png",
+                    "quantum_ic_fullscreen_white_24.png",
+                    "revanced_time_ordered_playlist_icon.png",
+                    "revanced_copy_icon.png",
+                    "revanced_copy_icon_with_time.png",
+                    "revanced_download_icon.png",
+                    "revanced_speed_icon.png",
+                    "revanced_whitelist_icon.png",
+                    "yt_fill_arrow_repeat_white_24.png",
+                    "yt_outline_arrow_repeat_1_white_24.png",
+                    "yt_outline_arrow_shuffle_1_white_24.png",
+                    "yt_outline_screen_full_exit_white_24.png",
+                    "yt_outline_screen_full_white_24.png",
+                    "yt_outline_screen_vertical_vd_theme_24.png"
+                ),
+                ResourceGroup(
+                    "drawable",
+                    "yt_outline_screen_vertical_vd_theme_24.xml"
+                )
             )
         }
 
