@@ -3,6 +3,7 @@ package app.revanced.patches.music.layout.header
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.options.PatchOption.PatchExtensions.stringPatchOption
 import app.revanced.patches.music.utils.compatibility.Constants
+import app.revanced.patches.music.utils.fix.header.RestoreOldHeaderPatch
 import app.revanced.patches.music.utils.settings.ResourceUtils
 import app.revanced.util.ResourceGroup
 import app.revanced.util.Utils.trimIndentMultiline
@@ -15,6 +16,7 @@ import app.revanced.util.underBarOrThrow
 object ChangeHeaderPatch : BaseResourcePatch(
     name = "Custom header for YouTube Music",
     description = "Applies a custom header in the top left corner within the app.",
+    dependencies = setOf(RestoreOldHeaderPatch::class),
     compatiblePackages = Constants.COMPATIBLE_PACKAGE,
     use = false,
 ) {
