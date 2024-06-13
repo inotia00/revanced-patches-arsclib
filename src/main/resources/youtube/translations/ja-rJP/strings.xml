@@ -18,9 +18,9 @@
     <string name="revanced_hide_fullscreen_ads_summary_off">アプリ起動時に表示される全画面広告を非表示にします。</string>
     <string name="revanced_hide_fullscreen_ads_type_title">全画面広告を非表示にする方法を変更</string>
     <string name="revanced_hide_fullscreen_ads_type_summary_on">現在の設定: 全画面広告の右上の「‪✕‬」ボタンを自動的に押します。</string>
-    <string name="revanced_hide_fullscreen_ads_type_summary_off">"現在の設定: 全ての全画面広告をブロックします。
+    <string name="revanced_hide_fullscreen_ads_type_summary_off">"現在の設定: 全ての全画面広告を非表示にします。
 
-注意: 全画面のコミュニティ投稿画像もブロックされるという副作用があります。"</string>
+注意: 全画面のコミュニティ投稿画像も非表示になるという副作用があります。"</string>
     <string name="revanced_hide_fullscreen_ads_blocked_success">全画面広告をブロックしました。(ダイアログの種類: %s)</string>
     <string name="revanced_hide_fullscreen_ads_closed_success">全画面広告を閉じました。</string>
     <string name="revanced_hide_general_ads_title">全般的な広告を非表示</string>
@@ -33,8 +33,8 @@
     <string name="revanced_hide_paid_promotion_label_summary_on">プレーヤー上に表示される「プロモーションを含みます」の文章を非表示にします。</string>
     <string name="revanced_hide_paid_promotion_label_summary_off">プレーヤー上に表示される「プロモーションを含みます」の文章を非表示にします。</string>
     <string name="revanced_hide_self_sponsor_cards_title">自己スポンサーカードを非表示</string>
-    <string name="revanced_hide_self_sponsor_cards_summary_on">概要欄下部のセルフスポンサーカードを非表示にします。</string>
-    <string name="revanced_hide_self_sponsor_cards_summary_off">概要欄下部のセルフスポンサーカードを非表示にします。</string>
+    <string name="revanced_hide_self_sponsor_cards_summary_on">概要欄下部に表示されるセルフスポンサーカードを非表示にします。</string>
+    <string name="revanced_hide_self_sponsor_cards_summary_off">概要欄下部に表示されるセルフスポンサーカードを非表示にします。</string>
     <string name="revanced_hide_video_ads_title">動画広告を非表示</string>
     <string name="revanced_hide_video_ads_summary_on">プレーヤー内の広告を非表示にします。</string>
     <string name="revanced_hide_video_ads_summary_off">プレーヤー内の広告を非表示にします。</string>
@@ -343,8 +343,8 @@ DeArrowの詳細については、ここをタップしてください。"</stri
     <string name="revanced_miniplayer_type_entry_5">モダン2</string>
     <string name="revanced_miniplayer_type_entry_6">モダン3</string>
     <string name="revanced_miniplayer_hide_expand_close_title">拡大/縮小ボタンを非表示</string>
-    <string name="revanced_miniplayer_hide_expand_close_summary_on">拡大/縮小のボタンを非表示にします。\n(ミニプレーヤーをスワイプして拡大/縮小できます)</string>
-    <string name="revanced_miniplayer_hide_expand_close_summary_off">拡大/縮小のボタンを非表示にします。\n(ミニプレーヤーをスワイプして拡大/縮小できます)</string>
+    <string name="revanced_miniplayer_hide_expand_close_summary_on">拡大/縮小のボタンを非表示にします。\n(ミニプレーヤーをスワイプして拡大/縮小できます) 注意: YouTube v19.20.35 以降の場合、スワイプして拡大することはできません。</string>
+    <string name="revanced_miniplayer_hide_expand_close_summary_off">拡大/縮小のボタンを非表示にします。\n(ミニプレーヤーをスワイプして拡大/縮小できます) \n\n注意: YouTube v19.20.35 以降の場合、スワイプして拡大することはできません。</string>
     <string name="revanced_miniplayer_hide_subtext_title">サブテキストを非表示</string>
     <string name="revanced_miniplayer_hide_subtext_summary_on">ミニプレーヤーに表示される「プロモーションを含みます」などの文章を非表示にします。</string>
     <string name="revanced_miniplayer_hide_subtext_summary_off">ミニプレーヤーに表示される「プロモーションを含みます」などの文章を非表示にします。</string>
@@ -489,12 +489,8 @@ DeArrowの詳細については、ここをタップしてください。"</stri
     <string name="revanced_hide_timed_reactions_summary_on">Timed Reactions を非表示にします。</string>
     <string name="revanced_hide_timed_reactions_summary_off">Timed Reactions を非表示にします。</string>
     <string name="revanced_hide_suggested_video_end_screen_title">おすすめされた動画の終了画面を非表示</string>
-    <string name="revanced_hide_suggested_video_end_screen_summary_on">"自動再生がオフの場合、おすすめの動画は動画の終了画面で表示されません。
-
-自動再生は YouTube の設定で変更できます: 「設定 → 自動再生 → 次の動画を自動再生」"</string>
-    <string name="revanced_hide_suggested_video_end_screen_summary_off">自動再生がオフの場合、おすすめの動画は動画の終了画面で表示されません。
-
-自動再生は YouTube の設定で変更できます: 「設定 → 自動再生 → 次の動画を自動再生」</string>
+    <string name="revanced_hide_suggested_video_end_screen_summary_on">"自動再生がオフの場合、おすすめの動画は動画の終了画面で表示されません。\n\n自動再生は YouTube の設定で変更できます: 「設定 → 自動再生 → 次の動画を自動再生」"</string>
+    <string name="revanced_hide_suggested_video_end_screen_summary_off">自動再生がオフの場合、おすすめの動画は動画の終了画面で表示されません。\n\n自動再生は YouTube の設定で変更できます: 「設定 → 自動再生 → 次の動画を自動再生」</string>
     <string name="revanced_skip_autoplay_countdown_title">自動再生カウントダウンをスキップ</string>
     <string name="revanced_skip_autoplay_countdown_summary_on">自動再生がオンの場合、次の動画をカウントダウンなしで再生します。</string>
     <string name="revanced_skip_autoplay_countdown_summary_off">自動再生がオンの場合、次の動画をカウントダウンなしで再生します。</string>
@@ -572,8 +568,8 @@ DeArrowの詳細については、ここをタップしてください。"</stri
     <string name="revanced_hide_preview_comment_on">コメントのプレビューを非表示にします。</string>
     <string name="revanced_hide_preview_comment_off">コメントのプレビューを非表示にします。</string>
     <string name="revanced_hide_preview_comment_type_title">コメントのプレビューを非表示にする方法を設定</string>
-    <string name="revanced_hide_preview_comment_type_on">コメント欄のサイズを変更します。注意: コメント欄からライブチャットのリプレイを開くことができなくなります。</string>
-    <string name="revanced_hide_preview_comment_type_off">コメント欄のサイズを変更します。注意: コメント欄からライブチャットのリプレイを開くことができなくなります。</string>
+    <string name="revanced_hide_preview_comment_type_on">コメント欄のサイズを変更します。\n\n注意: コメント欄からライブチャットのリプレイを開くことができなくなります。</string>
+    <string name="revanced_hide_preview_comment_type_off">コメント欄のサイズを変更します。\n\n注意: コメント欄からライブチャットのリプレイを開くことができなくなります。</string>
     <string name="revanced_hide_comment_create_shorts_button_title">ショートの作成ボタンを非表示</string>
     <string name="revanced_hide_comment_create_shorts_button_summary_on">「ショートの作成」ボタンを非表示にします。</string>
     <string name="revanced_hide_comment_create_shorts_button_summary_off">「ショートの作成」ボタンを非表示にします。</string>
@@ -587,24 +583,24 @@ DeArrowの詳細については、ここをタップしてください。"</stri
     <string name="revanced_preference_screen_player_flyout_menu_title">フライアウトメニュー</string>
     <string name="revanced_preference_screen_player_flyout_menu_summary">プレーヤーのフライアウトメニューを非表示または変更します。</string>
     <string name="revanced_change_player_flyout_menu_toggle_title">トグルの種類を変更</string>
-    <string name="revanced_change_player_flyout_menu_toggle_summary_on">現在の設定: テキストのトグルが使用されます。</string>
-    <string name="revanced_change_player_flyout_menu_toggle_summary_off">スイッチトグルが使用されます。</string>
-    <string name="revanced_hide_player_flyout_menu_audio_track_title">「音声トラック」メニューを非表示</string>
+    <string name="revanced_change_player_flyout_menu_toggle_summary_on">現在の設定: テキストのトグル</string>
+    <string name="revanced_change_player_flyout_menu_toggle_summary_off">現在の設定: スイッチのトグル</string>
+    <string name="revanced_hide_player_flyout_menu_audio_track_title">「音声トラック」を非表示</string>
     <string name="revanced_hide_player_flyout_menu_audio_track_summary_on">「音声トラック」メニューを非表示にします。</string>
     <string name="revanced_hide_player_flyout_menu_audio_track_summary_off">「音声トラック」メニューを非表示にします。</string>
-    <string name="revanced_hide_player_flyout_menu_captions_title">「字幕」メニューを非表示</string>
+    <string name="revanced_hide_player_flyout_menu_captions_title">「字幕」を非表示</string>
     <string name="revanced_hide_player_flyout_menu_captions_summary_on">「字幕」メニューを非表示にします。</string>
     <string name="revanced_hide_player_flyout_menu_captions_summary_off">「字幕」メニューを非表示にします。</string>
     <string name="revanced_hide_player_flyout_menu_captions_footer_title">字幕メニュー下のスペースを削除</string>
     <string name="revanced_hide_player_flyout_menu_captions_footer_summary_on">「字幕」メニューの下にあるスペースを削除します。</string>
     <string name="revanced_hide_player_flyout_menu_captions_footer_summary_off">「字幕」メニューの下にあるスペースを削除します。</string>
-    <string name="revanced_hide_player_flyout_menu_lock_screen_title">「画面のロック」メニューを非表示</string>
+    <string name="revanced_hide_player_flyout_menu_lock_screen_title">「画面のロック」を非表示</string>
     <string name="revanced_hide_player_flyout_menu_lock_screen_summary_on">「画面のロック」メニューを非表示にします。</string>
     <string name="revanced_hide_player_flyout_menu_lock_screen_summary_off">「画面のロック」メニューを非表示にします。</string>
-    <string name="revanced_hide_player_flyout_menu_more_info_title">「詳細情報」メニューを非表示</string>
+    <string name="revanced_hide_player_flyout_menu_more_info_title">「詳細情報」を非表示</string>
     <string name="revanced_hide_player_flyout_menu_more_info_summary_on">「詳細情報」メニューを非表示にします。</string>
     <string name="revanced_hide_player_flyout_menu_more_info_summary_off">「詳細情報」メニューを非表示にします。</string>
-    <string name="revanced_hide_player_flyout_menu_playback_speed_title">「再生速度」メニューを非表示</string>
+    <string name="revanced_hide_player_flyout_menu_playback_speed_title">「再生速度」を非表示</string>
     <string name="revanced_hide_player_flyout_menu_playback_speed_summary_on">「再生速度」メニューを非表示にします。</string>
     <string name="revanced_hide_player_flyout_menu_playback_speed_summary_off">「再生速度」メニューを非表示にします。</string>
     <string name="revanced_hide_player_flyout_menu_quality_header_title">画質メニューの上のスペースを削除</string>
@@ -613,30 +609,30 @@ DeArrowの詳細については、ここをタップしてください。"</stri
     <string name="revanced_hide_player_flyout_menu_quality_footer_title">画質メニューの下のスペースを削除</string>
     <string name="revanced_hide_player_flyout_menu_quality_footer_summary_on">画質メニューの下にあるスペースを削除します。</string>
     <string name="revanced_hide_player_flyout_menu_quality_footer_summary_off">画質メニューの下にあるスペースを削除します。</string>
-    <string name="revanced_hide_player_flyout_menu_report_title">「報告」メニューを非表示</string>
+    <string name="revanced_hide_player_flyout_menu_report_title">「報告」を非表示</string>
     <string name="revanced_hide_player_flyout_menu_report_summary_on">「報告」メニューを非表示にします。</string>
     <string name="revanced_hide_player_flyout_menu_report_summary_off">「報告」メニューを非表示にします。</string>
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Flyout menu, PreferenceCategory: Additional settings -->
     <string name="revanced_preference_category_additional_settings">その他の設定</string>
-    <string name="revanced_hide_player_flyout_menu_ambient_mode_title">「アンビエントモード」メニューを非表示</string>
+    <string name="revanced_hide_player_flyout_menu_ambient_mode_title">「アンビエントモード」を非表示</string>
     <string name="revanced_hide_player_flyout_menu_ambient_mode_summary_on">「アンビエントモード」メニューを非表示にします。</string>
     <string name="revanced_hide_player_flyout_menu_ambient_mode_summary_off">「アンビエントモード」メニューを非表示にします。</string>
-    <string name="revanced_hide_player_flyout_menu_help_title">「ヘルプとフィードバック」メニューを非表示</string>
+    <string name="revanced_hide_player_flyout_menu_help_title">「ヘルプとフィードバック」を非表示</string>
     <string name="revanced_hide_player_flyout_menu_help_summary_on">「ヘルプとフィードバック」メニューを非表示にします。</string>
     <string name="revanced_hide_player_flyout_menu_help_summary_off">「ヘルプとフィードバック」メニューを非表示にします。</string>
-    <string name="revanced_hide_player_flyout_menu_listen_with_youtube_music_title">「YouTube Music で聴く」メニューを非表示</string>
+    <string name="revanced_hide_player_flyout_menu_listen_with_youtube_music_title">「YouTube Music で聴く」を非表示</string>
     <string name="revanced_hide_player_flyout_menu_listen_with_youtube_music_summary_on">「YouTube Music で聴く」メニューを非表示にします。</string>
     <string name="revanced_hide_player_flyout_menu_listen_with_youtube_music_summary_off">「YouTube Music で聴く」メニューを非表示にします。</string>
-    <string name="revanced_hide_player_flyout_menu_loop_video_title">「ループ再生」メニューを非表示</string>
+    <string name="revanced_hide_player_flyout_menu_loop_video_title">「ループ再生」を非表示</string>
     <string name="revanced_hide_player_flyout_menu_loop_video_summary_on">「ループ再生」メニューを非表示にします。</string>
     <string name="revanced_hide_player_flyout_menu_loop_video_summary_off">「ループ再生」メニューを非表示にします。</string>
-    <string name="revanced_hide_player_flyout_menu_pip_title">「ピクチャーインピクチャー」メニューを非表示</string>
-    <string name="revanced_hide_player_flyout_menu_pip_summary_on">「ピクチャーインピクチャー」メニューを非表示にします</string>
+    <string name="revanced_hide_player_flyout_menu_pip_title">「ピクチャーインピクチャー」を非表示</string>
+    <string name="revanced_hide_player_flyout_menu_pip_summary_on">「ピクチャーインピクチャー」メニューを非表示にします。</string>
     <string name="revanced_hide_player_flyout_menu_pip_summary_off">「ピクチャーインピクチャー」メニューを非表示にします。</string>
-    <string name="revanced_hide_player_flyout_menu_premium_controls_title">「Premium のコントロール」メニューを非表示</string>
+    <string name="revanced_hide_player_flyout_menu_premium_controls_title">「Premium のコントロール」を非表示</string>
     <string name="revanced_hide_player_flyout_menu_premium_controls_summary_on">「Premium のコントロール」メニューを非表示にします。</string>
     <string name="revanced_hide_player_flyout_menu_premium_controls_summary_off">「Premium のコントロール」メニューを非表示にします。</string>
-    <string name="revanced_hide_player_flyout_menu_stable_volume_title">「一定音量」メニューを非表示</string>
+    <string name="revanced_hide_player_flyout_menu_stable_volume_title">「一定音量」を非表示</string>
     <string name="revanced_hide_player_flyout_menu_stable_volume_summary_off">「一定音量」メニューを非表示にします。</string>
     <string name="revanced_hide_player_flyout_menu_stable_volume_summary_on">「一定音量」メニューを非表示にします。</string>
     <string name="revanced_hide_player_flyout_menu_stats_for_nerds_title">「統計情報」を非表示</string>
@@ -932,8 +928,8 @@ DeArrowの詳細については、ここをタップしてください。"</stri
     <string name="revanced_hide_shorts_tagged_products_summary_on">タグ付けされた商品を非表示にします。</string>
     <string name="revanced_hide_shorts_tagged_products_summary_off">タグ付けされた商品を非表示にします。</string>
     <string name="revanced_hide_shorts_location_label_title">位置情報のラベルを非表示</string>
-    <string name="revanced_hide_shorts_location_label_summary_on">プレイヤー下部の「位置情報ラベル」を非表示にします。</string>
-    <string name="revanced_hide_shorts_location_label_summary_off">プレイヤー下部の「位置情報ラベル」を非表示にします。</string>
+    <string name="revanced_hide_shorts_location_label_summary_on">プレーヤー下部に表示される、位置情報のラベルを非表示にします。</string>
+    <string name="revanced_hide_shorts_location_label_summary_off">プレーヤー下部に表示される、位置情報のラベルを非表示にします。</string>
     <string name="revanced_hide_shorts_save_sound_button_title">「保存」ボタンを非表示</string>
     <string name="revanced_hide_shorts_save_sound_button_summary_on">音楽の「保存」ボタンを非表示にします。</string>
     <string name="revanced_hide_shorts_save_sound_button_summary_off">音楽の「保存」ボタンを非表示にします。</string>
@@ -947,10 +943,10 @@ DeArrowの詳細については、ここをタップしてください。"</stri
     <string name="revanced_hide_shorts_live_header_summary_on">縦型のライブ配信のプレーヤー内で上部に表示されるチャンネル名などを非表示にします。\n\nヘッダーの戻るボタンは非表示になりません。</string>
     <string name="revanced_hide_shorts_live_header_summary_off">縦型のライブ配信のプレーヤー内で上部に表示されるチャンネル名などを非表示にします。\n\nヘッダーの戻るボタンは非表示になりません。</string>
     <string name="revanced_hide_shorts_channel_bar_title">チャンネルバーを非表示</string>
-    <string name="revanced_hide_shorts_channel_bar_summary_on">プレーヤー下部の「チャンネルバー」を非表示にします。</string>
-    <string name="revanced_hide_shorts_channel_bar_summary_off">プレーヤー下部の「チャンネルバー」を非表示にします。</string>
+    <string name="revanced_hide_shorts_channel_bar_summary_on">プレーヤー下部に表示されるチャンネルのバーを非表示にします。</string>
+    <string name="revanced_hide_shorts_channel_bar_summary_off">プレーヤー下部に表示されるチャンネルのバーを非表示にします。</string>
     <string name="revanced_hide_shorts_video_title_title">動画のタイトルを非表示</string>
-    <string name="revanced_hide_shorts_video_title_summary_on">プレーヤー下部の動画のタイトル名を非表示にします。</string>
+    <string name="revanced_hide_shorts_video_title_summary_on">プレーヤー下部に表示される動画のタイトル名を非表示にします。</string>
     <string name="revanced_hide_shorts_video_title_summary_off">プレーヤー下部に表示される動画のタイトルを非表示にします。</string>
     <string name="revanced_hide_shorts_sound_metadata_label_title">楽曲のラベルを非表示</string>
     <string name="revanced_hide_shorts_sound_metadata_label_summary_on">プレーヤー下部に表示される楽曲のラベルを非表示にします。</string>
@@ -1055,8 +1051,8 @@ DeArrowの詳細については、ここをタップしてください。"</stri
     <string name="revanced_remember_video_quality_last_selected_summary_on">現在の設定: 画質の変更はすべての動画に適用されます。</string>
     <string name="revanced_remember_video_quality_last_selected_summary_off">現在の設定: 画質の変更は現在の動画にのみ適用されます。</string>
     <string name="revanced_restore_old_video_quality_menu_title">古いスタイルの画質メニューを復元</string>
-    <string name="revanced_restore_old_video_quality_menu_summary_on">古いスタイルの画質設定メニューを復元します。</string>
-    <string name="revanced_restore_old_video_quality_menu_summary_off">古いスタイルの画質設定メニューを復元します。</string>
+    <string name="revanced_restore_old_video_quality_menu_summary_on">古いスタイルの画質設定メニューを復活させます。</string>
+    <string name="revanced_restore_old_video_quality_menu_summary_off">古いスタイルの画質設定メニューを復活させます。</string>
     <string name="revanced_enable_default_playback_speed_shorts_title">ショートのデフォルト再生速度を有効化</string>
     <string name="revanced_enable_default_playback_speed_shorts_summary_on">デフォルトの再生速度をショートに適用します。</string>
     <string name="revanced_enable_default_playback_speed_shorts_summary_off">デフォルトの再生速度をショートに適用します。</string>
@@ -1087,18 +1083,14 @@ DeArrowの詳細については、ここをタップしてください。"</stri
     <!-- PreferenceScreen: Return YouTube Dislike -->
     <string name="revanced_preference_screen_ryd_title">Return YouTube Dislike</string>
     <string name="revanced_ryd_enable_title">Return YouTube Dislike を有効化</string>
-    <string name="revanced_ryd_enable_summary_on">低評価数の表示を復活させます。注意: 正確な値ではありません。</string>
-    <string name="revanced_ryd_enable_summary_off">低評価数の表示を復活させます。注意: 正確な値ではありません。</string>
+    <string name="revanced_ryd_enable_summary_on">低評価数の表示を復活させます。\n\n注意: 正確な値ではありません。</string>
+    <string name="revanced_ryd_enable_summary_off">低評価数の表示を復活させます。\n\n注意: 正確な値ではありません。</string>
     <string name="revanced_ryd_shorts_title">ショートで低評価数を表示</string>
-    <string name="revanced_ryd_shorts_summary_on">ショートで低評価数を表示します。
-
-注意: シークレットモードでは低評価数が表示されないことがあります。</string>
+    <string name="revanced_ryd_shorts_summary_on">ショートで低評価数を表示します。\n\n注意: シークレットモードでは低評価数が表示されないことがあります。</string>
     <string name="revanced_ryd_shorts_summary_on_disclaimer">"ショートで低評価数を表示します。
 
 注意: シークレットモードでは低評価数が表示されないことがあります。"</string>
-    <string name="revanced_ryd_shorts_summary_off">ショートで低評価数を表示します。
-
-注意: シークレットモードでは低評価数が表示されないことがあります。</string>
+    <string name="revanced_ryd_shorts_summary_off">ショートで低評価数を表示します。\n\n注意: シークレットモードでは低評価数が表示されないことがあります。</string>
     <string name="revanced_ryd_dislike_percentage_title">低評価数をパーセントで表示</string>
     <string name="revanced_ryd_dislike_percentage_summary_on">低評価数をパーセントで表示します。</string>
     <string name="revanced_ryd_dislike_percentage_summary_off">低評価数をパーセントで表示します。</string>
@@ -1137,8 +1129,8 @@ DeArrowの詳細については、ここをタップしてください。"</stri
     <string name="revanced_sb_general_skiptoast_sum_on">セグメントが自動的にスキップされたときに、トーストを表示します。ここをタップすると、サンプルのトーストが表示されます。</string>
     <string name="revanced_sb_general_skiptoast_sum_off">セグメントが自動的にスキップされたときに、トーストを表示します。ここをタップすると、サンプルのトーストが表示されます。</string>
     <string name="revanced_sb_general_time_without">セグメントを除いた動画の時間を表示</string>
-    <string name="revanced_sb_general_time_without_sum_on">現在の設定: 動画からセグメントを除いた時間をタイムスタンプの横の括弧内に表示します。</string>
-    <string name="revanced_sb_general_time_without_sum_off">現在の設定: 動画からセグメントを除いた時間を動画の長さの横の括弧内に表示します。</string>
+    <string name="revanced_sb_general_time_without_sum_on">セグメントを除いた時間をタイムスタンプの横の括弧内に表示します。</string>
+    <string name="revanced_sb_general_time_without_sum_off">セグメントを除いた時間をタイムスタンプの横の括弧内に表示します。</string>
     <!-- PreferenceScreen: SponsorBlock, PreferenceCategory: Change segment behavior -->
     <string name="revanced_sb_diff_segments">セグメントの設定</string>
     <string name="revanced_sb_segments_sponsor">スポンサー</string>
@@ -1205,8 +1197,8 @@ DeArrowの詳細については、ここをタップしてください。"</stri
     <!-- PreferenceScreen: SponsorBlock, PreferenceCategory: Creating new segments -->
     <string name="revanced_sb_create_segment_category">新しいセグメントの作成</string>
     <string name="revanced_sb_enable_create_segment">新しいセグメントの作成ボタンを表示</string>
-    <string name="revanced_sb_enable_create_segment_sum_on">プレイヤーの右上に「新しいセグメントの作成ボタン」を表示します。</string>
-    <string name="revanced_sb_enable_create_segment_sum_off">プレイヤーの右上に「新しいセグメントの作成ボタン」を表示します。</string>
+    <string name="revanced_sb_enable_create_segment_sum_on">プレーヤーの右上に「新しいセグメントの作成ボタン」を表示します。</string>
+    <string name="revanced_sb_enable_create_segment_sum_off">プレーヤーの右上に「新しいセグメントの作成ボタン」を表示します。</string>
     <string name="revanced_sb_general_adjusting">新しいセグメントのステップの調節</string>
     <string name="revanced_sb_general_adjusting_sum">新しいセグメントを作成する際の時間調節ボタンの移動時間 (ミリ秒)</string>
     <string name="revanced_sb_general_adjusting_invalid">値は正の数でなければなりません。</string>

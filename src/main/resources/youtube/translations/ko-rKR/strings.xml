@@ -230,10 +230,9 @@ DeArrow에 대해 자세히 알아보려면 여기를 누르세요."</string>
     <string name="revanced_preference_category_recommended_video">추천 동영상</string>
     <string name="revanced_hide_recommended_video_title">추천 동영상 숨기기</string>
     <string name="revanced_hide_recommended_video_summary">"다음 추천 동영상이 숨겨집니다:
-
 • '회원 전용' 태그가 있는 동영상
 • 썸네일 하단에 '시청자가 이 동영상도 시청함'와 같은 문구가 있는 동영상"</string>
-    <string name="revanced_hide_low_views_video_title">조회수가 낮은 동영상 숨기기</string>
+    <string name="revanced_hide_low_views_video_title">조회수가 낮은 추천 동영상 숨기기</string>
     <string name="revanced_hide_low_views_video_summary">구독하지 않는 채널에서 업로드한 동영상 중 조회수가 1,000회 미만인 동영상이 홈 피드에서 숨겨집니다.</string>
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Video filter, PreferenceCategory: Duration filter -->
     <string name="revanced_preference_category_duration_filter">재생시간 필터</string>
@@ -360,7 +359,7 @@ DeArrow에 대해 자세히 알아보려면 여기를 누르세요."</string>
     <string name="revanced_miniplayer_hide_rewind_forward_summary_off">\'되감기\' &amp; \'빨리 감기\' 버튼이 노출됩니다.</string>
     <string name="revanced_miniplayer_opacity_title">미니 플레이어 오버레이 불투명도</string>
     <string name="revanced_miniplayer_opacity_summary">불투명도 값은 0-100 사이이며, 0은 투명입니다.</string>
-    <string name="revanced_miniplayer_opacity_invalid_toast">불투명도 값은 0-100 사이어야 하므로 기본값으로 재설정합니다.</string>
+    <string name="revanced_miniplayer_opacity_invalid_toast">불투명도 값은 0-100 사이어야 하므로 기본값으로 초기화합니다.</string>
     <!-- PreferenceScreen: General, PreferenceCategory: General, PreferenceScreen: Navigation buttons -->
     <string name="revanced_preference_screen_navigation_buttons_title">하단바 버튼</string>
     <string name="revanced_preference_screen_navigation_buttons_summary">하단바 섹션에서 구성요소를 숨기거나 표시할 수 있습니다.</string>
@@ -449,10 +448,8 @@ DeArrow에 대해 자세히 알아보려면 여기를 누르세요."</string>
     <string name="revanced_custom_player_overlay_opacity_summary">불투명도 값은 0-100 사이이며, 0은 투명입니다.</string>
     <string name="revanced_custom_player_overlay_opacity_invalid_toast">불투명도 값은 0-100 사이어야 하므로 기본값으로 초기화합니다.</string>
     <string name="revanced_disable_auto_player_popup_panels_title">플레이어 팝업 패널 비활성화하기</string>
-    <string name="revanced_disable_auto_player_popup_panels_summary_on">자동 플레이어 팝업 패널을 활성화합니다.
-• 재생목록, 실시간 채팅 ...</string>
-    <string name="revanced_disable_auto_player_popup_panels_summary_off">자동 플레이어 팝업 패널을 비활성화합니다.
-• 재생목록, 실시간 채팅 ...</string>
+    <string name="revanced_disable_auto_player_popup_panels_summary_on">자동 플레이어 팝업 패널을 활성화합니다.\n• 재생목록, 실시간 채팅 ...</string>
+    <string name="revanced_disable_auto_player_popup_panels_summary_off">자동 플레이어 팝업 패널을 비활성화합니다.\n• 재생목록, 실시간 채팅 ...</string>
     <string name="revanced_disable_speed_overlay_title">동영상 재생 속도 오버레이 비활성화하기</string>
     <string name="revanced_disable_speed_overlay_summary">"길게 누른 상태에서 '2.0배속 재생'을 비활성화합니다.
 
@@ -1027,7 +1024,7 @@ DeArrow에 대해 자세히 알아보려면 여기를 누르세요."</string>
     <string name="revanced_swipe_overlay_text_size_summary">오버레이 텍스트 크기를 지정할 수 있습니다.</string>
     <string name="revanced_swipe_overlay_rect_size_title">스와이프 오버레이 화면 크기</string>
     <string name="revanced_swipe_overlay_rect_size_summary">스와이프가 가능한 화면 영역 크기를 지정할 수 있습니다. (백분율)\n\n알림: \'두 번 탭하여 탐색\' 제스처의 화면 영역 크기도 변경됩니다.</string>
-    <string name="revanced_swipe_overlay_rect_size_invalid_toast">스와이프가 가능한 영역 크기는 50 보다 클 수 없으므로 기본값으로 초기화합니다.</string>
+    <string name="revanced_swipe_overlay_rect_size_invalid_toast">스와이프 영역 크기는 50 보다 클 수 없으므로 기본값으로 초기화합니다.</string>
     <string name="revanced_swipe_overlay_timeout_title">오버레이 타임아웃</string>
     <string name="revanced_swipe_overlay_timeout_summary">오버레이가 표시되는 시간을 지정할 수 있습니다. (밀리초)</string>
     <string name="revanced_disable_hdr_auto_brightness_title">HDR 자동 밝기 비활성화하기</string>
@@ -1036,9 +1033,9 @@ DeArrow에 대해 자세히 알아보려면 여기를 누르세요."</string>
     <string name="revanced_enable_watch_panel_gestures_title">시청 패널 제스처 활성화하기</string>
     <string name="revanced_enable_watch_panel_gestures_summary_on">동영상 플레이어 하단에서 아래로 스와이프하여 전체 화면으로 전환합니다.</string>
     <string name="revanced_enable_watch_panel_gestures_summary_off">동영상 플레이어 하단에서 아래로 스와이프하여 전체 화면으로 전환하지 않습니다.</string>
-    <string name="revanced_enable_swipe_to_switch_video_title">전체화면에서 스와이프하여 동영상 전환 활성화하기</string>
-    <string name="revanced_enable_swipe_to_switch_video_summary_on">위 / 아래로 스와이프하여 다음 / 이전 동영상을 재생합니다.</string>
-    <string name="revanced_enable_swipe_to_switch_video_summary_off">위 / 아래로 스와이프하여 다음 / 이전 동영상을 재생하지 않습니다.</string>
+    <string name="revanced_enable_swipe_to_switch_video_title">스와이프 제스처로 동영상 전환 활성화하기</string>
+    <string name="revanced_enable_swipe_to_switch_video_summary_on">전체 화면에서 위/아래로 스와이프하여 다음/이전 동영상으로 전환합니다.</string>
+    <string name="revanced_enable_swipe_to_switch_video_summary_off">전체 화면에서 위/아래로 스와이프하여 다음/이전 동영상으로 전환하지 않습니다.</string>
     <string name="revanced_swipe_lowest_value_auto_brightness_overlay_text">자동</string>
     <!-- PreferenceScreen: Video -->
     <string name="revanced_preference_screen_video_title">동영상</string>
@@ -1081,8 +1078,8 @@ DeArrow에 대해 자세히 알아보려면 여기를 누르세요."</string>
     <string name="revanced_skip_preloaded_buffer_toast_summary_on">팝업 메시지를 표시합니다.</string>
     <string name="revanced_skip_preloaded_buffer_toast_summary_off">팝업 메시지를 표시하지 않습니다.</string>
     <string name="revanced_spoof_device_dimensions_title">기기 크기 정보 변경하기</string>
-    <string name="revanced_spoof_device_dimensions_summary">"기기 크기 정보를 최대 값으로 변경합니다.
-높은 기기 크기 정보가 필요한 일부 동영상에서는 초고화질 잠금이 해제될 수 있지만 모든 동영상에는 적용되지 않습니다."</string>
+    <string name="revanced_spoof_device_dimensions_summary">"기기 크기 정보를 최대값으로 변경합니다.
+높은 기기 크기 정보가 필요한 일부 동영상에서는 초고화질 동영상 값이 잠금 해제될 수 있지만 모든 동영상에는 적용되지 않습니다. (1440p, 2160p)"</string>
     <string name="revanced_replace_av1_codec_title">소프트웨어 AV1 코덱 변경하기</string>
     <string name="revanced_replace_av1_codec_summary">소프트웨어 AV1 코덱을 VP9 코덱으로 변경합니다.</string>
     <string name="revanced_reject_av1_codec_title">소프트웨어 AV1 코덱 응답 거부하기</string>
@@ -1412,7 +1409,7 @@ DeArrow에 대해 자세히 알아보려면 여기를 누르세요."</string>
 
 알려진 문제점:
 • HDR 동영상을 재생할 수 없습니다.
-• 동영상이 초고화질 동영상 값으로 재생되지 않을 수 있습니다. (1440p, 2160p)
+• 동영상을 초고화질 동영상 값으로 재생할 수 없습니다. (1440p, 2160p)
 • 브랜드 계정 사용자는 시청 기록을 사용할 수 없습니다.
 • 실시간 스트림에서 '백그라운드 재생'을 사용할 수 없습니다.
 • Android 8.0 사용자는 실시간 스트림을 재생할 수 없습니다."</string>
@@ -1422,14 +1419,14 @@ DeArrow에 대해 자세히 알아보려면 여기를 누르세요."</string>
 알려진 문제점:
 • HDR 동영상을 재생할 수 없습니다.
 • 메뉴 구성요소에서 오디오 트랙 메뉴가 표시되지 않습니다.
-• 자막이 표시되지 않을 수 있습니다."</string>
+• 자막이 표시되지 않습니다."</string>
     <string name="revanced_spoof_client_use_android_tv_title">Android TV</string>
     <string name="revanced_spoof_client_use_android_tv_summary">"클라이언트를 Android TV (YouTube TV) 클라이언트로 변경합니다.
 
 알려진 문제점:
 • HDR 동영상을 재생할 수 없습니다.
 • 메뉴 구성요소에서 오디오 트랙 메뉴가 표시되지 않습니다.
-• 자막이 표시되지 않을 수 있습니다.
+• 자막이 표시되지 않습니다.
 • 일부 실시간 스트림을 재생할 수 없습니다."</string>
     <string name="revanced_spoof_client_use_android_vr_title">Android VR</string>
     <string name="revanced_spoof_client_use_android_vr_summary">"클라이언트를 Android VR 클라이언트로 변경합니다.

@@ -196,13 +196,13 @@ Magasin"</string>
     <string name="revanced_preference_screen_video_filter_summary">Masque les vidéos par mot-clés ou par vues.</string>
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Video filter, PreferenceCategory: Keyword filter -->
     <string name="revanced_preference_category_keyword_filter">Filtre par mots-clés</string>
-    <string name="revanced_hide_keyword_content_home_title">Filtrer les vidéos de la page d\'accueil par mot-clés</string>
+    <string name="revanced_hide_keyword_content_home_title">Filtrer la page d\'accueil par mot-clés</string>
     <string name="revanced_hide_keyword_content_home_summary_on">Les vidéos à la page d\'accueil sont filtrées.</string>
     <string name="revanced_hide_keyword_content_home_summary_off">Les vidéos à la page d\'accueil ne sont pas filtrées.</string>
-    <string name="revanced_hide_keyword_content_search_title">Masquer les résultats de recherche par mots-clés</string>
+    <string name="revanced_hide_keyword_content_search_title">Filtrer les recherches par mots-clés</string>
     <string name="revanced_hide_keyword_content_search_summary_on">Les résultats de recherche sont filtrés.</string>
     <string name="revanced_hide_keyword_content_search_summary_off">Les résultats de recherche ne sont pas filtrés.</string>
-    <string name="revanced_hide_keyword_content_subscriptions_title">Vidéos de l\'onglet \"Abonnements\" par mots-clés</string>
+    <string name="revanced_hide_keyword_content_subscriptions_title">Filtr. l\'onglet \"Abonnements\" par mots-clés</string>
     <string name="revanced_hide_keyword_content_subscriptions_summary_on">Les vidéos dans la catégorie \"Abonnements\" sont filtrées.</string>
     <string name="revanced_hide_keyword_content_subscriptions_summary_off">Les vidéos de la catégorie \"Abonnements\" ne sont pas filtrées.</string>
     <string name="revanced_hide_keyword_content_comments_title">Masquer les commentaires par mot-clés</string>
@@ -355,11 +355,11 @@ Certains composants peuvent ne pas être masqués"</string>
     <string name="revanced_miniplayer_opacity_summary">Valeur d\'opacité entre 0-100, 0 étant complètement transparent.</string>
     <string name="revanced_miniplayer_opacity_invalid_toast">L\'opacité du mini lecteur doit être compris entre 0-100. Réinitialisation des valeurs par défaut.</string>
     <!-- PreferenceScreen: General, PreferenceCategory: General, PreferenceScreen: Navigation buttons -->
-    <string name="revanced_preference_screen_navigation_buttons_title">Boutons de navigation</string>
+    <string name="revanced_preference_screen_navigation_buttons_title">Barre de navigation</string>
     <string name="revanced_preference_screen_navigation_buttons_summary">Masque ou affiche les éléments de la barre de navigation.</string>
     <string name="revanced_enable_narrow_navigation_buttons_title">Boutons de navigation compacts</string>
-    <string name="revanced_enable_narrow_navigation_buttons_summary_on">L\'espacement des boutons de navigation sont plus proches.</string>
-    <string name="revanced_enable_narrow_navigation_buttons_summary_off">L\'espacement des boutons de navigation sont moins proches.</string>
+    <string name="revanced_enable_narrow_navigation_buttons_summary_on">L\'espacement des boutons de la barre de navigation sont plus proche.</string>
+    <string name="revanced_enable_narrow_navigation_buttons_summary_off">L\'espacement des boutons de la barre de navigation sont normaux.</string>
     <string name="revanced_hide_navigation_create_button_title">Masquer le bouton \"Créer\"</string>
     <string name="revanced_hide_navigation_create_button_summary_on">Le bouton \"Créer\" est masqué.</string>
     <string name="revanced_hide_navigation_create_button_summary_off">Le bouton \"Créer\" est affiché.</string>
@@ -381,7 +381,7 @@ Certains composants peuvent ne pas être masqués"</string>
     <string name="revanced_hide_navigation_label_title">Masquer les noms des catégories</string>
     <string name="revanced_hide_navigation_label_summary_on">Le nom des catégories est masquée.</string>
     <string name="revanced_hide_navigation_label_summary_off">Le nom des catégories est affichée</string>
-    <string name="revanced_switch_create_with_notifications_button_title">Échanger \"Créer\" avec \"Notifications\"</string>
+    <string name="revanced_switch_create_with_notifications_button_title">Inverser \"Créer\" et \"Notifications\"</string>
     <string name="revanced_switch_create_with_notifications_button_summary">"Échange la place des boutons \"Créer\" et \"Notifications\" en falsifiant les infos de l'appareil
 
 • Malgré l'activation de ce paramètre, il peut ne pas fonctionner tant que vous n'avez pas redémarré l'appareil
@@ -409,7 +409,7 @@ Sous-titres"</string>
     <string name="revanced_enable_wide_search_bar_with_header_title">Barre de recherche large avec en-tête</string>
     <string name="revanced_enable_wide_search_bar_with_header_summary_on">La barre de recherche large inclut l\'en-tête YouTube.</string>
     <string name="revanced_enable_wide_search_bar_with_header_summary_off">La barre de recherche large masque l\'en-tête YouTube.</string>
-    <string name="revanced_enable_wide_search_bar_in_you_tab_title">Active la barre de recherche large dans la catégorie \"Vous\"</string>
+    <string name="revanced_enable_wide_search_bar_in_you_tab_title">Barre de recherche large dans l\'onglet \"Vous\"</string>
     <string name="revanced_enable_wide_search_bar_in_you_tab_summary">"Activer ce paramètre désactivera le bouton \"Paramètres\" dans la catégorie \"Vous\"
 
 Dans ce cas, veuillez utiliser le chemin suivant pour accéder aux paramètres :
@@ -423,7 +423,7 @@ Dans ce cas, veuillez utiliser le chemin suivant pour accéder aux paramètres :
     <string name="revanced_hide_toolbar_notification_button_title">Masquer le bouton \"Notifications\"</string>
     <string name="revanced_hide_toolbar_notification_button_summary_on">Le bouton \"Notifications\" est masqué.</string>
     <string name="revanced_hide_toolbar_notification_button_summary_off">Le bouton \"Notifications\" est affiché.</string>
-    <string name="revanced_hide_search_term_thumbnail_title">Masquer les miniatures sur la barre de recherche</string>
+    <string name="revanced_hide_search_term_thumbnail_title">Masquer les miniatures pendant la recherche</string>
     <string name="revanced_hide_search_term_thumbnail_summary_on">Les miniatures sur la barre de recherche sont masquées</string>
     <string name="revanced_hide_search_term_thumbnail_summary_off">Les miniatures sur la barre de recherche sont affichées</string>
     <string name="revanced_hide_voice_search_button_title">Masquer le bouton \"Recherche vocale\"</string>
@@ -896,7 +896,7 @@ L'option \"Ouvrir la description automatiquement\" risque de ne pas fonctionner 
     <string name="revanced_hide_shorts_shelf_summary">"Masquer les propositions de Shorts.
 
 Limitation : Les fiches officielles dans les résultats de recherche sont masquées."</string>
-    <string name="revanced_hide_shorts_shelf_home_related_videos_title">Masquer dans la page d\'accueil et dans les vidéos similaires</string>
+    <string name="revanced_hide_shorts_shelf_home_related_videos_title">Masquer dans accueil et dans vidéo similaires</string>
     <string name="revanced_hide_shorts_shelf_home_related_videos_summary_on">Masqué les Shorts dans page d\'accueil et dans les vidéos similaires.</string>
     <string name="revanced_hide_shorts_shelf_home_related_videos_summary_off">Affiché les Shorts dans page d\'accueil et dans les vidéos similaires.</string>
     <string name="revanced_hide_shorts_shelf_subscriptions_title">Dans la section \"Abonnements\"</string>
@@ -935,7 +935,7 @@ Limitation : Les fiches officielles dans les résultats de recherche sont masqu�
     <string name="revanced_hide_shorts_location_label_title">Masquer les informations de localisation</string>
     <string name="revanced_hide_shorts_location_label_summary_on">Les informations de localisation sont masqués.</string>
     <string name="revanced_hide_shorts_location_label_summary_off">Les informations de localisation sont affichés.</string>
-    <string name="revanced_hide_shorts_save_sound_button_title">Masquer le son d\'enregistrement du bouton \"Playlist\"</string>
+    <string name="revanced_hide_shorts_save_sound_button_title">Masquer le son du bouton \"Playlist\"</string>
     <string name="revanced_hide_shorts_save_sound_button_summary_on">Le son d\'enregistrement dans la Playlist est masqué.</string>
     <string name="revanced_hide_shorts_save_sound_button_summary_off">Le son d\'enregistrement dans la Playlist est affiché.</string>
     <string name="revanced_hide_shorts_search_suggestions_title">Masquer les suggestions de recherche</string>
@@ -1051,13 +1051,13 @@ Glisser vers le haut / bas pour jouer la vidéo suivante/précédente.</string>
     <string name="revanced_custom_playback_speed_menu_type_summary_off">L\'ancien style du menu \"Vitesse de lecture\" est utilisé.</string>
     <string name="revanced_custom_playback_speeds_title">Vitesses de lecture personnalisées</string>
     <string name="revanced_custom_playback_speeds_summary">Ajouter ou modifier les vitesses de lecture disponibles</string>
-    <string name="revanced_remember_playback_speed_last_selected_title">Enregistrer la modification de vitesse de lecture</string>
+    <string name="revanced_remember_playback_speed_last_selected_title">Enreg. modif. de la vitesse de lecture</string>
     <string name="revanced_remember_playback_speed_last_selected_summary_on">La modification de vitesse de lecture est appliqué pour toutes les vidéos.</string>
     <string name="revanced_remember_playback_speed_last_selected_summary_off">La modification de vitesse de lecture est appliqué pour cette vidéo.</string>
-    <string name="revanced_remember_video_quality_last_selected_title">Enregistrer la modification de la résolution</string>
+    <string name="revanced_remember_video_quality_last_selected_title">Enreg. modif. de la résolution</string>
     <string name="revanced_remember_video_quality_last_selected_summary_on">La modification de la résolution est appliqué pour toutes les vidéos.</string>
     <string name="revanced_remember_video_quality_last_selected_summary_off">La modification de la résolution est appliqué pour la vidéo en cours.</string>
-    <string name="revanced_restore_old_video_quality_menu_title">Restaurer l\'ancienne interface de qualité vidéo</string>
+    <string name="revanced_restore_old_video_quality_menu_title">Restaur. ancien. interface de qualité vidéo</string>
     <string name="revanced_restore_old_video_quality_menu_summary_on">L\'ancienne interface de qualité vidéo est utilisé.</string>
     <string name="revanced_restore_old_video_quality_menu_summary_off">La nouvelle interface de qualité vidéo est utilisé.</string>
     <string name="revanced_enable_default_playback_speed_shorts_title">Vitesse de lecture par défaut Shorts</string>
