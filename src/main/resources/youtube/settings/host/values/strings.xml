@@ -491,7 +491,7 @@ Tap and hold to open RVX settings."</string>
     <string name="revanced_disable_auto_player_popup_panels_summary_on">Auto player popup panels are disabled.</string>
     <string name="revanced_disable_auto_player_popup_panels_summary_off">Auto player popup panels are enabled.</string>
     <string name="revanced_disable_speed_overlay_title">Disable speed overlay</string>
-    <string name="revanced_disable_speed_overlay_summary">"Disable 'Playing at 2x speed' while holding down.
+    <string name="revanced_disable_speed_overlay_summary">"Disable '2x&gt;&gt;' while holding down.
 
 Note:
 • Disabling the speed overlay restores the Slide to seek behavior of the old layout.
