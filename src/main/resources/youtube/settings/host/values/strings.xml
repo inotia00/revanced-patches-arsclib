@@ -874,7 +874,7 @@ Please download %2$s from the website."</string>
 
     <string name="revanced_overlay_button_speed_dialog_reset">Playback speed reset: %sx.</string>
     <string name="revanced_overlay_button_not_allowed_warning">Tap and hold to change button state.</string>
-    <string name="revanced_share_copy_timestamp_success">Time stamp copied to clipboard. (%s)</string>
+    <string name="revanced_share_copy_timestamp_success">Timestamp copied to clipboard. (%s)</string>
     <string name="revanced_share_copy_url_success">URL copied to clipboard.</string>
     <string name="revanced_share_copy_url_timestamp_success">URL with timestamp copied to clipboard.</string>
 
@@ -882,13 +882,13 @@ Please download %2$s from the website."</string>
     <string name="revanced_preference_screen_seekbar_title">Seekbar</string>
     <string name="revanced_preference_screen_seekbar_summary">Customize the seekbar components.</string>
 
-    <string name="revanced_append_time_stamp_information_title">Append time stamp information</string>
-    <string name="revanced_append_time_stamp_information_summary_on">Information is appended to the time stamp.</string>
-    <string name="revanced_append_time_stamp_information_summary_off">Information is not appended to the time stamp.</string>
+    <string name="revanced_append_time_stamp_information_title">Append timestamp information</string>
+    <string name="revanced_append_time_stamp_information_summary_on">Information is appended to the timestamp.</string>
+    <string name="revanced_append_time_stamp_information_summary_off">Information is not appended to the timestamp.</string>
     <string name="revanced_append_time_stamp_information_type_title">Append information type</string>
     <string name="revanced_append_time_stamp_information_type_summary_on">Append video quality.</string>
     <string name="revanced_append_time_stamp_information_type_summary_off">Append playback speed.</string>
-    <string name="revanced_replace_time_stamp_action_title">Replace time stamp action</string>
+    <string name="revanced_replace_time_stamp_action_title">Replace timestamp action</string>
     <string name="revanced_replace_time_stamp_action_summary_on">Tap to open playback speed or video quality flyout menu.</string>
     <string name="revanced_replace_time_stamp_action_summary_off">Tap to show the remaining time.</string>
     <string name="revanced_enable_custom_seekbar_color_title">Enable custom seekbar color</string>
