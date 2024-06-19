@@ -934,7 +934,7 @@ Please download %2$s from the website."</string>
     <string name="revanced_hide_shopping_links_title">Hide shopping links</string>
     <string name="revanced_hide_shopping_links_summary_on">Shopping links are hidden.</string>
     <string name="revanced_hide_shopping_links_summary_off">Shopping links are shown.</string>
-    <string name="revanced_hide_suggestions_section_title">Hide attributes sections</string>
+    <string name="revanced_hide_suggestions_section_title">Hide attributes section</string>
     <string name="revanced_hide_suggestions_section_summary_on">Featured places, Games, and Music sections are hidden.</string>
     <string name="revanced_hide_suggestions_section_summary_off">Featured places, Games, and Music sections are shown.</string>
     <string name="revanced_hide_transcript_section_title">Hide Transcript section</string>
