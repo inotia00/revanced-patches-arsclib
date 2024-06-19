@@ -908,9 +908,9 @@ Please download %2$s from the website."</string>
     <string name="revanced_hide_seekbar_chapters_title">Hide seekbar chapters</string>
     <string name="revanced_hide_seekbar_chapters_summary_on">Chapters are hidden in the seekbar.</string>
     <string name="revanced_hide_seekbar_chapters_summary_off">Chapters are shown in the seekbar.</string>
-    <string name="revanced_hide_time_stamp_title">Hide time stamp</string>
-    <string name="revanced_hide_time_stamp_summary_on">Time stamp is hidden.</string>
-    <string name="revanced_hide_time_stamp_summary_off">Time stamp is shown.</string>
+    <string name="revanced_hide_time_stamp_title">Hide timestamp</string>
+    <string name="revanced_hide_time_stamp_summary_on">Timestamp is hidden.</string>
+    <string name="revanced_hide_time_stamp_summary_off">Timestamp is shown.</string>
     <string name="revanced_restore_old_seekbar_thumbnails_title">Restore old seekbar thumbnails</string>
     <string name="revanced_restore_old_seekbar_thumbnails_summary_on">Seekbar thumbnails will appear above the seekbar.</string>
     <string name="revanced_restore_old_seekbar_thumbnails_summary_off">Seekbar thumbnails will appear in fullscreen.</string>
@@ -922,24 +922,24 @@ Please download %2$s from the website."</string>
     <string name="revanced_disable_rolling_number_animations_title">Disable rolling number animations</string>
     <string name="revanced_disable_rolling_number_animations_summary_on">Rolling numbers are not animated.</string>
     <string name="revanced_disable_rolling_number_animations_summary_off">Rolling numbers are animated.</string>
-    <string name="revanced_hide_chapters_section_title">Hide chapters sections</string>
-    <string name="revanced_hide_chapters_section_summary_on">Chapters sections are hidden.</string>
-    <string name="revanced_hide_chapters_section_summary_off">Chapters sections are shown.</string>
-    <string name="revanced_hide_info_cards_section_title">Hide info cards sections</string>
-    <string name="revanced_hide_info_cards_section_summary_on">Info cards sections are hidden.</string>
-    <string name="revanced_hide_info_cards_section_summary_off">Info cards sections are shown.</string>
-    <string name="revanced_hide_podcast_section_title">Hide podcast sections</string>
-    <string name="revanced_hide_podcast_section_summary_on">Podcast sections are hidden.</string>
-    <string name="revanced_hide_podcast_section_summary_off">Podcast sections are shown.</string>
+    <string name="revanced_hide_chapters_section_title">Hide Chapters section</string>
+    <string name="revanced_hide_chapters_section_summary_on">Chapters section is hidden.</string>
+    <string name="revanced_hide_chapters_section_summary_off">Chapters section is shown.</string>
+    <string name="revanced_hide_info_cards_section_title">Hide info cards section</string>
+    <string name="revanced_hide_info_cards_section_summary_on">Info cards section is hidden.</string>
+    <string name="revanced_hide_info_cards_section_summary_off">Info cards section is shown.</string>
+    <string name="revanced_hide_podcast_section_title">Hide Explore the podcast section</string>
+    <string name="revanced_hide_podcast_section_summary_on">Explore the podcast section is hidden.</string>
+    <string name="revanced_hide_podcast_section_summary_off">Explore the podcast section is shown.</string>
     <string name="revanced_hide_shopping_links_title">Hide shopping links</string>
     <string name="revanced_hide_shopping_links_summary_on">Shopping links are hidden.</string>
     <string name="revanced_hide_shopping_links_summary_off">Shopping links are shown.</string>
-    <string name="revanced_hide_suggestions_section_title">Hide suggestions sections</string>
-    <string name="revanced_hide_suggestions_section_summary_on">Game sections, music sections, and place sections are hidden.</string>
-    <string name="revanced_hide_suggestions_section_summary_off">Game sections, music sections, and place sections are shown.</string>
-    <string name="revanced_hide_transcript_section_title">Hide transcript sections</string>
-    <string name="revanced_hide_transcript_section_summary_on">Transcript sections are hidden.</string>
-    <string name="revanced_hide_transcript_section_summary_off">Transcript sections are shown.</string>
+    <string name="revanced_hide_suggestions_section_title">Hide attributes sections</string>
+    <string name="revanced_hide_suggestions_section_summary_on">Featured places, Games, and Music sections are hidden.</string>
+    <string name="revanced_hide_suggestions_section_summary_off">Featured places, Games, and Music sections are shown.</string>
+    <string name="revanced_hide_transcript_section_title">Hide Transcript section</string>
+    <string name="revanced_hide_transcript_section_summary_on">Transcript section is hidden.</string>
+    <string name="revanced_hide_transcript_section_summary_off">Transcript section is shown.</string>
 
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Video description, PreferenceCategory: Experimental Flags -->
     <string name="revanced_disable_video_description_interaction_title">Disable video description interaction</string>
@@ -974,7 +974,7 @@ The Expand video description option may not work if the entered string does not 
     <string name="revanced_hide_shorts_shelf_title">Hide Shorts shelves</string>
     <string name="revanced_hide_shorts_shelf_summary">"Hides Shorts shelves.
 
-Limitation: Official headers in search results will be hidden."</string>
+Side effect: Official headers in search results will be hidden."</string>
     <string name="revanced_hide_shorts_shelf_home_related_videos_title">Hide in home feed and related videos</string>
     <string name="revanced_hide_shorts_shelf_home_related_videos_summary_on">Hidden in home feed and related videos.</string>
     <string name="revanced_hide_shorts_shelf_home_related_videos_summary_off">Shown in home feed and related videos.</string>
