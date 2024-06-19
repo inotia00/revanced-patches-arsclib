@@ -1069,9 +1069,9 @@ Side effect: Official headers in search results will be hidden."</string>
     <string name="revanced_hide_shorts_navigation_bar_title">Hide navigation bar</string>
     <string name="revanced_hide_shorts_navigation_bar_summary_on">Navigation bar is hidden.</string>
     <string name="revanced_hide_shorts_navigation_bar_summary_off">Navigation bar is shown.</string>
-    <string name="revanced_return_shorts_channel_name_title">Return Shorts channel name</string>
-    <string name="revanced_return_shorts_channel_name_summary_on">Channel name is used.</string>
-    <string name="revanced_return_shorts_channel_name_summary_off">Channel handle is used.</string>
+    <string name="revanced_replace_channel_handle_title">Replace channel handle</string>
+    <string name="revanced_replace_channel_handle_summary_on">Channel name is used.</string>
+    <string name="revanced_replace_channel_handle_summary_off">Channel handle is used.</string>
 
     <!-- PreferenceScreen: Swipe controls -->
     <string name="revanced_preference_screen_swipe_controls_title">Swipe controls</string>
