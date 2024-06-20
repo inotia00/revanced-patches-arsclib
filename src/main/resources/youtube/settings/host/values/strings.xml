@@ -628,9 +628,9 @@ Settings → Autoplay → Autoplay next video"</string>
     <string name="revanced_hide_preview_comment_type_title">Hide preview comment type</string>
     <string name="revanced_hide_preview_comment_type_on">This does not change the size of the comments section, so it is possible to open the live chat replay in the comments section.</string>
     <string name="revanced_hide_preview_comment_type_off">This changes the size of the comments section, so it is impossible to open a live chat replay in the comments section.</string>
-    <string name="revanced_hide_comment_create_shorts_button_title">Hide create Shorts button</string>
-    <string name="revanced_hide_comment_create_shorts_button_summary_on">Create Shorts button is hidden.</string>
-    <string name="revanced_hide_comment_create_shorts_button_summary_off">Create Shorts button is shown.</string>
+    <string name="revanced_hide_comment_create_shorts_button_title">Hide Create a Short button</string>
+    <string name="revanced_hide_comment_create_shorts_button_summary_on">Create a Short button is hidden.</string>
+    <string name="revanced_hide_comment_create_shorts_button_summary_off">Create a Short button is shown.</string>
     <string name="revanced_hide_comment_thanks_button_title">Hide Thanks button</string>
     <string name="revanced_hide_comment_thanks_button_summary_on">Thanks button is hidden.</string>
     <string name="revanced_hide_comment_thanks_button_summary_off">Thanks button is shown.</string>
