@@ -143,9 +143,9 @@ Tap here to learn more about DeArrow."</string>
     <string name="revanced_hide_show_more_button_title">Hide Show more button</string>
     <string name="revanced_hide_show_more_button_summary_on">Show more button is hidden.</string>
     <string name="revanced_hide_show_more_button_summary_off">Show more button is shown.</string>
-    <string name="revanced_hide_subscriptions_channel_section_title">Hide subscriptions channel section</string>
-    <string name="revanced_hide_subscriptions_channel_section_summary_on">Subscriptions channel section is hidden.</string>
-    <string name="revanced_hide_subscriptions_channel_section_summary_off">Subscriptions channel section is shown.</string>
+    <string name="revanced_hide_subscriptions_channel_section_title">Hide subscriptions carousel</string>
+    <string name="revanced_hide_subscriptions_channel_section_summary_on">Subscriptions carousel is hidden.</string>
+    <string name="revanced_hide_subscriptions_channel_section_summary_off">Subscriptions carousel is shown.</string>
     <string name="revanced_hide_ticket_shelf_title">Hide ticket shelves</string>
     <string name="revanced_hide_ticket_shelf_summary_on">Ticket shelves are hidden.</string>
     <string name="revanced_hide_ticket_shelf_summary_off">Ticket shelves are shown.</string>
