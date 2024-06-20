@@ -591,9 +591,11 @@ Settings → Autoplay → Autoplay next video"</string>
     <string name="revanced_bypass_ambient_mode_restrictions_summary_on">Ambient mode is enabled in battery saver mode.</string>
     <string name="revanced_bypass_ambient_mode_restrictions_summary_off">Ambient mode is disabled in battery saver mode.</string>
     <string name="revanced_disable_ambient_mode_title">Disable ambient mode</string>
-    <string name="revanced_disable_ambient_mode_summary">Disables ambient mode.</string>
+    <string name="revanced_disable_ambient_mode_summary_on">Ambient mode is disabled.</string>
+    <string name="revanced_disable_ambient_mode_summary_off">Ambient mode is enabled.</string>
     <string name="revanced_disable_ambient_mode_in_fullscreen_title">Disable ambient mode in fullscreen</string>
-    <string name="revanced_disable_ambient_mode_in_fullscreen_summary">Disables ambient mode for fullscreen only.</string>
+    <string name="revanced_disable_ambient_mode_in_fullscreen_summary_on">Ambient mode is only disabled for fullscreen.</string>
+    <string name="revanced_disable_ambient_mode_in_fullscreen_summary_off">Disabling amibient mode will disable it everywhere.</string>
 
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Channel bar -->
     <string name="revanced_preference_screen_channel_bar_title">Channel bar</string>
