@@ -10,6 +10,7 @@
 
     <!-- Shared Category -->
     <string name="revanced_preference_category_experimental_flag">Experimental Flags</string>
+    <string name="revanced_extended_confirm_user_dialog_title">Do you wish to proceed?</string>
     <string name="revanced_extended_restart_first_run">Restart to load the layout normally</string>
     <string name="revanced_extended_restart_message">Refresh and restart</string>
     <string name="revanced_playback_speed_normal">Normal</string>
@@ -1469,6 +1470,18 @@ Limitation: Automatically played feed videos will show up in your watch history.
     <string name="revanced_spoof_player_parameter_in_feed_summary_off">"Player parameter not spoofed for feed videos.
 
 Limitation: Feed videos will play for less than 1 minute before encountering playback issues."</string>
+
+    <string name="revanced_spoof_signature_title">Spoof app signature</string>
+    <string name="revanced_spoof_signature_summary_on">App signature spoofed.</string>
+    <string name="revanced_spoof_signature_summary_off">App signature not spoofed.</string>
+    <string name="revanced_spoof_signature_user_dialog_message">"App signature will be spoofed to the original YouTube.
+
+This will only work if the following conditions are met:
+
+1. The original YouTube is installed on the device.
+2. GmsCore have permission to run in the background.
+3. GmsCore battery optimizations is disabled.
+4. Device runs Android 12+."</string>
 
     <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Import / Export settings -->
     <string name="revanced_preference_screen_import_export_title">Import / Export settings</string>
