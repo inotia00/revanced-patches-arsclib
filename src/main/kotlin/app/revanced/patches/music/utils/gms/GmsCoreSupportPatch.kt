@@ -1,6 +1,7 @@
 package app.revanced.patches.music.utils.gms
 
 import app.revanced.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.revanced.patches.music.utils.fix.client.SpoofSignaturePatch
 import app.revanced.patches.music.utils.fix.client.SpoofUserAgentPatch
 import app.revanced.patches.music.utils.fix.fileprovider.FileProviderPatch
 import app.revanced.patches.music.utils.integrations.IntegrationsPatch
@@ -15,6 +16,7 @@ object GmsCoreSupportPatch : BaseGmsCoreSupportPatch(
     mainActivityOnCreateFingerprint = MainActivityFingerprint,
     integrationsPatchDependency = IntegrationsPatch::class,
     dependencies = setOf(
+        SpoofSignaturePatch::class,
         SpoofUserAgentPatch::class,
         PackageNamePatch::class,
         FileProviderPatch::class

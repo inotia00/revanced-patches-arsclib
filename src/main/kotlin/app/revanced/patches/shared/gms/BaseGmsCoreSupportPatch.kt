@@ -3,7 +3,6 @@ package app.revanced.patches.shared.gms
 import app.revanced.patcher.PatchClass
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
-import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.getInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.revanced.patcher.fingerprint.MethodFingerprint
@@ -18,19 +17,16 @@ import app.revanced.patches.shared.gms.fingerprints.GmsCoreSupportFingerprint
 import app.revanced.patches.shared.gms.fingerprints.GmsCoreSupportFingerprint.GET_GMS_CORE_VENDOR_GROUP_ID_METHOD_NAME
 import app.revanced.patches.shared.gms.fingerprints.GooglePlayUtilityFingerprint
 import app.revanced.patches.shared.gms.fingerprints.PrimeMethodFingerprint
-import app.revanced.patches.shared.gms.fingerprints.RequestChecksumFingerprint
 import app.revanced.patches.shared.gms.fingerprints.ServiceCheckFingerprint
 import app.revanced.patches.shared.integrations.Constants.PATCHES_PATH
 import app.revanced.patches.shared.packagename.PackageNamePatch
 import app.revanced.util.getReference
-import app.revanced.util.indexOfFirstInstruction
 import app.revanced.util.resultOrThrow
 import app.revanced.util.returnEarly
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.builder.instruction.BuilderInstruction21c
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction21c
-import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 import com.android.tools.smali.dexlib2.iface.reference.StringReference
 import com.android.tools.smali.dexlib2.immutable.reference.ImmutableStringReference
 import com.android.tools.smali.dexlib2.util.MethodUtil
@@ -70,7 +66,6 @@ abstract class BaseGmsCoreSupportPatch(
         GmsCoreSupportFingerprint,
         GooglePlayUtilityFingerprint,
         PrimeMethodFingerprint,
-        RequestChecksumFingerprint,
         ServiceCheckFingerprint,
         mainActivityOnCreateFingerprint
     ),
@@ -119,20 +114,6 @@ abstract class BaseGmsCoreSupportPatch(
         GmsCoreSupportFingerprint.resultOrThrow().mutableClass.methods
             .single { it.name == GET_GMS_CORE_VENDOR_GROUP_ID_METHOD_NAME }
             .replaceInstruction(0, "const-string v0, \"$gmsCoreVendorGroupId\"")
-
-        RequestChecksumFingerprint.resultOrThrow().mutableMethod.apply {
-            val targetIndex = indexOfFirstInstruction {
-                opcode == Opcode.INVOKE_VIRTUAL
-                    && getReference<MethodReference>()?.name == "getPackageName"
-            } + 1
-
-            val targetRegister = getInstruction<OneRegisterInstruction>(targetIndex).registerA
-
-            replaceInstruction(
-                targetIndex,
-                "const-string v$targetRegister, \"com.google.android.youtube\"",
-            )
-        }
     }
 
     private fun BytecodeContext.transformStringReferences(transform: (str: String) -> String?) =
