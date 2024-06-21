@@ -594,7 +594,7 @@ Settings → Autoplay → Autoplay next video"</string>
     <string name="revanced_disable_ambient_mode_summary_on">Ambient mode is disabled.</string>
     <string name="revanced_disable_ambient_mode_summary_off">Ambient mode is enabled.</string>
     <string name="revanced_disable_ambient_mode_in_fullscreen_title">Disable Ambient mode in fullscreen</string>
-    <string name="revanced_disable_ambient_mode_in_fullscreen_summary_on">Ambient mode is only disabled in fullscreen.</string>
+    <string name="revanced_disable_ambient_mode_in_fullscreen_summary_on">Ambient mode is disabled in fullscreen.</string>
     <string name="revanced_disable_ambient_mode_in_fullscreen_summary_off">Ambient mode is enabled in fullscreen.</string>
 
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Channel bar -->
