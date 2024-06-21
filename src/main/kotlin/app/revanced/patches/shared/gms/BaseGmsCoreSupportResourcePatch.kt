@@ -101,6 +101,9 @@ abstract class BaseGmsCoreSupportResourcePatch(
                 "com.google.android.c2dm",
                 "$gmsCoreVendorGroupId.android.c2dm",
             ).replace(
+                "<queries>",
+                "<queries><package android:name=\"$fromPackageName\"/>",
+            ).replace(
                 "</queries>",
                 "<package android:name=\"$gmsCoreVendorGroupId.android.gms\"/></queries>",
             ),
