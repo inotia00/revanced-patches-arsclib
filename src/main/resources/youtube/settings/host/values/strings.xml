@@ -143,9 +143,9 @@ Tap here to learn more about DeArrow."</string>
     <string name="revanced_hide_show_more_button_title">Hide Show more button</string>
     <string name="revanced_hide_show_more_button_summary_on">Show more button is hidden.</string>
     <string name="revanced_hide_show_more_button_summary_off">Show more button is shown.</string>
-    <string name="revanced_hide_subscriptions_channel_section_title">Hide subscriptions carousel</string>
-    <string name="revanced_hide_subscriptions_channel_section_summary_on">Subscriptions carousel is hidden.</string>
-    <string name="revanced_hide_subscriptions_channel_section_summary_off">Subscriptions carousel is shown.</string>
+    <string name="revanced_hide_subscriptions_carousel_title">Hide subscriptions carousel</string>
+    <string name="revanced_hide_subscriptions_carousel_summary_on">Subscriptions carousel is hidden.</string>
+    <string name="revanced_hide_subscriptions_carousel_summary_off">Subscriptions carousel is shown.</string>
     <string name="revanced_hide_ticket_shelf_title">Hide ticket shelves</string>
     <string name="revanced_hide_ticket_shelf_summary_on">Ticket shelves are hidden.</string>
     <string name="revanced_hide_ticket_shelf_summary_off">Ticket shelves are shown.</string>
@@ -1071,9 +1071,9 @@ Side effect: Official headers in search results will be hidden."</string>
     <string name="revanced_hide_shorts_navigation_bar_title">Hide navigation bar</string>
     <string name="revanced_hide_shorts_navigation_bar_summary_on">Navigation bar is hidden.</string>
     <string name="revanced_hide_shorts_navigation_bar_summary_off">Navigation bar is shown.</string>
-    <string name="revanced_return_shorts_channel_name_title">Replace channel handle</string>
-    <string name="revanced_return_shorts_channel_name_summary_on">Channel name is used.</string>
-    <string name="revanced_return_shorts_channel_name_summary_off">Channel handle is used.</string>
+    <string name="revanced_replace_channel_handle_title">Replace channel handle</string>
+    <string name="revanced_replace_channel_handle_summary_on">Channel name is used.</string>
+    <string name="revanced_replace_channel_handle_summary_off">Channel handle is used.</string>
 
     <!-- PreferenceScreen: Swipe controls -->
     <string name="revanced_preference_screen_swipe_controls_title">Swipe controls</string>
