@@ -1472,8 +1472,8 @@ Limitation: Automatically played feed videos will show up in your watch history.
 Limitation: Feed videos will play for less than 1 minute before encountering playback issues."</string>
 
     <string name="revanced_spoof_signature_title">Spoof app signature</string>
-    <string name="revanced_spoof_signature_summary_on">App signature spoofed.</string>
-    <string name="revanced_spoof_signature_summary_off">App signature not spoofed.</string>
+    <string name="revanced_spoof_signature_summary_on">App signature is spoofed.</string>
+    <string name="revanced_spoof_signature_summary_off">App signature is not spoofed.</string>
     <string name="revanced_spoof_signature_user_dialog_message">"App signature will be spoofed to the original YouTube.
 
 This will only work if the following conditions are met:
