@@ -6,11 +6,9 @@ import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patches.shared.gms.BaseGmsCoreSupportPatch
+import app.revanced.patches.shared.integrations.Constants.PATCHES_PATH
 import app.revanced.patches.shared.spoofsignature.fingerprints.CertificateFingerprint
 import app.revanced.patches.shared.spoofsignature.fingerprints.CertificateFingerprint.GET_PACKAGE_NAME_METHOD_REFERENCE
-import app.revanced.patches.shared.spoofsignature.fingerprints.SpoofSignatureFingerprint
-import app.revanced.patches.shared.spoofsignature.fingerprints.SpoofSignatureFingerprint.GET_ORIGINAL_PACKAGE_NAME_METHOD_NAME
-import app.revanced.patches.shared.spoofsignature.fingerprints.SpoofSignatureFingerprint.INTEGRATIONS_CLASS_DESCRIPTOR
 import app.revanced.util.getTargetIndexWithReference
 import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
@@ -25,12 +23,14 @@ abstract class BaseSpoofSignaturePatch(
     dependencies: Set<PatchClass> = emptySet()
 ) : BytecodePatch(
     description = "Spoofs the package name used for app signature verification in Android 12+.",
-    fingerprints = setOf(
-        CertificateFingerprint,
-        SpoofSignatureFingerprint,
-    ),
+    fingerprints = setOf(CertificateFingerprint),
     dependencies = dependencies
 ) {
+    private companion object {
+        const val INTEGRATIONS_CLASS_DESCRIPTOR =
+            "$PATCHES_PATH/SpoofSignaturePatch;"
+    }
+
     override fun execute(context: BytecodeContext) {
 
         // Spoof signature.
@@ -49,11 +49,6 @@ abstract class BaseSpoofSignaturePatch(
                 }
             }
         }
-
-        // Change the original package name in ReVanced Integrations.
-        SpoofSignatureFingerprint.resultOrThrow().mutableClass.methods
-            .single { it.name == GET_ORIGINAL_PACKAGE_NAME_METHOD_NAME }
-            .replaceInstruction(0, "const-string v0, \"$packageName\"")
 
     }
 }
