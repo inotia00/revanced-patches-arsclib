@@ -1,10 +1,13 @@
-package app.revanced.patches.shared.spoofsignature.fingerprints
+package app.revanced.patches.shared.gms.fingerprints
 
 import app.revanced.patcher.extensions.or
-import app.revanced.patches.shared.spoofsignature.fingerprints.CertificateFingerprint.GET_PACKAGE_NAME_METHOD_REFERENCE
+import app.revanced.patches.shared.gms.fingerprints.CertificateFingerprint.GET_PACKAGE_NAME_METHOD_REFERENCE
 import app.revanced.util.fingerprint.ReferenceFingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 
+/**
+ * Method which the package name is used to check the app signature.
+ */
 internal object CertificateFingerprint : ReferenceFingerprint(
     returnType = "Ljava/lang/String;",
     accessFlags = AccessFlags.PROTECTED or AccessFlags.FINAL,

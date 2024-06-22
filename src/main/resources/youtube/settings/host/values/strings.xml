@@ -1471,18 +1471,6 @@ Limitation: Automatically played feed videos will show up in your watch history.
 
 Limitation: Feed videos will play for less than 1 minute before encountering playback issues."</string>
 
-    <string name="revanced_spoof_signature_title">Spoof app signature</string>
-    <string name="revanced_spoof_signature_summary_on">App signature is spoofed.</string>
-    <string name="revanced_spoof_signature_summary_off">App signature is not spoofed.</string>
-    <string name="revanced_spoof_signature_user_dialog_message">"App signature will be spoofed as the original YouTube.
-
-This will only work if the following conditions are met:
-
-1. The original YouTube is installed on the device.
-2. GmsCore has permission to run in the background.
-3. GmsCore battery optimizations are disabled.
-4. The device is running Android 12+."</string>
-
     <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Import / Export settings -->
     <string name="revanced_preference_screen_import_export_title">Import / Export settings</string>
     <string name="revanced_preference_screen_import_export_summary">Import or export settings.</string>

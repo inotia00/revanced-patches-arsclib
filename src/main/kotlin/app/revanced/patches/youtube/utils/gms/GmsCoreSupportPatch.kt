@@ -5,7 +5,6 @@ import app.revanced.patches.shared.packagename.PackageNamePatch
 import app.revanced.patches.shared.packagename.PackageNamePatch.ORIGINAL_PACKAGE_NAME_YOUTUBE
 import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.fix.client.SpoofClientPatch
-import app.revanced.patches.youtube.utils.fix.client.SpoofSignaturePatch
 import app.revanced.patches.youtube.utils.fix.client.SpoofUserAgentPatch
 import app.revanced.patches.youtube.utils.integrations.IntegrationsPatch
 import app.revanced.patches.youtube.utils.mainactivity.fingerprints.MainActivityFingerprint
@@ -18,7 +17,6 @@ object GmsCoreSupportPatch : BaseGmsCoreSupportPatch(
     integrationsPatchDependency = IntegrationsPatch::class,
     dependencies = setOf(
         SpoofClientPatch::class,
-        SpoofSignaturePatch::class,
         SpoofUserAgentPatch::class,
         PackageNamePatch::class,
         SettingsPatch::class
