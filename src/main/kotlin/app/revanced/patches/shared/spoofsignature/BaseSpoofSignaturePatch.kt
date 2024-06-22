@@ -24,7 +24,7 @@ abstract class BaseSpoofSignaturePatch(
     private val packageName: String,
     dependencies: Set<PatchClass> = emptySet()
 ) : BytecodePatch(
-    description = "Spoof the package name used for app signature verification in Android 12+.",
+    description = "Spoofs the package name used for app signature verification in Android 12+.",
     fingerprints = setOf(
         CertificateFingerprint,
         SpoofSignatureFingerprint,
