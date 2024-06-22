@@ -10,6 +10,7 @@
 
     <!-- Shared Category -->
     <string name="revanced_preference_category_experimental_flag">Experimental Flags</string>
+    <string name="revanced_extended_confirm_user_dialog_title">Do you wish to proceed?</string>
     <string name="revanced_extended_restart_first_run">Restart to load the layout normally</string>
     <string name="revanced_extended_restart_message">Refresh and restart</string>
     <string name="revanced_playback_speed_normal">Normal</string>
