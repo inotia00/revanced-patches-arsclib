@@ -103,7 +103,7 @@
         <SwitchPreference android:title="@string/revanced_hide_notify_me_button_title" android:key="revanced_hide_notify_me_button" android:summaryOn="@string/revanced_hide_notify_me_button_summary_on" android:summaryOff="@string/revanced_hide_notify_me_button_summary_off" />
         <SwitchPreference android:title="@string/revanced_hide_playables_title" android:key="revanced_hide_playables" android:summaryOn="@string/revanced_hide_playables_summary_on" android:summaryOff="@string/revanced_hide_playables_summary_off" />
         <SwitchPreference android:title="@string/revanced_hide_show_more_button_title" android:key="revanced_hide_show_more_button" android:summaryOn="@string/revanced_hide_show_more_button_summary_on" android:summaryOff="@string/revanced_hide_show_more_button_summary_off" />
-        <SwitchPreference android:title="@string/revanced_hide_subscriptions_channel_section_title" android:key="revanced_hide_subscriptions_channel_section" android:summaryOn="@string/revanced_hide_subscriptions_channel_section_summary_on" android:summaryOff="@string/revanced_hide_subscriptions_channel_section_summary_off" />
+        <SwitchPreference android:title="@string/revanced_hide_subscriptions_carousel_title" android:key="revanced_hide_subscriptions_carousel" android:summaryOn="@string/revanced_hide_subscriptions_carousel_summary_on" android:summaryOff="@string/revanced_hide_subscriptions_carousel_summary_off" />
         <SwitchPreference android:title="@string/revanced_hide_ticket_shelf_title" android:key="revanced_hide_ticket_shelf" android:summaryOn="@string/revanced_hide_ticket_shelf_summary_on" android:summaryOff="@string/revanced_hide_ticket_shelf_summary_off" />SETTINGS: HIDE_FEED_COMPONENTS -->
 
     <!-- PREFERENCE_SCREEN: FEED
@@ -237,8 +237,8 @@
         <!-- SETTINGS: AMBIENT_MODE_CONTROLS
         <PreferenceScreen android:title="@string/revanced_preference_screen_ambient_mode_title" android:key="revanced_preference_screen_ambient_mode" android:summary="@string/revanced_preference_screen_ambient_mode_summary">
             <SwitchPreference android:title="@string/revanced_bypass_ambient_mode_restrictions_title" android:key="revanced_bypass_ambient_mode_restrictions" android:summaryOn="@string/revanced_bypass_ambient_mode_restrictions_summary_on" android:summaryOff="@string/revanced_bypass_ambient_mode_restrictions_summary_off" />
-            <SwitchPreference android:title="@string/revanced_disable_ambient_mode_title" android:key="revanced_disable_ambient_mode" android:summary="@string/revanced_disable_ambient_mode_summary" />
-            <SwitchPreference android:title="@string/revanced_disable_ambient_mode_in_fullscreen_title" android:key="revanced_disable_ambient_mode_in_fullscreen" android:summary="@string/revanced_disable_ambient_mode_in_fullscreen_summary" />
+            <SwitchPreference android:title="@string/revanced_disable_ambient_mode_title" android:key="revanced_disable_ambient_mode" android:summaryOn="@string/revanced_disable_ambient_mode_summary_on" android:summaryOff="@string/revanced_disable_ambient_mode_summary_off" />
+            <SwitchPreference android:title="@string/revanced_disable_ambient_mode_in_fullscreen_title" android:key="revanced_disable_ambient_mode_in_fullscreen" android:summaryOn="@string/revanced_disable_ambient_mode_in_fullscreen_summary_on" android:summaryOff="@string/revanced_disable_ambient_mode_in_fullscreen_summary_off" />
         </PreferenceScreen>SETTINGS: AMBIENT_MODE_CONTROLS -->
 
         <!-- SETTINGS: PLAYER_COMPONENTS
@@ -463,7 +463,7 @@
             <PreferenceCategory android:title="@string/revanced_preference_category_experimental_flag" android:layout="@layout/revanced_settings_preferences_category"/>
             <SwitchPreference android:title="@string/revanced_hide_shorts_toolbar_title" android:key="revanced_hide_shorts_toolbar" android:summaryOn="@string/revanced_hide_shorts_toolbar_summary_on" android:summaryOff="@string/revanced_hide_shorts_toolbar_summary_off" />
             <SwitchPreference android:title="@string/revanced_hide_shorts_navigation_bar_title" android:key="revanced_hide_shorts_navigation_bar" android:summaryOn="@string/revanced_hide_shorts_navigation_bar_summary_on" android:summaryOff="@string/revanced_hide_shorts_navigation_bar_summary_off" />
-            <SwitchPreference android:title="@string/revanced_return_shorts_channel_name_title" android:key="revanced_return_shorts_channel_name" android:summaryOn="@string/revanced_return_shorts_channel_name_summary_on" android:summaryOff="@string/revanced_return_shorts_channel_name_summary_off" />
+            <SwitchPreference android:title="@string/revanced_replace_channel_handle_title" android:key="revanced_replace_channel_handle" android:summaryOn="@string/revanced_replace_channel_handle_summary_on" android:summaryOff="@string/revanced_replace_channel_handle_summary_off" />
         </PreferenceScreen>SETTINGS: SHORTS_COMPONENTS -->
 
         <!-- SETTINGS: CHANGE_SHORTS_REPEAT_STATE
