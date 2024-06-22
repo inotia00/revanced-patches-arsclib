@@ -1474,7 +1474,7 @@ Limitation: Feed videos will play for less than 1 minute before encountering pla
     <string name="revanced_spoof_signature_title">Spoof app signature</string>
     <string name="revanced_spoof_signature_summary_on">App signature is spoofed.</string>
     <string name="revanced_spoof_signature_summary_off">App signature is not spoofed.</string>
-    <string name="revanced_spoof_signature_user_dialog_message">"App signature will be spoofed to the original YouTube.
+    <string name="revanced_spoof_signature_user_dialog_message">"App signature will be spoofed as the original YouTube.
 
 This will only work if the following conditions are met:
 
