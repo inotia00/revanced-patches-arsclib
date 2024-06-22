@@ -19,7 +19,6 @@ import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
  * So patch is not included in [BaseGmsCoreSupportPatch].
  */
 abstract class BaseSpoofSignaturePatch(
-    private val packageName: String,
     dependencies: Set<PatchClass> = emptySet()
 ) : BytecodePatch(
     description = "Spoofs the package name used for app signature verification in Android 12+.",

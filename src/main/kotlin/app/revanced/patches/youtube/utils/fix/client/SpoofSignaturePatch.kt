@@ -5,7 +5,6 @@ import app.revanced.patches.shared.spoofsignature.BaseSpoofSignaturePatch
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 
 object SpoofSignaturePatch : BaseSpoofSignaturePatch(
-    packageName = "com.google.android.youtube",
     dependencies = setOf(SettingsPatch::class),
 ) {
     override fun execute(context: BytecodeContext) {
