@@ -13,8 +13,8 @@ import app.revanced.patches.reddit.utils.settings.fingerprints.OssLicensesMenuAc
 import app.revanced.patches.reddit.utils.settings.fingerprints.SettingsStatusLoadFingerprint
 import app.revanced.patches.shared.settings.fingerprints.SharedSettingFingerprint
 import app.revanced.util.getInstruction
-import app.revanced.util.getTargetIndex
-import app.revanced.util.getTargetIndexWithMethodReferenceName
+import app.revanced.util.getTargetIndexOrThrow
+import app.revanced.util.getTargetIndexWithMethodReferenceNameOrThrow
 import app.revanced.util.resultOrThrow
 import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
@@ -49,7 +49,7 @@ class SettingsBytecodePatch : BytecodePatch(
          */
         SharedSettingFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
-                val stringIndex = getTargetIndex(Opcode.CONST_STRING)
+                val stringIndex = getTargetIndexOrThrow(Opcode.CONST_STRING)
                 val stringRegister = getInstruction<OneRegisterInstruction>(stringIndex).registerA
 
                 replaceInstruction(
@@ -65,7 +65,7 @@ class SettingsBytecodePatch : BytecodePatch(
         AcknowledgementsLabelBuilderFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
                 val insertIndex =
-                    getTargetIndexWithMethodReferenceName("getString") + 2
+                    getTargetIndexWithMethodReferenceNameOrThrow("getString") + 2
                 val insertRegister =
                     getInstruction<OneRegisterInstruction>(insertIndex - 1).registerA
 

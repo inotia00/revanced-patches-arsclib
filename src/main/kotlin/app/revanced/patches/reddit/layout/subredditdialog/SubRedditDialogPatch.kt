@@ -14,7 +14,7 @@ import app.revanced.patches.reddit.utils.integrations.Constants.PATCHES_PATH
 import app.revanced.patches.reddit.utils.settings.SettingsBytecodePatch.Companion.updateSettingsStatus
 import app.revanced.patches.reddit.utils.settings.SettingsPatch
 import app.revanced.util.getInstruction
-import app.revanced.util.getTargetIndexWithMethodReferenceName
+import app.revanced.util.getTargetIndexWithMethodReferenceNameOrThrow
 import app.revanced.util.resultOrThrow
 import org.jf.dexlib2.iface.instruction.FiveRegisterInstruction
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
@@ -55,7 +55,7 @@ class SubRedditDialogPatch : BytecodePatch(
             it.mutableMethod.apply {
                 val backgroundTintIndex = RedditAlertDialogsFingerprint.indexOfSetBackgroundTintListInstruction(this)
                 val insertIndex =
-                    getTargetIndexWithMethodReferenceName(backgroundTintIndex, "setTextAppearance")
+                    getTargetIndexWithMethodReferenceNameOrThrow(backgroundTintIndex, "setTextAppearance")
                 val insertRegister = getInstruction<FiveRegisterInstruction>(insertIndex).registerC
 
                 addInstruction(

@@ -10,9 +10,10 @@ import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.reddit.utils.annotation.RedditCompatibility
 import app.revanced.util.ResourceUtils.base
 import app.revanced.util.ResourceUtils.setString
+import app.revanced.util.ResourceUtils.valueOrThrow
 
 @Patch
-@Name("Custom branding name reddit")
+@Name("Custom branding name for Reddit")
 @Description("Renames the Reddit app to the name specified in options.json.")
 @RedditCompatibility
 @Suppress("unused")
@@ -21,28 +22,26 @@ class CustomBrandingNamePatch : ResourcePatch {
         private const val ORIGINAL_APP_NAME = "Reddit"
         private const val APP_NAME = "RVX Reddit"
 
-        private var AppName: String? by option(
+        private var AppName = option(
             PatchOption.StringOption(
                 key = "AppName",
                 default = ORIGINAL_APP_NAME,
                 title = "App name",
-                description = "The name of the app."
+                description = "The name of the app.",
+                required = true
             )
         )
     }
 
     override fun execute(context: ResourceContext) {
-        val appName = if (AppName != null) {
-            AppName!!
-        } else {
-            println("WARNING: Invalid name name. Does not apply patches.")
-            ORIGINAL_APP_NAME
+        val appName = AppName
+            .valueOrThrow()
+
+        if (appName == ORIGINAL_APP_NAME) {
+            println("INFO: App name will remain unchanged as it matches the original.")
+            return
         }
 
-        if (appName != ORIGINAL_APP_NAME) {
-            context.base.setString("app_name", appName)
-        } else {
-            println("INFO: App name will remain unchanged as it matches the original.")
-        }
+        context.base.setString("app_name", appName)
     }
 }

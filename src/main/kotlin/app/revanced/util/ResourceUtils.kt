@@ -4,6 +4,8 @@ import app.revanced.patcher.DomFileEditor
 import app.revanced.patcher.ResourceContext
 import app.revanced.patcher.apk.Apk
 import app.revanced.patcher.apk.ResourceFile
+import app.revanced.patcher.patch.PatchException
+import app.revanced.patcher.patch.PatchOption
 import app.revanced.patcher.resource.Resource
 import app.revanced.patcher.resource.StringResource
 import app.revanced.patcher.resource.color
@@ -12,6 +14,10 @@ import java.io.File
 import java.nio.file.Paths
 
 internal object ResourceUtils {
+
+    internal fun PatchOption<String>.valueOrThrow() = value
+        ?: throw PatchException("Invalid patch option: $title.")
+
     internal fun ResourceContext.mergeStrings(resources: Map<String, String>) =
         base.setGroup("string", resources.mapValues {
             StringResource(

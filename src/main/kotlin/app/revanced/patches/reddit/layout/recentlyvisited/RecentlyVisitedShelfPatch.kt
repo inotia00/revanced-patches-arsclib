@@ -14,10 +14,10 @@ import app.revanced.patches.reddit.utils.integrations.Constants.PATCHES_PATH
 import app.revanced.patches.reddit.utils.settings.SettingsBytecodePatch.Companion.updateSettingsStatus
 import app.revanced.patches.reddit.utils.settings.SettingsPatch
 import app.revanced.util.getInstruction
-import app.revanced.util.getTargetIndex
-import app.revanced.util.getTargetIndexReversed
-import app.revanced.util.getTargetIndexWithFieldReferenceName
-import app.revanced.util.getTargetIndexWithReference
+import app.revanced.util.getTargetIndexOrThrow
+import app.revanced.util.getTargetIndexReversedOrThrow
+import app.revanced.util.getTargetIndexWithFieldReferenceNameOrThrow
+import app.revanced.util.getTargetIndexWithReferenceOrThrow
 import app.revanced.util.resultOrThrow
 import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
@@ -25,8 +25,8 @@ import org.jf.dexlib2.iface.instruction.ReferenceInstruction
 import org.jf.dexlib2.iface.reference.Reference
 
 @Patch
-@Name("Hide recently visited shelf")
-@Description("Adds an option to hide the recently visited shelf in the sidebar.")
+@Name("Hide Recently Visited shelf")
+@Description("Adds an option to hide the Recently Visited shelf in the sidebar.")
 @DependsOn([SettingsPatch::class])
 @RedditCompatibility
 @Suppress("unused")
@@ -48,19 +48,19 @@ class RecentlyVisitedShelfPatch : BytecodePatch(
             it.mutableClass.methods.find { method -> method.name == "<init>" }
                 ?.apply {
                     val recentlyVisitedFieldIndex =
-                        getTargetIndexWithFieldReferenceName("RECENTLY_VISITED")
+                        getTargetIndexWithFieldReferenceNameOrThrow("RECENTLY_VISITED")
                     val recentlyVisitedObjectIndex =
-                        getTargetIndex(recentlyVisitedFieldIndex, Opcode.IPUT_OBJECT)
+                        getTargetIndexOrThrow(recentlyVisitedFieldIndex, Opcode.IPUT_OBJECT)
                     recentlyVisitedReference =
                         getInstruction<ReferenceInstruction>(recentlyVisitedObjectIndex).reference
                 } ?: throw PatchException("Constructor method not found!")
 
             it.mutableMethod.apply {
                 val recentlyVisitedObjectIndex =
-                    getTargetIndexWithReference(recentlyVisitedReference.toString())
+                    getTargetIndexWithReferenceOrThrow(recentlyVisitedReference.toString())
                 arrayOf(
-                    getTargetIndex(recentlyVisitedObjectIndex, Opcode.INVOKE_STATIC),
-                    getTargetIndexReversed(recentlyVisitedObjectIndex, Opcode.INVOKE_STATIC)
+                    getTargetIndexOrThrow(recentlyVisitedObjectIndex, Opcode.INVOKE_STATIC),
+                    getTargetIndexReversedOrThrow(recentlyVisitedObjectIndex, Opcode.INVOKE_STATIC)
                 ).forEach { staticIndex ->
                     val insertRegister =
                         getInstruction<OneRegisterInstruction>(staticIndex + 1).registerA

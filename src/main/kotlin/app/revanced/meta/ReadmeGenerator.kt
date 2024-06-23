@@ -40,7 +40,7 @@ internal class ReadmeGenerator : PatchesFileGenerator {
                     commonMap.maxByOrNull { it.value }?.value?.let {
                         commonMap.entries.filter { mostCommon -> mostCommon.value == it }
                             .maxOfWith(FlexVerComparator::compare, Map.Entry<String, Int>::key)
-                    } ?: "all"
+                    } ?: "ALL"
                 }
 
                 output.apply {
@@ -50,7 +50,7 @@ internal class ReadmeGenerator : PatchesFileGenerator {
                     patches.forEach { patch ->
                         val recommendedPatchVersion = if (
                             patch.compatiblePackages?.single { it.name == `package` }?.versions?.isNotEmpty() == true
-                        ) mostCommonVersion else "all"
+                        ) mostCommonVersion else "ALL"
 
                         appendLine(
                             "| `${patch.patchName}` " +

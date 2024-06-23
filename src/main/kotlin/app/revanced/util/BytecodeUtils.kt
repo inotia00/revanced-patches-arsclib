@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package app.revanced.util
 
 import app.revanced.patcher.BytecodeContext
@@ -90,6 +92,115 @@ inline fun <reified T : Reference> Instruction.getReference() =
  */
 fun Method.indexOfFirstInstruction(predicate: Instruction.() -> Boolean) =
     this.implementation!!.instructions.indexOfFirst(predicate)
+
+/**
+ * Get the index of the first [Instruction] that matches the predicate, starting from [startIndex].
+ *
+ * @param startIndex Optional starting index to start searching from.
+ * @return -1 if the instruction is not found.
+ * @see indexOfFirstInstructionOrThrow
+ */
+fun Method.indexOfFirstInstruction(startIndex: Int = 0, predicate: Instruction.() -> Boolean): Int {
+    val index = this.implementation!!.instructions.drop(startIndex).indexOfFirst(predicate)
+
+    return if (index >= 0) {
+        startIndex + index
+    } else {
+        -1
+    }
+}
+
+/**
+ * Get the index of the first [Instruction] that matches the predicate, starting from [startIndex].
+ *
+ * @return the index of the instruction
+ * @throws PatchException
+ * @see indexOfFirstInstruction
+ */
+fun Method.indexOfFirstInstructionOrThrow(
+    startIndex: Int = 0,
+    predicate: Instruction.() -> Boolean
+): Int {
+    val index = indexOfFirstInstruction(startIndex, predicate)
+    if (index < 0) {
+        throw PatchException("Could not find instruction index")
+    }
+    return index
+}
+
+fun MutableMethod.getTargetIndexOrThrow(opcode: Opcode) =
+    getTargetIndexOrThrow(0, opcode)
+
+fun MutableMethod.getTargetIndexOrThrow(startIndex: Int, opcode: Opcode) =
+    checkIndex(getTargetIndex(startIndex, opcode), startIndex, opcode)
+
+fun MutableMethod.getTargetIndexReversedOrThrow(opcode: Opcode) =
+    getTargetIndexReversedOrThrow(implementation!!.instructions.lastIndex, opcode)
+
+fun MutableMethod.getTargetIndexReversedOrThrow(startIndex: Int, opcode: Opcode) =
+    checkIndex(getTargetIndexReversed(startIndex, opcode), startIndex, opcode)
+
+fun Method.getTargetIndexWithFieldReferenceNameOrThrow(filedName: String) =
+    checkIndex(getTargetIndexWithFieldReferenceName(filedName), 0, filedName)
+
+fun MutableMethod.getTargetIndexWithFieldReferenceNameOrThrow(startIndex: Int, filedName: String) =
+    checkIndex(getTargetIndexWithFieldReferenceName(startIndex, filedName), startIndex, filedName)
+
+fun MutableMethod.getTargetIndexWithFieldReferenceNameReversedOrThrow(returnType: String) =
+    getTargetIndexWithFieldReferenceNameReversedOrThrow(implementation!!.instructions.lastIndex, returnType)
+
+fun MutableMethod.getTargetIndexWithFieldReferenceNameReversedOrThrow(startIndex: Int, returnType: String) =
+    checkIndex(getTargetIndexWithFieldReferenceNameReversed(startIndex, returnType), startIndex, returnType)
+
+fun Method.getTargetIndexWithFieldReferenceTypeOrThrow(returnType: String) =
+    checkIndex(getTargetIndexWithFieldReferenceType(returnType), 0, returnType)
+
+fun MutableMethod.getTargetIndexWithFieldReferenceTypeOrThrow(startIndex: Int, returnType: String) =
+    checkIndex(getTargetIndexWithFieldReferenceType(startIndex, returnType), startIndex, returnType)
+
+fun MutableMethod.getTargetIndexWithFieldReferenceTypeReversedOrThrow(returnType: String) =
+    getTargetIndexWithFieldReferenceTypeReversedOrThrow(implementation!!.instructions.lastIndex, returnType)
+
+fun MutableMethod.getTargetIndexWithFieldReferenceTypeReversedOrThrow(startIndex: Int, returnType: String) =
+    checkIndex(getTargetIndexWithFieldReferenceTypeReversed(startIndex, returnType), startIndex, returnType)
+
+fun Method.getTargetIndexWithMethodReferenceNameOrThrow(methodName: String) =
+    checkIndex(getTargetIndexWithMethodReferenceName(methodName), 0, methodName)
+
+fun MutableMethod.getTargetIndexWithMethodReferenceNameOrThrow(startIndex: Int, methodName: String) =
+    checkIndex(getTargetIndexWithMethodReferenceName(startIndex, methodName), startIndex, methodName)
+
+fun MutableMethod.getTargetIndexWithMethodReferenceNameReversedOrThrow(methodName: String) =
+    getTargetIndexWithMethodReferenceNameReversedOrThrow(implementation!!.instructions.lastIndex, methodName)
+
+fun MutableMethod.getTargetIndexWithMethodReferenceNameReversedOrThrow(startIndex: Int, methodName: String) =
+    checkIndex(getTargetIndexWithMethodReferenceNameReversed(startIndex, methodName), startIndex, methodName)
+
+fun Method.getTargetIndexWithReferenceOrThrow(reference: String) =
+    checkIndex(getTargetIndexWithReference(reference), 0, reference)
+
+fun MutableMethod.getTargetIndexWithReferenceOrThrow(startIndex: Int, reference: String) =
+    checkIndex(getTargetIndexWithReference(startIndex, reference), startIndex, reference)
+
+fun MutableMethod.getTargetIndexWithReferenceReversedOrThrow(reference: String) =
+    getTargetIndexWithReferenceReversedOrThrow(implementation!!.instructions.lastIndex, reference)
+
+fun MutableMethod.getTargetIndexWithReferenceReversedOrThrow(startIndex: Int, reference: String) =
+    checkIndex(getTargetIndexWithReferenceReversed(startIndex, reference), startIndex, reference)
+
+fun checkIndex(index: Int, startIndex: Int, opcode: Opcode): Int {
+    if (index < 0) {
+        throw PatchException("Target index not found. startIndex: $startIndex, opcode: $opcode")
+    }
+    return index
+}
+
+fun checkIndex(index: Int, startIndex: Int, name: String): Int {
+    if (index < 0) {
+        throw PatchException("Target index not found. startIndex: $startIndex, name: $name")
+    }
+    return index
+}
 
 fun MutableMethod.getTargetIndex(opcode: Opcode) = getTargetIndex(0, opcode)
 

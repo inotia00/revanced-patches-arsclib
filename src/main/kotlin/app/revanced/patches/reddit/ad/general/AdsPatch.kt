@@ -18,8 +18,8 @@ import app.revanced.patches.reddit.utils.integrations.Constants.PATCHES_PATH
 import app.revanced.patches.reddit.utils.settings.SettingsBytecodePatch.Companion.updateSettingsStatus
 import app.revanced.patches.reddit.utils.settings.SettingsPatch
 import app.revanced.util.getInstruction
-import app.revanced.util.getTargetIndexWithFieldReferenceName
-import app.revanced.util.getTargetIndexWithMethodReferenceName
+import app.revanced.util.getTargetIndexWithFieldReferenceNameOrThrow
+import app.revanced.util.getTargetIndexWithMethodReferenceNameOrThrow
 import app.revanced.util.resultOrThrow
 import org.jf.dexlib2.iface.instruction.FiveRegisterInstruction
 import org.jf.dexlib2.iface.instruction.TwoRegisterInstruction
@@ -46,7 +46,7 @@ class AdsPatch : BytecodePatch(
         // region Filter promoted ads (does not work in popular or latest feed)
         AdPostFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
-                val targetIndex = getTargetIndexWithFieldReferenceName("children")
+                val targetIndex = getTargetIndexWithFieldReferenceNameOrThrow("children")
                 val targetRegister = getInstruction<TwoRegisterInstruction>(targetIndex).registerA
 
                 addInstructions(
@@ -63,7 +63,7 @@ class AdsPatch : BytecodePatch(
         // By removing the appending instruction no ad posts gets appended to the feed.
         NewAdPostFingerprint.resultOrThrow().let {
             it.mutableMethod.apply {
-                val targetIndex = getTargetIndexWithMethodReferenceName("add")
+                val targetIndex = getTargetIndexWithMethodReferenceNameOrThrow("add")
                 val targetInstruction = getInstruction<FiveRegisterInstruction>(targetIndex)
 
                 replaceInstruction(
