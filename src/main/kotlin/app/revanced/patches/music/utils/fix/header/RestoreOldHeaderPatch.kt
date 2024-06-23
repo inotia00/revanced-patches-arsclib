@@ -33,7 +33,10 @@ object RestoreOldHeaderPatch : BytecodePatch(
         HeaderSwitchConfigFingerprint.result?.let {
             it.mutableMethod.apply {
                 val targetIndex =
-                    getTargetIndexOrThrow(getWideLiteralInstructionIndex(45617851), Opcode.MOVE_RESULT)
+                    getTargetIndexOrThrow(
+                        getWideLiteralInstructionIndex(45617851),
+                        Opcode.MOVE_RESULT
+                    )
                 val targetRegister = getInstruction<OneRegisterInstruction>(targetIndex).registerA
 
                 addInstruction(
