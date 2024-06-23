@@ -9,17 +9,19 @@ The official Patch bundle provided by ReVanced and the community.
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
-| `Custom branding name reddit` | Renames the Reddit app to the name specified in options.json. | all |
-| `Disable screenshot popup` | Adds an option to disable the popup that shows up when taking a screenshot. | all |
-| `Hide ads` | Adds options to hide ads. | all |
-| `Hide navigation buttons` | Adds options to hide buttons in the navigation bar. | all |
-| `Hide recently visited shelf` | Adds an option to hide the recently visited shelf in the sidebar. | all |
-| `Open links directly` | Adds an option to skip over redirection URLs in external links. | all |
-| `Open links externally` | Adds an option to always open links in your browser instead of in the in-app-browser. | all |
-| `Premium icon` | Unlocks premium app icons. | all |
-| `Remove subreddit dialog` | Adds options to remove the NSFW community warning and notifications suggestion dialogs by dismissing them automatically. | all |
-| `Sanitize sharing links` | Adds an option to remove tracking query parameters from URLs when sharing links. | all |
-| `Settings` | Adds ReVanced Extended settings to Reddit. | all |
+| `Change version code` | Changes the version code of the app. By default the highest version code is set. This allows older versions of an app to be installed if their version code is set to the same or a higher value and can stop app stores to update the app. | ALL |
+| `Custom branding name for Reddit` | Renames the Reddit app to the name specified in options.json. | ALL |
+| `Disable screenshot popup` | Adds an option to disable the popup that appears when taking a screenshot. | ALL |
+| `Hide Recently Visited shelf` | Adds an option to hide the Recently Visited shelf in the sidebar. | ALL |
+| `Hide ads` | Adds options to hide ads. | ALL |
+| `Hide navigation buttons` | Adds options to hide buttons in the navigation bar. | ALL |
+| `Hide recommended communities shelf` | Adds an option to hide the recommended communities shelves in subreddits. | ALL |
+| `Open links directly` | Adds an option to skip over redirection URLs in external links. | ALL |
+| `Open links externally` | Adds an option to always open links in your browser instead of in the in-app-browser. | ALL |
+| `Premium icon` | Unlocks premium app icons. | ALL |
+| `Remove subreddit dialog` | Adds options to remove the NSFW community warning and notifications suggestion dialogs by dismissing them automatically. | ALL |
+| `Sanitize sharing links` | Adds an option to remove tracking query parameters from URLs when sharing links. | ALL |
+| `Settings for Reddit` | Applies mandatory patches to implement ReVanced Extended settings into the application. | ALL |
 </details>
 
 
