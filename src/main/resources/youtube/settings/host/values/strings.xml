@@ -1542,7 +1542,10 @@ Side effects include:
 Side effects include:
 • No HDR video.
 • Audio track menu is missing.
-• Captions may not be available."</string>
+• Captions may not be available.
+• Download button is missing.
+• End screen cards are missing.
+• Low quality seekbar thumbnail."</string>
     <string name="revanced_spoof_client_use_android_tv_title">Android TV</string>
     <string name="revanced_spoof_client_use_android_tv_summary">"Spoof client to Android TV (YouTube TV).
 
@@ -1550,6 +1553,8 @@ Side effects include:
 • No HDR video.
 • Audio track menu is missing.
 • Captions may not be available.
+• Download button is missing.
+• Low quality seekbar thumbnail.
 • Some live streams are not supported for playback."</string>
     <string name="revanced_spoof_client_use_android_vr_title">Android VR</string>
     <string name="revanced_spoof_client_use_android_vr_summary">"Spoof client to Android VR.
