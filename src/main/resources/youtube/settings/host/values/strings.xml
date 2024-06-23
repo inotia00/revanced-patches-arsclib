@@ -380,6 +380,9 @@ Some components may not be hidden."</string>
     <string name="revanced_miniplayer_type_entry_4">Modern 1</string>
     <string name="revanced_miniplayer_type_entry_5">Modern 2</string>
     <string name="revanced_miniplayer_type_entry_6">Modern 3</string>
+    <string name="revanced_miniplayer_enable_drag_and_drop_title">Enable drag and drop</string>
+    <string name="revanced_miniplayer_enable_drag_and_drop_summary_on">Drag and drop is enabled.</string>
+    <string name="revanced_miniplayer_enable_drag_and_drop_summary_off">Drag and drop is disabled.</string>
     <string name="revanced_miniplayer_hide_expand_close_title">Hide expand and close buttons</string>
     <string name="revanced_miniplayer_hide_expand_close_summary_on">Buttons are hidden.\n(swipe miniplayer to expand or close)</string>
     <string name="revanced_miniplayer_hide_expand_close_summary_off">Expand and close buttons are shown.</string>
