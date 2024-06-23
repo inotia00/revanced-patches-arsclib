@@ -428,6 +428,10 @@ Some components may not be hidden."</string>
 • Disabling this setting loads more ads from the server side.
 • You should disable this setting to make video ads visible."</string>
 
+    <string name="revanced_enable_translucent_navigation_bar_title">Enable translucent navigation bar</string>
+    <string name="revanced_enable_translucent_navigation_bar_summary_on">Navigation bar is translucent.</string>
+    <string name="revanced_enable_translucent_navigation_bar_summary_off">Navigation bar is opaque.</string>
+
     <!-- PreferenceScreen: General, PreferenceCategory: General, PreferenceScreen: Settings menu -->
     <string name="revanced_preference_screen_settings_menu_title">Settings menu</string>
     <string name="revanced_preference_screen_settings_menu_summary">Hide elements of the YouTube settings menu.</string>
