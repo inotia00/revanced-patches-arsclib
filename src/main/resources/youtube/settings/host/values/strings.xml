@@ -924,6 +924,11 @@ Please download %2$s from the website."</string>
     <string name="revanced_restore_old_seekbar_thumbnails_title">Restore old seekbar thumbnails</string>
     <string name="revanced_restore_old_seekbar_thumbnails_summary_on">Seekbar thumbnails will appear above the seekbar.</string>
     <string name="revanced_restore_old_seekbar_thumbnails_summary_off">Seekbar thumbnails will appear in fullscreen.</string>
+    <string name="revanced_enable_cairo_seekbar_title">Enable Cairo seekbar</string>
+    <string name="revanced_enable_cairo_seekbar_summary_on">"Cairo seekbar is enabled.
+
+Side effect: Cairo theme is also applied to notification dots."</string>
+    <string name="revanced_enable_cairo_seekbar_summary_off">Cairo seekbar is disabled.</string>
 
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Video description -->
     <string name="revanced_preference_screen_video_description_title">Video description</string>
