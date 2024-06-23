@@ -279,7 +279,7 @@ Niektóre ustawienia mogą nie działać poprawnie ze starym układem odtwarzacz
     <string name="revanced_sb_segments_sponsor">Treści Sponsorowane</string>
     <string name="revanced_sb_segments_sponsor_sum">Płatna promocja, płatne rekomendacje oraz bezpośrednie reklamy. Nie do autopromocji ani darmowych wyrazów uznania dla kwestii / twórców / stron / produktów, które im się podobają.</string>
     <string name="revanced_sb_segments_selfpromo">Nieopłacona / Auto Reklama</string>
-    <string name="revanced_sb_segments_selfpromo_sum">Podobne do \'Treści Sponsorowanych\' z wyjątkiem nieopłaconych lub autoreklam. Obejmuje to sekcje o własnych towarach, darowiznach czy informacjach o tym, z kim współpracowali.</string>
+    <string name="revanced_sb_segments_selfpromo_sum">Podobne do treści sponsorowanych, z wyjątkiem nieopłaconych lub autoreklam. Obejmuje to sekcje o własnych towarach, darowiznach czy informacjach o tym, z kim współpracowali.</string>
     <string name="revanced_sb_segments_interaction">Przypomnienie O Interakcji (Zasubskrybuj)</string>
     <string name="revanced_sb_segments_interaction_sum">Krótkie przypomnienie o łapce w górę, subskrypcji lub obserwowaniu w środku kontentu. Jeśli trwa długo lub dotyczy czegoś konkretnego, powinno być oznaczone jako autopromocja.</string>
     <string name="revanced_sb_segments_intro">Przerywnik / Animowane Intro</string>
@@ -320,6 +320,8 @@ Niektóre ustawienia mogą nie działać poprawnie ze starym układem odtwarzacz
     <string name="revanced_sb_about_api">sponsor.ajay.app</string>
     <!-- PreferenceScreen: Miscellaneous -->
     <string name="revanced_preference_screen_misc_title">Pozostałe</string>
+    <string name="revanced_enable_cairo_splash_animation_title">Włącz animację uruchamiania aplikacji Cairo</string>
+    <string name="revanced_enable_cairo_splash_animation_summary">Włącza animację ładowania aplikacji Cairo podczas otwierania aplikacji.</string>
     <string name="revanced_enable_debug_logging_title">Włącz logowanie debugowania</string>
     <string name="revanced_enable_debug_logging_summary">Wyświetla log od debugowania.</string>
     <string name="revanced_enable_debug_buffer_logging_title">Logi do debugowania buforu</string>

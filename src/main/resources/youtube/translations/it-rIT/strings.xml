@@ -112,27 +112,24 @@ Tocca qui per saperne di più su DeArrow"</string>
     <string name="revanced_hide_latest_posts_title">Nascondi i post più recenti</string>
     <string name="revanced_hide_latest_posts_summary_on">I post più recenti sono nascosti</string>
     <string name="revanced_hide_latest_posts_summary_off">I post più recenti sono visibili</string>
-    <string name="revanced_hide_latest_videos_button_title">"Nascondi il pulsante Video Più Recenti"</string>
-    <string name="revanced_hide_latest_videos_button_summary_on">"Il pulsante Video Più Recenti è nascosto"</string>
-    <string name="revanced_hide_latest_videos_button_summary_off">"Il pulsante Video Più Recenti è visibile"</string>
+    <string name="revanced_hide_latest_videos_button_title">Nascondi il pulsante Video Più Recenti</string>
+    <string name="revanced_hide_latest_videos_button_summary_on">Il pulsante Video Più Recenti è nascosto</string>
+    <string name="revanced_hide_latest_videos_button_summary_off">Il pulsante Video Più Recenti è visibile</string>
     <string name="revanced_hide_mix_playlists_title">Nascondi le Mix Playlist</string>
     <string name="revanced_hide_mix_playlists_summary_on">Le Mix Playlist sono nascoste</string>
     <string name="revanced_hide_mix_playlists_summary_off">Le Mix Playlist sono visibili</string>
     <string name="revanced_hide_movie_shelf_title">Nascondi lo scaffale dei film</string>
     <string name="revanced_hide_movie_shelf_summary_on">Lo scaffale dei film è nascosto</string>
     <string name="revanced_hide_movie_shelf_summary_off">Lo scaffale dei film è visibile</string>
-    <string name="revanced_hide_notify_me_button_title">"Nascondi il pulsante Avvisami nei feed"</string>
-    <string name="revanced_hide_notify_me_button_summary_on">"Il pulsante Avvisami nei feed è nascosto"</string>
-    <string name="revanced_hide_notify_me_button_summary_off">"Il pulsante Avvisami nei feed è visibile"</string>
+    <string name="revanced_hide_notify_me_button_title">Nascondi il pulsante Avvisami nei feed</string>
+    <string name="revanced_hide_notify_me_button_summary_on">Il pulsante Avvisami nei feed è nascosto</string>
+    <string name="revanced_hide_notify_me_button_summary_off">Il pulsante Avvisami nei feed è visibile</string>
     <string name="revanced_hide_playables_title">Nascondi riproducibili</string>
     <string name="revanced_hide_playables_summary_on">I giocabili sono nascosti.</string>
     <string name="revanced_hide_playables_summary_off">I giocabili sono mostrati.</string>
-    <string name="revanced_hide_show_more_button_title">"Nascondi il pulsante 'Mostra di più'"</string>
-    <string name="revanced_hide_show_more_button_summary_on">"Il tasto 'mostra altro' è nascosto"</string>
-    <string name="revanced_hide_show_more_button_summary_off">"Il pulsante 'Mostra di più' è mostrato."</string>
-    <string name="revanced_hide_subscriptions_channel_section_title">Nascondi sezione del canale abbonamenti</string>
-    <string name="revanced_hide_subscriptions_channel_section_summary_on">La sezione del canale abbonamenti è nascosta.</string>
-    <string name="revanced_hide_subscriptions_channel_section_summary_off">La sezione del canale abbonamenti è mostrata.</string>
+    <string name="revanced_hide_show_more_button_title">Nascondi il pulsante \'Mostra di più\'</string>
+    <string name="revanced_hide_show_more_button_summary_on">Il tasto \'mostra altro\' è nascosto</string>
+    <string name="revanced_hide_show_more_button_summary_off">Il pulsante \'Mostra di più\' è mostrato.</string>
     <string name="revanced_hide_ticket_shelf_title">Nascondi lo scaffale degli eventi</string>
     <string name="revanced_hide_ticket_shelf_summary_on">Lo scaffale degli eventi è nascosto</string>
     <string name="revanced_hide_ticket_shelf_summary_off">Lo scaffale degli eventi è visibile</string>
@@ -168,9 +165,9 @@ Negozio"</string>
     <string name="revanced_hide_channel_profile_links_title">Nascondi i link in cima al profilo del canale</string>
     <string name="revanced_hide_channel_profile_links_summary_on">I link in cima al profilo del canale sono nascosti</string>
     <string name="revanced_hide_channel_profile_links_summary_off">I link in cima al profilo del canale sono visibili</string>
-    <string name="revanced_hide_for_you_shelf_title">"Nascondi lo scaffale Per Te"</string>
-    <string name="revanced_hide_for_you_shelf_summary_on">"Lo scaffale Per Te è nascosto"</string>
-    <string name="revanced_hide_for_you_shelf_summary_off">"Lo scaffale Per Te è visibile"</string>
+    <string name="revanced_hide_for_you_shelf_title">Nascondi lo scaffale Per Te</string>
+    <string name="revanced_hide_for_you_shelf_summary_on">Lo scaffale Per Te è nascosto</string>
+    <string name="revanced_hide_for_you_shelf_summary_off">Lo scaffale Per Te è visibile</string>
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Community posts -->
     <string name="revanced_preference_screen_community_posts_title">Post della community</string>
     <string name="revanced_preference_screen_community_posts_summary">Mostra o nascondi i post della community nel feed e nel canale.</string>
@@ -312,7 +309,7 @@ Note:
     <string name="revanced_spoof_app_version_target_entry_18_17_43">18.17.43 - Ripristina il vecchio pannello a comparsa del riproduttore</string>
     <string name="revanced_spoof_app_version_target_entry_18_33_40">18.33.40 - Ripristina la vecchia barra d\'azione degli Shorts</string>
     <string name="revanced_spoof_app_version_target_entry_18_38_45">18.38.45 - Ripristina il comportamento della vecchia qualità video predefinita</string>
-    <string name="revanced_spoof_app_version_target_entry_18_48_39">"18.48.39 - Disabilita 'visualizzazioni' e 'mi piace' dall'essere aggiornato in tempo reale"</string>
+    <string name="revanced_spoof_app_version_target_entry_18_48_39">18.48.39 - Disabilita \'visualizzazioni\' e \'mi piace\' dall\'essere aggiornato in tempo reale</string>
     <!-- PreferenceScreen: General, PreferenceCategory: General, PreferenceScreen: Account menu -->
     <string name="revanced_preference_screen_account_menu_title">Menù account</string>
     <string name="revanced_preference_screen_account_menu_summary">Nascondi o mostra gli elementi nel menu account e nella scheda Tu.</string>
@@ -541,9 +538,7 @@ La riproduzione automatica può essere modificato nelle impostazioni di YouTube:
     <string name="revanced_bypass_ambient_mode_restrictions_summary_on">La modalità Ambient in modalità risparmio energetico è attivata</string>
     <string name="revanced_bypass_ambient_mode_restrictions_summary_off">La modalità Ambient in modalità risparmio energetico è disattivata</string>
     <string name="revanced_disable_ambient_mode_title">Disattiva la modalità Ambient</string>
-    <string name="revanced_disable_ambient_mode_summary">Disattiva sempre la modalità Ambient</string>
     <string name="revanced_disable_ambient_mode_in_fullscreen_title">Disattiva la modalità Ambient a schermo intero</string>
-    <string name="revanced_disable_ambient_mode_in_fullscreen_summary">Disattiva la modalità Ambient a schermo intero</string>
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Channel bar -->
     <string name="revanced_preference_screen_channel_bar_title">Barra canale</string>
     <string name="revanced_preference_screen_channel_bar_summary">Nascondi o mostra i componenti della barra dei canali sotto i video.</string>
@@ -559,9 +554,9 @@ La riproduzione automatica può essere modificato nelle impostazioni di YouTube:
     <string name="revanced_hide_channel_guidelines_title">Nascondi le linee guida del canale</string>
     <string name="revanced_hide_channel_guidelines_summary_on">Le linee guida del canale sono nascoste</string>
     <string name="revanced_hide_channel_guidelines_summary_off">Le linee guida del canale sono visibili</string>
-    <string name="revanced_hide_comments_by_members_title">"Nascondi il banner dei commenti dei membri"</string>
-    <string name="revanced_hide_comments_by_members_summary_on">"Il banner dei commenti dei membri è nascosto"</string>
-    <string name="revanced_hide_comments_by_members_summary_off">"Il banner dei commenti dei membri è visibile"</string>
+    <string name="revanced_hide_comments_by_members_title">Nascondi il banner dei commenti dei membri</string>
+    <string name="revanced_hide_comments_by_members_summary_on">Il banner dei commenti dei membri è nascosto</string>
+    <string name="revanced_hide_comments_by_members_summary_off">Il banner dei commenti dei membri è visibile</string>
     <string name="revanced_hide_comments_section_title">Nascondi la sezione Commenti</string>
     <string name="revanced_hide_comments_section_summary_on">La sezione Commenti è nascosta</string>
     <string name="revanced_hide_comments_section_summary_off">La sezione Commenti è visibile</string>
@@ -866,9 +861,6 @@ Si prega di scaricare %2$s dal sito web."</string>
     <string name="revanced_hide_shopping_links_title">Nascondi la sezione Prodotti</string>
     <string name="revanced_hide_shopping_links_summary_on">La sezione Prodotti è nascosta</string>
     <string name="revanced_hide_shopping_links_summary_off">La sezione Prodotti è visibile</string>
-    <string name="revanced_hide_suggestions_section_title">Nascondi le sezioni dei suggerimenti</string>
-    <string name="revanced_hide_suggestions_section_summary_on">Le sezioni del gioco, le sezioni della musica e le sezioni del posto sono nascoste.</string>
-    <string name="revanced_hide_suggestions_section_summary_off">Le sezioni del gioco, le sezioni della musica e le sezioni del posto sono mostrate.</string>
     <string name="revanced_hide_transcript_section_title">Nascondi la sezione Trascrizione</string>
     <string name="revanced_hide_transcript_section_summary_on">La sezione Trascrizione è nascosta</string>
     <string name="revanced_hide_transcript_section_summary_off">La sezione Trascrizione è visibile</string>
@@ -989,9 +981,6 @@ Si prega di scaricare %2$s dal sito web."</string>
     <string name="revanced_hide_shorts_navigation_bar_title">Nascondi la barra di navigazione</string>
     <string name="revanced_hide_shorts_navigation_bar_summary_on">La barra di navigazione è nascosta.</string>
     <string name="revanced_hide_shorts_navigation_bar_summary_off">La barra di navigazione è mostrata.</string>
-    <string name="revanced_return_shorts_channel_name_title">Ritorno del nome del canale abbreviato</string>
-    <string name="revanced_return_shorts_channel_name_summary_on">Il nome del canale è usato.</string>
-    <string name="revanced_return_shorts_channel_name_summary_off">Viene utilizzata la maniglia del canale.</string>
     <!-- PreferenceScreen: Swipe controls -->
     <string name="revanced_preference_screen_swipe_controls_title">Controlli a scorrimento</string>
     <string name="revanced_enable_swipe_lowest_value_auto_brightness_title">Abilita gesto di luminosità automatica</string>
@@ -1009,9 +998,9 @@ Si prega di scaricare %2$s dal sito web."</string>
     <string name="revanced_enable_swipe_haptic_feedback_title">Attiva la vibrazione</string>
     <string name="revanced_enable_swipe_haptic_feedback_summary_on">La vibrazione è attivata</string>
     <string name="revanced_enable_swipe_haptic_feedback_summary_off">La vibrazione è disattivata</string>
-    <string name="revanced_swipe_gestures_lock_mode_title">"Attiva i gesti di trascinamento in modalità Blocca Schermo"</string>
-    <string name="revanced_swipe_gestures_lock_mode_summary_on">"I gesti di trascinamento in modalità Blocca Schermo sono attivati"</string>
-    <string name="revanced_swipe_gestures_lock_mode_summary_off">"I gesti di trascinamento in modalità Blocca Schermo sono disattivati"</string>
+    <string name="revanced_swipe_gestures_lock_mode_title">Attiva i gesti di trascinamento in modalità Blocca Schermo</string>
+    <string name="revanced_swipe_gestures_lock_mode_summary_on">I gesti di trascinamento in modalità Blocca Schermo sono attivati</string>
+    <string name="revanced_swipe_gestures_lock_mode_summary_off">I gesti di trascinamento in modalità Blocca Schermo sono disattivati</string>
     <string name="revanced_swipe_overlay_background_alpha_title">La visibilità dello sfondo durante il trascinamento</string>
     <string name="revanced_swipe_overlay_background_alpha_summary">La visibilità dello sfondo in sovrapposizione durante il trascinamento</string>
     <string name="revanced_swipe_magnitude_threshold_title">L\'ampiezza del limite di trascinamento</string>

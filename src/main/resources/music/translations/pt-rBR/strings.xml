@@ -151,8 +151,8 @@ Informações:
     <string name="revanced_hide_category_bar_summary">Oculta a barra de categorias.</string>
     <string name="revanced_hide_floating_button_title">Ocultar botão flutuante</string>
     <string name="revanced_hide_floating_button_summary">Oculta o botão flutuante na aba Biblioteca.</string>
-    <string name="revanced_hide_tap_to_update_button_title">Ocultar botão \'Toque para atualizar\'</string>
-    <string name="revanced_hide_tap_to_update_button_summary">Oculta o botão \'Toque para atualizar\'.</string>
+    <string name="revanced_hide_tap_to_update_button_title">Ocultar botão Toque para atualizar</string>
+    <string name="revanced_hide_tap_to_update_button_summary">Oculta o botão Toque para atualizar.</string>
     <string name="revanced_hide_history_button_title">Ocultar botão Histórico</string>
     <string name="revanced_hide_history_button_summary">Oculta o botão Histórico na barra de ferramentas.</string>
     <string name="revanced_hide_notification_button_title">Ocultar botão Notificações</string>
@@ -279,7 +279,7 @@ Alguns recursos podem não funcionar corretamente no layout antigo do reprodutor
     <string name="revanced_sb_segments_sponsor">Patrocinador</string>
     <string name="revanced_sb_segments_sponsor_sum">Promoção paga, referências pagas e anúncios diretos. Não deve ser usado para auto-promoção ou mensagens grátis para causas / criadores/sites / produtos que eles gostam.</string>
     <string name="revanced_sb_segments_selfpromo">Não pago / Autopromoção</string>
-    <string name="revanced_sb_segments_selfpromo_sum">Semelhante ao \'Patrocinador\' exceto pela promoção não paga ou autopromoção. Inclui seções sobre mercadorias, doações ou informações sobre com quem eles colaboraram.</string>
+    <string name="revanced_sb_segments_selfpromo_sum">Semelhante ao Patrocinador exceto pela promoção não paga ou autopromoção. Inclui seções sobre mercadorias, doações ou informações sobre com quem eles colaboraram.</string>
     <string name="revanced_sb_segments_interaction">Lembrete de Interação (Inscreva-se)</string>
     <string name="revanced_sb_segments_interaction_sum">Um breve lembrete para curtir, se inscrever ou segui-los no meio do conteúdo. Se for longo ou sobre algo específico, deve estar sob autopromoção.</string>
     <string name="revanced_sb_segments_intro">Intervalo / Introdução Animada</string>
@@ -320,6 +320,8 @@ Alguns recursos podem não funcionar corretamente no layout antigo do reprodutor
     <string name="revanced_sb_about_api">sponsor.ajay.app</string>
     <!-- PreferenceScreen: Miscellaneous -->
     <string name="revanced_preference_screen_misc_title">Diversos</string>
+    <string name="revanced_enable_cairo_splash_animation_title">Ativar animação inicial do Cairo</string>
+    <string name="revanced_enable_cairo_splash_animation_summary">Ativa a animação inicial do Cairo quando o aplicativo é iniciado.</string>
     <string name="revanced_enable_debug_logging_title">Ativar o relatório de depuração</string>
     <string name="revanced_enable_debug_logging_summary">Imprime o relatório de depuração</string>
     <string name="revanced_enable_debug_buffer_logging_title">Ativar o registro de depuração do buffer</string>
@@ -336,7 +338,7 @@ Informações:
     <string name="gms_core_dialog_title">Ação necessária</string>
     <string name="gms_core_dialog_not_whitelisted_not_allowed_in_background_message">"O GmsCore não tem permissão para executar em segundo plano.
 
-Siga o guia 'Não mate o meu aplicativo' para o seu telefone e aplique as instruções para a sua instalação do MicroG.
+Siga o guia Não mate o meu aplicativo para o seu telefone e aplique as instruções para a sua instalação do MicroG.
 
 Isto é necessário para o aplicativo funcionar."</string>
     <string name="gms_core_dialog_open_website_text">Abrir site</string>

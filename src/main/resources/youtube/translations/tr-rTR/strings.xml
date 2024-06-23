@@ -106,27 +106,24 @@ DeArrow hakkında daha fazla bilgi edinmek için buraya dokunun."</string>
     <string name="revanced_hide_latest_posts_title">\"Son yayınlar\"ı gizle</string>
     <string name="revanced_hide_latest_posts_summary_on">Son gönderiler gizleniyor.</string>
     <string name="revanced_hide_latest_posts_summary_off">Son gönderiler gizlenmiyor.</string>
-    <string name="revanced_hide_latest_videos_button_title">"\"Son videolar\" butonunu gizle"</string>
-    <string name="revanced_hide_latest_videos_button_summary_on">"Son videolar butonu gizleniyor."</string>
-    <string name="revanced_hide_latest_videos_button_summary_off">"Son videolar butonu gizlenmiyor."</string>
+    <string name="revanced_hide_latest_videos_button_title">\"Son videolar\" butonunu gizle</string>
+    <string name="revanced_hide_latest_videos_button_summary_on">Son videolar butonu gizleniyor.</string>
+    <string name="revanced_hide_latest_videos_button_summary_off">Son videolar butonu gizlenmiyor.</string>
     <string name="revanced_hide_mix_playlists_title">\"Mix\" oynatma listelerini gizle</string>
     <string name="revanced_hide_mix_playlists_summary_on">\"Mix\" oynatma listeleri gizleniyor</string>
     <string name="revanced_hide_mix_playlists_summary_off">\"Mix\" oynatma listeleri gösteriliyor</string>
     <string name="revanced_hide_movie_shelf_title">Filmler rafını gizle</string>
     <string name="revanced_hide_movie_shelf_summary_on">Filmler rafı gizleniyor.</string>
     <string name="revanced_hide_movie_shelf_summary_off">Filmler rafı gizlenmiyor.</string>
-    <string name="revanced_hide_notify_me_button_title">"\"Beni bilgilendir\" butonunu gizle"</string>
-    <string name="revanced_hide_notify_me_button_summary_on">"\"Beni bilgilendir\" butonu gizleniyor."</string>
-    <string name="revanced_hide_notify_me_button_summary_off">"\"Beni bilgilendir\" butonu gizlenmiyor."</string>
+    <string name="revanced_hide_notify_me_button_title">\"Beni bilgilendir\" butonunu gizle</string>
+    <string name="revanced_hide_notify_me_button_summary_on">\"Beni bilgilendir\" butonu gizleniyor.</string>
+    <string name="revanced_hide_notify_me_button_summary_off">\"Beni bilgilendir\" butonu gizlenmiyor.</string>
     <string name="revanced_hide_playables_title">Oynanabilirleri gizle</string>
     <string name="revanced_hide_playables_summary_on">Oynanabilir öğeler gizli.</string>
     <string name="revanced_hide_playables_summary_off">Oynanabilir öğeler görünür.</string>
-    <string name="revanced_hide_show_more_button_title">"'Daha fazla göster' düğmesini gizle"</string>
-    <string name="revanced_hide_show_more_button_summary_on">"\"Daha fazla göster\" butonu gizleniyor."</string>
-    <string name="revanced_hide_show_more_button_summary_off">"\"Daha fazla göster\" butonu gizlenmiyor."</string>
-    <string name="revanced_hide_subscriptions_channel_section_title">Abonelikler kanal Bölümünü gizle</string>
-    <string name="revanced_hide_subscriptions_channel_section_summary_on">Abonelikler kanal bölümü gizlidir.</string>
-    <string name="revanced_hide_subscriptions_channel_section_summary_off">Abonelikler kanalı bölümü gösterilir.</string>
+    <string name="revanced_hide_show_more_button_title">\'Daha fazla göster\' düğmesini gizle</string>
+    <string name="revanced_hide_show_more_button_summary_on">\"Daha fazla göster\" butonu gizleniyor.</string>
+    <string name="revanced_hide_show_more_button_summary_off">\"Daha fazla göster\" butonu gizlenmiyor.</string>
     <string name="revanced_hide_ticket_shelf_title">Biletler kısmını gizle</string>
     <string name="revanced_hide_ticket_shelf_summary_on">Gizleniyor</string>
     <string name="revanced_hide_ticket_shelf_summary_off">Gizlenmiyor</string>
@@ -162,9 +159,9 @@ Mağaza"</string>
     <string name="revanced_hide_channel_profile_links_title">Kanal profilindeki linkleri gizle</string>
     <string name="revanced_hide_channel_profile_links_summary_on">Kanal profilinin en üstündeki linkler gizleniyor.</string>
     <string name="revanced_hide_channel_profile_links_summary_off">Kanal profilinin en üstündeki linkler gösteriliyor.</string>
-    <string name="revanced_hide_for_you_shelf_title">"'Sizin için' rafını gizle"</string>
-    <string name="revanced_hide_for_you_shelf_summary_on">"'Sizin için' rafları gizleniyor."</string>
-    <string name="revanced_hide_for_you_shelf_summary_off">"'Sizin için' rafları gizlenmiyor."</string>
+    <string name="revanced_hide_for_you_shelf_title">\'Sizin için\' rafını gizle</string>
+    <string name="revanced_hide_for_you_shelf_summary_on">\'Sizin için\' rafları gizleniyor.</string>
+    <string name="revanced_hide_for_you_shelf_summary_off">\'Sizin için\' rafları gizlenmiyor.</string>
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Community posts -->
     <string name="revanced_preference_screen_community_posts_title">Topluluk gönderileri</string>
     <string name="revanced_preference_screen_community_posts_summary">Akıştaki ve kanaldaki topluluk gönderilerini gizleyin veya gösterin.</string>
@@ -304,7 +301,7 @@ Kısıtlamalar:
     <string name="revanced_spoof_app_version_target_entry_18_17_43">18.17.43 - Eski tarz oynatıcı açılır panelini geri yükleyin</string>
     <string name="revanced_spoof_app_version_target_entry_18_33_40">18.33.40 - Eski shorts aksiyon çubuğunu geri yükle</string>
     <string name="revanced_spoof_app_version_target_entry_18_38_45">18.38.45 - Eski varsayılan video kalitesi davranışını geri getir</string>
-    <string name="revanced_spoof_app_version_target_entry_18_48_39">"18.48.39 - \"Görüntülemelerin\" ve \"beğenilerin\" gerçek zamanlı olarak güncellenmesini devre dışı bırakır"</string>
+    <string name="revanced_spoof_app_version_target_entry_18_48_39">18.48.39 - \"Görüntülemelerin\" ve \"beğenilerin\" gerçek zamanlı olarak güncellenmesini devre dışı bırakır</string>
     <!-- PreferenceScreen: General, PreferenceCategory: General, PreferenceScreen: Account menu -->
     <string name="revanced_preference_screen_account_menu_title">Hesap Menüsü</string>
     <string name="revanced_preference_screen_account_menu_summary">Hesap menüsünde ve siz sekmesinde gizli veya göster.</string>
@@ -532,9 +529,7 @@ Otomatik oynatma YouTube ayarlarından değiştirilebilir:
     <string name="revanced_bypass_ambient_mode_restrictions_summary_on">Güç tasarrufu modundayken ambiyans modu kullanılabilir.</string>
     <string name="revanced_bypass_ambient_mode_restrictions_summary_off">Güç tasarrufu modundayken ambiyans modu kullanılamıyor.</string>
     <string name="revanced_disable_ambient_mode_title">Ambiyans modunu devre dışı bırak</string>
-    <string name="revanced_disable_ambient_mode_summary">Ambiyans modu hep kapat.</string>
     <string name="revanced_disable_ambient_mode_in_fullscreen_title">Tam ekranda ambiyans modunu devre dışı bırak</string>
-    <string name="revanced_disable_ambient_mode_in_fullscreen_summary">Video tam ekrandayken ambiyans modunu devre dışı bırak</string>
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Channel bar -->
     <string name="revanced_preference_screen_channel_bar_title">Kanal çubuğu</string>
     <string name="revanced_preference_screen_channel_bar_summary">Videoların altında kanal çubuğu bileşenlerini gizleyin veya gösterin.</string>
@@ -550,9 +545,9 @@ Otomatik oynatma YouTube ayarlarından değiştirilebilir:
     <string name="revanced_hide_channel_guidelines_title">Kanal yönergelerini gizle</string>
     <string name="revanced_hide_channel_guidelines_summary_on">Yorumların en üstündeki Topluluk Kuralları hatırlatıcısı gizleniyor</string>
     <string name="revanced_hide_channel_guidelines_summary_off">Yorumların en üstündeki Topluluk Kuralları hatırlatıcısı gizlenmiyor</string>
-    <string name="revanced_hide_comments_by_members_title">"'Üyeler tarafından yapılan yorumlar' afişini gizle"</string>
-    <string name="revanced_hide_comments_by_members_summary_on">"'Üyeler tarafından yapılan yorumlar' afişi gizleniyor."</string>
-    <string name="revanced_hide_comments_by_members_summary_off">"'Üyeler tarafından yapılan yorumlar afişi gizlenmiyor."</string>
+    <string name="revanced_hide_comments_by_members_title">\'Üyeler tarafından yapılan yorumlar\' afişini gizle</string>
+    <string name="revanced_hide_comments_by_members_summary_on">\'Üyeler tarafından yapılan yorumlar\' afişi gizleniyor.</string>
+    <string name="revanced_hide_comments_by_members_summary_off">\'Üyeler tarafından yapılan yorumlar afişi gizlenmiyor.</string>
     <string name="revanced_hide_comments_section_title">Yorumlar bölümünü gizle</string>
     <string name="revanced_hide_comments_section_summary_on">Yorumlar kısmı gizleniyor.</string>
     <string name="revanced_hide_comments_section_summary_off">Yorumlar kısmı gizlenmiyor.</string>
@@ -851,9 +846,6 @@ Lütfen web sitesinden %2$s dosyasını indirin."</string>
     <string name="revanced_hide_shopping_links_title">Alışveriş bağlantılarını gizle</string>
     <string name="revanced_hide_shopping_links_summary_on">Alışveriş linkleri gizleniyor.</string>
     <string name="revanced_hide_shopping_links_summary_off">Alışveriş linkleri gizlenmiyor.</string>
-    <string name="revanced_hide_suggestions_section_title">Önerilen bölümünü gizle</string>
-    <string name="revanced_hide_suggestions_section_summary_on">Oyun bölümleri, müzik bölümleri ve mekan bölümleri gizlenmiştir.</string>
-    <string name="revanced_hide_suggestions_section_summary_off">Oyun bölümleri, müzik bölümleri ve mekan bölümleri gizlenmiyor.</string>
     <string name="revanced_hide_transcript_section_title">\"Transkripti göster\" butonunu gizle</string>
     <string name="revanced_hide_transcript_section_summary_on">\"Transkripti göster\" butonu gizleniyor</string>
     <string name="revanced_hide_transcript_section_summary_off">\"Transkripti göster\" butonu gizlenmiyor</string>
@@ -977,9 +969,6 @@ Bilinen sorun: Arama sonuçlarındaki resmi başlıklar da gizlenebiliyor."</str
     <string name="revanced_hide_shorts_navigation_bar_title">Gezinme çubuğunu gizle</string>
     <string name="revanced_hide_shorts_navigation_bar_summary_on">Gezinme çubuğu gizli.</string>
     <string name="revanced_hide_shorts_navigation_bar_summary_off">Gezinme çubuğu gösteriliyor</string>
-    <string name="revanced_return_shorts_channel_name_title">Shorts kanal ismini geri getir</string>
-    <string name="revanced_return_shorts_channel_name_summary_on">Kanal ismi kullanılıyor.</string>
-    <string name="revanced_return_shorts_channel_name_summary_off">Kanal etiketi kullanılıyor.</string>
     <!-- PreferenceScreen: Swipe controls -->
     <string name="revanced_preference_screen_swipe_controls_title">Kaydırma kontrolleri</string>
     <string name="revanced_enable_swipe_lowest_value_auto_brightness_title">Kaydırarak otomatik parlaklığı etkinleştir</string>
@@ -997,9 +986,9 @@ Bilinen sorun: Arama sonuçlarındaki resmi başlıklar da gizlenebiliyor."</str
     <string name="revanced_enable_swipe_haptic_feedback_title">Titreşimli geribildirimi etkinleştir</string>
     <string name="revanced_enable_swipe_haptic_feedback_summary_on">Titreşim açık.</string>
     <string name="revanced_enable_swipe_haptic_feedback_summary_off">Titreşim kapalı.</string>
-    <string name="revanced_swipe_gestures_lock_mode_title">"'Kilit ekranı' modundaki kaydırma hareketleri"</string>
-    <string name="revanced_swipe_gestures_lock_mode_summary_on">"Kaydırma hareketleri 'Kilit ekranı' modunda etkindir."</string>
-    <string name="revanced_swipe_gestures_lock_mode_summary_off">"Kaydırma hareketleri 'Kilit ekranı' modunda devre dışıdır."</string>
+    <string name="revanced_swipe_gestures_lock_mode_title">\'Kilit ekranı\' modundaki kaydırma hareketleri</string>
+    <string name="revanced_swipe_gestures_lock_mode_summary_on">Kaydırma hareketleri \'Kilit ekranı\' modunda etkindir.</string>
+    <string name="revanced_swipe_gestures_lock_mode_summary_off">Kaydırma hareketleri \'Kilit ekranı\' modunda devre dışıdır.</string>
     <string name="revanced_swipe_overlay_background_alpha_title">Kaydırma arka plan şeffaflığı</string>
     <string name="revanced_swipe_overlay_background_alpha_summary">Kaydırma arka planının şeffaflık değeri</string>
     <string name="revanced_swipe_magnitude_threshold_title">Kaydırma büyüklük eşiği</string>
