@@ -15,6 +15,7 @@ import app.revanced.patches.shared.settings.fingerprints.SharedSettingFingerprin
 import app.revanced.util.getInstruction
 import app.revanced.util.getTargetIndexOrThrow
 import app.revanced.util.getTargetIndexWithMethodReferenceNameOrThrow
+import app.revanced.util.getWideLiteralInstructionIndex
 import app.revanced.util.resultOrThrow
 import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
@@ -32,15 +33,30 @@ class SettingsBytecodePatch : BytecodePatch(
         private const val INTEGRATIONS_METHOD_DESCRIPTOR =
             "$INTEGRATIONS_PATH/settings/ActivityHook;->initialize(Landroid/app/Activity;)V"
 
+        private lateinit var acknowledgementsLabelBuilderMethod: MutableMethod
         private lateinit var settingsStatusLoadMethod: MutableMethod
 
-        internal fun updateSettingsStatus(description: String) {
+        internal fun updateSettingsLabel(label: String) =
+            acknowledgementsLabelBuilderMethod.apply {
+                val insertIndex =
+                    getTargetIndexWithMethodReferenceNameOrThrow("getString") + 2
+                val insertRegister =
+                    getInstruction<OneRegisterInstruction>(insertIndex - 1).registerA
+
+                addInstruction(
+                    insertIndex,
+                    "const-string v$insertRegister, \"$label\""
+                )
+            }
+
+        internal fun updateSettingsStatus(description: String) =
             settingsStatusLoadMethod.addInstruction(
                 0,
                 "invoke-static {}, $INTEGRATIONS_PATH/settings/SettingsStatus;->$description()V"
             )
-        }
     }
+
+    lateinit var contexts: BytecodeContext
 
     override fun execute(context: BytecodeContext) {
 
@@ -62,19 +78,9 @@ class SettingsBytecodePatch : BytecodePatch(
         /**
          * Replace settings label
          */
-        AcknowledgementsLabelBuilderFingerprint.resultOrThrow().let {
-            it.mutableMethod.apply {
-                val insertIndex =
-                    getTargetIndexWithMethodReferenceNameOrThrow("getString") + 2
-                val insertRegister =
-                    getInstruction<OneRegisterInstruction>(insertIndex - 1).registerA
-
-                addInstruction(
-                    insertIndex,
-                    "const-string v$insertRegister, \"ReVanced Extended\""
-                )
-            }
-        }
+        acknowledgementsLabelBuilderMethod = AcknowledgementsLabelBuilderFingerprint
+            .resultOrThrow()
+            .mutableMethod
 
         /**
          * Initialize settings activity
