@@ -922,24 +922,24 @@ Please download %2$s from the website."</string>
     <string name="revanced_preference_screen_video_description_title">Video description</string>
     <string name="revanced_preference_screen_video_description_summary">Hide or show video description components.</string>
 
-    <string name="revanced_disable_rolling_number_animations_title">Disable rolling number animations</string>
+    <string name="revanced_disable_rolling_number_animations_title">Disable Rolling number animations</string>
     <string name="revanced_disable_rolling_number_animations_summary_on">Rolling numbers are not animated.</string>
     <string name="revanced_disable_rolling_number_animations_summary_off">Rolling numbers are animated.</string>
+    <string name="revanced_hide_attributes_section_title">Hide Attributes section</string>
+    <string name="revanced_hide_attributes_section_summary_on">Featured places, Games, and Music sections are hidden.</string>
+    <string name="revanced_hide_attributes_section_summary_off">Featured places, Games, and Music sections are shown.</string>
     <string name="revanced_hide_chapters_section_title">Hide Chapters section</string>
     <string name="revanced_hide_chapters_section_summary_on">Chapters section is hidden.</string>
     <string name="revanced_hide_chapters_section_summary_off">Chapters section is shown.</string>
-    <string name="revanced_hide_info_cards_section_title">Hide info cards section</string>
+    <string name="revanced_hide_info_cards_section_title">Hide Info cards section</string>
     <string name="revanced_hide_info_cards_section_summary_on">Info cards section is hidden.</string>
     <string name="revanced_hide_info_cards_section_summary_off">Info cards section is shown.</string>
     <string name="revanced_hide_podcast_section_title">Hide Explore the podcast section</string>
     <string name="revanced_hide_podcast_section_summary_on">Explore the podcast section is hidden.</string>
     <string name="revanced_hide_podcast_section_summary_off">Explore the podcast section is shown.</string>
-    <string name="revanced_hide_shopping_links_title">Hide shopping links</string>
+    <string name="revanced_hide_shopping_links_title">Hide Shopping links</string>
     <string name="revanced_hide_shopping_links_summary_on">Shopping links are hidden.</string>
     <string name="revanced_hide_shopping_links_summary_off">Shopping links are shown.</string>
-    <string name="revanced_hide_suggestions_section_title">Hide attributes section</string>
-    <string name="revanced_hide_suggestions_section_summary_on">Featured places, Games, and Music sections are hidden.</string>
-    <string name="revanced_hide_suggestions_section_summary_off">Featured places, Games, and Music sections are shown.</string>
     <string name="revanced_hide_transcript_section_title">Hide Transcript section</string>
     <string name="revanced_hide_transcript_section_summary_on">Transcript section is hidden.</string>
     <string name="revanced_hide_transcript_section_summary_off">Transcript section is shown.</string>
@@ -1440,7 +1440,7 @@ Limitation: Dislikes may not appear if the user is not logged in or in incognito
     <string name="gms_core_dialog_title">Action needed</string>
     <string name="gms_core_dialog_not_whitelisted_not_allowed_in_background_message">"GmsCore does not have permission to run in the background.
 
-Follow the Don't kill my app! guide for your device, and apply the instructions to your GmsCore installation.
+Follow the 'Don't kill my app!' guide for your device, and apply the instructions to your GmsCore installation.
 
 This is required for the app to work."</string>
     <string name="gms_core_dialog_open_website_text">Open website</string>

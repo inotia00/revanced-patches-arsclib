@@ -389,11 +389,11 @@
             <!-- SETTINGS: DISABLE_ROLLING_NUMBER_ANIMATIONS
             <SwitchPreference android:title="@string/revanced_disable_rolling_number_animations_title" android:key="revanced_disable_rolling_number_animations" android:summaryOn="@string/revanced_disable_rolling_number_animations_summary_on" android:summaryOff="@string/revanced_disable_rolling_number_animations_summary_off" />SETTINGS: DISABLE_ROLLING_NUMBER_ANIMATIONS -->
             <!-- SETTINGS: DESCRIPTION_COMPONENTS
+            <SwitchPreference android:title="@string/revanced_hide_attributes_section_title" android:key="revanced_hide_attributes_section" android:summaryOn="@string/revanced_hide_attributes_section_summary_on" android:summaryOff="@string/revanced_hide_attributes_section_summary_off" />
             <SwitchPreference android:title="@string/revanced_hide_chapters_section_title" android:key="revanced_hide_chapters_section" android:summaryOn="@string/revanced_hide_chapters_section_summary_on" android:summaryOff="@string/revanced_hide_chapters_section_summary_off" />
             <SwitchPreference android:title="@string/revanced_hide_info_cards_section_title" android:key="revanced_hide_info_cards_section" android:summaryOn="@string/revanced_hide_info_cards_section_summary_on" android:summaryOff="@string/revanced_hide_info_cards_section_summary_off" />
             <SwitchPreference android:title="@string/revanced_hide_podcast_section_title" android:key="revanced_hide_podcast_section" android:summaryOn="@string/revanced_hide_podcast_section_summary_on" android:summaryOff="@string/revanced_hide_podcast_section_summary_off" />
             <SwitchPreference android:title="@string/revanced_hide_shopping_links_title" android:key="revanced_hide_shopping_links" android:summaryOn="@string/revanced_hide_shopping_links_summary_on" android:summaryOff="@string/revanced_hide_shopping_links_summary_off" />
-            <SwitchPreference android:title="@string/revanced_hide_suggestions_section_title" android:key="revanced_hide_suggestions_section" android:summaryOn="@string/revanced_hide_suggestions_section_summary_on" android:summaryOff="@string/revanced_hide_suggestions_section_summary_off" />
             <SwitchPreference android:title="@string/revanced_hide_transcript_section_title" android:key="revanced_hide_transcript_section" android:summaryOn="@string/revanced_hide_transcript_section_summary_on" android:summaryOff="@string/revanced_hide_transcript_section_summary_off" />SETTINGS: DESCRIPTION_COMPONENTS -->
 
             <!-- SETTINGS: DESCRIPTION_INTERACTION
