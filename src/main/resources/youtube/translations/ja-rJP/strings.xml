@@ -131,6 +131,9 @@ DeArrowの詳細については、ここをタップしてください。"</stri
     <string name="revanced_hide_show_more_button_title">「もっと表示」ボタンを非表示</string>
     <string name="revanced_hide_show_more_button_summary_on">動画を検索した際に、検索結果の動画の下に表示される「もっと表示」のボタンを非表示にします。</string>
     <string name="revanced_hide_show_more_button_summary_off">動画を検索した際に、検索結果の動画の下に表示される「もっと表示」のボタンを非表示にします。</string>
+    <string name="revanced_hide_subscriptions_carousel_title">登録カルーセルを非表示</string>
+    <string name="revanced_hide_subscriptions_carousel_summary_on">登録カルーセルを非表示にします。</string>
+    <string name="revanced_hide_subscriptions_carousel_summary_off">登録カルーセルを非表示にします。</string>
     <string name="revanced_hide_ticket_shelf_title">チケット欄を非表示</string>
     <string name="revanced_hide_ticket_shelf_summary_on">チケット欄を非表示にします。</string>
     <string name="revanced_hide_ticket_shelf_summary_off">チケット欄を非表示にします。</string>
@@ -855,12 +858,18 @@ DeArrowの詳細については、ここをタップしてください。"</stri
     <string name="revanced_disable_rolling_number_animations_title">数字の回転アニメーションを無効化</string>
     <string name="revanced_disable_rolling_number_animations_summary_on">高評価数と視聴回数の回転アニメーションを無効にします。</string>
     <string name="revanced_disable_rolling_number_animations_summary_off">高評価数と視聴回数の回転アニメーションを無効にします。</string>
+    <string name="revanced_hide_attributes_section_title">属性セクションを非表示</string>
+    <string name="revanced_hide_attributes_section_summary_on">注目の場所、ゲーム、音楽セクションを非表示にします。</string>
+    <string name="revanced_hide_attributes_section_summary_off">注目の場所、ゲーム、音楽セクションを非表示にします。</string>
     <string name="revanced_hide_chapters_section_title">チャプターセクションを非表示</string>
     <string name="revanced_hide_chapters_section_summary_on">概要欄のチャプターセクションを非表示にします。</string>
     <string name="revanced_hide_chapters_section_summary_off">概要欄のチャプターセクションを非表示にします。</string>
     <string name="revanced_hide_info_cards_section_title">チャンネル情報カードを非表示</string>
     <string name="revanced_hide_info_cards_section_summary_on">概要欄のチャンネル情報カードを非表示にします。</string>
     <string name="revanced_hide_info_cards_section_summary_off">概要欄のチャンネル情報カードを非表示にします。</string>
+    <string name="revanced_hide_key_concepts_section_title">キーコンセプトセクションを非表示</string>
+    <string name="revanced_hide_key_concepts_section_summary_on">キーコンセプトセクションを非表示にします。</string>
+    <string name="revanced_hide_key_concepts_section_summary_off">キーコンセプトセクションを非表示にします。</string>
     <string name="revanced_hide_podcast_section_title">ポッドキャストセクションを非表示</string>
     <string name="revanced_hide_podcast_section_summary_on">概要欄のポッドキャストセクションを非表示にします。</string>
     <string name="revanced_hide_podcast_section_summary_off">概要欄のポッドキャストセクションを非表示にします。</string>
@@ -1030,8 +1039,8 @@ DeArrowの詳細については、ここをタップしてください。"</stri
     <string name="revanced_enable_watch_panel_gestures_summary_on">プレーヤーの一番下の領域をスワイプして全画面に切り替えれるようにします。</string>
     <string name="revanced_enable_watch_panel_gestures_summary_off">プレーヤーの一番下の領域をスワイプして全画面に切り替えれるようにします。</string>
     <string name="revanced_enable_swipe_to_switch_video_title">スワイプして動画の切り替えを有効化</string>
-    <string name="revanced_enable_swipe_to_switch_video_summary_on">全画面表示時に、上/下にスワイプして次の動画/前の動画に切り替えられるようにします。\n\n注意: この機能は YouTube v19.20.35 以降でのみ利用できます。</string>
-    <string name="revanced_enable_swipe_to_switch_video_summary_off">全画面表示時に、上/下にスワイプして次の動画/前の動画に切り替えられるようにします。\n\n注意: この機能は YouTube v19.20.35 以降でのみ利用できます。</string>
+    <string name="revanced_enable_swipe_to_switch_video_summary_on">全画面表示時に、上/下にスワイプして次の動画/前の動画に切り替えられるようにします。</string>
+    <string name="revanced_enable_swipe_to_switch_video_summary_off">全画面表示時に、上/下にスワイプして次の動画/前の動画に切り替えられるようにします。</string>
     <string name="revanced_swipe_lowest_value_auto_brightness_overlay_text">自動</string>
     <!-- PreferenceScreen: Video -->
     <string name="revanced_preference_screen_video_title">動画</string>
@@ -1406,8 +1415,7 @@ DeArrowの詳細については、ここをタップしてください。"</stri
 以下の副作用があります:
 • HDR の画質の設定は使用できません。
 • 再生履歴が動作しない可能性があります。
-• 再生速度のメニューが表示されません。
-• 高画質な動画が表示されない可能性があります。
+• 動画を超高画質で再生できない可能性があります。
 • ライブ配信を音声のみで再生できません。
 • ライブ配信は Android 8.0 では利用できません。"</string>
     <string name="revanced_spoof_client_use_android_testsuite_title">Android Testsuite</string>
@@ -1415,15 +1423,20 @@ DeArrowの詳細については、ここをタップしてください。"</stri
 
 以下の副作用があります:
 • HDR の画質の設定は使用できません。
-• オーディオトラックメニューと再生速度のメニューは表示されません。
-• 字幕が利用できない可能性があります。"</string>
+• オーディオトラックメニューは表示されません。
+• 字幕が利用できない可能性があります。
+• ダウンロードボタンは表示されません。
+• エンドカードは表示されません。
+• シークバーのサムネイルが低画質になります。"</string>
     <string name="revanced_spoof_client_use_android_tv_title">Android TV</string>
     <string name="revanced_spoof_client_use_android_tv_summary">"Android TV (YouTube TV) に偽装します。
 
 以下の副作用があります:
 •  HDR の画質の設定は使用できません。
-• オーディオトラックメニューと再生速度のメニューは表示されません。
+• オーディオトラックメニューは表示されません。
 • 字幕が利用できない可能性があります。
+• ダウンロードボタンは表示されません。
+• シークバーのサムネイルが低画質になります。
 • 一部のライブ配信は再生できません。"</string>
     <string name="revanced_spoof_client_use_android_vr_title">Android VR</string>
     <string name="revanced_spoof_client_use_android_vr_summary">"Android VR に偽装します。

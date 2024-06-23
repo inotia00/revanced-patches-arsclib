@@ -320,6 +320,8 @@
     <string name="revanced_sb_about_api">sponsor.ajay.app</string>
     <!-- PreferenceScreen: Miscellaneous -->
     <string name="revanced_preference_screen_misc_title">その他</string>
+    <string name="revanced_enable_cairo_splash_animation_title">Cairo のスプラッシュアニメーションを有効化</string>
+    <string name="revanced_enable_cairo_splash_animation_summary">アプリ起動時にCairo のスプラッシュアニメーションを有効にします。</string>
     <string name="revanced_enable_debug_logging_title">デバッグログ</string>
     <string name="revanced_enable_debug_logging_summary">デバッグログを出力します。</string>
     <string name="revanced_enable_debug_buffer_logging_title">デバッグバッファログを有効化</string>

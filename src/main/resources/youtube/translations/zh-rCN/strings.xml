@@ -8,6 +8,7 @@
     <string name="revanced_extended_settings_search_title">搜索设置</string>
     <!-- Shared Category -->
     <string name="revanced_preference_category_experimental_flag">实验性功能</string>
+    <string name="revanced_extended_confirm_user_dialog_title">你想继续吗?</string>
     <string name="revanced_extended_restart_first_run">重启应用以正常加载界面布局</string>
     <string name="revanced_extended_restart_message">刷新并重启</string>
     <string name="revanced_playback_speed_normal">正常</string>
@@ -132,6 +133,9 @@
     <string name="revanced_hide_show_more_button_title">隐藏“显示更多”按钮</string>
     <string name="revanced_hide_show_more_button_summary_on">“显示更多”按钮已隐藏</string>
     <string name="revanced_hide_show_more_button_summary_off">“显示更多”按钮已显示</string>
+    <string name="revanced_hide_subscriptions_carousel_title">隐藏订阅轮播</string>
+    <string name="revanced_hide_subscriptions_carousel_summary_on">订阅轮播已隐藏</string>
+    <string name="revanced_hide_subscriptions_carousel_summary_off">订阅轮播已显示</string>
     <string name="revanced_hide_ticket_shelf_title">隐藏购票栏</string>
     <string name="revanced_hide_ticket_shelf_summary_on">购票栏已隐藏</string>
     <string name="revanced_hide_ticket_shelf_summary_off">购票栏已显示</string>
@@ -342,6 +346,9 @@
     <string name="revanced_miniplayer_type_entry_4">Modern 1</string>
     <string name="revanced_miniplayer_type_entry_5">Modern 2</string>
     <string name="revanced_miniplayer_type_entry_6">Modern 3</string>
+    <string name="revanced_miniplayer_enable_drag_and_drop_title">启用拖放</string>
+    <string name="revanced_miniplayer_enable_drag_and_drop_summary_on">拖放已启用</string>
+    <string name="revanced_miniplayer_enable_drag_and_drop_summary_off">拖放已禁用</string>
     <string name="revanced_miniplayer_hide_expand_close_title">隐藏展开和关闭按钮</string>
     <string name="revanced_miniplayer_hide_expand_close_summary_on">按钮已隐藏\n(滑动迷你播放器来展开或关闭)</string>
     <string name="revanced_miniplayer_hide_expand_close_summary_off">展开和关闭按钮已显示</string>
@@ -387,6 +394,9 @@
 • 更改此设置，可能需要重新启动设备才能生效
 • 禁用此设置会从服务器端加载更多广告
 • 你应该禁用此设置以显示视频广告"</string>
+    <string name="revanced_enable_translucent_navigation_bar_title">启用半透明导航栏</string>
+    <string name="revanced_enable_translucent_navigation_bar_summary_on">导航栏半透明</string>
+    <string name="revanced_enable_translucent_navigation_bar_summary_off">导航栏不透明</string>
     <!-- PreferenceScreen: General, PreferenceCategory: General, PreferenceScreen: Settings menu -->
     <string name="revanced_preference_screen_settings_menu_title">设置菜单</string>
     <string name="revanced_preference_screen_settings_menu_summary">隐藏 YouTube 设置菜单中的元素</string>
@@ -539,7 +549,11 @@
     <string name="revanced_bypass_ambient_mode_restrictions_summary_on">省电模式下氛围模式已启用</string>
     <string name="revanced_bypass_ambient_mode_restrictions_summary_off">省电模式下氛围模式已禁用</string>
     <string name="revanced_disable_ambient_mode_title">禁用氛围模式</string>
+    <string name="revanced_disable_ambient_mode_summary_on">氛围模式已禁用</string>
+    <string name="revanced_disable_ambient_mode_summary_off">氛围模式已启用</string>
     <string name="revanced_disable_ambient_mode_in_fullscreen_title">在全屏时禁用氛围模式</string>
+    <string name="revanced_disable_ambient_mode_in_fullscreen_summary_on">全屏下氛围模式已禁用</string>
+    <string name="revanced_disable_ambient_mode_in_fullscreen_summary_off">全屏下氛围模式已启用</string>
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Channel bar -->
     <string name="revanced_preference_screen_channel_bar_title">频道栏</string>
     <string name="revanced_preference_screen_channel_bar_summary">隐藏或显示视频下方的频道栏组件</string>
@@ -838,6 +852,10 @@
     <string name="revanced_restore_old_seekbar_thumbnails_title">恢复旧的进度条缩略图</string>
     <string name="revanced_restore_old_seekbar_thumbnails_summary_on">将进度条缩略图显示在进度条上方</string>
     <string name="revanced_restore_old_seekbar_thumbnails_summary_off">在全屏模式下显示进度条缩略图</string>
+    <string name="revanced_enable_cairo_seekbar_title">启用 Cairo 搜索栏</string>
+    <string name="revanced_enable_cairo_seekbar_summary_on">"Cairo 搜索栏已启用
+
+副作用：Cairo 主题也应用于通知点"</string>
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Video description -->
     <string name="revanced_preference_screen_video_description_title">视频描述</string>
     <string name="revanced_preference_screen_video_description_summary">隐藏或显示视频描述组件</string>

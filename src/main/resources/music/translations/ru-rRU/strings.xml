@@ -320,8 +320,8 @@
     <string name="revanced_sb_about_api">sponsor.ajay.app</string>
     <!-- PreferenceScreen: Miscellaneous -->
     <string name="revanced_preference_screen_misc_title">Разное</string>
-    <string name="revanced_enable_cairo_splash_animation_title">Анимация заставки Cairo</string>
-    <string name="revanced_enable_cairo_splash_animation_summary">Включает анимацию заставки Cairo при запуске приложения.</string>
+    <string name="revanced_enable_cairo_splash_animation_title">Анимация заставки Каир</string>
+    <string name="revanced_enable_cairo_splash_animation_summary">Включает анимацию заставки Каир при запуске приложения.</string>
     <string name="revanced_enable_debug_logging_title">Ведение журнала отладки</string>
     <string name="revanced_enable_debug_logging_summary">Выводит журнал отладки.</string>
     <string name="revanced_enable_debug_buffer_logging_title">Ведение журналов отладки буфера</string>

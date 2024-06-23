@@ -8,6 +8,7 @@
     <string name="revanced_extended_settings_search_title">Cerca nelle impostazioni</string>
     <!-- Shared Category -->
     <string name="revanced_preference_category_experimental_flag">Opzioni sperimentali</string>
+    <string name="revanced_extended_confirm_user_dialog_title">Desideri procedere?</string>
     <string name="revanced_extended_restart_first_run">Riavvia per caricare l\'interfaccia normalmente</string>
     <string name="revanced_extended_restart_message">Aggiorna e riavvia</string>
     <string name="revanced_playback_speed_normal">Normale</string>
@@ -130,6 +131,9 @@ Tocca qui per saperne di più su DeArrow"</string>
     <string name="revanced_hide_show_more_button_title">Nascondi il pulsante \'Mostra di più\'</string>
     <string name="revanced_hide_show_more_button_summary_on">Il tasto \'mostra altro\' è nascosto</string>
     <string name="revanced_hide_show_more_button_summary_off">Il pulsante \'Mostra di più\' è mostrato.</string>
+    <string name="revanced_hide_subscriptions_carousel_title">Nascondi il carosello degli abbonamenti</string>
+    <string name="revanced_hide_subscriptions_carousel_summary_on">Il casello degli abbonamenti è nascosto.</string>
+    <string name="revanced_hide_subscriptions_carousel_summary_off">Il casello degli abbonamenti è mostrato.</string>
     <string name="revanced_hide_ticket_shelf_title">Nascondi lo scaffale degli eventi</string>
     <string name="revanced_hide_ticket_shelf_summary_on">Lo scaffale degli eventi è nascosto</string>
     <string name="revanced_hide_ticket_shelf_summary_off">Lo scaffale degli eventi è visibile</string>
@@ -341,6 +345,9 @@ Alcuni componenti potrebbero non essere nascosti"</string>
     <string name="revanced_miniplayer_type_entry_4">Moderno 1</string>
     <string name="revanced_miniplayer_type_entry_5">Moderno 2</string>
     <string name="revanced_miniplayer_type_entry_6">Moderno 3</string>
+    <string name="revanced_miniplayer_enable_drag_and_drop_title">Abilita trascinamento e rilascio</string>
+    <string name="revanced_miniplayer_enable_drag_and_drop_summary_on">Trascinamento e rilascio è abilitato.</string>
+    <string name="revanced_miniplayer_enable_drag_and_drop_summary_off">Trascinamento e rilascio è disabilitato.</string>
     <string name="revanced_miniplayer_hide_expand_close_title">Nascondi i pulsanti espandi e chiudi</string>
     <string name="revanced_miniplayer_hide_expand_close_summary_on">I pulsanti sono nascosti.\n(fai scorrere il mini riproduttore per espandere o chiudere)</string>
     <string name="revanced_miniplayer_hide_expand_close_summary_off">I pulsanti Espandi e chiudi sono mostrati.</string>
@@ -386,6 +393,9 @@ Alcuni componenti potrebbero non essere nascosti"</string>
 • Potrebbe essere necessario riavviare il dispositivo per rendere effettiva la modifica di questa impostazione.
 • Disabilitare questa impostazione carica più annunci dal lato server.
 • Dovresti disabilitare questa impostazione per rendere visibili gli annunci video."</string>
+    <string name="revanced_enable_translucent_navigation_bar_title">Abilita barra di navigazione traslucida</string>
+    <string name="revanced_enable_translucent_navigation_bar_summary_on">La barra di navigazione è traslucida.</string>
+    <string name="revanced_enable_translucent_navigation_bar_summary_off">La barra di navigazione è opaca.</string>
     <!-- PreferenceScreen: General, PreferenceCategory: General, PreferenceScreen: Settings menu -->
     <string name="revanced_preference_screen_settings_menu_title">Menu Impostazioni</string>
     <string name="revanced_preference_screen_settings_menu_summary">Nascondi gli elementi del menu delle impostazioni di YouTube.</string>
@@ -538,7 +548,11 @@ La riproduzione automatica può essere modificato nelle impostazioni di YouTube:
     <string name="revanced_bypass_ambient_mode_restrictions_summary_on">La modalità Ambient in modalità risparmio energetico è attivata</string>
     <string name="revanced_bypass_ambient_mode_restrictions_summary_off">La modalità Ambient in modalità risparmio energetico è disattivata</string>
     <string name="revanced_disable_ambient_mode_title">Disattiva la modalità Ambient</string>
+    <string name="revanced_disable_ambient_mode_summary_on">La modalità Ambient è disabilitata.</string>
+    <string name="revanced_disable_ambient_mode_summary_off">La modalità Ambient è abilitata.</string>
     <string name="revanced_disable_ambient_mode_in_fullscreen_title">Disattiva la modalità Ambient a schermo intero</string>
+    <string name="revanced_disable_ambient_mode_in_fullscreen_summary_on">La modalità Ambient è disabilitata a schermo intero.</string>
+    <string name="revanced_disable_ambient_mode_in_fullscreen_summary_off">La modalità Ambient è abilitata a schermo intero.</string>
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Channel bar -->
     <string name="revanced_preference_screen_channel_bar_title">Barra canale</string>
     <string name="revanced_preference_screen_channel_bar_summary">Nascondi o mostra i componenti della barra dei canali sotto i video.</string>
@@ -843,18 +857,29 @@ Si prega di scaricare %2$s dal sito web."</string>
     <string name="revanced_restore_old_seekbar_thumbnails_title">Ripristina vecchie miniature della barra di avanzamento</string>
     <string name="revanced_restore_old_seekbar_thumbnails_summary_on">Le miniature della barra di ricerca appariranno sopra la barra di avanzamento.</string>
     <string name="revanced_restore_old_seekbar_thumbnails_summary_off">Le miniature della barra di avanzamento appariranno a schermo intero.</string>
+    <string name="revanced_enable_cairo_seekbar_title">Abilita la barra di avanzamento Cairo</string>
+    <string name="revanced_enable_cairo_seekbar_summary_on">"La barra di avanzamento Cairo è abilitata.
+
+Effetto collaterale: il tema Cairo viene applicato anche ai punti di notifica."</string>
+    <string name="revanced_enable_cairo_seekbar_summary_off">La barra di avanzamento Cairo e disabilitata.</string>
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Video description -->
     <string name="revanced_preference_screen_video_description_title">Descrizione del video</string>
     <string name="revanced_preference_screen_video_description_summary">Nascondi o mostra i componenti della descrizione del video.</string>
     <string name="revanced_disable_rolling_number_animations_title">Disattiva le animazioni degli aggiornamenti in tempo reale dei contatori</string>
     <string name="revanced_disable_rolling_number_animations_summary_on">Le animazioni degli aggiornamenti in tempo reale dei contatori sono disattivate</string>
     <string name="revanced_disable_rolling_number_animations_summary_off">Le animazioni degli aggiornamenti in tempo reale dei contatori sono attivate</string>
+    <string name="revanced_hide_attributes_section_title">Nascondi sezione Attributi</string>
+    <string name="revanced_hide_attributes_section_summary_on">Luoghi in evidenza, Giochi e sezioni Musica sono nascosti.</string>
+    <string name="revanced_hide_attributes_section_summary_off">Luoghi in evidenza, Giochi e sezioni Musica sono mostrati.</string>
     <string name="revanced_hide_chapters_section_title">Nascondi le sezioni capitoli</string>
     <string name="revanced_hide_chapters_section_summary_on">Le sezioni dei capitoli sono nascoste.</string>
     <string name="revanced_hide_chapters_section_summary_off">Le sezioni dei capitoli sono mostrate.</string>
     <string name="revanced_hide_info_cards_section_title">Nascondi la sezione Schede Informative</string>
     <string name="revanced_hide_info_cards_section_summary_on">La sezione Schede Informative è nascosta</string>
     <string name="revanced_hide_info_cards_section_summary_off">La sezione Schede Informative è visibile</string>
+    <string name="revanced_hide_key_concepts_section_title">Nascondi sezione concetti chiave</string>
+    <string name="revanced_hide_key_concepts_section_summary_on">La sezione dei concetti chiave è nascosta.</string>
+    <string name="revanced_hide_key_concepts_section_summary_off">La sezione dei concetti chiave è mostrata.</string>
     <string name="revanced_hide_podcast_section_title">Nascondi la sezione Podcast</string>
     <string name="revanced_hide_podcast_section_summary_on">La sezione Podcast è nascosta</string>
     <string name="revanced_hide_podcast_section_summary_off">La sezione Podcast è visibile</string>
@@ -981,6 +1006,9 @@ Si prega di scaricare %2$s dal sito web."</string>
     <string name="revanced_hide_shorts_navigation_bar_title">Nascondi la barra di navigazione</string>
     <string name="revanced_hide_shorts_navigation_bar_summary_on">La barra di navigazione è nascosta.</string>
     <string name="revanced_hide_shorts_navigation_bar_summary_off">La barra di navigazione è mostrata.</string>
+    <string name="revanced_replace_channel_handle_title">Sostituisci manico del canale</string>
+    <string name="revanced_replace_channel_handle_summary_on">Il nome del canale è usato.</string>
+    <string name="revanced_replace_channel_handle_summary_off">Il manico del canale è usato.</string>
     <!-- PreferenceScreen: Swipe controls -->
     <string name="revanced_preference_screen_swipe_controls_title">Controlli a scorrimento</string>
     <string name="revanced_enable_swipe_lowest_value_auto_brightness_title">Abilita gesto di luminosità automatica</string>

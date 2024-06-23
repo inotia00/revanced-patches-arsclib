@@ -854,7 +854,7 @@
     <string name="revanced_enable_cairo_seekbar_title">Увімкнути смугу прогресу Каїр</string>
     <string name="revanced_enable_cairo_seekbar_summary_on">"Смугу прогресу Каїр увімкнено.
 
-Побічний ефект: Тема Каїр також застосовується до сповіщення."</string>
+Побічний ефект: Тема Каїр також застосовується до цяток сповіщення."</string>
     <string name="revanced_enable_cairo_seekbar_summary_off">Смугу прогресу Каїр вимкнено.</string>
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Video description -->
     <string name="revanced_preference_screen_video_description_title">Опис відео</string>
@@ -1423,7 +1423,10 @@
 Побічні ефекти включають:
 • Немає HDR відео.
 • Меню звукової доріжки відсутнє.
-• Субтитри можуть бути недоступні."</string>
+• Субтитри можуть бути недоступні.
+• Кнопка завантаження відсутня.
+• Картки кінцевого екрана відсутні.
+• Низька якість мініатюр панелі прогресу."</string>
     <string name="revanced_spoof_client_use_android_tv_title">Android TV</string>
     <string name="revanced_spoof_client_use_android_tv_summary">"Імітація клієнта для Android TV (YouTube TV).
 
@@ -1431,6 +1434,8 @@
 • Немає HDR відео.
 • Меню звукової доріжки відсутнє.
 • Субтитри можуть бути недоступні.
+• Кнопка завантаження відсутня.
+• Низька якість мініатюр панелі прогресу.
 • Деякі прямі трансляції не підтримуються для відтворення."</string>
     <string name="revanced_spoof_client_use_android_vr_title">Android VR</string>
     <string name="revanced_spoof_client_use_android_vr_summary">"Імітація клієнта для Android VR.

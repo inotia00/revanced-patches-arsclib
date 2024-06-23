@@ -349,9 +349,9 @@ DeArrow에 대해 자세히 알아보려면 여기를 누르세요."</string>
     <string name="revanced_miniplayer_type_entry_4">최신 스타일 1</string>
     <string name="revanced_miniplayer_type_entry_5">최신 스타일 2</string>
     <string name="revanced_miniplayer_type_entry_6">최신 스타일 3</string>
-    <string name="revanced_miniplayer_enable_drag_and_drop_title">끌어서 놓기 활성화하기</string>
-    <string name="revanced_miniplayer_enable_drag_and_drop_summary_on">끌어서 놓기를 활성화합니다.</string>
-    <string name="revanced_miniplayer_enable_drag_and_drop_summary_off">끌어서 놓기를 비활성화합니다.</string>
+    <string name="revanced_miniplayer_enable_drag_and_drop_title">드래그 앤드 드롭 활성화하기</string>
+    <string name="revanced_miniplayer_enable_drag_and_drop_summary_on">드래그 앤드 드롭을 활성화합니다.</string>
+    <string name="revanced_miniplayer_enable_drag_and_drop_summary_off">드래그 앤드 드롭을 비활성화합니다.</string>
     <string name="revanced_miniplayer_hide_expand_close_title">\'펼치기\' &amp; \'닫기\' 버튼 숨기기</string>
     <string name="revanced_miniplayer_hide_expand_close_summary_on">\'펼치기\' &amp; \'닫기\' 버튼이 숨겨집니다.\n• 스와이프하여 미니 플레이어를 펼치거나 닫을 수 있습니다.\n• YouTube v19.20.35+에서는 위로 스와이프하여 미니 플레이어를 펼칠 수 없으므로 \'펼치기\' 버튼을 사용해야 합니다.</string>
     <string name="revanced_miniplayer_hide_expand_close_summary_off">\'펼치기\' &amp; \'닫기\' 버튼이 노출됩니다.\n• YouTube v19.20.35+에서는 위로 스와이프하여 미니 플레이어를 펼칠 수 없으므로 \'펼치기\' 버튼을 사용해야 합니다.</string>
@@ -866,10 +866,7 @@ DeArrow에 대해 자세히 알아보려면 여기를 누르세요."</string>
 
 알려진 문제점: 
 • Cairo 테마가 알림 표시 점에도 적용됩니다."</string>
-    <string name="revanced_enable_cairo_seekbar_summary_off">Cairo 재생바를 비활성화합니다.
-
-• Cairo 레이아웃은 구글이 준비 중인 새로운 레이아웃입니다.
-• \'Cairo\'는 구글에서 진행 중인 프로젝트 이름으로 추정됩니다.</string>
+    <string name="revanced_enable_cairo_seekbar_summary_off">Cairo 재생바를 비활성화합니다.\n\n• Cairo 레이아웃은 구글이 준비 중인 새로운 레이아웃입니다.\n• \'Cairo\'는 구글에서 진행 중인 프로젝트 이름으로 추정됩니다.</string>
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Video description -->
     <string name="revanced_preference_screen_video_description_title">동영상 설명</string>
     <string name="revanced_preference_screen_video_description_summary">동영상 설명에서 구성요소를 숨기거나 표시할 수 있습니다.</string>
@@ -1351,7 +1348,7 @@ DeArrow에 대해 자세히 알아보려면 여기를 누르세요."</string>
     <string name="gms_core_dialog_title">필수 조치</string>
     <string name="gms_core_dialog_not_whitelisted_not_allowed_in_background_message">"GmsCore에 백그라운드에서 실행할 수 있는 권한이 없습니다.
 
-휴대폰에 대한 \"Don't kill my app\" 가이드를 읽어보시고, MicroG 설치 지침을 적용하세요.
+이 기기에 대한 \"Don't kill my app\" 가이드를 읽어보시고, GmsCore 설치 지침을 적용하세요.
 
 앱을 실행하려면 이 과정이 필요합니다."</string>
     <string name="gms_core_dialog_open_website_text">웹사이트 열기</string>

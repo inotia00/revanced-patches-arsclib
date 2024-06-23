@@ -151,7 +151,7 @@ Bilgi:
     <string name="revanced_hide_floating_button_title">Yüzen Butonu Gizle</string>
     <string name="revanced_hide_floating_button_summary">Kitaplıktaki Yüzen Butonu Gizle.</string>
     <string name="revanced_hide_tap_to_update_button_title">Güncellemek için tıkla butonunu gizle</string>
-    <string name="revanced_hide_tap_to_update_button_summary">\'Güncellemek için tıkla\' butonunu gizler.</string>
+    <string name="revanced_hide_tap_to_update_button_summary">Güncellemek için tıkla butonunu gizler.</string>
     <string name="revanced_hide_history_button_title">Geçmiş düğmesini gizle</string>
     <string name="revanced_hide_history_button_summary">Araç çubuğundaki geçmiş düğmesini gizler.</string>
     <string name="revanced_hide_notification_button_title">Bildirim butonunu gizle</string>
@@ -278,7 +278,7 @@ Eski oynatıcı düzeninde bazı ayarlar düzgün çalışmayabilir."</string>
     <string name="revanced_sb_segments_sponsor">Sponsor</string>
     <string name="revanced_sb_segments_sponsor_sum">Ücretli tanıtım, ücretli yönlendirmeler ve doğrudan reklamlar. Kendi tanıtımını yapmak veya beğendikleri olaylara / içerik üreticilerine / web sitelerine / ürünlere ücretsiz olarak atıfta bulunanlar için değil.</string>
     <string name="revanced_sb_segments_selfpromo">Karşılıksız/Kişisel Promosyon</string>
-    <string name="revanced_sb_segments_selfpromo_sum">\"Sponsor\" seçeneğinden farkı para karşılığı olmaması veya kendi reklamını yapmasıdır. Buna kendi markalı ürünlerini satmak, bağış toplamak ve videoda işbirliği yaptığı kimselerden bahsetmek dahildir.</string>
+    <string name="revanced_sb_segments_selfpromo_sum">Ücretsiz veya kendi kendine tanıtım haricinde Sponsora benzer. Ürünler, bağışlar veya kiminle işbirliği yaptıklarına ilişkin bilgilerle ilgili bölümler içerir.</string>
     <string name="revanced_sb_segments_interaction">Etkileşim Hatırlatıcısı (Abone Ol)</string>
     <string name="revanced_sb_segments_interaction_sum">İçeriğin ortasında onları beğenmeniz, abone olmanız veya takip etmeniz için kısa bir hatırlatma. Uzunsa veya belirli bir şeyle ilgiliyse, bunun yerine kendini tanıtma altında olmalıdır.</string>
     <string name="revanced_sb_segments_intro">Ara / Giriş Animasyonu</string>
@@ -319,6 +319,8 @@ Eski oynatıcı düzeninde bazı ayarlar düzgün çalışmayabilir."</string>
     <string name="revanced_sb_about_api">sponsor.ajay.app</string>
     <!-- PreferenceScreen: Miscellaneous -->
     <string name="revanced_preference_screen_misc_title">Diğer ayarlar</string>
+    <string name="revanced_enable_cairo_splash_animation_title">Kahire açılış animasyonunu etkinleştir</string>
+    <string name="revanced_enable_cairo_splash_animation_summary">Uyuklama başlangıcında kahire açılış animasyonunu etkinleştirir.</string>
     <string name="revanced_enable_debug_logging_title">Hata ayıklama günlüğünü etkinleştir</string>
     <string name="revanced_enable_debug_logging_summary">Hata ayıklama günlüğünü yazdırır.</string>
     <string name="revanced_enable_debug_buffer_logging_title">Hata ayıklama günlüklerine arabelleği kaydet</string>
@@ -335,9 +337,9 @@ Bilgi:
     <string name="gms_core_dialog_title">Eylem gerekiyor</string>
     <string name="gms_core_dialog_not_whitelisted_not_allowed_in_background_message">"GmsCore'un arka planda çalışma izni yoktur.
 
-Telefonunuz için 'Uygulamamı öldürme' kılavuzunu izleyin ve talimatları MicroG kurulumunuza uygulayın.
+'Uygulamamı öldürmeyin!' cihazınız için kılavuzu kullanın ve talimatları GmsCore kurulumunuza uygulayın.
 
-Bu uygulamanın çalışması için gereklidir."</string>
+Uygulamanın çalışması için bu gereklidir."</string>
     <string name="gms_core_dialog_open_website_text">Web sitesini aç</string>
     <string name="gms_core_dialog_not_whitelisted_using_battery_optimizations_message">"Sorunları önlemek için GmsCore pil optimizasyonları devre dışı bırakılmalıdır.
 
