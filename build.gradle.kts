@@ -1,7 +1,7 @@
 import org.gradle.kotlin.dsl.support.listFilesOrdered
 
 plugins {
-    kotlin("jvm") version "1.9.23"
+    kotlin("jvm") version "2.0.0"
 }
 
 group = "app.revanced"
@@ -31,7 +31,7 @@ dependencies {
     implementation("app.revanced:revanced-patcher:8.0.0-arsclib")
     implementation("app.revanced:multidexlib2:2.5.3-a3836654")
     // Required for meta
-    implementation("com.google.code.gson:gson:2.10.1")
+    implementation("com.google.code.gson:gson:2.11.0")
     // Required for FlexVer-Java
     implementation("com.unascribed:flexver-java:1.1.1")
 }
