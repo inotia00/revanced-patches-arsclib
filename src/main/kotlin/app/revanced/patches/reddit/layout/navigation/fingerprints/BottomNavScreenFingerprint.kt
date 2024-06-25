@@ -7,7 +7,7 @@ import org.jf.dexlib2.Opcode
 
 internal object BottomNavScreenFingerprint : MethodFingerprint(
     returnType = "V",
-    access = AccessFlags.PUBLIC or AccessFlags.FINAL,
+    accessFlags = AccessFlags.PUBLIC or AccessFlags.FINAL,
     parameters = emptyList(),
     opcodes = listOf(
         Opcode.INVOKE_VIRTUAL,

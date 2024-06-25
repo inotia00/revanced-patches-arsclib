@@ -21,13 +21,9 @@ import org.w3c.dom.Element
 @RedditCompatibility
 @Suppress("unused")
 class ChangeVersionCodePatch : ResourcePatch {
-    private fun throwVersionCodeException(versionCodeString: String): PatchException =
-        PatchException(
-            "Invalid versionCode: $versionCodeString, " +
-                    "Version code should be larger than 1 and smaller than ${Int.MAX_VALUE}."
-        )
-
     companion object : OptionsContainer() {
+        private const val MAX_VALUE = Int.MAX_VALUE.toString()
+
         private var ChangeVersionCode by option(
             PatchOption.BooleanOption(
                 key = "ChangeVersionCode",
@@ -41,9 +37,9 @@ class ChangeVersionCodePatch : ResourcePatch {
         private var VersionCode = option(
             PatchOption.StringOption(
                 key = "VersionCode",
-                default = Int.MAX_VALUE.toString(),
+                default = MAX_VALUE,
                 title = "Version code",
-                description = "The version code to use.",
+                description = "The version code to use. (1 ~ $MAX_VALUE)",
                 required = true,
             )
         )
@@ -77,4 +73,10 @@ class ChangeVersionCodePatch : ResourcePatch {
             manifestElement.setAttribute("android:versionCode", "$versionCode")
         }
     }
+
+    private fun throwVersionCodeException(versionCodeString: String): PatchException =
+        PatchException(
+            "Invalid versionCode: $versionCodeString, " +
+                    "Version code should be larger than 1 and smaller than $MAX_VALUE."
+        )
 }

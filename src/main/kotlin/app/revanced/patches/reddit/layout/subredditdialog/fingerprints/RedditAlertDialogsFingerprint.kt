@@ -12,7 +12,7 @@ import org.jf.dexlib2.iface.reference.MethodReference
 
 internal object RedditAlertDialogsFingerprint : MethodFingerprint(
     returnType = "V",
-    access = AccessFlags.PUBLIC or AccessFlags.FINAL,
+    accessFlags = AccessFlags.PUBLIC or AccessFlags.FINAL,
     customFingerprint = { methodDef, _ ->
         methodDef.definingClass == "Lcom/reddit/screen/dialog/RedditAlertDialog;"
                 && indexOfSetBackgroundTintListInstruction(methodDef) >= 0

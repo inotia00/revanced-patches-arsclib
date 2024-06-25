@@ -7,7 +7,7 @@ import org.jf.dexlib2.Opcode
 
 internal object FrequentUpdatesSheetScreenFingerprint : MethodFingerprint(
     returnType = "Landroid/view/View;",
-    access = AccessFlags.PUBLIC or AccessFlags.FINAL,
+    accessFlags = AccessFlags.PUBLIC or AccessFlags.FINAL,
     opcodes = listOf(
         Opcode.CONST,
         Opcode.INVOKE_STATIC,

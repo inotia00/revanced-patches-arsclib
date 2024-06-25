@@ -12,8 +12,9 @@ val githubPassword: String = project.findProperty("gpr.key") as? String ?: Syste
 repositories {
     mavenCentral()
     mavenLocal()
+    maven { url = uri("https://s01.oss.sonatype.org/content/repositories/snapshots") }
     maven {
-        url = uri("https://maven.pkg.github.com/revanced/multidexlib2")
+        url = uri("https://maven.pkg.github.com/revanced/smali")
         credentials {
             username = githubUsername
             password = githubPassword
@@ -28,8 +29,9 @@ repositories {
 }
 
 dependencies {
-    implementation("app.revanced:revanced-patcher:8.0.0-arsclib")
-    implementation("app.revanced:multidexlib2:2.5.3-a3836654")
+    implementation("io.github.inotia00:revanced-patcher:8.0.2-arsclib-SNAPSHOT")
+    // For some reason package 'app.revanced:multidexlib2:2.5.3-a3836654' was removed from github packages
+    implementation("io.github.inotia00:multidexlib2:2.5.3-a3836654-SNAPSHOT")
     // Required for meta
     implementation("com.google.code.gson:gson:2.11.0")
     // Required for FlexVer-Java

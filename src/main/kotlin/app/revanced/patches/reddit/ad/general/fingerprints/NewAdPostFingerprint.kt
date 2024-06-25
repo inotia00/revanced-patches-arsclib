@@ -7,7 +7,7 @@ import org.jf.dexlib2.Opcode
 
 internal object NewAdPostFingerprint : MethodFingerprint(
     returnType = "L",
-    access = AccessFlags.PUBLIC or AccessFlags.FINAL,
+    accessFlags = AccessFlags.PUBLIC or AccessFlags.FINAL,
     opcodes = listOf(Opcode.INVOKE_VIRTUAL),
     strings = listOf(
         "chain",

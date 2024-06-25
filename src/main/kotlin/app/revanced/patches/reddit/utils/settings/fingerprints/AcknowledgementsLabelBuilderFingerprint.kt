@@ -6,7 +6,7 @@ import org.jf.dexlib2.AccessFlags
 
 internal object AcknowledgementsLabelBuilderFingerprint : MethodFingerprint(
     returnType = "Z",
-    access = AccessFlags.PUBLIC or AccessFlags.FINAL,
+    accessFlags = AccessFlags.PUBLIC or AccessFlags.FINAL,
     parameters = listOf("Landroidx/preference/Preference;"),
     strings = listOf("onboardingAnalytics"),
     customFingerprint = { methodDef, _ ->

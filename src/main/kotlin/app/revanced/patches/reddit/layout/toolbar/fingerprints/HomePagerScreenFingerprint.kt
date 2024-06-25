@@ -8,7 +8,7 @@ import org.jf.dexlib2.AccessFlags
 
 internal object HomePagerScreenFingerprint : MethodFingerprint(
     returnType = "Landroid/view/View;",
-    access = AccessFlags.PUBLIC or AccessFlags.FINAL,
+    accessFlags = AccessFlags.PUBLIC or AccessFlags.FINAL,
     parameters = listOf("Landroid/view/LayoutInflater;", "Landroid/view/ViewGroup;"),
     customFingerprint = { methodDef, _ ->
         methodDef.definingClass.endsWith("/HomePagerScreen;")
