@@ -14,7 +14,7 @@ internal object RedditAlertDialogsFingerprint : MethodFingerprint(
     returnType = "V",
     accessFlags = AccessFlags.PUBLIC or AccessFlags.FINAL,
     customFingerprint = { methodDef, _ ->
-        methodDef.definingClass == "Lcom/reddit/screen/dialog/RedditAlertDialog;"
+        methodDef.definingClass.startsWith("Lcom/reddit/screen/dialog/")
                 && indexOfSetBackgroundTintListInstruction(methodDef) >= 0
     }
 ) {

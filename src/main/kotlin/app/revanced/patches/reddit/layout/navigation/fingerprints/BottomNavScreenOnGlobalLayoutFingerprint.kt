@@ -1,17 +1,19 @@
-package app.revanced.patches.reddit.layout.recentlyvisited.fingerprints
+package app.revanced.patches.reddit.layout.navigation.fingerprints
 
 import app.revanced.patcher.extensions.or
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import org.jf.dexlib2.AccessFlags
 import org.jf.dexlib2.Opcode
 
-internal object CommunityDrawerPresenterFingerprint : MethodFingerprint(
+object BottomNavScreenOnGlobalLayoutFingerprint : MethodFingerprint(
     returnType = "V",
     accessFlags = AccessFlags.PUBLIC or AccessFlags.FINAL,
     parameters = emptyList(),
     opcodes = listOf(
-        Opcode.XOR_INT_2ADDR,
-        Opcode.INVOKE_STATIC,
-        Opcode.MOVE_RESULT_OBJECT,
-    )
+        Opcode.INVOKE_VIRTUAL,
+        Opcode.RETURN_VOID
+    ),
+    customFingerprint = { methodDef, _ ->
+        methodDef.name == "onGlobalLayout"
+    }
 )

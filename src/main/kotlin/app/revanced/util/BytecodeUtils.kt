@@ -6,6 +6,7 @@ import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprintResult
 import app.revanced.patcher.patch.PatchException
+import app.revanced.patcher.util.proxy.mutableTypes.MutableClass
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.builder.BuilderInstruction
@@ -18,6 +19,7 @@ import org.jf.dexlib2.iface.instruction.WideLiteralInstruction
 import org.jf.dexlib2.iface.reference.FieldReference
 import org.jf.dexlib2.iface.reference.MethodReference
 import org.jf.dexlib2.iface.reference.Reference
+import org.jf.dexlib2.util.MethodUtil
 
 fun MethodFingerprint.resultOrThrow() = result ?: throw exception
 
@@ -28,6 +30,16 @@ fun MethodFingerprint.resultOrThrow() = result ?: throw exception
  */
 val MethodFingerprint.exception
     get() = PatchException("Failed to resolve ${this.javaClass.simpleName}")
+
+/**
+ * Find the [MutableMethod] from a given [Method] in a [MutableClass].
+ *
+ * @param method The [Method] to find.
+ * @return The [MutableMethod].
+ */
+internal fun MutableClass.findMutableMethodOf(method: Method) = this.methods.first {
+    MethodUtil.methodSignaturesMatch(it, method)
+}
 
 fun MutableMethodImplementation.getInstruction(index: Int): BuilderInstruction =
     instructions[index]
@@ -344,3 +356,7 @@ fun MutableMethod.getWalkerMethod(context: BytecodeContext, index: Int) =
         .traceMethodCalls(this)
         .nextMethod(index, true)
         .getMethod() as MutableMethod
+
+fun BytecodeContext.findClass(className: String) = classes.findClassProxied(className)
+
+

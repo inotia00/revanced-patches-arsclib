@@ -17,9 +17,7 @@ internal object AdPostFingerprint : MethodFingerprint(
         "children",
         "uxExperiences"
     ),
-    customFingerprint = { methodDef, classDef ->
-        methodDef.definingClass.endsWith("/Listing;")
-                && methodDef.name == "<init>"
-                && classDef.sourceFile == "Listing.kt"
+    customFingerprint = { methodDef, _ ->
+        methodDef.definingClass == "Lcom/reddit/domain/model/listing/Listing;"
     },
 )

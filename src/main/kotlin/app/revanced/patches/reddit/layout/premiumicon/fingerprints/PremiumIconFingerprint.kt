@@ -4,9 +4,8 @@ import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 
 internal object PremiumIconFingerprint : MethodFingerprint(
     returnType = "Z",
-    customFingerprint = { methodDef, classDef ->
-        methodDef.definingClass.endsWith("/MyAccount;")
+    customFingerprint = { methodDef, _ ->
+        methodDef.definingClass == "Lcom/reddit/domain/model/MyAccount;"
                 && methodDef.name == "isPremiumSubscriber"
-                && classDef.sourceFile == "MyAccount.kt"
     }
 )
