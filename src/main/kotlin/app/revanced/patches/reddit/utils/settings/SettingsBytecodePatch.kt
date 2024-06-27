@@ -13,9 +13,9 @@ import app.revanced.patches.reddit.utils.settings.fingerprints.OssLicensesMenuAc
 import app.revanced.patches.reddit.utils.settings.fingerprints.SettingsStatusLoadFingerprint
 import app.revanced.patches.shared.settings.fingerprints.SharedSettingFingerprint
 import app.revanced.util.getInstruction
+import app.revanced.util.getStringInstructionIndex
 import app.revanced.util.getTargetIndexOrThrow
-import app.revanced.util.getTargetIndexWithMethodReferenceNameOrThrow
-import app.revanced.util.getWideLiteralInstructionIndex
+import app.revanced.util.getTargetIndexWithMethodReferenceNameReversedOrThrow
 import app.revanced.util.resultOrThrow
 import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
@@ -38,8 +38,9 @@ class SettingsBytecodePatch : BytecodePatch(
 
         internal fun updateSettingsLabel(label: String) =
             acknowledgementsLabelBuilderMethod.apply {
+                val stringIndex = getStringInstructionIndex("onboardingAnalytics")
                 val insertIndex =
-                    getTargetIndexWithMethodReferenceNameOrThrow("getString") + 2
+                    getTargetIndexWithMethodReferenceNameReversedOrThrow(stringIndex, "getString") + 2
                 val insertRegister =
                     getInstruction<OneRegisterInstruction>(insertIndex - 1).registerA
 
