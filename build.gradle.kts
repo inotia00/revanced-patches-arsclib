@@ -34,8 +34,6 @@ dependencies {
     implementation("io.github.inotia00:multidexlib2:2.5.3-a3836654-SNAPSHOT")
     // Required for meta
     implementation("com.google.code.gson:gson:2.13.2")
-    // Required for FlexVer-Java
-    implementation("com.unascribed:flexver-java:1.1.1")
 }
 
 kotlin {

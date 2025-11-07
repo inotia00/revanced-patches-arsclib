@@ -1,8 +1,10 @@
-## 🧩 Patches
+## 🧩 ReVanced Extended Patches ARSCLib
 
-The official Patch bundle provided by ReVanced and the community.
+ReVanced Extended Patches ARSCLib. 
 
-> Looking for the JSON variant of this? [Click here](patches.json).
+See the [documentation](https://github.com/inotia00/revanced-documentation#readme) to learn how to apply patches and build ReVanced Extended apps.
+
+## 📋 List of patches in this repository
 
 {{ table }}
 
@@ -10,21 +12,22 @@ The official Patch bundle provided by ReVanced and the community.
 
 This section explains the JSON format for the [patches.json](patches.json) file.
 
-The file contains an array of objects, each object representing a patch. The object contains the following properties:
+Example:
 
-| key                           | description                                                                                                                                                                           |
-|-------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `name`                        | The name of the patch.                                                                                                                                                                |
-| `description`                 | The description of the patch.                                                                                                                                                         |
-| `version`                     | The version of the patch.                                                                                                                                                             |
-| `excluded`                    | Whether the patch is excluded by default. If `true`, the patch must never be included by default.                                                                                     |
-| `options`                     | An array of options for this patch.                                                                                                                                                   |
-| `options.key`                 | The key of the option.                                                                                                                                                                |
-| `options.title`               | The title of the option.                                                                                                                                                              |
-| `options.description`         | The description of the option.                                                                                                                                                        |
-| `options.required`            | Whether the option is required.                                                                                                                                                       |
-| `options.choices?`            | An array of choices of the option. This may be `null` if this option has no choices. The element type of this array may be any type. It can be a `String`, `Int` or something else.   |
-| `dependencies`                | An array of dependencies, which are patch names.                                                                                                                                      |
-| `compatiblePackages`          | An array of packages compatible with this patch.                                                                                                                                      |
-| `compatiblePackages.name`     | The name of the package.                                                                                                                                                              |
-| `compatiblePackages.versions` | An array of versions of the package compatible with this patch. If empty, all versions are seemingly compatible.                                                                      |
+```json
+[
+  {
+    "name": "Hide ads",
+    "description": "Adds options to hide ads.",
+    "excluded":false,
+    "options": [],
+    "dependencies": [
+      "Settings for Reddit",
+      "CommentAdsPatch"
+    ],
+    "compatiblePackages": {
+      "com.reddit.frontpage": "COMPATIBLE_PACKAGE_REDDIT"
+    }
+  }
+]
+```
