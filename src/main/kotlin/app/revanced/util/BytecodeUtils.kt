@@ -35,6 +35,16 @@ fun MethodFingerprint.alsoResolve(context: BytecodeContext, fingerprint: MethodF
 fun BytecodeContext.findClass(className: String) =
     classes.findClassProxied { classDef -> classDef.type == className }
 
+/**
+ * Find the [MutableMethod] from a given [Method] in a [MutableClass].
+ *
+ * @param method The [Method] to find.
+ * @return The [MutableMethod].
+ */
+internal fun MutableClass.findMutableMethodOf(method: Method) = this.methods.first {
+    MethodUtil.methodSignaturesMatch(it, method)
+}
+
 fun MutableMethodImplementation.getInstruction(index: Int): BuilderInstruction =
     instructions[index]
 
@@ -331,5 +341,14 @@ fun BytecodeContext.findMethodsOrThrow(reference: String): MutableSet<MutableMet
     } else {
         throw PatchException("No matching methods found in: $reference")
     }
+}
+
+fun MutableMethod.methodCall(): String {
+    var methodCall = "$definingClass->$name("
+    for (i in 0 until parameters.size) {
+        methodCall += parameterTypes[i]
+    }
+    methodCall += ")$returnType"
+    return methodCall
 }
 

@@ -10,6 +10,8 @@ import app.revanced.patcher.resource.Resource
 import app.revanced.patcher.resource.StringResource
 import app.revanced.patcher.resource.color
 import app.revanced.patcher.resource.reference
+import org.w3c.dom.Element
+import org.w3c.dom.Node
 import java.io.File
 import java.nio.file.Paths
 
@@ -79,6 +81,25 @@ internal object ResourceUtils {
         apkBundle.resources.resolve(type, name).toLong()
 
     internal val ResourceContext.base get() = apkBundle.base.resources
+
+    internal fun Node.doRecursively(action: (Node) -> Unit) {
+        action(this)
+        for (i in 0 until this.childNodes.length) this.childNodes.item(i).doRecursively(action)
+    }
+
+    internal fun DomFileEditor?.getNode(tagName: String) =
+        this!!.file.getElementsByTagName(tagName).item(0)
+
+    internal fun Node.adoptChild(tagName: String, block: Element.() -> Unit) {
+        val child = ownerDocument.createElement(tagName)
+        child.block()
+        appendChild(child)
+    }
+
+    internal fun String.trimIndentMultiline() =
+        this.split("\n")
+            .joinToString("\n") { it.trimIndent() } // Remove the leading whitespace from each line.
+            .trimIndent() // Remove the leading newline.
 
     internal fun ResourceContext.manifestEditor() = base.openXmlFile(Apk.manifest)
 
