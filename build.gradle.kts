@@ -1,7 +1,7 @@
 import org.gradle.kotlin.dsl.support.listFilesOrdered
 
 plugins {
-    kotlin("jvm") version "2.0.20"
+    kotlin("jvm") version "2.0.21"
 }
 
 group = "app.revanced"
@@ -33,7 +33,7 @@ dependencies {
     // For some reason package 'app.revanced:multidexlib2:2.5.3-a3836654' was removed from github packages
     implementation("io.github.inotia00:multidexlib2:2.5.3-a3836654-SNAPSHOT")
     // Required for meta
-    implementation("com.google.code.gson:gson:2.11.0")
+    implementation("com.google.code.gson:gson:2.13.2")
     // Required for FlexVer-Java
     implementation("com.unascribed:flexver-java:1.1.1")
 }
