@@ -1,7 +1,6 @@
 package app.revanced.patches.reddit.utils.settings.fingerprints
 
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
-import org.jf.dexlib2.AccessFlags
 
 internal object AcknowledgementsLabelBuilderFingerprint : MethodFingerprint(
     returnType = "Z",

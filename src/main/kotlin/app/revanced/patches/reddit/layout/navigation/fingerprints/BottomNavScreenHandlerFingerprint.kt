@@ -2,8 +2,8 @@ package app.revanced.patches.reddit.layout.navigation.fingerprints
 
 import app.revanced.patcher.extensions.or
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
-import app.revanced.patches.reddit.layout.navigation.fingerprints.BottomNavScreenHandlerFingerprint.indexOfGetItems
-import app.revanced.patches.reddit.layout.navigation.fingerprints.BottomNavScreenHandlerFingerprint.indexOfSetSelectedItemType
+import app.revanced.patches.reddit.layout.navigation.fingerprints.BottomNavScreenHandlerFingerprint.indexOfGetItemsInstruction
+import app.revanced.patches.reddit.layout.navigation.fingerprints.BottomNavScreenHandlerFingerprint.indexOfSetSelectedItemTypeInstruction
 import app.revanced.util.getReference
 import app.revanced.util.indexOfFirstInstruction
 import org.jf.dexlib2.AccessFlags
@@ -16,16 +16,16 @@ internal object BottomNavScreenHandlerFingerprint : MethodFingerprint(
     accessFlags = AccessFlags.PUBLIC or AccessFlags.FINAL,
     parameters = listOf("L", "L", "Z", "Landroid/view/ViewGroup;", "L"),
     customFingerprint = { methodDef, _ ->
-        indexOfGetItems(methodDef) >= 0
-                && indexOfSetSelectedItemType(methodDef) >= 0
+        indexOfGetItemsInstruction(methodDef) >= 0 &&
+                indexOfSetSelectedItemTypeInstruction(methodDef) >= 0
     }
 ) {
-    fun indexOfGetItems(methodDef: Method) =
+    fun indexOfGetItemsInstruction(methodDef: Method) =
         methodDef.indexOfFirstInstruction {
             val reference = getReference<MethodReference>()?.toString()
             reference != null && reference.endsWith("getItems()Ljava/util/List;")
         }
-    fun indexOfSetSelectedItemType(methodDef: Method) =
+    fun indexOfSetSelectedItemTypeInstruction(methodDef: Method) =
         methodDef.indexOfFirstInstruction {
             opcode == Opcode.INVOKE_VIRTUAL &&
                     getReference<MethodReference>()?.name == "setSelectedItemType"

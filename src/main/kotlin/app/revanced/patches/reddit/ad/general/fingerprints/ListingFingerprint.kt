@@ -5,7 +5,7 @@ import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import org.jf.dexlib2.AccessFlags
 import org.jf.dexlib2.Opcode
 
-internal object AdPostFingerprint : MethodFingerprint(
+internal object ListingFingerprint : MethodFingerprint(
     returnType = "V",
     accessFlags = AccessFlags.PUBLIC or AccessFlags.CONSTRUCTOR,
     opcodes = listOf(
@@ -17,7 +17,7 @@ internal object AdPostFingerprint : MethodFingerprint(
         "children",
         "uxExperiences"
     ),
-    customFingerprint = { methodDef, _ ->
-        methodDef.definingClass == "Lcom/reddit/domain/model/listing/Listing;"
+    customFingerprint = { _, classDef ->
+        classDef.type.endsWith("/Listing;")
     },
 )

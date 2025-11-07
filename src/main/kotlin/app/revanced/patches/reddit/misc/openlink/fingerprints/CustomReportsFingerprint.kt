@@ -8,13 +8,15 @@ import org.jf.dexlib2.iface.instruction.ReferenceInstruction
 
 internal object CustomReportsFingerprint : MethodFingerprint(
     returnType = "V",
-    strings = listOf("https://www.crisistextline.org/", "screenNavigator"),
-    customFingerprint = { methodDef, _ ->
-        indexOfScreenNavigator(methodDef) >= 0
+    strings = listOf("https://www.crisistextline.org/"),
+    customFingerprint = { methodDef, classDef ->
+        classDef.type.contains("/customreports/") &&
+                indexOfScreenNavigator(methodDef) >= 0
     }
 ) {
     fun indexOfScreenNavigator(methodDef: Method) =
         methodDef.indexOfFirstInstruction {
-            (this as? ReferenceInstruction)?.reference?.toString()?.contains("Landroid/app/Activity;Landroid/net/Uri;") == true
+            (this as? ReferenceInstruction)?.reference?.toString()
+                ?.contains("Landroid/app/Activity;Landroid/net/Uri;") == true
         }
 }

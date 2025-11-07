@@ -12,7 +12,6 @@ internal object CommunityRecommendationSectionParentFingerprint : MethodFingerpr
     strings = listOf("community_recomendation_section_"),
     customFingerprint = { methodDef, _ ->
         methodDef.definingClass.startsWith("Lcom/reddit/onboardingfeedscomponents/communityrecommendation/impl/") &&
-                methodDef.name == "key" &&
-                methodDef.indexOfFirstStringInstruction("community_recomendation_section_") >= 0
+                methodDef.name == "key"
     }
 )
