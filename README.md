@@ -1,26 +1,28 @@
-## 🧩 Patches
+## 🧩 ReVanced Extended Patches ARSCLib
 
-The official Patch bundle provided by ReVanced and the community.
+ReVanced Extended Patches ARSCLib. 
 
-> Looking for the JSON variant of this? [Click here](patches.json).
+See the [documentation](https://github.com/inotia00/revanced-documentation#readme) to learn how to apply patches and build ReVanced Extended apps.
+
+## 📋 List of patches in this repository
 
 ### [📦 `com.reddit.frontpage`](https://play.google.com/store/apps/details?id=com.reddit.frontpage)
 <details>
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
-| `Custom branding name for Reddit` | Renames the Reddit app to the name specified in options.json. | ALL |
-| `Disable screenshot popup` | Adds an option to disable the popup that appears when taking a screenshot. | ALL |
-| `Hide Recently Visited shelf` | Adds an option to hide the Recently Visited shelf in the sidebar. | ALL |
-| `Hide ads` | Adds options to hide ads. | ALL |
-| `Hide navigation buttons` | Adds options to hide buttons in the navigation bar. | 2024.25.3 |
-| `Hide recommended communities shelf` | Adds an option to hide the recommended communities shelves in subreddits. | ALL |
-| `Open links directly` | Adds an option to skip over redirection URLs in external links. | ALL |
-| `Open links externally` | Adds an option to always open links in your browser instead of in the in-app-browser. | ALL |
-| `Premium icon` | Unlocks premium app icons. | ALL |
-| `Remove subreddit dialog` | Adds options to remove the NSFW community warning and notifications suggestion dialogs by dismissing them automatically. | ALL |
-| `Sanitize sharing links` | Adds an option to remove tracking query parameters from URLs when sharing links. | ALL |
-| `Settings for Reddit` | Applies mandatory patches to implement ReVanced Extended settings into the application. | ALL |
+| `Hide ads` | Adds options to hide ads. | 2025.40.0 ~ 2025.44.0 |
+| `Custom branding name for Reddit` | Renames the Reddit app to the name specified in options.json. | 2025.40.0 ~ 2025.44.0 |
+| `Hide recommended communities shelf` | Adds an option to hide the recommended communities shelves in subreddits. | 2025.40.0 ~ 2025.44.0 |
+| `Hide navigation buttons` | Adds options to hide buttons in the navigation bar. | 2025.40.0 ~ 2025.44.0 |
+| `Disable screenshot popup` | Adds an option to disable the popup that appears when taking a screenshot. | 2025.40.0 ~ 2025.44.0 |
+| `Hide sidebar components` | Adds options to hide the sidebar components. | 2025.40.0 ~ 2025.44.0 |
+| `Remove subreddit dialog` | Adds options to remove the NSFW community warning and notifications suggestion dialogs by dismissing them automatically. | 2025.40.0 ~ 2025.44.0 |
+| `Hide Trending Today shelf` | Adds an option to hide the Trending Today shelf from search suggestions. | 2025.40.0 ~ 2025.44.0 |
+| `Open links directly` | Adds an option to skip over redirection URLs in external links. | 2025.40.0 ~ 2025.44.0 |
+| `Open links externally` | Adds an option to always open links in your browser instead of in the in-app-browser. | 2025.40.0 ~ 2025.44.0 |
+| `Sanitize sharing links` | Adds an option to remove tracking query parameters from URLs when sharing links. | 2025.40.0 ~ 2025.44.0 |
+| `Settings for Reddit` | Applies mandatory patches to implement RVX settings into the application. | 2025.40.0 ~ 2025.44.0 |
 </details>
 
 
@@ -29,21 +31,25 @@ The official Patch bundle provided by ReVanced and the community.
 
 This section explains the JSON format for the [patches.json](patches.json) file.
 
-The file contains an array of objects, each object representing a patch. The object contains the following properties:
+Example:
 
-| key                           | description                                                                                                                                                                           |
-|-------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `name`                        | The name of the patch.                                                                                                                                                                |
-| `description`                 | The description of the patch.                                                                                                                                                         |
-| `version`                     | The version of the patch.                                                                                                                                                             |
-| `excluded`                    | Whether the patch is excluded by default. If `true`, the patch must never be included by default.                                                                                     |
-| `options`                     | An array of options for this patch.                                                                                                                                                   |
-| `options.key`                 | The key of the option.                                                                                                                                                                |
-| `options.title`               | The title of the option.                                                                                                                                                              |
-| `options.description`         | The description of the option.                                                                                                                                                        |
-| `options.required`            | Whether the option is required.                                                                                                                                                       |
-| `options.choices?`            | An array of choices of the option. This may be `null` if this option has no choices. The element type of this array may be any type. It can be a `String`, `Int` or something else.   |
-| `dependencies`                | An array of dependencies, which are patch names.                                                                                                                                      |
-| `compatiblePackages`          | An array of packages compatible with this patch.                                                                                                                                      |
-| `compatiblePackages.name`     | The name of the package.                                                                                                                                                              |
-| `compatiblePackages.versions` | An array of versions of the package compatible with this patch. If empty, all versions are seemingly compatible.                                                                      |
+```json
+[
+  {
+    "name": "Hide ads",
+    "description": "Adds options to hide ads.",
+    "excluded":false,
+    "options": [],
+    "dependencies": [
+      "Settings for Reddit",
+      "CommentAdsPatch"
+    ],
+    "compatiblePackages": {
+      "com.reddit.frontpage": [
+        "2025.40.0",
+        "2025.44.0"
+      ]
+    }
+  }
+]
+```
