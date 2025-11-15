@@ -10,7 +10,7 @@ import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.reddit.layout.subredditdialog.fingerprints.FrequentUpdatesHandlerFingerprint
-import app.revanced.patches.reddit.layout.subredditdialog.fingerprints.FrequentUpdatesHandlerFingerprint.listOfIsLoggedInInstruction
+import app.revanced.patches.reddit.layout.subredditdialog.fingerprints.FrequentUpdatesHandlerFingerprint.listOfUserIsSubscriberInstruction
 import app.revanced.patches.reddit.layout.subredditdialog.fingerprints.FrequentUpdatesSheetScreenFingerprint
 import app.revanced.patches.reddit.layout.subredditdialog.fingerprints.NSFWAlertEmitFingerprint
 import app.revanced.patches.reddit.layout.subredditdialog.fingerprints.NSFWAlertEmitFingerprint.indexOfHasBeenVisitedInstruction
@@ -64,13 +64,15 @@ class SubRedditDialogPatch : BytecodePatch(
                 .resultOrThrow()
                 .mutableMethod
                 .apply {
-                    listOfIsLoggedInInstruction(this)
-                        .forEach { index ->
+                    listOfUserIsSubscriberInstruction(this)
+                        .forEach { targetIndex ->
+                            val index =
+                                indexOfFirstInstructionReversedOrThrow(targetIndex, Opcode.IF_NEZ)
                             val register =
-                                getInstruction<OneRegisterInstruction>(index + 1).registerA
+                                getInstruction<OneRegisterInstruction>(index).registerA
 
                             addInstructions(
-                                index + 2, """
+                                index, """
                                     invoke-static {v$register}, $INTEGRATIONS_CLASS_DESCRIPTOR->spoofLoggedInStatus(Z)Z
                                     move-result v$register
                                     """

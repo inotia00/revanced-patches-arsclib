@@ -17,6 +17,7 @@ import app.revanced.patches.reddit.utils.annotation.RedditCompatibility
 import app.revanced.patches.reddit.utils.integrations.Constants.PATCHES_PATH
 import app.revanced.patches.reddit.utils.settings.SettingsBytecodePatch.Companion.is_2025_13_or_greater
 import app.revanced.patches.reddit.utils.settings.SettingsBytecodePatch.Companion.is_2025_40_or_greater
+import app.revanced.patches.reddit.utils.settings.SettingsBytecodePatch.Companion.is_2025_45_or_greater
 import app.revanced.patches.reddit.utils.settings.SettingsBytecodePatch.Companion.updateSettingsStatus
 import app.revanced.patches.reddit.utils.settings.SettingsPatch
 import app.revanced.util.alsoResolve
@@ -55,30 +56,32 @@ class TrendingTodayShelfPatch : BytecodePatch(
 
         // region patch for hide trending today title.
 
-        TrendingTodayTitleFingerprint.resultOrThrow().let {
-            it.mutableMethod.apply {
-                val stringIndex =
-                    indexOfFirstStringInstructionOrThrow("trending_today_title")
-                val relativeIndex =
-                    indexOfFirstInstructionReversedOrThrow(stringIndex, Opcode.AND_INT_LIT8)
-                val insertIndex = indexOfFirstInstructionReversedOrThrow(
-                    relativeIndex + 1,
-                    Opcode.MOVE_OBJECT_FROM16
-                )
-                val insertRegister = getInstruction<TwoRegisterInstruction>(insertIndex).registerA
-                val jumpOpcode = if (returnType == "V") Opcode.RETURN_VOID else Opcode.SGET_OBJECT
-                var jumpIndex = indexOfFirstInstructionReversedOrThrow(jumpOpcode)
-                if (jumpOpcode == Opcode.SGET_OBJECT && getInstruction(jumpIndex + 1).opcode != Opcode.RETURN_OBJECT) {
-                    jumpIndex = indexOfFirstInstructionReversedOrThrow(Opcode.RETURN_OBJECT)
-                }
+        if (!is_2025_45_or_greater) {
+            TrendingTodayTitleFingerprint.resultOrThrow().let {
+                it.mutableMethod.apply {
+                    val stringIndex =
+                        indexOfFirstStringInstructionOrThrow("trending_today_title")
+                    val relativeIndex =
+                        indexOfFirstInstructionReversedOrThrow(stringIndex, Opcode.AND_INT_LIT8)
+                    val insertIndex = indexOfFirstInstructionReversedOrThrow(
+                        relativeIndex + 1,
+                        Opcode.MOVE_OBJECT_FROM16
+                    )
+                    val insertRegister = getInstruction<TwoRegisterInstruction>(insertIndex).registerA
+                    val jumpOpcode = if (returnType == "V") Opcode.RETURN_VOID else Opcode.SGET_OBJECT
+                    var jumpIndex = indexOfFirstInstructionReversedOrThrow(jumpOpcode)
+                    if (jumpOpcode == Opcode.SGET_OBJECT && getInstruction(jumpIndex + 1).opcode != Opcode.RETURN_OBJECT) {
+                        jumpIndex = indexOfFirstInstructionReversedOrThrow(Opcode.RETURN_OBJECT)
+                    }
 
-                addInstructions(
-                    insertIndex, """
-                        invoke-static {}, $INTEGRATIONS_METHOD_DESCRIPTOR
-                        move-result v$insertRegister
-                        if-nez v$insertRegister, :hidden
-                        """, listOf(ExternalLabel("hidden", getInstruction(jumpIndex)))
-                )
+                    addInstructions(
+                        insertIndex, """
+                            invoke-static {}, $INTEGRATIONS_METHOD_DESCRIPTOR
+                            move-result v$insertRegister
+                            if-nez v$insertRegister, :hidden
+                            """, listOf(ExternalLabel("hidden", getInstruction(jumpIndex)))
+                    )
+                }
             }
         }
 

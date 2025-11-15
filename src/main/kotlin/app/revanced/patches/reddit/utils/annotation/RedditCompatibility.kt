@@ -9,7 +9,8 @@ import app.revanced.patcher.annotation.Package
             "com.reddit.frontpage",
             arrayOf(
                 "2025.40.0",
-                "2025.44.0",
+                "2025.43.0",
+                "2025.45.0",
             )
         )
     ]

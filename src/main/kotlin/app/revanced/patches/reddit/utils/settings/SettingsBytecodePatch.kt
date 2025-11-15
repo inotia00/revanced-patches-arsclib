@@ -61,6 +61,7 @@ class SettingsBytecodePatch : BytecodePatch(
         internal var is_2025_06_or_greater = false
         internal var is_2025_13_or_greater = false
         internal var is_2025_40_or_greater = false
+        internal var is_2025_45_or_greater = false
 
         internal fun updateSettingsLabel(label: String) =
             acknowledgementsLabelBuilderMethod.apply {
@@ -133,6 +134,7 @@ class SettingsBytecodePatch : BytecodePatch(
             is_2025_06_or_greater = 2025060 <= versionNumber
             is_2025_13_or_greater = 2025130 <= versionNumber
             is_2025_40_or_greater = 2025400 <= versionNumber
+            is_2025_45_or_greater = 2025450 <= versionNumber
         }
 
         /**

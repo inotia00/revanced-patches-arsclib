@@ -2,7 +2,7 @@ package app.revanced.patches.reddit.layout.subredditdialog.fingerprints
 
 import app.revanced.patcher.extensions.or
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
-import app.revanced.patches.reddit.layout.subredditdialog.fingerprints.FrequentUpdatesHandlerFingerprint.listOfIsLoggedInInstruction
+import app.revanced.patches.reddit.layout.subredditdialog.fingerprints.FrequentUpdatesHandlerFingerprint.listOfUserIsSubscriberInstruction
 import org.jf.dexlib2.AccessFlags
 import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.iface.Method
@@ -16,18 +16,18 @@ internal object FrequentUpdatesHandlerFingerprint : MethodFingerprint(
     customFingerprint = { methodDef, classDef ->
         classDef.type.startsWith("Lcom/reddit/screens/pager/FrequentUpdatesHandler${'$'}handleFrequentUpdates${'$'}") &&
                 methodDef.name == "invokeSuspend" &&
-                listOfIsLoggedInInstruction(methodDef).isNotEmpty()
+                listOfUserIsSubscriberInstruction(methodDef).isNotEmpty()
     }
 ) {
-    fun listOfIsLoggedInInstruction(methodDef: Method) =
+    fun listOfUserIsSubscriberInstruction(methodDef: Method) =
         methodDef.implementation?.instructions
             ?.withIndex()
             ?.filter { (_, instruction) ->
                 val reference = (instruction as? ReferenceInstruction)?.reference
-                instruction.opcode == Opcode.INVOKE_INTERFACE &&
+                instruction.opcode == Opcode.INVOKE_VIRTUAL &&
                         reference is MethodReference &&
-                        reference.name == "isLoggedIn" &&
-                        reference.returnType == "Z"
+                        reference.name == "getUserIsSubscriber" &&
+                        reference.returnType == "Ljava/lang/Boolean;"
             }
             ?.map { (index, _) -> index }
             ?.reversed()
