@@ -7,7 +7,6 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.patch.annotations.RequiresIntegrations
-import app.revanced.patches.all.misc.installer.ChangeInstallerPackageNamePatch
 import app.revanced.patches.reddit.misc.fix.fingerprints.ApplicationFingerprint
 import app.revanced.patches.reddit.utils.annotation.RedditCompatibility
 import app.revanced.patches.reddit.utils.integrations.Constants.PATCHES_PATH
@@ -17,7 +16,7 @@ import app.revanced.util.resultOrThrow
 @Patch
 @Name("Spoof signature")
 @Description("Spoofs the signature of the app.")
-@DependsOn([IntegrationsPatch::class, ChangeInstallerPackageNamePatch::class])
+@DependsOn([IntegrationsPatch::class])
 @RedditCompatibility
 @RequiresIntegrations
 @Suppress("unused")
