@@ -20,6 +20,7 @@ import app.revanced.patches.reddit.utils.annotation.RedditCompatibility
 import app.revanced.patches.reddit.utils.integrations.Constants.PATCHES_PATH
 import app.revanced.patches.reddit.utils.settings.SettingsBytecodePatch.Companion.is_2025_40_or_greater
 import app.revanced.patches.reddit.utils.settings.SettingsBytecodePatch.Companion.is_2025_45_or_greater
+import app.revanced.patches.reddit.utils.settings.SettingsBytecodePatch.Companion.is_2025_52_or_greater
 import app.revanced.patches.reddit.utils.settings.SettingsBytecodePatch.Companion.updateSettingsStatus
 import app.revanced.patches.reddit.utils.settings.SettingsPatch
 import app.revanced.util.alsoResolve
@@ -234,6 +235,11 @@ class SidebarComponentsPatch : BytecodePatch(
         if (is_2025_40_or_greater) {
             updateSettingsStatus("enableGamesOnRedditShelf")
             updateSettingsStatus("enableRedditProShelf")
+
+            if (is_2025_52_or_greater) {
+                updateSettingsStatus("enableAboutShelf")
+                updateSettingsStatus("enableResourcesShelf")
+            }
         }
     }
 }
