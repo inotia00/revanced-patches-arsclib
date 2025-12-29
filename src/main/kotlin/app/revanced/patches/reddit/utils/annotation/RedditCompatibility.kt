@@ -11,6 +11,7 @@ import app.revanced.patcher.annotation.Package
                 "2025.40.0",
                 "2025.43.0",
                 "2025.45.0",
+                "2025.52.0",
             )
         )
     ]

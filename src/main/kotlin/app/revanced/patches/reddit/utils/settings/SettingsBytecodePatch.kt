@@ -12,11 +12,13 @@ import app.revanced.patches.reddit.utils.settings.fingerprints.AcknowledgementsL
 import app.revanced.patches.reddit.utils.settings.fingerprints.OssLicensesMenuActivityOnCreateFingerprint
 import app.revanced.patches.reddit.utils.settings.fingerprints.PreferenceDestinationFingerprint
 import app.revanced.patches.reddit.utils.settings.fingerprints.PreferenceManagerFingerprint
-import app.revanced.patches.reddit.utils.settings.fingerprints.PreferenceSetIconFingerprint
+import app.revanced.patches.reddit.utils.settings.fingerprints.PreferenceManagerFingerprint.indexOfPreferencesPresenterInstruction
+import app.revanced.patches.reddit.utils.settings.fingerprints.PreferenceManagerParentFingerprint
 import app.revanced.patches.reddit.utils.settings.fingerprints.RedditInternalFeaturesFingerprint
 import app.revanced.patches.reddit.utils.settings.fingerprints.SettingsStatusLoadFingerprint
 import app.revanced.patches.reddit.utils.settings.fingerprints.WebBrowserActivityOnCreateFingerprint
 import app.revanced.patches.shared.settings.fingerprints.SharedSettingFingerprint
+import app.revanced.util.alsoResolve
 import app.revanced.util.getInstruction
 import app.revanced.util.getReference
 import app.revanced.util.indexOfFirstInstructionOrThrow
@@ -38,8 +40,7 @@ class SettingsBytecodePatch : BytecodePatch(
         AcknowledgementsLabelBuilderFingerprint,
         OssLicensesMenuActivityOnCreateFingerprint,
         PreferenceDestinationFingerprint,
-        PreferenceManagerFingerprint,
-        PreferenceSetIconFingerprint,
+        PreferenceManagerParentFingerprint,
         RedditInternalFeaturesFingerprint,
         SharedSettingFingerprint,
         SettingsStatusLoadFingerprint,
@@ -52,7 +53,6 @@ class SettingsBytecodePatch : BytecodePatch(
 
         private lateinit var acknowledgementsLabelBuilderMethod: MutableMethod
         private lateinit var settingsStatusLoadMethod: MutableMethod
-        private lateinit var preferenceSetIconMethodCall: String
 
         internal var is_2024_26_or_greater = false
         internal var is_2024_41_or_greater = false
@@ -62,6 +62,7 @@ class SettingsBytecodePatch : BytecodePatch(
         internal var is_2025_13_or_greater = false
         internal var is_2025_40_or_greater = false
         internal var is_2025_45_or_greater = false
+        internal var is_2025_52_or_greater = false
 
         internal fun updateSettingsLabel(label: String) =
             acknowledgementsLabelBuilderMethod.apply {
@@ -72,23 +73,25 @@ class SettingsBytecodePatch : BytecodePatch(
                 var insertIndex: Int
 
                 if (is_2025_40_or_greater) {
-                    val preferenceIndex =
-                        indexOfFirstInstructionReversedOrThrow {
-                            opcode == Opcode.INVOKE_VIRTUAL &&
-                                    getReference<MethodReference>()?.toString() == preferenceSetIconMethodCall
-                        }
-                    val preferenceIconRegister =
-                        getInstruction<FiveRegisterInstruction>(preferenceIndex).registerD
+                    val preferencesPresenterIndex =
+                        indexOfPreferencesPresenterInstruction(this)
+
+                    val stringIndex =
+                        indexOfFirstInstructionReversedOrThrow(preferencesPresenterIndex, predicate)
+                    val iconIndex =
+                        indexOfFirstInstructionReversedOrThrow(stringIndex - 2, Opcode.CONST)
+                    val iconRegister =
+                        getInstruction<OneRegisterInstruction>(iconIndex).registerA
 
                     addInstructions(
-                        preferenceIndex, """
+                        iconIndex + 1, """
                             invoke-static {}, $INTEGRATIONS_CLASS_DESCRIPTOR->getIcon()I
-                            move-result v$preferenceIconRegister
+                            move-result v$iconRegister
                             """
                     )
 
                     insertIndex =
-                        indexOfFirstInstructionOrThrow(preferenceIndex, predicate) + 2
+                        indexOfFirstInstructionReversedOrThrow(preferencesPresenterIndex, predicate) + 2
                 } else {
                     val stringIndex =
                         indexOfFirstStringInstructionOrThrow("onboardingAnalytics")
@@ -135,6 +138,7 @@ class SettingsBytecodePatch : BytecodePatch(
             is_2025_13_or_greater = 2025130 <= versionNumber
             is_2025_40_or_greater = 2025400 <= versionNumber
             is_2025_45_or_greater = 2025450 <= versionNumber
+            is_2025_52_or_greater = 2025520 <= versionNumber
         }
 
         /**
@@ -156,13 +160,8 @@ class SettingsBytecodePatch : BytecodePatch(
             /**
              * Replace settings label
              */
-            preferenceSetIconMethodCall = PreferenceSetIconFingerprint
-                .resultOrThrow()
-                .mutableMethod
-                .methodCall()
-
             acknowledgementsLabelBuilderMethod = PreferenceManagerFingerprint
-                .resultOrThrow()
+                .alsoResolve(context, PreferenceManagerParentFingerprint)
                 .mutableMethod
 
             /**
